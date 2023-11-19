@@ -1,0 +1,1619 @@
+## ----------------------------------------------------------------------- INFO
+## [/usr/share/ael/files/packages]
+## author        : fantomH @alterEGO Linux
+## created       : 2023-10-22 15:06:13 UTC
+## updated       : 2023-10-22 15:06:13 UTC
+## description   : Packages list.
+
+[alacritty]
+package     = "community/alacritty"
+description = "A cross-platform, GPU-accelerated terminal emulator."
+url         = "https://github.com/alacritty/alacritty"
+desktop     = "/usr/share/applications/Alacritty.desktop"
+man         = ['alacritty(1)',
+               'alacritty-msg(1)']
+mode        = ['desktop', 'hacker']
+
+[alsa-utils]
+package     = "extra/alsa-utils"
+description = "Advanced Linux Sound Architecture - Utilities"
+url         = "https://www.alsa-project.org"
+man         = ['alsamixer(1)']
+mode        = ['desktop', 'hacker']
+
+[amfora]
+package     = "community/amfora"
+description = "Terminal browser for the Gemini protocol"
+url         = "https://github.com/makeworld-the-better-one/amfora"
+mode        = ["testing"]
+
+[amd-ucode]
+mode        = ["amd"]
+
+[arch-wiki-docs]
+repository  = "community/arch-wiki-docs"
+description = "Pages from Arch Wiki optimized for offline browsing"
+url         = "https://github.com/lahwaacz/arch-wiki-docs"
+mode        = ["testing"]
+
+[arp-scan]
+package     = "community/arp-scan"
+description = "A tool that uses ARP to discover and fingerprint IP hosts on the local network"
+url         = "https://github.com/royhills/arp-scan"
+man         = ['arp-scan(1)']
+mode        = ['hacker']
+
+[bash-completion]
+package     = "extra/bash-completion"
+description = "Programmable completion for the bash shell"
+url         = "https://github.com/scop/bash-completion"
+mode        = ['ael-base']
+
+[bat]
+package     = "community/bat"
+description = "Cat clone with syntax highlighting and git integration"
+url         = "https://github.com/sharkdp/bat"
+man         = ['bat(1)']
+mode        = ['testing']
+
+[bc]
+package     = "extra/bc"
+description = "An arbitrary precision calculator language"
+url         = "https://www.gnu.org/software/bc/"
+info        = ['bc', 'dc']
+man         = ['bc(1)',
+               'dc(1)']
+mode        = ['ael-base']
+
+[bind]
+package     = "extra/bind"
+description = "A complete, highly portable implementation of the DNS protocol"
+url         = "https://www.isc.org/software/bind/"
+man         = ['dig(1)',
+               'host(1)',
+               'nslookup(1)']
+provides    = ['/usr/bin/arpaname',
+               '/usr/bin/ddns-confgen',
+               '/usr/bin/delv',
+               '/usr/bin/dig',
+               '/usr/bin/dnssec-cds',
+               '/usr/bin/dnssec-checkds',
+               '/usr/bin/dnssec-coverage',
+               '/usr/bin/dnssec-dsfromkey',
+               '/usr/bin/dnssec-importkey',
+               '/usr/bin/dnssec-keyfromlabel',
+               '/usr/bin/dnssec-keygen',
+               '/usr/bin/dnssec-keymgr',
+               '/usr/bin/dnssec-revoke',
+               '/usr/bin/dnssec-settime',
+               '/usr/bin/dnssec-signzone',
+               '/usr/bin/dnssec-verify',
+               '/usr/bin/host',
+               '/usr/bin/mdig',
+               '/usr/bin/named',
+               '/usr/bin/named-checkconf',
+               '/usr/bin/named-checkzone',
+               '/usr/bin/named-compilezone',
+               '/usr/bin/named-journalprint',
+               '/usr/bin/named-nzd2nzf',
+               '/usr/bin/named-rrchecker',
+               '/usr/bin/nsec3hash',
+               '/usr/bin/nslookup',
+               '/usr/bin/nsupdate',
+               '/usr/bin/rndc',
+               '/usr/bin/rndc-confgen',
+               '/usr/bin/tsig-keygen']
+mode        = ['ael-base']
+
+[binwalk]
+package     = "community/binwalk"
+description = "Tool for searching a given binary image for embedded files"
+url         = "https://github.com/ReFirmLabs/binwalk"
+help        = true
+language    = "python"
+mode        = ['hacker']
+
+[bleachbit]
+package     = "community/bleachbit"
+description = "Deletes unneeded files to free disk space and maintain privacy"
+url         = "https://www.bleachbit.org/"
+help        = true
+desktop     = "/usr/share/applications/org.bleachbit.BleachBit.desktop"
+category    = ['System']
+language    = "python"
+mode        = ['desktop', 'hacker']
+
+[blueman]
+package     = "community/blueman"
+description = "GTK+ Bluetooth Manager"
+url         = "https://github.com/blueman-project/blueman"
+mode        = ["desktop"]
+
+[bluez]
+package     = "extra/bluez"
+description = "Daemons for the bluetooth protocol stack"
+url         = "http://www.bluez.org/"
+mode        = ["ael-base"]
+
+[bluez-utils]
+package     = "extra/bluez-utils"
+description = "Development and debugging utilities for the bluetooth protocol stack"
+url         = "http://www.bluez.org/"
+
+[bmon]
+package     = "community/bmon"
+description = "Portable bandwidth monitor and rate estimator"
+url         = "https://github.com/tgraf/bmon/"
+help        = true
+man         = ['bmon(8)']
+category    = ['TUI']
+mode        = ["testing"]
+
+[bpytop]
+package     = "community/bpytop"
+description = "Resource monitor that shows usage and stats for processor, memory, disks, network and processes"
+url         = "https://github.com/aristocratos/bpytop"
+help        = true
+category    = ['Process', 'System']
+language    = "python"
+mode        = ['desktop', 'hacker']
+
+[brasero]
+package     = "extra/brasero"
+description = "CD/DVD mastering tool"
+url         = "https://wiki.gnome.org/Apps/Brasero"
+mode        = ['testing']
+
+[brave]
+package     = "aur/brave-bin"
+description = "Web browser that blocks ads and trackers by default (binary release)"
+url         = "https://brave.com"
+url_aur     = "https://aur.archlinux.org/packages/brave-bin"
+help        = false
+desktop     = "/usr/share/applications/brave-browser.desktop"
+category    = ['Internet', 'Web Browser']
+languague   = "JavaScript, Swift, C++"
+mode        = ['desktop', 'hacker']
+
+[brightnessctl]
+package     = "community/brightnessctl"
+description = "Lightweight brightness control tool"
+url         = "https://github.com/Hummer12007/brightnessctl"
+help        = true
+man         = ['brightnessctl(1)']
+category    = ['Display', 'System']
+language    = "C"
+mode        = ['ael-base']
+
+[bumblebee-status]
+package     = "aur/bumblebee-status-git"
+description = "Modular, theme-able status line generator for the i3 window manager"
+url         = "https://github.com/tobi-wan-kenobi/bumblebee-status"
+url_aur     = "https://aur.archlinux.org/packages/bumblebee-status-git"
+help        = true
+language    = "python"
+mode        = ['desktop', 'hacker']
+
+[burpsuite]
+package     = "aur/burpsuite"
+description = "An integrated platform for performing security testing of web applications (free edition)"
+url         = "https://portswigger.net/burp/"
+url_aur     = "https://aur.archlinux.org/packages/burpsuite"
+desktop     = "/usr/share/applications/burpsuite.desktop"
+help        = true
+mode        = ['hacker']
+
+[caja]
+package     = "community/caja"
+description = "File manager for the MATE desktop"
+url         = "https://mate-desktop.org"
+categories  = ['File Manager', 'GUI']
+mode        = ['testing']
+
+[cmatrix]
+package     = "community/cmatrix"
+description = "A curses-based scrolling 'Matrix'-like screen"
+url         = "https://www.asty.org/cmatrix/"
+help        = true
+man         = ['cmatrix(1)']
+mode        = ['hacker']
+
+[code]
+package     = "community/code"
+description = "The Open Source build of Visual Studio Code (vscode) editor"
+url         = "https://github.com/microsoft/vscode"
+help        = true
+desktop     = "/usr/share/applications/code-oss.desktop"
+mode        = ['desktop', 'hacker']
+
+[cronie]
+package     = "core/cronie"
+description = "Daemon that runs specified programs at scheduled times and related tools"
+url         = "https://github.com/cronie-crond/cronie/"
+provides    = ['/usr/bin/crontab']
+man         = ['contrab(1)', 'crontab(5)', 'cron(8)']
+mode        = ['ael-base']
+
+[crunch]
+package     = "aur/crunch"
+description = "A wordlist generator where you can specify a standard character set or a character set you specify and generate all possible combinations and permutations."
+url         = "http://sourceforge.net/projects/crunch-wordlist/"
+url_aur     = "https://aur.archlinux.org/packages/crunch"
+man         = ['crunch(1)']
+mode        = ['hacker']
+
+[curlftpfs]
+package     = "community/curlftpfs"
+description = "A filesystem for acessing FTP hosts based on FUSE and libcurl."
+url         = "http://curlftpfs.sourceforge.net/"
+provides    = ["curlftpfs"]
+man         = ["curlftpfs(1)"]
+mode        = ["testing"]
+
+[dcmtk]
+package     = "aur/dcmtk-git"
+description = "Collection of libraries and applications implementing large parts the DICOM standard"
+url         = "http://dicom.offis.de/dcmtk"
+aur_url     = "https://aur.archlinux.org/packages/dcmtk-git"
+mode        = ['testing']
+
+[dex]
+package     = "community/dex"
+description = "Program to generate and execute DesktopEntry files of type Application"
+url         = "https://github.com/jceb/dex"
+man         = ['dex(1)']
+mode        = ['testing']
+
+[dialog]
+
+[dirbuster]
+package     = "aur/dirbuster"
+description = "An application designed to brute force directories and files names on web/application servers"
+url         = "http://www.owasp.org/index.php/Category:OWASP_DirBuster_Project"
+url_aur     = "https://aur.archlinux.org/packages/dirbuster"
+provides    = ["/usr/share/dirbuster/apache-user-enum-1.0.txt",
+               "/usr/share/dirbuster/apache-user-enum-2.0.txt",
+               "/usr/share/dirbuster/directories.jbrofuzz",
+               "/usr/share/dirbuster/directory-list-1.0.txt",
+               "/usr/share/dirbuster/directory-list-2.3-medium.txt",
+               "/usr/share/dirbuster/directory-list-2.3-small.txt",
+               "/usr/share/dirbuster/directory-list-lowercase-2.3-medium.txt",
+               "/usr/share/dirbuster/directory-list-lowercase-2.3-small.txt"]
+mode        = ['hacker']
+notes       = """
+              - ??? symlink wordlists to /usr/local/share/wordlists/.
+              """
+
+[dmg2img]
+package     = "community/dmg2img"
+description = "A CLI tool to uncompress Apple's compressed DMG files to the HFS+ IMG format"
+url         = "http://vu1tur.eu.org/tools/"
+mode        = ['ael-base']
+
+[docker]
+package     = "community/docker"
+description = "Pack, ship and run any application as a lightweight container."
+url         = "https://www.docker.com/"
+provides    = ["/usr/bin/docker",
+               "/usr/bin/docker-init",
+               "/usr/bin/docker-proxy",
+               "/usr/bin/dockerd",
+               "/usr/lib/systemd/system/docker.service",
+               "/usr/lib/systemd/system/docker.socket"]
+man         = ["docker(1)", "dockerd(8)", "Dockerfile(5)", "..."]
+mode        = ["basic", "desktop", "hacker"]
+notes       = """
+              - View ~/.ael/.container for available docker containers and functions.
+              """
+
+[dos2unix]
+package     = "community/dos2unix"
+description = "Converts DOS/Windows and MAC OS text files format to Unix, especially line breaks."
+url         = "https://waterlan.home.xs4all.nl/dos2unix.html"
+provides    = ["/usr/bin/dos2unix",
+               "/usr/bin/mac2unix",
+               "/usr/bin/unix2dos",
+               "/usr/bin/unix2mac"]
+man         = ["dos2unix(1)", "..."]
+mode        = ["ael-base"]
+
+[dosfstools]
+package     = "core/dosfstools"
+description = "DOS filesystem utilities"
+url         = "https://github.com/dosfstools/dosfstools"
+mode        = ['testing']
+
+[doublecmd]
+package     = "community/doublecmd-qt5"
+description = "twin-panel (commander-style) file manager (Qt5)"
+url         = "http://doublecmd.sourceforge.net/"
+mode        = ['testing']
+
+[dunst]
+package     = "community/dunst"
+description = "Customizable and lightweight notification-daemon."
+url         = "https://dunst-project.org/"
+man         = ["dunst(1)"]
+mode        = ["desktop", "hacker"]
+
+[easy-rsa]
+package     = "extra/easy-rsa"
+description = "Simple shell based CA utility"
+url         = "https://github.com/OpenVPN/easy-rsa"
+provides    = ["easyrsa"]
+mode        = ["ael-base"]
+
+[efibootmgr]
+
+[entr]
+package     = "community/entr"
+description = "Run arbitrary commands when files change"
+url         = "http://eradman.com/entrproject"
+man         = ["entr(1)"]
+mode        = ["testing"]
+
+[exa]
+package     = "community/exa"
+description = "ls replacement"
+url         = "https://the.exa.website/"
+mode        = ['testing']
+
+[exfat-utils]
+package     = "community/exfat-utils"
+description = "Utilities for exFAT file system"
+url         = "https://github.com/relan/exfat"
+provides    = ["/usr/bin/dumpexfat",
+               "/usr/bin/exfatfsck",
+               "/usr/bin/exfatlabel",
+               "/usr/bin/fsck.exfat",
+               "/usr/bin/mkexfatfs",
+               "/usr/bin/mkfs.exfat",
+               "/usr/bin/mount.exfat",
+               "/usr/bin/mount.exfat-fuse"]
+man         = ["dumpexfat(8)",
+               "exfatfsck(8)",
+               "exfatlabel(8)",
+               "mkexfatfs(8)",
+               "mount.exfat-fuse(8)"]
+mode        = ["ael-base"]
+
+[exploitdb]
+package     = "community/exploitdb"
+description = "Offensive Security’s Exploit Database Archive"
+url         = "https://www.exploit-db.com/"
+provides    = ['/usr/bin/searchsploit']
+mode        = ['hacker']
+
+[feh]
+# Replaced by nitrogen
+
+[ffmpeg]
+package     = "extra/ffmpeg"
+description = "Complete solution to record, convert and stream audio and video"
+url         = "https://ffmpeg.org/"
+man         = ["ffmpeg(1)"]
+mode        = ["ael-base"]
+
+[firefox]
+package     = "extra/firefox"
+description = "Standalone web browser from mozilla.org"
+url         = "https://www.mozilla.org/firefox/"
+mode        = ["desktop", "hacker"]
+
+[freerdp]
+package     = "community/freerdp"
+description = "Free implementation of the Remote Desktop Protocol (RDP)"
+url         = "https://www.freerdp.com/"
+mode        = ["desktop", "hacker"]
+
+[fzf]
+package     = "community/fzf"
+description = "Command-line fuzzy finder"
+url         = "https://github.com/junegunn/fzf"
+provide     = ["/usr/bin/fzf",
+               "/usr/bin/fzf-tmux",
+               "/usr/share/vim/vimfiles/plugin/fzf.vim"]
+man         = ["fzf(1)"]
+mode        = ["ael-base"]
+
+[gimp]
+package     = "extra/gimp"
+description = "GNU Image Manipulation Program"
+url         = "https://www.gimp.org/"
+mode        = ["desktop", "hacker"]
+
+[git]
+package     = "extra/git"
+description = "The fast distributed version control system"
+url         = "https://git-scm.com/"
+mode        = ["ael-base"]
+
+[glow]
+package     = "community/glow"
+description = "Command-line markdown renderer"
+url         = "https://github.com/charmbracelet/glow"
+mode        = ["ael-base"]
+
+[go]
+package     = "community/go"
+description = "Core compiler tools for the Go programming language"
+url         = "https://golang.org/"
+mode        = ["ael-base"]
+
+[go-to-meeting]
+package     = "aur/go-to-meeting-nativefier"
+description = "GoToMeeting desktop built with nativefier (electron)"
+aur_url     = "https://aur.archlinux.org/packages/go-to-meeting-nativefier"
+mode        = ["testing"]
+
+[gobuster]
+package     = "aur/gobuster-git"
+description = "A directory/file & DNS busting tool."
+url         = "https://github.com/OJ/gobuster"
+url_aur     = "https://aur.archlinux.org/packages/gobuster-git"
+mode        = ["hacker"]
+
+[gping]
+package     = "community/gping"
+description = "Ping, but with a graph"
+url         = "https://github.com/orf/gping"
+mode        = ["ael-base"]
+
+[grc]
+package     = "community/grc"
+description = "Yet another colouriser for beautifying your logfiles or output of commands"
+url         = "https://github.com/garabik/grc"
+mode        = ["ael-base"]
+
+[gromit-mpx]
+package     = "aur/gromit-mpx-git"
+description = "Desktop annotation tool. GTK3 multi-pointer variant of original gromit utility."
+url         = "https://github.com/bk138/gromit-mpx"
+url_aur     = "https://aur.archlinux.org/packages/gromit-mpx-git"
+mode        = ["desktop"]
+
+[grub]
+package     = "core/grub"
+description = "GNU GRand Unified Bootloader (2)"
+url         = "https://www.gnu.org/software/grub/"
+mode        = ["ael-base"]
+
+[gunicorn]
+package     = "community/gunicorn"
+description = "WSGI HTTP Server for UNIX"
+url         = "https://gunicorn.org/"
+mode        = ["server"]
+
+[htop]
+package     = "extra/htop"
+description = "Interactive process viewer"
+url         = "https://htop.dev/"
+mode        = ["ael-base"]
+
+[hydra]
+package     = "community/hydra"
+description = "Very fast network logon cracker which support many different services"
+url         = "https://github.com/vanhauser-thc/thc-hydra"
+mode        = ["hacker"]
+
+[i3-wm]
+package     = "community/i3-wm"
+description = "Improved dynamic tiling window manager"
+url         = "https://i3wm.org"
+mode        = ["desktop", "hacker"]
+
+[i3blocks]
+package     = "community/i3blocks"
+description = "Define blocks for your i3bar status line"
+url         = "https://github.com/vivien/i3blocks"
+mode        = ["desktop", "hacker"]
+
+[icedtea-web]
+package     = "extra/icedtea-web"
+description = "Additional components for OpenJDK - Browser plug-in and Web Start implementation"
+url         = "https://github.com/AdoptOpenJDK/IcedTea-Web"
+mode        = ["desktop", "hacker"]
+
+[imagemagick]
+package     = "extra/imagemagick"
+description = "An image viewing/manipulation program"
+url         = "https://www.imagemagick.org/"
+mode        = ["desktop", "hacker"]
+
+[inetutils]
+package     = "core/inetutils"
+description = "A collection of common network programs"
+url         = "https://www.gnu.org/software/inetutils/"
+provides    = ["/usr/bin/dnsdomainname",
+               "/usr/bin/ftp",
+               "/usr/bin/ftpd",
+               "/usr/bin/hostname",
+               "/usr/bin/rcp",
+               "/usr/bin/rlogin",
+               "/usr/bin/rlogind",
+               "/usr/bin/rsh",
+               "/usr/bin/rshd",
+               "/usr/bin/talk",
+               "/usr/bin/talkd",
+               "/usr/bin/telnet",
+               "/usr/bin/telnetd"]
+mode        = ["ael-base"]
+
+[inkscape]
+package     = "extra/inkscape"
+description = "Professional vector graphics editor"
+url         = "https://inkscape.org/"
+mode        = ["desktop", "hacker"]
+
+[inxi]
+package     = "aur/inxi-git"
+description = "Full featured CLI system information tool"
+url         = "https://smxi.org/docs/inxi.htm"
+url_aur     = "https://aur.archlinux.org/packages/inxi-git"
+mode        = ["ael-base"]
+
+[jd-gui]
+package     = "aur/jd-gui-bin"
+description = "A standalone graphical utility that displays Java source codes of .class files"
+url         = "http://jd.benow.ca/"
+aur_url     = "https://aur.archlinux.org/packages/jd-gui-bin"
+mode        = ["testing"]
+
+[john]
+package     = "community/john"
+description = "John the Ripper password cracker"
+url         = "https://www.openwall.com/john"
+provide     = ["/usr/bin/gpg2john",
+               "/usr/bin/ssh2john",
+               "/usr/bin/unshadow"]
+mode        = ["hacker"]
+
+[jq]
+package     = "community/jq"
+description = "Command-line JSON processor"
+url         = "https://stedolan.github.io/jq/"
+mode        = ["ael-base"]
+
+[jre11-openjdk]
+package     = "extra/jre11-openjdk"
+description = "OpenJDK Java 11 full runtime environment"
+url         = "https://openjdk.java.net/"
+mode        = ["testing"]
+
+[jupyter-notebook]
+package     = "community/jupyter-notebook"
+description = "The language-agnostic HTML notebook application for Project Jupyter"
+url         = "https://github.com/jupyter/notebook"
+mode        = ["testing"]
+
+[kdenlive]
+package     = "extra/kdenlive"
+description = "A non-linear video editor for Linux using the MLT video framework"
+url         = "https://apps.kde.org/kdenlive/"
+mode        = ["testing"]
+
+[libreoffice]
+package     = "extra/libreoffice-fresh"
+description = "LibreOffice branch which contains new features and program enhancements"
+url         = "https://www.libreoffice.org/"
+mode        = ["desktop", "hacker"]
+
+[librespeed-cli]
+package     = "aur/librespeed-cli-bin"
+description = "Command line interface for LibreSpeed speed test backends"
+url         = "https://github.com/librespeed/speedtest-cli"
+url_aur     = "https://aur.archlinux.org/packages/librespeed-cli-bin"
+mode        = ["ael-base"]
+
+[linux]
+package     = "core/linux"
+description = "The Linux kernel and modules"
+url         = "https://github.com/archlinux/linux/commits/"
+mode        = ["ael-base"]
+
+[linux-firmware]
+package     = "core/linux-firmware"
+mode        = ["ael-base"]
+
+[linux-headers]
+package     = "core/linux-headers"
+mode        = ["ael-base"]
+
+[lxappearance]
+package     = "community/lxappearance"
+description = "Feature-rich GTK+ theme switcher of the LXDE Desktop"
+url         = "https://wiki.lxde.org/en/LXAppearance"
+mode        = ["testing"]
+
+[lynx]
+package     = "extra/lynx"
+description = "A text browser for the World Wide Web"
+url         = "https://lynx.invisible-island.net/"
+mode        = ["ael-base"]
+
+[man-db]
+package     = "core/man-db"
+description = "A utility for reading man pages"
+url         = "https://gitlab.com/cjwatson/man-db"
+provide     = ["/usr/bin/accessdb",
+               "/usr/bin/apropos",
+               "/usr/bin/catman",
+               "/usr/bin/convert-mans",
+               "/usr/bin/lexgrog",
+               "/usr/bin/man",
+               "/usr/bin/man-recode",
+               "/usr/bin/mandb",
+               "/usr/bin/manpath",
+               "/usr/bin/whatis"]
+mode        = ["ael-base"]
+notes       = """
+              * Should we run mandb or is it run during installation?
+              """
+
+[man-pages]
+package     = "core/man-pages"
+description = "Linux man pages"
+url         = "https://www.kernel.org/doc/man-pages/"
+mode        = ["ael-base"]
+
+[mangl]
+package     = "aur/mangl-git"
+description = "graphical man page viewer"
+url         = "https://github.com/zigalenarcic/mangl"
+aur_url     = "https://aur.archlinux.org/packages/mangl-git"
+mode        = ["testing"]
+
+[mariadb-clients]
+package     = "extra/mariadb-clients"
+description = "MariaDB client tools"
+url         = "https://mariadb.org/"
+provide     = ["/usr/bin/mariadb",
+               "/usr/bin/mariadb-admin",
+               "/usr/bin/mariadb-binlog",
+               "/usr/bin/mariadb-check",
+               "/usr/bin/mariadb-conv",
+               "/usr/bin/mariadb-dump",
+               "/usr/bin/mariadb-import",
+               "/usr/bin/mariadb-plugin",
+               "/usr/bin/mariadb-show",
+               "/usr/bin/mariadb-slap",
+               "/usr/bin/mariadb-test",
+               "/usr/bin/mariadb-upgrade",
+               "/usr/bin/mysql",
+               "/usr/bin/mysql_plugin",
+               "/usr/bin/mysql_upgrade",
+               "/usr/bin/mysqladmin",
+               "/usr/bin/mysqlbinlog",
+               "/usr/bin/mysqlcheck",
+               "/usr/bin/mysqldump",
+               "/usr/bin/mysqlimport",
+               "/usr/bin/mysqlshow",
+               "/usr/bin/mysqlslap",
+               "/usr/bin/mysqltest"]
+mode        = ["testing"]
+
+[meld]
+package     = "extra/meld"
+description = "Compare files, directories and working copies"
+url         = "https://meldmerge.org/"
+mode        = ["desktop", "hacker"]
+
+[metasploit]
+package     = "community/metasploit"
+description = "Advanced open-source platform for developing, testing, and using exploit code."
+url         = "https://www.metasploit.com/"
+provide     = ["/usr/bin/msfconsole",
+               "/usr/bin/msfvenom"]
+mode        = ["hacker"]
+
+[mlocate]
+package     = "core/mlocate"
+description = "Merging locate/updatedb implementation"
+url         = "https://pagure.io/mlocate"
+provide     = ["/usr/bin/locate",
+               "/usr/bin/slocate",
+               "/usr/bin/updatedb"]
+mode        = ["ael-base"]
+
+[mpv]
+package     = "community/mpv"
+description = "a free, open source, and cross-platform media player"
+url         = "https://mpv.io/"
+mode        = ['Desktop']
+
+[mtools]
+package     = "extra/mtools"
+description = "A collection of utilities to access MS-DOS disks"
+url         = "https://www.gnu.org/software/mtools/"
+provide     = ["/usr/bin/mlabel"]
+mode        = ["testing"]
+
+[mtr]
+package     = "extra/mtr"
+description = "Combines the functionality of traceroute and ping into one tool (CLI version)"
+url         = "https://www.bitwizard.nl/mtr/"
+mode        = ["ael-base"]
+
+[neofetch]
+package     = "community/neofetch"
+description = "A CLI system information tool written in BASH that supports displaying images."
+url         = "https://github.com/dylanaraps/neofetch"
+mode        = ["ael-base"]
+
+[net-tools]
+package     = "core/net-tools"
+description = "Configuration tools for Linux networking"
+url         = "http://net-tools.sourceforge.net/"
+category    = ["cli", "networking"]
+provide     = ["/usr/bin/arp",
+               "/usr/bin/ifconfig",
+               "/usr/bin/ipmaddr",
+               "/usr/bin/iptunnel",
+               "/usr/bin/mii-tool",
+               "/usr/bin/nameif",
+               "/usr/bin/netstat",
+               "/usr/bin/plipconfig",
+               "/usr/bin/rarp",
+               "/usr/bin/route",
+               "/usr/bin/slattach"]
+mode        = ["ael-base"]
+
+[netcat]
+package     = "extra/gnu-netcat"
+description = "GNU rewrite of netcat, the network piping application."
+url         = "http://netcat.sourceforge.net/"
+provide     = ["/usr/bin/nc",
+               "/usr/bin/netcat"]
+mode        = ["ael-base"]
+
+[networkmanager]
+package     = "extra/networkmanager"
+description = "Network connection manager and user applications"
+url         = "https://networkmanager.dev/"
+provide     = ["/usr/bin/NetworkManager",
+               "/usr/bin/nm-online",
+               "/usr/bin/nmcli",
+               "/usr/bin/nmtui",
+               "/usr/bin/nmtui-connect",
+               "/usr/bin/nmtui-edit",
+               "/usr/bin/nmtui-hostname"]
+mode        = ["ael-base"]
+
+[network-manager-applet]
+package     = "extra/network-manager-applet"
+description = "Applet for managing network connections"
+url         = "https://gitlab.gnome.org/GNOME/network-manager-applet"
+mode        = ["Desktop"]
+
+[nfs-utils]
+package     = "core/nfs-utils"
+description = "Support programs for Network File Systems"
+url         = "http://nfs.sourceforge.net"
+mode        = ["testing"]
+
+[nginx]
+package     = "extra/nginx"
+description = "Lightweight HTTP server and IMAP/POP3 proxy server"
+url         = "https://nginx.org"
+mode        = ["server"]
+
+[nikto]
+package     = "community/nikto"
+description = "A web server scanner which performs comprehensive tests against web servers for multiple items"
+url         = "https://github.com/sullo/nikto"
+mode        = ["hacker"]
+
+[nitrogen]
+package     = "extra/nitrogen"
+description = "Background browser and setter for X windows"
+url         = "http://projects.l3ib.org/nitrogen/"
+mode        = ["desktop", "hacker"]
+
+[nmap]
+package     = "extra/nmap"
+description = "Utility for network discovery and security auditing"
+url         = "https://nmap.org/"
+provide     = ["/usr/bin/ncat",
+               "/usr/bin/nmap",
+               "/usr/bin/nping"]
+categories  = ["cli", "networking"]
+mode        = ["ael-base"]
+
+[nmon]
+package     = "community/nmon"
+description = "AIX & Linux Performance Monitoring tool"
+url         = "http://nmon.sourceforge.net"
+categories  = ["TUI", "Monitoring", "System"]
+mode        = ["ael-base"]
+
+[nomacs]
+package     = "aur/nomacs"
+description = "A Qt image viewer"
+url         = "https://nomacs.org/"
+aur_url     = "https://aur.archlinux.org/packages/nomacs"
+mode        = ["testing"]
+
+[nordvpn]
+package     = "aur/nordvpn-bin"
+description = "NordVPN CLI tool for Linux"
+url         = "https://nordvpn.com/download/linux/"
+aur_url     = "https://aur.archlinux.org/packages/nordvpn-bin"
+categories  = ["vpn"]
+mode        = ["testing"]
+
+[ntfs-3g]
+package     = "extra/ntfs-3g"
+description = "NTFS filesystem driver and utilities"
+url         = "https://www.tuxera.com/community/open-source-ntfs-3g/"
+mode        = ["ael-base"]
+
+[obs-studio]
+package     = "community/obs-studio"
+description = "Free, open source software for live streaming and recording"
+url         = "https://obsproject.com"
+mode        = ["testing"]
+
+[openssh]
+package     = "core/openssh"
+description = "SSH protocol implementation for remote login, command execution and file transfer"
+url         = "https://www.openssh.com/portable.html"
+provide     = ["/etc/ssh/ssh_config",
+               "/etc/ssh/sshd_config",
+               "/usr/bin/scp",
+               "/usr/bin/sftp",
+               "/usr/bin/ssh",
+               "/usr/bin/ssh-add",
+               "/usr/bin/ssh-agent",
+               "/usr/bin/ssh-copy-id",
+               "/usr/bin/ssh-keygen",
+               "/usr/bin/ssh-keyscan",
+               "/usr/bin/sshd"]
+mode        = ["ael-base"]
+
+[openvpn]
+package     = "extra/openvpn"
+description = "An easy-to-use, robust and highly configurable VPN (Virtual Private Network)."
+url         = "https://openvpn.net/index.php/open-source.html"
+man         = ["openvpn(8)"]
+categories  = ["vpn"]
+mode        = ["ael-base"]
+
+[os-prober]
+package     = "community/os-prober"
+description = "Utility to detect other OSes on a set of drives"
+url         = "https://joeyh.name/code/os-prober/"
+mode        = ["ael-base"]
+
+[p7zip]
+package     = "extra/p7zip"
+description = "Command-line file archiver with high compression ratio"
+url         = "https://github.com/jinfeihan57/p7zip"
+mode        = ["ael-base"]
+
+[pacman-contrib]
+package     = "community/pacman-contrib"
+description = "Contributed scripts and tools for pacman systems"
+url         = "https://gitlab.archlinux.org/pacman/pacman-contrib"
+mode        = "ael-base"
+
+[pamac-aur]
+package     = "aur/pamac-aur"
+description = "A Gtk3 frontend, Package Manager based on libalpm with AUR and Appstream support"
+url         = "https://gitlab.manjaro.org/applications/pamac"
+aur_url     = "https://aur.archlinux.org/packages/pamac-aur"
+mode        = ["testing"]
+
+[pandoc]
+package     = "aur/pandoc-bin"
+description = "Conversion between markup formats"
+url         = "https://pandoc.org"
+url_aur     = "https://aur.archlinux.org/packages/pandoc-bin"
+mode        = ["ael-base"]
+
+[paru]
+package     = "aur/paru"
+description = "Feature packed AUR helper"
+url         = "https://github.com/morganamilo/paru"
+aur_url     = "https://aur.archlinux.org/packages/paru"
+mode        = ["ael-base"]
+
+[pasystray]
+package          = "community/pasystray"
+description      = "PulseAudio system tray (a replacement for padevchooser)"
+url              = "https://github.com/christophgysin/pasystray"
+
+[pavucontrol]
+package          = "extra/pavucontrol"
+description      = "PulseAudio Volume Control"
+url              = "https://freedesktop.org/software/pulseaudio/pavucontrol/"
+
+[perl-image-exiftool]
+package     = "extra/perl-image-exiftool"
+description = "Reader and rewriter of EXIF informations that supports raw files"
+url         = "https://search.cpan.org/perldoc?exiftool"
+mode        = ["ael-base"]
+
+[php]
+package     = "extra/php"
+description = "A general-purpose scripting language that is especially suited to web development"
+url         = "https://www.php.net/"
+mode        = ["ael-base"]
+
+[pipdeptree]
+package     = "aur/pipdeptree"
+description = "Command line utility to show dependency tree of Python packages"
+url         = "https://github.com/naiquevin/pipdeptree"
+aur_url     = "https://aur.archlinux.org/packages/pipdeptree"
+mode        = ["testing"]
+
+[polenum]
+package     = "aur/polenum"
+description = "A python script to extract the password policy information from a windows machine."
+url         = "https://github.com/Wh1t3Fox/polenum"
+aur_url     = "https://aur.archlinux.org/packages/polenum"
+mode        = ["testing"]
+
+[polkit-gnome]
+package     = "community/polkit-gnome"
+description = "Legacy polkit authentication agent for GNOME"
+url         = "https://gitlab.gnome.org/Archive/policykit-gnome"
+mode        = ["ael-base"]
+
+[poppler]
+package     = "extra/poppler"
+description = "PDF rendering library based on xpdf 3.0"
+url         = "https://poppler.freedesktop.org/"
+provide     = ["/usr/bin/pdfattach",
+               "/usr/bin/pdfdetach",
+               "/usr/bin/pdffonts",
+               "/usr/bin/pdfimages",
+               "/usr/bin/pdfinfo",
+               "/usr/bin/pdfseparate",
+               "/usr/bin/pdfsig",
+               "/usr/bin/pdftocairo",
+               "/usr/bin/pdftohtml",
+               "/usr/bin/pdftoppm",
+               "/usr/bin/pdftops",
+               "/usr/bin/pdftotext",
+               "/usr/bin/pdfunite"]
+mode        = ["ael-base"]
+
+[postgresql]
+package     = "extra/postgresql"
+description = "Sophisticated object-relational DBMS"
+url         = "https://www.postgresql.org/"
+mode        = ["server"]
+
+[powershell]
+package     = "aur/powershell-bin"
+description = "A cross-platform automation and configuration tool/framework (binary package)"
+url         = "https://github.com/Powershell/Powershell"
+url_aur     = "https://aur.archlinux.org/packages/powershell-bin"
+mode        = ["ael-base"]
+
+[pptpclient]
+category    = "core/pptpclient"
+description = "Client for the proprietary Microsoft Point-to-Point Tunneling Protocol, PPTP."
+url         = "http://pptpclient.sourceforge.net/"
+mode        = ["desktop", "hacker"]
+
+[proxychains]
+package     = "community/proxychains-ng"
+description = "A hook preloader that allows to redirect TCP traffic of existing dynamically linked programs through one or more SOCKS or HTTP proxies."
+url         = "https://github.com/rofl0r/proxychains-ng"
+mode        = ["hacker"]
+
+[pulseaudio]
+package          = "extra/pulseaudio"
+description      = "A featureful, general-purpose sound server"
+url              = "https://www.freedesktop.org/wiki/Software/PulseAudio/"
+
+[pulseaudio-bluetooth]
+package          = "extra/pulseaudio-bluetooth"
+description      = "Bluetooth support for PulseAudio"
+url              = "https://www.freedesktop.org/wiki/Software/PulseAudio/"
+
+[pv]
+package     = "community/pv"
+description = "A terminal-based tool for monitoring the progress of data through a pipeline."
+url         = "http://www.ivarch.com/programs/pv.shtml"
+mode        = ["testing"]
+
+[python]
+package     = "core/python"
+description = "Next generation of the python high-level scripting language"
+url         = "https://www.python.org/"
+mode        = ["ael-base"]
+
+[python-bcrypt]
+
+[python-beautifulsoup4]
+package     = "community/python-beautifulsoup4"
+description = "A Python HTML/XML parser designed for quick turnaround projects like screen-scraping"
+url         = "https://www.crummy.com/software/BeautifulSoup/index.html"
+mode        = ["ael-base"]
+
+[python-flask]
+
+[python-flask-sqlalchemy]
+
+[python-flask-wtf]
+
+[python-markdown]
+
+[python-openpyxl]
+package     = "community/python-openpyxl"
+description = "A Python library to read/write Excel 2007 xlsx/xlsm files"
+url         = "https://openpyxl.readthedocs.org/"
+mode        = ["testing"]
+
+[python-pandas]
+package     = "community/python-pandas"
+description = "High-performance, easy-to-use data structures and data analysis tools for Python"
+url         = "https://pandas.pydata.org/"
+mode        = ["ael-base"]
+
+[python-pip]
+package     = "extra/python-pip"
+description = "The PyPA recommended tool for installing Python packages"
+url         = "https://pip.pypa.io/"
+mode        = ["ael-base"]
+
+[python-pyaml]
+package     = "community/python-pyaml"
+description = "PyYAML-based module to produce pretty and readable YAML-serialized data"
+url         = "https://pypi.python.org/pypi/pyaml"
+mode        = ["ael-base"]
+
+[python-rich]
+package     = "community/python-rich"
+description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
+url         = "https://github.com/willmcgugan/rich"
+mode        = ["ael-base"]
+
+[python-xlib]
+
+[python-xlrd]
+
+[qrencode]
+package     = "extra/qrencode"
+description = "C library for encoding data in a QR Code symbol."
+url         = "https://fukuchi.org/works/qrencode/"
+mode        = ["ael-base"]
+
+[qsolocards]
+package     = "aur/qsolocards"
+description = "A free collection of solitaire card games written using Qt"
+url         = "http://sourceforge.net/projects/qsolocards/"
+aur_url     = "https://aur.archlinux.org/packages/qsolocards"
+categories  = ["gui", "game"]
+mode        = ["desktop"]
+
+[qterminal]
+package     = "community/qterminal"
+description = "A lightweight Qt-based terminal emulator"
+url         = "https://github.com/lxqt/qterminal"
+mode        = ["desktop", "hacker"]
+
+[qtile]
+package     = "community/qtile"
+description = "A full-featured, pure-Python tiling window manager"
+url         = "http://www.qtile.org"
+mode        = ["desktop", "hacker"]
+
+[ranger]
+package     = "community/ranger"
+description = "Simple, vim-like file manager"
+url         = "https://ranger.github.io"
+mode        = ["ael-base"]
+
+[realvnc-vnc-viewer]
+
+[remmina]
+package     = "community/remmina"
+description = "remote desktop client written in GTK+"
+url         = "https://www.remmina.org/"
+mode        = ["desktop", "hacker"]
+
+[rsync]
+package     = "extra/rsync"
+description = "A fast and versatile file copying tool for remote and local files"
+url         = "https://rsync.samba.org/"
+mode        = ["ael-base"]
+
+[rustscan]
+package     = "community/rustscan"
+description = "A modern port scanner"
+url         = "https://github.com/rustscan/RustScan"
+mode        = ["hacker"]
+
+[screen]
+package     = "community/screen"
+description = "Full-screen window manager that multiplexes a physical terminal"
+url         = "https://www.gnu.org/software/screen/"
+mode        = ["base"]
+
+[screenkey]
+package     = "community/screenkey"
+description = "A screencast tool to display your keys inspired by Screenflick"
+url         = "https://www.thregr.org/~wavexx/software/screenkey/"
+mode        = ["desktop", "hacker"]
+
+[sendmail]
+package     = "aur/sendmail"
+description = "A general purpose internetwork email routing MTA"
+url         = "http://www.sendmail.org"
+aur_url     = "https://aur.archlinux.org/packages/sendmail"
+mode        = ["testing"]
+
+[shellcheck]
+package     = "community/shellcheck"
+description = "Shell script analysis tool"
+url         = "https://www.shellcheck.net"
+mode        = ["ael-base"]
+
+[shutter]
+package     = "aur/shutter-git"
+description = "A featureful screenshot tool, git version"
+url         = "https://shutter-project.org/"
+aur_url     = "https://aur.archlinux.org/packages/shutter-git"
+mode        = ["testing"]
+
+[simple-mtpfs]
+package     = "aur/simple-mtpfs"
+description = "A FUSE filesystem that supports reading/writing from MTP devices"
+url         = "https://github.com/phatina/simple-mtpfs/"
+url_aur     = "https://aur.archlinux.org/packages/simple-mtpfs"
+mode        = ["ael-base"]
+
+[smbclient]
+package     = "extra/smbclient"
+description = "Tools to access a server's filespace and printers via SMB"
+url         = "https://www.samba.org"
+mode        = ["hacker"]
+
+[snapd]
+package     = "aur/snapd"
+description = "Service and tools for management of snap packages."
+url         = "https://github.com/snapcore/snapd"
+aur_url     = "https://aur.archlinux.org/packages/snapd"
+mode        = ["testing"]
+
+[socat]
+package     = "extra/socat"
+description = "Multipupose relay"
+url         = "http://www.dest-unreach.org/socat/"
+mode        = ["hacker"]
+
+[sqlite]
+package     = "core/sqlite"
+description = "A C library that implements an SQL database engine"
+url         = "https://www.sqlite.org/"
+mode        = ["ael-base"]
+
+[sqlitebrowser]
+package     = "community/sqlitebrowser"
+description = "SQLite Database browser is a light GUI editor for SQLite databases, built on top of Qt"
+url         = "https://sqlitebrowser.org/"
+mode        = ["desktop", "hacker"]
+
+[sqlmap]
+package     = "community/sqlmap"
+description = "Automatic SQL injection and database takeover tool"
+url         = "http://sqlmap.org"
+note        = """
+              * TEST ON: Known Vulns @ https://tryhackme.com/room/owasptop10 [Task 29]
+              """
+mode        = ["hacker"]
+
+[sqsh]
+package     = "aur/sqsh"
+description = "Unix/Linux replacement for Sybase's isql"
+url         = "https://sourceforge.net/projects/sqsh/"
+aur_url     = "https://aur.archlinux.org/packages/sqsh"
+mode        = ["testing"]
+
+[sxhkd]
+package     = "community/sxhkd"
+description = "Simple X hotkey daemon"
+url         = "https://github.com/baskerville/sxhkd"
+mode        = ["testing"]
+
+[sxiv]
+package     = "community/sxiv"
+description = "Simple X Image Viewer"
+url         = "https://github.com/muennich/sxiv"
+mode        = ["desktop", "hacker"]
+
+[tcpdump]
+package     = "extra/tcpdump"
+description = "Powerful command-line packet analyzer."
+url         = "https://www.tcpdump.org/"
+man         = ["tcpdump(1)"]
+note        = """
+              #*ref.* [Daniel Miessler, "A tcpdump Tutorial with Examples — 50 Ways to Isolate Traffic"]( https://danielmiessler.com/study/tcpdump/)
+              """
+mode        = ["ael-base"]
+
+[teams]
+
+[tesseract]
+package     = "community/tesseract"
+description = "An OCR program"
+url         = "https://github.com/tesseract-ocr/tesseract"
+plugins     = ["community/tesseract-data-eng",
+               "community/tesseract-data-fra"]
+mode        = ["desktop", "hacker"]
+
+[texinfo]
+package     = "core/texinfo"
+description = "GNU documentation system for on-line information and printed output"
+url         = "https://www.gnu.org/software/texinfo/"
+provides    = ["/usr/bin/info",
+               "/usr/bin/install-info",
+               "/usr/bin/makeinfo",
+               "/usr/bin/pdftexi2dvi",
+               "/usr/bin/pod2texi",
+               "/usr/bin/texi2any",
+               "/usr/bin/texi2dvi",
+               "/usr/bin/texi2pdf",
+               "/usr/bin/texindex"]
+mode        = ["ael-base"]
+
+[thunar]
+package     = "extra/thunar"
+description = "Modern file manager for Xfce"
+url         = "https://docs.xfce.org/xfce/thunar/start"
+plugins     = ["extra/thunar-volman"]
+mode        = ["desktop", "hacker"]
+
+[tidy]
+package     = "extra/tidy"
+description = "A tool to tidy down your HTML code to a clean style"
+url         = "https://www.html-tidy.org/"
+mode        = ["hacker"]
+
+[tk]
+package     = "extra/tk"
+description = "A windowing toolkit for use with tcl"
+url         = "http://tcl.sourceforge.net/"
+mode        = ["desktop", "hacker"]
+
+[tmux]
+package     = "community/tmux"
+description = "A terminal multiplexer"
+url         = "https://github.com/tmux/tmux/wiki"
+mode        = ["ael-base"]
+
+[tor-browser]
+package     = "aur/tor-browser"
+description = "Tor Browser Bundle: anonymous browsing using Firefox and Tor (international PKGBUILD)."
+url         = "https://www.torproject.org/projects/torbrowser.html"
+notes       = """
+              * Check what is the effect of i3wm on the browser size.
+              """
+mode        = ["hacker"]
+
+[traceroute]
+package     = "core/traceroute"
+description = "Tracks the route taken by packets over an IP network"
+url         = "http://traceroute.sourceforge.net/"
+man         = ["traceroute(8)"]
+mode        = ["ael-base"]
+
+[transmission]
+package     = "extra/transmission-gtk"
+description = "Fast, easy, and free BitTorrent client (GTK+ GUI)"
+url         = "http://www.transmissionbt.com/"
+mode        = ["desktop", "hacker"]
+
+[tree]
+package     = "extra/tree"
+description = "A directory listing program displaying a depth indented list of files"
+url         = "https://gitlab.com/OldManProgrammer/unix-tree"
+man         = ["tree(1)"]
+mode        = ["ael-base"]
+
+[ttf-font-awesome-4]
+package     = "aur/ttf-font-awesome-4"
+description = "100% free version of font awesome."
+url         = "http://fontawesome.io/"
+url_aur     = "https://aur.archlinux.org/packages/ttf-font-awesome-4"
+mode        = ["ael-base"]
+
+[ttf-symbola]
+package     = "aur/ttf-symbola"
+description = "Font for symbol blocks of the Unicode Standard (TTF)"
+url         = "https://dn-works.com/ufas/"
+url_aur     = "https://aur.archlinux.org/packages/font-symbola"
+mode        = ["ael-base"]
+
+[ufw]
+package     = "community/ufw"
+description = "Uncomplicated and easy to use CLI tool for managing a netfilter firewall"
+url         = "https://launchpad.net/ufw"
+mode        = ["ael-base"]
+
+[ugrep]
+package     = "community/ugrep"
+description = "ultra fast grep with interactive TUI, fuzzy search, boolean queries, hexdumps and more"
+url         = "https://github.com/Genivia/ugrep"
+mode        = ["testing"]
+
+[unrar]
+package     = "extra/unrar"
+description = "The RAR uncompression program"
+url         = "https://www.rarlab.com/rar_add.htm"
+mode        = ["ael-base"]
+
+[unzip]
+package     = "extra/unzip"
+description = "For extracting and viewing files in .zip archives."
+url         = "http://infozip.sourceforge.net/UnZip.html"
+mode        = ["ael-base"]
+
+[usbutils]
+package     = "core/usbutils"
+description = "A collection of USB tools to query connected USB devices"
+url         = "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usbutils.git/"
+mode        = ["ael-base"]
+
+[vim]
+package     = "extra/vim"
+description = "Vi Improved, a highly configurable, improved version of the vi text editor"
+url         = "https://www.vim.org"
+mode        = ["ael-base"]
+
+[virtualbox]
+package     = "community/virtualbox"
+description = "Powerful x86 virtualization for enterprise as well as home use"
+url         = "https://virtualbox.org/"
+mode        = ["desktop", "hacker"]
+
+[vitualbox-guest-utils]
+package     = "community/virtualbox-guest-utils"
+description = "VirtualBox Guest userspace utilities"
+url         = "https://virtualbox.org/"
+mode        = ["desktop", "hacker"]
+
+[virtualbox-host-modules-arch]
+package     = "community/virtualbox-host-modules-arch"
+description = "Virtualbox host kernel modules for Arch Kernel"
+url         = "https://virtualbox.org/"
+mode        = ["desktop", "hacker"]
+
+[vlc]
+package     = "extra/vlc"
+description = "Multi-platform MPEG, VCD/DVD, and DivX player"
+url         = "https://www.videolan.org/vlc/"
+mode        = ["desktop"]
+
+[w3m]
+package     = "extra/w3m"
+description = "Text-based Web browser as well as pager"
+url         = "https://salsa.debian.org/debian/w3m"
+mode        = ["ael-base"]
+
+[wfuzz]
+package     = "aur/wfuzz-git"
+description = "Web application fuzzer - python3 build of the dev branch"
+url         = "https://github.com/xmendez/wfuzz"
+url_aur     = "https://aur.archlinux.org/packages/wfuzz-git"
+mode        = ["hacker"]
+
+[wget]
+package     = "extra/wget"
+description = "Network utility to retrieve files from the Web"
+url         = "https://www.gnu.org/software/wget/wget.html"
+mode        = ["ael-base"]
+
+[whois]
+package     = "extra/whois"
+description = "Intelligent WHOIS client"
+url         = "https://github.com/rfc1036/whois"
+mode        = ["ael-base"]
+
+[wireless_tools]
+package     = "extra/wireless_tools"
+description = "Tools allowing to manipulate the Wireless Extensions"
+url         = "https://hewlettpackard.github.io/wireless-tools/Tools.html"
+mode        = ["testing"]
+
+[wireshark]
+package     = "community/wireshark-qt"
+description = "Network traffic and protocol analyzer/sniffer - Qt GUI."
+url         = "https://www.wireshark.org/"
+git         = "https://github.com/wireshark/wireshark"
+mode        = ["hacker"]
+
+[wireshark-cli]
+package     = "community/wireshark-cli"
+description = "Network traffic and protocol analyzer/sniffer - CLI tools and data files"
+url         = "https://www.wireshark.org/"
+mode        = ["hacker"]
+
+[xautomation]
+package     = "community/xautomation"
+description = "Controls X from the command line and does 'visual scraping'."
+url         = "https://hoopajoo.net/projects/xautomation.html"
+mode        = ["testing"]
+
+[xclip]
+package     = "extra/xclip"
+description = "Command line interface to the X11 clipboard"
+url         = "https://github.com/astrand/xclip"
+mode        = ["desktop", "hacker"]
+
+[xcompmgr]
+package     = "extra/xcompmgr"
+description = "Composite Window-effects manager for X.org"
+url         = "https://xorg.freedesktop.org/"
+mode        = ["desktop", "hacker"]
+
+[xdg-ninja]
+package     = "aur/xdg-ninja-git"
+description = "A shell script which checks your $HOME for unwanted files and directories."
+url         = "https://github.com/b3nj5m1n/xdg-ninja"
+aur_url     = "https://aur.archlinux.org/packages/xdg-ninja-git"
+mode        = ["ael-base"]
+
+[xdg-user-dirs]
+package     = "extra/xdg-user-dirs"
+description = "Manage user directories like ~/Desktop and ~/Music"
+url         = "https://www.freedesktop.org/wiki/Software/xdg-user-dirs"
+mode        = ["testing"]
+
+[xdotool]
+package     = "community/xdotool"
+description = "Command-line X11 automation tool"
+url         = "https://www.semicomplete.com/projects/xdotool/"
+man         = ["xdotool(1)"]
+mode        = ["desktop", "hacker"]
+
+[xfce4-terminal]
+package     = "extra/xfce4-terminal"
+description = "A modern terminal emulator primarily for the Xfce desktop environment"
+url         = "https://docs.xfce.org/apps/terminal/start"
+man         = ["xfce4-terminal(1)"]
+mode        = ["desktop", "hacker"]
+
+[xorg-server]
+package     = "extra=/xorg-server"
+description = "Xorg X server"
+url         = "https://xorg.freedesktop.org"
+mode        = ["desktop", "hacker"]
+
+[xorg-server-xephyr]
+package     = "extra/xorg-server-xephyr"
+description = "A nested X server that runs as an X application"
+url         = "https://xorg.freedesktop.org"
+provides    = ["Xephyr"]
+man         = ["Xephyr(1)"]
+mode        = ["desktop", "hacker"]
+
+[xorg-setxkbmap]
+package     = "extra/xorg-setxkbmap"
+description = "Set the keyboard using the X Keyboard Extension"
+url         = "https://xorg.freedesktop.org/"
+mode        = ["desktop"]
+
+[xorg-xev]
+group       = "xorg-apps"
+package     = "extra/xorg-xev"
+description = "Print contents of X events"
+url         = "https://xorg.freedesktop.org/"
+provide     = "xev"
+mode        = ["desktop", "hacker"]
+
+[xorg-xhost]
+group       = "xorg-apps"
+package     = "extra/xorg-xhost"
+description = "Server access control program for X"
+url         = "https://xorg.freedesktop.org/"
+provides    = ["xhost"]
+man         = ["xhost(1)"]
+mode        = ["desktop", "hacker"]
+note        = """
+              * xhost is used to access GUI apps in docker containers.
+              """
+
+[xorg-xinit]
+package     = "extra/xorg-xinit"
+description = "X.Org initialisation program"
+url         = "https://xorg.freedesktop.org/"
+provides    = ["/usr/bin/startx",
+               "/usr/bin/xinit"]
+man         = ["startx(1)", "xinit(1)"]
+mode        = ["desktop", "hacker"]
+
+[xorg-xrandr]
+group       = "xorg-apps"
+package     = "extra/xorg-xrandr"
+description = "Primitive command line interface to RandR extension"
+url         = "https://xorg.freedesktop.org/"
+provides    = ["/usr/bin/xrandr"]
+man         = ["xrandr(1)"]
+mode        = ["desktop", "hacker"]
+
+[xterm]
+package     = "extra/xterm"
+description = "X Terminal Emulator"
+url         = "https://invisible-island.net/xterm/"
+mode        = ["desktop", "hacker"]
+
+[youtube-dl]
+package     = "community/youtube-dl"
+description = "A command-line program to download videos from YouTube.com and a few more sites"
+url         = "https://ytdl-org.github.io/youtube-dl/"
+mode        = ["desktop", "hacker"]
+
+[zaproxy]
+package     = "community/zaproxy"
+description = "Integrated penetration testing tool for finding vulnerabilities in web applications."
+url         = "https://www.owasp.org/index.php/ZAP"
+git         = "https://github.com/zaproxy"
+mode        = ["hacker"]
+
+[zathura]
+package     = "community/zathura"
+description = "Minimalistic document viewer"
+url         = "https://pwmt.org/projects/zathura/"
+mode        = ["desktop", "hacker"]
+
+[zathura-pdf-mupdf]
+package     = "community/zathura-pdf-mupdf"
+description = "PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)"
+url         = "https://pwmt.org/projects/zathura-pdf-mupdf/"
+mode        = ["desktop", "hacker"]
+
+[zbar]
+package     = "extra/zbar"
+description = "Application and library for reading bar codes from various sources"
+url         = "https://github.com/mchehab/zbar"
+provides    = ["/usr/bin/zbarcam",
+               "/usr/bin/zbarcam-gtk",
+               "/usr/bin/zbarcam-qt",
+               "/usr/bin/zbarimg"]
+mode        = ["desktop", "hacker"]
+
+[zoom]
+
+### Still considering...
+# android-file-transfer
+# arandr
+# canon-pixma-g6000-conplete
+# captdriver-git
+# domination
+# dropbox
+# foomatic-db-gutenprint-ppds
+# gnome-characters
+# gucharmap
+# gutenprint
+# gvfs
+# htmlq-git
+# libvncserver
+# libxcrypt-compat
+# lshw
+# luit
+# lxc
+# noto-fonts-emoji
+# nushell
+# otf-font-awesome-4
+# otf-latin-modern
+# pdfedit-bin
+# pdftk
+# qpdfview
+# rtl88x2bu-dkms-git
+# system-config-printer
+# ttf-google-fonts-git
+# ttf-hack
+# ttf-inconsolata
+# ttf-joypixels
+# ttf-liberation
+# ttf-linux-libertine
+# ttf-ms-fonts
+# ueberzug
+# xf86-video-intel
+
+# vim: foldmethod=marker
+## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
