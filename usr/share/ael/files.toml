@@ -5,7 +5,7 @@
 ## updated       : 2023-11-22 20:35:21 UTC
 ## description   : List of files.
 
-[file.files]
+[file.general.files]
 filename    = "files.toml"
 src         = "/usr/share/ael/cache/files/usr/share/ael"
 dst         = "/usr/share/ael"
@@ -13,7 +13,7 @@ description = "AEL files list."
 mode        = ['hacker']
 is_symlink  = true
 
-[file.packages]
+[file.general.packages]
 filename    = "packages.toml"
 src         = "/usr/share/ael/cache/files/usr/share/ael"
 dst         = "/usr/share/ael"
