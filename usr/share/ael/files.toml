@@ -5,21 +5,25 @@
 ## updated       : 2023-11-22 20:35:21 UTC
 ## description   : List of files.
 
-[file.general.files]
+[file.files]
 filename    = "files.toml"
+category    = "config"
 src         = "/usr/share/ael/cache/files/usr/share/ael"
 dst         = "/usr/share/ael"
 description = "AEL files list."
 mode        = ['hacker']
 is_symlink  = true
+md5         = ""
 
-[file.general.packages]
+[file.packages]
 filename    = "packages.toml"
+category    = "config"
 src         = "/usr/share/ael/cache/files/usr/share/ael"
 dst         = "/usr/share/ael"
 description = "Packages list."
 mode        = ['hacker']
 is_symlink  = true
+md5         = ""
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
