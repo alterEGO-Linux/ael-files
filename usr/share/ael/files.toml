@@ -47,7 +47,7 @@ dst         = "/usr/lib"
 description = "OS identification data."
 mode        = ['hacker']
 is_symlink  = false
-create_bkp  = true
+create_bkp  = false
 
 ## ---------- [ /usr/share/ ] 
 
