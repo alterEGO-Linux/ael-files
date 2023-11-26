@@ -2,7 +2,7 @@
 ## [/usr/share/ael/files.toml]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-11-22 20:35:16 UTC
-## updated       : 2023-11-22 20:35:21 UTC
+## updated       : 2023-11-26 13:24:21 UTC
 ## description   : List of files.
 
 [file.files]
@@ -13,17 +13,27 @@ dst         = "/usr/share/ael"
 description = "AEL files list."
 mode        = ['hacker']
 is_symlink  = true
-md5         = "983eeeb11e7d1b65057256a0ede920af"
+create_bkp  = false
 
 [file.packages]
 filename    = "packages.toml"
 category    = "config"
 src         = "/usr/share/ael/cache/files/usr/share/ael"
-dst         = "/usr/share/ael/config"
+dst         = "/usr/share/ael"
 description = "Packages list."
 mode        = ['hacker']
 is_symlink  = true
-md5         = ""
+create_bkp  = false
+
+[file.issue]
+filename    = "issue"
+category    = "etc"
+src         = "/usr/share/ael/cache/files/etc"
+dst         = "/etc"
+description = "Prelogin message."
+mode        = ['hacker']
+is_symlink  = false
+create_bkp  = false
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
