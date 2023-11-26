@@ -8,7 +8,7 @@
 [file.files]
 filename    = "files.toml"
 category    = "config"
-src         = "/usr/share/ael/cache/files/usr/share/ael"
+src         = "FILESGIT"
 dst         = "/usr/share/ael"
 description = "AEL files list."
 mode        = ['hacker']
@@ -18,7 +18,7 @@ create_bkp  = false
 [file.packages]
 filename    = "packages.toml"
 category    = "config"
-src         = "/usr/share/ael/cache/files/usr/share/ael"
+src         = "FILESGIT"
 dst         = "/usr/share/ael"
 description = "Packages list."
 mode        = ['hacker']
@@ -28,7 +28,7 @@ create_bkp  = false
 [file.issue]
 filename    = "issue"
 category    = "etc"
-src         = "/usr/share/ael/cache/files/etc"
+src         = "FILESGIT"
 dst         = "/etc"
 description = "Prelogin message."
 mode        = ['hacker']
