@@ -25,6 +25,8 @@ mode        = ['hacker']
 is_symlink  = true
 create_bkp  = false
 
+## ---------- [ /etc/ ] 
+
 [file.issue]
 filename    = "issue"
 category    = "etc"
@@ -34,6 +36,20 @@ description = "Prelogin message."
 mode        = ['hacker']
 is_symlink  = false
 create_bkp  = false
+
+## ---------- [ /usr/lib/ ] 
+
+[file.os-release]
+filename    = "os-release"
+category    = "usr-lib"
+src         = "FILESGIT"
+dst         = "/usr/lib"
+description = "OS identification data."
+mode        = ['hacker']
+is_symlink  = false
+create_bkp  = true
+
+## ---------- [ /usr/share/ ] 
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯

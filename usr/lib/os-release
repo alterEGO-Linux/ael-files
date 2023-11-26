@@ -1,0 +1,10 @@
+NAME="alterEGO Linux"
+PRETTY_NAME="alterEGO Linux"
+ID=ael
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://github.com/alterEGO-Linux"
+SUPPORT_URL="https://github.com/alterEGO-Linux"
+BUG_REPORT_URL="https://github.com/alterEGO-Linux"
+LOGO=
