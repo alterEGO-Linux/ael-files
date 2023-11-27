@@ -37,6 +37,18 @@ mode        = ['hacker']
 is_symlink  = false
 create_bkp  = false
 
+## ---------- [ /lib/ ]
+
+[file.ff-policies]
+filename    = "policies.json"
+category    = "firefox"
+src         = "FILESGIT"
+dst         = "/lib/firefox/distribution"
+description = "Firefox global config."
+mode        = ['hacker']
+is_symlink  = false
+create_bkp  = false
+
 ## ---------- [ /usr/lib/ ] 
 
 [file.os-release]
