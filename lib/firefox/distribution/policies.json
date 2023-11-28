@@ -14,35 +14,8 @@
         "Favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAB80lEQVR4AaXBX4gPBgAH8M/97s7dAzaTvSgP8rIivw3hkRCFSBjZ2oOkri7xsE05Xm7SxNOVBx68HCIvHiQrbWEom9Z2D3Ra/lykuHP55bi7ryRh7ne73+8+H2544bG7Lmq3yzKTVOhnt/SLiIj4U6v5CirQqGiDVuf1iojoNM+INSj62h77HfGbRyKiyYg0u6lfRERERMQP3vrMSrXKaDeoyxUnHdBim1aX9Io4461N4pJpyhjjtYJF2twREREDNnqjRotBPZYp41M/ui0i4qUOx/0h4h9tmsxVsF5Jv28NYbMeEU+c1mSWRhS0i4iIeOCQLXr1W+cjvyg5brl67xwVESVdSiJiwHUDSub4jzEafGiNiDtWqEPBPIf1ioi47xP/o0P0me59423VKSJ2GtZkEcd8rN59Ec9MNIwFIr43lIX+FnHVJmXNEbHX0Gps1ue5NrXKGKckbqpTzmpLDeukiIPqVGmqHhG3HNRsgyVmm6KgAqs8FxEREfHMZbvNVWNEZjpnUERERETEX75Tb0Q+t9g3tvvJCd0iIiJuKKpQgx2eioiIF9ao2Az3xEv7dIo+i1TsC93imol+Ff9qVLF1ItYaq0NsUYUz4hqKBv2uCl+JKOKUHlU5K/Zggi9VZaG4YBRqPfTIqJwW443CVrfVwys2LPLjyi4NtAAAAABJRU5ErkJggg==",
         "Folder": "AEL-DEV",
         "Placement": "toolbar"
-      },
-      {
-        "Title": "ArchWiki",
-        "URL": "https://wiki.archlinux.org/",
-        "Favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABvElEQVQ4jY2TP4gTQRTGfzM7ybp35mBX8LY4GxM5OI4UiqDWtoKIjWhl4QmmEQwIhzZaa3GLlYWgjViI+AcUrrASUYTbQ0UxepwpFj1EDCSXuLNj4QYSLxP8mnm8972P3wyMMMZgUxjF+ycLUjUW5l/YPMq6/VfnHCEmAGuAsBHsurG6QwiaRUeq2cCdfXy88nmUT9qSJ4tywVNyGxjVSbPzNp81wFNyt6cknpJ00uzk2Wfr/n8HHLrz4ajriFeuEsuekvS08Zu/eoujvFveYN+t98XAUw1jmEmN+ZEZfG2M8BzZKhVl+f6x8vexBIGn6hMFOeMqgTEEXZ2J39qwqbNSR5tLYwnmbr6b2hO4axvt1P/a6tHTw3SuI1pTrlNZPT33bSTBps7qb5K23/jZ7S8/AO72511tShud9MJIgjCKdwINYHs+e5TUqkfy2W3gVN5vA+WkVk3+Jbg8sAzwcKB+mp8G+ALUh64QRnEZOMOwPg3Ub/vEgAvcGwoArgKFvF4DrgEfBwKawHVgHagAy2EUnwAQ00sre4HXwBPgSlKrvmSMwig+CCwCh4F5Mb20chF4ntSq1h83JujAH3Eom+H9uAq8AAAAAElFTkSuQmCC",
-        "Folder": "Search",
-        "Placement": "toolbar"
-      },
-      {
-        "Title": "DuckDuckGo",
-        "URL": "https://duckduckgo.com/",
-        "Favicon": "data:image/vnd.microsoft.icon;base64,AAABAAIAEBAAAAEAIABoBAAAJgAAACAgAAABACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADVZ4Ss0Wd+PM1nf1Tpd4PM6XeDzM1nf1TRZ3481WeErAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVYD/BjRa3pRQcOP9tMLy/83q2f/m9uv//f7+//L0/P+qu+7/UHDj/TRa3pRVgP8GAAAAAAAAAAAAAAAAVYD/BjNZ372Jnuv/9/j9/8nT9v+D0pj/R71m/02+a/9Kr3z/XreM//f4/f+Jnuv/M1nfvVWA/wYAAAAAAAAAADRa3pSJnuv/4Ob6/1h25P+8yPT/ntyv/6zhuv+Fvrj/PpKY/0Cbjf9YduT/4Ob6/4me6/80Wt6UAAAAADVZ4StQcOP99/j9/1h25P8zWN7/5+z7////////////Z4Lm/zNY3v8zWd3/M1je/1h25P/3+P3/UHDj/TVZ4Ss0Wd+PrLvx/5ut7v8zWN7/Rmfh/////////////////0Jo4P8neuf/IY/s/yZ85/8yXN//m63u/6y78f80Wd+PM1nf1ert+/9ObuL/M1je/3CK5////////////9j4//8RyPv/J3vn/ytx5P8lg+n/KHjm/05u4v/p7fv/M1nf1Tpd4PP4+f3/M1je/zNY3v+bre7////////////X+P//JNL8/yDJ+v8Utvb/II/t/y9j4P8zWN7/+Pn9/zpd4PM6XeDz+Pn9/zNY3v8zWN7/w871///////////////////////k+v//T5zt/xyc7/8UtPX/L2Ph//j5/f86XeDzM1nf1ert+/9ObuL/M1je/9vi+f//////oXZf////////////oXZf/2N/5f8zWN7/M1je/05u4v/q7fv/M1nf1TRZ34+su/H/m63u/zNY3v/H0fX//////////////////////+js+/83W97/M1je/zNY3v+bre7/rLvx/zRZ3481WeErUHDj/ff4/f9YduT/X3zl//Hz/P////////////j5/f9yi+j/M1je/zNY3v9YduT/9/j9/1Bw4/01WeErAAAAADRa3pSJnuv/4Ob6/1h25P9MbOL/2N/4/73J9P9DZeD/M1je/zNY3v9YduT/4Ob6/4me6/80Wt6UAAAAAAAAAABVgP8GM1nfvYme6//3+P3/m63u/05u4v8zWN7/M1je/05u4v+bre7/9/j9/4me6/8zWd+9VYD/BgAAAAAAAAAAAAAAAFWA/wY0Wt6UUHDj/ay78f/p7fv/+Pn9//j5/f/p7fv/rLvx/1Bw4/00Wt6UVYD/BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADVZ4Ss0Wd+PM1nf1Tpd4PM6XeDzM1nf1TRZ3481WeErAAAAAAAAAAAAAAAAAAAAAPAPAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAwAMAAPAPAAAoAAAAIAAAAEAAAAABACAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFWA/wY2Wt9HM1nelTRY3780WN7ZM1je8zNY3vM0WN7ZNFjfvzNZ3pU2Wt9HVYD/BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADVg3xgzWN+WNFne8TNY3v9ceuT/iJ7r/52v7/+ywPL/ssDy/52v7/+Inuv/XHrk/zNY3v80Wd7xM1jfljVg3xgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAElt/wczWOCCM1nf9Ets4v+ouPH/6e37/+vv+//a4Pj/2eD4/9zi+f/c4vn/2eD4/9rg+P/m6vv/6e37/6i48f9LbOL/M1nf9DNY4IJJbf8HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1YN8YM1jfxz9i4P+js/D/8fP8/6Cx7/+7x/P/5fbp/1zEd/+o4Lb/9vz4////////////3+T5/zVZ3v9Xed3/obPu//Hz/P+js/D/P2Hf/zNY38c1YN8YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN1njLjRZ3uNTcuP/4eb6/7PB8v9IaeH/M1je/9rg+f/H69D/Rrxl/0a8Zf9NtV//RrRa/063Yv9fpqf/QqWA/0a8Zf87gqv/SGnh/7TC8v/h5vr/U3Lj/zRZ3uMzW+MtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADVg3xg0Wd7jZ4Pm/+/x/P+Emuv/M1je/zNY3v87Xt///P3+/7rmxv9GvGX/Rrxl/0azWv9GvGX/Rrxl/0a8ZP9GvGX/Rrxl/zyIo/8zWN7/M1je/4Sa6//v8fz/Z4Lm/zRZ3uM1YN8YAAAAAAAAAAAAAAAAAAAAAAAAAABJbf8HM1jfx1Ny4//v8fz/aoXm/zNY3v8zWN7/M1je/2N/5f//////tOTB/0a8Zf9HvWb/c8mH/1W+bv9IuWj/Qqp7/0a8Zf9GvGX/PIWo/zNY3v8zWN7/M1je/2qF5v/v8fz/U3Lj/zNY38dJbf8HAAAAAAAAAAAAAAAAAAAAADNY4II/YuD/4eb6/4Sa6/8zWN7/M1je/zNY3v8zWN7/j6Ps///////W8d3/pt+1/+X26v//////8/X9/zhc3v80Wdz/PIek/0a4av85d7j/M1je/zNY3v8zWN7/M1je/4Sa6//h5vr/P2Hf/zNY4IIAAAAAAAAAAAAAAAA1YN8YM1nf9KOz8P+0wvL/M1je/zNY3v8zWN7/M1je/zNY3v+6xvP///////////////////////////+zwfL/M1je/zNY3v8zWN7/NFzY/zNZ3f8zWN7/M1je/zNY3v8zWN7/M1je/7TC8v+js/D/M1nf9DVg3xgAAAAAAAAAADNY35ZLbOL/8fP8/0hp4f8zWN7/M1je/zNY3v8zWN7/M1je/+Xq+v///////////////////////////32U6v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/SGnh//Hz/P9LbOL/M1jflgAAAABVgP8GNFne8ai48f+hsu//M1je/zNY3v8zWN7/M1je/zNY3v9DZeD/////////////////////////////////V3bj/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/obLv/6i48f80Wd7xVYD/BjZa30czWN7/6e37/1Z04/8zWN7/M1je/zNY3v8zWN7/M1je/2+J5/////////////////////////////////9RcOL/Lmfi/yKN7P8XrPP/EML5/w3K+/8Suvf/HZnu/y5n4v8zWN7/M1je/zNY3v9WdOP/6e37/zNY3v82Wt9HM1nelVx65P/j6Pr/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/mavu////////////////////////////7/z//yK79v8K0v3/Fq/0/yKN7P8iiev/IY7s/xqh8P8Suff/Dcr7/y5o4v8zWN7/M1je/zNY3v/j6Pr/XHrk/zNZ3pU0WN+/iJ7r/6++8v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v/DzvX///////////////////////////9k4/7/CtL9/xK59/8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/6++8v+Inuv/NFjfvzRY3tmdr+//mqzu/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/+7x/P///////////////////////////2Xj/v8K0v3/C9D9/xmm8f8YqfP/Gafy/yKN7P8vZuH/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/mqzu/52v7/80WN7ZM1je87LA8v+Fm+v/M1je/zNY3v8zWN7/M1je/zNY3v9La+H/////////////////////////////////+P7//3Pm/v8P0/3/CtL9/wrS/f8K0v3/CtL9/wrR/f8VsvX/JYPp/zNb3v8zWN7/M1je/zNY3v+Fm+v/ssDy/zRZ3vIzWN7zssDy/4Wb6/8zWN7/M1je/zNY3v8zWN7/M1je/3SN6P////////////////////////////////////////////b+///T9///vPP//1q/9v8WrfT/DMv8/wrS/f8K0v3/DsX6/yl25v8zWN7/M1je/4Wb6/+ywPL/M1je8zRY3tmdr+//mqzu/zNY3v8zWN7/M1je/zNY3v8zWN7/m63u////////////0LWn/7qTfv/////////////////////////////+/v//////s8Dy/zNY3v8zWt7/KXbm/x2b7v8bn/D/KnPl/zNY3v8zWN7/mqzu/52v7/80WN7ZNFjfv4me6/+vvvL/M1je/zNY3v8zWN7/M1je/zNY3v+zwPL///////////+sfWT/om5R//v59///////////////////////pHFV/8Cdiv+ruvH/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v+vvvL/iJ7r/zRY378zWd6VXHrk/+Po+v8zWN7/M1je/zNY3v8zWN7/M1je/7/K9P////////////z6+f/38u/////////////////////////////NsKH/4dDH/3uT6f8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/+Po+v9ceuT/M1nelTZa30czWN7/6e37/1Z04/8zWN7/M1je/zNY3v8zWN7/p7fw///////k1c3////////////////////////////////////////////3+f3/Q2Xg/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v9WdOP/6e37/zNY3v82Wt9HVYD/BjRZ3vGouPH/oLHv/zNY3v8zWN7/M1je/zNY3v92j+j//////+7l3//gz8b/+/j2///////////////////////p3db/2MK2/6mz5P8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/6Gy7/+ouPH/NFne8VWA/wYAAAAAM1jflkts4v/x8/z/SGnh/zNY3v8zWN7/M1je/zNY3v/U3Pj////////////////////////////////////////////s7/z/RWfg/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v9IaeH/8fP8/0ts4v8zWN+WAAAAAAAAAAA1YN8YM1nf9KOz8P+zwfL/M1je/zNY3v8zWN7/M1je/0Fj4P/DzvX/////////////////////////////////8PP8/2WB5v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/7TC8v+js/D/M1nf9DVg3xgAAAAAAAAAAAAAAAAzWOCCP2Lg/+Hm+v+Emuv/M1je/zNY3v8zWN7/R2jh/0do4f97k+n/1dz4////////////7/L8/4Oa6/9CZOD/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v+Fm+v/4eb6/z9i4P8zWOCCAAAAAAAAAAAAAAAAAAAAAElt/wczWN/HU3Lj/+/x/P9qheb/M1je/zNY3v+Xqe7/7vH8/////////////////87X9/9TcuP/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/aoXm/+/x/P9TcuP/M1jfx0lt/wcAAAAAAAAAAAAAAAAAAAAAAAAAADVg3xg0Wd7jZ4Lm/+/x/P+Emuv/M1je/2J+5f+puPH/rrzx/5Kl7f9PbuL/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/4Sa6//v8fz/Z4Lm/zRZ3uM1YN8YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADdZ4y40Wd7jU3Lj/+Hm+v+0wvL/SGnh/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/0hp4f+0wvL/4eb6/1Ny4/80Wd7jM1vjLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADVg3xgzWN/HP2Lg/6Oz8P/x8/z/obLv/1Z04/8zWN7/M1je/zNY3v8zWN7/M1je/zNY3v8zWN7/M1je/1Z04/+hsu//8fP8/6Oz8P8/Yd//M1jfxzVg3xgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAElt/wczWOCCM1nf9Ets4v+ouPH/6e37/+Po+v+vvvL/mqzu/4Wb6/+Fm+v/mqzu/6++8v/j6Pr/6e37/6i48f9LbOL/M1nf9DNY4IJJbf8HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1YN8YM1jfljRZ3vEzWN7/XHrk/4ie6/+dr+//ssDy/7LA8v+dr+//iJ7r/1x65P8zWN7/NFne8TNY35Y1YN8YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVYD/BjZa30czWd6VNFjfvzRY3tkzWN7zM1je8zRY3tk0WN+/M1nelTZa30dVgP8GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AA///AAD//AAAP/gAAB/wAAAP4AAAB8AAAAPAAAADgAAAAYAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABgAAAAcAAAAPAAAAD4AAAB/AAAA/4AAAf/AAAP/8AAP//wAP/",
-        "Folder": "Search",
-        "Placement": "toolbar"
-      },
-      {
-        "Title": "Google",
-        "URL": "https://www.google.com/",
-        "Favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAANK0lEQVR42uxdCXRU1Rm+mI1QqLYFy1aQipVFlsybNwkBnJk3CUulhckkBWorIK2V0yJ6sLi0nlSzQJCiKKB4jrKZFVqMCEgCcnqACgXbni6AWGWTZJawzUJIkNz+P63OkIWQyZv37sy93znfgXOiMHO///733+6FxBpoTk6cy5wy2KMYf+BWjI87FeMKtyJvdlvlvU6bfMypyDVum+yD3zcCm5xW+Rr87IrTJnndNskJPz8KP98P/8878OurLsW0yK2Ycmqt8nAqSQlEgC3UmU393VZpJooFPAAiXoZfaSQIRnIV/vx/we/f8ijSL5w2wwgioPUOH5bossmTUHCnVTqOwuhLyelSjMUem/zg+QzpdiKgPtD1wmJPwYVGV40LzyLxWIFj530w0Fm1mSO/RgQ6B4/VeK/LZlwG57EbFzjK6APvsNaTIRuJQMfgspom4E7CIA0XM+qpGD/EQJLmktuIQOughHSB3e6AqPyvuGixSMwwXFbjTzFTIQJBuDLkiUHheeD1TGIK4R11immY22bciYvCI8Hj7a7LSB1KeMPZKVI3COyWYtTMo/AtMwe58ITZ3JXwAGeGbIPCzWe8C9+cEBscqVMkE4lVnE5LS4YvupJ3oW9GKGx9ARlDbsxlC1hHRwvnXeAOxAYfuCca+sRGhG8zPQTNlgDvooaRMtY4M0xp0d2Vs8kv8S5kZ4hdSpciz46+XW8e1h2i223cC6gSYSP9LnqifCX121jU4V20CBjB84R11FhTBmKLlnexInAUfAqt5gFsR/qZpkHwYU9yLxaP4uMHdFnlU9yLxefOH3OncPscih+M9o2HuReLR/ExzxepHqfiI6BAsZx7sXgVH2btf8K9WLyKX5tpvC9aavuQmTQA/4JdSCikzMfLIjjL78lI6Ysj3DhtjJ2345MGJ9VMGt0Lh1A9VpMCQyoP47wCDqu4rNI5IX5IS9dlk/7N+twdigeLej/eIVBjVvG60SjyQhhJ/xPeJOJSfAT0ql9h031KdXgFDMrQIyM/xpbWD2YYn4a5vhNcie9RTFbWxrRRBNjxj6ILJxoDjw6XImW7FelvMS8+zvCxNcYl1eI5Tc3meBbG2cEzzsBKaEyKj4DFLmJogHKpJz29B4ubBNcJx7piSnwcW2Zhevd/wacxhfksyWJIRZFjQnwEuP4dDOz+V6NpbBpTTEg7K6NefKciZep81tfjTGG0XnUDj7UkOsUPGsAhHQ3AEwtz8m7FNDcqxb+yKXmqZ+bwi/oEe9LnGHsQAf1wdVfCoatVifTSM3dpLf4ZnC4iAjqKXxVnAwOgXzKwshf1TJYiLj7W3fHCKBHQFw3VCdtQ+FA2lPegdT8aEdGAD9LNMURAX9TvTrq7oSqhCUVvzsbtSfTiL++J1OXIOUSABfefUIRi34z+wr7UPcGonviK9AYR0B90D4mH3V+LIrfH+vV30LqpKWqUd49hm5kIsBD5x01GcW+VDZXd6Pk5Q8MWH3vr4txnCI3V8RtQ2A6xOpF6nx0Y7nWnl4gAG6AVJLFhV8JFFDUcBlb1hFTR0KFK3wXzqDuIADO5/0QUsjNsqOhOz00fcauB36+IAFOVvxVA2lk27oBUcf7g9s7+0+LlbfYCwKMooFr0L+nTdqqoGBcQAXbQtIP0QdHUZv0GSBXto1sMcOL0DBFgB19UJ0xHwSLBhq3J9PzcIaGR/8tEILrP/7BSxd8OoO4MLPmaRhEB5gzgz0AaaQZWf+MjwhjMuTSeJ7Y63w75f0ALA2jcFf8UYQxKgZ/yRGth4IckFPV7kgajOFqwYXfCcGEA+tKa73/mRvdfHTdFC/HBy9QQgDAAvQ3Au46EAtzy4xq5/3JhAAwwz7+vmQdIeFkjA1goDEB/Wgq8nzf3AJu1MAA4ajKEATBhANcwGwj1APu0MICmXcn9hAGwQfOSQP/QLuAxDQLAK5SSLsIAGGG+30C+BIyAOSN+/lfHnSAAYQBs0JbnCx7HsDv9GhwBh4QBsERvdqgHuBppA4C/4wNhAEwdAbNDDaBJgxjgfWEADDE/8KgwAI4NwFrgmy+OAI4NwJLve0wEgVx7AO+8UA9QG/E0sCr+pDAApjj3hmFQDWKABlEIYqol/JD2peA9yf2FATBzBGSRLwHueZM2AyFxmcIAWKHPqn07eHf8k8IA2KB1sX9UaDt4gSYGUB1fIQyADU7Iu/yd0G7gA1oYAGYbwgAYnAfAJ2FQII2MYIQwAJYmgoJj4X6NjoGnhQHoTd+Hrb0LtF8LA9i7vd8+whgsed4rTLDA26BNCuh/mwA0HQy9siuRLqscTY1lDmoozx5BBFogI887TiMv8GzLy6G7E3MiJb6zqgf92R8sKP51SqUO8SxMK4AO3RMatYLtrb0O1jsS4h/a0ZtOrHgAhf+KhlJHnfTuFHE9vBmUfF+lFgaQ8cKle9p6IOKImuKv3zqEppZloegtaChxPEYEvkJOLk2ECxteDS6FnCeUdiGAiMUBl6qT6aIt6Sh0mzSUOU5Lax4RT8T8H9ZC//c1mgVsezAHa/WdFf+Tnd+kjk0TUeR2KZVmiUeigqloiTZdQN/zpC3QwyQBCjUXwhV/+7a76Pjyqe0KHxoLjNoylftn4sy53p6YBmo0Dm4hNwH2BdZ1+B2g6iS6tDIFRQ2DWSsI54De/HMaVQADGGuo+lZgTVV3+vBmK4oZJu3XpLKssYRTpBd5eljy/HV6n/+hr4XGgRc4eyviH9zRh06omIJCdopSmeN4Wnl2Mp9nv+8FjSeB2weIu7g98dduHUpNwRSv0zSU2t8knCEzr36Qkue9rM2bAN6m4IXQdlC/M2kQNIeutSb8xepudOGWsSia6pTLHT8nnABzcSXfu1O7DqDvYEdfDX+3ufgfQ4pn3zQJxYoMSxxXpIqccYQD4Fy+xhdBniAdAL4bZAkV/71tg+i4smkoVGRZ6rgQ680iS2EgNdj508T9N44r8PYiHcXF6q7/xBRvcaUBxdGSZw2l0+6OyZQv7/JAiPqdGvf/3yHhoGpb/zmzNysoiB6sgRTxvpgK+nJ9d4L4H+twE3gyCRfG0qyD+hgANozs5+Ty7DEx0esvCvSFQYwjOrwIdjTY/AkDIIKih/ihgaGxLHtOdOf63mHAkzpfAw8fIMR7mgvfsnG0CotF0Sd+YJqlwH9Jp1dAatJ+39T5NZNLp33PWGJvQCF05lG5xGEkUQA0Vkvh2dW6XwFXC1CvL2DAAHCQ5Co0kJZDveB2wiigyzkBPut/5A3zrllePK6T+N6zMPvfVVWLBi/wCYrACF0QoD7C0lAJZi1gnFtvqG6W/piOX7FbhxfB/XMiYdnjIShrYsgIKBjlKRwsMa+d1VU34Usd6bA2m2+2NulrXgdhLmkU+HkPByN/lYHulw3xW1YQ4ZhaCSKkEA0gV+T0xrlGqcTx91v9jKnrnqLWojMRb/pAlTFy7fXB2yclBb80m8T2MhqqoSzLqpZnGFaRk4g1CfA2v4GjZy/OMYTz2UzFc+j9yw9FcuTrdRJpSMVZQ8D1+vALsU97I3iFj0C014AL4E7C1JQSx0iIafrhONr1GCI39zY0FPmP075lLM76rqHMniaV2LPhv/81tqmlMvshrEeo95ly6NhVZViiVdv1n5mUW/d1jc69rOn4ZQTDZ9qbBXBP36Oe68/3T9Q6+CniXcTO0rRxHjUvO6bG7n+RaA10nTDfX8m7iJ2lXAKp4itVnRr2kNZQfdJhvOKFDSPeRVSD6W+sgvz9Ykd3fi3U+/sRPSEVz+wJX+AI7wKqwdT1i6il6NQtiY93Ccz5gTRWat/9oHP4Ge8CqkG5eBakigfaDfogi5hBWALU5wdATPAp7wKqQbksm45dXdx2qpjvY/NanWmjvb84DtTjmLfyqHWJu/krn88RloExgQgM1aPp7XnUsuxI6L/6yT4wOxApoooszWk0L9//JIkmYJ1AFIvUGYvDyiuJVsBM3wzsHXAvZBgEL+qMicsyxvLse8GK/8G7oB2j/QCm1yRWgK1kfCEMByeEuDchrk+pYxm2oEksAozAgjNz3Avduss/A63oTBLrwBlDMIRCnDbmXfTgrs96zbTxQfX7+ezHBo5tXO/6Esd/27tCFoSBKHzBaBejf2E6bS4oCMIEt2lQsJgM/gebQQSjYBAR3FYNRtcNNoPJaFVQrH4fmkXEyTbvg2PL9969d+/e991twqSA8otrWORE/JHhSV07pB2rJfiWksQDSAmVqDsC70hUbKMj70l8qUYyC+TYk3wZHcNXt2jyNDVPiwmJ90CSJiavj1bzMaSbuytC/ZREUyHxObhqQPMuZRbGjBqAoB/dosJZIsw3UMvHhcR3wdzJWhkra8TWc2C0CLYxRtrS5U3oPwZVOthN1+gQT9HGxW8VElb5GkqkgeqadWVeTQqJ4IBlVda1UjBQGaKOLow2hHM4cAwPkWPH0zZUGyfk5Rs3mRz8xziz+YKxJ58BKWeF7wThvAdFUFt1jHxuoSdExHAH0IC61Hl4s2wAAAAASUVORK5CYII=",
-        "Folder": "Search",
-        "Placement": "toolbar"
-      },
-      {
-        "Title": "SearX",
-        "URL": "https://searx.ninja/",
-        "Favicon": "data:image/png;base64,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",
-        "Folder": "Search",
-        "Placement": "toolbar"
-      }],
+      }
+      ],
     "DisableFirefoxStudies": true,
     "DisableTelemetry": true,
     "DisplayBookmarksToolbar": true,
@@ -107,11 +80,45 @@
         "name": "AlterEGO Linux Home"
       },
       {
+        "name": "CyberTraining",
+        "children": [
+          {
+            "name": "Codewars",
+            "url": "https://www.codewars.com"
+          },
+          {
+            "name": "OffSec - Metasploit Unleashed",
+            "url": "https://www.offsec.com/metasploit-unleashed/"
+          }
+        ]
+      },
+      {
         "name": "Search",
         "children": [
           {
-            "url": "https://google.com",
-            "name": "Google"
+            "name": "ArchWiki",
+            "url": "https://wiki.archlinux.org/"
+          },
+          {
+            "name": "DuckDuckGo",
+            "url": "https://duckduckgo.com/"
+          },
+          {
+            "name": "Google",
+            "url": "https://www.google.com/"
+          },
+          {
+            "name": "SearX",
+            "url": "https://searx.ninja/"
+          }
+        ]
+      },
+      {
+        "name": "Techniques",
+        "children": [
+          {
+            "name": "MITRE - ATT&CK Matrix for Enterprise",
+            "url": "https://attack.mitre.org/"
           }
         ]
       },
@@ -119,8 +126,8 @@
         "name": "Tools",
         "children": [
           {
-            "url": "https://crackstation.net/",
-            "name": "CrackStation"
+            "name": "CrackStation",
+            "url": "https://crackstation.net/"
           },
           {
             "name": "Curlconverter.com",
