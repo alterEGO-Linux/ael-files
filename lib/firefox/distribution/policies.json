@@ -244,6 +244,24 @@
         "installation_mode": "normal_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi"
       }
-    }
+    },
+    "ManagedBookmarks": [
+      {
+        "toplevel_name": "AEL-Bookmarks"
+      },
+      {
+        "url": "https://github.com/alterEGO-Linux",
+        "name": "AlterEGO Linux Home"
+      },
+      {
+        "name": "Search",
+        "children": [
+          {
+            "url": "https://google.com",
+            "name": "Google"
+          }
+        ]
+      }
+    ]
   }
 }
