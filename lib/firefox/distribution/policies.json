@@ -93,6 +93,15 @@
         ]
       },
       {
+        "name": "Resources",
+        "children": [
+          {
+            "name": "Daniel Miessler - SecLists",
+            "url": "https://github.com/danielmiessler/SecLists"
+          }
+        ]
+      },
+      {
         "name": "Search",
         "children": [
           {
@@ -164,6 +173,10 @@
           {
             "name": "HackTricks",
             "url": "https://book.hacktricks.xyz/"
+          },
+          {
+            "name": "Hashcat - Example hashes",
+            "url": "https://hashcat.net/wiki/doku.php?id=example_hashes"
           },
           {
             "name": "LOLBAS",
