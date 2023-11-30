@@ -179,6 +179,10 @@
             "url": "https://hashcat.net/wiki/doku.php?id=example_hashes"
           },
           {
+            "name": "Hashes.com - Hash Type Identifier",
+            "url": "https://hashes.com/en/tools/hash_identifier"
+          },
+          {
             "name": "LOLBAS",
             "url": "https://lolbas-project.github.io/"
           },
