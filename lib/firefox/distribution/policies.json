@@ -104,6 +104,10 @@
             "url": "https://book.hacktricks.xyz/"
           },
           {
+            "name": "Man pages on Arch Linux",
+            "url": "https://man.archlinux.org/"
+          },
+          {
             "name": "MITRE - ATT&CK Matrix for Enterprise",
             "url": "https://attack.mitre.org/"
           },
@@ -164,6 +168,19 @@
         ]
       },
       {
+        "name": "Sites",
+        "children": [
+          {
+            "name": "Arch Linux",
+            "url": "https://www.archlinux.org/"
+          },
+          {
+            "name": "Arch Linux - AUR",
+            "url": "https://aur.archlinux.org/"
+          }
+        ]
+      },
+      {
         "name": "Tools",
         "children": [
           {
@@ -209,6 +226,10 @@
           {
             "name": "Hashes.com - Hash Type Identifier",
             "url": "https://hashes.com/en/tools/hash_identifier"
+          },
+          {
+            "name": "haveibeenpwned.com",
+            "url": "https://haveibeenpwned.com/"
           },
           {
             "name": "LOLBAS",
