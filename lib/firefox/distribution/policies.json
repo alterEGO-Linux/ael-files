@@ -85,7 +85,7 @@
         "children": [
           {
             "name": "FullBashGuide",
-            "http://mywiki.wooledge.org/FullBashGuide"
+            "url": "http://mywiki.wooledge.org/FullBashGuide"
           },
           {
             "name": "HackTricks",
