@@ -177,6 +177,10 @@
           {
             "name": "Arch Linux - AUR",
             "url": "https://aur.archlinux.org/"
+          },
+          {
+            "name": "ArcoLinux",
+            "url": "https://www.arcolinux.info/"
           }
         ]
       },
