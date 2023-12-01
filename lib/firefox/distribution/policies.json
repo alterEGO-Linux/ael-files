@@ -84,6 +84,10 @@
         "name": "References",
         "children": [
           {
+            "name": "FullBashGuide",
+            "http://mywiki.wooledge.org/FullBashGuide"
+          },
+          {
             "name": "HackTricks",
             "url": "https://book.hacktricks.xyz/"
           },
@@ -102,6 +106,10 @@
           {
             "name": "PortSwigger - Burp Suite tools",
             "url": "https://portswigger.net/burp/documentation/desktop/tools"
+          },
+          {
+            "name": "Python - Beautiful Soup Documentation",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.html"
           }
         ]
       },
@@ -132,6 +140,10 @@
           {
             "name": "ArchWiki",
             "url": "https://wiki.archlinux.org/"
+          },
+          {
+            "name": "Bing - Visual Search",
+            "url": "https://www.bing.com/visualsearch"
           },
           {
             "name": "DuckDuckGo",
