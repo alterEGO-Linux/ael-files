@@ -180,6 +180,10 @@
         "name": "Tools",
         "children": [
           {
+            "name": "Base64online",
+            "url": "http://base64online.org/decode/"
+          },
+          {
             "name": "CrackStation",
             "url": "https://crackstation.net/"
           },
