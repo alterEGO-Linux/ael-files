@@ -1,21 +1,5 @@
 {
   "policies": {
-    "Bookmarks": [
-      {
-        "Title": "Kali Linux",
-        "URL": "https://www.kali.org/",
-        "Favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAB5klEQVR4AaXBS2jPARwA8O/+22wH78VFOchFkb/HMkdCFCJ5hhwktZI4eJRxGYk4rRw4uMw07eIgUSLv8kjsQJO8IoVZ/m32+OhnxvDf+v//Pp/w0DcfvXJdvX0WGRP5ccQzXfp7oNZsqcidcmlr1bqkTZ8WVZErZdLWOOCoU675oFd15MI2T3XJZnf8ZLSliiM79Xq8dVujY2psV+uGNonz8ZP1uGFiZGdIRISUeeq89Fu3dfGDIjV6tFoU2Rlpj+f6dGrW4L7EE3WqzZKyWkaXjfEvm7VKfNKk2gzlEVLq9ffOCVu06bIq/uayjAaLlcYvTuuV8VZGr273dMuojD8Zoiz+YIXES0uUREipclKbPm+MiMFpRofJ0Y/htmrRa28MxjiJM/EPpd5IfFURAzNHYldkYa7HEnesj4GolDgUWSmyWYd2dYojO8Nk8FRJDMByC2MwGiWOK4nCmKBV4pnjtllrgZnGS0XuLNPub1/dtN8sRZELU13UI5tHNimNXBhrvg12OOisz/p7KB35UWanL377ZkXkyxSv0emwFnSYF/kyyWfcVeEqXiiPfFklsdJQzdgS+XMedyOk9bgV+TNdIh3hnNYohAs4EGGUaVEIc3ElCqfYex/if2jC8CicrZ4rjYj4DjQbVpyRfQ7qAAAAAElFTkSuQmCC",
-        "Folder": "AEL-DEV",
-        "Placement": "toolbar"
-      },
-      {
-        "Title": "Kali Linux - Tools",
-        "URL": "https://www.kali.org/tools/",
-        "Favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAB80lEQVR4AaXBX4gPBgAH8M/97s7dAzaTvSgP8rIivw3hkRCFSBjZ2oOkri7xsE05Xm7SxNOVBx68HCIvHiQrbWEom9Z2D3Ra/lykuHP55bi7ryRh7ne73+8+H2544bG7Lmq3yzKTVOhnt/SLiIj4U6v5CirQqGiDVuf1iojoNM+INSj62h77HfGbRyKiyYg0u6lfRERERMQP3vrMSrXKaDeoyxUnHdBim1aX9Io4461N4pJpyhjjtYJF2twREREDNnqjRotBPZYp41M/ui0i4qUOx/0h4h9tmsxVsF5Jv28NYbMeEU+c1mSWRhS0i4iIeOCQLXr1W+cjvyg5brl67xwVESVdSiJiwHUDSub4jzEafGiNiDtWqEPBPIf1ioi47xP/o0P0me59423VKSJ2GtZkEcd8rN59Ec9MNIwFIr43lIX+FnHVJmXNEbHX0Gps1ue5NrXKGKckbqpTzmpLDeukiIPqVGmqHhG3HNRsgyVmm6KgAqs8FxEREfHMZbvNVWNEZjpnUERERETEX75Tb0Q+t9g3tvvJCd0iIiJuKKpQgx2eioiIF9ao2Az3xEv7dIo+i1TsC93imol+Ff9qVLF1ItYaq0NsUYUz4hqKBv2uCl+JKOKUHlU5K/Zggi9VZaG4YBRqPfTIqJwW443CVrfVwys2LPLjyi4NtAAAAABJRU5ErkJggg==",
-        "Folder": "AEL-DEV",
-        "Placement": "toolbar"
-      }
-      ],
     "DisableFirefoxStudies": true,
     "DisableTelemetry": true,
     "DisplayBookmarksToolbar": true,
@@ -104,6 +88,10 @@
             "url": "https://book.hacktricks.xyz/"
           },
           {
+            "name": "Kali Linux - Tools",
+            "url": "https://www.kali.org/tools/"
+          },
+          {
             "name": "Man pages on Arch Linux",
             "url": "https://man.archlinux.org/"
           },
@@ -181,6 +169,10 @@
           {
             "name": "ArcoLinux",
             "url": "https://www.arcolinux.info/"
+          },
+          {
+            "name": "Kali Linux",
+            "url": "https://www.kali.org/"
           }
         ]
       },
