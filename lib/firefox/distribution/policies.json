@@ -64,6 +64,15 @@
         "name": "AlterEGO Linux Home"
       },
       {
+        "name": "Converters",
+        "children": [
+          {
+            "name": "Code Beautify",
+            "url": "https://codebeautify.org/"
+          }
+        ]
+      },
+      {
         "name": "CyberTraining",
         "children": [
           {
@@ -83,6 +92,10 @@
       {
         "name": "References",
         "children": [
+          {
+            "name": "CommandLineFu.com",
+            "url": "https://www.commandlinefu.com/commands/browse"
+          },
           {
             "name": "FullBashGuide",
             "url": "http://mywiki.wooledge.org/FullBashGuide"
@@ -110,6 +123,10 @@
           {
             "name": "Python - Beautiful Soup Documentation",
             "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.html"
+          },
+          {
+            "name": "cheat.sh",
+            "url": "https://cheat.sh/"
           }
         ]
       },
@@ -242,6 +259,10 @@
           {
             "name": "haveibeenpwned.com",
             "url": "https://haveibeenpwned.com/"
+          },
+          {
+            "name": "JSONLint",
+            "https://jsonlint.com/"
           },
           {
             "name": "LOLBAS",
