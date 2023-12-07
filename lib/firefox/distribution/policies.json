@@ -262,7 +262,7 @@
           },
           {
             "name": "JSONLint",
-            "https://jsonlint.com/"
+            "url": "https://jsonlint.com/"
           },
           {
             "name": "LOLBAS",
