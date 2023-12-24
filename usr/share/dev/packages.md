@@ -6,6 +6,12 @@
 ## description   : Packages notes.
 -->
 
+## hydra
+
+```
+hydra: error while loading shared libraries: libsmbclient.so.0: cannot open shared object file: No such file or directory.
+```
+
 ## nwg-displays
 
 Monitor manager.
