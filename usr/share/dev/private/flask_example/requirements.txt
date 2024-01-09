@@ -1,0 +1,131 @@
+## ----------------------------------------------------------------------- INFO
+## [requirements.txt]
+## author        : fantomH
+## created       : 2023-09-17 12:46:02 UTC
+## updated       : 2023-12-14 18:40:01 UTC
+## description   : Packages.
+
+## ---------- ( email-validator )
+## description : A robust email address syntax and deliverability validation
+##               library.
+## url         : https://github.com/JoshData/python-email-validator
+# email-validator
+
+## ---------- ( Flask ) 
+## description : Flask is a lightweight WSGI web application framework. It is
+##               designed to make getting started quick and easy, with the
+##               ability to scale up to complex applications.
+## url         : https://flask.palletsprojects.com/
+#Flask==2.3.3
+ Flask
+
+## ---------- ( Flask-CKEditor )
+## description : CKEditor integration for Flask, add support to image upload,
+##               code syntax highlighting and more.
+## url         : https://flask-ckeditor.readthedocs.io/en/latest/
+## url         : http://github.com/helloflask/flask-ckeditor
+# flask-ckeditor
+
+## ---------- ( Flask-Login )
+## description : User authentication and session management for Flask.
+## url         : https://github.com/maxcountryman/flask-login
+# flask-login
+
+## ---------- ( Flask-MDEditor )
+## description : Flask-mdeditor is Markdown Editor plugin application for Flask
+##               and is based on Editor.md.
+## url         : https://github.com/zhenyong97/flask-mdeditor
+## notes       : Do not work with Flask 3.0.0 
+##               https://github.com/zhenyong97/flask-mdeditor/issues/4
+##               Use Flask==2.3.3
+# flask-mdeditor
+
+## ---------- ( Flask-Migrate )
+## description : Flask-Migrate is an extension that handles SQLAlchemy database
+##               migrations for Flask applications using Alembic. The database
+##               operations are made available through the Flask command-line 
+##               interface.
+## url         : https://flask-migrate.readthedocs.io/
+## url         : https://github.com/miguelgrinberg/flask-migrate
+ Flask-Migrate
+
+## ---------- ( Flask-SQLAlchemy )
+## description : Flask-SQLAlchemy is an extension for Flask that adds support
+##               for SQLAlchemy to your application. It simplifies using
+##               SQLAlchemy with Flask by setting up common objects and
+##               patterns for using those objects, such as a session tied to
+##               each web request, models, and engines.
+## url         : https://flask-sqlalchemy.palletsprojects.com/
+ Flask-SQLAlchemy
+
+## ---------- ( Flask-WTF )
+## description : Rorm rendering, validation, and CSRF protection for Flask
+##               with WTForms.
+## url         : https://github.com/wtforms/flask-wtf/
+## url         : https://flask-wtf.readthedocs.io
+# Flask-WTF
+
+## ---------- ( fuzzywuzzy )
+## description : Fuzzy string matching in python.
+## url         : https://github.com/seatgeek/fuzzywuzzy
+## notes       : Is replaced by thefuzz.
+# fuzzywuzzy
+
+## ---------- ( Levenshtein )
+## description : Python extension for computing string edit distances and
+##               similarities.
+## url         : https://github.com/maxbachmann/Levenshtein
+# levenshtein
+
+## ---------- ( Markdown )
+## description : Python implementation of John Gruber's Markdown.
+## url         : https://python-markdown.github.io/
+# markdown
+
+## ---------- ( psycopg2-binary )
+## description : PostgreSQL adapter. Required if using Flask-SQLAlchemy with
+##               PostgreSQL database.
+## url         : https://www.psycopg.org/
+# psycopg2-binary
+
+## ---------- ( Pygments )
+## description : Python syntax highlighter. Required for the CodeHilite
+##               Markdown's extension. 
+## url         : https://pygments.org/
+# Pygments
+
+## ---------- ( WTForms )
+## description : WTForms is a flexible forms validation and rendering library
+##               for Python web development.
+## url         : https://github.com/wtforms/wtforms/
+## url         : https://wtforms.readthedocs.io/en/3.1.x/#
+# WTForms
+
+
+
+
+
+
+
+
+
+
+## ---------- ( flask-paginate )
+## flask-paginate is a simple paginate extension for flask which is reference 
+## to will_paginate, and use bootstrap as css framework.
+## url: https://pythonhosted.org/Flask-paginate/
+## url: https://github.com/lixxu/flask-paginate
+# flask-paginate
+
+## ---------- ( thefuzz )
+## Fuzzy string matching like a boss. It uses Levenshtein Distance to calculate
+## the differences between sequences in a simple-to-use package.
+## url: https://github.com/seatgeek/thefuzz
+# thefuzz
+
+## ---------- ( markdownify )
+## Convert some HTML to Markdown.
+## url: https://github.com/matthewwithanm/python-markdownify
+# markdownify
+
+## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
