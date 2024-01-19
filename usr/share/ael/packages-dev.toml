@@ -1,8 +1,8 @@
 ## ----------------------------------------------------------------------- INFO
-## [/usr/share/ael/packages.toml]
+## [/usr/share/ael/files/packages.toml]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-10-22 15:06:13 UTC
-## updated       : 2024-01-18 11:17:21 UTC
+## updated       : 2024-01-18 10:54:50 UTC
 ## description   : Packages list.
 
 [alacritty]
@@ -15,7 +15,7 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://www.alsa-project.org"
 description     = "Advanced Linux Sound Architecture - Utilities."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [amd-ucode]
 repository      = "core"
@@ -81,19 +81,19 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://github.com/blueman-project/blueman"
 description     = "GTK+ Bluetooth Manager."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [bluez]
 repository      = "extra"
 url             = "http://www.bluez.org/"
 description     = "Daemons for the bluetooth protocol stack."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [bluez-utils]
 repository      = "extra"
 url             = "http://www.bluez.org/"
 description     = "Development and debugging utilities for the bluetooth protocol stack."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [bpytop]
 repository      = "extra"
@@ -117,7 +117,7 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://github.com/Hummer12007/brightnessctl"
 description     = "Lightweight brightness control tool."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [bumblebee-status-git]
 repository      = "aur"
@@ -351,7 +351,7 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://github.com/vanhauser-thc/thc-hydra"
 description     = "Very fast network logon cracker which support many different services."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [hyprland]
 repository      = "extra"
@@ -687,7 +687,7 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://github.com/christophgysin/pasystray"
 description     = "PulseAudio system tray (a replacement for padevchooser)."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [pavucontrol]
 repository      = "extra"
@@ -795,79 +795,79 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://github.com/pyca/bcrypt"
 description     = "Modern password hashing for your software and your servers."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-beautifulsoup4]
 repository      = "extra"
 url             = "https://www.crummy.com/software/BeautifulSoup/"
 description     = "A Python HTML/XML parser designed for quick turnaround projects like screen-scraping."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-flask]
 repository      = "extra"
 url             = "http://flask.pocoo.org/"
 description     = "Micro webdevelopment framework for Python."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-flask-sqlalchemy]
 repository      = "extra"
 url             = "http://flask-sqlalchemy.pocoo.org/"
 description     = "Adds SQLAlchemy support to your Flask application."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-flask-wtf]
 repository      = "extra"
 url             = "https://flask-wtf.readthedocs.io/"
 description     = "Simple integration of Flask and WTForms."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-markdown]
 repository      = "extra"
 url             = "https://python-markdown.github.io/"
 description     = "Python implementation of John Gruber's Markdown."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-openpyxl]
 repository      = "extra"
 url             = "https://openpyxl.readthedocs.org/"
 description     = "A Python library to read/write Excel 2010 xlsx/xlsm files."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-pandas]
 repository      = "extra"
 url             = "https://pandas.pydata.org/"
 description     = "High-performance, easy-to-use data structures and data analysis tools for Python."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-pip]
 repository      = "extra"
 url             = "https://pip.pypa.io/"
 description     = "The PyPA recommended tool for installing Python packages."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-pyaml]
 repository      = "extra"
 url             = "https://pypi.python.org/pypi/pyaml"
 description     = "PyYAML-based module to produce pretty and readable YAML-serialized data."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-rich]
 repository      = "extra"
 url             = "https://github.com/willmcgugan/rich"
 description     = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-xlib]
 repository      = "extra"
 url             = "https://github.com/python-xlib/python-xlib"
 description     = "A fully functional X client library for Python programs."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [python-xlrd]
 repository      = "extra"
 url             = "http://www.python-excel.org/"
 description     = "Library for developers to extract data from Excel spreadsheet files."
-modes           = ['pip, i3wm, hyprland']
+modes           = ['pip']
 
 [qrencode]
 repository      = "extra"
@@ -1037,11 +1037,17 @@ url             = "https://github.com/tmux/tmux/wiki"
 description     = "Terminal multiplexer."
 modes           = ['i3wm, hyprland']
 
+[tor-browser]
+repository      = "None"
+url             = "None"
+description     = "None"
+modes           = ['i3wm']
+
 [torbrowser-launcher]
 repository      = "extra"
 url             = "https://github.com/torproject/torbrowser-launcher"
 description     = "Securely and easily download, verify, install, and launch Tor Browser in Linux."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [traceroute]
 repository      = "core"
@@ -1173,13 +1179,13 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://www.wireshark.org/"
 description     = "Network traffic and protocol analyzer/sniffer - CLI tools and data files."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [wireshark-qt]
 repository      = "extra"
 url             = "https://www.wireshark.org/"
 description     = "Network traffic and protocol analyzer/sniffer - Qt GUI."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [wlr-randr]
 repository      = "aur"
@@ -1190,7 +1196,7 @@ modes           = ['hyprland']
 [xautomation]
 repository      = "extra"
 url             = "https://hoopajoo.net/projects/xautomation.html"
-description     = "Controls X from the command line and does \"visual scraping\".."
+description     = "Controls X from the command line and does "visual scraping".."
 modes           = ['i3wm']
 
 [xclip]
@@ -1293,25 +1299,25 @@ modes           = ['i3wm, hyprland']
 repository      = "extra"
 url             = "https://www.owasp.org/index.php/ZAP"
 description     = "Integrated penetration testing tool for finding vulnerabilities in web applications."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [zathura]
 repository      = "extra"
 url             = "https://pwmt.org/projects/zathura/"
 description     = "Minimalistic document viewer."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [zathura-pdf-mupdf]
 repository      = "extra"
 url             = "https://pwmt.org/projects/zathura-pdf-mupdf/"
 description     = "PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 [zbar]
 repository      = "extra"
 url             = "https://github.com/mchehab/zbar"
 description     = "Application and library for reading bar codes from various sources."
-modes           = ['i3wm, hyprland']
+modes           = ['i3wm']
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
