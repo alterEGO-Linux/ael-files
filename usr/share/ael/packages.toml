@@ -2,7 +2,7 @@
 ## [/usr/share/ael/packages.toml]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-10-22 15:06:13 UTC
-## updated       : 2024-01-21 17:49:00 UTC
+## updated       : 2024-01-21 23:46:02 UTC
 ## description   : Packages list.
 
 [alacritty]
@@ -975,12 +975,6 @@ modes           = ['i3wm,', 'hyprland']
 repository      = "extra"
 url             = "https://sqlmap.org"
 description     = "Automatic SQL injection and database takeover tool."
-modes           = ['i3wm,', 'hyprland']
-
-[sqsh]
-repository      = "aur"
-url             = "https://sourceforge.net/projects/sqsh/"
-description     = "Unix/Linux replacement for Sybase's isql."
 modes           = ['i3wm,', 'hyprland']
 
 [sxiv]
