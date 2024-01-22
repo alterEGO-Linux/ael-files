@@ -49,6 +49,28 @@ mode        = ['hacker', 'hacker-hyprland']
 is_symlink  = true
 create_bkp  = false
 
+[file.hyprland]
+
+[file.waybar_config]
+filename    = "config.jsonc"
+category    = "config"
+src         = "FILESGIT"
+dst         = "/etc/skel/.config/waybar"
+description = "Waybar configuration files."
+mode        = ['hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.waybar_style]
+filename    = "style.css"
+category    = "config"
+src         = "FILESGIT"
+dst         = "/etc/skel/.config/waybar"
+description = "Waybar CSS file."
+mode        = ['hyprland']
+is_symlink  = false
+create_bkp  = false
+
 ## ---------- [ /lib/ ]
 
 [file.ff-policies]
