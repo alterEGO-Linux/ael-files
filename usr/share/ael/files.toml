@@ -2,27 +2,27 @@
 ## [/usr/share/ael/files.toml]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-11-22 20:35:16 UTC
-## updated       : 2024-01-01 04:22:01 UTC
+## updated       : 2024-01-22 12:45:37 UTC
 ## description   : List of files.
 
 [file.files]
 filename    = "files.toml"
 category    = "config"
-src         = "FILESGIT"
-dst         = "/usr/share/ael"
+src         = "AEL-FILES/usr/share/ael"
+dst         = ['/usr/share/ael/files.toml']
 description = "AEL files list."
-mode        = ['hacker']
-is_symlink  = true
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
 create_bkp  = false
 
 [file.packages]
 filename    = "packages.toml"
 category    = "config"
-src         = "FILESGIT"
-dst         = "/usr/share/ael"
+src         = "AEL-FILES/usr/share/ael"
+dst         = ['/usr/share/ael/packages.toml']
 description = "Packages list."
-mode        = ['hacker']
-is_symlink  = true
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
 create_bkp  = false
 
 ## ---------- [ /etc/ ] 
@@ -30,44 +30,53 @@ create_bkp  = false
 [file.issue]
 filename    = "issue"
 category    = "etc"
-src         = "FILESGIT"
-dst         = "/etc"
+src         = "AEL-FILES/etc"
+dst         = ['/etc/issue']
 description = "Prelogin message."
-mode        = ['hacker']
+modes       = ['i3wm', 'hyprland']
 is_symlink  = false
-create_bkp  = false
+create_bkp  = true
 
 ## (* /etc/skel *)
 
 [file.alacritty]
 filename    = "alacritty.toml"
 category    = "config"
-src         = "FILESGIT"
-dst         = "/etc/skel/.config/alacritty"
+src         = "AEL-FILES/home/.config/alacritty"
+dst         = ['/etc/skel/.config/alacritty/alacritty.toml',
+               '/home/USER/.config/alacritty/alacritty.toml']
 description = "Alacritty configuration file."
-mode        = ['hacker', 'hacker-hyprland']
-is_symlink  = true
-create_bkp  = false
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = true
 
 [file.hyprland]
+filename    = "hyprland.conf"
+category    = "config"
+src         = "AEL-FILES/home/.config/hypr"
+dst         = ["/etc/skel/.config/hypr/hyprland.conf"]
+description = "Hyprland configuration file."
+modes       = ["hyprland"]
+is_symlink  = false
+create_bkp  = false
 
 [file.waybar_config]
 filename    = "config.jsonc"
 category    = "config"
-src         = "FILESGIT"
-dst         = "/etc/skel/.config/waybar"
+src         = "AEL-FILES/home/.config/waybar"
+dst         = ["/etc/skel/.config/waybar/config.jsonc"]
 description = "Waybar configuration files."
-mode        = ['hyprland']
+modes       = ['hyprland']
 is_symlink  = false
 create_bkp  = false
 
 [file.waybar_style]
 filename    = "style.css"
 category    = "config"
-src         = "FILESGIT"
-dst         = "/etc/skel/.config/waybar"
+src         = "AEL-FILES/home/.config/waybar"
+dst         = ["/etc/skel/.config/waybar/style.css"]
 description = "Waybar CSS file."
-mode        = ['hyprland']
+modes        = ['hyprland']
 is_symlink  = false
 create_bkp  = false
 
@@ -76,10 +85,10 @@ create_bkp  = false
 [file.ff-policies]
 filename    = "policies.json"
 category    = "firefox"
-src         = "FILESGIT"
-dst         = "/lib/firefox/distribution"
+src         = "AEL-FILES/lib/firefox/distribution"
+dst         = ["/lib/firefox/distribution/policies.json"]
 description = "Firefox global config."
-mode        = ['hacker']
+modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
@@ -88,10 +97,10 @@ create_bkp  = false
 [file.os-release]
 filename    = "os-release"
 category    = "usr-lib"
-src         = "FILESGIT"
-dst         = "/usr/lib"
+src         = "AEL-FILES/usr/lib/os-release"
+dst         = ["/usr/lib/os-release"]
 description = "OS identification data."
-mode        = ['hacker']
+modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
