@@ -97,7 +97,7 @@ create_bkp  = false
 [file.os-release]
 filename    = "os-release"
 category    = "usr-lib"
-src         = "AEL-FILES/usr/lib/os-release"
+src         = "AEL-FILES/usr/lib"
 dst         = ["/usr/lib/os-release"]
 description = "OS identification data."
 modes       = ['i3wm', 'hyprland']
