@@ -47,7 +47,7 @@ dst         = ['/etc/skel/.config/alacritty/alacritty.toml',
                '/home/USER/.config/alacritty/alacritty.toml']
 description = "Alacritty configuration file."
 modes       = ['i3wm', 'hyprland']
-is_symlink  = false
+is_symlink  = true
 create_bkp  = true
 
 [file.hyprland]
