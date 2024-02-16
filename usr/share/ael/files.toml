@@ -39,6 +39,20 @@ create_bkp  = false
 
 ## ---------- [ /etc/skel/ ] 
 
+## (* tmux *)
+
+[file.tmux]
+filename    = ".tmux.conf"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/"
+dst         = "/etc/skel/.tmux.conf"
+description = "Tmux configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = true
+
+## ---------- [ /etc/skel/.config ] 
+
 ## (* alacritty *)
 
 [file.alacritty]
