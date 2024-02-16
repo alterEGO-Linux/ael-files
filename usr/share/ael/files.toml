@@ -42,7 +42,7 @@ create_bkp  = false
 [file.alacritty]
 filename    = "alacritty.toml"
 category    = "config"
-src         = "AELFILES_LOCAL/home/.config/alacritty"
+src         = "AELFILES_LOCAL/etc/skel/.config/alacritty"
 dst         = "/etc/skel/.config/alacritty/alacritty.toml"
 description = "Alacritty configuration file."
 modes       = ['i3wm', 'hyprland']
@@ -52,7 +52,7 @@ create_bkp  = true
 [file.hyprland]
 filename    = "hyprland.conf"
 category    = "config"
-src         = "AELFILES_LOCAL/home/.config/hypr"
+src         = "AELFILES_LOCAL/etc/skel/.config/hypr"
 dst         = "/etc/skel/.config/hypr/hyprland.conf"
 description = "Hyprland configuration file."
 modes       = ["hyprland"]
@@ -62,7 +62,7 @@ create_bkp  = true
 [file.waybar_config]
 filename    = "config.jsonc"
 category    = "config"
-src         = "AELFILES_LOCAL/home/.config/waybar"
+src         = "AELFILES_LOCAL/etc/skel/.config/waybar"
 dst         = "/etc/skel/.config/waybar/config.jsonc"
 description = "Waybar configuration files."
 modes       = ['hyprland']
@@ -72,7 +72,7 @@ create_bkp  = true
 [file.waybar_style]
 filename    = "style.css"
 category    = "config"
-src         = "AELFILES_LOCAL/home/.config/waybar"
+src         = "AELFILES_LOCAL/etc/skel/.config/waybar"
 dst         = "/etc/skel/.config/waybar/style.css"
 description = "Waybar CSS file."
 modes        = ['hyprland']
