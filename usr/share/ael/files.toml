@@ -51,6 +51,18 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
+## (* x11 *)
+
+[file.xinit]
+filename    = ".xinitrc"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/"
+dst         = "/etc/skel/.xinitrc"
+description = "X11 configuration file."
+modes       = ['i3wm']
+is_symlink  = false
+create_bkp  = true
+
 ## ---------- [ /etc/skel/.config ] 
 
 ## (* alacritty *)
