@@ -39,6 +39,18 @@ create_bkp  = false
 
 ## ---------- [ /etc/skel/ ] 
 
+## (* bashrc *)
+
+[file.bashrc]
+filename    = ".bashrc"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/"
+dst         = "/etc/skel/.bashrc"
+description = "Bash configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = true
+
 ## (* tmux *)
 
 [file.tmux]
