@@ -51,6 +51,18 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
+## (* profile *)
+
+[file.profile]
+filename    = ".profile"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/"
+dst         = "/etc/skel/.profile"
+description = "Shell configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = true
+
 ## (* tmux *)
 
 [file.tmux]
