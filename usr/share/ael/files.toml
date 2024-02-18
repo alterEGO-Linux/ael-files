@@ -75,6 +75,18 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
+## (* vim *)
+
+[file.vimrc]
+filename    = ".vimrc"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/"
+dst         = "/etc/skel/.vimrc"
+description = "Tmux configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = true
+
 ## (* x11 *)
 
 [file.xinit]
