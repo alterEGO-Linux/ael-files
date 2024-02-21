@@ -111,6 +111,16 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
+[file.dircolors]
+filename    = ".dircolors"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/.ael"
+dst         = "/etc/skel/.ael/.dircolors"
+description = "Shell colors configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
 ## ---------- [ /etc/skel/.config ] 
 
 ## (* alacritty *)
