@@ -1,0 +1,1082 @@
+#!/usr/bin/env sh
+## ----------------------------------------------------------------------- INFO
+## [~/.ael/.core]
+## author        : fantomH @alterEGO Linux
+## created       : 2021-03-19 09:37:19 UTC
+## updated       : 2024-02-21 20:55:13 UTC
+## description   : alterEGO Linux core shell configuration.
+
+[ -f ${HOME}/.ael/bash-ael/messages.bash ]                                    \
+&& . ${HOME}/.ael/bash-ael/messages.bash
+
+[ -f ${HOME}/.ael/bash-ael/colors.bash ]                                      \
+&& . ${HOME}/.ael/bash-ael/colors.bash
+
+[ -f ${HOME}/.ael/.extra ]                                                    \
+&& . ${HOME}/.ael/.extra
+
+## ========================= | GENERAL | =================================== ##
+
+## ---------- [ COLORS ]
+
+export TERM="xterm-256color"
+
+## Set LS_COLORS
+[[ -e ${HOME}/.ael/.dircolors ]]                                              \
+&& eval "`dircolors --sh ${HOME}/.ael/.dircolors`"
+
+
+## ---------- [ ALIASES ]
+
+alias less="bat"
+alias grep="grep --color=auto"
+alias ll='ls --all --human-readable -l --color=auto'
+alias ls='ls --all --color=auto'
+
+## Makes tmux understand the environment is important.
+alias tmux="env TERM=screen-256color tmux -u"
+
+alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
+alias open="ael-open"
+
+## TODO: Should we still source automatically. See above.
+alias attack="source ${HOME}/.ael/.tryhackme"
+
+
+## ---------- [ DEFAULT APPLICATIONS ]
+
+export BROWSER=firefox
+export FZF_DEFAULT_COMMAND='rg --files --hidden '
+
+## TODO: To move from xfce4-terminal to alacritty.
+# export TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
+export TERMINAL="alacritty"
+export VISUAL=vim
+export EDITOR=${VISUAL}
+
+
+## ---------- [ PATH ]
+
+## ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
+
+PATH="${PATH}:${HOME}/scripts:${HOME}/bin"
+PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
+
+export PATH
+
+
+## ---------- [ HISTORY ]
+
+export HISTIGNORE="cd:clear:delete:exit:gitall:history:ls:mv:nohup:vim"
+export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=1000000
+export HISEFILESIZE=1000000
+
+## Uncomment if your want timestamp in history
+# export HISTTIMEFORMAT="%Y-%m-%d %T %z "
+
+
+## ---------- [ MAN IN COLOR ]
+
+## TODO: Need to work on the colors.
+export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
+export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
+export LESS_TERMCAP_me=$(printf '\e[0m')     # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_se=$(printf '\e[0m')     # leave standout mode
+export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
+export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
+export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
+
+
+## ---------- [ VIM ]
+
+## Enables CTRL+s in vim.
+## ref. https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
+## Requires mapping in .vimrc:
+## inoremap <C-s> <ESC>:write<CR>
+
+stty -ixon
+
+
+## ---------- [ QT5 ]
+
+## ref. https://wiki.manjaro.org/index.php/Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
+## Set all Qt app's to use GTK+ font & theme settings
+## Overview
+## When using a Desktop Environment or Window Manager that doesn't allow for the settings of QT themes,
+## you can set QT to use your GTK themes instead.
+## Using qt5ct
+## note: In some Manjaro editions, this is already done for you by default
+## Install qt5ct using your favorite package manager or the command:
+## pamac install qt5ct
+## Set environment variables in ~/.profile by adding or updating the following lines:
+## export QT_QPA_PLATFORMTHEME="qt5ct"
+## Run the application QT5 Configuration Manager from the menu or run the command qt5ct.
+## Logout and login again to make the change effective
+
+# export QT_QPA_PLATFORMTHEME="qt5ct"
+
+
+## ---------- [ IP ADDRESSES ]
+ipaddr() {
+
+  ## IP addresses will be exported when .egorc is sourced with the function
+  ## call, but can also be 'refreshed' when calling ipaddr from the terminal
+  ## (ex. after starting a VPN connection).
+
+  ## `host` is provided by the package 'bind'.
+  PUBIP="$(host myip.opendns.com resolver1.opendns.com                      \
+            | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
+  export PUBIP
+
+  ## TODO: Not working properly if not wired.
+  LANIP="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"
+  export LANIP
+
+  # printf "%s\n" "LAN IP:     ${LANIP}"
+  # printf "%s\n" "Public IP:  ${PUBIP}"
+  }
+  ipaddr
+
+## ---------- [ PROMPTS ]
+prompt_command() {
+    history -a
+    dateNOW="$(date "+%F %H:%M:%S %Z")"
+
+    ## tty won't show unicode character #10095.
+    if tty | grep pts &>/dev/null; then
+
+        ## (* SIMPLE *)
+        # export PS1='[\u@\h \W]\$ '
+        
+        ## (* KALI STYLE *)
+        # export PS1="\[${RESET}\]\[${GREEN}\]┌────(\[${RESET}\]\u@\h\[${GREEN}\])-[\[${RESET}\]\w\[${GREEN}\]]\n\[${GREEN}\]└─$ \[${RESET}\]"
+
+        ## (* EGO *)
+        export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]❯ \[${RESET}\]"
+
+    else
+        ## (* SIMPLE *)
+        # export PS1='[\u@\h \W]\$ '
+        
+        ## (* KALI STYLE *)
+        # export PS1="\[${RESET}\]\[${GREEN}\]┌────(\[${RESET}\]\u@\h\[${GREEN}\])-[\[${RESET}\]\w\[${GREEN}\]]\n\[${GREEN}\]└─$ \[${RESET}\]"
+
+        ## (* EGO *)
+        export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]> \[${RESET}\]"
+    fi
+  }
+  PROMPT_COMMAND=prompt_command
+
+## ---------- [ GOTO ]
+## ref. https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
+## ref. https://twitter.com/mattn_jp/status/1434192554036137995
+## Requires `bash-completion` and sourced in .bashrc.
+## To add a goto link:
+## $ `ln -s </some/directory/path> ${HOME}/.ael/.goto/@<gotolink>` in  directory.
+## Usage: `goto @<gotolink>`
+
+if [ -d "${HOME}/.ael/.goto/" ]; then
+  export CDPATH=".:${HOME}/.ael/.goto:/"
+  alias goto="cd -P"
+  _goto() {
+    local IFS=$'\n'
+    COMPREPLY=( $(compgen -W "$(/bin/ls ~/.ael/.goto)" -- ${COMP_WORDS[COMP_CWORD]}) )
+  } && complete -F _goto goto
+fi
+
+## ---------- [ RELOAD ]
+reload() {
+  if [ $LOADED = 'bashrc' ]; then
+    . "${HOME}/.bashrc"
+  elif [ $LOADED = 'profile' ]; then
+    . "${HOME}/.profile"
+  else
+    message error "An error occured while reloading"
+  fi
+  }
+
+## ========================= | PACKAGE MANAGER | =========================== ##
+
+## ---------- [ pacman-reset ]
+## [pacman-reset()]
+## version       : 2023-10-20 10:46:22 UTC
+## description   : Re-initialize pacman sync, mirrorlist and keyring.
+## packages      : ['curl', 'sed', 'pacman']
+pacman_reset() {
+
+    message action "< pacman-reset() > from $(basename $BASH_SOURCE)"
+    message action "Resetting mirrolist and  ..."
+
+    sudo rm -rf /var/lib/pacman/sync
+    sudo curl -o /etc/pacman.d/mirrorlist 'https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4'
+    sudo sed -i -e 's/\#Server/Server/g' /etc/pacman.d/mirrorlist
+    sudo pacman -Syy --noconfirm archlinux-keyring
+  }
+  alias pacman-reset='pacman_reset'
+
+## ========================= | NETWORK | =================================== ## 
+
+## ---------- [ ispeed ]
+## [ispeed()]
+## version       : 2023-10-20 01:27:16 UTC
+## description   : Internet connection speed meter
+## packages      : ['speedtest-cli']
+
+ispeed() {
+ 
+    message action "< ispeed() > from $(basename $BASH_SOURCE)"
+    message action "Calculating your Internet connection speed ..."
+
+    ## Method no.1
+    # curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
+    # | python - --secure
+
+    ## Method no.2
+    /usr/bin/speedtest --secure
+  }
+
+## ---------- [ deepnmap ]
+## [deepnmap()]
+## version       = 2023-10-20 09:16:16 UTC
+## description   = Complete nmap scan.
+## packages      = ['grc', 'nmap']
+
+deepnmap() {
+
+    message action "< deepnmap() > from $(basename $BASH_SOURCE)"
+    message alert "Scanning multiple devices or network will take forever..."
+
+    sleep 2
+    sudo grc nmap -sV -O -sC --traceroute ${@}
+  }
+
+## ---------- [ deepscan ]
+## [deepscan()]
+## version       = 2023-10-20 09:10:13 UTC
+## description   = Scans IP with rustscan and nmap.
+## packages      = ['nmap', 'rustscan']
+
+deepscan() {
+
+    if [[ ${1} == "localhost" ]] || [[ ${1} == '' ]]; then
+        _ip="127.0.0.1"
+    else
+        _ip="${1}"
+    fi
+
+    message action "< deepnmap() > from $(basename $BASH_SOURCE)"
+    message action "Scanning ${_ip} ..."
+
+    sudo rustscan -a ${_ip} --ulimit 5000 --batch-size 2000 -- -sV -O -sC --traceroute -Pn
+  }
+
+## ---------- [ ports ]
+## [ports()]
+## version       = 2023-08-04 02:11:08 UTC
+## description   = Display open ports.
+## packages      = ['grc', 'net-tools']
+
+ports() {
+
+    message action "< ports() > from $(basename $BASH_SOURCE)"
+    message action "Showing open ports ..."
+
+  sudo grc netstat -tulanp
+  }
+
+## ---------- [ pyserver ]
+## [pyserver()]
+## version       = 2023-08-04 02:14:47 UTC
+## description   = Start a web server.
+## packages      = ['python']
+
+pyserver() {
+
+    message action "< pyserver() > from $(basename $BASH_SOURCE)"
+    message action "Starting web server ..."
+
+    python -m http.server
+  }
+
+## ---------- [ tuninfo ]
+## [tuninfo()]
+## version       = 2023-10-20 09:40:59 UTC
+## description   = Read tunnels info.
+## packages      = ['coreutils', 'gawk', 'grep', 'procps-ng']
+
+tuninfo() {
+
+    message action "< tuninfo() > from $(basename $BASH_SOURCE)"
+    message action "Reading tunnels info ..."
+    message title "INT\tIP ADDR   \tPID\tNAME"
+
+    while read -r _interface; do
+
+      _ip=$(grep -oP '(?<=inet )(.*)(?=/)' <<<"${_interface}")
+      _tun=$(awk '{ print $NF }' <<<"${_interface}")
+      _ps=$(sudo grep -r $_tun /proc/*/fdinfo 2>/dev/null | cut -d / -f 3)
+      _cmd="$(ps -o cmd --no-headers ${_ps})"
+
+      if [[ $(awk '/openvpn/ && /server/' <<< ${_cmd}) ]]; then
+        _tunname="OpenVPNServer"
+      elif [[ $(awk '/openvpn/ && /tryhackme/' <<< "${_cmd}") ]]; then
+        _tunname="TryHackMe"
+      elif [[ $(awk '/nordvpn/' <<< "${_cmd}") ]]; then
+        _tunname="NordVPN"
+      else
+        _tunname="UNDEFINED"
+      fi
+
+      printf "%b\n" "${_tun}\t${_ip}\t${_ps}\t${_tunname}"
+
+    done <<< $(ip a | grep -E 'inet [1-9].*global.*(tun)')
+  }
+
+## ---------- [ viewips ]
+## [viewips()]
+## version       = 2023-10-20 09:44:24 UTC
+## description   = Display IP addresses.
+## packages      = ['coreutils', 'gawk', 'grep', 'procps-ng']
+
+viewips() {
+
+    message action "< viewips() > from $(basename $BASH_SOURCE)"
+    message action "Current IP address(es) ..."
+
+    while read -r _interfaces; do
+        spaces=30
+        _interface=$(cut -f 1 <<<"${_interfaces}")
+        _ip=$(cut -f 2 <<<"${_interfaces}")
+        printf "%s%$((spaces - ${#_interface}))s%s\n" "$_interface" "$_ip"
+    done <<< $(/usr/bin/ip address | grep "inet [1-9]" | awk '{ print $NF "\t" $2}')
+  }
+
+## ---------- [ whoisweb ]
+## [whoisweb()]
+## version       = 2023-10-20 09:45:58 UTC
+## description   = Query WHOIS web if `whois` port 43 is blocked on your network.
+## packages      = ['curl', 'jq', 'sed']
+
+whoisweb() {
+
+    message action "< whoisweb > from $(basename $BASH_SOURCE)"
+    message action "Querying whois on the web for ${1} ..."
+
+    curl --silent https://whoisjs.com/api/v1/${1}                             \
+    | jq ".raw"                                                               \
+    | sed "s/\\\r\\\n/\\n/g"
+  }
+
+## ========================= | HACKER | ==================================== ## 
+
+## ---------- [ WORDLISTS ]
+
+export WORDLISTS="/usr/local/share/wordlists"
+export WLBEST1050="${WORDLISTS}/best1050.txt"
+export WLBIG="${WORDLISTS}/seclist-big.txt"
+export WLDIRMEDIUM="${WORDLISTS}/directory-list-2.3-medium.txt"
+export WLLARGEFILES="${WORDLISTS}/raft-large-files.txt"
+export WLROCKYOU="${WORDLISTS}/rockyou.txt"
+export WLXPLATFORM="${WORDLISTS}/xplatform.txt"
+
+## ---------- [ REVERSE SHELLS ]
+
+export REVSHELLS="/usr/local/share/reverse_shells"
+export RSNODEJS="${REVSHELLS}/patt_nodeJS.js"
+export RSPHP="${REVSHELLS}/php-reverse-shell.php"
+export RSWEB="${REVSHELLS}/webshell.php"
+
+## ========================= | CONTAINERS | ================================ ## 
+
+## ---------- [ DOCKER SERVICES ]
+## [docker666()]
+## version       : 2023-08-01 02:18:59 UTC
+## description   : START/STATUS/STOP docker service.
+
+docker666() {
+
+  ## Checking the current status of docker.service
+  _status=$(systemctl is-active docker.service)
+
+  ## Checking the provided argument (start, status, or stop) to determine the action
+  case "${1}" in
+
+    ## Start Docker service
+    start )
+      ## Checking if docker.service is already running
+      if [ ${_status} = 'active' ]; then
+        message alert "Docker.service is active"
+      else
+        ## If not running, start the Docker service
+        sudo systemctl start docker.service
+        message result "Starting docker.service..."
+      fi
+      ;;
+
+    ## Get the status of Docker service
+    status )
+      message action "Checking docker.service status:"
+      message result "Docker.service is ${_status}"
+      ;;
+
+    ## Stop Docker service
+    stop )
+      ## Checking docker.servie status
+      if [ ${_status} = 'inactive' ]; then
+        message alert "Docker.service is already stopped."
+      else
+        ## Confirm with the user before stopping the Docker service
+        message question "Should I stop docker.service? [y/N]"
+          if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+            ## Stopping Docker service and associated socket
+            sudo systemctl stop docker.socket
+            sudo systemctl stop docker.service
+
+            ## Ask if the user wants to delete the docker0 network interface
+            message question "Would you like to delete docker0 network interface? [y/N]"
+              if [[ "$_INPUT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                ## If confirmed, delete the docker0 network interface
+                sudo ip link delete docker0 
+              else
+                ## If not confirmed, moving on
+                message result "Leaving network interface intact."
+                message result "Moving on..."
+              fi
+          else
+            ## If not confirmed, moving on
+            message result "Leaving docker.service running..."
+            message result "Moving on..."
+          fi
+      fi
+      ;;
+
+    * )
+      message warning "Usage: docker666 [start|status|stop]"
+
+  esac
+  }
+
+## ---------- [ DOCKER STATS ]
+## [docker-stats()]
+## version       : 2023-08-01 02:38:21 UTC
+## description   : "Show Docker Stats"
+## todo          : '''
+## + Verify why IP addresses don't show. [2023-03-02]
+## '''
+
+docker_stats() {
+
+    if [[ "$(systemctl is-active docker.service)" == "inactive" ]]; then
+      docker666 start
+    fi
+
+    message action "Checking docker stats..."
+    while read -r d; do
+      _containerID=$(awk '{ print $1 }' <<< "${d}")
+      if [[ -z "${_containerID}" ]]; then
+        message warning "No container exists..."
+      else
+        message title "CONTAINER ID\tIP ADDR   \tNAME"
+        _name=$(awk '{ print $2 }' <<< "${d}")
+        _ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${_containerID})
+        printf "%b\n" "${_containerID}\t${_ip}\t${_name}"
+      fi
+    done <<< $(docker ps -a | tail -n+2)
+  }
+
+  alias docker-stats="docker_stats"
+
+## ---------- [ DOCKER CLEANER ]
+## [docker-container-cleaner()]
+## version       : 2023-08-01 10:40:08 UTC
+## description   : Delete all docker container.
+## todo          : '''
+## + Make it list to delete with fzf. [2023-08-01]
+## '''
+
+docker_container_cleaner() {
+
+    if [[ "$(systemctl is-active docker.service)" == "inactive" ]]; then
+        docker666 start
+    fi
+
+    message action "This will remove all Docker containers on this machine..."
+    message question "Proceed? [Y/n]"
+    if [[ "$_INPUT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        for c in $(docker container ls --all | awk 'FNR > 1 {print $1}'); do
+            docker container rm $c
+        done
+    else
+        message result "GoodBye!!!"
+    fi
+  }
+
+  alias docker-container-cleaner="docker_container_cleaner"
+
+## ---------- [ CYBERCHEF ]
+## [cyberchef()]
+## version       : 2023-08-01 10:42:34 UTC
+## description   : Cyberchef: A simple, intuitive web app for analysing and decoding data without having to deal with complex tools or programming languages. CyberChef encourages both technical and non-technical people to explore data formats, encryption and compression.
+
+cyberchef() {
+
+    docker666 start
+
+    if [[ "${1}" == 'stop' ]]; then
+        docker stop $(docker ps | grep "mpepping/cyberchef"  | cut -d ' ' -f1)
+        docker666 stop
+    else
+        if docker ps --all | grep -q "mpepping/cyberchef"; then
+            $BROWSER "http://localhost:8888"
+        else
+            message action "Starting Cyberchef container on AEL..."
+            docker run --rm -d -p 8888:8000 mpepping/cyberchef                \
+            && $BROWSER "http://localhost:8888"
+        fi
+    fi
+  }
+
+## ---------- [ DAMN VULNERABLE WEBAPP (DVWA) ]
+## [dvwa()]
+## version       : 2023-08-01 10:48:57 UTC
+## description   : damn vulnerable webapp (DVWA).
+
+dvwa() {
+
+    docker666 start
+
+    if [[ "${1}" == 'stop' ]]; then
+        docker stop $(docker ps | grep DVWA | cut -d ' ' -f1)
+        docker666 stop
+    else
+        message action "Starting Damn Vulnerable Webapp container on AEL..."
+        #... If container doesn't exist, create one
+        if [[ -z $(docker ps -a | awk '/DVWA/ { print $NF }') ]]; then
+            docker run --name DVWA -it -p 81:80 vulnerables/web-dvwa &
+            sleep 10
+            $BROWSER "http://localhost:81/login.php"
+        else
+            if [[ -z "$(docker ps | grep DVWA)" ]]; then
+                docker start DVWA
+                $BROWSER "http://localhost:81/login.php"
+            else
+                $BROWSER "http://localhost:81/login.php"
+            fi
+        fi
+    fi
+  }
+
+## ---------- [ OWASP juice shop ]
+## [juice-shop()]
+## version       : 2023-08-01 10:50:28 UTC
+## description   : OWASP juice shop.
+
+juice_shop() {
+
+    docker666 start
+
+    if [[ "${1}" == 'stop' ]]; then
+        docker stop $(docker ps | grep juice_shop | cut -d ' ' -f1)
+        docker666 stop
+    else
+        message action "Starting OWASP Juice Shop container on AEL..."
+        #... If container doesn't exist, create one
+        if [[ -z $(docker ps -a | awk '/juice_shop/ { print $NF }') ]]; then
+            docker run --name juice_shop -p 3000:3000 bkimminich/juice-shop &
+            sleep 10
+            $BROWSER "http://localhost:3000"
+        else
+            if [[ -z "$(docker ps | grep juice_shop)" ]]; then
+                docker start juice_shop
+                $BROWSER "http://localhost:3000"
+            else
+                $BROWSER "http://localhost:3000"
+            fi
+        fi
+    fi
+}
+
+  alias juice-shop="juice_shop"
+
+## ---------- [ KALI LINUX ]
+## [kali()]
+## version       : 2023-08-01 10:51:18 UTC
+## description   : Run Kali Linux on AEL.
+## todo          : '''
+## + Use startx to start a WM session (You will need to killall Xephyr to
+## completely exit. <= Need to find a solution.
+## '''
+
+kali() {
+
+    docker666 start
+    xhost +
+
+    message action "Starting Kali Linux container on AEL..."
+
+    ## TODO: If image doesn't exist, create from /usr/local/share/dockerfiles/Dockerfile-kali
+    ## docker build -f /usr/local/share/dockerfiles/Dockerfile-kali --tag kali_on_ael .
+
+    ## If container doesn't exist, create one
+    if [[ -z $(docker ps -a | awk '/kali_on_ael/ { print $NF }') ]]; then
+        docker run --name kali_on_ael                                         \
+                   --net="host"                                               \
+                   --privileged -it                                           \
+                   -v /tmp/.X11-unix:/tmp/.X11-unix kali_on_ael
+    else
+        if [[ -z "$(docker ps | grep kali_on_ael)" ]]; then
+            docker start -i kali_on_ael
+        else
+            message alert "Kali_on_ael is already running..."
+        fi
+    fi
+
+    xhost -
+    docker666 stop
+  }
+
+## ========================= | GIT | ======================================= ## 
+
+## ---------- [ gitall ]
+## [gitall()]
+## version       = 2023-08-02 20:04:33 UTC
+## description   = "Fast update of git repo."
+
+gitall() {
+
+    git pull && git add . && git commit && git push
+  }
+
+## ---------- [ git-status ]
+## [git-status()]
+## version       = 2023-08-02 20:06:20 UTC
+## description   = "Get status of local git repository."
+## notes         = '''
+## ref. https://gist.github.com/giggio/1704664
+## '''
+
+git_status() {
+
+    dumpfile="/tmp/git-status.dump"
+
+    if [ -z ${1} ]; then
+      local_git_repository=$(find ${HOME} -name ".git" -type d | grep -v /.cache/ | sed 's/.git//' | fzf)
+    else
+      local_git_repository=${1}
+    fi
+    
+    cd ${local_git_repository}
+    git fetch
+    git status > ${dumpfile}
+
+    message action "Checking local repository status for\n    ${local_git_repository}"
+
+    untracked=$(grep "Untracked files" ${dumpfile});
+    unstaged=$(grep "Changes not staged for commit" ${dumpfile});
+    to_commit=$(grep "Changes to be committed" ${dumpfile});
+    is_ahead=$(grep "Your branch is ahead of" ${dumpfile});
+    is_behind=$(grep "Your branch is behind" ${dumpfile});
+
+    if [[ -n "${untracked}" ]]; then
+      message result "ADD Files to add to repo."
+    elif [[ -n ${unstaged} ]]; then
+      message result "ADD Files to be staged."
+    elif [[ -n "${to_commit}" ]]; then
+      message result "COMMIT Files to commit."
+    elif [[ -n "${is_ahead}" ]]; then
+      message result "PUSH Time to push."
+    elif [[ -n "${is_behind}" ]]; then
+      message result "PULL Time to pull."
+    else
+      message result "STAY Nothing to do."
+    fi
+  }
+  alias git-status='git_status'
+
+## ---------- [ lazygit ]
+## [lazygit]
+## version       = 2023-08-02 20:08:41 UTC
+## notes         = '''
+## The variable lazygit_repositories is defined in ~/.ael/.extra
+## '''
+
+lazygit() {
+
+    if [[ ! -e "${lazygit_repositories}" ]]; then
+        message warning "Please define `lazygit_repositories` in `~/.ael/.extra`."
+    fi
+
+    _cwd="$(pwd)"
+    cd ${HOME}
+    for repo in "${lazygit_repositories[@]}"; do
+        message action "Updating $repo"
+        cd "$repo"
+        git pull                                                              \
+        && git add .                                                          \
+        && git commit -m "Updated using lazygit..."                           \
+        && git push
+        cd ${HOME}
+    done
+    cd "$_cwd"
+  }
+
+## ========================= | FUNCTIONS | ================================= ##
+
+## ---------- [ busy ]
+## [busy()]
+## version       = 2023-08-01 19:55:12 UTC
+## description   = "When the boss comes around to look busy."
+## notes         = '''
+## ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+## CTRL+c to quit.
+## '''
+
+busy() {
+
+    message action "< busy > from $(basename $BASH_SOURCE)"
+
+    cat /dev/urandom                                                          \
+    | hexdump -C                                                              \
+    | grep --color=always 'ca fe'
+  }
+
+## ---------- [ cheat ]
+## [cheat()]
+## version       = 2023-08-01 19:57:57 UTC
+## description   = "Query https://cheat.sh."
+## notes         = '''
+## Menu with `fzf` and display with `less`.
+## https://github.com/chubin/cheat.sh
+## '''
+
+cheat() {
+
+    message action "< cheat > from $(basename $BASH_SOURCE)"
+
+    cheat="$(curl -s cheat.sh/:list                                           \
+            | fzf --layout="reverse"                                          \
+                  --prompt='::'                                               \
+                  --preview-window=up:80%                                     \
+                  --preview 'cat <(curl -s cheat.sh/{})')"
+
+    [[ -z ${cheat} ]] && exit 0
+
+    curl -s cheat.sh/"${cheat}" | less -R
+  }
+
+## ---------- [ delete ]
+## [delete()]
+## version       = 2023-08-01 19:59:45 UTC
+## description   = "Delete directory."
+
+delete() {
+
+    message action "< delete > from $(basename $BASH_SOURCE)"
+
+    if [ -d "${1}" ]; then
+      message question "Are you sure your want to delete this directory? [y/N]"
+        if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          rm --recursive --force "${1}" 
+        else
+          message warning "OK... Abording deletion!"
+        fi
+    else
+      message warning "There is nothing to do here!"
+    fi
+  }
+
+## ---------- [ directory-size ]
+## [directory-size()]
+## version       = 2023-08-01 20:01:01 UTC
+## description   = "Check size of biggest directories."
+
+directory_size() {
+
+    message action "< directory-size > from $(basename $BASH_SOURCE)"
+    message action "Command <du -bh --max-depth 1 | sort -rh | head>"
+    message action "Size of current directory, followed by biggest child directories:"
+
+    ## du -bh --max-depth 1 | sort -rh | head
+    du --bytes --human-readable --max-depth 1                                 \
+    | sort --reverse --human-numeric-sort                                     \
+    | head
+  }
+  alias directory-size='directory_size'
+
+## ---------- [ fixout ]
+## [fixout()]
+## version       = 2023-08-02 00:07:03 UTC
+## description   = "Fix bash history and exit."
+## notes         = '''
+## Don't try to put this code in a shell script, it won't work.
+## `history` don't play well in scripts.
+## '''
+
+fixout() {
+
+    message action "< fixout > from $(basename $BASH_SOURCE)"
+    message action "Cleaning history before closing ..."
+
+    sleep 2
+
+    history -n && history                                                     \
+    | sort -k2 -k1nr                                                          \
+    | uniq -f1                                                                \
+    | sort -n                                                                 \
+    | cut -c8- > ~/.tmp$$                                                     \
+    && history -c                                                             \
+    && history -r ~/.tmp$$                                                    \
+    && history -w                                                             \
+    && rm ~/.tmp$$                                                            \
+    && exit
+  }
+
+## ---------- [ fuck ]
+## [fuck()]
+## version       = 2023-08-02 00:10:38 UTC
+## description   = "Repeats last cmd with sudo if forgotten"
+
+fuck() {
+
+    message action "< fuck > from .functions"
+    message action "Command <sudo \$(history -p !!)"
+    message action "Repeating last command as sudo user ..."
+
+    sudo $(history -p !!)
+  }
+
+## ---------- [ getmp3 ]
+## [getmp3()]
+## version       = 2023-08-02 00:36:18 UTC
+## description   = "Extract video audo to .mp3"
+
+getmp3() {
+
+    message action "< getmp3 > from $(basename $BASH_SOUCE)"
+    message action "youtube-dl -x --audio-format mp3 --prefer-ffmpeg <url>"
+    message action "Extract audio from video to mp3 format ..."
+
+    # youtube-dl -x --audio-format mp3 --prefer-ffmpeg "${1}"
+    yt-dlp -x --audio-format mp3 --prefer-ffmpeg "${1}"
+  }
+
+## ---------- [ history-cleaner ]
+## [history-cleaner()]
+## version       = 2023-08-02 00:44:35 UTC
+## description   = "Cleans bash history"
+## todo          = '''
+## - Use only fzf and multi select [2023-08-01]
+## '''
+
+history_cleaner() {
+
+    message action "< history-cleaner > from $(basename $BASH_SOURCE)"
+    message action "Aliased to <history-cleaner>"
+    message action "Cleans .bash_history file ..."
+
+    if [[ ${@} != '' ]]; then
+
+      ## Remove .bash_history entry.
+      ## Usage: `history-cleaner youtube-dl`
+      ## or `history-cleaner cd$`
+
+      dumpfile="/tmp/history-cleaner.dump"
+
+      history -a
+      cp ~/.bash_history ${dumpfile}
+      sed -i "/^${@}/d" ${dumpfile}
+      history -c                                                              \
+      && history -r ${dumpfile}                                               \
+      && history -w
+      rm ${dumpfile}
+      history
+
+    else
+
+      ## Uses `fzf` to sort through the bash history and let you delete an entry.
+
+      choices=$(history | fzf)
+      [[ -z "${choices}" ]] && exit 1
+
+      message question "Are you sure your want to delete this? [y/N]"
+        if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          to_delete=$(awk '{ print $1 }' <<< "${choices}")
+          history -d ${to_delete}
+        fi
+    fi
+  }
+  alias history-cleaner='history_cleaner'
+
+## ---------- [ processes ]
+## [processes()]
+## version       = 2023-08-02 00:51:54 UTC
+## description   = "Show processes."
+
+processes() {
+
+    message action "< processes > from $(basename $BASH_SOURCE)"
+    message action "Showing processes ..."
+
+    ps aux
+  }
+
+## ---------- [ ps-grep ]
+## [ps-grep()]
+## version       = 2023-08-02 00:56:31 UTC
+## description   = "Show processes for a particular application."
+
+ps_grep() {
+
+    message action "< ps-grep > from $(basename $BASH_SOURCE)"
+    message action "Showing processes for "${@}" ..."
+
+    ps aux | grep -Ei "$@"
+  }
+  alias ps-grep='ps_grep'
+
+## ---------- [ py-clean ]
+## [py-clean()]
+## version       = 2023-08-02 00:59:00 UTC
+## description   = "Clean python cache in current directory."
+## notes         = '''
+## ref. https://stackoverflow.com/a/41386937/10500496
+## '''
+
+py_clean () {
+
+    message action "< py-clean > from $(basename $BASH_SOURCE)"
+    message action "Cleaning python cache in current directory ..."
+
+    find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
+  }
+  alias py-clean='py_clean'
+
+## ---------- [ reset-time ]
+## [reset-time()]
+## version       = 2023-08-02 01:02:11 UTC
+## description   = "Reset system time."
+## notes         = '''
+## Useful when Windows boot screw time.
+## '''
+
+reset_time() {
+
+    message action "< reset-time > from $(basename $BASH_SOURCE)"
+    message action "Resetting time ..."
+
+    sudo timedatectl set-ntp true
+    sudo hwclock --systohc --utc
+
+    echo  $(date "+%F %H:%M:%S %Z")
+  }
+  alias reset-time="reset_time"
+
+## ---------- [ search-content ]
+## [search-content()]
+## version       = 2023-08-02 01:05:06 UTC
+## description   = "Search file content."
+## notes         = '''
+## src. https://github.com/junegunn/fzf/wiki/Examples#searching-file-contents
+## '''
+
+search_content() {
+
+    message action "< search-content > from $(basename $BASH_SOURCE)"
+    message action "Searching content "${1}" ..."
+
+    rg --files-with-matches --no-messages "$1"                                \
+    | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+  }
+  alias sc="search_content"
+
+## ---------- [ shell-info ]
+## [shell-info()]
+## version       = 2023-08-02 01:18:13 UTC
+## description   = "Gives shell function or alias info."
+## notes         = '''
+## Could build something with fzf to search and give info.
+## ref. https://stackoverflow.com/a/949006/10500496
+## You can use the bash(1) built-in compgen
+##     compgen -c will list all the commands you could run.
+##     compgen -a will list all the aliases you could run.
+##     compgen -b will list all the built-ins you could run.
+##     compgen -k will list all the keywords you could run.
+##     compgen -A function will list all the functions you could run.
+##     compgen -A function -abck will list all the above in one go.
+## '''
+
+shell_info() {
+
+    message action "< shell-info > from $(basename $BASH_SOURCE)"
+    message action "Shell information for "${@}" ..."
+
+    shopt -s extdebug
+    type -a ${@}
+    declare -F ${@}
+  }
+  alias shell-info="shell_info"
+
+## ---------- [ show-utc ]
+## [show-utc()]
+## version       = 2023-08-02 01:36:14 UTC
+## description   = "Shows UTC time."
+
+show_utc() {
+
+    message action "< show-utc > from $(basename $BASH_SOURCE)"
+    message action "UTC time ..."
+
+    echo  $(date --utc "+%F %H:%M:%S %Z")
+  }
+  alias show-utc="show_utc"
+
+## ---------- [ tagalog ]
+## [tagalog()]
+## version       = 2023-08-02 11:02:33 UTC
+## description   = "Translate to Tagalog."
+
+tagalog() {
+
+    message action "< tagalog > from $(basename $BASH_SOURCE)"
+    message action "Translating "${@}" to Tagalog ..."
+
+    wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=tl&dt=t&q=${@}" \
+    | awk -F '"' '{print $2}'                                                 \
+    | head -n 1
+  }
+
+## ---------- [ termbin ]
+## [termbin]
+## type          = 'alias'
+## version       = 2023-11-26 17:45:44 UTC
+## description   = "Netcat-based command-line pastebin."
+## notes         = '''
+## url: https://termbin.com/
+## use `echo just testing! | termbin`
+
+  alias termbin="nc termbin.com 9999"
+
+## ---------- [ translate ]
+## [translate()]
+## version       = 2023-08-02 11:05:00 UTC
+## description   = "Translate."
+## notes         = '''
+## Add language abbr after string to translate.
+## For example, translate "Hello world" fr
+## '''
+
+translate() {
+
+    message action "< translate > from $(basename $BASH_SOURCE)"
+    message action "Usage <translate <word(s)> <language code>>"
+    message action "Translating "${1}" to ${2} ..."
+
+    wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" \
+    | awk -F '"' '{print $2}'                                                 \
+    | head -n 1
+  }
+
+# vim: syntax=sh
+# vim: foldmethod=marker
+## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
