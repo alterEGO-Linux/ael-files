@@ -285,12 +285,12 @@ modes        = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-[file.vim_iceberg]
+[file.vim_silenthill]
 ## https://github.com/evilwaveforms/silenthill.vim
 filename    = "silenthill.vim"
 category    = "vim"
 src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
-dst         = "/etc/skel/.vim/colors/iceberg.vim"
+dst         = "/etc/skel/.vim/colors/silenthill.vim"
 description = "vim color file."
 modes        = ['i3wm', 'hyprland']
 is_symlink  = false
