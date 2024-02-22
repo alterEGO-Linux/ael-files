@@ -2,7 +2,7 @@
 ## [/usr/share/ael/files.toml]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-11-22 20:35:16 UTC
-## updated       : 2024-02-15 15:24:17 UTC
+## updated       : 2024-02-22 11:32:14 UTC
 ## description   : List of files.
 
 [file.files]
@@ -117,6 +117,16 @@ category    = "config"
 src         = "AELFILES_LOCAL/etc/skel/.ael"
 dst         = "/etc/skel/.ael/.dircolors"
 description = "Shell colors configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.tryhackme]
+filename    = ".tryhackme"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/.ael"
+dst         = "/etc/skel/.ael/.tryhackme"
+description = "TryHackMe configuration file and commands."
 modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
