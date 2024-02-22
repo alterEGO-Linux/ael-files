@@ -237,6 +237,65 @@ modes        = ['hyprland']
 is_symlink  = false
 create_bkp  = true
 
+## ---------- [ /etc/skel/.vim ] 
+
+## (* colors *)
+
+[file.vim_arstotzka]
+## https://github.com/daylerees/colour-schemes/blob/master/vim/colors/arstotzka.vim
+filename    = "arstotzka.vim"
+category    = "vim"
+src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
+dst         = "/etc/skel/.vim/colors/arstotzka.vim"
+description = "vim color file."
+modes        = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.vim_base16]
+## https://github.com/chriskempson/base16-vim
+filename    = "base16-3024.vim"
+category    = "vim"
+src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
+dst         = "/etc/skel/.vim/colors/base16-3024.vim"
+description = "vim color file."
+modes        = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.vim_blaquemagick]
+## https://github.com/xero/blaquemagick.vim
+filename    = "blaquemagick.vim"
+category    = "vim"
+src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
+dst         = "/etc/skel/.vim/colors/base16-3024.vim"
+description = "vim color file."
+modes        = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.vim_iceberg]
+## https://github.com/cocopon/iceberg.vim
+filename    = "iceberg.vim"
+category    = "vim"
+src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
+dst         = "/etc/skel/.vim/colors/blaquemagick.vim"
+description = "vim color file."
+modes        = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.vim_iceberg]
+## https://github.com/evilwaveforms/silenthill.vim
+filename    = "silenthill.vim"
+category    = "vim"
+src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
+dst         = "/etc/skel/.vim/colors/iceberg.vim"
+description = "vim color file."
+modes        = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
 ## ---------- [ /lib/ ]
 
 [file.ff-policies]
