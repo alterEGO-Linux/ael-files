@@ -2,7 +2,7 @@
 ## [/usr/share/ael/files.toml]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-11-22 20:35:16 UTC
-## updated       : 2024-02-22 11:32:14 UTC
+## updated       : 2024-02-22 11:56:26 UTC
 ## description   : List of files.
 
 [file.files]
@@ -139,6 +139,28 @@ category    = "config"
 src         = "AELFILES_LOCAL/etc/skel/.ael/.ael-menu"
 dst         = "/etc/skel/.ael/.ael-menu/ael-menu.toml"
 description = "ael-menu configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+## ---------- [ /etc/skel/.ael/bash-ael ] 
+
+[file.bashaelcolors]
+filename    = "colors.bash"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/.ael/bash-ael"
+dst         = "/etc/skel/.ael/bash-ael/colors.bash"
+description = "Colors bash-ael file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
+[file.bashaelmessages]
+filename    = "messages.bash"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/.ael/bash-ael"
+dst         = "/etc/skel/.ael/bash-ael/messages.bash"
+description = "Messages bash-ael file."
 modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
