@@ -121,6 +121,18 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
+## ---------- [ /etc/skel/.ael/.ael-menu ] 
+
+[file.aelmenutoml]
+filename    = "ael-menu.toml"
+category    = "config"
+src         = "AELFILES_LOCAL/etc/skel/.ael/.ael-menu"
+dst         = "/etc/skel/.ael/.ael-menu/ael-menu.toml"
+description = "ael-menu configuration file."
+modes       = ['i3wm', 'hyprland']
+is_symlink  = false
+create_bkp  = false
+
 ## ---------- [ /etc/skel/.config ] 
 
 ## (* alacritty *)
