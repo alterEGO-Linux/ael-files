@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 ## ----------------------------------------------------------------------- INFO
-## [~/.ael/.core]
+## [~/.ael/.aelcore]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2021-03-19 09:37:19 UTC
-## updated       : 2024-02-21 20:55:13 UTC
+## updated       : 2024-02-23 14:50:44 UTC
 ## description   : alterEGO Linux core shell configuration.
 
 [ -f ${HOME}/.ael/bash-ael/messages.bash ]                                    \
@@ -951,6 +951,24 @@ py_clean () {
     find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
   }
   alias py-clean='py_clean'
+
+## ---------- [ clean-aelbkup ]
+## [clean_aelbkup()]
+## version       : 2024-02-23 14:46:54 UTC
+## description   : Delete *.aelbkup files.
+## notes         = '''
+## ref. https://stackoverflow.com/a/41386937/10500496
+## '''
+
+clean_aelbkup () {
+
+    message action "< clean_aelbkup() > from $(basename $BASH_SOURCE)"
+    message action "Delete *.aelbkup files."
+
+    cd ${HOME}
+    find . -type f -name '*.aelbkup' -delete
+  }
+  alias clean-aelbkup='clean_aelbkup'
 
 ## ---------- [ reset-time ]
 ## [reset-time()]
