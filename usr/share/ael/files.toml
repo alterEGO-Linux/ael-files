@@ -1,9 +1,9 @@
-## ----------------------------------------------------------------------- INFO
-## [/usr/share/ael/files.toml]
-## author        : fantomH @alterEGO Linux
-## created       : 2023-11-22 20:35:16 UTC
-## updated       : 2024-02-22 11:56:26 UTC
-## description   : List of files.
+# :----------------------------------------------------------------------- INFO
+# :[/usr/share/ael/files.toml]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-11-22 20:35:16 UTC
+# :updated       : 2024-03-23 00:15:10 UTC
+# :description   : List of files.
 
 [file.files]
 filename    = "files.toml"
@@ -25,7 +25,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /etc/ ] 
+# :---------- [ /etc/ ] 
 
 [file.issue]
 filename    = "issue"
@@ -37,9 +37,9 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /etc/skel/ ] 
+# :---------- [ /etc/skel/ ] 
 
-## (* bashrc *)
+# :(* bashrc *)
 
 [file.bashrc]
 filename    = ".bashrc"
@@ -51,7 +51,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
-## (* profile *)
+# :(* profile *)
 
 [file.profile]
 filename    = ".profile"
@@ -63,7 +63,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
-## (* tmux *)
+# :(* tmux *)
 
 [file.tmux]
 filename    = ".tmux.conf"
@@ -75,7 +75,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
-## (* vim *)
+# :(* vim *)
 
 [file.vimrc]
 filename    = ".vimrc"
@@ -87,7 +87,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
-## (* x11 *)
+# :(* x11 *)
 
 [file.xinit]
 filename    = ".xinitrc"
@@ -99,7 +99,7 @@ modes       = ['i3wm']
 is_symlink  = false
 create_bkp  = true
 
-## ---------- [ /etc/skel/.ael ] 
+# :---------- [ /etc/skel/.ael ] 
 
 [file.aelcore]
 filename    = ".aelcore"
@@ -131,7 +131,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /etc/skel/.ael/.ael-menu ] 
+# :---------- [ /etc/skel/.ael/.ael-menu ] 
 
 [file.aelmenutoml]
 filename    = "ael-menu.toml"
@@ -143,7 +143,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /etc/skel/.ael/bash-ael ] 
+# :---------- [ /etc/skel/.ael/bash-ael ] 
 
 [file.bashaelcolors]
 filename    = "colors.bash"
@@ -165,9 +165,9 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /etc/skel/.config ] 
+# :---------- [ /etc/skel/.config ] 
 
-## (* alacritty *)
+# :(* alacritty *)
 
 [file.alacritty]
 filename    = "alacritty.toml"
@@ -179,7 +179,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = true
 
-## (* hyprland *)
+# :(* hyprland *)
 
 [file.hyprland]
 filename    = "hyprland.conf"
@@ -191,7 +191,7 @@ modes       = ["hyprland"]
 is_symlink  = false
 create_bkp  = true
 
-## (* i3 *)
+# :(* i3 *)
 
 [file.i3]
 filename    = "config"
@@ -203,7 +203,7 @@ modes       = ["i3wm"]
 is_symlink  = false
 create_bkp  = true
 
-## (* i3blocks *)
+# :(* i3blocks *)
 
 [file.i3blocks]
 filename    = "i3blocks.conf"
@@ -215,7 +215,7 @@ modes       = ["i3wm"]
 is_symlink  = false
 create_bkp  = true
 
-## (* waybar *)
+# :(* waybar *)
 
 [file.waybar_config]
 filename    = "config.jsonc"
@@ -237,12 +237,12 @@ modes        = ['hyprland']
 is_symlink  = false
 create_bkp  = true
 
-## ---------- [ /etc/skel/.vim ] 
+# :---------- [ /etc/skel/.vim ] 
 
-## (* colors *)
+# :(* colors *)
 
 [file.vim_arstotzka]
-## https://github.com/daylerees/colour-schemes/blob/master/vim/colors/arstotzka.vim
+# :https://github.com/daylerees/colour-schemes/blob/master/vim/colors/arstotzka.vim
 filename    = "arstotzka.vim"
 category    = "vim"
 src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
@@ -253,7 +253,7 @@ is_symlink  = false
 create_bkp  = false
 
 [file.vim_base16]
-## https://github.com/chriskempson/base16-vim
+# :https://github.com/chriskempson/base16-vim
 filename    = "base16-3024.vim"
 category    = "vim"
 src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
@@ -264,7 +264,7 @@ is_symlink  = false
 create_bkp  = false
 
 [file.vim_blaquemagick]
-## https://github.com/xero/blaquemagick.vim
+# :https://github.com/xero/blaquemagick.vim
 filename    = "blaquemagick.vim"
 category    = "vim"
 src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
@@ -275,7 +275,7 @@ is_symlink  = false
 create_bkp  = false
 
 [file.vim_iceberg]
-## https://github.com/cocopon/iceberg.vim
+# :https://github.com/cocopon/iceberg.vim
 filename    = "iceberg.vim"
 category    = "vim"
 src         = "AELFILES_LOCAL/etc/skel/.vim/colors"
@@ -296,7 +296,7 @@ modes        = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /lib/ ]
+# :---------- [ /lib/ ]
 
 [file.ff-policies]
 filename    = "policies.json"
@@ -308,7 +308,7 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /usr/lib/ ] 
+# :---------- [ /usr/lib/ ] 
 
 [file.os-release]
 filename    = "os-release"
@@ -320,7 +320,6 @@ modes       = ['i3wm', 'hyprland']
 is_symlink  = false
 create_bkp  = false
 
-## ---------- [ /usr/share/ ] 
+# :---------- [ /usr/share/ ] 
 
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
