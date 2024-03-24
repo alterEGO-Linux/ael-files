@@ -1,27 +1,27 @@
-## ----------------------------------------------------------------------- INFO
-## [.ael/.ael-menu/ael-menu.toml]
-## author        : fantomH @alterEGO Linux
-## created       : 2023-08-08 14:31:56 UTC
-## updated       : 2024-02-21 21:46:21 UTC
-## description   : ael-menu main configuration.
+# :----------------------------------------------------------------------- INFO
+# :[.ael/.ael-menu/ael-menu.toml]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-08 14:31:56 UTC
+# :updated       : 2024-03-23 03:57:55 UTC
+# :description   : ael-menu main configuration.
 
-## ---------- ( HELP )
-## name          Name or title of the application shown in the menu.
-## run           Function to run in order to launch the application.
-##               - execute
-##               - launch
-##               - stay_in_terminal
-##               - terminal
-## cmd           The command that will run "as if you would use the commandline.
-## session       Applications use `tmux` to launch, the 'session' is used to
-##               create a unique tmux session name (session+random number).
-##               This enable to launch an application multiple time and keep
-##               track in tmux.
-## description   Description will show in the menu.
-## desktop       Hyprland or i3wm.
-## is_floating   Enables floating window (in i3wm windows manager only).
+# :---------- ( HELP )
+# :name          Name or title of the application shown in the menu.
+# :run           Function to run in order to launch the application.
+# :              - execute
+# :              - launch
+# :              - stay_in_terminal
+# :              - terminal
+# :cmd           The command that will run "as if you would use the commandline.
+# :session       Applications use `tmux` to launch, the 'session' is used to
+# :              create a unique tmux session name (session+random number).
+# :              This enable to launch an application multiple time and keep
+# :              track in tmux.
+# :description   Description will show in the menu.
+# :desktop       Hyprland or i3wm.
+# :is_floating   Enables floating window (in i3wm windows manager only).
  
-## ---------- ( APPLICATIONS ) 
+# :---------- ( APPLICATIONS ) 
 
 [app.arandr]
 name             = "arandr"
@@ -64,10 +64,10 @@ desktop          = ["i3wm", "Hyprland"]
 is_floating      = false
 
 [app.bleachbit_root]
-## NOT WORKING ON HYRPLAND
-## To run a GUI application on Wayland with root, allow access with this command:
-## xhost si:localuser:root
-## See more about xhost at https://docs.bleachbit.org/doc/frequently-asked-questions.html
+# :NOT WORKING ON HYRPLAND
+# :To run a GUI application on Wayland with root, allow access with this command:
+# :xhost si:localuser:root
+# :See more about xhost at https://docs.bleachbit.org/doc/frequently-asked-questions.html
 name             = "bleachbit (ROOT)"
 run              = "launch"
 cmd              = "sudo bleachbit"
@@ -78,7 +78,7 @@ desktop          = ["i3wm"]
 is_floating      = false
 
 [app.bookmarks]
-## NEED TO WORK ON THAT. CLI TO ADD.
+# :NEED TO WORK ON THAT. CLI TO ADD.
 name             = "bookmarks"
 run              = "terminal"
 cmd              = "python /usr/local/bin/bookmarks.py"
@@ -715,4 +715,4 @@ is_floating      = false
 #MenuOption('pdfman', 'stay_in_terminal', '${HOME}/fH/scripts/pdfman.sh && exit', 'PDFMAN', 'Open man in pdf.', True),
 #MenuOption('toggle audio', 'launch', 'bash ${HOME}/fH/scripts/toggle_audio_device.sh && exit', 'AUDIO', 'Toggle audio device.', False),
 
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯

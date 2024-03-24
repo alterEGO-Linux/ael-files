@@ -1,19 +1,19 @@
 #! /usr/bin/env bash
-## ----------------------------------------------------------------------- INFO
-## [~/.ael/bash-ael/messages.bash]
-## author        : fantomH @alteEGO Linux
-## created       : 2022-02-10 21:46:39 UTC
-## updated       : 2024-02-22 11:43:37 UTC
-## description   : Bash message module.
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/bash-ael/messages.bash]
+# :author        : fantomH @alteEGO Linux
+# :created       : 2022-02-10 21:46:39 UTC
+# :updated       : 2024-03-23 04:03:16 UTC
+# :description   : Bash message module.
 
-## ---------- [ MODULES ]
+# :---------- [ MODULES ]
 
   [ -f ${HOME}/.ael/bash-ael/colors.bash ]                                    \
   && . ${HOME}/.ael/bash-ael/colors.bash
 
 message() {
 
-  ## Usage: message <type> <"Message">
+  # :Usage: message <type> <"Message">
 
   _msg="${2}"
 
@@ -41,4 +41,4 @@ message() {
   esac
 }
 
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯

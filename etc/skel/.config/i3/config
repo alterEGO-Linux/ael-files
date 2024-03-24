@@ -1,90 +1,90 @@
-## ----------------------------------------------------------------------- INFO
-## [~/.config/i3/config]
-## author        : fantomH @alterEGO Linux
-## created       : 2021-02-26 09:37:37 UTC
-## updated       : 2024-02-16 11:57:49 UTC
-## description   : i3vm configuration file.
+# :----------------------------------------------------------------------- INFO
+# :[~/.config/i3/config]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2021-02-26 09:37:37 UTC
+# :updated       : 2024-03-24 11:40:30 UTC
+# :description   : i3vm configuration file.
 
 set $mod Mod4
 
-## -------------------- [ FONTS ]
+# :---------- [ FONTS ]
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Source Code Pro Medium 10
 
-## -------------------- [ STARTUP ]
+# :---------- [ STARTUP ]
 
-  ## (* I3 VM *)
+  # :(* I3 VM *)
   # Start XDG autostart .desktop files using dex. See also
   # https://wiki.archlinux.org/index.php/XDG_Autostart
   exec --no-startup-id dex --autostart --environment i3
 
-  ## (* LOCK *)
+  # :(* LOCK *)
   # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
   # screen before suspend. Use loginctl lock-session to lock your screen.
   exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-  ## (* POLKIT AUTHENTICATION AGENT *)
+  # :(* POLKIT AUTHENTICATION AGENT *)
   exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-  ## (* TRANSPARENCY *)
+  # :(* TRANSPARENCY *)
   exec xcompmgr -c -f -n
 
-  ## (* Network Manager *)
+  # :(* Network Manager *)
   # NetworkManager is the most popular way to manage wireless networks on Linux,
   # and nm-applet is a desktop environment-independent system tray GUI for it.
   exec --no-startup-id nm-applet
 
-  ## (* Wallpaper *)
+  # :(* Wallpaper *)
   exec --no-startup-id nitrogen --restore
 
-  ## (* keyboard layout *)
+  # :(* keyboard layout *)
   exec_always setxkbmap -layout 'us,ca'
 
-  ## (* dropbox *)
-  #... goes in extra
+  # :(* dropbox *)
+  # :goes in extra
   # exec_always --no-startup-id dropbox &
 
-  ## (* pasystray *)
+  # :(* pasystray *)
   exec --no-startup-id pasystray
 
-  ## (* bluetooth *)
+  # :(* bluetooth *)
   exec --no-startup-id blueman-applet
 
-## -------------------- [ VOLUME CONTROL ]
+# :---------- [ VOLUME CONTROL ]
 
-  ## Use pactl to adjust volume in PulseAudio.
+  # :Use pactl to adjust volume in PulseAudio.
   set $refresh_i3status killall -SIGUSR1 i3status
   bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
   bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
   bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
   bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-## -------------------- [ BRIGHTNESS ]
+# :---------- [ BRIGHTNESS ]
 
   bindsym $mod+d exec brightnessctl set +10%
   bindsym $mod+Shift+d exec brightnessctl set 10%-
 
-## -------------------- [ WINDOWS ]
+# :---------- [ WINDOWS ]
 
-  ## (* colors *)
-  ##                      border     background text       indicator
+  # :(* colors *)
+  # :                     border     background text       indicator
   client.focused          #2e7096    #1C445B    #f3f4f5    #00ff00
   client.unfocused        #1C445B    #5E5E5E    #ffffff    #00ff00
   client.focused_inactive #000000    #000000    #ffffff    #00ff00
   client.urgent           #E53935    #E53935    #f3f4f5    #00ff00
 
-  ## (* i3-gaps *)
-  ##  ref. https://github.com/Airblader/i3
+  # :(* i3-gaps *)
+  # :ref. https://github.com/Airblader/i3
   for_window [class="^.*"] border pixel 5 
   gaps inner 0
   gaps outer 0
 
-  ## (* close focus window *)
+  # :(* close focus window *)
   bindsym $mod+Shift+q kill
 
-  ## (* change focus *)
+  # :(* change focus *)
   bindsym $mod+h focus left 
   bindsym $mod+j focus down 
   bindsym $mod+k focus up 
@@ -95,7 +95,7 @@ font pango:Source Code Pro Medium 10
   bindsym $mod+Up focus up 
   bindsym $mod+Right focus right
 
-  ## (* move focused window *)
+  # :(* move focused window *)
   bindsym $mod+Shift+h move left 
   bindsym $mod+Shift+j move down 
   bindsym $mod+Shift+k move up 
@@ -106,39 +106,39 @@ font pango:Source Code Pro Medium 10
   bindsym $mod+Shift+Up move up 
   bindsym $mod+Shift+Right move right
 
-  ## (* layout *)
-  ## Split toggle vertical and horizontal orientation.
-  ## ref. https://github.com/LukeSmithxyz/voidrice/blob/master/.config/i3/config
+  # :(* layout *)
+  # :Split toggle vertical and horizontal orientation.
+  # :ref. https://github.com/LukeSmithxyz/voidrice/blob/master/.config/i3/config
   bindsym $mod+t split toggle
 
-  ## change container layout (stacked, tabbed, toggle split)
+  # :change container layout (stacked, tabbed, toggle split)
   bindsym $mod+s layout stacking 
   bindsym $mod+w layout tabbed 
   bindsym $mod+e layout toggle split
 
-  ## (* floating windows *)
+  # :(* floating windows *)
 
-  ## Toggle tiling/floating.
+  # :Toggle tiling/floating.
   bindsym $mod+Shift+space floating toggle
 
-  ## Drag floating windows to their wanted position.
+  # :Drag floating windows to their wanted position.
   floating_modifier $mod
 
-  ## Make floating window sticky.
+  # :Make floating window sticky.
   bindsym $mod+Shift+s sticky toggle
 
-## -------------------- [ SCRATCHPAD ]
+# :---------- [ SCRATCHPAD ]
 
-  #... Make the currently focused window a scratchpad.
+  # :Make the currently focused window a scratchpad.
   bindsym $mod+Shift+minus floating toggle,                                   \
     resize set 1920px 850px,                                                  \
     move position 0 21px,                                                     \
     move scratchpad
 
-  ## Show scratchpad window.
+  # :Show scratchpad window.
   bindsym $mod+minus scratchpad show
 
-## -------------------- [ WORKSPACE ]
+# :---------- [ WORKSPACE ]
 
   # Define names for default workspaces for which we configure key bindings later on.
   # We use variables to avoid repeating the names in multiple places.
@@ -177,18 +177,18 @@ font pango:Source Code Pro Medium 10
   bindsym $mod+Shift+9 move container to workspace number $ws9
   bindsym $mod+Shift+0 move container to workspace number $ws10
 
-## -------------------- [ RELOAD, RESTART, EXIT i3 ]
+# :---------- [ RELOAD, RESTART, EXIT i3 ]
 
-  ## reload the configuration file
+  # :reload the configuration file
   bindsym $mod+Shift+c reload
-  ## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+  # :restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
   bindsym $mod+Shift+r restart
-  ## exit i3 (logs you out of your X session)
+  # :exit i3 (logs you out of your X session)
   bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-## -------------------- [ RESIZE WINDOW ]
+# :---------- [ RESIZE WINDOW ]
 
-  ## resize window (you can also use the mouse for that)
+  # :resize window (you can also use the mouse for that)
   mode "resize" {
           # These bindings trigger as soon as you enter the resize mode
 
@@ -215,18 +215,18 @@ font pango:Source Code Pro Medium 10
 
   bindsym $mod+r mode "resize"
 
-## -------------------- [ APPLICATIONS ]
+# :---------- [ APPLICATIONS ]
 
-  ## (* terminal *)
+  # :(* terminal *)
   bindsym $mod+Return exec alacritty -e env TERM=screen-256color tmux -u
 
-  ## (* toggle keyboard language *)
+  # :(* toggle keyboard language *)
   bindsym $mod+CTRL+l exec /usr/local/bin/toggle_language.sh
 
-  ## (* screenshot *)
+  # :(* screenshot *)
   bindsym $mod+CTRL+s exec /usr/local/bin/screenshot.sh --window
 
-  ## (* ael-menu *)
+  # :(* ael-menu *)
   bindsym $mod+m exec xfce4-terminal                                          \
                           --hide-toolbar                                      \
                           --hide-menubar                                      \
@@ -239,14 +239,14 @@ font pango:Source Code Pro Medium 10
       resize set 900px 350px,                                                 \
       move position center
 
-  ## (* PAVUCONTROL *)
+  # :(* PAVUCONTROL *)
  
     for_window [title="Volume Control"]                                       \
         floating enable,                                                      \
         resize set 900px 350px,                                               \
         move position center
 
-  ## (* BOOKMARKS MENU *)
+  # :(* BOOKMARKS MENU *)
   bindsym $mod+b exec xfce4-terminal                                          \
                           --hide-toolbar                                      \
                           --hide-menubar                                      \
@@ -259,7 +259,7 @@ font pango:Source Code Pro Medium 10
       resize set 900px 450px,                                                 \
       move position center
 
-## -------------------- [ STATUS BAR ]
+# :---------- [ STATUS BAR ]
 
   bar {
     id bar-1
@@ -279,9 +279,8 @@ font pango:Source Code Pro Medium 10
     font pango:Source Code Pro Medium 10
   }
 
-## -------------------- [ REFERENCES ]
+# :---------- [ REFERENCES ]
 
-  ## User manual: https://i3wm.org/docs/userguide.html
+  # :User manual: https://i3wm.org/docs/userguide.html
 
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯

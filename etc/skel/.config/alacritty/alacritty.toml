@@ -1,9 +1,9 @@
-## ----------------------------------------------------------------------- INFO
-## [~/.config/alacritty/alacritty.toml]
-## author        : fantomH @alterEGO Linux
-## created       : 2023-12-29 17:02:13 UTC
-## updated       : 2023-12-30 01:49:36 UTC
-## description   : Configuration for Alacritty.
+# :----------------------------------------------------------------------- INFO
+# :[~/.config/alacritty/alacritty.toml]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-12-29 17:02:13 UTC
+# :updated       : 2024-03-24 11:30:07 UTC
+# :description   : Configuration for Alacritty.
 
 live_config_reload = true
 
@@ -17,5 +17,4 @@ normal = { family = "Source Code Pro", style = "Medium" }
 bold   = { family = "Source Code Pro", style = "Bold" }
 italic = { family = "Monospace", style = "Italic"}
 
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
