@@ -1,9 +1,9 @@
 <!------------------------------------------------------------------------ INFO
-## [packages.md]
-## author        : fantomH @alterEGO Linux
-## created       : 2023-12-19 08:09:06 UTC
-## updated       : 2023-12-26 14:27:41 UTC
-## description   : Packages notes.
+# :[/usr/share/ael/dev/packages.md]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-12-19 08:09:06 UTC
+# :updated       : 2024-03-29 01:21:14 UTC
+# :description   : Packages notes for AEL development.
 -->
 
 ## hydra
@@ -26,6 +26,4 @@ Separation of privilege has been implemented in Wireshark. It doesn't run as roo
 
 Required by nwg-displays to run the GUI.
 
-<!--
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯ -->
+<!---------------------------------------------------------- FIN ¯\_(ツ)_/¯ -->
