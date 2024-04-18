@@ -3,7 +3,7 @@
 # :[~/.ael/bash-ael/messages.bash]
 # :author        : fantomH @alteEGO Linux
 # :created       : 2022-02-10 21:46:39 UTC
-# :updated       : 2024-03-23 04:03:16 UTC
+# :updated       : 2024-04-15 19:30:25 UTC
 # :description   : Bash message module.
 
 # :---------- [ MODULES ]
@@ -11,9 +11,21 @@
   [ -f ${HOME}/.ael/bash-ael/colors.bash ]                                    \
   && . ${HOME}/.ael/bash-ael/colors.bash
 
+# :---------- [ message() ] 
 message() {
 
-  # :Usage: message <type> <"Message">
+  # :message() - Print messages on the terminal.
+  #
+  # :module : bash-ael/messages.bash
+  # :version: 2024-04-11 15:37:23 UTC
+  # :Usage  : message <type> <"Message">
+
+  BLUE="\033[34m"
+  BOLD="\033[1m"
+  GREEN="\033[32m"
+  RED="\033[31m"
+  RESET="\033[0m"
+  YELLOW="\033[33m"
 
   _msg="${2}"
 
