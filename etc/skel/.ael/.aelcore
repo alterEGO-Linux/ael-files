@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/.aelcore]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2024-03-23 02:24:03 UTC
-# :description   : alterEGO Linux core shell configuration.
+# /author        : fantomH @alterEGO Linux
+# /created       : 2021-03-19 09:37:19 UTC
+# /updated       : 2024-05-16 14:30:59 UTC
+# /description   : alterEGO Linux core shell configuration.
 
 [ -f ${HOME}/.ael/bash-ael/messages.bash ]                                    \
 && . ${HOME}/.ael/bash-ael/messages.bash
@@ -42,6 +42,8 @@ alias open="ael-open"
 # :TODO: Should we still source automatically. See above.
 alias attack="source ${HOME}/.ael/.tryhackme"
 
+alias pythonenvs=". ~/.ael/.pythonenvs"
+
 
 # :---------- [ DEFAULT APPLICATIONS ]
 
@@ -54,6 +56,19 @@ export TERMINAL="alacritty"
 export VISUAL=vim
 export EDITOR=${VISUAL}
 
+# :---------- [ CONDA ]
+
+__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 
 # :---------- [ PATH ]
 
@@ -212,13 +227,13 @@ pacman_reset() {
 
 # :========================= | NETWORK | ===================================: #
 
-# :---------- [ ispeed ]
-# :[ispeed()]
-# :version       : 2023-10-20 01:27:16 UTC
-# :description   : Internet connection speed meter
-# :packages      : ['speedtest-cli']
-
+# :-----/ (network) ispeed() /-----:
 ispeed() {
+
+    # :(INFO)
+    # /version       : 2024-05-16 14:54:18 UTC
+    # /description   : Internet connection speed meter
+    # /packages      : ['speedtest-cli']
  
     message action "< ispeed() > from $(basename $BASH_SOURCE)"
     message action "Calculating your Internet connection speed ..."
@@ -229,22 +244,22 @@ ispeed() {
 
     # :Method no.2
     /usr/bin/speedtest --secure
-  }
+    }
 
-# :---------- [ deepnmap ]
-# :[deepnmap()]
-# :version       = 2023-10-20 09:16:16 UTC
-# :description   = Complete nmap scan.
-# :packages      = ['grc', 'nmap']
-
+# :-----/ (network) deepnmap() /-----:
 deepnmap() {
+
+    # :(INFO)
+    # /version       : 2024-05-16 14:29:51 UTC
+    # /description   : Complete nmap scan.
+    # /packages      : ['grc', 'nmap']
 
     message action "< deepnmap() > from $(basename $BASH_SOURCE)"
     message alert "Scanning multiple devices or network will take forever..."
 
     sleep 2
     sudo grc nmap -sV -O -sC --traceroute ${@}
-  }
+    }
 
 # :---------- [ deepscan ]
 # :[deepscan()]
