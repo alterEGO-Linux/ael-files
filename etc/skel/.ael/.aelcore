@@ -3,30 +3,29 @@
 # :[~/.ael/.aelcore]
 # /author        : fantomH @alterEGO Linux
 # /created       : 2021-03-19 09:37:19 UTC
-# /updated       : 2024-05-16 14:30:59 UTC
+# /updated       : 2024-05-17 12:07:01 UTC
 # /description   : alterEGO Linux core shell configuration.
 
-[ -f ${HOME}/.ael/bash-ael/messages.bash ]                                    \
+# :-----/ SOURCE MODULES /-----:
+
+[ -f ${HOME}/.ael/bash-ael/messages.bash ] \
 && . ${HOME}/.ael/bash-ael/messages.bash
 
-[ -f ${HOME}/.ael/bash-ael/colors.bash ]                                      \
+[ -f ${HOME}/.ael/bash-ael/colors.bash ] \
 && . ${HOME}/.ael/bash-ael/colors.bash
 
-[ -f ${HOME}/.ael/.extra ]                                                    \
+[ -f ${HOME}/.ael/.extra ] \
 && . ${HOME}/.ael/.extra
 
-# :========================= | GENERAL | ===================================: #
-
-# :---------- [ COLORS ]
+# :-----/ COLORS /-----:
 
 export TERM="xterm-256color"
 
-# :Set LS_COLORS
-[[ -e ${HOME}/.ael/.dircolors ]]                                              \
+# :Sets LS_COLORS
+[[ -e ${HOME}/.ael/.dircolors ]] \
 && eval "`dircolors --sh ${HOME}/.ael/.dircolors`"
 
-
-# :---------- [ ALIASES ]
+# :-----/ ALIASES /-----:
 
 alias less="bat"
 alias grep="grep --color=auto"
@@ -39,39 +38,22 @@ alias tmux="env TERM=screen-256color tmux -u"
 alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
 alias open="ael-open"
 
-# :TODO: Should we still source automatically. See above.
+# :/todo/ Should we still source automatically. See above.
 alias attack="source ${HOME}/.ael/.tryhackme"
 
 alias pythonenvs=". ~/.ael/.pythonenvs"
 
-
-# :---------- [ DEFAULT APPLICATIONS ]
+# :-----/ DEFAULT APPLICATIONS /-----:
 
 export BROWSER=firefox
 export FZF_DEFAULT_COMMAND='rg --files --hidden '
 
-# :TODO: To move from xfce4-terminal to alacritty.
 # export TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
 export TERMINAL="alacritty"
 export VISUAL=vim
 export EDITOR=${VISUAL}
 
-# :---------- [ CONDA ]
-
-__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-        . "/usr/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# :---------- [ PATH ]
-
+# :-----/ PATH /-----:
 # :ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
 
 PATH="${PATH}:${HOME}/scripts:${HOME}/bin"
@@ -79,7 +61,7 @@ PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", le
 
 export PATH
 
-# :---------- [ HISTORY ]
+# :-----/ HISTORY /-----:
 
 export HISTIGNORE="cd:clear:delete:exit:gitall:history:ls:mv:nohup:vim"
 export HISTCONTROL=ignoreboth:erasedups
@@ -89,9 +71,9 @@ export HISEFILESIZE=1000000
 # :Uncomment if your want timestamp in history
 # export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
-# :---------- [ MAN IN COLOR ]
+# :-----/ MAN IN COLOR /-----:
 
-# :TODO: Need to work on the colors.
+# :/todo/ Need to work on the colors.
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
 export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
 export LESS_TERMCAP_me=$(printf '\e[0m')     # turn off all appearance modes (mb, md, so, us)
@@ -100,7 +82,7 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
-# :---------- [ VIM ]
+# :-----/ VIM /-----:
 
 # :Enables CTRL+s in vim.
 # :ref. https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s

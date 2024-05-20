@@ -1,8 +1,8 @@
 " :----------------------------------------------------------------------- INFO
 " :[~/.vimrc]
-" :created       : 2021-02-23 02:54:43 UTC
-" :updated       : 2024-03-23 02:15:26 UTC
-" :description   : VIM main configuration file.
+" /created       : 2021-02-23 02:54:43 UTC
+" /updated       : 2024-03-23 02:15:26 UTC
+" /description   : VIM main configuration file.
 
 " :---------- [ GENERAL CONFIG ]
 
@@ -409,12 +409,18 @@
   " :ex: 202203251549
   nnoremap <F9> "=system('echo -n $(date --utc "+%Y%m%d%H%M")')<CR>p
 
-" :---------- [ XCLIP ]
+" :-----/ COPY & PASTE /-----:
 
-  " :Enable clipboard ability with xclip.
-  " :ref. Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
-  map <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>
-  map <S-F7> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p")")")"))
+  " :Enable clipboard ability with xclip or wl-copy.
+  " :Works both on Wayland and X-11.
+  " :/ref/ Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
+  " :/ref/ https://stackoverflow.com/a/70047595/10500496
+  " map <F7> y:call system("wl-copy || xclip -i -selection clipboard", getreg("\""))<cr>
+  " map <S-F7> :call setreg("\"",system("wl-paste || xclip -o -selection clipboard"))<cr>p")")")"))
+  " nnoremap <F7> :let @+=@0<CR>:call system('wl-copy < /dev/stdin || xclip -i -selection clipboard', getreg("\""))<CR>
+  " nnoremap <F7> :call system('echo ' . shellescape(@0) . ' | wl-copy || echo ' . shellescape(@0) . ' | xclip -i -selection clipboard')<CR>
+  vmap <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
+  nmap <S-F7> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p")")")"))
 
 " :---------- [ PLUGINS - INSTALL ]
 
