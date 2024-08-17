@@ -1,26 +1,24 @@
-## ----------------------------------------------------------------------- INFO
-## [.gitignore]
-## author        : fantomH
-## created       : 2023-09-17 12:41:45 UTC
-## updated       : 2023-12-14 18:14:03 UTC
-## description   : .gitignore file.
+# :----------------------------------------------------------------------- INFO
+# :[.gitignore]
+# :author        : fantomH
+# :created       : 2023-09-17 12:41:45 UTC
+# :updated       : 2024-08-08 12:06:43 UTC
+# :description   : .gitignore file.
 
-## -------------------- [ PYTHON ]
+# :-----/ PYTHON /-----:
 
-## (* python env *)
+# (* python venv *)
 venv/
 
-## (* python flask *)
+# (* python flask *)
 instance/*.db
 migrations/
 
-## (* python other *)
+# (* python other *)
 __pycache__/
+*.egg-info/
 
-## -------------------- [ OTHERS ]
+# :-----/ OTHERS /------:
 
-## (* libreoffice *)
+# (* libreoffice *)
 .~lock*
-
-# vim: foldmethod=marker
-## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
