@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/.aelcore]
-# /author        : fantomH @alterEGO Linux
-# /created       : 2021-03-19 09:37:19 UTC
-# /updated       : 2024-05-17 12:07:01 UTC
-# /description   : alterEGO Linux core shell configuration.
+# :author        : fantomH @alterEGO Linux
+# :created       : 2021-03-19 09:37:19 UTC
+# :updated       : 2024-08-29 14:57:01 UTC
+# :description   : alterEGO Linux core shell configuration.
 
 # :-----/ SOURCE MODULES /-----:
 
@@ -228,54 +228,14 @@ ispeed() {
     /usr/bin/speedtest --secure
     }
 
-# :-----/ (network) deepnmap() /-----:
-deepnmap() {
+[ -f ${HOME}/.ael/scripts/deep-nmap ] \
+&& . ${HOME}/.ael/scripts/deep-nmap
 
-    # :(INFO)
-    # /version       : 2024-05-16 14:29:51 UTC
-    # /description   : Complete nmap scan.
-    # /packages      : ['grc', 'nmap']
+[ -f ${HOME}/.ael/scripts/deep-scan ] \
+&& . ${HOME}/.ael/scripts/deep-scan
 
-    message action "< deepnmap() > from $(basename $BASH_SOURCE)"
-    message alert "Scanning multiple devices or network will take forever..."
-
-    sleep 2
-    sudo grc nmap -sV -O -sC --traceroute ${@}
-    }
-
-# :---------- [ deepscan ]
-# :[deepscan()]
-# :version       = 2023-10-20 09:10:13 UTC
-# :description   = Scans IP with rustscan and nmap.
-# :packages      = ['nmap', 'rustscan']
-
-deepscan() {
-
-    if [[ ${1} == "localhost" ]] || [[ ${1} == '' ]]; then
-        _ip="127.0.0.1"
-    else
-        _ip="${1}"
-    fi
-
-    message action "< deepnmap() > from $(basename $BASH_SOURCE)"
-    message action "Scanning ${_ip} ..."
-
-    sudo rustscan -a ${_ip} --ulimit 5000 --batch-size 2000 -- -sV -O -sC --traceroute -Pn
-  }
-
-# :---------- [ ports ]
-# :[ports()]
-# :version       = 2023-08-04 02:11:08 UTC
-# :description   = Display open ports.
-# :packages      = ['grc', 'net-tools']
-
-ports() {
-
-    message action "< ports() > from $(basename $BASH_SOURCE)"
-    message action "Showing open ports ..."
-
-  sudo grc netstat -tulanp
-  }
+[ -f ${HOME}/.ael/scripts/ports ] \
+&& . ${HOME}/.ael/scripts/ports
 
 # :---------- [ pyserver ]
 # :[pyserver()]

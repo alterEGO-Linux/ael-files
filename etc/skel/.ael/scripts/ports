@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/ports]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-04 02:11:08 UTC
+# :updated       : 2024-08-29 16:53:23 UTC
+# :description   : Displays open ports.
+
+ports() {
+
+    echo "================================================================================"
+    echo "[+] ports()"
+    echo "    Running <sudo grc netstat -tulanp>"
+    echo "    Displays open ports."
+    echo "================================================================================"
+    echo
+
+  sudo grc netstat -tulanp
+  }

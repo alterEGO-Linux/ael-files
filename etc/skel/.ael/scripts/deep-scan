@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/deep-scan]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-10-20 09:10:13 UTC
+# :updated       : 2024-08-29 16:20:32 UTC
+# :description   : Scans IP with rustscan and nmap.
+
+deep-scan() {
+
+    if [[ ${1} == "localhost" ]] || [[ ${1} == '' ]]; then
+        IP="127.0.0.1"
+    else
+        IP="${1}"
+    fi
+
+    echo "================================================================================"
+    echo "[+] deep-scan()"
+    echo "    Running <sudo rustscan -a ${IP} --ulimit 5000 --batch-size 2000 -- -sV -O -sC --traceroute -Pn>"
+    echo "================================================================================"
+    echo
+
+    sudo rustscan -a ${IP} --ulimit 5000 --batch-size 2000 -- -sV -O -sC --traceroute -Pn
+  }

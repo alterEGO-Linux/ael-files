@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/deep-map]
+# :[~/.ael/scripts/deep-nmap]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
 # :updated       : 2024-08-29 11:13:13 UTC
@@ -8,10 +8,18 @@
 
 deep-nmap() {
 
-    message action "deep-nmap"
-    message result "Running `sudo grc nmap -sV -O -sC --traceroute`"
-    message alert "Scanning multiple devices or network will take forever..."
+    if [[ ${@} == '' ]]; then
+        IP='localhost'
+    else
+        IP=${@}
+    fi
+
+    echo "================================================================================"
+    echo "[+] deep-nmap()"
+    echo "    Running <sudo grc nmap -sV -O -sC --traceroute ${IP}>"
+    echo "================================================================================"
+    echo
 
     sleep 2
-    sudo grc nmap -sV -O -sC --traceroute ${@}
+    sudo grc nmap -sV -O -sC --traceroute ${IP}
     }
