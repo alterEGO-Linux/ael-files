@@ -251,39 +251,9 @@ pyserver() {
     python -m http.server
   }
 
-# :---------- [ tuninfo ]
-# :[tuninfo()]
-# :version       = 2023-10-20 09:40:59 UTC
-# :description   = Read tunnels info.
-# :packages      = ['coreutils', 'gawk', 'grep', 'procps-ng']
 
-tuninfo() {
-
-    message action "< tuninfo() > from $(basename $BASH_SOURCE)"
-    message action "Reading tunnels info ..."
-    message title "INT\tIP ADDR   \tPID\tNAME"
-
-    while read -r _interface; do
-
-      _ip=$(grep -oP '(?<=inet )(.*)(?=/)' <<<"${_interface}")
-      _tun=$(awk '{ print $NF }' <<<"${_interface}")
-      _ps=$(sudo grep -r $_tun /proc/*/fdinfo 2>/dev/null | cut -d / -f 3)
-      _cmd="$(ps -o cmd --no-headers ${_ps})"
-
-      if [[ $(awk '/openvpn/ && /server/' <<< ${_cmd}) ]]; then
-        _tunname="OpenVPNServer"
-      elif [[ $(awk '/openvpn/ && /tryhackme/' <<< "${_cmd}") ]]; then
-        _tunname="TryHackMe"
-      elif [[ $(awk '/nordvpn/' <<< "${_cmd}") ]]; then
-        _tunname="NordVPN"
-      else
-        _tunname="UNDEFINED"
-      fi
-
-      printf "%b\n" "${_tun}\t${_ip}\t${_ps}\t${_tunname}"
-
-    done <<< $(ip a | grep -E 'inet [1-9].*global.*(tun)')
-  }
+[ -f ${HOME}/.ael/scripts/tunnel-info ] \
+&& . ${HOME}/.ael/scripts/tunnel-info
 
 # :---------- [ viewips ]
 # :[viewips()]
