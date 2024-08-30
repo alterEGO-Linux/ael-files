@@ -830,18 +830,9 @@ history_cleaner() {
   }
   alias history-cleaner='history_cleaner'
 
-# :---------- [ processes ]
-# :[processes()]
-# :version       = 2023-08-02 00:51:54 UTC
-# :description   = "Show processes."
 
-processes() {
-
-    message action "< processes > from $(basename $BASH_SOURCE)"
-    message action "Showing processes ..."
-
-    ps aux
-  }
+[ -f ${HOME}/.ael/scripts/processes ] \
+&& . ${HOME}/.ael/scripts/processes
 
 # :---------- [ ps-grep ]
 # :[ps-grep()]
