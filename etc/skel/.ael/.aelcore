@@ -834,19 +834,8 @@ history_cleaner() {
 [ -f ${HOME}/.ael/scripts/processes ] \
 && . ${HOME}/.ael/scripts/processes
 
-# :---------- [ ps-grep ]
-# :[ps-grep()]
-# :version       = 2023-08-02 00:56:31 UTC
-# :description   = "Show processes for a particular application."
-
-ps_grep() {
-
-    message action "< ps-grep > from $(basename $BASH_SOURCE)"
-    message action "Showing processes for "${@}" ..."
-
-    ps aux | grep -Ei "$@"
-  }
-  alias ps-grep='ps_grep'
+[ -f ${HOME}/.ael/scripts/ps-grep ] \
+&& . ${HOME}/.ael/scripts/ps-grep
 
 # :---------- [ py-clean ]
 # :[py-clean()]
@@ -883,25 +872,7 @@ clean_aelbkup () {
   }
   alias clean-aelbkup='clean_aelbkup'
 
-# :---------- [ reset-time ]
-# :[reset-time()]
-# :version       = 2023-08-02 01:02:11 UTC
-# :description   = "Reset system time."
-# :notes         = '''
-# :Useful when Windows boot screw time.
-# :'''
-
-reset_time() {
-
-    message action "< reset-time > from $(basename $BASH_SOURCE)"
-    message action "Resetting time ..."
-
-    sudo timedatectl set-ntp true
-    sudo hwclock --systohc --utc
-
-    echo  $(date "+%F %H:%M:%S %Z")
-  }
-  alias reset-time="reset_time"
+[ -f ${HOME}/.ael/scripts/reset-time ] && . ${HOME}/.ael/scripts/reset-time
 
 # :---------- [ search-content ]
 # :[search-content()]
@@ -962,20 +933,7 @@ show_utc() {
   }
   alias show-utc="show_utc"
 
-# :---------- [ tagalog ]
-# :[tagalog()]
-# :version       = 2023-08-02 11:02:33 UTC
-# :description   = "Translate to Tagalog."
-
-tagalog() {
-
-    message action "< tagalog > from $(basename $BASH_SOURCE)"
-    message action "Translating "${@}" to Tagalog ..."
-
-    wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=tl&dt=t&q=${@}" \
-    | awk -F '"' '{print $2}'                                                 \
-    | head -n 1
-  }
+[ -f ${HOME}/.ael/scripts/tagalog ] && . ${HOME}/.ael/scripts/tagalog
 
 # :---------- [ termbin ]
 # :[termbin]
@@ -988,24 +946,4 @@ tagalog() {
 
   alias termbin="nc termbin.com 9999"
 
-# :---------- [ translate ]
-# :[translate()]
-# :version       = 2023-08-02 11:05:00 UTC
-# :description   = "Translate."
-# :notes         = '''
-# :Add language abbr after string to translate.
-# :For example, translate "Hello world" fr
-# :'''
-
-translate() {
-
-    message action "< translate > from $(basename $BASH_SOURCE)"
-    message action "Usage <translate <word(s)> <language code>>"
-    message action "Translating "${1}" to ${2} ..."
-
-    wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" \
-    | awk -F '"' '{print $2}'                                                 \
-    | head -n 1
-  }
-
-# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+[ -f ${HOME}/.ael/scripts/translate ] && . ${HOME}/.ael/scripts/translate

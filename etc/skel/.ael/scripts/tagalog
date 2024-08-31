@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/tagalog]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-02 00:56:31 UTC
+# :updated       : 2024-08-31 02:32:38 UTC
+# :description   : Translate to Tagalog using Google translate.
+
+tagalog() {
+
+    echo "================================================================================"
+    echo "[+] tagalog()"
+    echo "    Usage: tagalog <work> or <\"Sentence\">"
+    echo "    Translate to Tagalog using Google translate."
+    echo "================================================================================"
+    echo
+
+    echo "Original: ${@}"
+    TRANSLATION=$(wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=tl&dt=t&q=${@}" | awk -F '"' '{print $2}' | head -n 1)
+    echo "Translation to Tagalog: "${TRANSLATION}""
+  }
