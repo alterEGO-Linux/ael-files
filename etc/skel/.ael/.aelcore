@@ -8,14 +8,9 @@
 
 # :-----/ SOURCE MODULES /-----:
 
-[ -f ${HOME}/.ael/bash-ael/messages.bash ] \
-&& . ${HOME}/.ael/bash-ael/messages.bash
-
-[ -f ${HOME}/.ael/bash-ael/colors.bash ] \
-&& . ${HOME}/.ael/bash-ael/colors.bash
-
-[ -f ${HOME}/.ael/.extra ] \
-&& . ${HOME}/.ael/.extra
+[ -f ${HOME}/.ael/bash-ael/messages.bash ] && . ${HOME}/.ael/bash-ael/messages.bash
+[ -f ${HOME}/.ael/bash-ael/colors.bash ] && . ${HOME}/.ael/bash-ael/colors.bash
+[ -f ${HOME}/.ael/.extra ] && . ${HOME}/.ael/.extra
 
 # :-----/ COLORS /-----:
 
@@ -228,14 +223,9 @@ ispeed() {
     /usr/bin/speedtest --secure
     }
 
-[ -f ${HOME}/.ael/scripts/deep-nmap ] \
-&& . ${HOME}/.ael/scripts/deep-nmap
-
-[ -f ${HOME}/.ael/scripts/deep-scan ] \
-&& . ${HOME}/.ael/scripts/deep-scan
-
-[ -f ${HOME}/.ael/scripts/ports ] \
-&& . ${HOME}/.ael/scripts/ports
+[ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
+[ -f ${HOME}/.ael/scripts/deep-scan ] && . ${HOME}/.ael/scripts/deep-scan
+[ -f ${HOME}/.ael/scripts/ports ] && . ${HOME}/.ael/scripts/ports
 
 # :---------- [ pyserver ]
 # :[pyserver()]
@@ -252,8 +242,7 @@ pyserver() {
   }
 
 
-[ -f ${HOME}/.ael/scripts/tunnel-info ] \
-&& . ${HOME}/.ael/scripts/tunnel-info
+[ -f ${HOME}/.ael/scripts/tunnel-info ] && . ${HOME}/.ael/scripts/tunnel-info
 
 # :---------- [ viewips ]
 # :[viewips()]
@@ -645,23 +634,7 @@ lazygit() {
 
 # :========================= | FUNCTIONS | =================================: #
 
-# :---------- [ busy ]
-# :[busy()]
-# :version       = 2023-08-01 19:55:12 UTC
-# :description   = "When the boss comes around to look busy."
-# :notes         = '''
-# :ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
-# :CTRL+c to quit.
-# :'''
-
-busy() {
-
-    message action "< busy > from $(basename $BASH_SOURCE)"
-
-    cat /dev/urandom                                                          \
-    | hexdump -C                                                              \
-    | grep --color=always 'ca fe'
-  }
+[ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
 
 # :---------- [ cheat ]
 # :[cheat()]
@@ -852,16 +825,5 @@ search_content() {
 [ -f ${HOME}/.ael/scripts/shell-info ] && . ${HOME}/.ael/scripts/shell-info
 [ -f ${HOME}/.ael/scripts/show-utc ] && . ${HOME}/.ael/scripts/show-utc
 [ -f ${HOME}/.ael/scripts/tagalog ] && . ${HOME}/.ael/scripts/tagalog
-
-# :---------- [ termbin ]
-# :[termbin]
-# :type          = 'alias'
-# :version       = 2023-11-26 17:45:44 UTC
-# :description   = "Netcat-based command-line pastebin."
-# :notes         = '''
-# :url: https://termbin.com/
-# :use `echo just testing! | termbin`
-
-  alias termbin="nc termbin.com 9999"
-
+[ -f ${HOME}/.ael/scripts/termbin ] && . ${HOME}/.ael/scripts/termbin
 [ -f ${HOME}/.ael/scripts/translate ] && . ${HOME}/.ael/scripts/translate
