@@ -726,47 +726,8 @@ directory_size() {
   }
   alias directory-size='directory_size'
 
-# :---------- [ fixout ]
-# :[fixout()]
-# :version       = 2023-08-02 00:07:03 UTC
-# :description   = "Fix bash history and exit."
-# :notes         = '''
-# :Don't try to put this code in a shell script, it won't work.
-# :`history` don't play well in scripts.
-# :'''
-
-fixout() {
-
-    message action "< fixout > from $(basename $BASH_SOURCE)"
-    message action "Cleaning history before closing ..."
-
-    sleep 2
-
-    history -n && history                                                     \
-    | sort -k2 -k1nr                                                          \
-    | uniq -f1                                                                \
-    | sort -n                                                                 \
-    | cut -c8- > ~/.tmp$$                                                     \
-    && history -c                                                             \
-    && history -r ~/.tmp$$                                                    \
-    && history -w                                                             \
-    && rm ~/.tmp$$                                                            \
-    && exit
-  }
-
-# :---------- [ fuck ]
-# :[fuck()]
-# :version       = 2023-08-02 00:10:38 UTC
-# :description   = "Repeats last cmd with sudo if forgotten"
-
-fuck() {
-
-    message action "< fuck > from .functions"
-    message action "Command <sudo \$(history -p !!)"
-    message action "Repeating last command as sudo user ..."
-
-    sudo $(history -p !!)
-  }
+[ -f ${HOME}/.ael/scripts/fixout ] && . ${HOME}/.ael/scripts/fixout
+[ -f ${HOME}/.ael/scripts/fuck ] && . ${HOME}/.ael/scripts/fuck
 
 # :---------- [ getmp3 ]
 # :[getmp3()]
@@ -830,12 +791,8 @@ history_cleaner() {
   }
   alias history-cleaner='history_cleaner'
 
-
-[ -f ${HOME}/.ael/scripts/processes ] \
-&& . ${HOME}/.ael/scripts/processes
-
-[ -f ${HOME}/.ael/scripts/ps-grep ] \
-&& . ${HOME}/.ael/scripts/ps-grep
+[ -f ${HOME}/.ael/scripts/processes ] && . ${HOME}/.ael/scripts/processes
+[ -f ${HOME}/.ael/scripts/ps-grep ] && . ${HOME}/.ael/scripts/ps-grep
 
 # :---------- [ py-clean ]
 # :[py-clean()]
@@ -892,47 +849,8 @@ search_content() {
   }
   alias sc="search_content"
 
-# :---------- [ shell-info ]
-# :[shell-info()]
-# :version       = 2023-08-02 01:18:13 UTC
-# :description   = "Gives shell function or alias info."
-# :notes         = '''
-# :Could build something with fzf to search and give info.
-# :ref. https://stackoverflow.com/a/949006/10500496
-# :You can use the bash(1) built-in compgen
-# :    compgen -c will list all the commands you could run.
-# :    compgen -a will list all the aliases you could run.
-# :    compgen -b will list all the built-ins you could run.
-# :    compgen -k will list all the keywords you could run.
-# :    compgen -A function will list all the functions you could run.
-# :    compgen -A function -abck will list all the above in one go.
-# :'''
-
-shell_info() {
-
-    message action "< shell-info > from $(basename $BASH_SOURCE)"
-    message action "Shell information for "${@}" ..."
-
-    shopt -s extdebug
-    type -a ${@}
-    declare -F ${@}
-  }
-  alias shell-info="shell_info"
-
-# :---------- [ show-utc ]
-# :[show-utc()]
-# :version       = 2023-08-02 01:36:14 UTC
-# :description   = "Shows UTC time."
-
-show_utc() {
-
-    message action "< show-utc > from $(basename $BASH_SOURCE)"
-    message action "UTC time ..."
-
-    echo  $(date --utc "+%F %H:%M:%S %Z")
-  }
-  alias show-utc="show_utc"
-
+[ -f ${HOME}/.ael/scripts/shell-info ] && . ${HOME}/.ael/scripts/shell-info
+[ -f ${HOME}/.ael/scripts/show-utc ] && . ${HOME}/.ael/scripts/show-utc
 [ -f ${HOME}/.ael/scripts/tagalog ] && . ${HOME}/.ael/scripts/tagalog
 
 # :---------- [ termbin ]

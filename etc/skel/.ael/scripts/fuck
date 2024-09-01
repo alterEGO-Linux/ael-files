@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/fuck]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-02 00:10:38 UTC
+# :updated       : 2024-09-01 03:27:35 UTC
+# :description   : Repeats last cmd with sudo if forgotten.
+
+fuck() {
+
+    echo "================================================================================"
+    echo "[+] f**k()"
+    echo "    Repeats last cmd with sudo if forgotten."
+    echo "    Running <sudo \$(history -p !!)"
+    echo "================================================================================"
+    echo
+
+    sudo $(history -p !!)
+  }
