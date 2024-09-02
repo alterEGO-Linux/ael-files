@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/busy]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-01 19:55:12 UTC
+# :updated       : 2024-09-01 03:56:45 UTC
+# :description   : When the boss comes around to look busy.
+
+busy() {
+
+    # :ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+    # :CTRL+c to quit.
+
+    echo "================================================================================"
+    echo "[+] busy()"
+    echo "    Looking busy ..."
+    echo "================================================================================"
+    echo
+
+    sleep 5
+
+    cat /dev/urandom                                                          \
+    | hexdump -C                                                              \
+    | grep --color=always 'ca fe'
+  }

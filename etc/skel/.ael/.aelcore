@@ -766,62 +766,9 @@ history_cleaner() {
 
 [ -f ${HOME}/.ael/scripts/processes ] && . ${HOME}/.ael/scripts/processes
 [ -f ${HOME}/.ael/scripts/ps-grep ] && . ${HOME}/.ael/scripts/ps-grep
-
-# :---------- [ py-clean ]
-# :[py-clean()]
-# :version       = 2023-08-02 00:59:00 UTC
-# :description   = "Clean python cache in current directory."
-# :notes         = '''
-# :ref. https://stackoverflow.com/a/41386937/10500496
-# :'''
-
-py_clean () {
-
-    message action "< py-clean > from $(basename $BASH_SOURCE)"
-    message action "Cleaning python cache in current directory ..."
-
-    find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
-  }
-  alias py-clean='py_clean'
-
-# :---------- [ clean-aelbkup ]
-# :[clean_aelbkup()]
-# :version       : 2024-02-23 14:46:54 UTC
-# :description   : Delete *.aelbkup files.
-# :notes         = '''
-# :ref. https://stackoverflow.com/a/41386937/10500496
-# :'''
-
-clean_aelbkup () {
-
-    message action "< clean_aelbkup() > from $(basename $BASH_SOURCE)"
-    message action "Delete *.aelbkup files."
-
-    cd ${HOME}
-    find . -type f -name '*.aelbkup' -delete
-  }
-  alias clean-aelbkup='clean_aelbkup'
-
+[ -f ${HOME}/.ael/scripts/py-cleaner ] && . ${HOME}/.ael/scripts/py-cleaner
 [ -f ${HOME}/.ael/scripts/reset-time ] && . ${HOME}/.ael/scripts/reset-time
-
-# :---------- [ search-content ]
-# :[search-content()]
-# :version       = 2023-08-02 01:05:06 UTC
-# :description   = "Search file content."
-# :notes         = '''
-# :src. https://github.com/junegunn/fzf/wiki/Examples#searching-file-contents
-# :'''
-
-search_content() {
-
-    message action "< search-content > from $(basename $BASH_SOURCE)"
-    message action "Searching content "${1}" ..."
-
-    rg --files-with-matches --no-messages "$1"                                \
-    | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
-  }
-  alias sc="search_content"
-
+[ -f ${HOME}/.ael/scripts/search-content ] && . ${HOME}/.ael/scripts/search-content
 [ -f ${HOME}/.ael/scripts/shell-info ] && . ${HOME}/.ael/scripts/shell-info
 [ -f ${HOME}/.ael/scripts/show-utc ] && . ${HOME}/.ael/scripts/show-utc
 [ -f ${HOME}/.ael/scripts/tagalog ] && . ${HOME}/.ael/scripts/tagalog

@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/search-content]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-02 01:05:06 UTC
+# :updated       : 2024-09-01 14:57:05 UTC
+# :description   : Search files for content.
+
+search-content() {
+
+    # :src. https://github.com/junegunn/fzf/wiki/Examples#searching-file-contents
+
+    echo "================================================================================"
+    echo "[+] search-content()"
+    echo "    Search files for content."
+    echo "================================================================================"
+    echo
+
+    echo "Searching for: ${1}"
+    echo
+    
+    rg --files-with-matches --no-messages "$1"                                \
+    | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+  }

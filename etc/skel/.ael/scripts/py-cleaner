@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/py-cleaner]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-02 00:59:00 UTC
+# :updated       : 2024-09-02 00:57:30 UTC
+# :description   : Clean python current directory.
+
+py_clean () {
+
+    # :ref. https://stackoverflow.com/a/41386937/10500496
+
+    echo "================================================================================"
+    echo "[+] py-cleaner()"
+    echo "    Cleaning python current directory."
+    echo "================================================================================"
+    echo
+
+    find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
+  }
