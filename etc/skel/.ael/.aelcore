@@ -660,110 +660,12 @@ cheat() {
     curl -s cheat.sh/"${cheat}" | less -R
   }
 
-# :---------- [ delete ]
-# :[delete()]
-# :version       = 2023-08-01 19:59:45 UTC
-# :description   = "Delete directory."
 
-delete() {
-
-    message action "< delete > from $(basename $BASH_SOURCE)"
-
-    if [ -d "${1}" ]; then
-      message question "Are you sure your want to delete this directory? [y/N]"
-        if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          rm --recursive --force "${1}" 
-        else
-          message warning "OK... Abording deletion!"
-        fi
-    else
-      message warning "There is nothing to do here!"
-    fi
-  }
-
-# :---------- [ directory-size ]
-# :[directory-size()]
-# :version       = 2023-08-01 20:01:01 UTC
-# :description   = "Check size of biggest directories."
-
-directory_size() {
-
-    message action "< directory-size > from $(basename $BASH_SOURCE)"
-    message action "Command <du -bh --max-depth 1 | sort -rh | head>"
-    message action "Size of current directory, followed by biggest child directories:"
-
-    # :du -bh --max-depth 1 | sort -rh | head
-    du --bytes --human-readable --max-depth 1                                 \
-    | sort --reverse --human-numeric-sort                                     \
-    | head
-  }
-  alias directory-size='directory_size'
-
+[ -f ${HOME}/.ael/scripts/directory-size ] && . ${HOME}/.ael/scripts/directory-size
+[ -f ${HOME}/.ael/scripts/delete ] && . ${HOME}/.ael/scripts/delete
 [ -f ${HOME}/.ael/scripts/fixout ] && . ${HOME}/.ael/scripts/fixout
 [ -f ${HOME}/.ael/scripts/fuck ] && . ${HOME}/.ael/scripts/fuck
-
-# :---------- [ getmp3 ]
-# :[getmp3()]
-# :version       = 2023-08-02 00:36:18 UTC
-# :description   = "Extract video audo to .mp3"
-
-getmp3() {
-
-    message action "< getmp3 > from $(basename $BASH_SOUCE)"
-    message action "youtube-dl -x --audio-format mp3 --prefer-ffmpeg <url>"
-    message action "Extract audio from video to mp3 format ..."
-
-    # youtube-dl -x --audio-format mp3 --prefer-ffmpeg "${1}"
-    yt-dlp -x --audio-format mp3 --prefer-ffmpeg "${1}"
-  }
-
-# :---------- [ history-cleaner ]
-# :[history-cleaner()]
-# :version       = 2023-08-02 00:44:35 UTC
-# :description   = "Cleans bash history"
-# :todo          = '''
-# :- Use only fzf and multi select [2023-08-01]
-# :'''
-
-# history_cleaner() {
-
-    # message action "< history-cleaner > from $(basename $BASH_SOURCE)"
-    # message action "Aliased to <history-cleaner>"
-    # message action "Cleans .bash_history file ..."
-
-    # if [[ ${@} != '' ]]; then
-
-      # :Remove .bash_history entry.
-      # :Usage: `history-cleaner youtube-dl`
-      # :or `history-cleaner cd$`
-
-      # dumpfile="/tmp/history-cleaner.dump"
-
-      # history -a
-      # cp ~/.bash_history ${dumpfile}
-      # sed -i "/^${@}/d" ${dumpfile}
-      # history -c                                                              \
-      # && history -r ${dumpfile}                                               \
-      # && history -w
-      # rm ${dumpfile}
-      # history
-
-    # else
-
-      # :Uses `fzf` to sort through the bash history and let you delete an entry.
-
-      # choices=$(history | fzf)
-      # [[ -z "${choices}" ]] && exit 1
-
-      # message question "Are you sure your want to delete this? [y/N]"
-        # if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          # to_delete=$(awk '{ print $1 }' <<< "${choices}")
-          # history -d ${to_delete}
-        # fi
-    # fi
-  # }
-  # alias history-cleaner='history_cleaner'
-
+[ -f ${HOME}/.ael/scripts/getmp3 ] && . ${HOME}/.ael/scripts/getmp3
 [ -f ${HOME}/.ael/scripts/history-cleaner ] && . ${HOME}/.ael/scripts/history-cleaner
 [ -f ${HOME}/.ael/scripts/processes ] && . ${HOME}/.ael/scripts/processes
 [ -f ${HOME}/.ael/scripts/ps-grep ] && . ${HOME}/.ael/scripts/ps-grep

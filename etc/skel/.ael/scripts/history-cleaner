@@ -3,7 +3,7 @@
 # :[~/.ael/scripts/history-cleaner]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 00:44:35 UTC
-# :updated       : 2024-09-02 01:27:30 UTC
+# :updated       : 2024-09-04 08:44:54 UTC
 # :description   : Cleans bash history.
 
 history-cleaner() {
@@ -18,32 +18,31 @@ history-cleaner() {
     tempfile="/tmp/history-cleaner.temp"
 
     if [[ ${@} == '' ]]; then
+        # :Uses `fzf` to sort through the bash history and let you delete an entry.
+        choices=$(history | fzf --multi --tac)
 
-      # :Uses `fzf` to sort through the bash history and let you delete an entry.
-      choices=$(history | fzf --multi --tac)
-
-      if [[ -z "${choices}" ]]; then
-          echo "[!] Nothing was selected."
-      else
-          echo "[-] These are candidates for deletion:"
-          for c in "${choices}"; do
-              echo "${c}"
-          done
-          read -p "[?] Are you sure your want to delete these? [y/N] " INPUT
-            if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-              to_delete=($(awk '{ print $1 }' <<< "${choices}" | sort -nr))
-              for c in "${to_delete[@]}"; do
-                  history -d ${c}
-              done
-            fi
-      fi
+        if [[ -z "${choices}" ]]; then
+            echo "[!] Nothing was selected."
+        else
+            echo "[-] Candidate(s) for deletion:"
+            for c in "${choices}"; do
+                echo "${c}"
+            done
+            read -p "[?] Are you sure your want to delete these? [y/N] " INPUT
+                if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                    to_delete=($(awk '{ print $1 }' <<< "${choices}" | sort -nr))
+                    for c in "${to_delete[@]}"; do
+                        history -d ${c}
+                    done
+                fi
+        fi
 
     elif [[ ${@} == '--editor' ]]; then
-        editors=(vim code llk)
+        editors=(vim code)
         for editor in "${editors[@]}"; do
             if editor_path=$(command -v "${editor}"); then
-              editor=${editor}
-              break
+                editor=${editor}
+                break
             fi
         done
 
@@ -51,45 +50,36 @@ history-cleaner() {
         history > ${dumpfile}
         ${editor} ${dumpfile}
         read -p "[?] Are you sure your want to commit the changes? [y/N] " INPUT
-          if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-              sort -n ${dumpfile} > ${tempfile}
-              sed -E -i 's/^[[:space:]]+?[0-9]+[[:space:]]+//' ${tempfile}
-              history -c                                                      \
-              && history -r ${tempfile}                                       \
-              && history -w
-              rm ${dumpfile}
-              rm ${tempfile}
-              history | head
-          fi
+            if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                sort -n ${dumpfile} > ${tempfile}
+                sed -E -i 's/^[[:space:]]+?[0-9]+[[:space:]]+//' ${tempfile}
+                history -c                                                      \
+                && history -r ${tempfile}                                       \
+                && history -w
+                rm ${dumpfile}
+                rm ${tempfile}
+            fi
+
+    else
+        history -a
+        cp ${HOME}/.bash_history ${dumpfile}
+        if [[ -z $(sed -E -n "/^${@}$/p" ${dumpfile}) ]]; then
+            echo "[!] Nothing was found."
+        else
+            echo "[-] Candidate(s) for deletion:"
+            sed -E -n "/^${@}$/p" ${dumpfile}
+            echo
+
+            read -p "[?] Are you sure your want to commit the changes? [y/N] " INPUT
+                if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                    sed -E -i "/^${@}$/d" ${dumpfile}
+                    history -c                                                \
+                    && history -r ${dumpfile}                                 \
+                    && history -w
+                    rm ${dumpfile}
+                fi
+            
+        fi
+
     fi
-
-    # if [[ ${@} != '' ]]; then
-
-      # :Remove .bash_history entry.
-      # :Usage: `history-cleaner youtube-dl`
-      # :or `history-cleaner cd$`
-
-
-      # history -a
-      # cp ~/.bash_history ${dumpfile}
-      # sed -i "/^${@}/d" ${dumpfile}
-      # history -c                                                              \
-      # && history -r ${dumpfile}                                               \
-      # && history -w
-      # rm ${dumpfile}
-      # history
-
-    # else
-
-      # :Uses `fzf` to sort through the bash history and let you delete an entry.
-
-      # choices=$(history | fzf)
-      # [[ -z "${choices}" ]] && exit 1
-
-      # message question "Are you sure your want to delete this? [y/N]"
-        # if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          # to_delete=$(awk '{ print $1 }' <<< "${choices}")
-          # history -d ${to_delete}
-        # fi
-    # fi
-  }
+}
