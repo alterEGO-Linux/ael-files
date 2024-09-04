@@ -725,45 +725,46 @@ getmp3() {
 # :- Use only fzf and multi select [2023-08-01]
 # :'''
 
-history_cleaner() {
+# history_cleaner() {
 
-    message action "< history-cleaner > from $(basename $BASH_SOURCE)"
-    message action "Aliased to <history-cleaner>"
-    message action "Cleans .bash_history file ..."
+    # message action "< history-cleaner > from $(basename $BASH_SOURCE)"
+    # message action "Aliased to <history-cleaner>"
+    # message action "Cleans .bash_history file ..."
 
-    if [[ ${@} != '' ]]; then
+    # if [[ ${@} != '' ]]; then
 
       # :Remove .bash_history entry.
       # :Usage: `history-cleaner youtube-dl`
       # :or `history-cleaner cd$`
 
-      dumpfile="/tmp/history-cleaner.dump"
+      # dumpfile="/tmp/history-cleaner.dump"
 
-      history -a
-      cp ~/.bash_history ${dumpfile}
-      sed -i "/^${@}/d" ${dumpfile}
-      history -c                                                              \
-      && history -r ${dumpfile}                                               \
-      && history -w
-      rm ${dumpfile}
-      history
+      # history -a
+      # cp ~/.bash_history ${dumpfile}
+      # sed -i "/^${@}/d" ${dumpfile}
+      # history -c                                                              \
+      # && history -r ${dumpfile}                                               \
+      # && history -w
+      # rm ${dumpfile}
+      # history
 
-    else
+    # else
 
       # :Uses `fzf` to sort through the bash history and let you delete an entry.
 
-      choices=$(history | fzf)
-      [[ -z "${choices}" ]] && exit 1
+      # choices=$(history | fzf)
+      # [[ -z "${choices}" ]] && exit 1
 
-      message question "Are you sure your want to delete this? [y/N]"
-        if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          to_delete=$(awk '{ print $1 }' <<< "${choices}")
-          history -d ${to_delete}
-        fi
-    fi
-  }
-  alias history-cleaner='history_cleaner'
+      # message question "Are you sure your want to delete this? [y/N]"
+        # if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          # to_delete=$(awk '{ print $1 }' <<< "${choices}")
+          # history -d ${to_delete}
+        # fi
+    # fi
+  # }
+  # alias history-cleaner='history_cleaner'
 
+[ -f ${HOME}/.ael/scripts/history-cleaner ] && . ${HOME}/.ael/scripts/history-cleaner
 [ -f ${HOME}/.ael/scripts/processes ] && . ${HOME}/.ael/scripts/processes
 [ -f ${HOME}/.ael/scripts/ps-grep ] && . ${HOME}/.ael/scripts/ps-grep
 [ -f ${HOME}/.ael/scripts/py-cleaner ] && . ${HOME}/.ael/scripts/py-cleaner
