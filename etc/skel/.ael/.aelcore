@@ -632,35 +632,8 @@ lazygit() {
     cd "$_cwd"
   }
 
-# :========================= | FUNCTIONS | =================================: #
-
 [ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
-
-# :---------- [ cheat ]
-# :[cheat()]
-# :version       = 2023-08-01 19:57:57 UTC
-# :description   = "Query https://cheat.sh."
-# :notes         = '''
-# :Menu with `fzf` and display with `less`.
-# :https://github.com/chubin/cheat.sh
-# :'''
-
-cheat() {
-
-    message action "< cheat > from $(basename $BASH_SOURCE)"
-
-    cheat="$(curl -s cheat.sh/:list                                           \
-            | fzf --layout="reverse"                                          \
-                  --prompt='::'                                               \
-                  --preview-window=up:80%                                     \
-                  --preview 'cat <(curl -s cheat.sh/{})')"
-
-    [[ -z ${cheat} ]] && exit 0
-
-    curl -s cheat.sh/"${cheat}" | less -R
-  }
-
-
+[ -f ${HOME}/.ael/scripts/cheat ] && . ${HOME}/.ael/scripts/cheat
 [ -f ${HOME}/.ael/scripts/directory-size ] && . ${HOME}/.ael/scripts/directory-size
 [ -f ${HOME}/.ael/scripts/delete ] && . ${HOME}/.ael/scripts/delete
 [ -f ${HOME}/.ael/scripts/fixout ] && . ${HOME}/.ael/scripts/fixout
