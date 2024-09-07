@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/systeminfo]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-09-06 02:46:36 UTC
+# :updated       : 2024-09-06 02:46:41 UTC
+# :description   : Display system info.
+
+systeminfo() {
+
+    echo "================================================================================"
+    echo "[+] systeminfo()"
+    echo "    Display system info."
+    echo "================================================================================"
+    echo
+
+    LOCAL_IP=$(ip a                                                           \
+               | grep 'inet '                                                 \
+               | grep -v '127.0.0.1'                                          \
+               | awk '{print $2}'                                             \
+               | cut -d/ -f1)
+    echo "[-] Local IP  : ${LOCAL_IP}"
+
+    PUBLIC_IP=$(host myip.opendns.com resolver1.opendns.com                   \
+                | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')
+    echo "[-] Public IP : ${PUBLIC_IP}"
+
+  }

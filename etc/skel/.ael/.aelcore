@@ -104,27 +104,6 @@ stty -ixon
 
 # export QT_QPA_PLATFORMTHEME="qt5ct"
 
-# :---------- [ IP ADDRESSES ]
-ipaddr() {
-
-  # :IP addresses will be exported when .egorc is sourced with the function
-  # :call, but can also be 'refreshed' when calling ipaddr from the terminal
-  # :(ex. after starting a VPN connection).
-
-  # :`host` is provided by the package 'bind'.
-  PUBIP="$(host myip.opendns.com resolver1.opendns.com                      \
-            | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
-  export PUBIP
-
-  # :TODO: Not working properly if not wired.
-  LANIP="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"
-  export LANIP
-
-  # printf "%s\n" "LAN IP:     ${LANIP}"
-  # printf "%s\n" "Public IP:  ${PUBIP}"
-  }
-  ipaddr
-
 # :---------- [ PROMPTS ]
 prompt_command() {
     history -a
@@ -204,26 +183,10 @@ pacman_reset() {
 
 # :========================= | NETWORK | ===================================: #
 
-# :-----/ (network) ispeed() /-----:
-ispeed() {
-
-    # :(INFO)
-    # /version       : 2024-05-16 14:54:18 UTC
-    # /description   : Internet connection speed meter
-    # /packages      : ['speedtest-cli']
- 
-    message action "< ispeed() > from $(basename $BASH_SOURCE)"
-    message action "Calculating your Internet connection speed ..."
-
-    # :Method no.1
-    # curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
-    # | python - --secure
-
-    # :Method no.2
-    /usr/bin/speedtest --secure
-    }
 
 [ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
+[ -f ${HOME}/.ael/scripts/ispeed ] && . ${HOME}/.ael/scripts/ispeed
+[ -f ${HOME}/.ael/scripts/systeminfo ] && . ${HOME}/.ael/scripts/systeminfo
 [ -f ${HOME}/.ael/scripts/deep-scan ] && . ${HOME}/.ael/scripts/deep-scan
 [ -f ${HOME}/.ael/scripts/ports ] && . ${HOME}/.ael/scripts/ports
 

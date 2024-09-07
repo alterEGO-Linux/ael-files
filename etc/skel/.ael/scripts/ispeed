@@ -1,0 +1,50 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/ispeed]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-05-16 14:54:18 UTC
+# :updated       : 2024-09-06 12:14:41 UTC
+# :description   : Internet connection speed meter.
+
+ispeed() {
+
+    echo "================================================================================"
+    echo "[+] ispeed()"
+    echo "    Calculating Internet connection speed."
+    echo "================================================================================"
+    echo
+
+    METHODS=("(cli) speedtest"
+             "(git) speedtest"
+             "(web) speedtest"
+             "(web) Fast.com"
+             "(web) speedof.me")
+
+    SELECTION=$(printf "%s\n" "${METHODS[@]}"                                 \
+                | command fzf)
+
+    if [[ -n "${SELECTION}" ]]; then
+        echo "[-] Using $SELECTION"
+
+        if [[ "${SELECTION}" == "(cli) speedtest" ]]; then
+            echo
+            command speedtest --secure
+
+        elif [[ "${SELECTION}" == "(git) speedtest" ]]; then
+            echo
+            command curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
+            | command python - --secure
+
+        elif [[ "${SELECTION}" == "(web) speedtest" ]]; then
+            ${BROWSER} "https://www.speedtest.net/"
+
+        elif [[ "${SELECTION}" == "(web) Fast.com" ]]; then
+            ${BROWSER} "https://fast.com"
+
+        elif [[ "${SELECTION}" == "(web) speedof.me" ]]; then
+            ${BROWSER} "https://speedof.me/"
+        fi
+    else
+        echo "[!] No method were selected."
+    fi
+  }
