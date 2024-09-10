@@ -184,7 +184,11 @@ pacman_reset() {
 # :========================= | NETWORK | ===================================: #
 
 
+[ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
 [ -f ${HOME}/.ael/scripts/ispeed ] && . ${HOME}/.ael/scripts/ispeed
+[ -f ${HOME}/.ael/scripts/systeminfo ] && . ${HOME}/.ael/scripts/systeminfo
+[ -f ${HOME}/.ael/scripts/deep-scan ] && . ${HOME}/.ael/scripts/deep-scan
+[ -f ${HOME}/.ael/scripts/ports ] && . ${HOME}/.ael/scripts/ports
 
 # :---------- [ pyserver ]
 # :[pyserver()]
@@ -200,6 +204,8 @@ pyserver() {
     python -m http.server
   }
 
+
+[ -f ${HOME}/.ael/scripts/tunnel-info ] && . ${HOME}/.ael/scripts/tunnel-info
 
 # :---------- [ viewips ]
 # :[viewips()]
@@ -588,18 +594,22 @@ lazygit() {
     done
     cd "$_cwd"
   }
-[ -f ${HOME}/.ael/scripts/py-cleaner ] && . ${HOME}/.ael/scripts/py-cleaner
-[ -f ${HOME}/.ael/scripts/deep-scan ] && . ${HOME}/.ael/scripts/deep-scan
-[ -f ${HOME}/.ael/scripts/delete ] && . ${HOME}/.ael/scripts/delete
-[ -f ${HOME}/.ael/scripts/directory-size ] && . ${HOME}/.ael/scripts/directory-size
+
+[ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
 [ -f ${HOME}/.ael/scripts/cheat ] && . ${HOME}/.ael/scripts/cheat
+[ -f ${HOME}/.ael/scripts/directory-size ] && . ${HOME}/.ael/scripts/directory-size
+[ -f ${HOME}/.ael/scripts/delete ] && . ${HOME}/.ael/scripts/delete
 [ -f ${HOME}/.ael/scripts/fixout ] && . ${HOME}/.ael/scripts/fixout
 [ -f ${HOME}/.ael/scripts/fuck ] && . ${HOME}/.ael/scripts/fuck
 [ -f ${HOME}/.ael/scripts/getmp3 ] && . ${HOME}/.ael/scripts/getmp3
 [ -f ${HOME}/.ael/scripts/history-cleaner ] && . ${HOME}/.ael/scripts/history-cleaner
 [ -f ${HOME}/.ael/scripts/processes ] && . ${HOME}/.ael/scripts/processes
 [ -f ${HOME}/.ael/scripts/ps-grep ] && . ${HOME}/.ael/scripts/ps-grep
-[ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
-[ -f ${HOME}/.ael/scripts/ports ] && . ${HOME}/.ael/scripts/ports
+[ -f ${HOME}/.ael/scripts/py-cleaner ] && . ${HOME}/.ael/scripts/py-cleaner
 [ -f ${HOME}/.ael/scripts/reset-time ] && . ${HOME}/.ael/scripts/reset-time
-[ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
+[ -f ${HOME}/.ael/scripts/search-content ] && . ${HOME}/.ael/scripts/search-content
+[ -f ${HOME}/.ael/scripts/shell-info ] && . ${HOME}/.ael/scripts/shell-info
+[ -f ${HOME}/.ael/scripts/show-utc ] && . ${HOME}/.ael/scripts/show-utc
+[ -f ${HOME}/.ael/scripts/tagalog ] && . ${HOME}/.ael/scripts/tagalog
+[ -f ${HOME}/.ael/scripts/termbin ] && . ${HOME}/.ael/scripts/termbin
+[ -f ${HOME}/.ael/scripts/translate ] && . ${HOME}/.ael/scripts/translate
