@@ -3,7 +3,7 @@
 # :[~/.ael/scripts/systeminfo]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-09-06 02:46:36 UTC
-# :updated       : 2024-09-06 02:46:41 UTC
+# :updated       : 2024-09-12 18:24:26 UTC
 # :description   : Display system info.
 
 systeminfo() {
@@ -14,15 +14,47 @@ systeminfo() {
     echo "================================================================================"
     echo
 
-    LOCAL_IP=$(ip a                                                           \
-               | grep 'inet '                                                 \
-               | grep -v '127.0.0.1'                                          \
-               | awk '{print $2}'                                             \
-               | cut -d/ -f1)
-    echo "[-] Local IP  : ${LOCAL_IP}"
+    # :---/ IP ADDRESSES /---:
 
-    PUBLIC_IP=$(host myip.opendns.com resolver1.opendns.com                   \
-                | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')
-    echo "[-] Public IP : ${PUBLIC_IP}"
+    echo "[-] IP ADDRESSES"
+    echo "--------------------------------------------------------------------------------"
+    echo
+    command ip -4 a                                                           \
+    | command awk '/inet/ {print "   ",$2" ("$NF")"}'
+
+    echo -e "    "$(host myip.opendns.com resolver1.opendns.com               \
+                | command grep --color=never -oP '(?<=myip.opendns.com has address ).*$')" (PUBLIC)"
+    echo
+
+    # :---/ DOCKER /---:
+
+    if [[ -n $(command -v docker) ]]; then
+        echo "[-] RUNNING DOCKERS"
+        echo "--------------------------------------------------------------------------------"
+        echo
+        if [[ -n $(command docker ps -q) ]]; then
+            command docker inspect $(command docker ps -q) | command jq -r '
+        .[] |
+        "\(.Name)
+    IP Address     : \(
+        .NetworkSettings.Ports | 
+        to_entries[] |
+        select(.key | contains("tcp")) |
+        .value[0] |
+        select(.HostPort != null) |
+        "\(.HostIp):\(.HostPort)")
+    Container ID   : \(.Id)
+    MAC Address    : \(.NetworkSettings.Networks[].MacAddress)
+    PID            : \(.State.Pid)
+    IP Address alt : \(.NetworkSettings.Networks[].IPAddress)\n"'
+        else
+            echo "[!] No docker container running..."
+        fi
+    else
+        echo "[-] RUNNING DOCKERS"
+        echo "--------------------------------------------------------------------------------"
+        echo
+        echo "[!] Docker not installed."
+    fi
 
   }

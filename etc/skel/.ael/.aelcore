@@ -162,80 +162,6 @@ reload() {
   fi
   }
 
-# :========================= | PACKAGE MANAGER | ===========================: #
-
-# :---------- [ pacman-reset ]
-# :[pacman-reset()]
-# :version       : 2023-10-20 10:46:22 UTC
-# :description   : Re-initialize pacman sync, mirrorlist and keyring.
-# :packages      : ['curl', 'sed', 'pacman']
-pacman_reset() {
-
-    message action "< pacman-reset() > from $(basename $BASH_SOURCE)"
-    message action "Resetting mirrolist and  ..."
-
-    sudo rm -rf /var/lib/pacman/sync
-    sudo curl -o /etc/pacman.d/mirrorlist 'https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4'
-    sudo sed -i -e 's/\#Server/Server/g' /etc/pacman.d/mirrorlist
-    sudo pacman -Syy --noconfirm archlinux-keyring
-  }
-  alias pacman-reset='pacman_reset'
-
-# :========================= | NETWORK | ===================================: #
-
-
-[ -f ${HOME}/.ael/scripts/ispeed ] && . ${HOME}/.ael/scripts/ispeed
-
-# :---------- [ pyserver ]
-# :[pyserver()]
-# :version       = 2023-08-04 02:14:47 UTC
-# :description   = Start a web server.
-# :packages      = ['python']
-
-pyserver() {
-
-    message action "< pyserver() > from $(basename $BASH_SOURCE)"
-    message action "Starting web server ..."
-
-    python -m http.server
-  }
-
-
-# :---------- [ viewips ]
-# :[viewips()]
-# :version       = 2023-10-20 09:44:24 UTC
-# :description   = Display IP addresses.
-# :packages      = ['coreutils', 'gawk', 'grep', 'procps-ng']
-
-viewips() {
-
-    message action "< viewips() > from $(basename $BASH_SOURCE)"
-    message action "Current IP address(es) ..."
-
-    while read -r _interfaces; do
-        spaces=30
-        _interface=$(cut -f 1 <<<"${_interfaces}")
-        _ip=$(cut -f 2 <<<"${_interfaces}")
-        printf "%s%$((spaces - ${#_interface}))s%s\n" "$_interface" "$_ip"
-    done <<< $(/usr/bin/ip address | grep "inet [1-9]" | awk '{ print $NF "\t" $2}')
-  }
-
-# :---------- [ whoisweb ]
-# :[whoisweb()]
-# :version       = 2023-10-20 09:45:58 UTC
-# :description   = Query WHOIS web if `whois` port 43 is blocked on your network.
-# :packages      = ['curl', 'jq', 'sed']
-
-whoisweb() {
-
-    message action "< whoisweb > from $(basename $BASH_SOURCE)"
-    message action "Querying whois on the web for ${1} ..."
-
-    curl --silent https://whoisjs.com/api/v1/${1}                             \
-    | jq ".raw"                                                               \
-    | sed "s/\\\r\\\n/\\n/g"
-  }
-
 # :========================= | HACKER | ====================================: #
 
 # :---------- [ WORDLISTS ]
@@ -381,59 +307,6 @@ docker_container_cleaner() {
   }
 
   alias docker-container-cleaner="docker_container_cleaner"
-
-# :---------- [ CYBERCHEF ]
-# :[cyberchef()]
-# :version       : 2023-08-01 10:42:34 UTC
-# :description   : Cyberchef: A simple, intuitive web app for analysing and decoding data without having to deal with complex tools or programming languages. CyberChef encourages both technical and non-technical people to explore data formats, encryption and compression.
-
-cyberchef() {
-
-    docker666 start
-
-    if [[ "${1}" == 'stop' ]]; then
-        docker stop $(docker ps | grep "mpepping/cyberchef"  | cut -d ' ' -f1)
-        docker666 stop
-    else
-        if docker ps --all | grep -q "mpepping/cyberchef"; then
-            $BROWSER "http://localhost:8888"
-        else
-            message action "Starting Cyberchef container on AEL..."
-            docker run --rm -d -p 8888:8000 mpepping/cyberchef                \
-            && $BROWSER "http://localhost:8888"
-        fi
-    fi
-  }
-
-# :---------- [ DAMN VULNERABLE WEBAPP (DVWA) ]
-# :[dvwa()]
-# :version       : 2023-08-01 10:48:57 UTC
-# :description   : damn vulnerable webapp (DVWA).
-
-dvwa() {
-
-    docker666 start
-
-    if [[ "${1}" == 'stop' ]]; then
-        docker stop $(docker ps | grep DVWA | cut -d ' ' -f1)
-        docker666 stop
-    else
-        message action "Starting Damn Vulnerable Webapp container on AEL..."
-        #... If container doesn't exist, create one
-        if [[ -z $(docker ps -a | awk '/DVWA/ { print $NF }') ]]; then
-            docker run --name DVWA -it -p 81:80 vulnerables/web-dvwa &
-            sleep 10
-            $BROWSER "http://localhost:81/login.php"
-        else
-            if [[ -z "$(docker ps | grep DVWA)" ]]; then
-                docker start DVWA
-                $BROWSER "http://localhost:81/login.php"
-            else
-                $BROWSER "http://localhost:81/login.php"
-            fi
-        fi
-    fi
-  }
 
 # :---------- [ OWASP juice shop ]
 # :[juice-shop()]
@@ -588,18 +461,32 @@ lazygit() {
     done
     cd "$_cwd"
   }
-[ -f ${HOME}/.ael/scripts/py-cleaner ] && . ${HOME}/.ael/scripts/py-cleaner
+[ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
+[ -f ${HOME}/.ael/scripts/cheat ] && . ${HOME}/.ael/scripts/cheat
+[ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
 [ -f ${HOME}/.ael/scripts/deep-scan ] && . ${HOME}/.ael/scripts/deep-scan
 [ -f ${HOME}/.ael/scripts/delete ] && . ${HOME}/.ael/scripts/delete
 [ -f ${HOME}/.ael/scripts/directory-size ] && . ${HOME}/.ael/scripts/directory-size
-[ -f ${HOME}/.ael/scripts/cheat ] && . ${HOME}/.ael/scripts/cheat
 [ -f ${HOME}/.ael/scripts/fixout ] && . ${HOME}/.ael/scripts/fixout
 [ -f ${HOME}/.ael/scripts/fuck ] && . ${HOME}/.ael/scripts/fuck
 [ -f ${HOME}/.ael/scripts/getmp3 ] && . ${HOME}/.ael/scripts/getmp3
 [ -f ${HOME}/.ael/scripts/history-cleaner ] && . ${HOME}/.ael/scripts/history-cleaner
+[ -f ${HOME}/.ael/scripts/ispeed ] && . ${HOME}/.ael/scripts/ispeed
+[ -f ${HOME}/.ael/scripts/ports ] && . ${HOME}/.ael/scripts/ports
 [ -f ${HOME}/.ael/scripts/processes ] && . ${HOME}/.ael/scripts/processes
 [ -f ${HOME}/.ael/scripts/ps-grep ] && . ${HOME}/.ael/scripts/ps-grep
-[ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
-[ -f ${HOME}/.ael/scripts/ports ] && . ${HOME}/.ael/scripts/ports
+[ -f ${HOME}/.ael/scripts/py-cleaner ] && . ${HOME}/.ael/scripts/py-cleaner
 [ -f ${HOME}/.ael/scripts/reset-time ] && . ${HOME}/.ael/scripts/reset-time
-[ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
+[ -f ${HOME}/.ael/scripts/search-content ] && . ${HOME}/.ael/scripts/search-content
+[ -f ${HOME}/.ael/scripts/shell-info ] && . ${HOME}/.ael/scripts/shell-info
+[ -f ${HOME}/.ael/scripts/show-utc ] && . ${HOME}/.ael/scripts/show-utc
+[ -f ${HOME}/.ael/scripts/systeminfo ] && . ${HOME}/.ael/scripts/systeminfo
+[ -f ${HOME}/.ael/scripts/tagalog ] && . ${HOME}/.ael/scripts/tagalog
+[ -f ${HOME}/.ael/scripts/termbin ] && . ${HOME}/.ael/scripts/termbin
+[ -f ${HOME}/.ael/scripts/translate ] && . ${HOME}/.ael/scripts/translate
+[ -f ${HOME}/.ael/scripts/tunnel-info ] && . ${HOME}/.ael/scripts/tunnel-info
+[ -f ${HOME}/.ael/scripts/pacman-reset ] && . ${HOME}/.ael/scripts/pacman-reset
+[ -f ${HOME}/.ael/scripts/py-server ] && . ${HOME}/.ael/scripts/py-server
+[ -f ${HOME}/.ael/scripts/whoisweb ] && . ${HOME}/.ael/scripts/whoisweb
+[ -f ${HOME}/.ael/scripts/cyberchef ] && . ${HOME}/.ael/scripts/cyberchef
+[ -f ${HOME}/.ael/scripts/dvwa ] && . ${HOME}/.ael/scripts/dvwa

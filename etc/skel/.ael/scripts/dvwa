@@ -1,0 +1,55 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/scripts/dvwa]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-01 19:55:12 UTC
+# :updated       : 2024-09-12 22:06:29 UTC
+# :description   : Run Damn Vulnerable Webapp (DVWA).
+
+dvwa() {
+
+    if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
+        sudo systemctl start docker.service
+        echo "[-] Starting docker.service ..."
+    fi
+
+    if [[ "${1}" == 'stop' ]]; then
+        echo "================================================================================"
+        echo "[+] dvwa()"
+        echo "    Stoping DVWA Docker container."
+        echo "================================================================================"
+        echo
+
+        command docker stop $(command docker ps \
+                              | command grep DVWA \
+                              | command cut -d ' ' -f1)
+        
+        echo "[!] Done."
+        sleep 1
+    else
+        echo "================================================================================"
+        echo "[+] dvwa()"
+        echo "    Starting DVWA Docker container."
+        echo "================================================================================"
+        echo
+
+        echo "[!] Use <dvwa stop> when you are done."
+        sleep 2
+
+        if command docker ps --all | command grep -q "DVWA"; then
+            command docker start DVWA
+            while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
+                    sleep 1
+            done
+            sleep 5
+            $BROWSER "http://localhost:81"
+        else
+            command docker run --name DVWA -it -p 81:80 vulnerables/web-dvwa &
+            while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
+                    sleep 1
+            done
+            sleep 5
+            $BROWSER "http://localhost:81"
+        fi
+    fi
+  }
