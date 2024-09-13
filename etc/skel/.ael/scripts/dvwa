@@ -39,14 +39,23 @@ dvwa() {
         if command docker ps --all | command grep -q "DVWA"; then
             command docker start DVWA
             while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
-                    sleep 1
+                sleep 1
             done
             sleep 5
             $BROWSER "http://localhost:81"
         else
             command docker run --name DVWA -it -p 81:80 vulnerables/web-dvwa &
-            while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
+
+            FOUND=false
+            while FOUND; do
+                if [[ -z $(command docker ps --all 2>/dev/null | command grep -q "DVWA") ]]; then
                     sleep 1
+                else
+                    FOUND=true
+                fi
+            done
+            while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
+                sleep 1
             done
             sleep 5
             $BROWSER "http://localhost:81"
