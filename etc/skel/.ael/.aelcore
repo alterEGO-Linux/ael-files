@@ -142,14 +142,14 @@ prompt_command() {
 # :$ `ln -s </some/directory/path> ${HOME}/.ael/.goto/@<gotolink>` in  directory.
 # :Usage: `goto @<gotolink>`
 
-if [ -d "${HOME}/.ael/.goto/" ]; then
-  export CDPATH=".:${HOME}/.ael/.goto:/"
-  alias goto="cd -P"
-  _goto() {
-    local IFS=$'\n'
-    COMPREPLY=( $(compgen -W "$(/bin/ls ~/.ael/.goto)" -- ${COMP_WORDS[COMP_CWORD]}) )
-  } && complete -F _goto goto
-fi
+# if [ -d "${HOME}/.ael/.goto/" ]; then
+  # export CDPATH=".:${HOME}/.ael/.goto:/"
+  # alias goto="cd -P"
+  # _goto() {
+    # local IFS=$'\n'
+    # COMPREPLY=( $(compgen -W "$(/bin/ls ~/.ael/.goto)" -- ${COMP_WORDS[COMP_CWORD]}) )
+  # } && complete -F _goto goto
+# fi
 
 # :---------- [ RELOAD ]
 reload() {
