@@ -1,22 +1,22 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/cheat]
+# :[~/.ael/shellutils/cheat]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-01 19:57:57 UTC
-# :updated       : 2024-09-05 11:03:59 UTC
+# :updated       : 2024-09-14 16:26:25 UTC
 # :description   : Query https://cheat.sh.
 
 cheat() {
 
     # :/ref/ https://github.com/chubin/cheat.sh
 
-    cheat="$(command curl -s cheat.sh/:list                                   \
-            | command fzf --layout="reverse"                                  \
-                          --prompt='::'                                       \
-                          --preview-window=up:80%                             \
-                          --preview 'cat <(curl -s cheat.sh/{})')"
+    cheat="$(command curl -s cheat.sh/:list \
+            | command fzf --layout="reverse" \
+                          --prompt='::' \
+                          --preview-window=up:80% \
+                          --preview 'command cat <(command curl -s cheat.sh/{})')"
 
     if [[ -n ${cheat} ]]; then
         command curl -s cheat.sh/"${cheat}" | command less -R
     fi
-  }
+    }
