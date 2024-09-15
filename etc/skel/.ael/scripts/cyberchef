@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/cyberchef]
+# :[~/.ael/shellutils/cyberchef]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-01 19:55:12 UTC
-# :updated       : 2024-09-12 19:54:45 UTC
+# :updated       : 2024-09-15 12:47:08 UTC
 # :description   : Run CyberChef as a Docker container.
 
 # :/Cyberchef is a simple, intuitive web app for analysing and decoding data
@@ -49,4 +49,4 @@ cyberchef() {
             && $BROWSER "http://localhost:8888"
         fi
     fi
-  }
+    }
