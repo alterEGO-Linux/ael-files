@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/deep-nmap]
+# :[~/.ael/shellutils/deep-nmap]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
 # :updated       : 2024-08-29 11:13:13 UTC

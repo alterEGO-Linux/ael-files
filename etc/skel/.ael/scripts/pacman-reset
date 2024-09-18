@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/pacman-reset]
+# :[~/.ael/shellutils/pacman-reset]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-10-20 10:46:22 UTC
-# :updated       : 2024-09-10 12:14:01 UTC
+# :updated       : 2024-09-16 12:00:51 UTC
 # :description   : Re-initialize pacman sync, mirrorlist and keyring.
 
 pacman-reset() {

@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/ispeed]
+# :[~/.ael/shellutils/ispeed]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-05-16 14:54:18 UTC
-# :updated       : 2024-09-06 12:14:41 UTC
+# :updated       : 2024-09-16 11:44:22 UTC
 # :description   : Internet connection speed meter.
 
 ispeed() {
@@ -20,7 +20,7 @@ ispeed() {
              "(web) Fast.com"
              "(web) speedof.me")
 
-    SELECTION=$(printf "%s\n" "${METHODS[@]}"                                 \
+    SELECTION=$(command printf "%s\n" "${METHODS[@]}" \
                 | command fzf)
 
     if [[ -n "${SELECTION}" ]]; then
@@ -47,4 +47,4 @@ ispeed() {
     else
         echo "[!] No method were selected."
     fi
-  }
+    }

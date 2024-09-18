@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/py-server]
+# :[~/.ael/shellutils/py-server]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-09-10 16:58:34 UTC
-# :updated       : 2024-09-10 16:58:38 UTC
+# :updated       : 2024-09-16 12:25:52 UTC
 # :description   : Create a Python HTTP server.
 
 py-server() {
@@ -13,7 +13,7 @@ py-server() {
     CONTINUE=true
     while $CONTINUE; do
       for p in "${ports[@]}"; do
-        if [[ -z $(sudo netstat -tulanp | grep ":$p") ]]; then
+        if [[ -z $(sudo netstat -tulanp | command grep ":$p") ]]; then
           port="$p"
           CONTINUE=false
           break
@@ -27,5 +27,5 @@ py-server() {
     echo "================================================================================"
     echo
 
-    python -m http.server ${port}
+    command python -m http.server ${port}
   }

@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/show-utc]
+# :[~/.ael/shellutils/show-utc]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 01:36:14 UTC
-# :updated       : 2024-09-01 02:57:25 UTC
+# :updated       : 2024-09-16 15:48:01 UTC
 # :description   : Show UTC time.
 
 show-utc() {
@@ -14,5 +14,5 @@ show-utc() {
     echo "================================================================================"
     echo
 
-    echo  $(date --utc "+%F %H:%M:%S %Z")
-  }
+    echo $(command date --utc "+%F %H:%M:%S %Z")
+    }

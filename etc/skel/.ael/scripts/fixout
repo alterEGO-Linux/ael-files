@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/fixout]
+# :[~/.ael/shellutils/fixout]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 00:07:03 UTC
-# :updated       : 2024-09-01 03:38:05 UTC
+# :updated       : 2024-09-16 10:39:03 UTC
 # :description   : Fix bash history and exit.
 
-# :Don't try to put this code in a shell script, it won't work.
-# :`history` don't play well in scripts.
+# :/Don't try to put this code in a shell script, it won't work.
+# : `history` don't play well in scripts.
 
 fixout() {
 
@@ -19,14 +19,14 @@ fixout() {
 
     sleep 2
 
-    history -n && history                                                     \
-    | sort -k2 -k1nr                                                          \
-    | uniq -f1                                                                \
-    | sort -n                                                                 \
-    | cut -c8- > ~/.tmp$$                                                     \
-    && history -c                                                             \
-    && history -r ~/.tmp$$                                                    \
-    && history -w                                                             \
-    && rm ~/.tmp$$                                                            \
+    history -n && history \
+    | command sort -k2 -k1nr \
+    | command uniq -f1 \
+    | command sort -n \
+    | command cut -c8- > ~/.tmp$$ \
+    && history -c \
+    && history -r ~/.tmp$$ \
+    && history -w \
+    && command rm ~/.tmp$$ \
     && exit
   }

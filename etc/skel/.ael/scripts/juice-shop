@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/dvwa]
+# :[~/.ael/shellutils/juice-shop]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-01 19:55:12 UTC
 # :updated       : 2024-09-16 10:32:28 UTC
-# :description   : Run Damn Vulnerable Webapp (DVWA).
+# :description   : Run OWASP Juice Shop container.
 
-dvwa() {
+juice-shop() {
 
     if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
         sudo systemctl start docker.service
@@ -15,49 +15,49 @@ dvwa() {
 
     if [[ "${1}" == 'stop' ]]; then
         echo "================================================================================"
-        echo "[+] dvwa()"
-        echo "    Stoping DVWA Docker container."
+        echo "[+] juice-shop()"
+        echo "    Stoping OWASP Juice Shop container."
         echo "================================================================================"
         echo
 
         command docker stop $(command docker ps \
-                              | command grep DVWA \
+                              | command grep JUICE_SHOP \
                               | command cut -d ' ' -f1)
         
         echo "[!] Done."
         sleep 1
     else
         echo "================================================================================"
-        echo "[+] dvwa()"
-        echo "    Starting DVWA Docker container."
+        echo "[+] juice-shop()"
+        echo "    Starting OWASP Juice Shop container."
         echo "================================================================================"
         echo
 
-        echo "[!] Use <dvwa stop> when you are done."
+        echo "[!] Use <juice-shop stop> when you are done."
         sleep 2
 
-        if command docker ps --all | command grep -q "DVWA"; then
-            command docker start DVWA
-            while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
+        if command docker ps --all | command grep -q "JUICE_SHOP"; then
+            command docker start JUICE_SHOP
+            while [ "$(docker inspect -f '{{.State.Running}}' JUICE_SHOP)" != "true" ]; do
                 sleep 1
             done
             sleep 5
-            $BROWSER "http://localhost:81"
+            $BROWSER "http://localhost:3000"
         else
-            command docker run --name DVWA -it -p 81:80 vulnerables/web-dvwa &
+            command docker run --name JUICE_SHOP -p 3000:3000 bkimminich/juice-shop &
 
             while true; do
-                if command docker ps --all | command grep -q "DVWA" 2>/dev/null; then
+                if command docker ps --all | command grep -q "JUICE_SHOP" 2>/dev/null; then
                     break
                 else
                     sleep 1
                 fi
             done
-            while [ "$(command docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
+            while [ "$(command docker inspect -f '{{.State.Running}}' JUICE_SHOP)" != "true" ]; do
                 sleep 1
             done
             sleep 5
-            $BROWSER "http://localhost:81"
+            $BROWSER "http://localhost:3000"
         fi
     fi
     }

@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/translate]
+# :[~/.ael/shellutils/translate]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 00:56:31 UTC
-# :updated       : 2024-08-31 01:05:32 UTC
+# :updated       : 2024-09-16 17:47:17 UTC
 # :description   : Translate using Google translate.
 
 translate() {
@@ -16,6 +16,6 @@ translate() {
     echo
 
     echo "Original: ${1}"
-    TRANSLATION=$(wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" | awk -F '"' '{print $2}' | head -n 1)
+    TRANSLATION=$(command wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" | command awk -F '"' '{print $2}' | command head -n 1)
     echo "Translation (${2}): "${TRANSLATION}""
   }

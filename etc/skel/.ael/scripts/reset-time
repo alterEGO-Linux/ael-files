@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/reset-time]
+# :[~/.ael/shellutils/reset-time]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 01:02:11 UTC
-# :updated       : 2024-08-30 13:11:38 UTC
+# :updated       : 2024-09-16 12:30:59 UTC
 # :description   : Reset system time. Usefull when Windows boot screws time.
 
 reset-time() {
@@ -17,5 +17,5 @@ reset-time() {
     echo
 
     sudo timedatectl set-ntp true && sudo hwclock --systohc --utc
-    echo  $(date "+%F %H:%M:%S %Z")
+    echo $(command date "+%F %H:%M:%S %Z")
   }

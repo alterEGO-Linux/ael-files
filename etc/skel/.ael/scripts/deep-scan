@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/deep-scan]
+# :[~/.ael/shellutils/deep-scan]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-10-20 09:10:13 UTC
 # :updated       : 2024-08-29 16:20:32 UTC

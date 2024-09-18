@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/history-cleaner]
+# :[~/.ael/shellutils/history-cleaner]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 00:44:35 UTC
-# :updated       : 2024-09-04 08:44:54 UTC
+# :updated       : 2024-09-16 11:19:21 UTC
 # :description   : Cleans bash history.
 
 history-cleaner() {
@@ -19,7 +19,7 @@ history-cleaner() {
 
     if [[ ${@} == '' ]]; then
         # :Uses `fzf` to sort through the bash history and let you delete an entry.
-        choices=$(history | fzf --multi --tac)
+        choices=$(history | command fzf --multi --tac)
 
         if [[ -z "${choices}" ]]; then
             echo "[!] Nothing was selected."
@@ -30,7 +30,7 @@ history-cleaner() {
             done
             read -p "[?] Are you sure your want to delete these? [y/N] " INPUT
                 if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                    to_delete=($(awk '{ print $1 }' <<< "${choices}" | sort -nr))
+                    to_delete=($(command awk '{ print $1 }' <<< "${choices}" | command sort -nr))
                     for c in "${to_delete[@]}"; do
                         history -d ${c}
                     done
@@ -51,32 +51,32 @@ history-cleaner() {
         ${editor} ${dumpfile}
         read -p "[?] Are you sure your want to commit the changes? [y/N] " INPUT
             if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                sort -n ${dumpfile} > ${tempfile}
-                sed -E -i 's/^[[:space:]]+?[0-9]+[[:space:]]+//' ${tempfile}
-                history -c                                                      \
-                && history -r ${tempfile}                                       \
+                command sort -n ${dumpfile} > ${tempfile}
+                command sed -E -i 's/^[[:space:]]+?[0-9]+[[:space:]]+//' ${tempfile}
+                history -c \
+                && history -r ${tempfile} \
                 && history -w
-                rm ${dumpfile}
-                rm ${tempfile}
+                command rm ${dumpfile}
+                command rm ${tempfile}
             fi
 
     else
         history -a
-        cp ${HOME}/.bash_history ${dumpfile}
-        if [[ -z $(sed -E -n "/^${@}$/p" ${dumpfile}) ]]; then
+        command cp ${HOME}/.bash_history ${dumpfile}
+        if [[ -z $(command sed -E -n "/^${@}$/p" ${dumpfile}) ]]; then
             echo "[!] Nothing was found."
         else
             echo "[-] Candidate(s) for deletion:"
-            sed -E -n "/^${@}$/p" ${dumpfile}
+            command sed -E -n "/^${@}$/p" ${dumpfile}
             echo
 
             read -p "[?] Are you sure your want to commit the changes? [y/N] " INPUT
                 if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                    sed -E -i "/^${@}$/d" ${dumpfile}
-                    history -c                                                \
-                    && history -r ${dumpfile}                                 \
+                    command sed -E -i "/^${@}$/d" ${dumpfile}
+                    history -c \
+                    && history -r ${dumpfile} \
                     && history -w
-                    rm ${dumpfile}
+                    command rm ${dumpfile}
                 fi
             
         fi

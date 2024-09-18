@@ -1,0 +1,65 @@
+# :----------------------------------------------------------------------- INFO
+# :[/usr/share/ael-dockerfiles/Dockerfile-kali]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-01-22 16:58:01 UTC
+# :updated       : 2024-09-16 20:25:23 UTC
+# :description   : Kali Linux Docker image on AEL.
+
+# FROM kalilinux/kali-rolling:latest
+
+# :Install kali packages
+# ENV DEBIAN_FRONTEND noninteractive
+# RUN apt-get update
+# RUN apt-get -y upgrade
+# RUN apt-get -y install kali-linux-default kali-desktop-xfce xserver-xephyr dbus-x11
+# RUN apt-get clean
+
+# ENV USER root
+# ENV DISPLAY ${DISPLAY:-:0.0}
+# WORKDIR /root
+
+# :Fixing startx
+# RUN echo "function startx() {" >> /root/.bashrc
+# RUN echo "    Xephyr -br -ac -noreset -screen 1280x720 :2 &" >> /root/.bashrc
+# RUN echo "    service dbus start" >> /root/.bashrc
+# RUN echo "    DISPLAY=:2 startxfce4" >> /root/.bashrc
+# RUN echo "    kill $(pgrep Xephyr)" >> /root/.bashrc
+# RUN echo "}" >> /root/.bashrc
+
+# :ENTRYPOINT
+# ENTRYPOINT ["/bin/bash"]
+
+FROM kalilinux/kali-rolling:latest
+
+# :Install kali packages
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get -y install kali-linux-default kali-desktop-xfce xserver-xephyr dbus-x11
+RUN apt-get clean
+
+ENV USER root
+ENV DISPLAY ${DISPLAY:-:0.0}
+WORKDIR /root
+
+# :Fixing startx
+RUN echo "function startx() {" >> /root/.bashrc
+RUN echo "    Xephyr -br -ac -noreset -screen 1280x720 :2 &" >> /root/.bashrc
+RUN echo "    service dbus start" >> /root/.bashrc
+RUN echo "    DISPLAY=:2 startxfce4" >> /root/.bashrc
+RUN echo "    wait" >> /root/.bashrc
+RUN echo "    kill $(pgrep Xephyr)" >> /root/.bashrc  # Ensure Xephyr is killed after session ends
+RUN echo "}" >> /root/.bashrc
+
+# :Create a logout script to kill Xephyr
+RUN echo '#!/bin/bash' > /root/.logout_script.sh
+RUN echo 'kill $(pgrep Xephyr)' >> /root/.logout_script.sh
+RUN chmod +x /root/.logout_script.sh
+
+# :Add the logout script to Xfce4 session logout hook
+RUN mkdir -p /etc/xdg/xfce4/xinitrc.d/
+RUN echo '#!/bin/bash' > /etc/xdg/xfce4/xinitrc.d/99-logout.sh
+RUN echo '/root/.logout_script.sh' >> /etc/xdg/xfce4/xinitrc.d/99-logout.sh
+RUN chmod +x /etc/xdg/xfce4/xinitrc.d/99-logout.sh
+
+# :ENTRYPOINT
+ENTRYPOINT ["/bin/bash"]

@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/shell-info]
+# :[~/.ael/shellutils/shell-info]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 01:18:13 UTC
-# :updated       : 2024-09-01 03:05:22 UTC
+# :updated       : 2024-09-16 15:45:43 UTC
 # :description   : Show shell info.
 
 shell-info() {
@@ -27,4 +27,4 @@ shell-info() {
     shopt -s extdebug
     type -a ${@}
     declare -F ${@}
-  }
+    }

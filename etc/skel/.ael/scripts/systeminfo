@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/systeminfo]
+# :[~/.ael/shellutils/systeminfo]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-09-06 02:46:36 UTC
-# :updated       : 2024-09-12 18:24:26 UTC
+# :updated       : 2024-09-16 15:50:58 UTC
 # :description   : Display system info.
 
 systeminfo() {
@@ -19,10 +19,10 @@ systeminfo() {
     echo "[-] IP ADDRESSES"
     echo "--------------------------------------------------------------------------------"
     echo
-    command ip -4 a                                                           \
+    command ip -4 a \
     | command awk '/inet/ {print "   ",$2" ("$NF")"}'
 
-    echo -e "    "$(host myip.opendns.com resolver1.opendns.com               \
+    echo -e "    "$(command host myip.opendns.com resolver1.opendns.com \
                 | command grep --color=never -oP '(?<=myip.opendns.com has address ).*$')" (PUBLIC)"
     echo
 
@@ -56,5 +56,4 @@ systeminfo() {
         echo
         echo "[!] Docker not installed."
     fi
-
-  }
+    }

@@ -308,38 +308,6 @@ docker_container_cleaner() {
 
   alias docker-container-cleaner="docker_container_cleaner"
 
-# :---------- [ OWASP juice shop ]
-# :[juice-shop()]
-# :version       : 2023-08-01 10:50:28 UTC
-# :description   : OWASP juice shop.
-
-juice_shop() {
-
-    docker666 start
-
-    if [[ "${1}" == 'stop' ]]; then
-        docker stop $(docker ps | grep juice_shop | cut -d ' ' -f1)
-        docker666 stop
-    else
-        message action "Starting OWASP Juice Shop container on AEL..."
-        #... If container doesn't exist, create one
-        if [[ -z $(docker ps -a | awk '/juice_shop/ { print $NF }') ]]; then
-            docker run --name juice_shop -p 3000:3000 bkimminich/juice-shop &
-            sleep 10
-            $BROWSER "http://localhost:3000"
-        else
-            if [[ -z "$(docker ps | grep juice_shop)" ]]; then
-                docker start juice_shop
-                $BROWSER "http://localhost:3000"
-            else
-                $BROWSER "http://localhost:3000"
-            fi
-        fi
-    fi
-}
-
-  alias juice-shop="juice_shop"
-
 # :---------- [ KALI LINUX ]
 # :[kali()]
 # :version       : 2023-08-01 10:51:18 UTC
@@ -349,33 +317,33 @@ juice_shop() {
 # :completely exit. <= Need to find a solution.
 # :'''
 
-kali() {
+# kali() {
 
-    docker666 start
-    xhost +
+    # docker666 start
+    # xhost +
 
-    message action "Starting Kali Linux container on AEL..."
+    # message action "Starting Kali Linux container on AEL..."
 
     # :TODO: If image doesn't exist, create from /usr/local/share/dockerfiles/Dockerfile-kali
     # :docker build -f /usr/local/share/dockerfiles/Dockerfile-kali --tag kali_on_ael .
 
     # :If container doesn't exist, create one
-    if [[ -z $(docker ps -a | awk '/kali_on_ael/ { print $NF }') ]]; then
-        docker run --name kali_on_ael                                         \
-                   --net="host"                                               \
-                   --privileged -it                                           \
-                   -v /tmp/.X11-unix:/tmp/.X11-unix kali_on_ael
-    else
-        if [[ -z "$(docker ps | grep kali_on_ael)" ]]; then
-            docker start -i kali_on_ael
-        else
-            message alert "Kali_on_ael is already running..."
-        fi
-    fi
+    # if [[ -z $(docker ps -a | awk '/kali_on_ael/ { print $NF }') ]]; then
+        # docker run --name kali_on_ael                                         \
+                   # --net="host"                                               \
+                   # --privileged -it                                           \
+                   # -v /tmp/.X11-unix:/tmp/.X11-unix kali_on_ael
+    # else
+        # if [[ -z "$(docker ps | grep kali_on_ael)" ]]; then
+            # docker start -i kali_on_ael
+        # else
+            # message alert "Kali_on_ael is already running..."
+        # fi
+    # fi
 
-    xhost -
-    docker666 stop
-  }
+    # xhost -
+    # docker666 stop
+  # }
 
 # :========================= | GIT | =======================================: #
 
@@ -490,3 +458,5 @@ lazygit() {
 [ -f ${HOME}/.ael/scripts/whoisweb ] && . ${HOME}/.ael/scripts/whoisweb
 [ -f ${HOME}/.ael/scripts/cyberchef ] && . ${HOME}/.ael/scripts/cyberchef
 [ -f ${HOME}/.ael/scripts/dvwa ] && . ${HOME}/.ael/scripts/dvwa
+[ -f ${HOME}/.ael/scripts/goto ] && . ${HOME}/.ael/scripts/goto
+[ -f ${HOME}/.ael/scripts/juice-shop ] && . ${HOME}/.ael/scripts/juice-shop

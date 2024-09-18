@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/getmp3]
+# :[~/.ael/shellutils/getmp3]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-02 00:36:18 UTC
-# :updated       : 2024-09-04 08:53:52 UTC
+# :updated       : 2024-09-16 10:48:11 UTC
 # :description   : Extract video audio to .mp3.
 
 getmp3() {
@@ -16,6 +16,6 @@ getmp3() {
     echo "================================================================================"
     echo
 
-    yt-dlp -x --audio-format mp3 --prefer-ffmpeg "${1}"
+    command yt-dlp -x --audio-format mp3 --prefer-ffmpeg "${1}"
 
   }

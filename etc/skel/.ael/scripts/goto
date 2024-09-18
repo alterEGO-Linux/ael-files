@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/goto]
+# :[~/.ael/shellutils/goto]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-09-13 11:00:51 UTC
-# :updated       : 2024-09-13 12:58:37 UTC
+# :updated       : 2024-09-16 10:52:41 UTC
 # :description   : Simple directory bookmarks system.
 
 GOTODIR="${HOME}/.ael/.goto/"
@@ -28,6 +28,7 @@ goto() {
         echo "  bookmark: Jump to the bookmark directory."
         echo "  --add PATH BOOKMARK: Add a new bookmark for the specified path."
         echo "  --help: Display this help message."
+        echo "  --list: List bookmarks."
         return 0
     fi
 
@@ -38,15 +39,15 @@ goto() {
         echo "    List of bookmarks."
         echo "================================================================================"
         echo
-        find "$GOTODIR" -maxdepth 1 -type l -exec sh -c '
+        command find "$GOTODIR" -maxdepth 1 -type l -exec sh -c '
         for link; do
-            target=$(readlink -f "$link")
-            printf "%-15s -> %s\n" "$(basename "$link")" "$target"
+            target=$(command readlink -f "$link")
+            command printf "%-15s -> %s\n" "$(command basename "$link")" "$target"
         done' sh {} +
     # If --add is passed, handle adding a new bookmark
     elif [[ "$1" == "--add" ]]; then
         if [[ -n "$2" && -n "$3" ]]; then
-            ln -s "$(realpath "$2")" "$GOTODIR/$3"
+            command ln -s "$(command realpath "$2")" "$GOTODIR/$3"
             echo "================================================================================"
             echo "[+] goto()"
             echo "    Adding Bookmark"

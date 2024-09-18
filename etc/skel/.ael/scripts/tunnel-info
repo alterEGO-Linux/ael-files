@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
-# :[~/.ael/scripts/tunnel-info]
+# :[~/.ael/shellutils/tunnel-info]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-10-20 09:40:59 UTC
-# :updated       : 2024-08-29 17:24:23 UTC
+# :updated       : 2024-09-16 17:51:09 UTC
 # :description   : Displays tunnels/vpn info.
 
 tunnel-info() {
@@ -14,33 +14,33 @@ tunnel-info() {
     echo "================================================================================"
     echo
 
-    INTERFACE=$(ip a | grep -E 'inet [1-9].*global.*(tun)')
+    INTERFACE=$(command ip a | command grep -E 'inet [1-9].*global.*(tun)')
 
     if [[ -z "${INTERFACE}" ]]; then
         echo "[!] NO TUNNELS, NOR VPN FOUND"
     else
-        printf "%b\n" "INT\tIP ADDR   \tPID\tNAME"
+        command printf "%b\n" "INT\tIP ADDR   \tPID\tNAME"
         echo "================================================================================"
 
         while read -r INTERFACE; do
 
-          IP=$(grep -oP '(?<=inet )(.*)(?=/)' <<<"${INTERFACE}")
-          TUN=$(awk '{ print $NF }' <<<"${INTERFACE}")
+          IP=$(command grep -oP '(?<=inet )(.*)(?=/)' <<<"${INTERFACE}")
+          TUN=$(command awk '{ print $NF }' <<<"${INTERFACE}")
           PS=$(sudo grep -r $TUN /proc/*/fdinfo 2>/dev/null | cut -d / -f 3)
-          CMD="$(ps -o cmd --no-headers ${PS})"
+          CMD="$(command ps -o cmd --no-headers ${PS})"
 
-          if [[ $(awk '/openvpn/ && /server/' <<< ${CMD}) ]]; then
+          if [[ $(command awk '/openvpn/ && /server/' <<< ${CMD}) ]]; then
             TUNNAME="OpenVPNServer"
-          elif [[ $(awk '/openvpn/ && /tryhackme/' <<< "${CMD}") ]]; then
+          elif [[ $(command awk '/openvpn/ && /tryhackme/' <<< "${CMD}") ]]; then
             TUNNAME="TryHackMe"
-          elif [[ $(awk '/nordvpn/' <<< "${CMD}") ]]; then
+          elif [[ $(command awk '/nordvpn/' <<< "${CMD}") ]]; then
             TUNNAME="NordVPN"
           else
             TUNNAME="UNDEFINED"
           fi
 
-          printf "%b\n" "${TUN}\t${IP}\t${PS}\t${TUNNAME}"
+          command printf "%b\n" "${TUN}\t${IP}\t${PS}\t${TUNNAME}"
 
         done <<< "${INTERFACE}"
     fi
-  }
+    }
