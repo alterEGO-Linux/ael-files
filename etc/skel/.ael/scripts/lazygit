@@ -28,67 +28,19 @@ lazygit() {
         echo "               \"\${HOME}/repo/repo3\""
         echo "               \"\${HOME}/repo/repo4\""
         echo "              )"
-    fi
-
-
-    _cwd="$(pwd)"
-    cd ${HOME}
-    for repo in "${lazygit_repositories[@]}"; do
-        message action "Updating $repo"
-        cd "$repo"
-        git pull                                                              \
-        && git add .                                                          \
-        && git commit -m "Updated using lazygit..."                           \
-        && git push
-        cd ${HOME}
-    done
-    cd "$_cwd"
-  }
-
-kali() {
-
-    if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
-        sudo systemctl start docker.service
-        echo "[-] Starting docker.service ..."
-    fi
-
-    if [[ "${1}" == 'stop' ]]; then
-        echo "================================================================================"
-        echo "[+] kali()"
-        echo "    Stoping Kali Linux container."
-        echo "================================================================================"
-        echo
-
-        command docker stop $(command docker ps \
-                              | command grep KALI \
-                              | command cut -d ' ' -f1)
-        
-        xhost -
-        echo "[!] Done."
-        sleep 1
     else
-        echo "================================================================================"
-        echo "[+] kali()"
-        echo "    Starting Kali Linux container."
-        echo "================================================================================"
-        echo
-
-        echo "[!] Use <kali stop> when you are done."
-        sleep 2
-
-        xhost +
-        if command docker ps --all | command grep -q "KALI"; then
-            command docker start -i KALI
-        else
-            command docker build -f /usr/local/share/ael-dockerfiles/Dockerfile-kali --tag kali ~/build/.
-            command docker run --name KALI \
-                               --net="host" \
-                               --privileged -it \
-                               -e DISPLAY=$DISPLAY \
-                               -v /tmp/.X11-unix:/tmp/.X11-unix \
-                               -v ~/.Xauthority:/root/.Xauthority:rw \
-                               kali
-            xhost -
-        fi
+        _cwd="$(pwd)"
+        cd ${HOME}
+        for repo in "${LAZYGIT[@]}"; do
+            echo "[-] Updating $repo"
+            cd "$repo"
+            command git pull \
+            && command git add . \
+            && command git commit -m "Updated using lazygit..." \
+            && command git push
+            echo
+            cd ${HOME}
+        done
+        cd "$_cwd"
     fi
     }

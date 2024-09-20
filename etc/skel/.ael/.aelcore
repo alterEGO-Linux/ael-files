@@ -368,32 +368,6 @@ git_status() {
   }
   alias git-status='git_status'
 
-# :---------- [ lazygit ]
-# :[lazygit]
-# :version       = 2023-08-02 20:08:41 UTC
-# :notes         = '''
-# :The variable lazygit_repositories is defined in ~/.ael/.extra
-# :'''
-
-lazygit() {
-
-    if [[ ! -e "${lazygit_repositories}" ]]; then
-        message warning "Please define `lazygit_repositories` in `~/.ael/.extra`."
-    fi
-
-    _cwd="$(pwd)"
-    cd ${HOME}
-    for repo in "${lazygit_repositories[@]}"; do
-        message action "Updating $repo"
-        cd "$repo"
-        git pull                                                              \
-        && git add .                                                          \
-        && git commit -m "Updated using lazygit..."                           \
-        && git push
-        cd ${HOME}
-    done
-    cd "$_cwd"
-  }
 [ -f ${HOME}/.ael/scripts/busy ] && . ${HOME}/.ael/scripts/busy
 [ -f ${HOME}/.ael/scripts/cheat ] && . ${HOME}/.ael/scripts/cheat
 [ -f ${HOME}/.ael/scripts/deep-nmap ] && . ${HOME}/.ael/scripts/deep-nmap
@@ -426,3 +400,4 @@ lazygit() {
 [ -f ${HOME}/.ael/scripts/goto ] && . ${HOME}/.ael/scripts/goto
 [ -f ${HOME}/.ael/scripts/juice-shop ] && . ${HOME}/.ael/scripts/juice-shop
 [ -f ${HOME}/.ael/scripts/kali ] && . ${HOME}/.ael/scripts/kali
+[ -f ${HOME}/.ael/scripts/lazygit ] && . ${HOME}/.ael/scripts/lazygit

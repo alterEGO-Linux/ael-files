@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/extractor]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-01 19:55:12 UTC
+# :updated       : 2024-09-19 18:58:20 UTC
+# :description   : Compressed files universal extractor.
+
+extractor() {
+
+    # :ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+    # :CTRL+c to quit.
+
+    echo "================================================================================"
+    echo "[+] extractor()"
+    echo "    Compressed files universal extractor."
+    echo "================================================================================"
+    echo
+
+    if [ $# -eq 0 ]; then
+        echo "[!] Usage: extract <file1> [file2 ... fileN]"
+        return 1
+    fi
+    
+    for file in "$@"; do
+        if [ -f "$file" ]; then
+            case "$file" in
+                *.tar.bz2) tar xvjf "$file" ;;
+                *.tar.gz)  tar xvzf "$file" ;;
+                *.bz2)     bunzip2 "$file" ;;
+                *.rar)     unrar x "$file" ;;
+                *.gz)      gunzip "$file" ;;
+                *.tar)     tar xvf "$file" ;;
+                *.tbz2)    tar xvjf "$file" ;;
+                *.tgz)     tar xvzf "$file" ;;
+                *.zip)     unzip "$file" ;;
+                *.7z)      7z x "$file" ;;
+                *) echo "[!] extract: '$file' - unknown archive method" ;;
+            esac
+        else
+            echo "[!] extract: '$file' is not a valid file"
+        fi
+    done
+}
