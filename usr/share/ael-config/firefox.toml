@@ -2,7 +2,7 @@
 # :[/usr/share/ael-config/firefox.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-09-21 01:22:04 UTC
-# :updated       : 2024-09-21 01:22:08 UTC
+# :updated       : 2024-09-21 13:10:19 UTC
 # :description   : Firefox.
 
 [addon.tab-stash]
@@ -18,32 +18,47 @@ installation_mode = 'normal_installed'
 name              = 'Adblock Plus'
 description       = 'Adblock Plus blocks all annoying ads, and supports websites by not blocking unobtrusive ads by default (configurable).'
 author            = 'Adblock Plus'
+id                = "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/adblock-plus/latest.xpi"
+installation_mode = "normal_installed"
 
+[addon.cookie-editor]
+name              = 'Cookie-Editor'
+description       = 'Cookie-Editor lets you efficiently create, edit and delete a cookie for the current tab. Perfect for developing, quickly testing or even manually managing your cookies for your privacy.'
+author            = 'cgagnier'
+id                = '{c3c10168-4186-445c-9c5b-63f12b8e2c87}'
+url               = 'https://addons.mozilla.org/en-US/firefox/addon/cookie-editor/'
+install_url       = 'https://addons.mozilla.org/firefox/downloads/latest/cookie-editor/latest.xpi'
+installation_mode = 'normal_installed'
 
+[addon.cssviewer]
+name              = 'CSSViewer'
+description       = 'A simple yet powerful CSS property viewer.'
+author            = 'Mohsen Khanpour'
+id                = 'CSSViewer@quantum'
+url               = 'https://addons.mozilla.org/en-US/firefox/addon/cssviewer-quantum/'
+install_url       = 'https://addons.mozilla.org/firefox/downloads/latest/cssviewer-quantum/latest.xpi'
+installation_mode = 'normal_installed'
 
+[addon.foxyproxy]
+name              = 'FoxyProxy Standard'
+description       = "FoxyProxy is an open-source, advanced proxy management tool that completely replaces Firefox's limited proxying capabilities. No paid accounts are necessary; bring your own proxies or buy from any vendor. The original proxy tool, since 2006."
+author            = 'Eric H. Jung'
+id                = "foxyproxy@eric.h.jung"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi"
+installation_mode = "normal_installed"
 
+[addon.search-by-image]
+name              = 'Search by Image'
+description       = 'A powerful reverse image search tool, with support for various search engines, such as Google, Bing, Yandex, Baidu and TinEye.'
+author            = 'Armin Sebastian'
+id                = "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/search_by_image/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/search_by_image/latest.xpi"
+installation_mode = "normal_installed"
 
-      },
-      "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/adblock-plus/latest.xpi"
-      },
-      "{c3c10168-4186-445c-9c5b-63f12b8e2c87}": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/cookie-editor/latest.xpi"
-      },
-      "CSSViewer@quantum": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/cssviewer-quantum/latest.xpi"
-      },
-      "foxyproxy@eric.h.jung": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi"
-      },
-      "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/search_by_image/latest.xpi"
-      },
       "{531906d3-e22f-4a6c-a102-8057b88a1a63}": {
         "installation_mode": "normal_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/single-file/latest.xpi"
