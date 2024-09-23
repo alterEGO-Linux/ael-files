@@ -5,15 +5,6 @@
 # :updated       : 2024-09-21 13:10:19 UTC
 # :description   : Firefox.
 
-[addon.tab-stash]
-name              = 'Tab Stash'
-description       = 'Easily save and organize batches of tabs as bookmarks. Clear your tabs, clear your mind. Only for Firefox.'
-author            = 'Josh Berry'
-id                = 'tab-stash@condordes.net'
-url               = 'https://addons.mozilla.org/en-US/firefox/addon/tab-stash/'
-install_url       = 'https://addons.mozilla.org/firefox/downloads/latest/tab-stash/latest.xpi'
-installation_mode = 'normal_installed'
-
 [addon.adblock-plus]
 name              = 'Adblock Plus'
 description       = 'Adblock Plus blocks all annoying ads, and supports websites by not blocking unobtrusive ads by default (configurable).'
@@ -21,7 +12,6 @@ author            = 'Adblock Plus'
 id                = "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}"
 url               = "https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/"
 install_url       = "https://addons.mozilla.org/firefox/downloads/latest/adblock-plus/latest.xpi"
-installation_mode = "normal_installed"
 
 [addon.cookie-editor]
 name              = 'Cookie-Editor'
@@ -30,7 +20,6 @@ author            = 'cgagnier'
 id                = '{c3c10168-4186-445c-9c5b-63f12b8e2c87}'
 url               = 'https://addons.mozilla.org/en-US/firefox/addon/cookie-editor/'
 install_url       = 'https://addons.mozilla.org/firefox/downloads/latest/cookie-editor/latest.xpi'
-installation_mode = 'normal_installed'
 
 [addon.cssviewer]
 name              = 'CSSViewer'
@@ -39,7 +28,6 @@ author            = 'Mohsen Khanpour'
 id                = 'CSSViewer@quantum'
 url               = 'https://addons.mozilla.org/en-US/firefox/addon/cssviewer-quantum/'
 install_url       = 'https://addons.mozilla.org/firefox/downloads/latest/cssviewer-quantum/latest.xpi'
-installation_mode = 'normal_installed'
 
 [addon.foxyproxy]
 name              = 'FoxyProxy Standard'
@@ -48,7 +36,6 @@ author            = 'Eric H. Jung'
 id                = "foxyproxy@eric.h.jung"
 url               = "https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/"
 install_url       = "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi"
-installation_mode = "normal_installed"
 
 [addon.search-by-image]
 name              = 'Search by Image'
@@ -57,12 +44,58 @@ author            = 'Armin Sebastian'
 id                = "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}"
 url               = "https://addons.mozilla.org/en-US/firefox/addon/search_by_image/"
 install_url       = "https://addons.mozilla.org/firefox/downloads/latest/search_by_image/latest.xpi"
-installation_mode = "normal_installed"
 
-      "{531906d3-e22f-4a6c-a102-8057b88a1a63}": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/single-file/latest.xpi"
-      },
-      "wappalyzer@crunchlabz.com": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi"
+[addon.single-file]
+name              = "SingleFile"
+description       = "Save an entire web page—including images and styling—as a single HTML file."
+author            = "gildas"
+id                = "{531906d3-e22f-4a6c-a102-8057b88a1a63}"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/single-file/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/single-file/latest.xpi"
+
+[addon.skip-netflix-intro]
+name              = "Skip Netflix Intro"
+description       = "Addon to automatically skip intros on Netflix."
+author            = "Jonas Hellmann"
+id                = "skip_netflix_intro@jonas-hellmann.de"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/skip-netflix-intro/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/skip-netflix-intro/latest.xpi"
+
+[addon.tab-stash]
+name              = 'Tab Stash'
+description       = 'Easily save and organize batches of tabs as bookmarks. Clear your tabs, clear your mind. Only for Firefox.'
+author            = 'Josh Berry'
+id                = 'tab-stash@condordes.net'
+url               = 'https://addons.mozilla.org/en-US/firefox/addon/tab-stash/'
+
+[addon.tamper-data]
+name              = "Tamper Data for FF Quantum"
+description       = "Tamper Data for FF Quantum is an extension that lets you monitor, edit, cancel and redirect live requests in Firefox."
+author            = "Pamblam"
+id                = "{2bd18ca8-5dd7-4311-a777-02ed29663496}"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/tamper-data-for-ff-quantum/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/tamper-data-for-ff-quantum/latest.xpi"
+
+[addon.ublock-origin]
+name              = "uBlock Origin"
+description       = "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory."
+author            = "Raymond Hill"
+id                = "uBlock0@raymondhill.net"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+
+[addon.wappalyzer]
+name              = "Wappalyzer"
+description       = "Identify technologies on websites."
+author            = "Wappalyzer"
+id                = "wappalyzer@crunchlabz.com"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/wappalyzer/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi"
+
+[addon.yt-ad-speedup]
+name              = "YT Ad Speedup"
+description       = "Automatically speed-up ads on videos. Save time, enhance viewing. Simple, fast, and user-friendly. Transform your browsing now!"
+author            = "DincaAlin"
+id                = "{8f5ec562-8beb-11ee-b9d1-0242ac120002}"
+url               = "https://addons.mozilla.org/en-US/firefox/addon/yt-ad-speedup-skip-ads-faster/"
+install_url       = "https://addons.mozilla.org/firefox/downloads/latest/yt-ad-speedup-skip-ads-faster/latest.xpi"
