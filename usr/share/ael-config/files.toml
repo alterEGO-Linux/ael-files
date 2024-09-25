@@ -7,10 +7,40 @@
 
 [config.files]
 filename    = "files.toml"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-dockerfiles/Dockerfile-kali"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/files.toml"
 src         = "ael-files/usr/share/ael-config/"
 dst         = "/usr/local/share/ael-config/files.toml"
 description = "AEL files list."
+modes       = ['base']
+is_symlink  = true
+create_bkp  = false
+
+[config.firefox]
+filename    = "firefox.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/firefox.toml"
+src         = "ael-files/usr/share/ael-config/"
+dst         = "/usr/local/share/ael-config/firefox.toml"
+description = "Firefox config."
+modes       = ['base']
+is_symlink  = true
+create_bkp  = false
+
+[config.packages]
+filename    = "packages.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/packages.toml"
+src         = "ael-files/usr/share/ael-config/"
+dst         = "/usr/local/share/ael-config/packages.toml"
+description = "Packages config."
+modes       = ['base']
+is_symlink  = true
+create_bkp  = false
+
+[config.shellutils]
+filename    = "shellutils.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/shellutils.toml"
+src         = "ael-files/usr/share/ael-config/"
+dst         = "/usr/local/share/ael-config/shellutils.toml"
+description = "AEL Shell utils."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
@@ -21,6 +51,6 @@ url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/u
 src         = "ael-files/usr/share/ael-dockerfiles/"
 dst         = "/usr/local/share/ael-dockerfiles/Dockerfile-kali"
 description = "Kali Linux Dockerfile."
-modes       = ['hacker']
+modes       = []
 is_symlink  = true
 create_bkp  = false

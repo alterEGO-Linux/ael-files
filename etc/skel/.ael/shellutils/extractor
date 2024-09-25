@@ -18,7 +18,7 @@ extractor() {
     echo
 
     if [ $# -eq 0 ]; then
-        echo "[!] Usage: extract <file1> [file2 ... fileN]"
+        echo "[!] Usage: extractor <file1> [file2 ... fileN]"
         return 1
     fi
     
@@ -35,10 +35,10 @@ extractor() {
                 *.tgz)     tar xvzf "$file" ;;
                 *.zip)     unzip "$file" ;;
                 *.7z)      7z x "$file" ;;
-                *) echo "[!] extract: '$file' - unknown archive method" ;;
+                *) echo "[!] extractor: '$file' - unknown archive method" ;;
             esac
         else
-            echo "[!] extract: '$file' is not a valid file"
+            echo "[!] extractor: '$file' is not a valid file"
         fi
     done
 }
