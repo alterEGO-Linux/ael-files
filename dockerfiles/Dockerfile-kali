@@ -14,14 +14,20 @@ RUN apt-get -y install kali-linux-default kali-desktop-xfce xserver-xephyr dbus-
 RUN apt-get clean
 
 ENV USER root
-ENV DISPLAY ${DISPLAY:-:0.0}
 WORKDIR /root
 
 # :/Fixing startx
 RUN echo "" >> /root/.bashrc
 RUN echo "function startx() {" >> /root/.bashrc
-RUN echo "    Xephyr -br -ac -noreset -screen 1280x720 :2 &" >> /root/.bashrc
-RUN echo "    service dbus start" >> /root/.bashrc
+RUN echo "    if [[ -e '/tmp/.X2-lock' ]]; then" >> /root/.bashrc
+RUN echo "        rm -f /tmp/.X2-lock" >> /root/.bashrc
+RUN echo "    fi" >> /root/.bashrc
+RUN echo "    if ! pgrep Xephyr > /dev/null; then" >> /root/.bashrc
+RUN echo "        Xephyr -br -ac -noreset -screen 1280x720 :2 &" >> /root/.bashrc
+RUN echo "    else" >> /root/.bashrc
+RUN echo "        echo 'Xephyr already running...'" >> /root/.bashrc
+RUN echo "    fi" >> /root/.bashrc
+RUN echo "    service dbus restart" >> /root/.bashrc
 RUN echo "    DISPLAY=:2 startxfce4 &" >> /root/.bashrc
 RUN echo "    wait" >> /root/.bashrc
 RUN echo "    kill \$(pgrep Xephyr)" >> /root/.bashrc
