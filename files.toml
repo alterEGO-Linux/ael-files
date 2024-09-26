@@ -5,40 +5,37 @@
 # :updated       : 2024-09-26 17:35:31 UTC
 # :description   : List of files.
 
-[config.files]
+[root.files]
 filename    = "files.toml"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/files.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/files.toml"
 dst         = "/usr/share/ael/files.toml"
 description = "AEL files list."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
 
-[config.firefox]
+[root.firefox]
 filename    = "firefox.toml"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/firefox.toml"
-src         = "ael-files/usr/share/ael-config/"
-dst         = "/usr/local/share/ael-config/firefox.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/firefox.toml"
+dst         = "/usr/share/ael/firefox.toml"
 description = "Firefox config."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
 
-[config.packages]
+[root.packages]
 filename    = "packages.toml"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/packages.toml"
-src         = "ael-files/usr/share/ael-config/"
-dst         = "/usr/local/share/ael-config/packages.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/packages.toml"
+dst         = "/usr/share/ael/packages.toml"
 description = "Packages config."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
 
-[config.shellutils]
+[root.shellutils]
 filename    = "shellutils.toml"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-config/shellutils.toml"
-src         = "ael-files/usr/share/ael-config/"
-dst         = "/usr/local/share/ael-config/shellutils.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils.toml"
+dst         = "/usr/share/ael/shellutils.toml"
 description = "AEL Shell utils."
 modes       = ['base']
 is_symlink  = true
@@ -46,9 +43,8 @@ create_bkp  = false
 
 [dockerfiles.Dockerfile-kali]
 filename    = "Dockerfile-kali"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/usr/share/ael-dockerfiles/Dockerfile-kali"
-src         = "ael-files/usr/share/ael-dockerfiles/"
-dst         = "/usr/local/share/ael-dockerfiles/Dockerfile-kali"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/dockerfiles/Dockerfile-kali"
+dst         = "/usr/share/ael/dockerfiles/Dockerfile-kali"
 description = "Kali Linux Dockerfile."
 modes       = []
 is_symlink  = true

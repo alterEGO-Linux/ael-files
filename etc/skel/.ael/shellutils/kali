@@ -41,7 +41,7 @@ kali() {
         if command docker ps --all | command grep -q "KALI"; then
             command docker start -i KALI
         else
-            command docker build -f /usr/local/share/ael-dockerfiles/Dockerfile-kali --tag kali ~/build/.
+            command docker build -f /usr/share/ael/dockerfiles/Dockerfile-kali --tag kali ~/build/.
             command docker run --name KALI \
                                --net="host" \
                                --privileged -it \
