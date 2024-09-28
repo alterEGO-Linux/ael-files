@@ -187,7 +187,7 @@ url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/ma
 description     = "Kali Linux Docker container."
 mode            = []
 requires        = ['pkg/coreutils(cut)',
-                   'pkg/grep)',
+                   'pkg/grep',
                    'pkg/systemd(systemctl)',
                    'pkg/sudo',
                    'pkg/docker',

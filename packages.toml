@@ -16,7 +16,7 @@
 # notes           = []
 
 [alacritty]
-repo_archlinux  = "extra/alacritty"
+archlinux       = "extra/alacritty"
 url             = "https://github.com/alacritty/alacritty"
 description     = "A cross-platform, GPU-accelerated terminal emulator."
 mode            = ['minimal']
@@ -190,7 +190,7 @@ notes           = []
 # notes           = []
 
 [bind]
-repo_archlinux  = "extra/bind"
+archlinux       = "extra/bind"
 url             = "https://www.isc.org/software/bind/"
 description     = "A complete, highly portable implementation of the DNS protocol."
 mode            = ['minimal']
@@ -364,7 +364,7 @@ notes           = []
 # notes           = []
 
 [bzip2]
-repo_archlinux  = "core/base(bzip2)"
+archlinux       = "core/base(bzip2)"
 url             = "https://sourceware.org/bzip2/"
 description     = "A high-quality data compression program."
 mode            = ['base']
@@ -439,7 +439,7 @@ notes           = []
 # notes           = []
 
 [coreutils]
-repo_archlinux  = "core/base(coreutils)"
+archlinux       = "core/base(coreutils)"
 url             = "https://www.gnu.org/software/coreutils/"
 description     = "The basic file, shell and text manipulation utilities of the GNU operating system."
 mode            = ['base']
@@ -470,7 +470,7 @@ notes           = []
 # notes           = []
 
 [curl]
-repo_archlinux  = "core/curl"
+archlinux       = "core/curl"
 url             = "https://curl.se/"
 description     = "command line tool and library for transferring data with URLs."
 mode            = ['minimal']
@@ -534,7 +534,7 @@ notes           = []
 # notes           = []
 
 [docker]
-repo_archlinux  = "extra/docker"
+archlinux       = "extra/docker"
 url             = "https://www.docker.com/"
 description     = "Pack, ship and run any application as a lightweight container."
 mode            = []
@@ -686,7 +686,7 @@ notes           = []
 # notes           = []
 
 [ffmpeg]
-repo_archlinux  = "extra/ffmpeg"
+archlinux       = "extra/ffmpeg"
 url             = "https://ffmpeg.org"
 description     = "Complete solution to record, convert and stream audio and video."
 mode            = ['minimal']
@@ -706,7 +706,7 @@ notes           = []
 # notes           = []
 
 [findutils]
-repo_archlinux  = "core/base(findutils)"
+archlinux       = "core/base(findutils)"
 url             = "https://www.gnu.org/software/findutils/"
 description     = "GNU utilities to locate files."
 mode            = ['base']
@@ -770,7 +770,7 @@ notes           = []
 # notes           = []
 
 [fzf]
-repo_archlinux  = "extra/fzf"
+archlinux       = "extra/fzf"
 url             = "https://github.com/junegunn/fzf"
 description     = "Command-line fuzzy finder."
 mode            = ['minimal']
@@ -779,7 +779,7 @@ optional        = []
 notes           = []
 
 [gawk]
-repo_archlinux  = "core/base(gawk)"
+archlinux       = "core/base(gawk)"
 url             = "https://www.gnu.org/software/gawk/"
 description     = "GNU version of awk."
 mode            = ['base']
@@ -819,7 +819,7 @@ notes           = []
 # notes           = []
 
 [git]
-repo_archlinux  = "extra/git"
+archlinux       = "extra/git"
 url             = "https://git-scm.com/"
 description     = "the fast distributed version control system."
 mode            = ['minimal']
@@ -838,7 +838,7 @@ notes           = []
 # notes           = []
 
 [gnu-netcat]
-repo_archlinux  = "extra/gnu-netcat"
+archlinux       = "extra/gnu-netcat"
 url             = "http://netcat.sourceforge.net/"
 description     = "GNU rewrite of netcat, the network piping application."
 mode            = ['minimal']
@@ -877,7 +877,7 @@ notes           = []
 # notes           = []
 
 [grc]
-repo_archlinux  = "extra/grc"
+archlinux       = "extra/grc"
 url             = "https://github.com/garabik/grc"
 description     = "Yet another colouriser for beautifying your logfiles or output of commands."
 mode            = []
@@ -886,7 +886,7 @@ optional        = []
 notes           = []
 
 [grep]
-repo_archlinux  = "core/base(grep)"
+archlinux       = "core/base(grep)"
 url             = "https://www.gnu.org/software/grep/"
 description     = "A string search utility."
 mode            = ['base']
@@ -985,7 +985,7 @@ notes           = []
 # notes           = []
 
 [gzip]
-repo_archlinux  = "core/base(gzip)"
+archlinux       = "core/base(gzip)"
 url             = "https://www.gnu.org/software/gzip/"
 description     = "GNU compression utility."
 mode            = ['base']
@@ -1004,7 +1004,7 @@ notes           = []
 # notes           = []
 
 [highlight]
-repo_archlinux  = "extra/highlight"
+archlinux       = "extra/highlight"
 url             = "http://www.andre-simon.de/doku/highlight/highlight.html"
 description     = "Fast and flexible source code highlighter (CLI version)."
 mode            = []
@@ -1143,7 +1143,7 @@ notes           = []
 # notes           = []
 
 [iproute2]
-repo_archlinux    = "core/base(iproute2)"
+archlinux         = "core/base(iproute2)"
 url               = "https://git.kernel.org/pub/scm/network/iproute2/iproute2.git"
 description       = "IP Routing Utilities. Includes ip."
 mode              = ['base']
@@ -1182,7 +1182,7 @@ notes           = []
 # notes           = []
 
 [jq]
-repo_archlinux  = "extra/jq"
+archlinux       = "extra/jq"
 url             = "https://jqlang.github.io/jq/"
 description     = "Command-line JSON processor."
 mode            = []
@@ -1221,7 +1221,7 @@ notes           = []
 # notes           = []
 
 [less]
-repo_archlinux  = "core/less"
+archlinux       = "core/less"
 url             = "https://www.greenwoodsoftware.com/less/"
 description     = "A terminal based program for viewing text files."
 mode            = ['minimal']
@@ -1530,7 +1530,7 @@ notes           = []
 # notes           = []
 
 [net-tools]
-repo_archlinux  = "core/net-tools"
+archlinux       = "core/net-tools"
 url             = "http://net-tools.sourceforge.net/"
 description     = "Configuration tools for Linux networking. Includes arp, ifconfig, netstat, route."
 mode            = []
@@ -1599,7 +1599,7 @@ notes           = []
 # notes           = []
 
 [nmap]
-repo_archlinux  = "extra/nmap"
+archlinux       = "extra/nmap"
 url             = "https://nmap.org/"
 description     = "Utility for network discovery and security auditing."
 mode            = []
@@ -1708,7 +1708,7 @@ notes           = []
 # notes           = []
 
 [p7zip]
-repo_archlinux  = "extra/p7zip"
+archlinux       = "extra/p7zip"
 url             = "https://github.com/p7zip-project/p7zip"
 description     = "Command-line file archiver with high compression ratio."
 mode            = ['minimal']
@@ -1717,7 +1717,7 @@ optional        = []
 notes           = []
 
 [pacman]
-repo_archlinux  = "core/base(pacman)"
+archlinux       = "core/base(pacman)"
 url             = "https://www.archlinux.org/pacman/"
 description     = "A library-based package manager with dependency support."
 mode            = ['base']
@@ -1926,7 +1926,7 @@ notes           = []
 # notes           = []
 
 [procps-ng]
-repo_archlinux  = "core/base(procps-ng)"
+archlinux       = "core/base(procps-ng)"
 url             = "https://gitlab.com/procps-ng/procps"
 description     = "Utilities for monitoring your system and its processes."
 mode            = ['base']
@@ -1965,7 +1965,7 @@ notes           = []
 # notes           = []
 
 [python]
-repo_archlinux  = "core/python"
+archlinux       = "core/python"
 url             = "https://www.python.org/"
 description     = "The Python programming language."
 mode            = ['minimal']
@@ -2204,7 +2204,7 @@ notes           = []
 # notes           = []
 
 [ripgrep]
-repo_archlinux  = "extra/ripgrep"
+archlinux       = "extra/ripgrep"
 url             = "https://github.com/BurntSushi/ripgrep"
 description     = "A search tool that combines the usability of ag with the raw speed of grep."
 mode            = []
@@ -2233,7 +2233,7 @@ notes           = []
 # notes           = []
 
 [rustscan]
-repo_archlinux  = "extra/rustscan"
+archlinux       = "extra/rustscan"
 url             = "https://github.com/rustscan/RustScan"
 description     = "A modern port scanner."
 mode            = []
@@ -2262,7 +2262,7 @@ notes           = []
 # notes           = []
 
 [sed]
-repo_archlinux  = "core/base(sed)"
+archlinux       = "core/base(sed)"
 url             = "https://www.gnu.org/software/sed/"
 description     = "GNU stream editor."
 mode            = ['base']
@@ -2331,7 +2331,7 @@ notes           = []
 # notes           = []
 
 [speedtest-cli]
-repo_archlinux  = "extra/speedtest-cli"
+archlinux       = "extra/speedtest-cli"
 url             = "https://github.com/sivel/speedtest-cli"
 description     = "Command line interface for testing internet bandwidth using speedtest.net."
 mode            = []
@@ -2370,7 +2370,7 @@ notes           = []
 # notes           = []
 
 [sudo]
-repo_archlinux  = "core/base-devel(sudo)"
+archlinux       = "core/base-devel(sudo)"
 url             = "https://www.sudo.ws/sudo/"
 description     = "Give certain users the ability to run some commands as root."
 mode            = ['base']
@@ -2419,7 +2419,7 @@ notes           = []
 # notes           = []
  
 [systemd]
-repo_archlinux  = "core/base(systemd)"
+archlinux       = "core/base(systemd)"
 url             = "https://www.github.com/systemd/systemd"
 description     = "System and service manager."
 mode            = ['base']
@@ -2428,7 +2428,7 @@ optional        = []
 notes           = []
 
 [tar]
-repo_archlinux  = "core/base(tar)"
+archlinux       = "core/base(tar)"
 url             = "https://www.gnu.org/software/tar/"
 description     = "Utility used to store, backup, and transport files."
 mode            = ['base']
@@ -2657,7 +2657,7 @@ notes           = []
 # notes           = []
 
 [unrar]
-repo_archlinux  = "extra/unrar"
+archlinux       = "extra/unrar"
 url             = "https://www.rarlab.com/rar_add.htm"
 description     = "The RAR uncompression program."
 mode            = ['minimal']
@@ -2666,7 +2666,7 @@ optional        = []
 notes           = []
 
 [unzip]
-repo_archlinux  = "extra/unzip"
+archlinux       = "extra/unzip"
 url             = "http://infozip.sourceforge.net/UnZip.html"
 description     = "For extracting and viewing files in .zip archives."
 mode            = ['minimal']
@@ -2785,7 +2785,7 @@ notes           = []
 # notes           = []
 
 [wget]
-repo_archlinux  = "extra/wget"
+archlinux       = "extra/wget"
 url             = "https://www.gnu.org/software/wget/wget.html"
 description     = "Network utility to retrieve files from the Web."
 mode            = ['minimal']
@@ -3124,7 +3124,7 @@ notes           = []
 # notes           = []
 
 [xorg-xhost]
-repo_archlinux  = "extra/xorg-xhost"
+archlinux       = "extra/xorg-xhost"
 url             = "https://xorg.freedesktop.org/"
 description     = "Server access control program for X."
 mode            = []
@@ -3333,7 +3333,7 @@ notes           = []
 # notes           = []
 
 [yt-dlp]
-repo_archlinux  = "extra/yt-dlp"
+archlinux       = "extra/yt-dlp"
 url             = "https://github.com/yt-dlp/yt-dlp"
 description     = "A youtube-dl fork with additional features and fixes."
 mode            = []
