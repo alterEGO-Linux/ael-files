@@ -13,6 +13,7 @@ description = "AEL files list."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
+notes       = []
 
 [root.firefox]
 filename    = "firefox.toml"
@@ -22,6 +23,7 @@ description = "Firefox config."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
+notes       = []
 
 [root.packages]
 filename    = "packages.toml"
@@ -31,6 +33,7 @@ description = "Packages config."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
+notes       = []
 
 [root.shellutils]
 filename    = "shellutils.toml"
@@ -40,6 +43,7 @@ description = "AEL Shell utils."
 modes       = ['base']
 is_symlink  = true
 create_bkp  = false
+notes       = []
 
 [dockerfiles.Dockerfile-kali]
 filename    = "Dockerfile-kali"
@@ -49,3 +53,4 @@ description = "Kali Linux Dockerfile."
 modes       = []
 is_symlink  = true
 create_bkp  = false
+notes       = []
