@@ -5,9 +5,10 @@
 # :updated       : 2024-09-26 17:35:31 UTC
 # :description   : List of files.
 
-[root.files]
+[root--files]
 filename    = "files.toml"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/files.toml"
+src         = "/usr/share/ael/files.toml"
 dst         = "/usr/share/ael/files.toml"
 description = "AEL files list."
 modes       = ['base']
@@ -15,9 +16,10 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
-[root.firefox]
+[root--firefox]
 filename    = "firefox.toml"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/firefox.toml"
+src         = "/usr/share/ael/firefox.toml"
 dst         = "/usr/share/ael/firefox.toml"
 description = "Firefox config."
 modes       = ['base']
@@ -25,9 +27,10 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
-[root.packages]
+[root--packages]
 filename    = "packages.toml"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/packages.toml"
+src         = "/usr/share/ael/packages.toml"
 dst         = "/usr/share/ael/packages.toml"
 description = "Packages config."
 modes       = ['base']
@@ -35,9 +38,10 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
-[root.shellutils]
+[root--shellutils]
 filename    = "shellutils.toml"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils.toml"
+src         = "/usr/share/ael/shellutils.toml"
 dst         = "/usr/share/ael/shellutils.toml"
 description = "AEL Shell utils."
 modes       = ['base']
@@ -45,12 +49,13 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
-[dockerfiles.Dockerfile-kali]
+[dockerfiles--Dockerfile-kali]
 filename    = "Dockerfile-kali"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/dockerfiles/Dockerfile-kali"
+src         = "/usr/share/ael/dockerfiles/Dockerfile-kali"
 dst         = "/usr/share/ael/dockerfiles/Dockerfile-kali"
 description = "Kali Linux Dockerfile."
 modes       = []
-is_symlink  = true
+is_symlink  = false
 create_bkp  = false
 notes       = []

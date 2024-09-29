@@ -192,7 +192,7 @@ requires        = ['pkg/coreutils(cut)',
                    'pkg/sudo',
                    'pkg/docker',
                    'pkg/xorg-xhost',
-                   'file/dockerfiles.Dockerfile-kali']
+                   'file/dockerfiles--Dockerfile-kali']
 optional        = []
 
 [lazygit]
