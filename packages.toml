@@ -1508,7 +1508,16 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
+
+[nano]
+archlinux       = "core/nano"
+url             = "https://www.nano-editor.org"
+description     = "Pico editor clone with enhancements."
+mode            = []
+requires        = []
+optional        = []
+notes           = []
+
 # [ncdu]
 # repository      = "extra"
 # url             = "https://dev.yorhel.nl/ncdu"
