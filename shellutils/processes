@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/processes]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-02 00:51:54 UTC
+# :updated       : 2024-09-16 12:07:34 UTC
+# :description   : Show processes.
+
+processes() {
+
+    echo "================================================================================"
+    echo "[+] processes()"
+    echo "    Running <ps aux>."
+    echo "    Show processes."
+    echo "================================================================================"
+    echo
+
+    command ps aux
+  }

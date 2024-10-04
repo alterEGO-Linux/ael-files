@@ -1,0 +1,84 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/goto]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-09-13 11:00:51 UTC
+# :updated       : 2024-09-16 10:52:41 UTC
+# :description   : Simple directory bookmarks system.
+
+GOTODIR="${HOME}/.ael/.goto/"
+
+if [[ ! -d $GOTODIR ]]; then
+    command mkdir -p $GOTODIR
+fi
+
+export CDPATH=".:$GOTODIR:/"
+
+goto() {
+    local IFS=$'\n'
+
+    # If no argument or --help is passed, show the help message
+    if [[ -z "$1" || "$1" == "--help" ]]; then
+        echo "================================================================================"
+        echo "[+] goto()"
+        echo "    HELP!"
+        echo "================================================================================"
+        echo
+        echo "Usage: goto [bookmark|--add PATH BOOKMARK|--help]"
+        echo "  bookmark: Jump to the bookmark directory."
+        echo "  --add PATH BOOKMARK: Add a new bookmark for the specified path."
+        echo "  --help: Display this help message."
+        echo "  --list: List bookmarks."
+        return 0
+    fi
+
+    # :/If --list is passed. Show list of bookmarks.
+    if [[ "${1}" == "--list" ]]; then
+        echo "================================================================================"
+        echo "[+] goto()"
+        echo "    List of bookmarks."
+        echo "================================================================================"
+        echo
+        command find "$GOTODIR" -maxdepth 1 -type l -exec sh -c '
+        for link; do
+            target=$(command readlink -f "$link")
+            command printf "%-15s -> %s\n" "$(command basename "$link")" "$target"
+        done' sh {} +
+    # If --add is passed, handle adding a new bookmark
+    elif [[ "$1" == "--add" ]]; then
+        if [[ -n "$2" && -n "$3" ]]; then
+            command ln -s "$(command realpath "$2")" "$GOTODIR/$3"
+            echo "================================================================================"
+            echo "[+] goto()"
+            echo "    Adding Bookmark"
+            echo "================================================================================"
+            echo
+            echo "[-] Bookmark '$3' added for path '$2'."
+        else
+            echo "================================================================================"
+            echo "[+] goto()"
+            echo "    Adding Bookmark"
+            echo "================================================================================"
+            echo
+            echo "[!] Error: Both PATH and BOOKMARK are required."
+            echo "[!] Usage: goto --add PATH BOOKMARK"
+        fi
+        return 0
+    # Check if the argument is a valid bookmark
+    elif [[ -e "$GOTODIR/$1" ]]; then
+        cd -P "$GOTODIR/$1"
+    else
+        echo "================================================================================"
+        echo "[+] goto()"
+        echo "    ERROR!"
+        echo "================================================================================"
+        echo
+        echo "[!] Error: '$1' is not a valid bookmark."
+        return 1
+    fi
+}
+
+_goto_complete() {
+    local IFS=$'\n'
+    COMPREPLY=( $(compgen -W "$(command ls -1 $GOTODIR)" -- "${COMP_WORDS[COMP_CWORD]}") )
+} && complete -F _goto_complete goto

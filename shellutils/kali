@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/kali]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-01 19:55:12 UTC
+# :updated       : 2024-09-16 10:32:28 UTC
+# :description   : Run Kali Linux container.
+
+kali() {
+
+    if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
+        sudo systemctl start docker.service
+        echo "[-] Starting docker.service ..."
+    fi
+
+    echo "================================================================================"
+    echo "[+] kali()"
+    echo "    Starting Kali Linux container."
+    echo "================================================================================"
+    echo
+
+    xhost +
+    if command docker ps --all | command grep -q "KALI"; then
+        command docker start -i KALI
+    else
+        command docker build -f /usr/share/ael/dockerfiles/Dockerfile-kali --tag kali ~/build/.
+        command docker run --name KALI \
+                            --net="host" \
+                            --privileged -it \
+                            -e DISPLAY=$DISPLAY \
+                            -v /tmp/.X11-unix:/tmp/.X11-unix \
+                            -v ~/.Xauthority:/root/.Xauthority:rw \
+                            kali
+    fi
+    xhost -
+    }

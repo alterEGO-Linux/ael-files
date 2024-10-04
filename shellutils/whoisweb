@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/whoisweb]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-08-01 19:55:12 UTC
+# :updated       : 2024-09-12 18:55:49 UTC
+# :description   : When the boss comes around to look busy.
+
+whoisweb() {
+
+    echo "================================================================================"
+    echo "[+] whoisweb()"
+    echo "    Query WHOIS web if <whois> port 43 is blocked on your network."
+    echo "    Querying ${1}."
+    echo "================================================================================"
+    echo
+
+    command curl --silent https://whoisjs.com/api/v1/${1} \
+    | command jq ".raw" \
+    | command sed "s/\\\r\\\n/\\n/g"
+    }

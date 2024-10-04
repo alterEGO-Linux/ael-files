@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/tunnel-info]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2023-10-20 09:40:59 UTC
+# :updated       : 2024-09-16 17:51:09 UTC
+# :description   : Displays tunnels/vpn info.
+
+tunnel-info() {
+
+    echo "================================================================================"
+    echo "[+] tunnel-info()"
+    echo "    Displays tunnels/vpn info."
+    echo "================================================================================"
+    echo
+
+    INTERFACE=$(command ip a | command grep -E 'inet [1-9].*global.*(tun)')
+
+    if [[ -z "${INTERFACE}" ]]; then
+        echo "[!] NO TUNNELS, NOR VPN FOUND"
+    else
+        command printf "%b\n" "INT\tIP ADDR   \tPID\tNAME"
+        echo "================================================================================"
+
+        while read -r INTERFACE; do
+
+          IP=$(command grep -oP '(?<=inet )(.*)(?=/)' <<<"${INTERFACE}")
+          TUN=$(command awk '{ print $NF }' <<<"${INTERFACE}")
+          PS=$(sudo grep -r $TUN /proc/*/fdinfo 2>/dev/null | cut -d / -f 3)
+          CMD="$(command ps -o cmd --no-headers ${PS})"
+
+          if [[ $(command awk '/openvpn/ && /server/' <<< ${CMD}) ]]; then
+            TUNNAME="OpenVPNServer"
+          elif [[ $(command awk '/openvpn/ && /tryhackme/' <<< "${CMD}") ]]; then
+            TUNNAME="TryHackMe"
+          elif [[ $(command awk '/nordvpn/' <<< "${CMD}") ]]; then
+            TUNNAME="NordVPN"
+          else
+            TUNNAME="UNDEFINED"
+          fi
+
+          command printf "%b\n" "${TUN}\t${IP}\t${PS}\t${TUNNAME}"
+
+        done <<< "${INTERFACE}"
+    fi
+    }

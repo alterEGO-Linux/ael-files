@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/py-server]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-09-10 16:58:34 UTC
+# :updated       : 2024-09-16 12:25:52 UTC
+# :description   : Create a Python HTTP server.
+
+py-server() {
+
+    ports=('8000' '8001' '8002')
+
+    CONTINUE=true
+    while $CONTINUE; do
+      for p in "${ports[@]}"; do
+        if [[ -z $(sudo netstat -tulanp | command grep ":$p") ]]; then
+          port="$p"
+          CONTINUE=false
+          break
+        fi
+      done
+    done
+
+    echo "================================================================================"
+    echo "[+] py-server()"
+    echo "    Starting Python web server on port ${port}"
+    echo "================================================================================"
+    echo
+
+    command python -m http.server ${port}
+  }
