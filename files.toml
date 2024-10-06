@@ -2,7 +2,7 @@
 # :[/usr/share/ael/files.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-11-22 20:35:16 UTC
-# :updated       : 2024-09-26 17:35:31 UTC
+# :updated       : 2024-10-04 22:41:54 UTC
 # :description   : List of files.
 
 [root--files]
@@ -101,334 +101,494 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
-#[cyberchef]
-#filename        = ".ael/shellutils/cyberchef"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/cyberchef"
-#description     = "A simple, intuitive web app for analysing and decoding data without having to deal with complex tools or programming languages. CyberChef encourages both technical and non-technical people to explore data formats, encryption and compression."
-#modes           = []
-#requires        = ['pkg/coreutils(cut)',
-#                   'pkg/grep',
-#                   'pkg/systemd(systemctl)',
-#                   'pkg/sudo',
-#                   'pkg/docker',
-#                   'pkg/less']
-#optional        = []
-#
-#[deep-nmap]
-#filename        = ".ael/shellutils/deep-nmap"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/deep-nmap"
-#description     = "Complete Nmap scan."
-#modes           = []
-#requires        = ['pkg/sudo',
-#                   'pkg/grc',
-#                   'pkg/nmap']
-#optional        = []
-#
-#[deep-scan]
-#filename        = ".ael/shellutils/deep-scan"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/deep-scan"
-#description     = "Scans IP with rustscan and nmap."
-#modes           = ['network']
-#requires        = ['pkg/sudo',
-#                   'pkg/nmap',
-#                   'pkg/rustscan']
-#optional        = []
-#
-#[delete]
-#filename        = ".ael/shellutils/delete"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/delete"
-#description     = "Delete directory."
-#modes           = []
-#requires        = ['pkg/coreutils(rm)']
-#optional        = []
-#
-#[directory-size]
-#filename        = ".ael/shellutils/directory-size"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/directory-size"
-#description     = "Check size of biggest directories."
-#modes           = []
-#requires        = ['pkg/coreutils(du)',
-#                   'pkg/coreutils(head)',
-#                   'pkg/coreutils(sort)']
-#optional        = []
-#
-#[dvwa]
-#filename        = ".ael/shellutils/dvwa"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/dvwa"
-#description     = "Damn Vulnerable Web Application (DVWA) is a PHP/MySQL web application that is damn vulnerable."
-#modes           = []
-#requires        = ['pkg/coreutils(cut)',
-#                   'pkg/grep',
-#                   'pkg/systemd(systemctl)',
-#                   'pkg/sudo',
-#                   'pkg/docker']
-#optional        = []
-#
-#[extractor]
-#filename        = ".ael/shellutils/extractor"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/extractor"
-#description     = "Compressed files universal extractor."
-#modes           = []
-#requires        = ['pkg/bzip2(bunzip2)',
-#                   'pkg/gzip(gunzip)',
-#                   'pkg/p7zip',
-#                   'pkg/tar',
-#                   'pkg/unrar',
-#                   'pkg/unzip']
-#optional        = []
-#
-#[fixout]
-#filename        = ".ael/shellutils/fixout"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/fixout"
-#description     = "Fix bash history and exit."
-#modes           = []
-#requires        = ['pkg/coreutils(cut)',
-#                   'pkg/coreutils(rm)',
-#                   'pkg/coreutils(sort)',
-#                   'pkg/coreutils(uniq)']
-#optional        = []
-#
-#[fuck]
-#filename        = ".ael/shellutils/fuck"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/fuck"
-#description     = "Repeats last cmd with sudo if forgotten."
-#modes           = []
-#requires        = ['pkg/sudo']
-#optional        = []
-#
-#[getmp3]
-#filename        = ".ael/shellutils/getmp3"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/getmp3"
-#description     = "Extract video audio to .mp3."
-#modes           = []
-#requires        = ['pkg/yt-dlp']
-#optional        = []
-#
-#[goto]
-#filename        = ".ael/shellutils/goto"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/goto"
-#description     = "Simple directory bookmarks system."
-#modes           = []
-#requires        = ['pkg/coreutils(basename)',
-#                   'pkg/coreutils(ln)',
-#                   'pkg/coreutils(ls)',
-#                   'pkg/coreutils(mkdir)',
-#                   'pkg/coreutils(printf)',
-#                   'pkg/coreutils(readlink)',
-#                   'pkg/coreutils(readpath)',
-#                   'pkg/findutils(find)']
-#optional        = []
-#
-#[history-cleaner]
-#filename        = ".ael/shellutils/history-cleaner"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/history-cleaner"
-#description     = "Cleans bash history."
-#modes           = []
-#requires        = ['pkg/coreutils(cp)',
-#                   'pkg/coreutils(rm)',
-#                   'pkg/coreutils(sort)',
-#                   'pkg/gawk(awk)',
-#                   'pkg/sed)',
-#                   'pkg/fzf']
-#optional        = []
-#
-#[ispeed]
-#filename        = ".ael/shellutils/ispeed"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/ispeed"
-#description     = "Internet connection speed meter."
-#modes           = []
-#requires        = ['pkg/coreutils(printf)',
-#                   'pkg/curl',
-#                   'pkg/fzf',
-#                   'pkg/python',
-#                   'pkg/speedtest-cli']
-#optional        = []
-#
-#[juice-shop]
-#filename        = ".ael/shellutils/juice-shop"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/juice-shop"
-#description     = "OWASP Juice Shop is a vulnerable web application that can be used for security trainings, demos, CTFs and testing tools. It contains various OWASP Top Ten and other security flaws and can be installed from sources, packages, Docker or Vagrant."
-#modes           = []
-#requires        = ['pkg/coreutils(cut)',
-#                   'pkg/grep',
-#                   'pkg/systemd(systemctl)',
-#                   'pkg/sudo',
-#                   'pkg/docker']
-#optional        = []
-#
-#[kali]
-#filename        = ".ael/shellutils/kali"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/kali"
-#description     = "Kali Linux Docker container."
-#modes           = []
-#requires        = ['pkg/coreutils(cut)',
-#                   'pkg/grep',
-#                   'pkg/systemd(systemctl)',
-#                   'pkg/sudo',
-#                   'pkg/docker',
-#                   'pkg/xorg-xhost',
-#                   'file/dockerfiles--Dockerfile-kali']
-#optional        = []
-#
-#[lazygit]
-#filename        = ".ael/shellutils/lazygit"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/lazygit"
-#description     = "Updating GIT repo when you are lazy."
-#modes           = []
-#requires        = ['pkg/git']
-#optional        = []
-#
-#[pacman-reset]
-#filename        = ".ael/shellutils/pacman-reset"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/pacman-reset"
-#description     = "Re-initialize pacman sync, mirrorlist and keyring."
-#modes           = []
-#requires        = ['pkg/coreutils(rm)',
-#                   'pkg/pacman',
-#                   'pkg/sed',
-#                   'pkg/curl']
-#optional        = []
-#
-#[ports]
-#filename        = ".ael/shellutils/ports"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/ports"
-#description     = "Displays open ports."
-#modes           = []
-#requires        = ['pkg/sudo',
-#                   'pkg/grc',
-#                   'pkg/net-tools(netstat)']
-#optional        = []
-#
-#[processes]
-#filename        = ".ael/shellutils/processes"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/processes"
-#description     = "Show processes."
-#modes           = []
-#requires        = ['pkg/procps-ng(ps)']
-#optional        = []
-#
-#[ps-grep]
-#filename        = ".ael/shellutils/ps-grep"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/ps-grep"
-#description     = "Show processes for a particular application."
-#modes           = []
-#requires        = ['pkg/grep',
-#                   'pkg/procps-ng(ps)']
-#optional        = []
-#
-#[py-cleaner]
-#filename        = ".ael/shellutils/py-cleaner"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/py-cleaner"
-#description     = "Clean python current directory."
-#modes           = []
-#requires        = ['pkg/findutils(find)']
-#optional        = []
-#
-#[py-server]
-#filename        = ".ael/shellutils/py-server"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/py-server"
-#description     = "Create a Python HTTP server."
-#modes           = []
-#requires        = ['pkg/grep',
-#                   'pkg/net-tools(netstat)',
-#                   'pkg/python']
-#optional        = []
-#
-#[reset-time]
-#filename        = ".ael/shellutils/reset-time"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/reset-time"
-#description     = "Reset system time. Usefull when Windows boot screws time."
-#modes           = []
-#requires        = ['pkg/coreutils(date)',
-#                   'pkg/systemd(timedatectl)',
-#                   'pkg/util-linux(hwclock)',
-#                   'pkg/sudo']
-#optional        = []
-#
-#[search-content]
-#filename        = ".ael/shellutils/search-content"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/search-content"
-#description     = "Search files for content."
-#modes           = []
-#requires        = ['pkg/fzf',
-#                   'pkg/highlight',
-#                   'pkg/ripgrep']
-#optional        = []
-#
-#[shell-info]
-#filename        = ".ael/shellutils/shell-info"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/shell-info"
-#description     = "Show shell info."
-#modes           = []
-#requires        = []
-#optional        = []
-#
-#[show-utc]
-#filename        = ".ael/shellutils/show-utc"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/show-utc"
-#description     = "Show UTC time."
-#modes           = []
-#requires        = ['pkg/coreutils(date)']
-#optional        = []
-#
-#[systeminfo]
-#filename        = ".ael/shellutils/systeminfo"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/systeminfo"
-#description     = "Display system info."
-#modes           = []
-#requires        = ['pkg/gawk(awk)',
-#                   'pkg/grep',
-#                   'pkg/bind(host)',
-#                   'pkg/iproute2(ip)']
-#optional        = ['pkg/docker',
-#                   'pkg/jq']
-#
-#[tagalog]
-#filename        = ".ael/shellutils/tagalog"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/tagalog"
-#description     = "Translate to Tagalog using Google translate."
-#modes           = []
-#requires        = ['pkg/coreutils(head)',
-#                   'pkg/gwak(awk)',
-#                   'pkg/wget']
-#optional        = []
-#
-#[termbin]
-#filename        = ".ael/shellutils/termbin"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/termbin"
-#description     = "Netcat-based command-line pastebin."
-#modes           = []
-#requires        = ['pkg/gnu-netcat(nc)']
-#optional        = []
-#
-#[translate]
-#filename        = ".ael/shellutils/translate"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/translate"
-#description     = "Translate using Google translate."
-#modes           = []
-#requires        = ['pkg/coreutils(head)',
-#                   'pkg/gwak(awk)',
-#                   'pkg/wget']
-#optional        = []
-#
-#[tunnel-info]
-#filename        = ".ael/shellutils/tunnel-info"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/tunnel-info"
-#description     = "Displays tunnels/vpn info."
-#modes           = []
-#requires        = ['pkg/coreutils(printf)',
-#                   'pkg/gawk(awk)',
-#                   'pkg/grep',
-#                   'pkg/procps-ng(ps)',
-#                   'pkg/iproute2(ip)']
-#optional        = []
-#
-#[whoisweb]
-#filename        = ".ael/shellutils/whoisweb"
-#url             = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/etc/skel/.ael/shellutils/whoisweb"
-#description     = "Query WHOIS web if `whois` port 43 is blocked on your network."
-#modes           = []
-#requires        = ['pkg/sed',
-#                   'pkg/curl',
-#                   'pkg/jq']
-#optional        = []
+[shellutils--cyberchef]
+filename    = "cyberchef"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/cyberchef"
+src         = "/usr/share/ael/shellutils/cyberchef"
+dst         = "$HOME/.ael/shellutils/cyberchef"
+description = "A simple, intuitive web app for analysing and decoding data without having to deal with complex tools or programming languages. CyberChef encourages both technical and non-technical people to explore data formats, encryption and compression."
+modes       = []
+requires    = ['pkg/coreutils(cut)',
+               'pkg/grep',
+               'pkg/systemd(systemctl)',
+               'pkg/sudo',
+               'pkg/docker',
+               'pkg/less']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--deep-nmap]
+filename    = "deep-nmap"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/deep-nmap"
+src         = "/usr/share/ael/shellutils/deep-nmap"
+dst         = "$HOME/.ael/shellutils/deep-nmap"
+description = "Complete Nmap scan."
+modes       = []
+requires    = ['pkg/sudo',
+               'pkg/grc',
+               'pkg/nmap']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--deep-scan]
+filename    = "deep-scan"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/deep-scan"
+src         = "/usr/share/ael/shellutils/deep-scan"
+dst         = "$HOME/.ael/shellutils/deep-scan"
+description = "Scans IP with rustscan and nmap."
+modes       = ['network']
+requires    = ['pkg/sudo',
+               'pkg/nmap',
+               'pkg/rustscan']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--delete]
+filename    = "delete"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/delete"
+src         = "/usr/share/ael/shellutils/delete"
+dst         = "$HOME/.ael/shellutils/delete"
+description = "Delete directory."
+modes       = []
+requires    = ['pkg/coreutils(rm)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--directory-size]
+filename    = "directory-size"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/directory-size"
+src         = "/usr/share/ael/shellutils/directory-size"
+dst         = "$HOME/.ael/shellutils/directory-size"
+description = "Check size of biggest directories."
+modes       = []
+requires    = ['pkg/coreutils(du)',
+               'pkg/coreutils(head)',
+               'pkg/coreutils(sort)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--dvwa]
+filename    = "dvwa"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/dvwa"
+src         = "/usr/share/ael/shellutils/dvwa"
+dst         = "$HOME/.ael/shellutils/dvwa"
+description = "Damn Vulnerable Web Application (DVWA) is a PHP/MySQL web application that is damn vulnerable."
+modes       = []
+requires    = ['pkg/coreutils(cut)',
+               'pkg/grep',
+               'pkg/systemd(systemctl)',
+               'pkg/sudo',
+               'pkg/docker']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--extractor]
+filename    = "extractor"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/extractor"
+src         = "/usr/share/ael/shellutils/extractor"
+dst         = "$HOME/.ael/shellutils/extractor"
+description = "Compressed files universal extractor."
+modes       = []
+requires    = ['pkg/bzip2(bunzip2)',
+               'pkg/gzip(gunzip)',
+               'pkg/p7zip',
+               'pkg/tar',
+               'pkg/unrar',
+               'pkg/unzip']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--fixout]
+filename    = "fixout"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/fixout"
+src         = "/usr/share/ael/shellutils/fixout"
+dst         = "$HOME/.ael/shellutils/fixout"
+description = "Fix bash history and exit."
+modes       = []
+requires    = ['pkg/coreutils(cut)',
+               'pkg/coreutils(rm)',
+               'pkg/coreutils(sort)',
+               'pkg/coreutils(uniq)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--fuck]
+filename    = "fuck"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/fuck"
+src         = "/usr/share/ael/shellutils/fuck"
+dst         = "$HOME/.ael/shellutils/fuck"
+description = "Repeats last cmd with sudo if forgotten."
+modes       = []
+requires    = ['pkg/sudo']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--getmp3]
+filename    = "getmp3"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/getmp3"
+src         = "/usr/share/ael/shellutils/getmp3"
+dst         = "$HOME/.ael/shellutils/getmp3"
+description = "Extract video audio to .mp3."
+modes       = []
+requires    = ['pkg/yt-dlp']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--goto]
+filename    = "goto"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/goto"
+src         = "/usr/share/ael/shellutils/goto"
+dst         = "$HOME/.ael/shellutils/goto"
+description = "Simple directory bookmarks system."
+modes       = []
+requires    = ['pkg/coreutils(basename)',
+               'pkg/coreutils(ln)',
+               'pkg/coreutils(ls)',
+               'pkg/coreutils(mkdir)',
+               'pkg/coreutils(printf)',
+               'pkg/coreutils(readlink)',
+               'pkg/coreutils(readpath)',
+               'pkg/findutils(find)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--history-cleaner]
+filename    = "history-cleaner"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/history-cleaner"
+src         = "/usr/share/ael/shellutils/history-cleaner"
+dst         = "$HOME/.ael/shellutils/history-cleaner"
+description = "Cleans bash history."
+modes       = []
+requires    = ['pkg/coreutils(cp)',
+               'pkg/coreutils(rm)',
+               'pkg/coreutils(sort)',
+               'pkg/gawk(awk)',
+               'pkg/sed',
+               'pkg/fzf']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--ispeed]
+filename    = "ispeed"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/ispeed"
+src         = "/usr/share/ael/shellutils/ispeed"
+dst         = "$HOME/.ael/shellutils/ispeed"
+description = "Internet connection speed meter."
+modes       = []
+requires    = ['pkg/coreutils(printf)',
+               'pkg/curl',
+               'pkg/fzf',
+               'pkg/python',
+               'pkg/speedtest-cli']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--juice-shop]
+filename    = "juice-shop"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/juice-shop"
+src         = "/usr/share/ael/shellutils/juice-shop"
+dst         = "$HOME/.ael/shellutils/juice-shop"
+description = "OWASP Juice Shop is a vulnerable web application that can be used for security trainings, demos, CTFs and testing tools. It contains various OWASP Top Ten and other security flaws and can be installed from sources, packages, Docker or Vagrant."
+modes       = []
+requires    = ['pkg/coreutils(cut)',
+               'pkg/grep',
+               'pkg/systemd(systemctl)',
+               'pkg/sudo',
+               'pkg/docker']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--kali]
+filename    = "kali"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/kali"
+src         = "/usr/share/ael/shellutils/kali"
+dst         = "$HOME/.ael/shellutils/kali"
+description = "Kali Linux Docker container."
+modes       = []
+requires    = ['pkg/coreutils(cut)',
+               'pkg/grep',
+               'pkg/systemd(systemctl)',
+               'pkg/sudo',
+               'pkg/docker',
+               'pkg/xorg-xhost',
+               'file/dockerfiles--Dockerfile-kali']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--lazygit]
+filename    = "lazygit"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/lazygit"
+src         = "/usr/share/ael/shellutils/lazygit"
+dst         = "$HOME/.ael/shellutils/lazygit"
+description = "Updating GIT repo when you are lazy."
+modes       = []
+requires    = ['pkg/git']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--pacman-reset]
+filename    = "pacman-reset"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/pacman-reset"
+src         = "/usr/share/ael/shellutils/pacman-reset"
+dst         = "$HOME/.ael/shellutils/pacman-reset"
+description = "Re-initialize pacman sync, mirrorlist and keyring."
+modes       = []
+requires    = ['pkg/coreutils(rm)',
+               'pkg/pacman',
+               'pkg/sed',
+               'pkg/curl']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--ports]
+filename    = "ports"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/ports"
+src         = "/usr/share/ael/shellutils/ports"
+dst         = "$HOME/.ael/shellutils/ports"
+description = "Displays open ports."
+modes       = []
+requires    = ['pkg/sudo',
+               'pkg/grc',
+               'pkg/net-tools(netstat)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--processes]
+filename    = "processes"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/processes"
+src         = "/usr/share/ael/shellutils/processes"
+dst         = "$HOME/.ael/shellutils/processes"
+description = "Show processes."
+modes       = []
+requires    = ['pkg/procps-ng(ps)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--ps-grep]
+filename    = "ps-grep"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/ps-grep"
+src         = "/usr/share/ael/shellutils/ps-grep"
+dst         = "$HOME/.ael/shellutils/ps-grep"
+description = "Show processes for a particular application."
+modes       = []
+requires    = ['pkg/grep',
+               'pkg/procps-ng(ps)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--py-cleaner]
+filename    = "py-cleaner"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/py-cleaner"
+src         = "/usr/share/ael/shellutils/py-cleaner"
+dst         = "$HOME/.ael/shellutils/py-cleaner"
+description = "Clean python current directory."
+modes       = []
+requires    = ['pkg/findutils(find)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--py-server]
+filename    = "py-server"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/py-server"
+src         = "/usr/share/ael/shellutils/py-server"
+dst         = "$HOME/.ael/shellutils/py-server"
+description = "Create a Python HTTP server."
+modes       = []
+requires    = ['pkg/grep',
+               'pkg/net-tools(netstat)',
+               'pkg/python']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--reset-time]
+filename    = "reset-time"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/reset-time"
+src         = "/usr/share/ael/shellutils/reset-time"
+dst         = "$HOME/.ael/shellutils/reset-time"
+description = "Reset system time. Usefull when Windows boot screws time."
+modes       = []
+requires    = ['pkg/coreutils(date)',
+               'pkg/systemd(timedatectl)',
+               'pkg/util-linux(hwclock)',
+               'pkg/sudo']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--search-content]
+filename    = "search-content"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/search-content"
+src         = "/usr/share/ael/shellutils/search-content"
+dst         = "$HOME/.ael/shellutils/search-content"
+description = "Search files for content."
+modes       = []
+requires    = ['pkg/fzf',
+               'pkg/highlight',
+               'pkg/ripgrep']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--shell-info]
+filename    = "shell-info"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/shell-info"
+src         = "/usr/share/ael/shellutils/shell-info"
+dst         = "$HOME/.ael/shellutils/shell-info"
+description = "Show shell info."
+modes       = []
+requires    = []
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--show-utc]
+filename    = "show-utc"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/show-utc"
+src         = "/usr/share/ael/shellutils/show-utc"
+dst         = "$HOME/.ael/shellutils/show-utc"
+description = "Show UTC time."
+modes       = []
+requires    = ['pkg/coreutils(date)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--systeminfo]
+filename    = "systeminfo"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/systeminfo"
+src         = "/usr/share/ael/shellutils/systeminfo"
+dst         = "$HOME/.ael/shellutils/systeminfo"
+description = "Display system info."
+modes       = []
+requires    = ['pkg/gawk(awk)',
+               'pkg/grep',
+               'pkg/bind(host)',
+               'pkg/iproute2(ip)']
+optional    = ['pkg/docker',
+               'pkg/jq']
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--tagalog]
+filename    = "tagalog"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/tagalog"
+src         = "/usr/share/ael/shellutils/tagalog"
+dst         = "$HOME/.ael/shellutils/tagalog"
+description = "Translate to Tagalog using Google translate."
+modes       = []
+requires    = ['pkg/coreutils(head)',
+               'pkg/gawk(awk)',
+               'pkg/wget']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--termbin]
+filename    = "termbin"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/termbin"
+src         = "/usr/share/ael/shellutils/termbin"
+dst         = "$HOME/.ael/shellutils/termbin"
+description = "Netcat-based command-line pastebin."
+modes       = []
+requires    = ['pkg/gnu-netcat(nc)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--translate]
+filename    = "translate"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/translate"
+src         = "/usr/share/ael/shellutils/translate"
+dst         = "$HOME/.ael/shellutils/translate"
+description = "Translate using Google translate."
+modes       = []
+requires    = ['pkg/coreutils(head)',
+               'pkg/gawk(awk)',
+               'pkg/wget']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--tunnel-info]
+filename    = "tunnel-info"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/tunnel-info"
+src         = "/usr/share/ael/shellutils/tunnel-info"
+dst         = "$HOME/.ael/shellutils/tunnel-info"
+description = "Displays tunnels/vpn info."
+modes       = []
+requires    = ['pkg/coreutils(printf)',
+               'pkg/gawk(awk)',
+               'pkg/grep',
+               'pkg/procps-ng(ps)',
+               'pkg/iproute2(ip)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--whoisweb]
+filename    = "whoisweb"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/whoisweb"
+src         = "/usr/share/ael/shellutils/whoisweb"
+dst         = "$HOME/.ael/shellutils/whoisweb"
+description = "Query WHOIS web if `whois` port 43 is blocked on your network."
+modes       = []
+requires    = ['pkg/sed',
+               'pkg/curl',
+               'pkg/jq']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []

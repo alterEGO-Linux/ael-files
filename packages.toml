@@ -2674,6 +2674,15 @@ requires        = []
 optional        = []
 notes           = []
 
+[util-linux]
+archlinux       = "core/base(util-linux)"
+url             = "https://github.com/util-linux/util-linux"
+description     = "Miscellaneous system utilities for Linux."
+mode            = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
 [unzip]
 archlinux       = "extra/unzip"
 url             = "http://infozip.sourceforge.net/UnZip.html"
