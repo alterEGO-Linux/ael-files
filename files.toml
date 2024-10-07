@@ -546,6 +546,22 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
+[shellutils--tmuxplus]
+filename    = "tmuxplus"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/tmuxplus"
+src         = "/usr/share/ael/shellutils/tmuxplus"
+dst         = "$HOME/.ael/shellutils/tmuxplus"
+description = "TMUX wrapper."
+modes       = []
+requires    = ['pkg/coreutils(env)',
+               'pkg/fzf',
+               'pkg/grep',
+               'pkg/tmux']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
 [shellutils--translate]
 filename    = "translate"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/translate"

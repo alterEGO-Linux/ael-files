@@ -2544,17 +2544,16 @@ notes           = []
 # parent          = []
 # info            = []
 # notes           = []
-# 
-# [tmux]
-# repository      = "extra"
-# url             = "https://github.com/tmux/tmux/wiki"
-# description     = "Terminal multiplexer."
-# mode            = ['base', 'Hyprland', 'i3wm']
-# ael_scripts     = []
-# parent          = []
-# info            = []
-# notes           = []
-# 
+
+[tmux]
+archlinux       = "extra/tmux"
+url             = "https://github.com/tmux/tmux/wiki"
+description     = "Terminal multiplexer."
+mode            = ['base', 'Hyprland', 'i3wm']
+requires        = []
+optional        = []
+notes           = []
+
 # [torbrowser-launcher]
 # repository      = "extra"
 # url             = "https://github.com/torproject/torbrowser-launcher"
