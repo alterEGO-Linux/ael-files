@@ -26,14 +26,14 @@ tmuxplus() {
 
         # :/ref/ https://github.com/nwallace/dotfiles/blob/master/scripts/bin/functions
 
-        session="$(comand tmux ls -F '#{session_name}' | command fzf)"
+        session="$(command tmux ls -F '#{session_name}' | command fzf)"
 
         if [[ -n "${session}" ]]; then
             in_tmux_session    
             if [[ $? == "0" ]]; then
-                env TERM=screen-256color command tmux -u switch-client -t "${session}"
+                env TERM=screen-256color tmux -u switch-client -t "${session}"
             else
-                env TERM=screen-256color command tmux -u a -t "${session}"
+                env TERM=screen-256color tmux -u a -t "${session}"
             fi
         else
             echo "[!] Nothing selected"
@@ -55,7 +55,7 @@ tmuxplus() {
 
         session=$(echo TEMP${RANDOM})
 
-        env TERM=screen-256color command tmux -u new-session -d -s "${session}"
+        env TERM=screen-256color tmux -u new-session -d -s "${session}"
         command tmux send-keys -t "${session}" "${cmd} && exit 0" enter
     }
 
