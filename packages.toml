@@ -18,7 +18,7 @@ notes           = []
 archlinux       = "extra/alacritty"
 url             = "https://github.com/alacritty/alacritty"
 description     = "A cross-platform, GPU-accelerated terminal emulator."
-modes           = ['minimal']
+modes           = ['hyprland']
 requires        = []
 optional        = []
 notes           = []
@@ -27,74 +27,74 @@ notes           = []
 archlinux       = "extra/alsa-utils"
 url             = "https://www.alsa-project.org"
 description     = "Advanced Linux Sound Architecture - Utilities."
-modes           = ['base', 'Hyprland', 'i3wm']
+modes           = []
 requires        = []
 optional        = []
 notes           = []
 
-# [amd-ucode]
-# archlinux       = "core"
-# url             = "https://gitlab.com/kernel-firmware/linux-firmware"
-# description     = "Microcode update image for AMD CPUs."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [arandr]
-# archlinux       = "extra"
-# url             = "https://christian.amsuess.com/tools/arandr/"
-# description     = "Provide a simple visual front end for XRandR 1.2.."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [arch-wiki-docs]
-# archlinux       = "extra"
-# url             = "https://github.com/lahwaacz/arch-wiki-docs"
-# description     = "Pages from Arch Wiki optimized for offline browsing."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [archlinux-java-run]
-# archlinux       = "aur"
-# url             = "https://github.com/michaellass/archlinux-java-run"
-# description     = "Java Application Launcher for Arch Linux."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [arp-scan]
-# archlinux       = "extra"
-# url             = "https://github.com/royhills/arp-scan"
-# description     = "A tool that uses ARP to discover and fingerprint IP hosts on the local network."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [autoconf]
-# archlinux       = "core"
-# url             = "https://www.gnu.org/software/autoconf"
-# description     = "A GNU tool for automatically configuring source code."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [automake]
-# archlinux       = "core"
-# url             = "https://www.gnu.org/software/automake"
-# description     = "A GNU tool for automatically creating Makefiles."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
+[amd-ucode]
+archlinux       = "core/amd-ucode"
+url             = "https://gitlab.com/kernel-firmware/linux-firmware"
+description     = "Microcode update image for AMD CPUs."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[arandr]
+archlinux       = "extra/arandr"
+url             = "https://christian.amsuess.com/tools/arandr/"
+description     = "Provide a simple visual front end for XRandR 1.2.."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[arch-wiki-docs]
+archlinux       = "extra/arch-wiki-docs"
+url             = "https://github.com/lahwaacz/arch-wiki-docs"
+description     = "Pages from Arch Wiki optimized for offline browsing."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[archlinux-java-run]
+archlinux       = "aur/archlinux-java-run"
+url             = "https://github.com/michaellass/archlinux-java-run"
+description     = "Java Application Launcher for Arch Linux."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[arp-scan]
+archlinux       = "extra/arp-scan"
+url             = "https://github.com/royhills/arp-scan"
+description     = "A tool that uses ARP to discover and fingerprint IP hosts on the local network."
+modes           = ['network', 'hacker']
+requires        = []
+optional        = []
+notes           = []
+
+[autoconf]
+archlinux       = "core/base-devel(autoconf)"
+url             = "https://www.gnu.org/software/autoconf"
+description     = "A GNU tool for automatically configuring source code."
+modes           = ['clean']
+requires        = []
+optional        = []
+notes           = []
+
+[automake]
+archlinux       = "core/base-devel(automake)"
+url             = "https://www.gnu.org/software/automake"
+description     = "A GNU tool for automatically creating Makefiles."
+modes           = ['clean']
+requires        = []
+optional        = []
+notes           = []
+
 # [awesome-terminal-fonts]
 # archlinux       = "extra"
 # url             = "https://github.com/gabrielelana/awesome-terminal-fonts"
