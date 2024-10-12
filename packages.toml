@@ -2255,104 +2255,104 @@ requires        = []
 optional        = []
 notes           = []
 
-# [torbrowser-launcher]
-# archlinux       = "extra"
-# url             = "https://github.com/torproject/torbrowser-launcher"
-# description     = "Securely and easily download, verify, install, and launch Tor Browser in Linux."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [traceroute]
-# archlinux       = "core"
-# url             = "http://traceroute.sourceforge.net/"
-# description     = "Tracks the route taken by packets over an IP network."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [transmission-gtk]
-# archlinux       = "extra"
-# url             = "http://www.transmissionbt.com/"
-# description     = "Fast, easy, and free BitTorrent client (GTK+ GUI)."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [tree]
-# archlinux       = "extra"
-# url             = "https://gitlab.com/OldManProgrammer/unix-tree"
-# description     = "A directory listing program displaying a depth indented list of files."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ttf-courier-prime]
-# archlinux       = "aur"
-# url             = "https://quoteunquoteapps.com/courierprime/"
-# description     = "Monospace Courier font alternative. It’s Courier, just better."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ttf-font-awesome-4]
-# archlinux       = "aur"
-# url             = "https://github.com/FortAwesome/Font-Awesome"
-# description     = "Iconic font designed for Bootstrap (version 4.x)."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ttf-inconsolata]
-# archlinux       = "extra"
-# url             = "https://www.google.com/fonts/specimen/Inconsolata"
-# description     = "Monospace font for pretty code listings and for the terminal."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ttf-lato]
-# archlinux       = "extra"
-# url             = "https://www.latofonts.com/lato-free-fonts/"
-# description     = "A sanserif typeface family bearing the Polish name of \"Summer\"."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ttf-symbola]
-# archlinux       = "aur"
-# url             = "https://dn-works.com/ufas/"
-# description     = "Font for symbol blocks of the Unicode Standard (TTF)."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ufw]
-# archlinux       = "extra"
-# url             = "https://launchpad.net/ufw"
-# description     = "Uncomplicated and easy to use CLI tool for managing a netfilter firewall."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [ugrep]
-# archlinux       = "extra"
-# url             = "https://github.com/Genivia/ugrep"
-# description     = "ultra fast grep with interactive TUI, fuzzy search, boolean queries, hexdumps and more."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
+[torbrowser-launcher]
+archlinux       = "extra/torbrowser-launcher"
+url             = "https://github.com/torproject/torbrowser-launcher"
+description     = "Securely and easily download, verify, install, and launch Tor Browser in Linux."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[traceroute]
+archlinux       = "core/traceroute"
+url             = "http://traceroute.sourceforge.net/"
+description     = "Tracks the route taken by packets over an IP network."
+modes           = ['network']
+requires        = []
+optional        = []
+notes           = []
+
+[transmission-gtk]
+archlinux       = "extra/transmission-gtk"
+url             = "http://www.transmissionbt.com/"
+description     = "Fast, easy, and free BitTorrent client (GTK+ GUI)."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[tree]
+archlinux       = "extra/tree"
+url             = "https://gitlab.com/OldManProgrammer/unix-tree"
+description     = "A directory listing program displaying a depth indented list of files."
+modes           = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
+[ttf-courier-prime]
+archlinux       = "aur/ttf-courier-prime"
+url             = "https://quoteunquoteapps.com/courierprime/"
+description     = "Monospace Courier font alternative. It’s Courier, just better."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[ttf-font-awesome-4]
+archlinux       = "aur/ttf-font-awesome-4"
+url             = "https://github.com/FortAwesome/Font-Awesome"
+description     = "Iconic font designed for Bootstrap (version 4.x)."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[ttf-inconsolata]
+archlinux       = "extra/ttf-inconsolata"
+url             = "https://www.google.com/fonts/specimen/Inconsolata"
+description     = "Monospace font for pretty code listings and for the terminal."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[ttf-lato]
+archlinux       = "extra/ttf-lato"
+url             = "https://www.latofonts.com/lato-free-fonts/"
+description     = "A sanserif typeface family bearing the Polish name of \"Summer\"."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[ttf-symbola]
+archlinux       = "aur/ttf-symbola"
+url             = "https://dn-works.com/ufas/"
+description     = "Font for symbol blocks of the Unicode Standard (TTF)."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[ufw]
+archlinux       = "extra/ufw"
+url             = "https://launchpad.net/ufw"
+description     = "Uncomplicated and easy to use CLI tool for managing a netfilter firewall."
+modes           = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
+[ugrep]
+archlinux       = "extra/ugrep"
+url             = "https://github.com/Genivia/ugrep"
+description     = "ultra fast grep with interactive TUI, fuzzy search, boolean queries, hexdumps and more."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
 
 [unrar]
 archlinux       = "extra/unrar"
@@ -2381,104 +2381,104 @@ requires        = []
 optional        = []
 notes           = []
 
-# [usbutils]
-# archlinux       = "core"
-# url             = "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usbutils.git/"
-# description     = "A collection of USB tools to query connected USB devices."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [vim]
-# archlinux       = "extra"
-# url             = "https://www.vim.org"
-# description     = "Vi Improved, a highly configurable, improved version of the vi text editor."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [virtualbox]
-# archlinux       = "extra"
-# url             = "https://virtualbox.org/"
-# description     = "Powerful x86 virtualization for enterprise as well as home use."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [virtualbox-guest-utils]
-# archlinux       = "extra"
-# url             = "https://virtualbox.org/"
-# description     = "VirtualBox Guest userspace utilities."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [virtualbox-host-modules-arch]
-# archlinux       = "extra"
-# url             = "https://virtualbox.org/"
-# description     = "Virtualbox host kernel modules for Arch Kernel."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [vlc]
-# archlinux       = "extra"
-# url             = "https://www.videolan.org/vlc/"
-# description     = "Multi-platform MPEG, VCD/DVD, and DivX player."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [w3m]
-# archlinux       = "extra"
-# url             = "https://salsa.debian.org/debian/w3m"
-# description     = "Text-based Web browser as well as pager."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [waybar]
-# archlinux       = "extra"
-# url             = "https://github.com/Alexays/Waybar/"
-# description     = "Highly customizable Wayland bar for Sway and Wlroots based compositors."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [waypaper-git]
-# archlinux       = "aur"
-# url             = "https://github.com/anufrievroman/waypaper"
-# description     = "GUI wallpaper setter for Wayland and Xorg window managers. It works as a frontend for popular wallpaper backends like swaybg, swww, wallutils, hyprpaper and feh.."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [weasis-bin]
-# archlinux       = "aur"
-# url             = "https://nroduit.github.io/"
-# description     = "Weasis is a free medical DICOM viewer used in healthcare by hospitals, health networks, multicenter research trials, and patients.."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wfuzz-git]
-# archlinux       = "aur"
-# url             = "https://github.com/xmendez/wfuzz"
-# description     = "Web application fuzzer - python3 build of the dev branch."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
+[usbutils]
+archlinux       = "core/usbutils"
+url             = "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usbutils.git/"
+description     = "A collection of USB tools to query connected USB devices."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[vim]
+archlinux       = "extra/vim"
+url             = "https://www.vim.org"
+description     = "Vi Improved, a highly configurable, improved version of the vi text editor."
+modes           = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
+[virtualbox]
+archlinux       = "extra/virtualbox"
+url             = "https://virtualbox.org/"
+description     = "Powerful x86 virtualization for enterprise as well as home use."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[virtualbox-guest-utils]
+archlinux       = "extra/virtualbox-guest-utils"
+url             = "https://virtualbox.org/"
+description     = "VirtualBox Guest userspace utilities."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[virtualbox-host-modules-arch]
+archlinux       = "extra/virtualbox-host-modules-arch"
+url             = "https://virtualbox.org/"
+description     = "Virtualbox host kernel modules for Arch Kernel."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[vlc]
+archlinux       = "extra/vlc"
+url             = "https://www.videolan.org/vlc/"
+description     = "Multi-platform MPEG, VCD/DVD, and DivX player."
+modes           = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
+[w3m]
+archlinux       = "extra/w3m"
+url             = "https://salsa.debian.org/debian/w3m"
+description     = "Text-based Web browser as well as pager."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[waybar]
+archlinux       = "extra/waybar"
+url             = "https://github.com/Alexays/Waybar/"
+description     = "Highly customizable Wayland bar for Sway and Wlroots based compositors."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[waypaper-git]
+archlinux       = "aur/waypaper-git"
+url             = "https://github.com/anufrievroman/waypaper"
+description     = "GUI wallpaper setter for Wayland and Xorg window managers. It works as a frontend for popular wallpaper backends like swaybg, swww, wallutils, hyprpaper and feh.."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[weasis-bin]
+archlinux       = "aur/weasis-bin"
+url             = "https://nroduit.github.io/"
+description     = "Weasis is a free medical DICOM viewer used in healthcare by hospitals, health networks, multicenter research trials, and patients.."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[wfuzz-git]
+archlinux       = "aur/wfuzz-git"
+url             = "https://github.com/xmendez/wfuzz"
+description     = "Web application fuzzer - python3 build of the dev branch."
+modes           = ['hacker']
+requires        = []
+optional        = []
+notes           = []
 
 [wget]
 archlinux       = "extra/wget"
@@ -2489,150 +2489,141 @@ requires        = []
 optional        = []
 notes           = []
 
-# [which]
-# archlinux       = "core"
-# url             = "https://savannah.gnu.org/projects/which/"
-# description     = "A utility to show the full path of commands."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [whois]
-# archlinux       = "extra"
-# url             = "https://github.com/rfc1036/whois"
-# description     = "Intelligent WHOIS client."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wine]
-# archlinux       = "multilib"
-# url             = "https://www.winehq.org"
-# description     = "A compatibility layer for running Windows programs."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wireless_tools]
-# archlinux       = "extra"
-# url             = "https://hewlettpackard.github.io/wireless-tools/Tools.html"
-# description     = "Tools allowing to manipulate the Wireless Extensions."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wireshark-qt]
-# archlinux       = "extra"
-# url             = "https://www.wireshark.org/"
-# description     = "Network traffic and protocol analyzer/sniffer - Qt GUI."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wkhtmltox]
-# archlinux       = "None"
-# url             = "None"
-# description     = "None"
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wl-clipboard]
-# archlinux       = "extra"
-# url             = "https://github.com/bugaevc/wl-clipboard"
-# description     = "Command-line copy/paste utilities for Wayland."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [wlr-randr]
-# archlinux       = "extra"
-# url             = "https://git.sr.ht/~emersion/wlr-randr"
-# description     = "Utility to manage outputs of a Wayland compositor."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xautomation]
-# archlinux       = "extra"
-# url             = "https://hoopajoo.net/projects/xautomation.html"
-# description     = "Controls X from the command line and does \"visual scraping\".."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xclip]
-# archlinux       = "extra"
-# url             = "https://github.com/astrand/xclip"
-# description     = "Command line interface to the X11 clipboard."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xcompmgr]
-# archlinux       = "extra"
-# url             = "https://xorg.freedesktop.org/"
-# description     = "Composite window effect manager for X.org."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xdg-ninja-git]
-# archlinux       = "aur"
-# url             = "https://github.com/b3nj5m1n/xdg-ninja"
-# description     = "A shell script which checks your $HOME for unwanted files and directories.."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xdg-user-dirs]
-# archlinux       = "extra"
-# url             = "https://www.freedesktop.org/wiki/Software/xdg-user-dirs"
-# description     = "Manage user directories like ~/Desktop and ~/Music."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xdotool]
-# archlinux       = "extra"
-# url             = "https://www.semicomplete.com/projects/xdotool/"
-# description     = "Command-line X11 automation tool."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xf86-video-intel]
-# archlinux       = "extra"
-# url             = "https://01.org/linuxgraphics"
-# description     = "X.org Intel i810/i830/i915/945G/G965+ video drivers."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [xfce4-terminal]
-# archlinux       = "extra"
-# url             = "https://docs.xfce.org/apps/terminal/start"
-# description     = "A modern terminal emulator primarily for the Xfce desktop environment."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
+[which]
+archlinux       = "core/base-devel(which)"
+url             = "https://savannah.gnu.org/projects/which/"
+description     = "A utility to show the full path of commands."
+modes           = ['clean']
+requires        = []
+optional        = []
+notes           = []
+
+[whois]
+archlinux       = "extra/whois"
+url             = "https://github.com/rfc1036/whois"
+description     = "Intelligent WHOIS client."
+modes           = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
+[wine]
+archlinux       = "multilib/wine"
+url             = "https://www.winehq.org"
+description     = "A compatibility layer for running Windows programs."
+modes           = ['minimal']
+requires        = []
+optional        = []
+notes           = []
+
+[wireless_tools]
+archlinux       = "extra/wireless_tools"
+url             = "https://hewlettpackard.github.io/wireless-tools/Tools.html"
+description     = "Tools allowing to manipulate the Wireless Extensions."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[wireshark-qt]
+archlinux       = "extra/wireshark-qt"
+url             = "https://www.wireshark.org/"
+description     = "Network traffic and protocol analyzer/sniffer - Qt GUI."
+modes           = ['hacker', 'network']
+requires        = []
+optional        = []
+notes           = []
+
+[wl-clipboard]
+archlinux       = "extra/wl-clipboard"
+url             = "https://github.com/bugaevc/wl-clipboard"
+description     = "Command-line copy/paste utilities for Wayland."
+modes           = ['Hyprland']
+requires        = []
+optional        = []
+notes           = []
+
+[wlr-randr]
+archlinux       = "extra/wlr-randr"
+url             = "https://git.sr.ht/~emersion/wlr-randr"
+description     = "Utility to manage outputs of a Wayland compositor."
+modes           = ['Hyprland']
+requires        = []
+optional        = []
+notes           = []
+
+[xautomation]
+archlinux       = "extra/xautomation"
+url             = "https://hoopajoo.net/projects/xautomation.html"
+description     = "Controls X from the command line and does \"visual scraping\".."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xclip]
+archlinux       = "extra/xclip"
+url             = "https://github.com/astrand/xclip"
+description     = "Command line interface to the X11 clipboard."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xcompmgr]
+archlinux       = "extra/xcompmgr"
+url             = "https://xorg.freedesktop.org/"
+description     = "Composite window effect manager for X.org."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xdg-ninja-git]
+archlinux       = "aur/xdg-ninja-git"
+url             = "https://github.com/b3nj5m1n/xdg-ninja"
+description     = "A shell script which checks your $HOME for unwanted files and directories.."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xdg-user-dirs]
+archlinux       = "extra/xdg-user-dirs"
+url             = "https://www.freedesktop.org/wiki/Software/xdg-user-dirs"
+description     = "Manage user directories like ~/Desktop and ~/Music."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xdotool]
+archlinux       = "extra/xdotool"
+url             = "https://www.semicomplete.com/projects/xdotool/"
+description     = "Command-line X11 automation tool."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xf86-video-intel]
+archlinux       = "extra/xf86-video-intel"
+url             = "https://01.org/linuxgraphics"
+description     = "X.org Intel i810/i830/i915/945G/G965+ video drivers."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[xfce4-terminal]
+archlinux       = "extra/xfce4-terminal"
+url             = "https://docs.xfce.org/apps/terminal/start"
+description     = "A modern terminal emulator primarily for the Xfce desktop environment."
+modes           = []
+requires        = []
+optional        = []
+notes           = []
+
 # [xorg-iceauth]
 # archlinux       = "extra"
 # url             = "https://gitlab.freedesktop.org/xorg/app/iceauth"
@@ -2984,38 +2975,38 @@ requires        = []
 optional        = []
 notes           = []
 
-# [zaproxy]
-# archlinux       = "extra"
-# url             = "https://www.zaproxy.org/"
-# description     = "Integrated penetration testing tool for finding vulnerabilities in web applications."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [zathura]
-# archlinux       = "extra"
-# url             = "https://pwmt.org/projects/zathura/"
-# description     = "Minimalistic document viewer."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [zathura-pdf-mupdf]
-# archlinux       = "extra"
-# url             = "https://pwmt.org/projects/zathura-pdf-mupdf/"
-# description     = "PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
-# 
-# [zbar]
-# archlinux       = "extra"
-# url             = "https://github.com/mchehab/zbar"
-# description     = "Application and library for reading bar codes from various sources."
-# modes           = ['base', 'Hyprland', 'i3wm']
-# requires        = []
-# optional        = []
-# notes           = []
+[zaproxy]
+archlinux       = "extra/zaproxy"
+url             = "https://www.zaproxy.org/"
+description     = "Integrated penetration testing tool for finding vulnerabilities in web applications."
+modes           = ['hacker']
+requires        = []
+optional        = []
+notes           = []
+
+[zathura]
+archlinux       = "extra/zathura"
+url             = "https://pwmt.org/projects/zathura/"
+description     = "Minimalistic document viewer."
+modes           = ['minimal']
+requires        = ['pkg/zathura-pdf-mupdf']
+optional        = []
+notes           = []
+
+[zathura-pdf-mupdf]
+archlinux       = "extra/zathura-pdf-mupdf"
+url             = "https://pwmt.org/projects/zathura-pdf-mupdf/"
+description     = "PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)."
+modes           = ['minimal']
+requires        = ['pkg/zathura']
+optional        = []
+notes           = []
+
+[zbar]
+archlinux       = "extra/zbar"
+url             = "https://github.com/mchehab/zbar"
+description     = "Application and library for reading bar codes from various sources."
+modes           = []
+requires        = []
+optional        = []
+notes           = []

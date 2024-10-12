@@ -368,7 +368,6 @@ git_status() {
   }
   alias git-status='git_status'
 
-[ -f /home/ghost/.ael/shellutils/busy ] && . /home/ghost/.ael/shellutils/busy
 [ -f /home/ghost/.ael/shellutils/cheat ] && . /home/ghost/.ael/shellutils/cheat
 [ -f /home/ghost/.ael/shellutils/deep-nmap ] && . /home/ghost/.ael/shellutils/deep-nmap
 [ -f /home/ghost/.ael/shellutils/deep-scan ] && . /home/ghost/.ael/shellutils/deep-scan
@@ -403,3 +402,4 @@ git_status() {
 [ -f /home/ghost/.ael/shellutils/whoisweb ] && . /home/ghost/.ael/shellutils/whoisweb
 [ -f /home/ghost/.ael/shellutils/show-utc ] && . /home/ghost/.ael/shellutils/show-utc
 [ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
+[ -f /home/ghost/.ael/shellutils/busy ] && . /home/ghost/.ael/shellutils/busy
