@@ -1,0 +1,52 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/snake-env]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-10-23 11:28:49 UTC
+# :updated       : 2024-10-23 11:29:01 UTC
+# :description   : Manage python -m venv.
+
+# busy() {
+
+    # :ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+    # :CTRL+c to quit.
+
+    # echo "================================================================================"
+    # echo "[+] busy()"
+    # echo "    Looking busy ..."
+    # echo "================================================================================"
+    # echo
+
+    # sleep 5
+
+    # command cat /dev/urandom \
+    # | command hexdump -C \
+    # | command grep --color=always 'ca fe'
+    # }
+    #
+
+snake-env() {
+
+    SNAKE_ENV_DIR="${HOME}/.ael/snake-envs"
+
+    if [ ! -d "${SNAKE_ENV_DIR}" ]; then
+        mkdir "${SNAKE_ENV_DIR}"
+    fi
+
+    usage() {
+        echo Hello
+    }
+
+    if [[ "$#" -eq 0 ]]; then
+        usage
+    fi
+    
+    while (( "$#" )); do
+        case $1 in
+            -h|--help)
+            usage
+            ;;
+      esac
+      shift
+    done
+}
