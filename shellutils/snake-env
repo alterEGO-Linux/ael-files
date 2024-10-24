@@ -36,7 +36,13 @@ snake-env() {
     list_all_environments() {
 
         echo "[+] Fetching ALL python environments' list:"
-        find ~ -type d -name 'bin' -exec test -e '{}/python' ';' -print | xargs dirname
+        find ~ -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null | xargs dirname
+    }
+
+    list_environments() {
+
+        echo "[+] Fetching python environments' list:"
+        find "${SNAKE_ENV_DIR}" -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null | xargs dirname | xargs -n1 basename
     }
 
     usage() {
@@ -50,11 +56,14 @@ snake-env() {
     while (( "$#" )); do
         case $1 in
             -h|--help)
-            usage
-            ;;
-            --allenvs)
-            list_all_environments
-            ;;
+                usage
+                ;;
+            --list)
+                list_environments
+                ;;
+            --listall)
+                list_all_environments
+                ;;
       esac
       shift
     done
