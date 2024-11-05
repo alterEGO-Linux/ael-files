@@ -14,49 +14,74 @@ snake-env() {
         mkdir "${SNAKE_ENV_DIR}"
     fi
 
-    # :/ACTIVATE
-    activate() {
-        echo "[-] Starting python environment: ${ENVNAME}"
+    snake-activate() {
         if [ ! -d "${SNAKE_ENV_DIR}/${ENVNAME}" ]; then
             echo "[!] Environment ${ENVNAME} does not exists."
-            unset -f bye
-            source ~/.bashrc
+            snake-reset-shell
+
         else
+            echo "[-] Starting python environment: ${ENVNAME}"
             source "${SNAKE_ENV_DIR}/${ENVNAME}/bin/activate"
             prompt_command
-            init_jupyter
+            snake-install-jupyter
+            unset -f snake-activate
         fi
-    }
+        }
 
-    # :/BYE
-    bye() {
-      echo "[!] Quitting python environment: ${ENVNAME}"
-      [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
-      unset -f activate
-      unset -f bye
-      deactivate
-    }
 
-    # :/CREATE
-    create_environment() {
+    snake-create() {
         python -m venv "${SNAKE_ENV_DIR}/${ENVNAME}"
-        activate
-    }
+        snake-activate
+        }
 
-    # :/JUPYTER
-    init_jupyter() {
 
-      # :/ref/ https://janakiev.com/blog/jupyter-virtual-envs/
+    snake-exit() {
+        echo "[!] Quitting python environment: ${ENVNAME}"
+        [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
+        snake-reset-shell
+        deactivate
+        }
 
-      if [ -n $(command -v jupyter-notebook) ]; then
-          if pip freeze | grep -q "ipykernel"; then
-              echo "[-] Module ipykernel for Jupyter already installed."
-          else
-              echo "[-] Installing ipykernel for Jupyter."
-              pip install ipykernel
-          fi
-          python -m ipykernel install --user --name="${ENVNAME}"
-          cat <<EOF > ${SNAKE_ENV_DIR}/${ENVNAME}/${ENVNAME}.ipynb
+
+    snake-info() {
+        cat <<EOF
+Info: snake-env "${ENVNAME}"
+    python path : $(command -v python)
+EOF
+        }
+
+
+    snake-reset-shell() {
+        [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
+        unset -f snake-activate
+        unset -f create_environment
+        unset -f snake-info
+        unset -f snake-install-jupyter
+        unset -f snake-notebook
+        unset -f list_all_environments
+        unset -f list_environments
+        unset -f snake-usage
+        unset -f snake-reset-shell
+        unset -f snake-exit
+        unset SNAKE_ENV_DIR
+        unset ENVNAME
+        }
+
+    snake-install-jupyter() {
+
+        # :/ref/ https://janakiev.com/blog/jupyter-virtual-envs/
+
+        if [ -n $(command -v jupyter-notebook) ]; then
+            if pip freeze | grep -q "ipykernel"; then
+                echo "[-] Module ipykernel for Jupyter already installed."
+            else
+                echo "[-] Installing ipykernel for Jupyter."
+                pip install ipykernel
+            fi
+            python -m ipykernel install --user --name="${ENVNAME}"
+
+            if [[ ! -e "${SNAKE_ENV_DIR}/${ENVNAME}/${ENVNAME}.ipynb" ]]; then
+                cat <<EOF > ${SNAKE_ENV_DIR}/${ENVNAME}/${ENVNAME}.ipynb
 {
  "cells": [
   {
@@ -90,10 +115,18 @@ snake-env() {
  "nbformat_minor": 4
 }
 EOF
-      else
-          echo "[!] Jupyter not installed!"
-      fi
-    }
+            fi
+
+        else
+            echo "[!] Jupyter not installed!"
+        fi
+        }
+
+    snake-notebook() {
+        if [[ -e "${SNAKE_ENV_DIR}/${ENVNAME}/${ENVNAME}.ipynb" ]]; then
+           jupyter-notebook "${SNAKE_ENV_DIR}/${ENVNAME}/${ENVNAME}.ipynb" &
+        fi
+        }
 
     list_all_environments() {
 
@@ -124,8 +157,7 @@ EOF
         fi
     }
 
-    # :/USAGE
-    usage() {
+    snake-usage() {
         cat <<EOF
 Usage: snake-env [OPTIONS] <environment-name>
 
@@ -144,11 +176,18 @@ Examples:
   snake-env -l                     # List all environments managed by snake-env
   snake-env --listall              # List all Python environments on the system
 
+Internal commands:
+  snake-exit                       Exit environment.
+  snake-info                       Show environment informations.
+  snake-notebook                   Launch a Jupyter notebook.
+
 EOF
-}
+
+        }
 
     if [[ "$#" -eq 0 ]]; then
-        usage
+        snake-usage
+        snake-reset-shell
     fi
     
     while (( "$#" )); do
@@ -156,7 +195,7 @@ EOF
             -a|--activate)
                 shift
                 ENVNAME="${1}"
-                activate
+                snake-activate
                 ;;
             -c|--create)
                 shift
@@ -164,7 +203,8 @@ EOF
                 create_environment
                 ;;
             -h|--help)
-                usage
+                snake-usage
+                snake-reset-shell
                 ;;
             -l|--list)
                 list_environments
