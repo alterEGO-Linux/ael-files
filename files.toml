@@ -44,19 +44,6 @@ is_symlink  = true
 create_bkp  = false
 notes       = []
 
-[root--shellutils]
-filename    = "shellutils.toml"
-url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils.toml"
-src         = "/usr/share/ael/shellutils.toml"
-dst         = "/usr/share/ael/shellutils.toml"
-description = "AEL Shell utils."
-modes       = ['base']
-requires    = []
-optional    = []
-is_symlink  = true
-create_bkp  = false
-notes       = []
-
 [dockerfiles--Dockerfile-kali]
 filename    = "Dockerfile-kali"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/dockerfiles/Dockerfile-kali"
@@ -496,6 +483,27 @@ dst         = "$HOME/.ael/shellutils/show-utc"
 description = "Show UTC time."
 modes       = []
 requires    = ['pkg/coreutils(date)']
+optional    = []
+is_symlink  = true
+create_bkp  = false
+notes       = []
+
+[shellutils--snake-env]
+filename    = "snake-env"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/shellutils/snake-env"
+src         = "/usr/share/ael/shellutils/snake-env"
+dst         = "$HOME/.ael/shellutils/snake-env"
+description = "Manage python -m venv."
+mode        = ['hacker']
+requires    = ['pkg/coreutils(cat)',
+               'pkg/coreutils(date)',
+               'pkg/coreutils(mkdir)',
+               'pkg/coreutils(tty)',
+               'pkg/findutils(find)',
+               'pkg/findutils(xargs)',
+               'pkg/grep',
+               'pkg/jupyter-notebook',
+               'pkg/python']
 optional    = []
 is_symlink  = true
 create_bkp  = false

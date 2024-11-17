@@ -1017,8 +1017,8 @@ notes           = []
 archlinux       = "extra/jupyter-notebook"
 url             = "https://github.com/jupyter/notebook"
 description     = "The language-agnostic HTML notebook application for Project Jupyter."
-modes           = []
-requires        = []
+modes           = ['hacker']
+requires        = ['pkg/python-ipykernel']
 optional        = []
 notes           = []
 
@@ -1765,6 +1765,15 @@ archlinux       = "extra/python-flask-wtf"
 url             = "https://flask-wtf.readthedocs.io/"
 description     = "Simple integration of Flask and WTForms."
 modes           = []
+requires        = []
+optional        = []
+notes           = []
+
+[python-ipykernel]
+archlinux       = "extra/ipykernel"
+url             = "https://pypi.org/project/ipykernel/"
+description     = "The ipython kernel for Jupyter."
+modes           = ['hacker']
 requires        = []
 optional        = []
 notes           = []
