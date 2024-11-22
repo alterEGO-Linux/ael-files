@@ -200,7 +200,7 @@ EOF
             -c|--create)
                 shift
                 ENVNAME="${1}"
-                create_environment
+                snake-create
                 ;;
             -h|--help)
                 snake-usage
