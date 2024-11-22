@@ -403,3 +403,4 @@ git_status() {
 [ -f /home/ghost/.ael/shellutils/show-utc ] && . /home/ghost/.ael/shellutils/show-utc
 [ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 [ -f /home/ghost/.ael/shellutils/busy ] && . /home/ghost/.ael/shellutils/busy
+[ -f /home/ghost/.ael/shellutils/snake-env ] && . /home/ghost/.ael/shellutils/snake-env
