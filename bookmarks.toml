@@ -1,0 +1,16 @@
+# :----------------------------------------------------------------------- INFO
+# :[/usr/share/bookmarks.toml]
+# :author        : fantomH @alterEGO Linux
+# :created       : 2024-11-23 00:22:16 UTC
+# :updated       : 2024-11-23 00:22:21 UTC
+# :description   : Bookmarks.
+
+[GL.iNet Router Docs 4]
+title           = "GL.iNet Router Docs 4"
+url             = "https://docs.gl-inet.com/router/en/4/"
+notes           = []
+
+[Slate Plus (GL-A1300) User Guide]
+title           = "Slate Plus (GL-A1300) User Guide"
+url             = "https://github.com/gl-inet/docs4.x/blob/master/docs/user_guide/gl-a1300/index.md"
+notes           = []
