@@ -2,7 +2,7 @@
 # :[~/.config/i3/config]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2021-02-26 09:37:37 UTC
-# :updated       : 2024-03-24 11:40:30 UTC
+# :updated       : 2024-12-27 21:11:08 UTC
 # :description   : i3vm configuration file.
 
 set $mod Mod4
