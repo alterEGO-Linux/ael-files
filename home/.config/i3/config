@@ -114,7 +114,7 @@ font pango:Source Code Pro Medium 10
   # :change container layout (stacked, tabbed, toggle split)
   bindsym $mod+s layout stacking 
   bindsym $mod+w layout tabbed 
-  bindsym $mod+e layout toggle split
+  #bindsym $mod+e layout toggle split
 
   # :(* floating windows *)
 
@@ -215,7 +215,11 @@ font pango:Source Code Pro Medium 10
 
   bindsym $mod+r mode "resize"
 
-# :---------- [ APPLICATIONS ]
+# :----------/ APPLICATIONS /----------:
+
+  # :--/ FILE MANAGER /--:
+
+  bindsym $mod+e exec pcmanfm  
 
   # :(* terminal *)
   bindsym $mod+Return exec alacritty -e env TERM=screen-256color tmux -u
@@ -282,5 +286,3 @@ font pango:Source Code Pro Medium 10
 # :---------- [ REFERENCES ]
 
   # :User manual: https://i3wm.org/docs/userguide.html
-
-# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
