@@ -5,12 +5,20 @@
 # :updated       : 2024-11-23 00:22:21 UTC
 # :description   : Bookmarks.
 
-[GL.iNet Router Docs 4]
+[url.0000000001]
 title           = "GL.iNet Router Docs 4"
 url             = "https://docs.gl-inet.com/router/en/4/"
+parent          = ''
 notes           = []
 
-[Slate Plus (GL-A1300) User Guide]
+[url.0000000002]
 title           = "Slate Plus (GL-A1300) User Guide"
 url             = "https://github.com/gl-inet/docs4.x/blob/master/docs/user_guide/gl-a1300/index.md"
+parent          = ''
+notes           = []
+
+[url.0000000003]
+title           = "Access ANY Network (remotely)"
+url             = "https://www.youtube.com/watch?v=1lZ3FQSv-wI"
+parent          = "Youtube - NetworkChuck"
 notes           = []
