@@ -8,8 +8,8 @@
 [root--ael]
 filename    = "ael.toml"
 url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/ael.toml"
-src         = "ael-files/ael.toml"
-dst         = ".ael/ael.toml"
+src         = "USRSHARE/ael-files/ael.toml"
+dst         = "USERHOME/.ael/ael.toml"
 description = "AEL configuration file."
 modes       = ['base']
 requires    = []
