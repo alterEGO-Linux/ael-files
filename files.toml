@@ -1,9 +1,22 @@
 # :----------------------------------------------------------------------- INFO
-# :[/usr/share/ael/files.toml]
+# :[share/ael-files/files.toml]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-11-22 20:35:16 UTC
-# :updated       : 2024-10-04 22:41:54 UTC
+# :updated       : 2025-01-08 18:59:11 UTC
 # :description   : List of files.
+
+[root--ael]
+filename    = "ael.toml"
+url         = "https://raw.githubusercontent.com/alterEGO-Linux/ael-files/main/ael.toml"
+src         = "ael-files/ael.toml"
+dst         = ".ael/ael.toml"
+description = "AEL configuration file."
+modes       = ['base']
+requires    = []
+optional    = []
+is_symlink  = false
+create_bkp  = true
+notes       = []
 
 [root--files]
 filename    = "files.toml"
