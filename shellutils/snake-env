@@ -15,6 +15,24 @@ snake-env() {
     fi
 
     snake-activate() {
+
+        # :/PROMPT
+        prompt_command() {
+            history -a
+            date_now="$(date "+%F %H:%M:%S %Z")"
+
+            # :/TTY won't show unicode character #10095.
+            if tty | grep pts &>/dev/null; then
+
+                PS1="\[${RESET}\]\[${GREEN}\](${ENVNAME})-[\[${RESET}\]\w\[${GREEN}\]] • \[$date_now\]\n\[${GREEN}\]❯ \[${RESET}\]"
+                export PS1
+
+            else
+                PS1="\[${RESET}\]\[${GREEN}\](${ENVNAME})-[\[${RESET}\]\w\[${GREEN}\]] • \[$date_now\]\n\[${GREEN}\]> \[${RESET}\]"
+                export PS1
+            fi
+        }
+
         if [ ! -d "${SNAKE_ENV_DIR}/${ENVNAME}" ]; then
             echo "[!] Environment ${ENVNAME} does not exists."
             snake-reset-shell
@@ -132,6 +150,7 @@ EOF
 
         echo "[+] Fetching ALL python environments' list:"
         find ~ -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null | xargs dirname
+        snake-reset-shell
     }
 
     list_environments() {
@@ -140,22 +159,6 @@ EOF
         find "${SNAKE_ENV_DIR}" -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null | xargs dirname | xargs -n1 basename
     }
 
-    # :/PROMPT
-    prompt_command() {
-        history -a
-        date_now="$(date "+%F %H:%M:%S %Z")"
-
-        # :/TTY won't show unicode character #10095.
-        if tty | grep pts &>/dev/null; then
-
-            PS1="\[${RESET}\]\[${GREEN}\](${ENVNAME})-[\[${RESET}\]\w\[${GREEN}\]] • \[$date_now\]\n\[${GREEN}\]❯ \[${RESET}\]"
-            export PS1
-
-        else
-            PS1="\[${RESET}\]\[${GREEN}\](${ENVNAME})-[\[${RESET}\]\w\[${GREEN}\]] • \[$date_now\]\n\[${GREEN}\]> \[${RESET}\]"
-            export PS1
-        fi
-    }
 
     snake-usage() {
         cat <<EOF
@@ -196,6 +199,7 @@ EOF
                 shift
                 ENVNAME="${1}"
                 snake-activate
+                prompt_command
                 ;;
             -c|--create)
                 shift
