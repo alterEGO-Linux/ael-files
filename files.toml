@@ -14,7 +14,7 @@ description = "AEL configuration file."
 modes       = ['base']
 requires    = []
 optional    = []
-is_symlink  = false
+is_symlink  = true
 create_bkp  = true
 notes       = []
 
