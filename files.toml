@@ -14,8 +14,7 @@ description = "AEL configuration file."
 modes       = ['base']
 requires    = []
 optional    = []
-is_symlink  = true
-create_bkp  = true
+is_symlink  = false
 notes       = []
 
 [root--files]
@@ -28,7 +27,6 @@ modes       = ['base']
 requires    = []
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [root--firefox]
@@ -41,7 +39,6 @@ modes       = ['base']
 requires    = []
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [root--packages]
@@ -54,7 +51,6 @@ modes       = ['base']
 requires    = []
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [dockerfiles--Dockerfile-kali]
@@ -67,7 +63,6 @@ modes       = []
 requires    = []
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--busy]
@@ -82,7 +77,6 @@ requires    = ['pkg/coreutils(cat)',
                'pkg/util-linux(hexdump)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--cheat]
@@ -98,7 +92,6 @@ requires    = ['pkg/coreutils(cat)',
                'pkg/less']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--cyberchef]
@@ -116,7 +109,6 @@ requires    = ['pkg/coreutils(cut)',
                'pkg/less']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--deep-nmap]
@@ -131,7 +123,6 @@ requires    = ['pkg/sudo',
                'pkg/nmap']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--deep-scan]
@@ -146,7 +137,6 @@ requires    = ['pkg/sudo',
                'pkg/rustscan']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--delete]
@@ -159,7 +149,6 @@ modes       = []
 requires    = ['pkg/coreutils(rm)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--directory-size]
@@ -174,7 +163,6 @@ requires    = ['pkg/coreutils(du)',
                'pkg/coreutils(sort)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--dvwa]
@@ -191,7 +179,6 @@ requires    = ['pkg/coreutils(cut)',
                'pkg/docker']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--extractor]
@@ -209,7 +196,6 @@ requires    = ['pkg/bzip2(bunzip2)',
                'pkg/unzip']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--fixout]
@@ -225,7 +211,6 @@ requires    = ['pkg/coreutils(cut)',
                'pkg/coreutils(uniq)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--fuck]
@@ -238,7 +223,6 @@ modes       = []
 requires    = ['pkg/sudo']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--getmp3]
@@ -251,7 +235,6 @@ modes       = []
 requires    = ['pkg/yt-dlp']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--goto]
@@ -271,7 +254,6 @@ requires    = ['pkg/coreutils(basename)',
                'pkg/findutils(find)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--history-cleaner]
@@ -289,7 +271,6 @@ requires    = ['pkg/coreutils(cp)',
                'pkg/fzf']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--ispeed]
@@ -306,7 +287,6 @@ requires    = ['pkg/coreutils(printf)',
                'pkg/speedtest-cli']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--juice-shop]
@@ -323,7 +303,6 @@ requires    = ['pkg/coreutils(cut)',
                'pkg/docker']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--kali]
@@ -342,7 +321,6 @@ requires    = ['pkg/coreutils(cut)',
                'file/dockerfiles--Dockerfile-kali']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--lazygit]
@@ -355,7 +333,6 @@ modes       = []
 requires    = ['pkg/git']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--pacman-reset]
@@ -371,7 +348,6 @@ requires    = ['pkg/coreutils(rm)',
                'pkg/curl']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--ports]
@@ -386,7 +362,6 @@ requires    = ['pkg/sudo',
                'pkg/net-tools(netstat)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--processes]
@@ -399,7 +374,6 @@ modes       = []
 requires    = ['pkg/procps-ng(ps)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--ps-grep]
@@ -413,7 +387,6 @@ requires    = ['pkg/grep',
                'pkg/procps-ng(ps)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--py-cleaner]
@@ -426,7 +399,6 @@ modes       = []
 requires    = ['pkg/findutils(find)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--py-server]
@@ -441,7 +413,6 @@ requires    = ['pkg/grep',
                'pkg/python']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--reset-time]
@@ -457,7 +428,6 @@ requires    = ['pkg/coreutils(date)',
                'pkg/sudo']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--search-content]
@@ -472,7 +442,6 @@ requires    = ['pkg/fzf',
                'pkg/ripgrep']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--shell-info]
@@ -485,7 +454,6 @@ modes       = []
 requires    = []
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--show-utc]
@@ -498,7 +466,6 @@ modes       = []
 requires    = ['pkg/coreutils(date)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--snake-env]
@@ -519,7 +486,6 @@ requires    = ['pkg/coreutils(cat)',
                'pkg/python']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--systeminfo]
@@ -536,7 +502,6 @@ requires    = ['pkg/gawk(awk)',
 optional    = ['pkg/docker',
                'pkg/jq']
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--tagalog]
@@ -551,7 +516,6 @@ requires    = ['pkg/coreutils(head)',
                'pkg/wget']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--termbin]
@@ -564,7 +528,6 @@ modes       = []
 requires    = ['pkg/gnu-netcat(nc)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--tmuxplus]
@@ -580,7 +543,6 @@ requires    = ['pkg/coreutils(env)',
                'pkg/tmux']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--translate]
@@ -595,7 +557,6 @@ requires    = ['pkg/coreutils(head)',
                'pkg/wget']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--tunnel-info]
@@ -612,7 +573,6 @@ requires    = ['pkg/coreutils(printf)',
                'pkg/iproute2(ip)']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
 
 [shellutils--whoisweb]
@@ -627,5 +587,4 @@ requires    = ['pkg/sed',
                'pkg/jq']
 optional    = []
 is_symlink  = true
-create_bkp  = false
 notes       = []
