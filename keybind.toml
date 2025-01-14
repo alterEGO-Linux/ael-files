@@ -1,0 +1,35 @@
+# :----------------------------------------------------------------------- INFO
+# :[/keybind.toml]
+# :author        : alterEGO Linux
+# :created       : 2025-01-13 16:15:26 UTC
+# :updated       : 2025-01-13 16:15:31 UTC
+# :description   : Keybinding.
+
+[window.exit]
+hyprland        = "SUPER+SHIFT+X"
+
+[window.float]
+hyprland        = "SUPER+SHIFT+SPACE"
+
+[window.group]
+hyprland        = "SUPER+SHIFT+G"
+
+[window.kill-active]
+hyprland        = "SUPER+SHIFT+Q"
+
+[window.toggle-fullscreen]
+hyprland        = "SUPER+SHIFT+F"
+
+[application.file-explorer]
+# :pcmanfm
+hyprland        = "SUPER+E"
+
+[application.menu]
+hyprland        = "SUPER+M"
+
+[application.terminal]
+# :Alacritty
+hyprland        = "SUPER+ENTER"
+
+[system.switch-keyboard-language]
+hyprland        = "SUPER+SPACE"
