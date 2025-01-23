@@ -2,11 +2,12 @@
 # :[/keybind.toml]
 # :author        : alterEGO Linux
 # :created       : 2025-01-13 16:15:26 UTC
-# :updated       : 2025-01-13 16:15:31 UTC
+# :updated       : 2025-01-22 12:00:23 UTC
 # :description   : Keybinding.
 
 [window.exit]
 hyprland        = "SUPER+SHIFT+X"
+i3              = "SUPER+SHIFT+X"
 
 [window.float]
 hyprland        = "SUPER+SHIFT+SPACE"
@@ -16,6 +17,7 @@ hyprland        = "SUPER+SHIFT+G"
 
 [window.kill-active]
 hyprland        = "SUPER+SHIFT+Q"
+i3              = "SUPER+SHIFT+Q"
 
 [window.toggle-fullscreen]
 hyprland        = "SUPER+SHIFT+F"
@@ -23,9 +25,11 @@ hyprland        = "SUPER+SHIFT+F"
 [application.file-explorer]
 # :pcmanfm
 hyprland        = "SUPER+E"
+i3              = "SUPER+E"
 
 [application.menu]
 hyprland        = "SUPER+M"
+i3              = "SUPER+M"
 
 [application.terminal]
 # :Alacritty
