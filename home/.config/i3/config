@@ -113,8 +113,8 @@ font pango:Source Code Pro Medium 10
 
   # :change container layout (stacked, tabbed, toggle split)
   bindsym $mod+s layout stacking 
-  bindsym $mod+w layout tabbed 
-  #bindsym $mod+e layout toggle split
+  bindsym $mod+w layout toggle tabbed 
+  bindsym $mod+Shift+e layout toggle split
 
   # :(* floating windows *)
 
@@ -184,7 +184,7 @@ font pango:Source Code Pro Medium 10
   # :restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
   bindsym $mod+Shift+r restart
   # :exit i3 (logs you out of your X session)
-  bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+  bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # :---------- [ RESIZE WINDOW ]
 
@@ -215,17 +215,16 @@ font pango:Source Code Pro Medium 10
 
   bindsym $mod+r mode "resize"
 
-# :----------/ APPLICATIONS /----------:
+# :----------/ APPLICATIONS
 
-  # :--/ FILE MANAGER /--:
-
+  # :-( FILE MANAGER )
   bindsym $mod+e exec pcmanfm  
 
-  # :(* terminal *)
+  # :-( TERMINAL )
   bindsym $mod+Return exec alacritty -e env TERM=screen-256color tmux -u
 
   # :(* toggle keyboard language *)
-  bindsym $mod+CTRL+l exec /usr/local/bin/toggle_language.sh
+  bindsym $mod+CTRL+space exec /usr/local/bin/toggle_language.sh
 
   # :(* screenshot *)
   bindsym $mod+CTRL+s exec /usr/local/bin/screenshot.sh --window
