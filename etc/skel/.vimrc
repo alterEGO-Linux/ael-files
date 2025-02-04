@@ -85,20 +85,18 @@
   inoremap ,, <ESC>
   vnoremap ,, <ESC>
 
-" :---------- [ FILE EXPLORER ]
+" :----------/ FILE EXPLORER
 
-  " :NerdTree-like
-  " :Vim: you don't need NERDtree or (maybe) netrw
-  " :https://shapeshed.com/vim-netrw/
+  " : NerdTree-like
+  " : Vim: you don't need NERDtree or (maybe) netrw
+  " : https://shapeshed.com/vim-netrw/
   let g:netrw_banner = 0
   let g:netrw_liststyle = 3
   let g:netrw_browse_split = 4
   let g:netrw_altv = 1
   let g:netrw_winsize = 25
-  " augroup ProjectDrawer
-    " autocmd!
-    " autocmd VimEnter * :Vexplore
-  " augroup END
+
+  autocmd FileType netrw silent! wincmd H | vertical resize 35
 
   " :Toggle netrw
   " :ref. https://vi.stackexchange.com/a/20832
