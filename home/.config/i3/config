@@ -1,85 +1,83 @@
 # :----------------------------------------------------------------------- INFO
+# :
 # :[~/.config/i3/config]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2021-02-26 09:37:37 UTC
-# :updated       : 2024-12-27 21:11:08 UTC
-# :description   : i3vm configuration file.
+# :(author)      : fantomH @alterEGO Linux
+# :(created)     : 2021-02-26 09:37:37 UTC
+# :(updated)     : 2025-01-26 11:37:07 UTC
+# :(description) : i3vm configuration file.
 
 set $mod Mod4
 
-# :---------- [ FONTS ]
+# :----------/ FONTS
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# :- Window title font.
 font pango:Source Code Pro Medium 10
 
-# :---------- [ STARTUP ]
+# :----------/ STARTUP
 
-  # :(* I3 VM *)
-  # Start XDG autostart .desktop files using dex. See also
-  # https://wiki.archlinux.org/index.php/XDG_Autostart
-  exec --no-startup-id dex --autostart --environment i3
+# :-----( I3VM )
+# : Start XDG autostart .desktop files using dex. See also
+# : (ref) https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
 
-  # :(* LOCK *)
-  # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-  # screen before suspend. Use loginctl lock-session to lock your screen.
-  exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# :-----( LOCK )
+# ; xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# ; screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-  # :(* POLKIT AUTHENTICATION AGENT *)
-  exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# :-----( POLKIT AUTHENTICATION AGENT )
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-  # :(* TRANSPARENCY *)
-  exec xcompmgr -c -f -n
+# :-----( TRANSPARENCY )
+exec xcompmgr -c -f -n
 
-  # :(* Network Manager *)
-  # NetworkManager is the most popular way to manage wireless networks on Linux,
-  # and nm-applet is a desktop environment-independent system tray GUI for it.
-  exec --no-startup-id nm-applet
+# :-----( NETWORK MANAGER )
+# : Starts Network Manager applet.
+exec --no-startup-id nm-applet
 
-  # :(* Wallpaper *)
-  exec --no-startup-id nitrogen --restore
+# :-----( WALLPAPER )
+exec --no-startup-id nitrogen --restore
 
-  # :(* keyboard layout *)
-  exec_always setxkbmap -layout 'us,ca'
+# :-----( KEYBOARD LAYOUT )
+exec_always setxkbmap -layout 'us,ca'
 
-  # :(* dropbox *)
-  # :goes in extra
-  # exec_always --no-startup-id dropbox &
+# :-----( DROPBOX )
+# :(TODO) goes in extra
+# exec_always --no-startup-id dropbox &
 
-  # :(* pasystray *)
-  exec --no-startup-id pasystray
+# :-----( PASYSTRAY )
+exec --no-startup-id pasystray
 
-  # :(* bluetooth *)
-  exec --no-startup-id blueman-applet
+# :-----( BLUETOOTH )
+exec --no-startup-id blueman-applet
 
-# :---------- [ VOLUME CONTROL ]
+# :----------/ VOLUME CONTROL
 
-  # :Use pactl to adjust volume in PulseAudio.
-  set $refresh_i3status killall -SIGUSR1 i3status
-  bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-  bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-  bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-  bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# : Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# :---------- [ BRIGHTNESS ]
+# :----------/ BRIGHTNESS
 
-  bindsym $mod+d exec brightnessctl set +10%
-  bindsym $mod+Shift+d exec brightnessctl set 10%-
+bindsym $mod+d exec brightnessctl set +10%
+bindsym $mod+Shift+d exec brightnessctl set 10%-
 
-# :---------- [ WINDOWS ]
+# :----------/ WINDOWS
 
-  # :(* colors *)
-  # :                     border     background text       indicator
-  client.focused          #2e7096    #1C445B    #f3f4f5    #00ff00
-  client.unfocused        #1C445B    #5E5E5E    #ffffff    #00ff00
-  client.focused_inactive #000000    #000000    #ffffff    #00ff00
-  client.urgent           #E53935    #E53935    #f3f4f5    #00ff00
+# :-----( COLORS )
+# :                     border     background text       indicator
+client.focused          #2e7096    #1C445B    #f3f4f5    #00ff00
+client.unfocused        #1C445B    #5E5E5E    #ffffff    #00ff00
+client.focused_inactive #000000    #000000    #ffffff    #00ff00
+client.urgent           #E53935    #E53935    #f3f4f5    #00ff00
 
-  # :(* i3-gaps *)
-  # :ref. https://github.com/Airblader/i3
-  for_window [class="^.*"] border pixel 5 
-  gaps inner 0
-  gaps outer 0
+# :-----( BORDERS )
+for_window [class="^.*"] border pixel 5 
+gaps inner 0
+gaps outer 0
 
   # :(* close focus window *)
   bindsym $mod+Shift+q kill
@@ -282,6 +280,6 @@ font pango:Source Code Pro Medium 10
     font pango:Source Code Pro Medium 10
   }
 
-# :---------- [ REFERENCES ]
+# :----------/ REFERENCES
 
-  # :User manual: https://i3wm.org/docs/userguide.html
+  # :(user manual) https://i3wm.org/docs/userguide.html
