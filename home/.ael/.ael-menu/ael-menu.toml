@@ -1,8 +1,8 @@
 # :----------------------------------------------------------------------- INFO
 # :[.ael/.ael-menu/ael-menu.toml]
-# :author        : fantomH @alterEGO Linux
+# :author        : alterEGO Linux
 # :created       : 2023-08-08 14:31:56 UTC
-# :updated       : 2024-03-23 03:57:55 UTC
+# :updated       : 2025-02-07 21:13:07 UTC
 # :description   : ael-menu main configuration.
 
 # :---------- ( HELP )
@@ -21,7 +21,7 @@
 # :desktop       Hyprland or i3wm.
 # :is_floating   Enables floating window (in i3wm windows manager only).
  
-# :---------- ( APPLICATIONS ) 
+# :----------/ APPLICATIONS
 
 [app.arandr]
 name             = "arandr"
@@ -699,6 +699,16 @@ description      = "Change wallpapers"
 desktop          = ["i3wm"]
 is_floating      = false
 
+[app.waypaper]
+name             = "wallpaper"
+run              = "launch"
+cmd              = "waypaper"
+which            = ["waypaper", "swww"]
+session          = "null"
+description      = "Set up wallpaper."
+desktop          = ["Hyprland"]
+is_floating      = true
+
 [app.wireshark]
 name             = "wireshark"
 run              = "launch"
@@ -714,5 +724,3 @@ is_floating      = false
 #MenuOption('pamac', 'launch', 'pamac-manager', 'PAMAC', 'Package Manager based on libalpm with AUR and Appstream support.', False),
 #MenuOption('pdfman', 'stay_in_terminal', '${HOME}/fH/scripts/pdfman.sh && exit', 'PDFMAN', 'Open man in pdf.', True),
 #MenuOption('toggle audio', 'launch', 'bash ${HOME}/fH/scripts/toggle_audio_device.sh && exit', 'AUDIO', 'Toggle audio device.', False),
-
-# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯

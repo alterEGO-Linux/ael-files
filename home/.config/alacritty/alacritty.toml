@@ -1,10 +1,11 @@
 # :----------------------------------------------------------------------- INFO
 # :[~/.config/alacritty/alacritty.toml]
-# :author        : fantomH @alterEGO Linux
+# :author        : alterEGO Linux
 # :created       : 2023-12-29 17:02:13 UTC
-# :updated       : 2024-03-24 11:30:07 UTC
+# :updated       : 2025-02-07 14:21:28 UTC
 # :description   : Configuration for Alacritty.
 
+[general]
 live_config_reload = true
 
 [window]
@@ -16,5 +17,3 @@ size   = 11.0
 normal = { family = "Source Code Pro", style = "Medium" }
 bold   = { family = "Source Code Pro", style = "Bold" }
 italic = { family = "Monospace", style = "Italic"}
-
-# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯

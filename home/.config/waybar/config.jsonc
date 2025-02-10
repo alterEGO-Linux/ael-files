@@ -1,0 +1,216 @@
+// ----------------------------------------------------------------------- INFO
+// [~/.config/waybar/config.jsonc]
+// author        : alterEGO Linux
+// created       : 2023-12-19 02:30:19 UTC
+// updated       : 2025-02-10 20:51:12 UTC
+// description   : Waybar configuration.
+
+[
+
+// :---------/ TOPBAR
+{
+    "name": "topbar",
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [ "hyprland/workspaces"
+                    ],
+    "modules-center": [],
+    "modules-right": ["group/audio",
+                      "network",
+                      "cpu",
+                      "memory",
+                      "temperature",
+                      "battery"
+                      ],
+
+    // :-( batterry )
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    // :-( cpu )
+
+    "cpu": {
+        "format": "cpu: {usage}%",
+        "tooltip": true
+    },
+
+    // :-( hyperland/workspace )
+
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "all-outputs": true,
+      "on-click": "activate",
+      "format-icons": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "10": "10"
+      },
+      "sort-by-number": true
+    },
+
+    // :-( memory )
+
+    "memory": {
+        "format": "mem: {}%"
+    },
+
+    // :-( network )
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%)   {ipaddr}/{cidr}",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    // :-( audio group )
+
+    "group/audio": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "pulseaudio/slider"
+        ]
+    },
+
+    // :-( pulse audio slider )
+    "pulseaudio/slider": {
+        "format": "vol:",
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
+    },
+
+    // :-( pulse audio )
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+
+    // :-( temperature )
+
+    "temperature": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "temp: {temperatureC}°C !!!",
+        "format": "temp: {temperatureC}°C"
+    }
+},
+
+// :----------/ BOTTOMBAR
+
+{
+    "name": "bottombar",
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [],
+    "modules-center": ["group/launch_apps"],
+    "modules-right": ["tray", "clock"],
+
+    // :-( group/launch_apps )
+
+    "group/launch_apps": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/app_firefox",
+            "custom/app_terminal"
+        ]
+    },
+
+    // :-( app firefox )
+
+    "custom/app_firefox": {
+        "format": "  Firefox ",
+        "on-click": "/usr/bin/firefox"
+    },
+
+    // :-( app brave )
+
+    "custom/app_terminal": {
+        "format": "  Alacritty ",
+        "on-click": "/usr/bin/alacritty"
+    },
+
+    // :-( clock )
+
+    "clock": {
+        "format": "{:%Y/%m/%d %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-scroll-up": "tz_up",
+                    "on-scroll-down": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+
+    // :-( tray )
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+  }
+]
