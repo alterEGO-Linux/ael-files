@@ -53,7 +53,7 @@ export EDITOR=${VISUAL}
 # :-----/ PATH /-----:
 # :ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
 
-PATH="${PATH}:${HOME}/scripts:${HOME}/bin"
+PATH="${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
 PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
 
 export PATH
