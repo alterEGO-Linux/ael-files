@@ -492,6 +492,9 @@
   " :Find lines containing.
   nnoremap <silent> <C-f> :BLines<CR>
 
+  " :AEL files.
+  nnoremap <leader>ael :call fzf#run(fzf#wrap({'source': 'rg --files --hidden --glob "!.git" ~/.local/share/ael-files/'}))<CR>
+
   " :-( emmet-vim )     
 
   " :Enable emmet-vim tab completion 
@@ -523,9 +526,6 @@
   set t_Co=256
 
   " :-( colorschemes )
-
-  " :arstotzka: https://github.com/daylerees/colour-schemes/blob/master/vim/colors/arstotzka.vim
-  " colorscheme arstotzka
 
   " :base16-3024: https://github.com/RRethy/nvim-base16/blob/master/colors/base16-3024.vim
   " colorscheme base16-3024

@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
+    background-color: rgba(22, 22, 22, 1);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
     color: #ffffff;
     transition-property: background-color;
@@ -55,6 +55,7 @@ button:hover {
 
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #workspaces button.focused {
@@ -73,7 +74,7 @@ button:hover {
 
 #mode {
     background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 3px solid rgba(22, 22, 22, 1);
 }
 
 #clock,
@@ -112,11 +113,13 @@ button:hover {
 }
 
 #clock {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #battery {
     background-color: #ffffff;
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
     color: #000000;
 }
 
@@ -147,15 +150,18 @@ label:focus {
 }
 
 #cpu {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #memory {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #disk {
-    background-color: #964B00;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #backlight {
@@ -163,15 +169,18 @@ label:focus {
 }
 
 #network {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #network.disconnected {
     background-color: #f53c3c;
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #pulseaudio {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #pulseaudio.muted {
@@ -203,15 +212,18 @@ label:focus {
 }
 
 #temperature {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #temperature.critical {
     background-color: #eb4d4b;
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #tray {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #tray > .passive {
@@ -271,10 +283,12 @@ label:focus {
 
 #keyboard-state > label.locked {
     background: rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #scratchpad {
     background: rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #scratchpad.empty {
@@ -282,7 +296,8 @@ label:focus {
 }
 
 #pulseaudio-slider {
-    background-color: #333333;
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
 #pulseaudio-slider slider {

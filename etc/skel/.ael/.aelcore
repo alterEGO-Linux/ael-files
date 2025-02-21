@@ -43,7 +43,7 @@ alias pythonenvs=". ~/.ael/.pythonenvs"
 # :-----/ DEFAULT APPLICATIONS /-----:
 
 export BROWSER=firefox
-export FZF_DEFAULT_COMMAND='rg --files --hidden '
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
 # export TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
 export TERMINAL="alacritty"
