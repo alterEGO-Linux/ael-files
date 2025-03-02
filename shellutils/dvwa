@@ -3,61 +3,90 @@
 # :[~/.ael/shellutils/dvwa]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2023-08-01 19:55:12 UTC
-# :updated       : 2024-09-16 10:32:28 UTC
+# :updated       : 2025-02-27 19:29:21 UTC
 # :description   : Run Damn Vulnerable Webapp (DVWA).
 
 dvwa() {
 
-    if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
-        sudo systemctl start docker.service
-        echo "[-] Starting docker.service ..."
+    local SERVICE_NAME="docker.service"
+    local CONTAINER_IMAGE="vulnerables/web-dvwa"
+    local CONTAINER_NAME="DVWA"
+
+    # :Ensure Docker service is running.
+    if [[ $(command systemctl is-active "$SERVICE_NAME") == "inactive" ]]; then
+        sudo systemctl start "$SERVICE_NAME"
     fi
 
-    if [[ "${1}" == 'stop' ]]; then
+    # :-( help )
+    if [[ "$1" == "-h" || "$1" == "--help" || "$1" == "" ]]; then
         echo "================================================================================"
-        echo "[+] dvwa()"
-        echo "    Stoping DVWA Docker container."
+        echo "[+] DVWA Docker Wrapper"
         echo "================================================================================"
+        echo "Usage: dvwa [start|stop|-h|--help]"
         echo
+        echo "  DVWA (Damn Vulnerable Web Application) is a PHP/MySQL web application"
+        echo "  that is vulnerable by design, used for security training and testing."
+        echo
+        echo "  start  - Launch the DVWA container."
+        echo "  stop   - Stop the running DVWA container."
+        echo "  -h, --help  - Display this help message (default if no argument is provided)."
+        echo
+        echo "[!] Use <dvwa stop> when you are done."
+        echo "================================================================================"
+        return 0
+    fi
 
-        command docker stop $(command docker ps \
-                              | command grep DVWA \
-                              | command cut -d ' ' -f1)
-        
-        echo "[!] Done."
-        sleep 1
-    else
+    # :-( start )
+    if [[ "$1" == "start" ]]; then
         echo "================================================================================"
-        echo "[+] dvwa()"
-        echo "    Starting DVWA Docker container."
+        echo "[+] dvwa - Starting DVWA Docker container."
         echo "================================================================================"
-        echo
 
         echo "[!] Use <dvwa stop> when you are done."
         sleep 2
 
-        if command docker ps --all | command grep -q "DVWA"; then
-            command docker start DVWA
-            while [ "$(docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
-                sleep 1
-            done
-            sleep 5
-            $BROWSER "http://localhost:81"
+        # :Check if the container already exists.
+        if command docker ps --all | command grep -q "$CONTAINER_NAME"; then
+            # :Container exists: start.
+            command docker start "$CONTAINER_NAME"
         else
-            command docker run --name DVWA -it -p 81:80 vulnerables/web-dvwa &
-
-            while true; do
-                if command docker ps --all | command grep -q "DVWA" 2>/dev/null; then
-                    break
-                else
-                    sleep 1
-                fi
-            done
-            while [ "$(command docker inspect -f '{{.State.Running}}' DVWA)" != "true" ]; do
-                sleep 1
-            done
-            sleep 5
-            $BROWSER "http://localhost:81"
+            # :Container does not exist: create and run.
+            command docker run --name "$CONTAINER_NAME" -it -p 81:80 "$CONTAINER_IMAGE" &
         fi
+
+        # :Wait for the container to appear in `docker ps -a`.
+        while ! command docker ps --all | grep -q "$CONTAINER_NAME" 2>/dev/null; do
+            sleep 1
+        done
+
+        # :Wait for the container to be fully up and running.
+        while [ "$(docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME")" != "true" 2>/dev/null ]; do
+            sleep 1
+        done
+        sleep 2
+
+        # :Open in browser.
+        $BROWSER "http://localhost:81"
+
+        return 0
     fi
-    }
+
+    # :-( stop )
+    if [[ "$1" == "stop" ]]; then
+        echo "================================================================================"
+        echo "[+] dvwa - Stopping DVWA Docker container."
+        echo "================================================================================"
+
+        # :Get the running container ID.
+        local CONTAINER_ID=$(docker ps | grep "$CONTAINER_NAME" | awk '{print $1}')
+
+        if [[ -n "$CONTAINER_ID" ]]; then
+            # :Stop the container.
+            command docker stop "$CONTAINER_ID"
+            echo "[!] DVWA container stopped."
+        else
+            echo "[!] No running DVWA container found."
+        fi
+        return 0
+    fi
+}

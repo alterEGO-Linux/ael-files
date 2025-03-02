@@ -1,19 +1,26 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/fuck]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2023-08-02 00:10:38 UTC
-# :updated       : 2024-09-16 10:46:14 UTC
+# :updated       : 2025-03-02 15:01:27 UTC
 # :description   : Repeats last cmd with sudo if forgotten.
 
 fuck() {
 
     echo "================================================================================"
-    echo "[+] f**k()"
-    echo "    Repeats last cmd with sudo if forgotten."
-    echo "    Running <sudo \$(history -p !!)"
+    echo "[+] f**k - Repeats last cmd with sudo if forgotten."
     echo "================================================================================"
     echo
 
-    sudo $(history -p !!)
-  }
+    COMMAND=$(history -p !!)
+    echo "[!] You will be running:"
+    echo
+    echo "    sudo ${COMMAND}"
+    echo
+    read -p "[?] Are you sure you want to proceed? [y/N] " INPUT
+        
+        if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+            sudo bash -c "${COMMAND}"
+        fi
+}

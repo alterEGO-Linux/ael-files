@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/cheat]
-# :author        : fantomH @alterEGO Linux
+# :author        : alterEGO Linux
 # :created       : 2023-08-01 19:57:57 UTC
-# :updated       : 2024-09-14 16:26:25 UTC
+# :updated       : 2025-02-26 00:46:28 UTC
 # :description   : Query https://cheat.sh.
 
 cheat() {
 
-    # :/ref/ https://github.com/chubin/cheat.sh
+    # :(ref) https://github.com/chubin/cheat.sh
 
     cheat="$(command curl -s cheat.sh/:list \
             | command fzf --layout="reverse" \

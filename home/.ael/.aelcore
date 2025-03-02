@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/.aelcore]
-# :author        : fantomH @alterEGO Linux
+# :author        : alterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2024-08-29 14:57:01 UTC
-# :description   : alterEGO Linux core shell configuration.
+# :updated       : 2025-02-27 11:58:27 UTC
+# :description   : AlterEGO Linux core shell configuration.
 
-# :-----/ SOURCE MODULES /-----:
+# :-----/ SOURCE MODULES
 
 [ -f ${HOME}/.ael/bash-ael/messages.bash ] && . ${HOME}/.ael/bash-ael/messages.bash
 [ -f ${HOME}/.ael/bash-ael/colors.bash ] && . ${HOME}/.ael/bash-ael/colors.bash
@@ -368,7 +368,11 @@ git_status() {
   }
   alias git-status='git_status'
 
+# :----------/ SHELLUTILS
+
+[ -f /home/ghost/.ael/shellutils/busy ] && . /home/ghost/.ael/shellutils/busy
 [ -f /home/ghost/.ael/shellutils/cheat ] && . /home/ghost/.ael/shellutils/cheat
+[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 [ -f /home/ghost/.ael/shellutils/deep-nmap ] && . /home/ghost/.ael/shellutils/deep-nmap
 [ -f /home/ghost/.ael/shellutils/deep-scan ] && . /home/ghost/.ael/shellutils/deep-scan
 [ -f /home/ghost/.ael/shellutils/delete ] && . /home/ghost/.ael/shellutils/delete
@@ -378,6 +382,7 @@ git_status() {
 [ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
 [ -f /home/ghost/.ael/shellutils/fuck ] && . /home/ghost/.ael/shellutils/fuck
 [ -f /home/ghost/.ael/shellutils/getmp3 ] && . /home/ghost/.ael/shellutils/getmp3
+
 [ -f /home/ghost/.ael/shellutils/goto ] && . /home/ghost/.ael/shellutils/goto
 [ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
 [ -f /home/ghost/.ael/shellutils/ispeed ] && . /home/ghost/.ael/shellutils/ispeed
@@ -393,6 +398,8 @@ git_status() {
 [ -f /home/ghost/.ael/shellutils/reset-time ] && . /home/ghost/.ael/shellutils/reset-time
 [ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 [ -f /home/ghost/.ael/shellutils/shell-info ] && . /home/ghost/.ael/shellutils/shell-info
+[ -f /home/ghost/.ael/shellutils/show-utc ] && . /home/ghost/.ael/shellutils/show-utc
+[ -f /home/ghost/.ael/shellutils/snake-env ] && . /home/ghost/.ael/shellutils/snake-env
 [ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
 [ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
 [ -f /home/ghost/.ael/shellutils/termbin ] && . /home/ghost/.ael/shellutils/termbin
@@ -400,7 +407,3 @@ git_status() {
 [ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate
 [ -f /home/ghost/.ael/shellutils/tunnel-info ] && . /home/ghost/.ael/shellutils/tunnel-info
 [ -f /home/ghost/.ael/shellutils/whoisweb ] && . /home/ghost/.ael/shellutils/whoisweb
-[ -f /home/ghost/.ael/shellutils/show-utc ] && . /home/ghost/.ael/shellutils/show-utc
-[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
-[ -f /home/ghost/.ael/shellutils/busy ] && . /home/ghost/.ael/shellutils/busy
-[ -f /home/ghost/.ael/shellutils/snake-env ] && . /home/ghost/.ael/shellutils/snake-env

@@ -1,23 +1,15 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/busy]
-# :author        : fantomH @alterEGO Linux
+# :author        : alterEGO Linux
 # :created       : 2023-08-01 19:55:12 UTC
-# :updated       : 2024-09-14 16:14:00 UTC
+# :updated       : 2025-02-25 11:34:54 UTC
 # :description   : When the boss comes around to look busy.
 
 busy() {
 
-    # :ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+    # :(ref) https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
     # :CTRL+c to quit.
-
-    echo "================================================================================"
-    echo "[+] busy()"
-    echo "    Looking busy ..."
-    echo "================================================================================"
-    echo
-
-    sleep 5
 
     command cat /dev/urandom \
     | command hexdump -C \

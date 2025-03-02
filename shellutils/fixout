@@ -1,32 +1,52 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/fixout]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2023-08-02 00:07:03 UTC
-# :updated       : 2024-09-16 10:39:03 UTC
+# :updated       : 2025-02-28 21:18:06 UTC
 # :description   : Fix bash history and exit.
 
-# :/Don't try to put this code in a shell script, it won't work.
-# : `history` don't play well in scripts.
+# :Don't try to put this code in a shell script, it won't work.
+# :`history` don't play well in scripts.
 
 fixout() {
 
-    echo "================================================================================"
-    echo "[+] fixout()"
-    echo "    Cleaning history before closing ..."
-    echo "================================================================================"
-    echo
+    BLOCKLIST="porn|pornhub|xhamster|xvideos|onlyfans"
 
-    sleep 2
-
-    history -n && history \
-    | command sort -k2 -k1nr \
-    | command uniq -f1 \
-    | command sort -n \
-    | command cut -c8- > ~/.tmp$$ \
-    && history -c \
-    && history -r ~/.tmp$$ \
-    && history -w \
-    && command rm ~/.tmp$$ \
-    && exit
+    # :-( help )
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo "================================================================================"
+        echo "[+] fixout - Clean bash history and exit."
+        echo "================================================================================"
+        echo "Usage: fixout [-h|--help]"
+        echo
+        echo "The fixout function cleans up your shell history before closing the"
+        echo "terminal session."
+        echo "It removes duplicate commands while preserving the most recent"
+        echo "occurrences, ensuring a cleaner and more useful history."
+        echo
+        echo "================================================================================"
+        return 0
+    else
+      # :Append this session history to .bash_history
+      history -n
+      # :Remove duplicates while keeping the most recent.
+      history \
+      | command sort -k2 -k1nr \
+      | command uniq -f1 \
+      | command sort -n \
+      | command cut -c8- \
+      | command grep -Ei -v "$BLOCKLIST" > ~/.tmp$$
+      if tmux list-sessions >/dev/null; then
+          tmux send-keys -t : "history -c && history -r" C-m
+      fi
+      # :Delete all .bash_history entries.
+      history -c
+      # :Read from temporary file and write to .bash_history.
+      history -r ~/.tmp$$
+      history -w
+      # :Remove temporary file and exit.
+      command rm ~/.tmp$$
+      exit
+    fi
   }

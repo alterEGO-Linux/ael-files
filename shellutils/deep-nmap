@@ -1,25 +1,48 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/deep-nmap]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2024-08-29 11:13:13 UTC
+# :updated       : 2025-02-26 12:27:20 UTC
 # :description   : Complete Nmap scan.
 
 deep-nmap() {
 
-    if [[ ${@} == '' ]]; then
-        IP='localhost'
-    else
-        IP=${@}
+    if [[ $# -eq 0 ]]; then
+        set -- "-h"
     fi
 
+    # :-( help)
+    for arg in "$@"; do
+        if [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
+            echo "================================================================================"
+            echo "[+] deep-nmap - Nmap Wrapper"
+            echo "================================================================================"
+            echo "Usage: deep-nmap <Target> [Nmap Options] | [-h|--help]"
+            echo
+            echo "  Runs Nmap as sudo with customizable arguments. Defaults to:"
+            echo "    -sV          - Detect service versions."
+            echo "    -O           - Enable OS detection."
+            echo "    -sC          - Run Nmap's default scripts."
+            echo "    --traceroute - Perform a traceroute to the target."
+            echo
+            echo "Options:"
+            echo "  -h, --help    - Display this help message."
+            echo
+            echo "Examples:"
+            echo "  deep-nmap 192.168.1.1"
+            echo "  deep-nmap scanme.nmap.org --Pn"
+            echo "================================================================================"
+            return 0
+        fi
+    done
+
+    # :Run Nmap with all arguments
     echo "================================================================================"
-    echo "[+] deep-nmap()"
-    echo "    Running <sudo grc nmap -sV -O -sC --traceroute ${IP}>"
+    echo "[+] deep-nmap - Running: sudo grc nmap -sV -O -sC --traceroute $*"
     echo "================================================================================"
     echo
 
     sleep 2
-    sudo grc nmap -sV -O -sC --traceroute ${IP}
-    }
+    sudo grc nmap -sV -O -sC --traceroute "$@"
+}
