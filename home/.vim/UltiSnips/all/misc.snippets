@@ -22,3 +22,81 @@ endsnippet
 snippet foot# "# footer" b
 # :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
 endsnippet
+
+snippet task! "Task" b
+#### [${1:Object}] ${2:Description} <!-- {{{ -->
+`date "+%4Y/%m/%d"`
+<!-- }}} -->
+endsnippet
+
+# :---------/ BASH & SH
+
+snippet shargs "Bash & SH arguments" b
+
+# // Ensure variables are removed after the function or script terminates.
+local args=("$@")
+
+# // If no arguments are given.
+if [[ $# == 0 ]]; then
+		<do something...>
+		return 0
+fi
+
+# // Check each argument.
+for i in "${!args[@]}"; do
+		# // Show usage if '-h' or '--help' is found.
+		# // Stops the loop with return when an argument is found.
+		if [[ "${args[i]}" == "-h" ]] || [[ "${args[i]}" == "--help" ]]; then
+				usage
+				unsetter && unset -f unsetter
+				return 0
+		elif [[ "${args[i]}" == "<something> ]]; then
+				<do something...>
+				return 0
+		elif [[ "${args[i]}" == "<something>" ]]; then
+				# // Check if the argument is followed by a value.
+				if [[ -n "${args[i+1]}" && "${args[i+1]}" == "<something>" ]]; then
+						<do something...>
+						return 0
+				else
+						<do something...>
+						return 1
+				fi
+		fi
+done
+
+usage
+echo
+echo "[!] No valid arguments found."
+unsetter && unset -f unsetter
+return 1
+
+endsnippet
+
+snippet shusage "Bash & SH usage/help" b
+usage() {
+		cat <<EOF
+================================================================================
+[+] ispeed - Calculate Internet connection speed.
+================================================================================
+Usage: ispeed [--fzf|--web METHOD|--cli METHOD|--git METHOD|--help]
+
+ispeed offers different ways to calculate your Internet speed.
+
+METHODS:
+    - (cli) speedtest
+            Uses the speedtest-cli package.
+    - (git) speedtest
+            Uses curl and python.
+            URL: https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
+    - (web) speedtest
+            URL: https://www.speedtest.net/
+    - (web) Fast.com
+            URL: https://fast.com
+    - (web) speedof.me
+            URL: https://speedof.me/
+
+================================================================================
+EOF
+}
+endsnippet

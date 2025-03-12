@@ -1,21 +1,98 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/getmp3]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2023-08-02 00:36:18 UTC
-# :updated       : 2024-09-16 10:48:11 UTC
+# :updated       : 2025-03-03 21:49:53 UTC
 # :description   : Extract video audio to .mp3.
 
 getmp3() {
 
-    echo "================================================================================"
-    echo "[+] getmp3()"
-    echo "    Running <yt-dlp -x --audio-format mp3 --prefer-ffmpeg 'url'>"
-    echo "    Extracting video audio to .mp3:"
-    echo "    ${1}"
-    echo "================================================================================"
-    echo
+    local arg artist artist_safe title title_safe url
 
-    command yt-dlp -x --audio-format mp3 --prefer-ffmpeg "${1}"
+    usage() {
+        echo "================================================================================"
+        echo "[+] getmp3 - Extracting audio (.mp3) from video."
+        echo "================================================================================"
+        echo "Usage: getmp3 \"Artist|Title\" <YouTube-URL>"
+        echo
+        echo "Arguments:"
+        echo "  \"Artist|Title\"   The artist and title, separated by a '|'."
+        echo "  <YouTube-URL>     The valid YouTube video URL."
+        echo
+        echo "Examples:"
+        echo "  getmp3 \"Nirvana|Smells Like Teen Spirit\" \"https://www.youtube.com/watch?v=hTWKbfoikeg\""
+        echo
+        echo "Options:"
+        echo "  -h, --help        Show this help message and exit."
+        echo "================================================================================"
+    }
 
-  }
+    # :-( help )
+    for arg in $@; do
+        if [ $arg == '-h' ] || [ $arg == '--help' ]; then
+            usage
+            unset -f usage
+            return 0
+        fi
+    done
+
+    # :-( error: too many arguments )
+    if [ $# -gt 2 ]; then
+        usage
+        unset -f usage
+        echo
+        echo "[!] Too many arguments."
+        return 1
+    fi
+
+    for arg in "$@"; do
+        if echo "$arg" | grep -q "|"; then
+            IFS="|" read -r artist title <<< "${arg}"
+            artist_safe=$(echo "$artist" | tr ' ' '_')
+            title_safe=$(echo "$title" | tr ' ' '_')
+        elif echo "$arg" | grep -qE "^https?://"; then
+            url="$arg"
+        else
+            usage
+            unset -f usage
+            echo
+            echo "[!] Unknown argument: $arg."
+            return 1
+        fi
+    done
+
+    # :-( error: missing value )
+    if [ -z "$artist_safe" ]; then
+        usage
+        unset -f usage
+        echo
+        echo "[!] Missing value for artist."
+        return 1
+    fi
+
+    if [ -z "$title_safe" ]; then
+        usage
+        unset -f usage
+        echo
+        echo "[!] Missing value for title."
+        return 1
+    fi
+
+    if [ -z "$url" ]; then
+        usage
+        unset -f usage
+        echo
+        echo "[!] Missing URL."
+        return 1
+    fi
+
+    command yt-dlp -f "bestaudio" \
+                   --extract-audio \
+                   --audio-format mp3 \
+                   --audio-quality 0 \
+                   --prefer-ffmpeg \
+                   --output "${artist_safe}-${title_safe}-%(id)s" "${url}"
+
+  unset -f usage
+}
