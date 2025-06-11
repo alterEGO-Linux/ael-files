@@ -374,9 +374,6 @@ git_status() {
 # :-| Comment out to disable any of them.
 SHELLUTILS=(
 
-    # :-| When the boss comes around to look busy.
-    busy
-
     # :-| Query https://cheat.sh.
     cheat
 
