@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/shellutils]
+# :author        : AlterEGO Linux
+# :created       : 2025-04-03 09:29:11 UTC
+# :updated       : 2025-04-03 09:29:15 UTC
+# :description   : Display AEL shellutils.
+
+shellutils() {
+
+    local args=("$@")
+
+    usage() {
+      cat <<EOF
+================================================================================
+[+] shellutils - Diplay AEL shellutils.
+================================================================================
+Usage: shellutils
+
+Quick display of descriptions and names of the shellutils.
+
+  - busy
+    When the boss comes around to look busy.
+
+  - cheat
+    Query https://cheat.sh
+
+================================================================================
+EOF
+    }
+
+    unsetter() {
+        unset -f usage
+    }
+
+    if [[ $# == 0 ]]; then
+        usage
+        unsetter && unset -f unsetter
+        return 0
+    else
+        usage
+        unsetter && unset -f unsetter
+        return 0
+    fi
+}

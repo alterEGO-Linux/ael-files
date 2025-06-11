@@ -370,8 +370,29 @@ git_status() {
 
 # :----------/ SHELLUTILS
 
-[ -f /home/ghost/.ael/shellutils/busy ] && . /home/ghost/.ael/shellutils/busy
-[ -f /home/ghost/.ael/shellutils/cheat ] && . /home/ghost/.ael/shellutils/cheat
+# :-| Shellutils sourced by default.
+# :-| Comment out to disable any of them.
+SHELLUTILS=(
+
+    # :-| When the boss comes around to look busy.
+    busy
+
+    # :-| Query https://cheat.sh.
+    cheat
+
+    # :-| Diplay AEL shellutils.
+    shellutils
+    )
+
+source_shellutils() {
+
+    for shellutil in "${SHELLUTILS[@]}"; do
+        [ -f "${HOME}"/.ael/shellutils/"${shellutil}" ] && . "${HOME}"/.ael/shellutils/"${shellutil}"
+    done
+    }
+
+source_shellutils
+
 [ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 [ -f /home/ghost/.ael/shellutils/deep-nmap ] && . /home/ghost/.ael/shellutils/deep-nmap
 [ -f /home/ghost/.ael/shellutils/deep-scan ] && . /home/ghost/.ael/shellutils/deep-scan
