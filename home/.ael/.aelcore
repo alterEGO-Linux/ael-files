@@ -3,7 +3,7 @@
 # :[~/.ael/.aelcore]
 # :author        : alterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2025-02-27 11:58:27 UTC
+# :updated       : 2025-06-17 11:35:14 UTC
 # :description   : AlterEGO Linux core shell configuration.
 
 # :-----/ SOURCE MODULES
@@ -368,26 +368,25 @@ git_status() {
   }
   alias git-status='git_status'
 
-# :----------/ SHELLUTILS
+#  :::::::::: SHELLUTILS
 
-# :-| Shellutils sourced by default.
-# :-| Comment out to disable any of them.
+# :: Shellutils sourced by default.
+# :: Comment out to disable any of them.
 SHELLUTILS=(
 
-    # :-| Query https://cheat.sh.
-    cheat
+    # :: ( shellutils-test )
+    shellutils-test
 
-    # :-| Diplay AEL shellutils.
-    shellutils
-    )
+    # :: ( snake-env ) -> Manage python -m venv.
+    snake-env
+)
 
 source_shellutils() {
 
     for shellutil in "${SHELLUTILS[@]}"; do
         [ -f "${HOME}"/.ael/shellutils/"${shellutil}" ] && . "${HOME}"/.ael/shellutils/"${shellutil}"
     done
-    }
-
+}
 source_shellutils
 
 [ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
@@ -403,7 +402,6 @@ source_shellutils
 [ -f /home/ghost/.ael/shellutils/goto ] && . /home/ghost/.ael/shellutils/goto
 [ -f /home/ghost/.ael/shellutils/ispeed ] && . /home/ghost/.ael/shellutils/ispeed
 [ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
-
 [ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
 [ -f /home/ghost/.ael/shellutils/kali ] && . /home/ghost/.ael/shellutils/kali
 [ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
@@ -417,7 +415,6 @@ source_shellutils
 [ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 [ -f /home/ghost/.ael/shellutils/shell-info ] && . /home/ghost/.ael/shellutils/shell-info
 [ -f /home/ghost/.ael/shellutils/show-utc ] && . /home/ghost/.ael/shellutils/show-utc
-[ -f /home/ghost/.ael/shellutils/snake-env ] && . /home/ghost/.ael/shellutils/snake-env
 [ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
 [ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
 [ -f /home/ghost/.ael/shellutils/termbin ] && . /home/ghost/.ael/shellutils/termbin

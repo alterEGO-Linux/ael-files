@@ -3,7 +3,7 @@
 # :[~/.ael/shellutils/delete]
 # :author        : AlterEGO Linux
 # :created       : 2023-08-01 19:59:45 UTC
-# :updated       : 2025-02-27 11:34:53 UTC
+# :updated       : 2025-06-25 20:54:47 UTC
 # :description   : Delete directory.
 
 delete() {
@@ -18,4 +18,4 @@ delete() {
     else
         echo "[!] There is nothing to do here!"
     fi
-  }
+}

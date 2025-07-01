@@ -6,4 +6,9 @@
 # :description   : AEL files.
 
 [bin.YnVzeQ==]
+filename    = "/bin/busy"
 description = "When the boss comes around to look busy."
+
+[shellutils.c25ha2UtZW52]
+filename    = "/shellutils/snake-env"
+description = "Manage python -m venv."

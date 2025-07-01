@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/argument-parser]
+# :author        : AlterEGO Linux
+# :created       : 2025-06-27 10:50:27 UTC
+# :updated       : 2025-06-27 10:50:33 UTC
+# :description   : Argument parser.
+#
+# set -x
+
+argument-parser() {
+
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+
+    local split_flags=()
+    for arg in "${ARGS[@]}"; do
+        # :: Parsing concatenated short flags.
+        if [[ "${arg}" =~ ^-[a-zA-Z]{2,}$ ]]; then
+            # :: Expand concatenated flags.
+            for ((i=1; i<${#arg}; i++)); do
+                split_flags+=("-${arg:i:1}")
+            done
+        else
+            split_flags+=("$arg")
+        fi
+    done
+
+    ARGUMENTS=()
+    i=0
+    while ((i < ${#split_flags[@]}));do
+        arg="${split_flags[$i]}"
+        next="${split_flags[$i+1]}"
+
+        if [[ "${arg}" =~ ^-{1,2}[a-zA-Z]+$ ]]; then
+            
+            is_valid_flag=false
+            for flag in "${flags[@]}"; do
+                declare -n ref="${flag}"
+                # :: Validate flag.
+                if [[ "${arg}" == "${ref[short]}" || "${arg}" == "${ref[long]}" ]]; then
+                    is_valid_flag=true
+                    is_value_required="${ref[value_required]:-false}"
+                    if [[ ${is_valid_flag} && ${is_value_required} == 'true' ]]; then
+                        if [[ "${next}" =~ ^-{1,2}[a-zA-Z]+$ ]]; then
+                            printf '%s\n' "${RED}[!]${RESET} ${arg} requires a valid value."
+                            return 1
+                        fi
+                        ARGUMENTS+=("${arg}")
+                        ARGUMENTS+=("${next}")
+                        ((i+=2))
+                    elif [[ ${is_valid_flag} && ${is_value_required} == 'false' ]]; then 
+                        ARGUMENTS+=("${arg}")
+                        ((i++))
+                    fi
+                    break
+                fi
+            done
+
+            if ! $is_valid_flag; then
+                printf '%s\n' "${RED}[!]${RESET} ${arg} is an invalid flag."
+                return 1
+            fi
+
+        else
+            ARGUMENTS+=("${arg}")
+            ((i++))
+        fi
+    done
+    return 0
+}

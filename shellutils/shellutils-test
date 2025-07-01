@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/shellutils-test]
+# :author        : alterEGO Linux
+# :created       : 2025-06-27 14:38:12 UTC
+# :updated       : 2025-06-27 14:38:17 UTC
+# :description   : Test script for Shellutils.
+
+shellutils-test() {
+
+source ${HOME}/.ael/shellutils/argument-parser
+
+local ARGS
+local active
+local inactive
+local key
+
+ARGS=("${@}")
+declare -A active=([short]="-a" [long]="--active" [value_required]=false)
+declare -A inactive=([short]="-i" [long]="--inactive" [value_required]=true)
+declare -A key=([short]="-k" [long]="--key")
+
+flags=("active" "inactive" "key")
+argument-parser
+
+set -- "${ARGUMENTS[@]}"
+while (( "$#" )); do
+
+    case "${1}" in
+        -a|--active)
+            echo "yes"
+            ;;
+        -i|--inactive)
+            shift
+            value="${1}"
+            echo $value
+            ;;
+    esac
+    shift
+
+done
+
+}
