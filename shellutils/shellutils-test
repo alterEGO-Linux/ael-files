@@ -8,16 +8,11 @@
 
 shellutils-test() {
 
-source ${HOME}/.ael/shellutils/argument-parser
+source ${HOME}/.ael/shellutils/utils/argument-parser
 
-local ARGS
-local active
-local inactive
-local key
-
-ARGS=("${@}")
-declare -A active=([short]="-a" [long]="--active" [value_required]=false)
-declare -A inactive=([short]="-i" [long]="--inactive" [value_required]=true)
+ARGUMENT_INPUT=("${@}")
+declare -A active=([short]="-a" [long]="--active" [value_required]=false [conflicts_with]="inactive key")
+declare -A inactive=([short]="-i" [long]="--inactive" [value_required]=true [conflicts_with]="active")
 declare -A key=([short]="-k" [long]="--key")
 
 flags=("active" "inactive" "key")
@@ -34,6 +29,9 @@ while (( "$#" )); do
             shift
             value="${1}"
             echo $value
+            ;;
+        -k|--key)
+            echo "key"
             ;;
     esac
     shift
