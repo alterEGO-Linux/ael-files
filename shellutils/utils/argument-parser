@@ -3,76 +3,159 @@
 # :[~/.ael/shellutils/utils/argument-parser]
 # :author        : AlterEGO Linux
 # :created       : 2025-06-27 10:50:27 UTC
-# :updated       : 2025-07-01 12:15:06 UTC
-# :description   : Argument parser.
+# :updated       : 2025-07-07 17:53:41 UTC
+# :description   : Argument parser utility.
 
 argument-parser() {
 
+: <<'USAGE'
+
+The objective of `argument-parser` is to enable manageable and configurable
+arguments from a reusable script.
+
+For each flags, you can configure:
+
+  - short flags.
+  - long flags.
+  - if a value is required.
+  - state the conflicting flags.
+
+In the main script:
+
+1. Source argument-parser.
+
+```
+  source ${HOME}/.ael/shellutils/utils/argument-parser
+```
+
+2. Define the required value for `ARGUMENT_INPUT`. It is suggested to make 
+   `ARGUMENT_INPUT` a local variable in order to avoid polluting the shell.
+
+```
+  local ARGUMENT_INPUT=("${@}")
+```
+
+3. Define the flags using associative arrays (dictionaries).
+
+```
+  declare -A active=([short]="-a" [long]="--active" [value_required]=false [conflicts_with]="inactive key")
+  declare -A inactive=([short]="-i" [long]="--inactive" [value_required]=true [conflicts_with]="active")
+  declare -A key=([short]="-k" [long]="--key")
+```
+
+4. Define the required value `FLAGS`.
+
+```
+  local FLAGS=("active" "inactive" "key")
+```
+
+5. The variable `ARGUMENTS` is defined by the function argument-parser by
+   default. Nonetheless, defining it in the main script as a local array will
+   prevent polluting the shell.
+
+```
+  local ARGUMENTS=()
+```
+
+6. Initiate the argument parser.
+
+```
+  argument-parser
+```
+
+7. Reset the script's positional parameters to the content of `ARGUMENTS` and
+   build the case statement.
+
+```
+  set -- "${ARGUMENTS[@]}"
+  while (( "$#" )); do
+
+      case "${1}" in
+          -a|--active)
+              echo "yes"
+              ;;
+          -i|--inactive)
+              shift
+              value="${1}"
+              echo $value
+              ;;
+          -k|--key)
+              echo "key"
+              ;;
+      esac
+      shift
+
+  done
+```
+USAGE
+
+    # :: ( argument-parser )
+ 
     local RED=$'\033[31m'
     local RESET=$'\033[0m'
 
     unsetter() {
         unset ARGUMENT_INPUT
+        unset FLAGS
         unset __arg
         unset __conflict
-        unset flag
-        unset flags
-        unset FLAGS_NAME
-        unset is_valid_flag
-        unset is_value_required
-        unset next
-        unset possible_conflicts
-        unset split_flags
+        unset __flag
+        unset __flags_name
+        unset __is_valid_flag
+        unset __is_value_required
+        unset __next
+        unset __possible_conflicts
+        unset __split_flags
         unset -f unsetter
     }
 
     # :: Making sure ARGUMENT_INPUT is defined in the main script.
     if [[ ! -v ARGUMENT_INPUT ]]; then
-        printf '%s\n' "${RED}[ argument-parser ]${RESET} Variable ARGUMENT_INPUT not set."
+        printf '%s\n' "${RED}[!]${RESET} Variable ARGUMENT_INPUT not set."
         return 1
     fi
     
     # :: Parsing concatenated short flags.
-    split_flags=()
+    __split_flags=()
     for __arg in "${ARGUMENT_INPUT[@]}"; do
         if [[ "${__arg}" =~ ^-[a-zA-Z]{2,}$ ]]; then
             # :: Expand concatenated flags.
             for ((i=1; i<${#__arg}; i++)); do
-                split_flags+=("-${__arg:i:1}")
+                __split_flags+=("-${__arg:i:1}")
             done
         else
-            split_flags+=("$__arg")
+            __split_flags+=("$__arg")
         fi
     done
 
-    FLAGS_NAME=()
+    __flags_name=()
     ARGUMENTS=()
     i=0
-    while ((i < ${#split_flags[@]}));do
-        __arg="${split_flags[$i]}"
-        next="${split_flags[$i+1]}"
+    while ((i < ${#__split_flags[@]}));do
+        __arg="${__split_flags[$i]}"
+        __next="${__split_flags[$i+1]}"
 
         if [[ "${__arg}" =~ ^-{1,2}[a-zA-Z]+$ ]]; then
             
-            is_valid_flag=false
-            for flag in "${flags[@]}"; do
-                declare -n ref="${flag}"
+            __is_valid_flag=false
+            for __flag in "${FLAGS[@]}"; do
+                declare -n ref="${__flag}"
                 # :: Validate flag.
                 if [[ "${__arg}" == "${ref[short]}" || "${__arg}" == "${ref[long]}" ]]; then
-                    FLAGS_NAME+=("${flag}")
-                    is_valid_flag=true
-                    is_value_required="${ref[value_required]:-false}"
-                    if [[ ${is_valid_flag} && ${is_value_required} == 'true' ]]; then
-                        if [[ "${next}" =~ ^-{1,2}[a-zA-Z]+$ || "${next}" == '' ]]; then
+                    __flags_name+=("${__flag}")
+                    __is_valid_flag=true
+                    __is_value_required="${ref[value_required]:-false}"
+                    if [[ ${__is_valid_flag} && ${__is_value_required} == 'true' ]]; then
+                        if [[ "${__next}" =~ ^-{1,2}[a-zA-Z]+$ || "${__next}" == '' ]]; then
                             printf '%s\n' "${RED}[!]${RESET} ${__arg} requires a valid value."
                             unset ARGUMENTS
                             unsetter
                             return 1
                         fi
                         ARGUMENTS+=("${__arg}")
-                        ARGUMENTS+=("${next}")
+                        ARGUMENTS+=("${__next}")
                         ((i+=2))
-                    elif [[ ${is_valid_flag} && ${is_value_required} == 'false' ]]; then 
+                    elif [[ ${__is_valid_flag} && ${__is_value_required} == 'false' ]]; then 
                         ARGUMENTS+=("${__arg}")
                         ((i++))
                     fi
@@ -80,7 +163,7 @@ argument-parser() {
                 fi
             done
 
-            if ! $is_valid_flag; then
+            if ! $__is_valid_flag; then
                 printf '%s\n' "${RED}[!]${RESET} ${__arg} is an invalid flag."
                 unset ARGUMENTS
                 unsetter
@@ -95,13 +178,13 @@ argument-parser() {
     done
 
     # :: Verify for conflicts.
-    for flag in "${FLAGS_NAME[@]}"; do
-        declare -n ref="$flag"
-        for possible_conflicts in "${FLAGS_NAME[@]}"; do
-            if [[ ${flag} != ${possible_conflicts} ]]; then
+    for __flag in "${__flags_name[@]}"; do
+        declare -n ref="$__flag"
+        for __possible_conflicts in "${__flags_name[@]}"; do
+            if [[ ${__flag} != ${__possible_conflicts} ]]; then
                 for __conflict in ${ref[conflicts_with]}; do
-                    if [[ ${possible_conflicts} == ${__conflict} ]]; then
-                        printf '%s\n' "${RED}[!]${RESET} Conflicting flags: $flag - $possible_conflicts."
+                    if [[ ${__possible_conflicts} == ${__conflict} ]]; then
+                        printf '%s\n' "${RED}[!]${RESET} Conflicting flags: $__flag - $__possible_conflicts."
                         unset ARGUMENTS
                         unsetter
                         return 1
@@ -112,6 +195,6 @@ argument-parser() {
     done
 
     unsetter
-                    
+
     return 0
 }

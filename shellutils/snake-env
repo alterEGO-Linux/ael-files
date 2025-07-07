@@ -3,7 +3,7 @@
 # :[~/.ael/shellutils/snake-env]
 # :author        : alterEGO Linux
 # :created       : 2024-10-23 11:28:49 UTC
-# :updated       : 2025-06-27 10:48:27 UTC
+# :updated       : 2025-07-07 18:26:06 UTC
 # :description   : Manage python -m venv.
 
 snake-env() {
@@ -23,7 +23,7 @@ snake-env() {
         mkdir "${SNAKE_ENV_DIR}"
     fi
 
-    unsetter() {
+    snake-unsetter() {
         unset SNAKE_ENV
         unset SNAKE_ENV_DIR
         unset SNAKE_ENV_ACTIVE
@@ -39,6 +39,7 @@ snake-env() {
         unset -f snake-notebook
         unset -f snake-upgrade
         unset -f snake-usage
+        unset -f snake-unsetter
         [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
     }
 
@@ -46,7 +47,7 @@ snake-env() {
 
         if [ ! -d "${SNAKE_ENV_DIR}/${SNAKE_ENV}" ]; then
             echo -e "${RED}[!]${RESET} Environment ${SNAKE_ENV} does not exists."
-            unsetter && unset -f unsetter
+            snake-unsetter
 
         else
             echo -e "${BLUE}[-]${RESET} Starting python environment: ${SNAKE_ENV}."
@@ -96,7 +97,7 @@ snake-env() {
     snake-exit() {
         echo -e "${YELLOW}[!]${RESET} Quitting python environment: ${SNAKE_ENV}."
         deactivate
-        unsetter && unset -f unsetter
+        snake-unsetter
     }
 
     snake-info() {
@@ -263,7 +264,7 @@ EOF
     # :: Show help if no arguments.
     if [[ "${#}" -eq 0 ]]; then
         snake-usage
-        unsetter && unset -f unsetter
+        snake-unsetter
         return 1
     fi
 
@@ -271,11 +272,26 @@ EOF
     for arg in "${@}"; do
         if [[ "${arg}" == "-h" || "${arg}" == "--help" ]]; then
             snake-usage
-            unsetter && unset -f unsetter
+            snake-unsetter
             return 0
         fi
     done
 
+    # ::( argument parser )
+    source ${HOME}/.ael/shellutils/utils/argument-parser
+
+    local ARGUMENT_INPUT=("${@}")
+    declare -A activate=([short]="-a" [long]="--activate" [value_required]=true [conflicts_with]="create")
+    declare -A create=([short]="-c" [long]="--create" [value_required]=true [conflicts_with]="activate")
+    declare -A directory=([short]="-d" [long]="--directory" [value_required]=true)
+    declare -A list=([short]="-l" [long]="--list" [conflicts_with]="create activate listall")
+    declare -A listall=([long]="--listall" [conflicts_with]="create activate list")
+
+    local FLAGS=("activate" "create" "directory" "list" "listall")
+    local ARGUMENTS=()
+    argument-parser
+
+    set -- "${ARGUMENTS[@]}"
     while (( "$#" )); do
         case $1 in
             -a|--activate)
@@ -291,7 +307,7 @@ EOF
                 shift
                 SNAKE_ENV="${1}"
                 snake-create
-                unsetter && unset -f unsetter
+                snake-unsetter
                 ;;
             -d|--directory)
                 shift
@@ -299,11 +315,11 @@ EOF
                 ;;
             -l|--list)
                 list-environments
-                unsetter && unset -f unsetter
+                snake-unsetter
                 ;;
             --listall)
                 list-all-environments
-                unsetter && unset -f unsetter
+                snake-unsetter
                 ;;
       esac
       shift

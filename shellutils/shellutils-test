@@ -10,12 +10,13 @@ shellutils-test() {
 
 source ${HOME}/.ael/shellutils/utils/argument-parser
 
-ARGUMENT_INPUT=("${@}")
+local ARGUMENT_INPUT=("${@}")
 declare -A active=([short]="-a" [long]="--active" [value_required]=false [conflicts_with]="inactive key")
 declare -A inactive=([short]="-i" [long]="--inactive" [value_required]=true [conflicts_with]="active")
 declare -A key=([short]="-k" [long]="--key")
 
-flags=("active" "inactive" "key")
+local FLAGS=("active" "inactive" "key")
+local ARGUMENTS=()
 argument-parser
 
 set -- "${ARGUMENTS[@]}"
@@ -35,7 +36,5 @@ while (( "$#" )); do
             ;;
     esac
     shift
-
 done
-
 }
