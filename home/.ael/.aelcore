@@ -368,17 +368,35 @@ git_status() {
   }
   alias git-status='git_status'
 
-#  :::::::::: SHELLUTILS
+#  :::::::::: ( SHELLUTILS )
 
 # :: Shellutils sourced by default.
 # :: Comment out to disable any of them.
 SHELLUTILS=(
 
-    # :: ( shellutils-test )
-    shellutils-test
+    # :: ( ports ) -> Displays open ports.
+    ports
+
+    # :: ( processes ) -> Show processes.
+    processes
+
+    # :: ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
+    reset-time
+
+    # :: ( show-utc ) -> Show UTC time.
+    show-utc
 
     # :: ( snake-env ) -> Manage python -m venv.
     snake-env
+
+    # :: ( tmuxplus ) -> TMUX wrapper.
+    tmuxplus
+
+    # :: ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
+    whoisweb
+
+    # :: ( utils/ael-fzf ) -> FZF wrapper.
+    utils/ael-fzf
 )
 
 source_shellutils() {
@@ -406,19 +424,13 @@ source_shellutils
 [ -f /home/ghost/.ael/shellutils/kali ] && . /home/ghost/.ael/shellutils/kali
 [ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
 [ -f /home/ghost/.ael/shellutils/pacman-reset ] && . /home/ghost/.ael/shellutils/pacman-reset
-[ -f /home/ghost/.ael/shellutils/ports ] && . /home/ghost/.ael/shellutils/ports
-[ -f /home/ghost/.ael/shellutils/processes ] && . /home/ghost/.ael/shellutils/processes
 [ -f /home/ghost/.ael/shellutils/ps-grep ] && . /home/ghost/.ael/shellutils/ps-grep
 [ -f /home/ghost/.ael/shellutils/py-cleaner ] && . /home/ghost/.ael/shellutils/py-cleaner
 [ -f /home/ghost/.ael/shellutils/py-server ] && . /home/ghost/.ael/shellutils/py-server
-[ -f /home/ghost/.ael/shellutils/reset-time ] && . /home/ghost/.ael/shellutils/reset-time
 [ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 [ -f /home/ghost/.ael/shellutils/shell-info ] && . /home/ghost/.ael/shellutils/shell-info
-[ -f /home/ghost/.ael/shellutils/show-utc ] && . /home/ghost/.ael/shellutils/show-utc
 [ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
 [ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
 [ -f /home/ghost/.ael/shellutils/termbin ] && . /home/ghost/.ael/shellutils/termbin
-[ -f /home/ghost/.ael/shellutils/tmuxplus ] && . /home/ghost/.ael/shellutils/tmuxplus
 [ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate
 [ -f /home/ghost/.ael/shellutils/tunnel-info ] && . /home/ghost/.ael/shellutils/tunnel-info
-[ -f /home/ghost/.ael/shellutils/whoisweb ] && . /home/ghost/.ael/shellutils/whoisweb

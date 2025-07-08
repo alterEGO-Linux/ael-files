@@ -2,17 +2,47 @@
 # :[share/ael-files/ael-files.toml]
 # :author        : alterEGO Linux
 # :created       : 2025-06-11 01:03:28 UTC
-# :updated       : 2025-06-11 01:03:41 UTC
+# :updated       : 2025-07-08 11:26:12 UTC
 # :description   : AEL files.
 
 [bin.YnVzeQ==]
 filename    = "/bin/busy"
 description = "When the boss comes around to look busy."
 
+[shellutils.cG9ydHM=]
+filename    = "/shellutils/ports"
+description = "Displays open ports."
+
+[shellutils.cHJvY2Vzc2Vz]
+filename    = "/shellutils/processes"
+description = "Show processes."
+
+[shellutils.cmVzZXQtdGltZQ==]
+filename    = "/shellutils/reset-time"
+description = "Reset system time. Useful when Windows boot screws time."
+
+[shellutils.c2hvdy11dGM=]
+filename    = "/shellutils/show-utc"
+description = "Show UTC time."
+
 [shellutils.c25ha2UtZW52]
 filename    = "/shellutils/snake-env"
 description = "Manage python -m venv."
 
+[shellutils.dG11eHBsdXM=]
+filename    = "shellutils/tmuxplus"
+description = "TMUX wrapper."
+
+[shellutils.d2hvaXN3ZWI=]
+filename    = "/shellutils/whoisweb"
+description = "Query WHOIS web if <whois> port 43 is blocked on your network."
+
+[shellutils.utils.YWVsLWZ6Zg==]
+filename    = "/shellutils/utils/ael-fzf"
+description = "FZF wrapper."
+
 [shellutils.utils.YXJndW1lbnQtcGFyc2Vy]
 filename    = "/shellutils/utils/argument-parser"
 description = "Argument parser utility."
+
+

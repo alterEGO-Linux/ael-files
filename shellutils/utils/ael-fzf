@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/utils/ael-fzf]
+# :author        : AlterEGO Linux
+# :created       : 2025-07-08 11:37:31 UTC
+# :updated       : 2025-07-08 11:37:36 UTC
+# :description   : FZF wrapper.
+
+ael-fzf() {
+
+: <<'USAGE'
+This is a FZF wrapper with a convenient format to standardize its use in 
+AlterEGO Linux.
+
+If it is sourced in the shell, it can be used the same way standard fzf is used.
+
+```
+  echo -e "hello\nbye" | ael-fzf
+```
+
+If not sourced in the shell, it can be sourced directly in a script.
+
+The prompt can be modified with the options `-p PROMPT` or `--prompt PROMPT`.
+USAGE
+
+    # :: ( ael-fzf )
+
+    local __prompt="SELECT ❯ "
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+
+    while [[ ${#} -gt 0 ]]; do
+        case "${1}" in
+            -p|--prompt)
+                __prompt="${2} ❯ "
+                shift 2
+                ;;
+            *)
+                printf '%s\n' "${RED}[!]${RESET} Unknown ael-fzf option: ${1}." >&2
+                return 1
+                ;;
+        esac
+    done
+
+    fzf \
+    --color=gutter:-1 \
+    --margin=4% \
+    --border=none \
+    --prompt="${__prompt}" \
+    --header=" " \
+    --no-hscroll \
+    --reverse \
+    -i \
+    --exact \
+    --tiebreak=begin \
+    --no-info \
+    --pointer="•"
+}

@@ -9,7 +9,6 @@
 argument-parser() {
 
 : <<'USAGE'
-
 The objective of `argument-parser` is to enable manageable and configurable
 arguments from a reusable script.
 

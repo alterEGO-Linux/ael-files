@@ -1,20 +1,32 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/tmuxplus]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2020-10-15 17:14:53 UTC
-# :updated       : 2024-10-07 18:05:55 UTC
+# :updated       : 2025-07-08 16:50:36 UTC
 # :description   : TMUX wrapper.
 
 tmuxplus() {
 
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+    local __cmd
+    local __session
+    local ARGUMENT_INPUT=("${@}")
 
-    echo "================================================================================"
-    echo "[+] tmuxplus()"
-    echo "================================================================================"
-    echo
+    tmux_unsetter() {
+        unset -f in_tmux_session
+        unset -f tmux_access_session
+        unset -f tmux_background
+        unset -f tmux_usage
+        unset -f tmux_wrapper
+        unset -f tmux_unsetter
+    }
 
     in_tmux_session() {
+
+        # :: Evaluates if inside a TMUX session.
+ 
         if command env | command grep -q TMUX; then
             return 0
         else
@@ -24,71 +36,105 @@ tmuxplus() {
 
     tmux_access_session() {
 
-        # :/ref/ https://github.com/nwallace/dotfiles/blob/master/scripts/bin/functions
+        # :: ref. https://github.com/nwallace/dotfiles/blob/master/scripts/bin/functions
+        # :: Select and access TMUX sessions from FZF.
 
-        session="$(command tmux ls -F '#{session_name}' | command fzf)"
+        __session="$(command tmux ls -F '#{session_name}' | ael-fzf -p SESSIONS)"
 
-        if [[ -n "${session}" ]]; then
+        if [[ -n "${__session}" ]]; then
             in_tmux_session    
             if [[ $? == "0" ]]; then
-                env TERM=screen-256color tmux -u switch-client -t "${session}"
+                env TERM=screen-256color tmux -u switch-client -t "${__session}"
             else
-                env TERM=screen-256color tmux -u a -t "${session}"
+                env TERM=screen-256color tmux -u a -t "${__session}"
             fi
         else
-            echo "[!] Nothing selected"
+            printf '%s\n' "${RED}[!]${RESET} Nothing selected."
         fi
-        }
+    }
 
     tmux_background() {
 
-      # :/Send commands to a detached session.
+        # :: Send commands to a detached session.
 
-      command tmux new-session -d -s ${session}
-      sleep 0.5
-      command tmux send-keys -t ${session} "${cmd}" enter
-      }
+        command tmux new-session -d -s ${__session}
+        sleep 0.5
+        command tmux send-keys -t ${__session} "${__cmd}" enter
+    }
 
     tmux_wrapper() {
 
-        # :/Generates a random session.
+        # :: Generate a temporary session to run a command and exit.
 
-        session=$(echo TEMP${RANDOM})
+        __session=$(echo TEMP${RANDOM})
 
-        env TERM=screen-256color tmux -u new-session -d -s "${session}"
-        command tmux send-keys -t "${session}" "${cmd} && exit 0" enter
+        env TERM=screen-256color tmux -u new-session -d -s "${__session}"
+        command tmux send-keys -t "${__session}" "${__cmd} && exit 0" enter
     }
 
     tmux_usage() {
+        cat <<EOF
+Usage: tmuxplus [OPTIONS] <session>
 
-        echo "[-] tmuxplus() help"
-        echo "    -a | --access Uses fzf to attach or switch to a session."
-        echo "    -b | --background Create a detached session and run a command."
-        echo "    -w | --wrapper Create a detached session to run a command temporarily."
+A wrapper around TMUX.
+
+Options:
+  -a, --access                     Uses fzf to attach or switch to a session.
+  -b, --background                 Run a command in a detached session.
+  -h, --help                       Display this help message.
+  -w, --wrapper                    Generate a temporary session to run a command and exit.
+                                   Useful to launch a GUI from the terminal.
+
+Examples:
+  tmuxplus -b LOOP "while true; do echo WHAT; done"
+                                   # Create a session called LOOP and echo WHAT
+                                     until terminated manually.
+  tmuxplus -w libreoffice          # Launches libreoffice and exit the tmux
+                                     session when quitting libreoffice.
+EOF
     }
 
-    case ${1} in
+    # :: Show help if no arguments.
+    if [[ "${#}" -eq 0 ]]; then
+        tmux_usage
+        tmux_unsetter
+        return 1
+    fi
 
+    # :: Show help and ignore other arguments.
+    local __arg
+    for __arg in "${ARGUMENT_INPUT[@]}"; do
+        if [[ "${__arg}" == "-h" || "${__arg}" == "--help" ]]; then
+            tmux_usage
+            tmux_unsetter
+            return 0
+        fi
+    done
+
+    case ${1} in
         -a|--access )
             tmux_access_session
+            tmux_unsetter
             ;;
 
         -b|--background )
             shift
-            session="${1}"
-            cmd="${2}"
+            __session="${1}"
+            __cmd="${2}"
             tmux_background
+            tmux_unsetter
             ;;
 
         -w|--wrapper )
             shift
-            cmd="${1}"
+            __cmd="${1}"
             tmux_wrapper
+            tmux_unsetter
             ;;
 
         * )
             tmux_usage
+            tmux_unsetter
             ;;
-
     esac
 }

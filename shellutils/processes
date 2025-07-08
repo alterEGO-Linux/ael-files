@@ -1,19 +1,16 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/processes]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2023-08-02 00:51:54 UTC
-# :updated       : 2024-09-16 12:07:34 UTC
+# :updated       : 2025-07-08 18:07:11 UTC
 # :description   : Show processes.
 
 processes() {
 
-    echo "================================================================================"
-    echo "[+] processes()"
-    echo "    Running <ps aux>."
-    echo "    Show processes."
-    echo "================================================================================"
-    echo
-
-    command ps aux
-  }
+    if [[ $(command -v grc) ]]; then
+        command grc ps aux
+    else
+        command ps aux
+    fi
+}
