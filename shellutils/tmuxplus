@@ -74,6 +74,9 @@ tmuxplus() {
 
     tmux_usage() {
         cat <<EOF
+================================================================================
+[+] tmuxplus - TMUX wrapper.
+================================================================================
 Usage: tmuxplus [OPTIONS] <session>
 
 A wrapper around TMUX.
@@ -91,6 +94,7 @@ Examples:
                                      until terminated manually.
   tmuxplus -w libreoffice          # Launches libreoffice and exit the tmux
                                      session when quitting libreoffice.
+================================================================================
 EOF
     }
 

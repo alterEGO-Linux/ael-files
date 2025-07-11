@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/.aelcore]
-# :author        : alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2025-06-17 11:35:14 UTC
+# :updated       : 2025-07-09 12:16:08 UTC
 # :description   : AlterEGO Linux core shell configuration.
 
 # :-----/ SOURCE MODULES
@@ -374,6 +374,18 @@ git_status() {
 # :: Comment out to disable any of them.
 SHELLUTILS=(
 
+    # :: ( delete ) -> Delete directories.
+    delete
+
+    # :: ( elevate ) -> Repeats last command with sudo, if forgotten.
+    elevate
+
+    # :: ( getmp3 ) -> Extracting audio (.mp3) from video.
+    getmp3
+
+    # :: ( goto ) -> Simple directory bookmarks system.
+    goto
+
     # :: ( ports ) -> Displays open ports.
     ports
 
@@ -396,6 +408,8 @@ SHELLUTILS=(
     whoisweb
 
     # :: ( utils/ael-fzf ) -> FZF wrapper.
+    # :: Utility wrapper around FZF, commenting out might keep other shellutils
+    # :: from working properly.
     utils/ael-fzf
 )
 
@@ -410,14 +424,10 @@ source_shellutils
 [ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 [ -f /home/ghost/.ael/shellutils/deep-nmap ] && . /home/ghost/.ael/shellutils/deep-nmap
 [ -f /home/ghost/.ael/shellutils/deep-scan ] && . /home/ghost/.ael/shellutils/deep-scan
-[ -f /home/ghost/.ael/shellutils/delete ] && . /home/ghost/.ael/shellutils/delete
 [ -f /home/ghost/.ael/shellutils/directory-size ] && . /home/ghost/.ael/shellutils/directory-size
 [ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa
 [ -f /home/ghost/.ael/shellutils/extractor ] && . /home/ghost/.ael/shellutils/extractor
 [ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
-[ -f /home/ghost/.ael/shellutils/fuck ] && . /home/ghost/.ael/shellutils/fuck
-[ -f /home/ghost/.ael/shellutils/getmp3 ] && . /home/ghost/.ael/shellutils/getmp3
-[ -f /home/ghost/.ael/shellutils/goto ] && . /home/ghost/.ael/shellutils/goto
 [ -f /home/ghost/.ael/shellutils/ispeed ] && . /home/ghost/.ael/shellutils/ispeed
 [ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
 [ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner

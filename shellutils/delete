@@ -3,19 +3,34 @@
 # :[~/.ael/shellutils/delete]
 # :author        : AlterEGO Linux
 # :created       : 2023-08-01 19:59:45 UTC
-# :updated       : 2025-06-25 20:54:47 UTC
-# :description   : Delete directory.
+# :updated       : 2025-07-09 12:29:42 UTC
+# :description   : Delete directories.
 
 delete() {
+    
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+    local __dir
+    local __input
 
-    if [ -d "${1}" ]; then
-        read -p "[?] Are you sure your want to delete this directory? [y/N] " INPUT
-            if [[ "${INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                command rm --recursive --force "${1}" 
-            else
-                echo "[!] OK... Abording deletion!"
-            fi
-    else
-        echo "[!] There is nothing to do here!"
+    if [ "$#" -eq 0 ]; then
+        printf '%s\n' "${RED}[!]${RESET} Usage: delete <dir1> [dir2] [dir3] ..."
+        return 1
     fi
+
+    for __dir in "${@}"; do
+        if [ -d "${__dir}" ]; then
+            printf '%s\n' "${BLUE}[-]${RESET} Processing deletion: ${__dir} ..."
+            read -p "${BLUE}[?]${RESET} Are you sure you want to delete this directory? [y/N] " __input
+                if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                    command rm --recursive --force "${__dir}" 
+                    printf '%s\n' "${BLUE}[-]${RESET} Deleted: '${__dir}'."
+                else
+                    printf '%s\n' "${RED}[!]${RESET} Skipping: '${__dir}'."
+                fi
+        else
+            printf '%s\n' "${RED}[!]${RESET} '${__dir}' is not a directory or does not exist!"
+        fi
+    done
 }

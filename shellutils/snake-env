@@ -225,6 +225,9 @@ EOF
 
     snake-usage() {
         cat <<EOF
+================================================================================
+[+] snake-env - Manage python -m venv.
+================================================================================
 Usage: snake-env [OPTIONS] <environment-name>
 
 A utility to manage Python virtual environments in a custom directory, including setup for Jupyter kernel integration.
@@ -251,7 +254,7 @@ Internal commands:
   snake-notebook                   Launch a Jupyter notebook.
   snake-upgrade                    Upgrade the environment.
   snake-usage                      This help.
-
+================================================================================
 EOF
     }
 

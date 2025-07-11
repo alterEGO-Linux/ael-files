@@ -9,6 +9,22 @@
 filename    = "/bin/busy"
 description = "When the boss comes around to look busy."
 
+[shellutils.ZGVsZXRl]
+filename    = "/shellutils/delete"
+description = "Delete directories."
+
+[shellutils.ZWxldmF0ZQ==]
+filename    = "/shellutils/elevate"
+description = "Repeats last command with sudo, if forgotten."
+
+[shellutils.Z2V0bXAz]
+filename    = "/shellutils/getmp3"
+description = "Extracting audio (.mp3) from video."
+
+[shellutils.Z290bw==]
+filename    = "/shellutils/goto"
+description = "Simple directory bookmarks system."
+
 [shellutils.cG9ydHM=]
 filename    = "/shellutils/ports"
 description = "Displays open ports."

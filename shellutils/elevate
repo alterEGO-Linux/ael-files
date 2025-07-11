@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# :----------------------------------------------------------------------- INFO
+# :[~/.ael/shellutils/elevate]
+# :author        : AlterEGO Linux
+# :created       : 2023-08-02 00:10:38 UTC
+# :updated       : 2025-07-09 20:26:12 UTC
+# :description   : Repeats last command with sudo, if forgotten.
+
+elevate() {
+
+    local __args=("${@}")
+    local __arg
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+
+    elevate-usage() {
+        cat <<EOF
+================================================================================
+[+] elevate - Repeats last command with sudo, if forgotten.
+================================================================================
+Usage: elevate [--help]
+
+The shellutil <elevate> runs sudo \$(history -p !!), which allows to run the
+last command with elevated privileges.
+
+Options:
+  -h, --help           Display this help message.
+  -i, --interactive    Prompt for confirmation.
+================================================================================
+EOF
+    }
+
+    local __command=$(history -p !!)
+
+    # :-( help )
+    for __arg in "${__args[@]}"; do
+        if [ "${__arg}" == '-h' ] || [ "${__arg}" == '--help' ]; then
+            elevate-usage
+            unset -f elevate-usage
+            return 0
+        fi
+    done
+
+    local __input
+
+    for __arg in "${__args[@]}"; do
+        if [[ "${__arg}" == '-i' ]] || [[ "${__arg}" == '--interactive' ]]; then
+            read -p "${BLUE}[?]${RESET} Are you sure you want to proceed? [y/N] " __input
+                if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                    sudo bash -c "${__command}"
+                    return 0
+                else
+                    printf '%s\n' "${RED}[!]${RESET} Aborting running '${__command}' with elevated privileges."
+                    return 1
+                fi
+        fi
+    done
+
+    sudo bash -c "${__command}"
+}

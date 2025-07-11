@@ -3,87 +3,97 @@
 # :[~/.ael/shellutils/getmp3]
 # :author        : AlterEGO Linux
 # :created       : 2023-08-02 00:36:18 UTC
-# :updated       : 2025-03-03 21:49:53 UTC
-# :description   : Extract video audio to .mp3.
+# :updated       : 2025-07-10 20:07:29 UTC
+# :description   : Extracting audio (.mp3) from video.
 
 getmp3() {
 
-    local arg artist artist_safe title title_safe url
+    local __ARG
+    local __ARTIST
+    local __ARTIST_SAFE
+    local __TITLE
+    local __TITLE_SAFE
+    local __URL
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
 
-    usage() {
-        echo "================================================================================"
-        echo "[+] getmp3 - Extracting audio (.mp3) from video."
-        echo "================================================================================"
-        echo "Usage: getmp3 \"Artist|Title\" <YouTube-URL>"
-        echo
-        echo "Arguments:"
-        echo "  \"Artist|Title\"   The artist and title, separated by a '|'."
-        echo "  <YouTube-URL>     The valid YouTube video URL."
-        echo
-        echo "Examples:"
-        echo "  getmp3 \"Nirvana|Smells Like Teen Spirit\" \"https://www.youtube.com/watch?v=hTWKbfoikeg\""
-        echo
-        echo "Options:"
-        echo "  -h, --help        Show this help message and exit."
-        echo "================================================================================"
+    getmp3-usage() {
+        cat <<EOF
+================================================================================
+[+] getmp3 - Extracting audio (.mp3) from video.
+================================================================================
+Usage: getmp3 "Artist|Title" <YouTube-URL>
+
+Arguments:
+  "Artist|Title"    The artist and title, separated by a '|'.
+  <YouTube-URL>     The valid YouTube video URL.
+
+Examples:
+  getmp3 "Nirvana|Smells Like Teen Spirit" "https://www.youtube.com/watch?v=hTWKbfoikeg"
+
+Options:
+  -h, --help        Show this help message and exit.
+================================================================================
+EOF
     }
 
     # :-( help )
-    for arg in $@; do
-        if [ $arg == '-h' ] || [ $arg == '--help' ]; then
-            usage
-            unset -f usage
+    for __ARG in "${@}"; do
+        if [ "${__ARG}" == '-h' ] || [ "${__ARG}" == '--help' ]; then
+            getmp3-usage
+            unset -f getmp3-usage
             return 0
         fi
     done
 
     # :-( error: too many arguments )
     if [ $# -gt 2 ]; then
-        usage
-        unset -f usage
+        getmp3-usage
+        unset -f getmp3-usage
         echo
-        echo "[!] Too many arguments."
+        printf '%s\n' "${RED}[!]${RESET} Too many arguments."
         return 1
     fi
 
-    for arg in "$@"; do
-        if echo "$arg" | grep -q "|"; then
-            IFS="|" read -r artist title <<< "${arg}"
-            artist_safe=$(echo "$artist" | tr ' ' '_')
-            title_safe=$(echo "$title" | tr ' ' '_')
-        elif echo "$arg" | grep -qE "^https?://"; then
-            url="$arg"
+    for __ARG in "${@}"; do
+        if echo "${__ARG}" | grep -q "|"; then
+            IFS="|" read -r __ARTIST __TITLE <<< "${__ARG}"
+            __ARTIST_SAFE=$(echo "${__ARTIST}" | tr ' ' '_')
+            __TITLE_SAFE=$(echo "${__TITLE}" | tr ' ' '_')
+        elif echo "${__ARG}" | grep -qE "^https?://"; then
+            __URL="${__ARG}"
         else
-            usage
-            unset -f usage
+            getmp3-usage
+            unset -f getmp3-usage
             echo
-            echo "[!] Unknown argument: $arg."
+            printf '%s\n' "${RED}[!]${RESET} Unknown argument: ${__ARG}."
             return 1
         fi
     done
 
     # :-( error: missing value )
-    if [ -z "$artist_safe" ]; then
-        usage
-        unset -f usage
+    if [ -z "${__ARTIST_SAFE}" ]; then
+        getmp3-usage
+        unset -f getmp3-usage
         echo
-        echo "[!] Missing value for artist."
+        printf '%s\n' "${RED}[!]${RESET} Missing artist's value."
         return 1
     fi
 
-    if [ -z "$title_safe" ]; then
-        usage
-        unset -f usage
+    if [ -z "${__TITLE_SAFE}" ]; then
+        getmp3-usage
+        unset -f getmp3-usage
         echo
-        echo "[!] Missing value for title."
+        printf '%s\n' "${RED}[!]${RESET} Missing title's value."
         return 1
     fi
 
-    if [ -z "$url" ]; then
-        usage
-        unset -f usage
+    if [ -z "${__URL}" ]; then
+        getmp3-usage
+        unset -f getmp3-usage
         echo
-        echo "[!] Missing URL."
+        printf '%s\n' "${RED}[!]${RESET} Missing URL's value."
         return 1
     fi
 
@@ -92,7 +102,30 @@ getmp3() {
                    --audio-format mp3 \
                    --audio-quality 0 \
                    --prefer-ffmpeg \
-                   --output "${artist_safe}-${title_safe}-%(id)s" "${url}"
+                   --output "${__ARTIST_SAFE}-${__TITLE_SAFE}-%(id)s" \
+                  "${__URL}"
 
-  unset -f usage
+    local __FILENAME=$(basename "$(find . -maxdepth 1 -type f -name "${__ARTIST_SAFE}-${__TITLE_SAFE}-*.mp3" | head -n 1)")
+    local __TAGGED="tagged-${__FILENAME}"
+
+    if [ ! -f "${__FILENAME}" ]; then
+        printf '%s\n' "${RED}[!]${RESET} MP3 file not found."
+        return 1
+    fi
+
+    printf '%s\n' "${BLUE}[-]${RESET} Tagging metadata..."
+    ffmpeg -y -i "${__FILENAME}" \
+        -metadata artist="${__ARTIST}" \
+        -metadata title="${__TITLE}" \
+        -metadata comments="${__URL}" \
+        -id3v2_version 3 \
+        -write_id3v1 1 \
+        -b:a 320k \
+        "${__TAGGED}" >/dev/null 2>&1
+
+    mv "${__TAGGED}" "${__FILENAME}"
+
+    printf '%s\n' "${BLUE}[-]${RESET} Extraction done: ${__FILENAME}"
+
+  unset -f getmp3-usage
 }
