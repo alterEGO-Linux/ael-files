@@ -1,21 +1,58 @@
 #!/usr/bin/env sh
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/ps-grep]
-# :author        : fantomH @alterEGO Linux
+# :author        : AlterEGO Linux
 # :created       : 2023-08-02 00:56:31 UTC
-# :updated       : 2024-09-16 12:19:13 UTC
+# :updated       : 2025-07-12 13:26:54 UTC
 # :description   : Show processes for a particular application.
 
 ps-grep() {
 
-    echo "================================================================================"
-    echo "[+] ps-grep()"
-    echo "    Running <ps aux | grep -Ei \"^USER.*COMMAND|[${1:0:1}]${@#?}\" | grep --color=always -E \"[${1:0:1}]${@#?}|$\">."
-    echo "    Show processes for a particular application."
-    echo "================================================================================"
-    echo
+    local YELLOW=$'\033[43m\033[30m'
+    local BOLD=$'\033[1m'
+    local RESET=$'\033[0m'
+    local RED=$'\033[31m'
 
-    command ps aux \
-    | command grep -Ei "^USER.*COMMAND|[${1:0:1}]${@#?}" \
-    | command grep --color=always -E "[${1:0:1}]${@#?}|$"
-  }
+    # :: Error handler: No argument provided.
+    if [ $# -eq 0 ]; then
+        printf '%s\n' "${RED}[!]${RESET} No pattern provided."
+        return 1
+    fi
+
+    local PATTERN="[${1:0:1}]${1:1}"
+
+    # :: Get header.
+    local HEADER=$(ps aux | head -n 1)
+
+    # :: Get pattern.
+    local MATCHES=$(ps aux | grep -Ei "$PATTERN" | grep -Ev "ps-grep|grep")
+
+    # :: Error handler: No match found.
+    if [ -z "$MATCHES" ]; then
+        printf '%s\n' "${RED}[!]${RESET} No matching process found."
+        return 1
+    fi
+
+    # :: Compare width of terminal and lenght of lines to determine the display.
+    local NEED_SPACING=0
+    local WIDTH=$(tput cols)
+    local line
+
+    while IFS= read -r line; do
+        if [ "${#line}" -ge "$WIDTH" ]; then
+            NEED_SPACING=1
+            break
+        fi
+    done <<< "$MATCHES"
+
+    # :: Display.
+
+    printf '%s\n' "${BOLD}${HEADER}${RESET}"
+
+    while IFS= read -r line; do
+        local HIGHLIGHTED
+        HIGHLIGHTED=$(echo "$line" | GREP_COLORS='mt=43;30' grep --color=always -E "$PATTERN|$")
+        echo "$HIGHLIGHTED"
+        [ "$NEED_SPACING" -eq 1 ] && echo
+    done <<< "$MATCHES"
+}

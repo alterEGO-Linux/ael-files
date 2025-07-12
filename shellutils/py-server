@@ -1,31 +1,45 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/py-server]
 # :author        : fantomH @alterEGO Linux
 # :created       : 2024-09-10 16:58:34 UTC
-# :updated       : 2024-09-16 12:25:52 UTC
+# :updated       : 2025-07-11 21:28:30 UTC
 # :description   : Create a Python HTTP server.
 
 py-server() {
 
-    ports=('8000' '8001' '8002')
+    # :: This script find an available port and starts a python HTTP server.
 
-    CONTINUE=true
-    while $CONTINUE; do
-      for p in "${ports[@]}"; do
-        if [[ -z $(sudo netstat -tulanp | command grep ":$p") ]]; then
-          port="$p"
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+
+    local PORTS=(
+        '8000'
+        '8001'
+        '8002'
+        '8003'
+        '8004'
+        '8005'
+        '8006'
+        '8007'
+        '8008'
+        '8009'
+        '8010'
+    )
+
+    local CONTINUE=true
+    while ${CONTINUE}; do
+      local port
+      for port in "${PORTS[@]}"; do
+        if [[ -z $(sudo netstat -tulanp | command grep ":${port}") ]]; then
+          local PORT="${port}"
           CONTINUE=false
           break
         fi
       done
     done
 
-    echo "================================================================================"
-    echo "[+] py-server()"
-    echo "    Starting Python web server on port ${port}"
-    echo "================================================================================"
-    echo
-
-    command python -m http.server ${port}
-  }
+    printf '%s\n' "${BLUE}[-]${RESET} py-server: Starting HTTP server on port ${PORT}"
+    command python -m http.server ${PORT}
+}

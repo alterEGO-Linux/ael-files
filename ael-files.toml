@@ -2,7 +2,7 @@
 # :[share/ael-files/ael-files.toml]
 # :author        : alterEGO Linux
 # :created       : 2025-06-11 01:03:28 UTC
-# :updated       : 2025-07-08 11:26:12 UTC
+# :updated       : 2025-07-12 13:30:47 UTC
 # :description   : AEL files.
 
 [bin.YnVzeQ==]
@@ -32,6 +32,14 @@ description = "Displays open ports."
 [shellutils.cHJvY2Vzc2Vz]
 filename    = "/shellutils/processes"
 description = "Show processes."
+
+[shellutils.cHMtZ3JlcA==]
+filename    = "/shellutils/ps-grep"
+description = "Show processes for a particular application."
+
+[shellutils.cHktc2VydmVy]
+filename    = "/shellutils/py-server"
+description = "Create a Python HTTP server."
 
 [shellutils.cmVzZXQtdGltZQ==]
 filename    = "/shellutils/reset-time"

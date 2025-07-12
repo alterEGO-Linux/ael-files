@@ -3,7 +3,7 @@
 # :[~/.ael/.aelcore]
 # :author        : AlterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2025-07-09 12:16:08 UTC
+# :updated       : 2025-07-12 13:30:59 UTC
 # :description   : AlterEGO Linux core shell configuration.
 
 # :-----/ SOURCE MODULES
@@ -392,6 +392,12 @@ SHELLUTILS=(
     # :: ( processes ) -> Show processes.
     processes
 
+    # :: ( ps-grep ) -> Show processes for a particular application.
+    ps-grep
+
+    # :: ( py-server ) -> Create a Python HTTP server.
+    py-server
+
     # :: ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
     reset-time
 
@@ -434,9 +440,7 @@ source_shellutils
 [ -f /home/ghost/.ael/shellutils/kali ] && . /home/ghost/.ael/shellutils/kali
 [ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
 [ -f /home/ghost/.ael/shellutils/pacman-reset ] && . /home/ghost/.ael/shellutils/pacman-reset
-[ -f /home/ghost/.ael/shellutils/ps-grep ] && . /home/ghost/.ael/shellutils/ps-grep
 [ -f /home/ghost/.ael/shellutils/py-cleaner ] && . /home/ghost/.ael/shellutils/py-cleaner
-[ -f /home/ghost/.ael/shellutils/py-server ] && . /home/ghost/.ael/shellutils/py-server
 [ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 [ -f /home/ghost/.ael/shellutils/shell-info ] && . /home/ghost/.ael/shellutils/shell-info
 [ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
