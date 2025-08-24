@@ -1,9 +1,9 @@
-# :----------------------------------------------------------------------- INFO
-# :[share/ael-files/ael-files.toml]
-# :author        : alterEGO Linux
-# :created       : 2025-06-11 01:03:28 UTC
-# :updated       : 2025-07-12 13:30:47 UTC
-# :description   : AEL files.
+# :: --------------------------------------------------------------------- INFO
+# :: [share/ael-files/ael-files.toml]
+# :: author        : alterEGO Linux
+# :: created       : 2025-06-11 01:03:28 UTC
+# :: updated       : 2025-08-24 15:12:03 UTC
+# :: description   : AEL files.
 
 [bin.YnVzeQ==]
 filename    = "/bin/busy"
@@ -13,9 +13,25 @@ description = "When the boss comes around to look busy."
 filename    = "/shellutils/delete"
 description = "Delete directories."
 
+[shellutils.ZGVlcC1ubWFw]
+filename    = "/shellutils/deep-nmap"
+description = "Deep Nmap scan."
+
+[shellutils.ZGVlcC1zY2Fu]
+filename    = "/shellutils/deep-scan"
+description = "Scans IP with rustscan and nmap."
+
+[shellutils.ZGlyZWN0b3J5LXNpemU=]
+filename    = "/shellutils/directory-size"
+description = "Check size of biggest directories."
+
 [shellutils.ZWxldmF0ZQ==]
 filename    = "/shellutils/elevate"
 description = "Repeats last command with sudo, if forgotten."
+
+[shellutils.ZXh0cmFjdG9y]
+filename    = "/shellutils/extractor"
+description = "Compressed files universal extractor."
 
 [shellutils.Z2V0bXAz]
 filename    = "/shellutils/getmp3"
@@ -24,6 +40,14 @@ description = "Extracting audio (.mp3) from video."
 [shellutils.Z290bw==]
 filename    = "/shellutils/goto"
 description = "Simple directory bookmarks system."
+
+[shellutils.aXNwZWVk]
+filename    = "/shellutils/ispeed"
+description = "Internet connection speed meter."
+
+[shellutils.cGFjbWFuLXJlc2V0]
+filename    = "/shellutils/pacman-reset"
+description = "Re-initialize pacman sync, mirrorlist and keyring."
 
 [shellutils.cG9ydHM=]
 filename    = "/shellutils/ports"
@@ -37,6 +61,10 @@ description = "Show processes."
 filename    = "/shellutils/ps-grep"
 description = "Show processes for a particular application."
 
+[shellutils.cHktY2xlYW5lcg==]
+filename    = "/shellutils/py-cleaner"
+description = "Clean python current directory."
+
 [shellutils.cHktc2VydmVy]
 filename    = "/shellutils/py-server"
 description = "Create a Python HTTP server."
@@ -45,6 +73,10 @@ description = "Create a Python HTTP server."
 filename    = "/shellutils/reset-time"
 description = "Reset system time. Useful when Windows boot screws time."
 
+[shellutils.c2hlbGwtaW5mbw==]
+filename    = "/shellutils/shell-info"
+description = "Show shell info."
+
 [shellutils.c2hvdy11dGM=]
 filename    = "/shellutils/show-utc"
 description = "Show UTC time."
@@ -52,6 +84,10 @@ description = "Show UTC time."
 [shellutils.c25ha2UtZW52]
 filename    = "/shellutils/snake-env"
 description = "Manage python -m venv."
+
+[shellutils.dGVybWJpbg==]
+filename    = "/shellutils/termbin"
+description = "Netcat-based command-line pastebin."
 
 [shellutils.dG11eHBsdXM=]
 filename    = "shellutils/tmuxplus"
@@ -68,5 +104,3 @@ description = "FZF wrapper."
 [shellutils.utils.YXJndW1lbnQtcGFyc2Vy]
 filename    = "/shellutils/utils/argument-parser"
 description = "Argument parser utility."
-
-

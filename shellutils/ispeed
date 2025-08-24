@@ -3,14 +3,17 @@
 # :[~/.ael/shellutils/ispeed]
 # :author        : AlterEGO Linux
 # :created       : 2024-05-16 14:54:18 UTC
-# :updated       : 2025-03-08 17:15:40 UTC
+# :updated       : 2025-08-13 17:15:40 UTC
 # :description   : Internet connection speed meter.
 
 ispeed() {
 
-    local args=("$@") METHODS SELECTION
+    local ARGUMENTS_INPUT=("${@}")
+    local BROWSER
+    local METHODS
+    local SELECTION
 
-    usage() {
+    ispeed_usage() {
       cat <<EOF
 ================================================================================
 [+] ispeed - Calculate Internet connection speed.
@@ -18,6 +21,12 @@ ispeed() {
 Usage: ispeed [--fzf|--web METHOD|--cli METHOD|--git METHOD|--help]
 
 ispeed offers different ways to calculate your Internet speed.
+
+--fzf       Uses fzf to display and select a method.
+--cli       Uses a local application. Requires a METHOD.
+--git       Uses git, curl, wget etc. to run command.
+            Requires a METHOD.
+--web       Uses default browser. Requires a METHOD.
 
 METHODS:
     - (cli) speedtest
@@ -38,8 +47,7 @@ EOF
 
     use_fzf() {
 
-        SELECTION=$(printf "%s\n" "${METHODS[@]}" \
-                    | command fzf)
+        SELECTION=$(printf "%s\n" "${METHODS[@]}" | ael-fzf -p "iSPEED METHODS")
     }
 
     run_method() {
@@ -73,8 +81,10 @@ EOF
         fi
     }
 
-    unsetter() {
-        unset -f run_method usage use_fzf
+    ispeed_unsetter() {
+        unset -f run_method use_fzf
+        unset -f ispeed_usage
+        unset -f ispeed_unsetter
     }
 
     METHODS=("(cli) speedtest"
@@ -85,86 +95,96 @@ EOF
 
     BROWSER="${BROWSER:-xdg-open}"
 
+    # :: No arguments.
     if [[ $# == 0 ]]; then
         use_fzf
         run_method
-        unsetter && unset -f unsetter
+        ispeed_unsetter
         return 0
     fi
 
-    for i in "${!args[@]}"; do
-        if [[ "${args[i]}" == "-h" ]] || [[ "${args[i]}" == "--help" ]]; then
-            usage
-            unsetter && unset -f unsetter
+    # :: Show help and ignore other arguments.
+    local i
+    for i in "${ARGUMENTS_INPUT[@]}"; do
+        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then
+            ispeed_usage
+            ispeed_unsetter
             return 0
-        elif [[ "${args[i]}" == "--fzf" ]]; then
+        fi
+    done
+
+    # :: Arguments parser.
+    for i in "${!ARGUMENTS_INPUT[@]}"; do
+        if [[ "${ARGUMENTS_INPUT[i]}" == "--fzf" ]]; then
             use_fzf
             run_method
-            unsetter && unset -f unsetter
+            ispeed_unsetter
             return 0
-        elif [[ "${args[i]}" == "--cli" ]]; then
-            if [[ -n "${args[i+1]}" && "${args[i+1]}" == "speedtest" ]]; then
+        elif [[ "${ARGUMENTS_INPUT[i]}" == "--cli" ]]; then
+            if [[ -n "${ARGUMENTS_INPUT[i+1]}" && "${ARGUMENTS_INPUT[i+1]}" == "speedtest" ]]; then
                 SELECTION="(cli) speedtest"
                 run_method
-                unsetter && unset -f unsetter
+                ispeed_unsetter
                 return 0
             else
-                usage
+                ispeed_usage
                 echo
                 echo "[!] --cli requires a valid argument."
-                unsetter && unset -f unsetter
+                ispeed_unsetter
                 return 1
             fi
-        elif [[ "${args[i]}" == "--git" ]]; then
-            if [[ -n "${args[i+1]}" && "${args[i+1]}" == "speedtest" ]]; then
+        elif [[ "${ARGUMENTS_INPUT[i]}" == "--git" ]]; then
+            if [[ -n "${ARGUMENTS_INPUT[i+1]}" && "${ARGUMENTS_INPUT[i+1]}" == "speedtest" ]]; then
                 SELECTION="(git) speedtest"
                 run_method
-                unsetter && unset -f unsetter
+                ispeed_unsetter
                 return 0
             else
-                usage
+                ispeed_usage
                 echo
                 echo "[!] --git requires a valid argument."
-                unsetter && unset -f unsetter
+                ispeed_unsetter
                 return 1
             fi
-        elif [[ "${args[i]}" == "--web" ]]; then
-            if [[ -n "${args[i+1]}" ]]; then
-                if [[ "${args[i+1]}" == "speedtest" ]]; then
+
+        elif [[ "${ARGUMENTS_INPUT[i]}" == "--web" ]]; then
+            if [[ -n "${ARGUMENTS_INPUT[i+1]}" ]]; then
+                if [[ "${ARGUMENTS_INPUT[i+1]}" == "speedtest" ]]; then
                     SELECTION="(web) speedtest"
                     run_method
-                    unsetter && unset -f unsetter
+                    ispeed_unsetter
                     return 0
-                elif [[ "${args[i+1]}" == "Fast.com" ]]; then
+                elif [[ "${ARGUMENTS_INPUT[i+1]}" == "Fast.com" ]]; then
                     SELECTION="(web) Fast.com"
                     run_method
-                    unsetter && unset -f unsetter
+                    ispeed_unsetter
                     return 0
-                elif [[ "${args[i+1]}" == "speedof.me" ]]; then
+                elif [[ "${ARGUMENTS_INPUT[i+1]}" == "speedof.me" ]]; then
                     SELECTION="(web) speedof.me"
                     run_method
-                    unsetter && unset -f unsetter
+                    ispeed_unsetter
                     return 0
                 else
-                    usage
+                    ispeed_usage
                     echo
                     echo "[!] --web requires a valid argument."
-                    unsetter && unset -f unsetter
+                    ispeed_unsetter
                     return 1
                 fi
             else
-                usage
+                ispeed_usage
                 echo
                 echo "[!] --web requires a valid argument."
-                unsetter && unset -f unsetter
+                ispeed_unsetter
                 return 1
             fi
         fi
     done
 
-    usage
+    # :: Garbage argument collector.
+    ispeed_usage
     echo
     echo "[!] No valid arguments found."
-    unsetter && unset -f unsetter
+    ispeed_unsetter
     return 1
 }

@@ -1,30 +1,389 @@
-#!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/shell-info]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2023-08-02 01:18:13 UTC
-# :updated       : 2024-09-16 15:45:43 UTC
-# :description   : Show shell info.
+#!/usr/bin/env bash
+# :: --------------------------------------------------------------------- INFO
+# :: [~/.ael/shellutils/shell-info]
+# :: author        : fantomH @alterEGO Linux
+# :: created       : 2023-08-02 01:18:13 UTC
+# :: updated       : 2025-08-24 15:08:17 UTC
+# :: description   : Show shell info.
 
 shell-info() {
 
-    # :Could build something with fzf to search and give info.
-    # :ref. https://stackoverflow.com/a/949006/10500496
-    # :You can use the bash(1) built-in compgen
-    # :    compgen -c will list all the commands you could run.
-    # :    compgen -a will list all the aliases you could run.
-    # :    compgen -b will list all the built-ins you could run.
-    # :    compgen -k will list all the keywords you could run.
-    # :    compgen -A function will list all the functions you could run.
-    # :    compgen -A function -abck will list all the above in one go.
+    # :: Shell clean up.
+    trap '
+        [[ -n ${DUMPFILE-} ]] && rm -f -- "$DUMPFILE"
+        unset -f _si_determine_type \
+                  _si_display_alias \
+                  _si_display_builtin \
+                  _si_display_function \
+                  _si_display_keyword \
+                  _si_display_variable \
+                  _si_show_sourced \
+                  _si_show_sourced_tree \
+                  _si_show_all \
+                  _si_usage; trap - RETURN' RETURN
 
-    echo "================================================================================"
-    echo "[+] shell-info()"
-    echo "    Show shell info for ${@}."
-    echo "================================================================================"
-    echo
+    local ARGUMENTS_INPUT=("${@}")
+    local NAME
+    local TYPE
+    local SOURCE
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
 
-    shopt -s extdebug
-    type -a ${@}
-    declare -F ${@}
+    # :: Getting bash run sequence.
+    local TEMPDIR
+    if [[ -d /tmp && -w /tmp && -x /tmp ]]; then
+        TEMPDIR=/tmp
+    else
+        TEMPDIR="$HOME/tmp"
+        mkdir -p -- "$TEMPDIR" || return 1
+    fi
+
+    local DUMPFILE="${TEMPDIR}/sourced_by_shell"
+    PS4='+ ${BASH_SOURCE}:${LINENO}: ' BASH_XTRACEFD=7 \
+    /bin/bash -lx 7> ${DUMPFILE} -c 'exit' >/dev/null 2>&1
+
+    # :: ( TYPE )
+    _si_determine_type() {
+        local _name
+        local _type
+        for _name in "${ARGUMENTS_INPUT[@]}"; do
+            if _type=$(type -t -- "${_name}"); then
+                case "${_type}" in
+                    alias )
+                        NAME="${_name}"
+                        TYPE="${_type}"
+                        _si_display_alias
+                        ;;
+                    builtin )
+                        NAME="${_name}"
+                        TYPE="${_type}"
+                        _si_display_builtin
+                        ;;
+                    function ) 
+                        NAME="${_name}"
+                        TYPE="${_type}"
+                        _si_display_function
+                        ;;
+                    builtin )
+                        NAME="${_name}"
+                        TYPE="${_type}"
+                        _si_display_builtin
+                        ;;
+                    keyword )
+                        NAME="${_name}"
+                        TYPE="${_type}"
+                        _si_display_keyword
+                        ;;
+                    *) printf '%s\n' "${RED}[!]${RESET} Nothing found for ${_name}" ;;
+                esac
+            else
+                # :: Verify if a variable.
+                if [[ -v ${_name} ]]; then
+                    NAME="${_name}"
+                    TYPE="variable"
+                    _si_display_variable
+                else
+                    printf '%s\n' "${RED}[!]${RESET} Nothing found for ${_name}"
+                fi
+            fi
+        done
     }
+
+    # :: ( ALIAS )
+    _si_display_alias() {
+        
+        local from_dumpfile="$(tac ${DUMPFILE} | grep -m1 -E "alias .${NAME}")"
+
+        if [[ $from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*alias[[:space:]]+(.+)$ ]]; then
+            SOURCE="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
+        fi
+
+        cat <<EOF
+===============================================================================
+${BLUE}[+]${RESET} shell-info - ${NAME}
+===============================================================================
+
+NAME   : ${NAME}
+TYPE   : ${TYPE}
+SOURCE : ${SOURCE}
+
+$(alias -- ${NAME} 2>/dev/null)
+===============================================================================
+EOF
+    }
+
+    # :: ( BUILTIN )
+    _si_display_builtin() {
+        
+        cat <<EOF
+===============================================================================
+${BLUE}[+]${RESET} shell-info - ${NAME}
+===============================================================================
+
+NAME   : ${NAME}
+TYPE   : ${TYPE}
+
+$(help -d ${NAME})
+===============================================================================
+EOF
+    }
+
+    # :: ( FUNCTION )
+    _si_display_function() {
+
+        SOURCE=$(shopt -s extdebug; \
+                 declare -F ${NAME} \
+                 | sed -E 's/^([^ ]+) ([0-9]+) (.*)$/found in \3 at line \2./'; \
+                 shopt -u extdebug)
+
+        cat <<EOF
+===============================================================================
+${BLUE}[+]${RESET} shell-info - ${NAME}
+===============================================================================
+
+NAME   : ${NAME}
+TYPE   : ${TYPE}
+SOURCE : ${SOURCE}
+
+$(declare -f ${NAME})
+===============================================================================
+EOF
+    }
+
+    # :: ( KEYWORD )
+    _si_display_keyword() {
+        cat <<EOF
+===============================================================================
+${BLUE}[+]${RESET} shell-info - ${NAME}
+===============================================================================
+
+NAME   : ${NAME}
+TYPE   : ${TYPE}
+
+$(help -d ${NAME})
+===============================================================================
+EOF
+    }
+
+    # :: ( VARIABLE )
+    _si_display_variable() {
+        
+        local from_dumpfile="$(tac ${DUMPFILE} | grep -m1 -E ":\s${NAME}=")"
+
+        if [[ $from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*${NAME}(.+)$ ]]; then
+            SOURCE="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
+        fi
+
+        cat <<EOF
+===============================================================================
+${BLUE}[+]${RESET} shell-info - ${NAME}
+===============================================================================
+
+NAME   : ${NAME}
+TYPE   : ${TYPE}
+SOURCE : ${SOURCE}
+
+${NAME}="$(printf '%s\n' "${!NAME}")"
+===============================================================================
+EOF
+    }
+
+    # :: ( FZF )
+    _si_show_all() {
+
+        # :: Building arrays.
+
+        local A_ALIASES
+        local A_BUILTIN
+        local A_FUNCS
+        local A_KEYWORD
+        local A_VARS
+
+        mapfile -t A_ALIASES< <(compgen -a)
+        mapfile -t A_BUILTIN< <(compgen -b)
+        mapfile -t A_FUNCS  < <(compgen -A function)
+        mapfile -t A_KEYWORD< <(compgen -k)
+        mapfile -t A_VARS   < <(compgen -v)
+
+        local _tagged=()
+        local x
+
+        # :: ( ALIAS )
+        for x in "${A_ALIASES[@]}"; do
+            _tagged+=("( alias ) ${x}")
+        done
+        # :: ( BUILTIN )
+        for x in "${A_BUILTIN[@]}"; do
+            _tagged+=("( builtin ) ${x}")
+        done
+        # :: ( FUNCTIONS )
+        for x in "${A_FUNCS[@]}"; do
+            _tagged+=("( function ) ${x}")
+        done
+        # :: ( KEYWORD )
+        for x in "${A_KEYWORD[@]}"; do
+            _tagged+=("( keyword ) ${x}")
+        done
+        # :: ( VARIABLE )
+        for x in "${A_VARS[@]}"; do
+            _tagged+=("( variable ) ${x}")
+        done
+
+        local _selection
+        _selection="$(printf '%s\n' "${_tagged[@]}" | ael-fzf)"
+        [[ -z "${_selection}" ]] && return 1
+
+        local _name
+        local _type
+        _type="${_selection%% \)*}"; _type="${_type#\( }"
+        _name="${_selection#* \) }"
+
+        case "${_type}" in
+            alias)
+                NAME="${_name}"
+                TYPE="${_type}"
+                _si_display_alias
+                ;;
+            builtin)
+                NAME="${_name}"
+                TYPE="${_type}"
+                _si_display_builtin
+                ;;
+            function) 
+                NAME="${_name}"
+                TYPE="${_type}"
+                _si_display_function
+                ;;
+            keyword)
+                NAME="${_name}"
+                TYPE="${_type}"
+                _si_display_keyword
+                ;;
+            variable)
+                NAME="${_name}"
+                TYPE="${_type}"
+                _si_display_variable
+                ;;
+        esac
+    }
+
+    # :: ( SOURCED )
+    _si_show_sourced() {
+        sed -nE 's/^[+[:space:]]*[^:]+:[0-9]+:[[:space:]]+(source|\.)[[:space:]]+(.+)$/\2/p' -- "$DUMPFILE"
+    }
+
+    # :: ( SOURCED TREE )
+    _si_show_sourced_tree() {
+        awk -v OFS='' '
+            # Trim helpers
+            function ltrim(s){sub(/^[ \t\r\n]+/,"",s);return s}
+            function rtrim(s){sub(/[ \t\r\n]+$/,"",s);return s}
+            function trim(s){return rtrim(ltrim(s))}
+
+            # Collect only lines that are "source ..." or ". ..." from xtrace:
+            #   ++++ /path/to/file:LINE: source TARGET...
+            {
+              line = $0
+              if (match(line, /^([+]+)[[:space:]]*([^:]+):([0-9]+):[[:space:]]+(source|\.)[[:space:]]+(.*)$/, m)) {
+                n++
+                depth[n]  = length(m[1])         # number of '+' = nesting depth
+                target[n] = trim(m[5])           # what was sourced (as seen)
+              }
+            }
+
+            END {
+              # Determine if each node is the last sibling at its depth
+              for (i=1; i<=n; i++) {
+                last[i] = 1
+                for (j=i+1; j<=n; j++) {
+                  if (depth[j] <= depth[i]) {
+                    if (depth[j] == depth[i]) last[i] = 0
+                    break
+                  }
+                }
+              }
+
+              # Active vertical bars per depth (for nice tree branches)
+              for (l=1; l<=256; l++) active[l]=0
+              prevd = 0
+
+              for (i=1; i<=n; i++) {
+                d = depth[i]
+
+                # Clear deeper actives when we move up the tree
+                for (l=prevd; l>d; l--) active[l]=0
+
+                # Build ancestor prefix: │  if future siblings remain, else spaces
+                prefix = ""
+                for (l=1; l<d; l++) prefix = prefix (active[l] ? "│  " : "   ")
+
+                # Connector for this node
+                connector = (last[i] ? "└─ " : "├─ ")
+
+                print prefix, connector, target[i]
+
+                # Update active bar for this depth
+                active[d] = last[i] ? 0 : 1
+                prevd = d
+              }
+            }
+          ' "$DUMPFILE"
+    }
+
+    # :: ( HELP )
+    _si_usage() {
+        cat <<EOF
+===============================================================================
+[+] shell-info - Show shell info.
+===============================================================================
+Usage: shell-info [--fzf|--sourced|--sourced-tree|-h|--help] [NAME]
+
+Options:
+  --fzf            Open the interactive selector (default if no args)
+  --sourced        List files sourced during startup
+  --sourced-tree   Tree view of sourced files (based on + depth)
+  -h, --help       Show this help and exit
+
+Will return the name, type and if available, the source of current shell
+variable, alias, function, builtin or keyword.
+
+For alias, variable and function, the code itself will be displayed.
+
+For builtin and keyword, a short description will be diplayed.
+
+Example:
+  shell-info tmuxplus
+===============================================================================
+EOF
+    }
+
+    # ::::: ( ARGUMENT PARSER ) :::::::::::::::::::::::::::::::::::::::::::::::
+
+    # :: No arguments.
+    if [[ $# == 0 ]]; then ARGUMENTS_INPUT=("--fzf"); fi
+
+    local i
+    # :: Show help and ignore other arguments.
+    for i in "${ARGUMENTS_INPUT[@]}"; do
+        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then _si_usage; return 0; fi
+    done
+
+    # :: Execute --fzf and ignore other arguments. 
+    for i in "${ARGUMENTS_INPUT[@]}"; do
+        if [[ "${i}" == "--fzf" ]]; then _si_show_all; return 0; fi
+    done
+
+    # :: Execute --sourced and ignore other arguments. 
+    for i in "${ARGUMENTS_INPUT[@]}"; do
+        if [[ "${i}" == "--sourced" ]]; then _si_show_sourced; return 0; fi
+    done
+
+    # :: Execute --sourced-tree and ignore other arguments. 
+    for i in "${ARGUMENTS_INPUT[@]}"; do
+        if [[ "${i}" == "--sourced-tree" ]]; then _si_show_sourced_tree; return 0; fi
+    done
+
+    _si_determine_type
+    return 0
+}

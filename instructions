@@ -1,0 +1,7 @@
+# ::::: ( Variables in bash scripts )
+
+# :: Use the following for the variable BROWSER.
+
+```bash
+BROWSER="${BROWSER:-xdg-open}"
+```

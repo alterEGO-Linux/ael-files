@@ -44,7 +44,7 @@ USAGE
 
     fzf \
     --color=gutter:-1 \
-    --margin=4% \
+    --margin=1% \
     --border=none \
     --prompt="${__prompt}" \
     --header=" " \

@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/.aelcore]
-# :author        : AlterEGO Linux
-# :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2025-07-12 13:30:59 UTC
-# :description   : AlterEGO Linux core shell configuration.
+# :: --------------------------------------------------------------------- INFO
+# :: [~/.ael/.aelcore]
+# :: author        : AlterEGO Linux
+# :: created       : 2021-03-19 09:37:19 UTC
+# :: updated       : 2025-08-15 16:29:32 UTC
+# :: description   : AlterEGO Linux core shell configuration.
+#
 
 # :-----/ SOURCE MODULES
 
@@ -368,7 +369,7 @@ git_status() {
   }
   alias git-status='git_status'
 
-#  :::::::::: ( SHELLUTILS )
+# :::::::::::::::::::: ( SHELLUTILS ) :::::::::::::::::::::::::::::::::::::::::
 
 # :: Shellutils sourced by default.
 # :: Comment out to disable any of them.
@@ -377,14 +378,32 @@ SHELLUTILS=(
     # :: ( delete ) -> Delete directories.
     delete
 
+    # :: ( deep-nmap ) -> Deep Nmap scan.
+    deep-nmap
+
+    # :: ( deep-scan ) -> Scans IP with rustscan and nmap.
+    deep-scan
+
+    # :: ( directory-size ) -> Check size of biggest directories.
+    directory-size
+
     # :: ( elevate ) -> Repeats last command with sudo, if forgotten.
     elevate
+
+    # :: ( extractor ) -> Compressed files universal extractor.
+    extractor
 
     # :: ( getmp3 ) -> Extracting audio (.mp3) from video.
     getmp3
 
     # :: ( goto ) -> Simple directory bookmarks system.
     goto
+
+    # :: ( ispeed ) -> Internet connection speed meter.
+    ispeed
+
+    # :: ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
+    pacman-reset
 
     # :: ( ports ) -> Displays open ports.
     ports
@@ -395,17 +414,26 @@ SHELLUTILS=(
     # :: ( ps-grep ) -> Show processes for a particular application.
     ps-grep
 
+    # :: ( py-cleaner ) -> Clean python current directory.
+    py-cleaner
+
     # :: ( py-server ) -> Create a Python HTTP server.
     py-server
 
     # :: ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
     reset-time
 
+    # :: ( shell-info ) -> Show shell info.
+    shell-info
+
     # :: ( show-utc ) -> Show UTC time.
     show-utc
 
     # :: ( snake-env ) -> Manage python -m venv.
     snake-env
+
+    # :: ( termbin ) -> Netcat-based command-line pastebin.
+    termbin
 
     # :: ( tmuxplus ) -> TMUX wrapper.
     tmuxplus
@@ -428,23 +456,14 @@ source_shellutils() {
 source_shellutils
 
 [ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
-[ -f /home/ghost/.ael/shellutils/deep-nmap ] && . /home/ghost/.ael/shellutils/deep-nmap
-[ -f /home/ghost/.ael/shellutils/deep-scan ] && . /home/ghost/.ael/shellutils/deep-scan
-[ -f /home/ghost/.ael/shellutils/directory-size ] && . /home/ghost/.ael/shellutils/directory-size
 [ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa
-[ -f /home/ghost/.ael/shellutils/extractor ] && . /home/ghost/.ael/shellutils/extractor
 [ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
-[ -f /home/ghost/.ael/shellutils/ispeed ] && . /home/ghost/.ael/shellutils/ispeed
 [ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
 [ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
 [ -f /home/ghost/.ael/shellutils/kali ] && . /home/ghost/.ael/shellutils/kali
 [ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
-[ -f /home/ghost/.ael/shellutils/pacman-reset ] && . /home/ghost/.ael/shellutils/pacman-reset
-[ -f /home/ghost/.ael/shellutils/py-cleaner ] && . /home/ghost/.ael/shellutils/py-cleaner
 [ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
-[ -f /home/ghost/.ael/shellutils/shell-info ] && . /home/ghost/.ael/shellutils/shell-info
 [ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
 [ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
-[ -f /home/ghost/.ael/shellutils/termbin ] && . /home/ghost/.ael/shellutils/termbin
 [ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate
 [ -f /home/ghost/.ael/shellutils/tunnel-info ] && . /home/ghost/.ael/shellutils/tunnel-info

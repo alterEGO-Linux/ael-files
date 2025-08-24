@@ -1,48 +1,61 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/deep-nmap]
 # :author        : AlterEGO Linux
 # :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2025-02-26 12:27:20 UTC
-# :description   : Complete Nmap scan.
+# :updated       : 2025-08-14 11:12:55 UTC
+# :description   : Deep Nmap scan.
 
 deep-nmap() {
 
-    if [[ $# -eq 0 ]]; then
-        set -- "-h"
+    local ARGUMENTS_INPUT=("${@}")
+
+    # :: Unsetting functions to clean shell.
+    unsetter() {
+        unset -f usage
+        unset -f unsetter
+    }
+
+    # :: help / usage / documentation.
+    usage() {
+        cat <<EOF
+================================================================================
+[+] deep-nmap - Deep Nmap scan.
+================================================================================
+Usage: deep-nmap <Target> [Nmap Options] | [-h|--help]
+
+Runs Nmap as sudo with customizable arguments. Defaults to:
+  -sV          - Detect service versions.
+  -O           - Enable OS detection.
+  -sC          - Run Nmap's default scripts.
+  --traceroute - Perform a traceroute to the target.
+
+Options:
+  -h, --help    - Display this help message.
+
+Examples:
+  deep-nmap 192.168.1.1
+  deep-nmap scanme.nmap.org --Pn
+================================================================================
+EOF
+    }
+
+    # :: No arguments.
+    if [[ $# == 0 ]]; then
+        ARGUMENTS_INPUT=("-h")
     fi
 
-    # :-( help)
-    for arg in "$@"; do
-        if [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
-            echo "================================================================================"
-            echo "[+] deep-nmap - Nmap Wrapper"
-            echo "================================================================================"
-            echo "Usage: deep-nmap <Target> [Nmap Options] | [-h|--help]"
-            echo
-            echo "  Runs Nmap as sudo with customizable arguments. Defaults to:"
-            echo "    -sV          - Detect service versions."
-            echo "    -O           - Enable OS detection."
-            echo "    -sC          - Run Nmap's default scripts."
-            echo "    --traceroute - Perform a traceroute to the target."
-            echo
-            echo "Options:"
-            echo "  -h, --help    - Display this help message."
-            echo
-            echo "Examples:"
-            echo "  deep-nmap 192.168.1.1"
-            echo "  deep-nmap scanme.nmap.org --Pn"
-            echo "================================================================================"
+    # :: Show help and ignore other arguments.
+    local i
+    for i in "${ARGUMENTS_INPUT[@]}"; do
+        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then
+            usage
+            unsetter
             return 0
         fi
     done
 
-    # :Run Nmap with all arguments
-    echo "================================================================================"
-    echo "[+] deep-nmap - Running: sudo grc nmap -sV -O -sC --traceroute $*"
-    echo "================================================================================"
-    echo
-
-    sleep 2
     sudo grc nmap -sV -O -sC --traceroute "$@"
+    unsetter
+    return 0
 }

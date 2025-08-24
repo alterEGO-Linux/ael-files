@@ -1,0 +1,1144 @@
++ /etc/profile:15: append_path /usr/local/sbin
++ /etc/profile:6: case ":$PATH:" in
++ /etc/profile:16: append_path /usr/local/bin
++ /etc/profile:6: case ":$PATH:" in
++ /etc/profile:17: append_path /usr/bin
++ /etc/profile:6: case ":$PATH:" in
++ /etc/profile:20: export PATH
++ /etc/profile:24: test -d /etc/profile.d/
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/70-systemd-shell-extra.sh
++ /etc/profile:26: . /etc/profile.d/70-systemd-shell-extra.sh
+++ /etc/profile.d/70-systemd-shell-extra.sh:15: '[' -n '' ']'
+++ /etc/profile.d/70-systemd-shell-extra.sh:19: '[' -n '' ']'
+++ /etc/profile.d/70-systemd-shell-extra.sh:23: '[' -n '' ']'
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/debuginfod.sh
++ /etc/profile:26: . /etc/profile.d/debuginfod.sh
+++ /etc/profile.d/debuginfod.sh:7: prefix=/usr
+++ /etc/profile.d/debuginfod.sh:8: '[' -z 'https://debuginfod.archlinux.org ' ']'
+++ /etc/profile.d/debuginfod.sh:13: '[' -z '' ']'
++++ /etc/profile.d/debuginfod.sh:14: find /etc/debuginfod -name '*.certpath' -print0
++++ /etc/profile.d/debuginfod.sh:14: xargs -0 cat
++++ /etc/profile.d/debuginfod.sh:14: tr '\n' :
+++ /etc/profile.d/debuginfod.sh:14: DEBUGINFOD_IMA_CERT_PATH=
+++ /etc/profile.d/debuginfod.sh:15: '[' -n '' ']'
+++ /etc/profile.d/debuginfod.sh:15: unset DEBUGINFOD_IMA_CERT_PATH
+++ /etc/profile.d/debuginfod.sh:17: unset prefix
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/freetype2.sh
++ /etc/profile:26: . /etc/profile.d/freetype2.sh
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/gawk.sh
++ /etc/profile:26: . /etc/profile.d/gawk.sh
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/gpm.sh
++ /etc/profile:26: . /etc/profile.d/gpm.sh
+++ /etc/profile.d/gpm.sh:1: case $(/usr/bin/tty) in
++++ /etc/profile.d/gpm.sh:1: /usr/bin/tty
+++ /etc/profile.d/gpm.sh:1: case $(/usr/bin/tty) in
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/grc.sh
++ /etc/profile:26: . /etc/profile.d/grc.sh
+++ /etc/profile.d/grc.sh:7: '[' -f /etc/default/grc ']'
+++ /etc/profile.d/grc.sh:9: '[' x = xtrue ']'
+++ /etc/profile.d/grc.sh:9: return 0
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/jre.sh
++ /etc/profile:26: . /etc/profile.d/jre.sh
+++ /etc/profile.d/jre.sh:3: append_path /usr/lib/jvm/default/bin
+++ /etc/profile:6: case ":$PATH:" in
+++ /etc/profile.d/jre.sh:4: export PATH
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/libreoffice-fresh.sh
++ /etc/profile:26: . /etc/profile.d/libreoffice-fresh.sh
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/locale.sh
++ /etc/profile:26: . /etc/profile.d/locale.sh
+++ /etc/profile.d/locale.sh:6: '[' -z en_US.UTF-8 ']'
+++ /etc/profile.d/locale.sh:17: LANG=en_US.UTF-8
+++ /etc/profile.d/locale.sh:20: export LANG LANGUAGE LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/perlbin.sh
++ /etc/profile:26: . /etc/profile.d/perlbin.sh
+++ /etc/profile.d/perlbin.sh:5: '[' -d /usr/bin/site_perl ']'
+++ /etc/profile.d/perlbin.sh:5: append_path /usr/bin/site_perl
+++ /etc/profile:6: case ":$PATH:" in
+++ /etc/profile.d/perlbin.sh:7: '[' -d /usr/bin/vendor_perl ']'
+++ /etc/profile.d/perlbin.sh:7: append_path /usr/bin/vendor_perl
+++ /etc/profile:6: case ":$PATH:" in
+++ /etc/profile.d/perlbin.sh:9: '[' -d /usr/bin/core_perl ']'
+++ /etc/profile.d/perlbin.sh:9: append_path /usr/bin/core_perl
+++ /etc/profile:6: case ":$PATH:" in
+++ /etc/profile.d/perlbin.sh:11: export PATH
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/snapd.sh
++ /etc/profile:26: . /etc/profile.d/snapd.sh
+++ /etc/profile.d/snapd.sh:4: snap_bin_path=/var/lib/snapd/snap/bin
+++ /etc/profile.d/snapd.sh:5: '[' -n :/home/ghost/scripts:/home/ghost/bin ']'
+++ /etc/profile.d/snapd.sh:5: '[' -n '' ']'
+++ /etc/profile.d/snapd.sh:11: '[' -z /usr/local/share:/usr/share:/var/lib/snapd/desktop ']'
+++ /etc/profile.d/snapd.sh:18: snap_xdg_path=/var/lib/snapd/desktop
+++ /etc/profile.d/snapd.sh:19: '[' -n '' ']'
++ /etc/profile:25: for profile in /etc/profile.d/*.sh
++ /etc/profile:26: test -r /etc/profile.d/vte.sh
++ /etc/profile:26: . /etc/profile.d/vte.sh
+++ /etc/profile.d/vte.sh:17: '[' -n '5.3.0(1)-release' -o -n '' ']'
+++ /etc/profile.d/vte.sh:20: [[ himxBHc == *i* ]]
+++ /etc/profile.d/vte.sh:23: '[' 0 -ge 3405 ']'
+++ /etc/profile.d/vte.sh:23: return 0
++ /etc/profile:28: unset profile
++ /etc/profile:35: unset -v GLOBSORT
++ /etc/profile:38: unset -f append_path
++ /etc/profile:41: test /bin/bash
++ /etc/profile:42: test '\[\033[0m\]\[\033[32m\](\u@\h)-[\[\033[0m\]\w\[\033[32m\]] • \[2025-08-17 11:04:29 EDT\]\n\[\033[32m\]❯ \[\033[0m\]'
++ /etc/profile:43: test -z ''
++ /etc/profile:44: test /bin/bash '!=' sh
++ /etc/profile:45: test -r /etc/bash.bashrc
++ /etc/profile:47: . /etc/bash.bashrc
+++ /etc/bash.bashrc:6: [[ himxBHc != *i* ]]
+++ /etc/bash.bashrc:9: [[ -z '' ]]
+++ /etc/bash.bashrc:10: BASHRCSOURCED=Y
+++ /etc/bash.bashrc:12: [[ \[\033[0m\]\[\033[32m\](\u@\h)-[\[\033[0m\]\w\[\033[32m\]] • \[2025-08-17 11:04:29 EDT\]\n\[\033[32m\]❯ \[\033[0m\] = \\s\-\\v\\$  ]]
+++ /etc/bash.bashrc:13: case ${TERM} in
+++ /etc/bash.bashrc:15: PROMPT_COMMAND+=('printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
+++ /etc/bash.bashrc:23: [[ -r /usr/share/bash-completion/bash_completion ]]
+++ /etc/bash.bashrc:24: . /usr/share/bash-completion/bash_completion
++++ /usr/share/bash-completion/bash_completion:30: BASH_COMPLETION_VERSINFO=(2 16 0)
++++ /usr/share/bash-completion/bash_completion:32: [[ himxBHc == *v* ]]
++++ /usr/share/bash-completion/bash_completion:35: _comp__init_original_set_v=+v
++++ /usr/share/bash-completion/bash_completion:38: [[ -n '' ]]
++++ /usr/share/bash-completion/bash_completion:41: set +v
++++ /usr/share/bash-completion/bash_completion:45: shopt -s extglob progcomp
++++ /usr/share/bash-completion/bash_completion:104: complete -u groups slay w sux
++++ /usr/share/bash-completion/bash_completion:107: complete -A stopped -P '"%' -S '"' bg
++++ /usr/share/bash-completion/bash_completion:110: complete -j -P '"%' -S '"' fg jobs disown
++++ /usr/share/bash-completion/bash_completion:113: complete -v readonly unset
++++ /usr/share/bash-completion/bash_completion:116: complete -A shopt shopt
++++ /usr/share/bash-completion/bash_completion:119: complete -a unalias
++++ /usr/share/bash-completion/bash_completion:122: complete -c command type which
++++ /usr/share/bash-completion/bash_completion:125: complete -b builtin
++++ /usr/share/bash-completion/bash_completion:188: _comp_dequote__initialize
++++ /usr/share/bash-completion/bash_completion:183: local 'regex_param=\$([_a-zA-Z][_a-zA-Z0-9]*|[-*@#?$!0-9_])|\$\{[!#]?([_a-zA-Z][_a-zA-Z0-9]*(\[([0-9]+|[*@])\])?|[-*@#?$!0-9_])\}'
++++ /usr/share/bash-completion/bash_completion:184: local 'regex_quoted=\\.|'\''[^'\'']*'\''|\$?"([^\"$`!]|\$([_a-zA-Z][_a-zA-Z0-9]*|[-*@#?$!0-9_])|\$\{[!#]?([_a-zA-Z][_a-zA-Z0-9]*(\[([0-9]+|[*@])\])?|[-*@#?$!0-9_])\}|\\.)*"|\$'\''([^\'\'']|\\.)*'\'''
++++ /usr/share/bash-completion/bash_completion:185: _comp_dequote__regex_safe_word='^([^\'\''"$`;&|<>()!]|\\.|'\''[^'\'']*'\''|\$?"([^\"$`!]|\$([_a-zA-Z][_a-zA-Z0-9]*|[-*@#?$!0-9_])|\$\{[!#]?([_a-zA-Z][_a-zA-Z0-9]*(\[([0-9]+|[*@])\])?|[-*@#?$!0-9_])\}|\\.)*"|\$'\''([^\'\'']|\\.)*'\''|\$([_a-zA-Z][_a-zA-Z0-9]*|[-*@#?$!0-9_])|\$\{[!#]?([_a-zA-Z][_a-zA-Z0-9]*(\[([0-9]+|[*@])\])?|[-*@#?$!0-9_])\})*$'
++++ /usr/share/bash-completion/bash_completion:186: unset -f _comp_dequote__initialize
++++ /usr/share/bash-completion/bash_completion:738: (( BASH_VERSINFO[0] > 5 || BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] >= 3 ))
++++ /usr/share/bash-completion/bash_completion:1924: [[ linux-gnu == *@(solaris|aix)* ]]
++++ /usr/share/bash-completion/bash_completion:2032: _comp_backup_glob='@(#*#|*@(~|.@(bak|orig|rej|swp|@(dpkg|ucf)-*|rpm@(orig|new|save))))'
++++ /usr/share/bash-completion/bash_completion:2101: complete -F _comp_complete_service service
++++ /usr/share/bash-completion/bash_completion:2116: _comp__init_set_up_service_completions
++++ /usr/share/bash-completion/bash_completion:2105: local sysvdirs svc svcdir svcs
++++ /usr/share/bash-completion/bash_completion:2106: _comp_sysvdirs
++++ /usr/share/bash-completion/bash_completion:144: sysvdirs=()
++++ /usr/share/bash-completion/bash_completion:145: [[ -d /etc/rc.d/init.d ]]
++++ /usr/share/bash-completion/bash_completion:146: [[ -d /etc/init.d ]]
++++ /usr/share/bash-completion/bash_completion:148: [[ -f /etc/slackware-version ]]
++++ /usr/share/bash-completion/bash_completion:149: (( 0 ))
++++ /usr/share/bash-completion/bash_completion:2114: unset -f _comp__init_set_up_service_completions
++++ /usr/share/bash-completion/bash_completion:2473: [[ linux-gnu == *freebsd* ]]
++++ /usr/share/bash-completion/bash_completion:2492: shopt -u hostcomplete
++++ /usr/share/bash-completion/bash_completion:2492: complete -F _comp_complete_user_at_host talk ytalk finger
++++ /usr/share/bash-completion/bash_completion:2789: complete -F _comp_complete_known_hosts traceroute traceroute6 fping fping6 telnet rsh rlogin ftp dig drill ssh-installkeys showmount
++++ /usr/share/bash-completion/bash_completion:3000: complete -F _comp_command aoss command do else eval exec ltrace nice nohup padsp then time tsocks vsound xargs
++++ /usr/share/bash-completion/bash_completion:3010: complete -F _comp_root_command fakeroot gksu gksudo kdesudo really
++++ /usr/share/bash-completion/bash_completion:3084: complete -F _comp_complete_longopt a2ps awk base64 bash bc bison cat chroot colordiff cp csplit cut date df diff dir du enscript expand fmt fold gperf grep grub head irb ld ldd less ln ls m4 mkdir mkfifo mknod mv netstat nl nm objcopy objdump od paste pr ptx readelf rm rmdir sed seq shar sort split strip sum tac tail tee texindex touch tr uname unexpand uniq units vdir wc who
++++ /usr/share/bash-completion/bash_completion:3093: declare -Ag _comp_xspecs
++++ /usr/share/bash-completion/bash_completion:3155: _comp__init_install_xspec '!*.?(t)bz?(2)' bunzip2 bzcat pbunzip2 pbzcat lbunzip2 lbzcat
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.?(t)bz?(2)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.?(t)bz?(2)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.?(t)bz?(2)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.?(t)bz?(2)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.?(t)bz?(2)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.?(t)bz?(2)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.?(t)bz?(2)'
++++ /usr/share/bash-completion/bash_completion:3156: _comp__init_install_xspec '!*.@(zip|[aegjkswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|?(o)xps|epub|cbz|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|vsix|whl|[Ff][Cc][Ss]td)' unzip zipinfo
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(zip|[aegjkswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|?(o)xps|epub|cbz|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|vsix|whl|[Ff][Cc][Ss]td)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(zip|[aegjkswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|?(o)xps|epub|cbz|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|vsix|whl|[Ff][Cc][Ss]td)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(zip|[aegjkswx]ar|exe|pk3|wsz|zargo|xpi|s[tx][cdiw]|sx[gm]|o[dt][tspgfc]|od[bm]|oxt|?(o)xps|epub|cbz|apk|aab|ipa|do[ct][xm]|p[op]t[mx]|xl[st][xm]|pyz|vsix|whl|[Ff][Cc][Ss]td)'
++++ /usr/share/bash-completion/bash_completion:3157: _comp__init_install_xspec '*.Z' compress znew
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=*.Z' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.Z'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.Z'
++++ /usr/share/bash-completion/bash_completion:3159: _comp__init_install_xspec '!*.@(Z|[gGd]z|t[ag]z)' gunzip zcat
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(Z|[gGd]z|t[ag]z)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(Z|[gGd]z|t[ag]z)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(Z|[gGd]z|t[ag]z)'
++++ /usr/share/bash-completion/bash_completion:3160: _comp__init_install_xspec '!*.@(Z|[gGdz]z|t[ag]z)' unpigz
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(Z|[gGdz]z|t[ag]z)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(Z|[gGdz]z|t[ag]z)'
++++ /usr/share/bash-completion/bash_completion:3161: _comp__init_install_xspec '!*.Z' uncompress
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.Z' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.Z'
++++ /usr/share/bash-completion/bash_completion:3163: _comp__init_install_xspec '!*.@(tlz|lzma)' lzcat lzegrep lzfgrep lzgrep lzless lzmore unlzma
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(tlz|lzma)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3164: _comp__init_install_xspec '!*.@(?(t)xz|tlz|lzma)' unxz xzcat
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(?(t)xz|tlz|lzma)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(t)xz|tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(t)xz|tlz|lzma)'
++++ /usr/share/bash-completion/bash_completion:3165: _comp__init_install_xspec '!*.lrz' lrunzip
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.lrz' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.lrz'
++++ /usr/share/bash-completion/bash_completion:3166: _comp__init_install_xspec '!*.@(gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx)' ee
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx)'
++++ /usr/share/bash-completion/bash_completion:3167: _comp__init_install_xspec '!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|svg)' qiv
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|svg)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|svg)'
++++ /usr/share/bash-completion/bash_completion:3168: _comp__init_install_xspec '!*.@(gif|jp?(e)g?(2)|j2[ck]|jp[2f]|tif?(f)|png|p[bgpn]m|webp|bmp|x[bp]m|rle|rgb|pcx|fits|pm|?(e)ps)' xv
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(gif|jp?(e)g?(2)|j2[ck]|jp[2f]|tif?(f)|png|p[bgpn]m|webp|bmp|x[bp]m|rle|rgb|pcx|fits|pm|?(e)ps)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(gif|jp?(e)g?(2)|j2[ck]|jp[2f]|tif?(f)|png|p[bgpn]m|webp|bmp|x[bp]m|rle|rgb|pcx|fits|pm|?(e)ps)'
++++ /usr/share/bash-completion/bash_completion:3169: _comp__init_install_xspec '!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))' gv ggv kghostview
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?(.gz|.GZ|.bz2|.BZ2|.Z))'
++++ /usr/share/bash-completion/bash_completion:3170: _comp__init_install_xspec '!*.@(dvi|DVI)?(.@(gz|Z|bz2))' xdvi kdvi
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(dvi|DVI)?(.@(gz|Z|bz2))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(dvi|DVI)?(.@(gz|Z|bz2))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(dvi|DVI)?(.@(gz|Z|bz2))'
++++ /usr/share/bash-completion/bash_completion:3171: _comp__init_install_xspec '!*.dvi' dvips dviselect dvitype dvipdf advi dvipdfm dvipdfmx
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.dvi' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.dvi'
++++ /usr/share/bash-completion/bash_completion:3172: _comp__init_install_xspec '!*.[pf]df' acroread gpdf xpdf
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.[pf]df' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.[pf]df'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.[pf]df'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.[pf]df'
++++ /usr/share/bash-completion/bash_completion:3173: _comp__init_install_xspec '!*.@(?(e)ps|pdf)' kpdf
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(?(e)ps|pdf)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3174: _comp__init_install_xspec '!*.@(okular|@(?(e|x)ps|?(E|X)PS|[pf]df|[PF]DF|dvi|DVI|cb[rz]|CB[RZ]|djv?(u)|DJV?(U)|dvi|DVI|gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|MIFF|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX|epub|EPUB|odt|ODT|fb?(2)|FB?(2)|mobi|MOBI|g3|G3|chm|CHM|md|markdown)?(.?(gz|GZ|bz2|BZ2|xz|XZ)))' okular
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(okular|@(?(e|x)ps|?(E|X)PS|[pf]df|[PF]DF|dvi|DVI|cb[rz]|CB[RZ]|djv?(u)|DJV?(U)|dvi|DVI|gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|MIFF|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX|epub|EPUB|odt|ODT|fb?(2)|FB?(2)|mobi|MOBI|g3|G3|chm|CHM|md|markdown)?(.?(gz|GZ|bz2|BZ2|xz|XZ)))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(okular|@(?(e|x)ps|?(E|X)PS|[pf]df|[PF]DF|dvi|DVI|cb[rz]|CB[RZ]|djv?(u)|DJV?(U)|dvi|DVI|gif|jp?(e)g|miff|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|MIFF|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX|epub|EPUB|odt|ODT|fb?(2)|FB?(2)|mobi|MOBI|g3|G3|chm|CHM|md|markdown)?(.?(gz|GZ|bz2|BZ2|xz|XZ)))'
++++ /usr/share/bash-completion/bash_completion:3175: _comp__init_install_xspec '!*.pdf' epdfview pdfunite
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.pdf' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.pdf'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.pdf'
++++ /usr/share/bash-completion/bash_completion:3176: _comp__init_install_xspec '!*.@(cb[rz7t]|djv?(u)|?(e)ps|pdf)' zathura
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(cb[rz7t]|djv?(u)|?(e)ps|pdf)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(cb[rz7t]|djv?(u)|?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3177: _comp__init_install_xspec '!*.@(?(e)ps|pdf)' ps2pdf ps2pdf12 ps2pdf13 ps2pdf14 ps2pdfwr
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(?(e)ps|pdf)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(e)ps|pdf)'
++++ /usr/share/bash-completion/bash_completion:3178: _comp__init_install_xspec '!*.texi*' makeinfo texi2html
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.texi*' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.texi*'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.texi*'
++++ /usr/share/bash-completion/bash_completion:3179: _comp__init_install_xspec '!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)' tex latex slitex jadetex pdfjadetex pdftex pdflatex texi2dvi xetex xelatex luatex lualatex
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?(la)tex|texi|dtx|ins|ltx|dbj)'
++++ /usr/share/bash-completion/bash_completion:3180: _comp__init_install_xspec '!*.mp3' mpg123 mpg321 madplay
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.mp3' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.mp3'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.mp3'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.mp3'
++++ /usr/share/bash-completion/bash_completion:3181: _comp__init_install_xspec '!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' xine aaxine cacaxine fbxine
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3182: _comp__init_install_xspec '!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|opus|OPUS|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' kaffeine dragon totem
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|opus|OPUS|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|opus|OPUS|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|opus|OPUS|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*@(.@(mp?(e)g|MP?(E)G|wm[av]|WM[AV]|avi|AVI|asf|vob|VOB|bin|dat|divx|DIVX|vcd|ps|pes|fli|flv|FLV|fxm|FXM|viv|rm|ram|yuv|mov|MOV|qt|QT|web[am]|WEB[AM]|mp[234]|MP[234]|m?(p)4[av]|M?(P)4[AV]|mkv|MKV|og[agmv]|OG[AGMV]|opus|OPUS|t[ps]|T[PS]|m2t?(s)|M2T?(S)|mts|MTS|wav|WAV|flac|FLAC|asx|ASX|mng|MNG|srt|m[eo]d|M[EO]D|s[3t]m|S[3T]M|it|IT|xm|XM|iso|ISO)|+([0-9]).@(vdr|VDR))?(.@(crdownload|part))'
++++ /usr/share/bash-completion/bash_completion:3183: _comp__init_install_xspec '!*.@(avi|asf|wmv)' aviplay
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(avi|asf|wmv)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(avi|asf|wmv)'
++++ /usr/share/bash-completion/bash_completion:3184: _comp__init_install_xspec '!*.@(rm?(j)|ra?(m)|smi?(l))' realplay
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(rm?(j)|ra?(m)|smi?(l))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(rm?(j)|ra?(m)|smi?(l))'
++++ /usr/share/bash-completion/bash_completion:3185: _comp__init_install_xspec '!*.@(mpg|mpeg|avi|mov|qt)' xanim
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(mpg|mpeg|avi|mov|qt)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mpg|mpeg|avi|mov|qt)'
++++ /usr/share/bash-completion/bash_completion:3186: _comp__init_install_xspec '!*.@(og[ag]|m3u|flac|spx)' ogg123
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(og[ag]|m3u|flac|spx)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(og[ag]|m3u|flac|spx)'
++++ /usr/share/bash-completion/bash_completion:3187: _comp__init_install_xspec '!*.@(mp3|ogg|pls|m3u)' gqmpeg freeamp
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(mp3|ogg|pls|m3u)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mp3|ogg|pls|m3u)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mp3|ogg|pls|m3u)'
++++ /usr/share/bash-completion/bash_completion:3188: _comp__init_install_xspec '!*.fig' xfig
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.fig' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.fig'
++++ /usr/share/bash-completion/bash_completion:3189: _comp__init_install_xspec '!*.@(mid?(i)|cmf)' playmidi
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(mid?(i)|cmf)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mid?(i)|cmf)'
++++ /usr/share/bash-completion/bash_completion:3190: _comp__init_install_xspec '!*.@(mid?(i)|rmi|rcp|[gr]36|g18|mod|xm|it|x3m|s[3t]m|kar)' timidity
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(mid?(i)|rmi|rcp|[gr]36|g18|mod|xm|it|x3m|s[3t]m|kar)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mid?(i)|rmi|rcp|[gr]36|g18|mod|xm|it|x3m|s[3t]m|kar)'
++++ /usr/share/bash-completion/bash_completion:3191: _comp__init_install_xspec '!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)' modplugplay modplug123
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(669|abc|am[fs]|d[bs]m|dmf|far|it|mdl|m[eo]d|mid?(i)|mt[2m]|oct|okt?(a)|p[st]m|s[3t]m|ult|umx|wav|xm)'
++++ /usr/share/bash-completion/bash_completion:3192: _comp__init_install_xspec '*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)' vi vim gvim rvim view rview rgvim rgview gview emacs xemacs sxemacs kate kwrite
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='*.@([ao]|so|so.!(conf|*/*)|[rs]pm|gif|jp?(e)g|mp3|mp?(e)g|avi|asf|ogg|class)'
++++ /usr/share/bash-completion/bash_completion:3193: _comp__init_install_xspec '!*.@(zip|z|gz|tgz)' bzme
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(zip|z|gz|tgz)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(zip|z|gz|tgz)'
++++ /usr/share/bash-completion/bash_completion:3195: _comp__init_install_xspec '!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))' netscape mozilla lynx galeon dillo elinks amaya epiphany
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))'
++++ /usr/share/bash-completion/bash_completion:3196: _comp__init_install_xspec '!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)' oowriter lowriter
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxw|stw|sxg|sgl|doc?([mx])|dot?([mx])|rtf|txt|htm|html|?(f)odt|ott|odm|pdf)'
++++ /usr/share/bash-completion/bash_completion:3197: _comp__init_install_xspec '!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)' ooimpress loimpress
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxi|sti|pps?(x)|ppt?([mx])|pot?([mx])|?(f)odp|otp)'
++++ /usr/share/bash-completion/bash_completion:3198: _comp__init_install_xspec '!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)' oocalc localc
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxc|stc|xls?([bmx])|xlw|xlt?([mx])|[ct]sv|?(f)ods|ots)'
++++ /usr/share/bash-completion/bash_completion:3199: _comp__init_install_xspec '!*.@(sxd|std|sda|sdd|?(f)odg|otg)' oodraw lodraw
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(sxd|std|sda|sdd|?(f)odg|otg)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxd|std|sda|sdd|?(f)odg|otg)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxd|std|sda|sdd|?(f)odg|otg)'
++++ /usr/share/bash-completion/bash_completion:3200: _comp__init_install_xspec '!*.@(sxm|smf|mml|odf)' oomath lomath
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(sxm|smf|mml|odf)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxm|smf|mml|odf)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(sxm|smf|mml|odf)'
++++ /usr/share/bash-completion/bash_completion:3201: _comp__init_install_xspec '!*.odb' oobase lobase
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.odb' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.odb'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.odb'
++++ /usr/share/bash-completion/bash_completion:3202: _comp__init_install_xspec '!*.[rs]pm' rpm2cpio
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.[rs]pm' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.[rs]pm'
++++ /usr/share/bash-completion/bash_completion:3203: _comp__init_install_xspec '!*.aux' bibtex
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.aux' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.aux'
++++ /usr/share/bash-completion/bash_completion:3204: _comp__init_install_xspec '!*.po' poedit gtranslator kbabel lokalize
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.po' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.po'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.po'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.po'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.po'
++++ /usr/share/bash-completion/bash_completion:3205: _comp__init_install_xspec '!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])' harbour gharbour hbpp
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@([Pp][Rr][Gg]|[Cc][Ll][Pp])'
++++ /usr/share/bash-completion/bash_completion:3206: _comp__init_install_xspec '!*.[Hh][Rr][Bb]' hbrun
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.[Hh][Rr][Bb]' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.[Hh][Rr][Bb]'
++++ /usr/share/bash-completion/bash_completion:3207: _comp__init_install_xspec '!*.ly' lilypond ly2dvi
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.ly' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.ly'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.ly'
++++ /usr/share/bash-completion/bash_completion:3208: _comp__init_install_xspec '!*.@(dif?(f)|?(d)patch)?(.@([gx]z|bz2|lzma))' cdiff
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(dif?(f)|?(d)patch)?(.@([gx]z|bz2|lzma))' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(dif?(f)|?(d)patch)?(.@([gx]z|bz2|lzma))'
++++ /usr/share/bash-completion/bash_completion:3209: _comp__init_install_xspec '!@(*.@(ks|jks|jceks|p12|pfx|bks|ubr|gkr|cer|crt|cert|p7b|pkipath|pem|p10|csr|crl)|cacerts)' portecle
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!@(*.@(ks|jks|jceks|p12|pfx|bks|ubr|gkr|cer|crt|cert|p7b|pkipath|pem|p10|csr|crl)|cacerts)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!@(*.@(ks|jks|jceks|p12|pfx|bks|ubr|gkr|cer|crt|cert|p7b|pkipath|pem|p10|csr|crl)|cacerts)'
++++ /usr/share/bash-completion/bash_completion:3210: _comp__init_install_xspec '!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)' kid3 kid3-qt
++++ /usr/share/bash-completion/bash_completion:3148: local 'xspec=!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)' cmd
++++ /usr/share/bash-completion/bash_completion:3149: shift
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)'
++++ /usr/share/bash-completion/bash_completion:3150: for cmd in "$@"
++++ /usr/share/bash-completion/bash_completion:3151: _comp_xspecs[$cmd]='!*.@(mp[234c]|og[ag]|@(fl|a)ac|m4[abp]|spx|tta|w?(a)v|wma|aif?(f)|asf|ape)'
++++ /usr/share/bash-completion/bash_completion:3211: unset -f _comp__init_install_xspec
++++ /usr/share/bash-completion/bash_completion:3223: complete -F _comp_complete_minimal ''
++++ /usr/share/bash-completion/bash_completion:3235: _comp__init_base_directory
++++ /usr/share/bash-completion/bash_completion:3229: local REPLY
++++ /usr/share/bash-completion/bash_completion:3230: _comp_abspath /usr/share/bash-completion/bash_completion
++++ /usr/share/bash-completion/bash_completion:2266: REPLY=/usr/share/bash-completion/bash_completion
++++ /usr/share/bash-completion/bash_completion:2267: [[ /usr/share/bash-completion/bash_completion == /* ]]
++++ /usr/share/bash-completion/bash_completion:2268: REPLY=/usr/share/bash-completion/bash_completion
++++ /usr/share/bash-completion/bash_completion:2269: true
++++ /usr/share/bash-completion/bash_completion:2273: case $REPLY in
++++ /usr/share/bash-completion/bash_completion:2279: break
++++ /usr/share/bash-completion/bash_completion:2282: [[ -n /usr/share/bash-completion/bash_completion ]]
++++ /usr/share/bash-completion/bash_completion:3231: _comp__base_directory=/usr/share/bash-completion
++++ /usr/share/bash-completion/bash_completion:3232: [[ -n /usr/share/bash-completion ]]
++++ /usr/share/bash-completion/bash_completion:3233: unset -f _comp__init_base_directory
++++ /usr/share/bash-completion/bash_completion:3376: complete -D -F _comp_complete_load
++++ /usr/share/bash-completion/bash_completion:3399: [[ linux-gnu == *solaris* ]]
++++ /usr/share/bash-completion/bash_completion:3462: _comp__init_collect_startup_configs /usr/share/bash-completion/bash_completion
++++ /usr/share/bash-completion/bash_completion:3416: local base_path=/usr/share/bash-completion/bash_completion
++++ /usr/share/bash-completion/bash_completion:3417: _comp__init_startup_configs=()
++++ /usr/share/bash-completion/bash_completion:3420: compat_dirs=()
++++ /usr/share/bash-completion/bash_completion:3420: local -a compat_dirs
++++ /usr/share/bash-completion/bash_completion:3421: local compat_dir
++++ /usr/share/bash-completion/bash_completion:3422: [[ -n '' ]]
++++ /usr/share/bash-completion/bash_completion:3425: compat_dirs+=(/etc/bash_completion.d)
++++ /usr/share/bash-completion/bash_completion:3431: [[ /usr/share/bash-completion == */share/bash-completion ]]
++++ /usr/share/bash-completion/bash_completion:3432: compat_dir=/usr/etc/bash_completion.d
++++ /usr/share/bash-completion/bash_completion:3436: [[ /etc/bash_completion.d == /usr/etc/bash_completion\.d ]]
++++ /usr/share/bash-completion/bash_completion:3437: compat_dirs+=("$compat_dir")
++++ /usr/share/bash-completion/bash_completion:3439: for compat_dir in "${compat_dirs[@]}"
++++ /usr/share/bash-completion/bash_completion:3440: [[ -d /etc/bash_completion.d ]]
++++ /usr/share/bash-completion/bash_completion:3440: [[ -r /etc/bash_completion.d ]]
++++ /usr/share/bash-completion/bash_completion:3440: [[ -x /etc/bash_completion.d ]]
++++ /usr/share/bash-completion/bash_completion:3441: local compat_files
++++ /usr/share/bash-completion/bash_completion:3442: _comp_expand_glob compat_files '"$compat_dir"/*'
++++ /usr/share/bash-completion/bash_completion:334: (( 2 != 2 ))
++++ /usr/share/bash-completion/bash_completion:338: [[ compat_files == @(GLOBIGNORE|GLOBSORT|_*|*[^_a-zA-Z0-9]*|[0-9]*|) ]]
++++ /usr/share/bash-completion/bash_completion:344: local _original_opts=braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor:xtrace:checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:globasciiranges:globskipdots:interactive_comments:login_shell:patsub_replacement:progcomp:promptvars:sourcepath
++++ /usr/share/bash-completion/bash_completion:345: set +o noglob
++++ /usr/share/bash-completion/bash_completion:346: shopt -s nullglob
++++ /usr/share/bash-completion/bash_completion:347: shopt -u failglob dotglob
++++ /usr/share/bash-completion/bash_completion:351: local GLOBIGNORE= GLOBSORT=name
++++ /usr/share/bash-completion/bash_completion:355: local LC_COLLATE=C LC_CTYPE=en_US.UTF-8 LC_ALL=
++++ /usr/share/bash-completion/bash_completion:357: eval -- 'compat_files=()'
+++++ /usr/share/bash-completion/bash_completion:357: compat_files=()
++++ /usr/share/bash-completion/bash_completion:358: eval -- 'compat_files=("$compat_dir"/*)'
+++++ /usr/share/bash-completion/bash_completion:358: compat_files=("$compat_dir"/*)
++++ /usr/share/bash-completion/bash_completion:363: _comp_unlocal GLOBIGNORE
++++ /usr/share/bash-completion/bash_completion:251: (( BASH_VERSINFO[0] >= 5 ))
++++ /usr/share/bash-completion/bash_completion:251: shopt -q localvar_unset
++++ /usr/share/bash-completion/bash_completion:256: unset -v GLOBIGNORE
++++ /usr/share/bash-completion/bash_completion:364: [[ :braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor:xtrace:checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:globasciiranges:globskipdots:interactive_comments:login_shell:patsub_replacement:progcomp:promptvars:sourcepath: == *:dotglob:* ]]
++++ /usr/share/bash-completion/bash_completion:367: shopt -u dotglob
++++ /usr/share/bash-completion/bash_completion:369: [[ :braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor:xtrace:checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:globasciiranges:globskipdots:interactive_comments:login_shell:patsub_replacement:progcomp:promptvars:sourcepath: == *:nullglob:* ]]
++++ /usr/share/bash-completion/bash_completion:369: shopt -u nullglob
++++ /usr/share/bash-completion/bash_completion:370: [[ :braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor:xtrace:checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:globasciiranges:globskipdots:interactive_comments:login_shell:patsub_replacement:progcomp:promptvars:sourcepath: == *:failglob:* ]]
++++ /usr/share/bash-completion/bash_completion:371: [[ :braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor:xtrace:checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote:force_fignore:globasciiranges:globskipdots:interactive_comments:login_shell:patsub_replacement:progcomp:promptvars:sourcepath: == *:noglob:* ]]
++++ /usr/share/bash-completion/bash_completion:372: eval '((${#compat_files[@]}))'
+++++ /usr/share/bash-completion/bash_completion:372: (( 2 ))
++++ /usr/share/bash-completion/bash_completion:3443: local compat_file
++++ /usr/share/bash-completion/bash_completion:3444: for compat_file in "${compat_files[@]}"
++++ /usr/share/bash-completion/bash_completion:3446: [[ 000_bash_completion_compat.bash != @(@(#*#|*@(~|.@(bak|orig|rej|swp|@(dpkg|ucf)-*|rpm@(orig|new|save))))|Makefile*|) ]]
++++ /usr/share/bash-completion/bash_completion:3446: [[ -f /etc/bash_completion.d/000_bash_completion_compat.bash ]]
++++ /usr/share/bash-completion/bash_completion:3446: [[ -r /etc/bash_completion.d/000_bash_completion_compat.bash ]]
++++ /usr/share/bash-completion/bash_completion:3447: _comp__init_startup_configs+=("$compat_file")
++++ /usr/share/bash-completion/bash_completion:3444: for compat_file in "${compat_files[@]}"
++++ /usr/share/bash-completion/bash_completion:3446: [[ wfuzz != @(@(#*#|*@(~|.@(bak|orig|rej|swp|@(dpkg|ucf)-*|rpm@(orig|new|save))))|Makefile*|) ]]
++++ /usr/share/bash-completion/bash_completion:3446: [[ -f /etc/bash_completion.d/wfuzz ]]
++++ /usr/share/bash-completion/bash_completion:3446: [[ -r /etc/bash_completion.d/wfuzz ]]
++++ /usr/share/bash-completion/bash_completion:3447: _comp__init_startup_configs+=("$compat_file")
++++ /usr/share/bash-completion/bash_completion:3439: for compat_dir in "${compat_dirs[@]}"
++++ /usr/share/bash-completion/bash_completion:3440: [[ -d /usr/etc/bash_completion.d ]]
++++ /usr/share/bash-completion/bash_completion:3440: continue
++++ /usr/share/bash-completion/bash_completion:3456: local user_file=/home/ghost/.bash_completion
++++ /usr/share/bash-completion/bash_completion:3457: [[ /home/ghost/.bash_completion != /usr/share/bash\-completion/bash_completion ]]
++++ /usr/share/bash-completion/bash_completion:3457: [[ /home/ghost/.bash_completion != /dev/null ]]
++++ /usr/share/bash-completion/bash_completion:3457: [[ -r /home/ghost/.bash_completion ]]
++++ /usr/share/bash-completion/bash_completion:3460: unset -f _comp__init_collect_startup_configs
++++ /usr/share/bash-completion/bash_completion:3464: for _comp_init_startup_config in "${_comp__init_startup_configs[@]}"
++++ /usr/share/bash-completion/bash_completion:3465: . /etc/bash_completion.d/000_bash_completion_compat.bash
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:3: _comp_deprecate_func 2.12 _userland _comp_userland
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _userland != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_userland != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_userland() { _comp_userland "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:4: _comp_deprecate_func 2.12 _sysvdirs _comp_sysvdirs
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _sysvdirs != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_sysvdirs != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_sysvdirs() { _comp_sysvdirs "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:5: _comp_deprecate_func 2.12 _have _comp_have_command
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _have != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_have_command != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_have() { _comp_have_command "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:6: _comp_deprecate_func 2.12 _rl_enabled _comp_readline_variable_on
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _rl_enabled != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_readline_variable_on != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_rl_enabled() { _comp_readline_variable_on "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:7: _comp_deprecate_func 2.12 _command_offset _comp_command_offset
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _command_offset != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_command_offset != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_command_offset() { _comp_command_offset "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:8: _comp_deprecate_func 2.12 _command _comp_command
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _command != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_command != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_command() { _comp_command "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:9: _comp_deprecate_func 2.12 _root_command _comp_root_command
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _root_command != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_root_command != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_root_command() { _comp_root_command "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:10: _comp_deprecate_func 2.12 _xfunc _comp_xfunc
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _xfunc != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_xfunc != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_xfunc() { _comp_xfunc "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:11: _comp_deprecate_func 2.12 _upvars _comp_upvars
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _upvars != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_upvars != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_upvars() { _comp_upvars "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:12: _comp_deprecate_func 2.12 _get_comp_words_by_ref _comp_get_words
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _get_comp_words_by_ref != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_get_words != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_get_comp_words_by_ref() { _comp_get_words "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:13: _comp_deprecate_func 2.12 _known_hosts_real _comp_compgen_known_hosts
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _known_hosts_real != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_known_hosts != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_known_hosts_real() { _comp_compgen_known_hosts "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:14: _comp_deprecate_func 2.12 __ltrim_colon_completions _comp_ltrim_colon_completions
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ __ltrim_colon_completions != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_ltrim_colon_completions != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '__ltrim_colon_completions() { _comp_ltrim_colon_completions "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:15: _comp_deprecate_func 2.12 _variables _comp_compgen_variables
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _variables != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_variables != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_variables() { _comp_compgen_variables "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:16: _comp_deprecate_func 2.12 _signals _comp_compgen_signals
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _signals != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_signals != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_signals() { _comp_compgen_signals "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:17: _comp_deprecate_func 2.12 _mac_addresses _comp_compgen_mac_addresses
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _mac_addresses != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_mac_addresses != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_mac_addresses() { _comp_compgen_mac_addresses "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:18: _comp_deprecate_func 2.12 _available_interfaces _comp_compgen_available_interfaces
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _available_interfaces != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_available_interfaces != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_available_interfaces() { _comp_compgen_available_interfaces "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:19: _comp_deprecate_func 2.12 _configured_interfaces _comp_compgen_configured_interfaces
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _configured_interfaces != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_configured_interfaces != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_configured_interfaces() { _comp_compgen_configured_interfaces "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:20: _comp_deprecate_func 2.12 _ip_addresses _comp_compgen_ip_addresses
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _ip_addresses != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_ip_addresses != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_ip_addresses() { _comp_compgen_ip_addresses "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:21: _comp_deprecate_func 2.12 _kernel_versions _comp_compgen_kernel_versions
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _kernel_versions != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_kernel_versions != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_kernel_versions() { _comp_compgen_kernel_versions "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:22: _comp_deprecate_func 2.12 _uids _comp_compgen_uids
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _uids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_uids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_uids() { _comp_compgen_uids "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:23: _comp_deprecate_func 2.12 _gids _comp_compgen_gids
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _gids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_gids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_gids() { _comp_compgen_gids "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:24: _comp_deprecate_func 2.12 _xinetd_services _comp_compgen_xinetd_services
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _xinetd_services != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_xinetd_services != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_xinetd_services() { _comp_compgen_xinetd_services "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:25: _comp_deprecate_func 2.12 _services _comp_compgen_services
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _services != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_services != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_services() { _comp_compgen_services "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:26: _comp_deprecate_func 2.12 _bashcomp_try_faketty _comp_try_faketty
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _bashcomp_try_faketty != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_try_faketty != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_bashcomp_try_faketty() { _comp_try_faketty "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:27: _comp_deprecate_func 2.12 _expand _comp_expand
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _expand != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_expand != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_expand() { _comp_expand "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:28: _comp_deprecate_func 2.12 _pids _comp_compgen_pids
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _pids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_pids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_pids() { _comp_compgen_pids "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:29: _comp_deprecate_func 2.12 _pgids _comp_compgen_pgids
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _pgids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_pgids != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_pgids() { _comp_compgen_pgids "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:30: _comp_deprecate_func 2.12 _pnames _comp_compgen_pnames
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _pnames != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_pnames != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_pnames() { _comp_compgen_pnames "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:31: _comp_deprecate_func 2.12 _modules _comp_compgen_kernel_modules
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _modules != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_kernel_modules != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_modules() { _comp_compgen_kernel_modules "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:32: _comp_deprecate_func 2.12 _installed_modules _comp_compgen_inserted_kernel_modules
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _installed_modules != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_inserted_kernel_modules != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_installed_modules() { _comp_compgen_inserted_kernel_modules "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:33: _comp_deprecate_func 2.12 _usergroup _comp_compgen_usergroups
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _usergroup != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_compgen_usergroups != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_usergroup() { _comp_compgen_usergroups "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:34: _comp_deprecate_func 2.12 _complete_as_root _comp_as_root
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _complete_as_root != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_as_root != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_complete_as_root() { _comp_as_root "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:35: _comp_deprecate_func 2.12 __load_completion _comp_load
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ __load_completion != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_load != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '__load_completion() { _comp_load "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:38: _comp_deprecate_func 2.12 _service _comp_complete_service
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _service != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_complete_service != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_service() { _comp_complete_service "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:39: _comp_deprecate_func 2.12 _user_at_host _comp_complete_user_at_host
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _user_at_host != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_complete_user_at_host != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_user_at_host() { _comp_complete_user_at_host "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:40: _comp_deprecate_func 2.12 _known_hosts _comp_complete_known_hosts
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _known_hosts != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_complete_known_hosts != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_known_hosts() { _comp_complete_known_hosts "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:41: _comp_deprecate_func 2.12 _longopt _comp_complete_longopt
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _longopt != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_complete_longopt != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_longopt() { _comp_complete_longopt "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:42: _comp_deprecate_func 2.12 _filedir_xspec _comp_complete_filedir_xspec
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _filedir_xspec != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_complete_filedir_xspec != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_filedir_xspec() { _comp_complete_filedir_xspec "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:43: _comp_deprecate_func 2.12 _minimal _comp_complete_minimal
+++++ /usr/share/bash-completion/bash_completion:54: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:58: [[ _minimal != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:61: [[ _comp_complete_minimal != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:65: eval -- '_minimal() { _comp_complete_minimal "$@"; }'
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:45: _comp_deprecate_var 2.12 COMP_FILEDIR_FALLBACK BASH_COMPLETION_FILEDIR_FALLBACK
+++++ /usr/share/bash-completion/bash_completion:80: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:84: [[ COMP_FILEDIR_FALLBACK != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:87: [[ BASH_COMPLETION_FILEDIR_FALLBACK != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:91: (( BASH_VERSINFO[0] >= 5 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 ))
+++++ /usr/share/bash-completion/bash_completion:92: eval 'declare -gn COMP_FILEDIR_FALLBACK=BASH_COMPLETION_FILEDIR_FALLBACK'
++++++ /usr/share/bash-completion/bash_completion:92: declare -gn COMP_FILEDIR_FALLBACK=BASH_COMPLETION_FILEDIR_FALLBACK
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:46: _comp_deprecate_var 2.12 COMP_KNOWN_HOSTS_WITH_AVAHI BASH_COMPLETION_KNOWN_HOSTS_WITH_AVAHI
+++++ /usr/share/bash-completion/bash_completion:80: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:84: [[ COMP_KNOWN_HOSTS_WITH_AVAHI != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:87: [[ BASH_COMPLETION_KNOWN_HOSTS_WITH_AVAHI != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:91: (( BASH_VERSINFO[0] >= 5 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 ))
+++++ /usr/share/bash-completion/bash_completion:92: eval 'declare -gn COMP_KNOWN_HOSTS_WITH_AVAHI=BASH_COMPLETION_KNOWN_HOSTS_WITH_AVAHI'
++++++ /usr/share/bash-completion/bash_completion:92: declare -gn COMP_KNOWN_HOSTS_WITH_AVAHI=BASH_COMPLETION_KNOWN_HOSTS_WITH_AVAHI
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:47: _comp_deprecate_var 2.12 COMP_KNOWN_HOSTS_WITH_HOSTFILE BASH_COMPLETION_KNOWN_HOSTS_WITH_HOSTFILE
+++++ /usr/share/bash-completion/bash_completion:80: (( 3 != 3 ))
+++++ /usr/share/bash-completion/bash_completion:84: [[ COMP_KNOWN_HOSTS_WITH_HOSTFILE != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:87: [[ BASH_COMPLETION_KNOWN_HOSTS_WITH_HOSTFILE != [a-zA-Z_]*([a-zA-Z_0-9]) ]]
+++++ /usr/share/bash-completion/bash_completion:91: (( BASH_VERSINFO[0] >= 5 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 ))
+++++ /usr/share/bash-completion/bash_completion:92: eval 'declare -gn COMP_KNOWN_HOSTS_WITH_HOSTFILE=BASH_COMPLETION_KNOWN_HOSTS_WITH_HOSTFILE'
++++++ /usr/share/bash-completion/bash_completion:92: declare -gn COMP_KNOWN_HOSTS_WITH_HOSTFILE=BASH_COMPLETION_KNOWN_HOSTS_WITH_HOSTFILE
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:50: declare -Ag _xspecs
+++++ /etc/bash_completion.d/000_bash_completion_compat.bash:272: _backup_glob='@(#*#|*@(~|.@(bak|orig|rej|swp|@(dpkg|ucf)-*|rpm@(orig|new|save))))'
++++ /usr/share/bash-completion/bash_completion:3464: for _comp_init_startup_config in "${_comp__init_startup_configs[@]}"
++++ /usr/share/bash-completion/bash_completion:3465: . /etc/bash_completion.d/wfuzz
+++++ /etc/bash_completion.d/wfuzz:66: complete -F _wfuzz -o default wfuzz
++++ /usr/share/bash-completion/bash_completion:3467: unset -v _comp__init_startup_configs _comp_init_startup_config
++++ /usr/share/bash-completion/bash_completion:3468: unset -f have
++++ /usr/share/bash-completion/bash_completion:3469: unset -v have
++++ /usr/share/bash-completion/bash_completion:3471: set +v
++++ /usr/share/bash-completion/bash_completion:3472: unset -v _comp__init_original_set_v
++ /etc/profile:51: unset TERMCAP
++ /etc/profile:54: unset MANPATH
++ /home/ghost/.profile:10: '[' -f /home/ghost/.ael/.aelcore ']'
++ /home/ghost/.profile:10: . /home/ghost/.ael/.aelcore
+++ /home/ghost/.ael/.aelcore:12: '[' -f /home/ghost/.ael/bash-ael/messages.bash ']'
+++ /home/ghost/.ael/.aelcore:12: . /home/ghost/.ael/bash-ael/messages.bash
++++ /home/ghost/.ael/bash-ael/messages.bash:11: '[' -f /home/ghost/.ael/bash-ael/colors.bash ']'
++++ /home/ghost/.ael/bash-ael/messages.bash:12: . /home/ghost/.ael/bash-ael/colors.bash
+++++ /home/ghost/.ael/bash-ael/colors.bash:9: BLUE='\033[34m'
+++++ /home/ghost/.ael/bash-ael/colors.bash:10: BOLD='\033[1m'
+++++ /home/ghost/.ael/bash-ael/colors.bash:11: GREEN='\033[32m'
+++++ /home/ghost/.ael/bash-ael/colors.bash:12: RED='\033[31m'
+++++ /home/ghost/.ael/bash-ael/colors.bash:13: RESET='\033[0m'
+++++ /home/ghost/.ael/bash-ael/colors.bash:14: YELLOW='\033[33m'
+++ /home/ghost/.ael/.aelcore:13: '[' -f /home/ghost/.ael/bash-ael/colors.bash ']'
+++ /home/ghost/.ael/.aelcore:13: . /home/ghost/.ael/bash-ael/colors.bash
++++ /home/ghost/.ael/bash-ael/colors.bash:9: BLUE='\033[34m'
++++ /home/ghost/.ael/bash-ael/colors.bash:10: BOLD='\033[1m'
++++ /home/ghost/.ael/bash-ael/colors.bash:11: GREEN='\033[32m'
++++ /home/ghost/.ael/bash-ael/colors.bash:12: RED='\033[31m'
++++ /home/ghost/.ael/bash-ael/colors.bash:13: RESET='\033[0m'
++++ /home/ghost/.ael/bash-ael/colors.bash:14: YELLOW='\033[33m'
+++ /home/ghost/.ael/.aelcore:14: '[' -f /home/ghost/.ael/.extra ']'
+++ /home/ghost/.ael/.aelcore:14: . /home/ghost/.ael/.extra
++++ /home/ghost/.ael/.extra:11: alias 'callotr=ssh -p 2222 ghost@10.0.0.170'
++++ /home/ghost/.ael/.extra:12: alias 'callsupport=ssh -p 7777 pmalouin@localhost'
++++ /home/ghost/.ael/.extra:13: export outpw=i07VcTI3
++++ /home/ghost/.ael/.extra:13: outpw=i07VcTI3
++++ /home/ghost/.ael/.extra:14: alias 'notes=cd ~/main/DigitalScribeVault/notes'
++++ /home/ghost/.ael/.extra:15: alias 'ael=cd ~/main/ael-filesystem/'
++++ /home/ghost/.ael/.extra:16: alias 'ramd=cd ~/main/radimed/'
++++ /home/ghost/.ael/.extra:17: alias 'scripts=cd ~/scripts/'
++++ /home/ghost/.ael/.extra:18: alias 'pyael=cd ~/main/python-ael/'
++++ /home/ghost/.ael/.extra:19: alias 'thm=source ~/.ael/.tryhackme'
++++ /home/ghost/.ael/.extra:20: alias 'pkg=vim main/DigitalScribeVault/notes/ael-packages.md'
++++ /home/ghost/.ael/.extra:21: alias 'dsv=cd ~/main/DSV/notes'
++++ /home/ghost/.ael/.extra:22: alias fuck=elevate
++++ /home/ghost/.ael/.extra:43: LAZYGIT=("${HOME}/main/ael-architect" "${HOME}/main/droidnotes" "${HOME}/main/ael-files" "${HOME}/main/ael-filesystem" "${HOME}/main/ael-installer" "${HOME}/main/ael-private" "${HOME}/main/dicom_manager" "${HOME}/main/DigitalScribeVault" "${HOME}/main/neuron" "${HOME}/main/python-ael" "${HOME}/main/radimed" "${HOME}/main/ramdapp" "${HOME}/main/ramd-intranet" "${HOME}/main/ramd-support" "${HOME}/main/Snake-Vault" "${HOME}/main/stuff" "${HOME}/scripts" "${HOME}/.ael/tryhackme")
++++ /home/ghost/.ael/.extra:45: export AF1=/home/ghost/main/ael-files
++++ /home/ghost/.ael/.extra:45: AF1=/home/ghost/main/ael-files
++++ /home/ghost/.ael/.extra:46: export AF2=/home/ghost/main/ael-filesystem
++++ /home/ghost/.ael/.extra:46: AF2=/home/ghost/main/ael-filesystem
++++ /home/ghost/.ael/.extra:47: export ARC=/home/ghost/main/ael-architect/AELarchitect
++++ /home/ghost/.ael/.extra:47: ARC=/home/ghost/main/ael-architect/AELarchitect
+++ /home/ghost/.ael/.aelcore:16: alias 'architect=python ~/main/ael-architect/ael_architect/cli-textual.py'
+++ /home/ghost/.ael/.aelcore:20: export TERM=xterm-256color
+++ /home/ghost/.ael/.aelcore:20: TERM=xterm-256color
+++ /home/ghost/.ael/.aelcore:23: [[ -e /home/ghost/.ael/.dircolors ]]
++++ /home/ghost/.ael/.aelcore:24: dircolors --sh /home/ghost/.ael/.dircolors
+++ /home/ghost/.ael/.aelcore:24: eval $'LS_COLORS=\'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=01;34:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:\';\nexport LS_COLORS'
++++ /home/ghost/.ael/.aelcore:24: LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=01;34:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:'
++++ /home/ghost/.ael/.aelcore:25: export LS_COLORS
+++ /home/ghost/.ael/.aelcore:28: alias less=bat
+++ /home/ghost/.ael/.aelcore:29: alias 'grep=grep --color=auto'
+++ /home/ghost/.ael/.aelcore:30: alias 'll=ls --all --human-readable -l --color=auto'
+++ /home/ghost/.ael/.aelcore:31: alias 'ls=ls --all --color=auto'
+++ /home/ghost/.ael/.aelcore:34: alias 'tmux=env TERM=screen-256color tmux -u'
+++ /home/ghost/.ael/.aelcore:36: alias 'msfconsole=msfconsole -x "db_connect ${USER}@msf"'
+++ /home/ghost/.ael/.aelcore:37: alias open=ael-open
+++ /home/ghost/.ael/.aelcore:40: alias 'attack=source /home/ghost/.ael/.tryhackme'
+++ /home/ghost/.ael/.aelcore:42: alias 'pythonenvs=. ~/.ael/.pythonenvs'
+++ /home/ghost/.ael/.aelcore:46: export BROWSER=firefox
+++ /home/ghost/.ael/.aelcore:46: BROWSER=firefox
+++ /home/ghost/.ael/.aelcore:47: export 'FZF_DEFAULT_COMMAND=rg --files --hidden --follow '
+++ /home/ghost/.ael/.aelcore:47: FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
+++ /home/ghost/.ael/.aelcore:50: export TERMINAL=alacritty
+++ /home/ghost/.ael/.aelcore:50: TERMINAL=alacritty
+++ /home/ghost/.ael/.aelcore:51: export VISUAL=vim
+++ /home/ghost/.ael/.aelcore:51: VISUAL=vim
+++ /home/ghost/.ael/.aelcore:52: export EDITOR=vim
+++ /home/ghost/.ael/.aelcore:52: EDITOR=vim
+++ /home/ghost/.ael/.aelcore:57: PATH=/home/ghost/.local/bin:/home/ghost/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/ghost/scripts:/home/ghost/bin:/home/ghost/scripts:/home/ghost/bin
++++ /home/ghost/.ael/.aelcore:58: printf %s /home/ghost/.local/bin:/home/ghost/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/ghost/scripts:/home/ghost/bin:/home/ghost/scripts:/home/ghost/bin
++++ /home/ghost/.ael/.aelcore:58: awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}'
+++ /home/ghost/.ael/.aelcore:58: PATH=/home/ghost/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/ghost/scripts:/home/ghost/bin
+++ /home/ghost/.ael/.aelcore:60: export PATH
+++ /home/ghost/.ael/.aelcore:64: export HISTIGNORE=cd:clear:delete:exit:gitall:history:ls:mv:nohup:vim
+++ /home/ghost/.ael/.aelcore:64: HISTIGNORE=cd:clear:delete:exit:gitall:history:ls:mv:nohup:vim
+++ /home/ghost/.ael/.aelcore:65: export HISTCONTROL=ignoreboth:erasedups
+++ /home/ghost/.ael/.aelcore:65: HISTCONTROL=ignoreboth:erasedups
+++ /home/ghost/.ael/.aelcore:66: export HISTSIZE=1000000
+++ /home/ghost/.ael/.aelcore:66: HISTSIZE=1000000
+++ /home/ghost/.ael/.aelcore:67: export HISEFILESIZE=1000000
+++ /home/ghost/.ael/.aelcore:67: HISEFILESIZE=1000000
++++ /home/ghost/.ael/.aelcore:75: printf '\e[01;31m'
+++ /home/ghost/.ael/.aelcore:75: export $'LESS_TERMCAP_mb=\E[01;31m'
+++ /home/ghost/.ael/.aelcore:75: LESS_TERMCAP_mb=$'\E[01;31m'
++++ /home/ghost/.ael/.aelcore:76: printf '\e[01;35m'
+++ /home/ghost/.ael/.aelcore:76: export $'LESS_TERMCAP_md=\E[01;35m'
+++ /home/ghost/.ael/.aelcore:76: LESS_TERMCAP_md=$'\E[01;35m'
++++ /home/ghost/.ael/.aelcore:77: printf '\e[0m'
+++ /home/ghost/.ael/.aelcore:77: export $'LESS_TERMCAP_me=\E[0m'
+++ /home/ghost/.ael/.aelcore:77: LESS_TERMCAP_me=$'\E[0m'
++++ /home/ghost/.ael/.aelcore:78: printf '\e[0m'
+++ /home/ghost/.ael/.aelcore:78: export $'LESS_TERMCAP_se=\E[0m'
+++ /home/ghost/.ael/.aelcore:78: LESS_TERMCAP_se=$'\E[0m'
++++ /home/ghost/.ael/.aelcore:79: printf '\e[01;33m'
+++ /home/ghost/.ael/.aelcore:79: export $'LESS_TERMCAP_so=\E[01;33m'
+++ /home/ghost/.ael/.aelcore:79: LESS_TERMCAP_so=$'\E[01;33m'
++++ /home/ghost/.ael/.aelcore:80: printf '\e[0m'
+++ /home/ghost/.ael/.aelcore:80: export $'LESS_TERMCAP_ue=\E[0m'
+++ /home/ghost/.ael/.aelcore:80: LESS_TERMCAP_ue=$'\E[0m'
++++ /home/ghost/.ael/.aelcore:81: printf '\e[04;36m'
+++ /home/ghost/.ael/.aelcore:81: export $'LESS_TERMCAP_us=\E[04;36m'
+++ /home/ghost/.ael/.aelcore:81: LESS_TERMCAP_us=$'\E[04;36m'
+++ /home/ghost/.ael/.aelcore:90: stty -ixon
+++ /home/ghost/.ael/.aelcore:138: PROMPT_COMMAND=prompt_command
+++ /home/ghost/.ael/.aelcore:172: export WORDLISTS=/usr/local/share/wordlists
+++ /home/ghost/.ael/.aelcore:172: WORDLISTS=/usr/local/share/wordlists
+++ /home/ghost/.ael/.aelcore:173: export WLBEST1050=/usr/local/share/wordlists/best1050.txt
+++ /home/ghost/.ael/.aelcore:173: WLBEST1050=/usr/local/share/wordlists/best1050.txt
+++ /home/ghost/.ael/.aelcore:174: export WLBIG=/usr/local/share/wordlists/seclist-big.txt
+++ /home/ghost/.ael/.aelcore:174: WLBIG=/usr/local/share/wordlists/seclist-big.txt
+++ /home/ghost/.ael/.aelcore:175: export WLDIRMEDIUM=/usr/local/share/wordlists/directory-list-2.3-medium.txt
+++ /home/ghost/.ael/.aelcore:175: WLDIRMEDIUM=/usr/local/share/wordlists/directory-list-2.3-medium.txt
+++ /home/ghost/.ael/.aelcore:176: export WLLARGEFILES=/usr/local/share/wordlists/raft-large-files.txt
+++ /home/ghost/.ael/.aelcore:176: WLLARGEFILES=/usr/local/share/wordlists/raft-large-files.txt
+++ /home/ghost/.ael/.aelcore:177: export WLROCKYOU=/usr/local/share/wordlists/rockyou.txt
+++ /home/ghost/.ael/.aelcore:177: WLROCKYOU=/usr/local/share/wordlists/rockyou.txt
+++ /home/ghost/.ael/.aelcore:178: export WLXPLATFORM=/usr/local/share/wordlists/xplatform.txt
+++ /home/ghost/.ael/.aelcore:178: WLXPLATFORM=/usr/local/share/wordlists/xplatform.txt
+++ /home/ghost/.ael/.aelcore:182: export REVSHELLS=/usr/local/share/reverse_shells
+++ /home/ghost/.ael/.aelcore:182: REVSHELLS=/usr/local/share/reverse_shells
+++ /home/ghost/.ael/.aelcore:183: export RSNODEJS=/usr/local/share/reverse_shells/patt_nodeJS.js
+++ /home/ghost/.ael/.aelcore:183: RSNODEJS=/usr/local/share/reverse_shells/patt_nodeJS.js
+++ /home/ghost/.ael/.aelcore:184: export RSPHP=/usr/local/share/reverse_shells/php-reverse-shell.php
+++ /home/ghost/.ael/.aelcore:184: RSPHP=/usr/local/share/reverse_shells/php-reverse-shell.php
+++ /home/ghost/.ael/.aelcore:185: export RSWEB=/usr/local/share/reverse_shells/webshell.php
+++ /home/ghost/.ael/.aelcore:185: RSWEB=/usr/local/share/reverse_shells/webshell.php
+++ /home/ghost/.ael/.aelcore:285: alias docker-stats=docker_stats
+++ /home/ghost/.ael/.aelcore:312: alias docker-container-cleaner=docker_container_cleaner
+++ /home/ghost/.ael/.aelcore:370: alias git-status=git_status
+++ /home/ghost/.ael/.aelcore:448: SHELLUTILS=(delete deep-nmap deep-scan directory-size elevate extractor getmp3 goto ispeed pacman-reset ports processes ps-grep py-cleaner py-server reset-time shell-info show-utc snake-env termbin tmuxplus whoisweb utils/ael-fzf)
+++ /home/ghost/.ael/.aelcore:456: source_shellutils
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/delete ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/delete
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/deep-nmap ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/deep-nmap
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/deep-scan ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/deep-scan
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/directory-size ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/directory-size
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/elevate ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/elevate
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/extractor ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/extractor
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/getmp3 ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/getmp3
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/goto ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/goto
++++ /home/ghost/.ael/shellutils/goto:9: GOTODIR=/home/ghost/.ael/.goto/
++++ /home/ghost/.ael/shellutils/goto:11: [[ ! -d /home/ghost/.ael/.goto/ ]]
++++ /home/ghost/.ael/shellutils/goto:13: export CDPATH=.:/home/ghost/.ael/.goto/:/
++++ /home/ghost/.ael/shellutils/goto:13: CDPATH=.:/home/ghost/.ael/.goto/:/
++++ /home/ghost/.ael/shellutils/goto:148: complete -F _goto_complete goto
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/ispeed ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/ispeed
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/pacman-reset ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/pacman-reset
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/ports ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/ports
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/processes ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/processes
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/ps-grep ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/ps-grep
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/py-cleaner ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/py-cleaner
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/py-server ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/py-server
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/reset-time ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/reset-time
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/shell-info ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/shell-info
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/show-utc ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/show-utc
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/snake-env ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/snake-env
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/termbin ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/termbin
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/tmuxplus ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/tmuxplus
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/whoisweb ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/whoisweb
+++ /home/ghost/.ael/.aelcore:452: for shellutil in "${SHELLUTILS[@]}"
+++ /home/ghost/.ael/.aelcore:453: '[' -f /home/ghost/.ael/shellutils/utils/ael-fzf ']'
+++ /home/ghost/.ael/.aelcore:453: . /home/ghost/.ael/shellutils/utils/ael-fzf
+++ /home/ghost/.ael/.aelcore:458: '[' -f /home/ghost/.ael/shellutils/cyberchef ']'
+++ /home/ghost/.ael/.aelcore:458: . /home/ghost/.ael/shellutils/cyberchef
+++ /home/ghost/.ael/.aelcore:459: '[' -f /home/ghost/.ael/shellutils/dvwa ']'
+++ /home/ghost/.ael/.aelcore:459: . /home/ghost/.ael/shellutils/dvwa
+++ /home/ghost/.ael/.aelcore:460: '[' -f /home/ghost/.ael/shellutils/fixout ']'
+++ /home/ghost/.ael/.aelcore:460: . /home/ghost/.ael/shellutils/fixout
+++ /home/ghost/.ael/.aelcore:461: '[' -f /home/ghost/.ael/shellutils/juice-shop ']'
+++ /home/ghost/.ael/.aelcore:461: . /home/ghost/.ael/shellutils/juice-shop
+++ /home/ghost/.ael/.aelcore:462: '[' -f /home/ghost/.ael/shellutils/history-cleaner ']'
+++ /home/ghost/.ael/.aelcore:462: . /home/ghost/.ael/shellutils/history-cleaner
+++ /home/ghost/.ael/.aelcore:463: '[' -f /home/ghost/.ael/shellutils/kali ']'
+++ /home/ghost/.ael/.aelcore:463: . /home/ghost/.ael/shellutils/kali
+++ /home/ghost/.ael/.aelcore:464: '[' -f /home/ghost/.ael/shellutils/lazygit ']'
+++ /home/ghost/.ael/.aelcore:464: . /home/ghost/.ael/shellutils/lazygit
++++ /home/ghost/.ael/shellutils/lazygit:11: '[' -f /home/ghost/.ael/.extra ']'
++++ /home/ghost/.ael/shellutils/lazygit:11: . /home/ghost/.ael/.extra
+++++ /home/ghost/.ael/.extra:11: alias 'callotr=ssh -p 2222 ghost@10.0.0.170'
+++++ /home/ghost/.ael/.extra:12: alias 'callsupport=ssh -p 7777 pmalouin@localhost'
+++++ /home/ghost/.ael/.extra:13: export outpw=i07VcTI3
+++++ /home/ghost/.ael/.extra:13: outpw=i07VcTI3
+++++ /home/ghost/.ael/.extra:14: alias 'notes=cd ~/main/DigitalScribeVault/notes'
+++++ /home/ghost/.ael/.extra:15: alias 'ael=cd ~/main/ael-filesystem/'
+++++ /home/ghost/.ael/.extra:16: alias 'ramd=cd ~/main/radimed/'
+++++ /home/ghost/.ael/.extra:17: alias 'scripts=cd ~/scripts/'
+++++ /home/ghost/.ael/.extra:18: alias 'pyael=cd ~/main/python-ael/'
+++++ /home/ghost/.ael/.extra:19: alias 'thm=source ~/.ael/.tryhackme'
+++++ /home/ghost/.ael/.extra:20: alias 'pkg=vim main/DigitalScribeVault/notes/ael-packages.md'
+++++ /home/ghost/.ael/.extra:21: alias 'dsv=cd ~/main/DSV/notes'
+++++ /home/ghost/.ael/.extra:22: alias fuck=elevate
+++++ /home/ghost/.ael/.extra:43: LAZYGIT=("${HOME}/main/ael-architect" "${HOME}/main/droidnotes" "${HOME}/main/ael-files" "${HOME}/main/ael-filesystem" "${HOME}/main/ael-installer" "${HOME}/main/ael-private" "${HOME}/main/dicom_manager" "${HOME}/main/DigitalScribeVault" "${HOME}/main/neuron" "${HOME}/main/python-ael" "${HOME}/main/radimed" "${HOME}/main/ramdapp" "${HOME}/main/ramd-intranet" "${HOME}/main/ramd-support" "${HOME}/main/Snake-Vault" "${HOME}/main/stuff" "${HOME}/scripts" "${HOME}/.ael/tryhackme")
+++++ /home/ghost/.ael/.extra:45: export AF1=/home/ghost/main/ael-files
+++++ /home/ghost/.ael/.extra:45: AF1=/home/ghost/main/ael-files
+++++ /home/ghost/.ael/.extra:46: export AF2=/home/ghost/main/ael-filesystem
+++++ /home/ghost/.ael/.extra:46: AF2=/home/ghost/main/ael-filesystem
+++++ /home/ghost/.ael/.extra:47: export ARC=/home/ghost/main/ael-architect/AELarchitect
+++++ /home/ghost/.ael/.extra:47: ARC=/home/ghost/main/ael-architect/AELarchitect
+++ /home/ghost/.ael/.aelcore:465: '[' -f /home/ghost/.ael/shellutils/search-content ']'
+++ /home/ghost/.ael/.aelcore:465: . /home/ghost/.ael/shellutils/search-content
+++ /home/ghost/.ael/.aelcore:466: '[' -f /home/ghost/.ael/shellutils/systeminfo ']'
+++ /home/ghost/.ael/.aelcore:466: . /home/ghost/.ael/shellutils/systeminfo
+++ /home/ghost/.ael/.aelcore:467: '[' -f /home/ghost/.ael/shellutils/tagalog ']'
+++ /home/ghost/.ael/.aelcore:467: . /home/ghost/.ael/shellutils/tagalog
+++ /home/ghost/.ael/.aelcore:468: '[' -f /home/ghost/.ael/shellutils/translate ']'
+++ /home/ghost/.ael/.aelcore:468: . /home/ghost/.ael/shellutils/translate
+++ /home/ghost/.ael/.aelcore:469: '[' -f /home/ghost/.ael/shellutils/tunnel-info ']'
+++ /home/ghost/.ael/.aelcore:469: . /home/ghost/.ael/shellutils/tunnel-info
++ /home/ghost/.profile:14: export LOADED=profile
++ /home/ghost/.profile:14: LOADED=profile
++ :1: exit

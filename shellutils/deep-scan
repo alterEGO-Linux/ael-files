@@ -1,54 +1,105 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # :----------------------------------------------------------------------- INFO
 # :[~/.ael/shellutils/deep-scan]
 # :author        : AlterEGO Linux
 # :created       : 2023-10-20 09:10:13 UTC
-# :updated       : 2025-02-27 11:27:39 UTC
+# :updated       : 2025-08-15 10:27:40 UTC
 # :description   : Scans IP with rustscan and nmap.
 
 deep-scan() {
 
-    if [[ $# -eq 0 ]]; then
-        set -- "-h"
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+    local IP
+    local NMAP
+    local PORTS
+
+    trap 'unset -f _ds_check_applications _ds_usage; trap - RETURN' RETURN
+
+    _ds_check_applications() {
+
+        local app
+        local apps=("$@")
+        local missing=()
+
+        for app in "${apps[@]}"; do
+            if ! command -v "${app}" > /dev/null 2>&1; then
+                missing+=("${app}")
+            fi
+        done
+
+        if (( ${#missing[@]} > 0 )); then
+            printf '%s\n' "${RED}[!]${RESET} Missing application(s): ${missing[*]}."
+            return 1
+        fi
+    }
+
+    _ds_usage() {
+        cat <<EOF
+================================================================================
+[+] deep-scan - Scans IP with rustscan and nmap.
+================================================================================
+Usage: deep-scan <Target> | [-h|--help]
+
+Runs RustScan to find the available ports and passes the ports to Nmap.
+
+Options:
+  -h, --help    Display this help message.
+
+Examples:
+  deep-scan 192.168.1.1
+  deep-scan localhost
+================================================================================
+EOF
+    }
+
+    # :: Check applications.
+    if ! _ds_check_applications rustscan nmap sudo; then
+        return 1
     fi
 
-    for arg in "$@"; do
-        if [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
-            echo "================================================================================"
-            echo "[+] deep-scan - RustScan Wrapper"
-            echo "================================================================================"
-            echo "Usage: deep-scan <Target> | [-h|--help]"
-            echo
-            echo "  Runs RustScan as sudo with the following options:"
-            echo "    --ulimit 5000       - Increase file descriptor limit."
-            echo "    --batch-size 2000   - Adjust batch scanning size."
-            echo "    -sV                 - Detect service versions."
-            echo "    -O                  - Enable OS detection."
-            echo "    -sC                 - Run Nmap's default scripts."
-            echo "    --traceroute        - Perform a traceroute."
-            echo "    -Pn                 - Treat all hosts as online."
-            echo
-            echo "Options:"
-            echo "  -h, --help    - Display this help message."
-            echo
-            echo "Examples:"
-            echo "  deep-scan 192.168.1.1"
-            echo "  deep-scan localhost"
-            echo "================================================================================"
+    # :: Setting IP value.
+    IP="${1:-127.0.0.1}"
+    [[ "$IP" == "localhost" ]] && IP="127.0.0.1"
+
+    # :: Show help and ignore other arguments.
+    local i
+    for i in "${@}"; do
+        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then
+            _ds_usage
             return 0
         fi
     done
 
-    if [[ "$1" == "localhost" ]]; then
-        IP="127.0.0.1"
-    else
-        IP="$1"
+    # :: Too many arguments.
+    if [[ $# -gt 1 ]]; then
+        printf '%s\n' "${RED}[!]${RESET} Too many arguments."
+        _ds_usage
+        return 1
     fi
 
-    echo "================================================================================"
-    echo "[+] deep-scan - Running: sudo rustscan -a ${IP} --ulimit 5000 --batch-size 2000 -- -sV -O -sC --traceroute -Pn"
-    echo "================================================================================"
-    echo
+    # :: Rustscan.
+    printf '%s\n' "${BLUE}[+]${RESET} Running Rustscan to find open ports."
 
-    sudo rustscan -a "$IP" --ulimit 5000 --batch-size 2000 -- -sV -O -sC --traceroute -Pn
+    PORTS=$(rustscan -a "$IP" --ulimit 5000 --batch-size 2000 --greppable | grep -oP '\[\K[0-9,]+(?=\])')
+
+    # :: Nmap.
+    if [[ -n "${PORTS}" ]]; then
+        printf '%s\n' "${BLUE}[-]${RESET} Found ${PORTS}."
+        printf '%s\n' "${BLUE}[+]${RESET} Running Nmap."
+
+        # :: Check grc availability.
+        if command -v grc >/dev/null 2>&1; then
+            NMAP=(grc nmap)
+        else
+            NMAP=(nmap)
+        fi 
+
+        sudo "${NMAP[@]}" -sV -O -sC --traceroute "${IP}" -p "${PORTS}"
+        return 0
+    else
+        printf '%s\n' "${RED}[!]${RESET} Found nothing."
+        return 1
+    fi
 }
