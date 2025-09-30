@@ -1,0 +1,43 @@
+# :: --------------------------------------------------------------------- INFO
+# :: [/bin/.tryhackme]
+# :: author        : Pascal Malouin @ github.com/alterEGO-Linux
+# :: created       : 2025-09-26 11:57:17 UTC
+# :: updated       : 2025-09-27 02:20:28 UTC
+# :: description   : Try Hack Me helper
+
+BROWSER=${BROWSER:-firefox}
+
+THM_USER="fantomH"
+THM_DIRECTORY="${HOME}/.ael/tryhackme"
+THM_LOGIN_PAGE="https://tryhackme.com/login"
+THM_VPN_PAGE="https://tryhackme.com/manage-account/access-open-vpn"
+THM_VPN="${THM_DIRECTORY}/${THM_USER}.ovpn"
+
+
+export THM_DIRECTORY
+
+if [[ ! -d ${THM_DIRECTORY} ]]; then
+    mkdir -p ${THM_DIRECTORY}
+fi
+
+function thm-login() {
+
+    printf '%s\n' "[-] Accessing TryHackMe."
+    ${BROWSER} ${THM_LOGIN_PAGE}
+
+}
+
+function thm-vpn() {
+
+    if [[ -f "${THM_DIRECTORY}/${THM_USER}.ovpn" ]]; then
+        sudo openvpn ${THM_VPN}
+    else
+      printf '%s\n' "[-] Redirecting to VPN page."
+      ${BROWSER} ${THM_VPN_PAGE}
+    fi
+}
+
+function thm-vpn-check-connection() {
+
+    curl 10.10.10.10/whoami
+}

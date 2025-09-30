@@ -1,29 +1,89 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/kali]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2023-08-01 19:55:12 UTC
-# :updated       : 2024-09-16 10:32:28 UTC
-# :description   : Run Kali Linux container.
+# :: --------------------------------------------------------------------- INFO
+# :: [~/.ael/shellutils/kali]
+# :: author        : AlterEGO Linux
+# :: created       : 2023-08-01 19:55:12 UTC
+# :: updated       : 2025-08-27 10:41:54 UTC
+# :: description   : Run Kali Linux container.
 
 kali() {
 
-    if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
-        sudo systemctl start docker.service
-        echo "[-] Starting docker.service ..."
+    # :: Shell clean up.
+    trap '
+        [[ -n ${DOCKERFILE-} ]] && rm -f -- "$DOCKERFILE"
+        unset -f _kali_dockerfile; trap - RETURN' RETURN
+
+    local BLUE=$'\033[34m'
+    local RED=$'\033[31m'
+    local RESET=$'\033[0m'
+
+    # :: Getting bash run sequence.
+    local TEMPDIR
+    if [[ -d /tmp && -w /tmp && -x /tmp ]]; then
+        TEMPDIR=/tmp
+    else
+        TEMPDIR="$HOME/tmp"
+        mkdir -p -- "$TEMPDIR" || return 1
     fi
 
-    echo "================================================================================"
-    echo "[+] kali()"
-    echo "    Starting Kali Linux container."
-    echo "================================================================================"
-    echo
+    local DOCKERFILE="${TEMPDIR}/kali_dockerfile"
+
+    _kali_dockerfile() {
+        cat <<EOF > ${DOCKERFILE}
+FROM kalilinux/kali-rolling:latest
+
+# :: Install kali packages
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get -y install kali-linux-headless kali-desktop-xfce xserver-xephyr dbus-x11
+RUN apt-get clean
+
+ENV USER root
+WORKDIR /root
+
+# :: Fixing startx
+RUN echo "" >> /root/.bashrc
+RUN echo "function startx() {" >> /root/.bashrc
+RUN echo "    if [[ -e '/tmp/.X2-lock' ]]; then" >> /root/.bashrc
+RUN echo "        rm -f /tmp/.X2-lock" >> /root/.bashrc
+RUN echo "    fi" >> /root/.bashrc
+RUN echo "    if ! pgrep Xephyr > /dev/null; then" >> /root/.bashrc
+RUN echo "        Xephyr -br -ac -noreset -screen 1280x720 :2 &" >> /root/.bashrc
+RUN echo "    else" >> /root/.bashrc
+RUN echo "        echo 'Xephyr already running...'" >> /root/.bashrc
+RUN echo "    fi" >> /root/.bashrc
+RUN echo "    service dbus restart" >> /root/.bashrc
+RUN echo "    DISPLAY=:2 startxfce4 &" >> /root/.bashrc
+RUN echo "    wait" >> /root/.bashrc
+RUN echo "    pkill -x Xephyr" >> /root/.bashrc
+RUN echo "}" >> /root/.bashrc
+
+# :: Close Xephyr GUI
+RUN echo "" >> /root/.bashrc
+RUN echo "function close-gui() {" >> /root/.bashrc
+RUN echo "    pkill -x Xephyr" >> /root/.bashrc
+RUN echo "}" >> /root/.bashrc
+
+# :: Entry point
+ENTRYPOINT ["/bin/bash"]
+EOF
+    }
+
+    # :: Checking if docker.service is running.
+    if [[ $(command systemctl is-active docker.service) == 'inactive' ]]; then
+        sudo systemctl start docker.service
+        printf '%s\n' "${BLUE}[+]${RESET} Starting docker.service ..."
+    fi
+
+    # :: Creating/Starting KALI container.
+    printf '%s\n' "${BLUE}[+]${RESET} Starting Kali Linux container ..."
 
     xhost +
     if command docker ps --all | command grep -q "KALI"; then
         command docker start -i KALI
     else
-        command docker build -f /usr/share/ael/dockerfiles/Dockerfile-kali --tag kali ~/build/.
+        _kali_dockerfile
+        command docker build -f ${DOCKERFILE} --tag kali ~/.build/.
         command docker run --name KALI \
                             --net="host" \
                             --privileged -it \

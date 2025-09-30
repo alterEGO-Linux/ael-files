@@ -1,9 +1,9 @@
-# :----------------------------------------------------------------------- INFO
-# :[/usr/share/ael-config/packages.toml]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2024-08-29 10:04:28 UTC
-# :updated       : 2024-10-13 00:22:02 UTC
-# :description   : Packages file.
+# :: --------------------------------------------------------------------- INFO
+# :: [packages.toml]
+# :: author        : fantomH @alterEGO Linux
+# :: created       : 2024-08-29 10:04:28 UTC
+# :: updated       : 2025-08-31 15:05:24 UTC
+# :: description   : Packages file.
 
 [adobe-source-code-pro-fonts]
 archlinux       = "extra/adobe-source-code-pro-fonts"
@@ -649,6 +649,15 @@ archlinux       = "core/base-devel(gcc)"
 url             = "https://gcc.gnu.org"
 description     = "The GNU Compiler Collection - C and C++ frontends."
 modes           = ['clean']
+requires        = []
+optional        = []
+notes           = []
+
+[gemini-cli]
+archlinux       = "aur/gemini-cli"
+url             = "https://github.com/google-gemini/gemini-cli"
+description     = "An open-source AI agent that brings the power of Gemini directly into your terminal."
+modes           = ['test']
 requires        = []
 optional        = []
 notes           = []

@@ -3,11 +3,10 @@
 # :: [~/.ael/.aelcore]
 # :: author        : AlterEGO Linux
 # :: created       : 2021-03-19 09:37:19 UTC
-# :: updated       : 2025-08-15 16:29:32 UTC
+# :: updated       : 2025-09-04 10:50:28 UTC
 # :: description   : AlterEGO Linux core shell configuration.
-#
 
-# :-----/ SOURCE MODULES
+# :: ---------- SOURCE MODULES
 
 [ -f ${HOME}/.ael/bash-ael/messages.bash ] && . ${HOME}/.ael/bash-ael/messages.bash
 [ -f ${HOME}/.ael/bash-ael/colors.bash ] && . ${HOME}/.ael/bash-ael/colors.bash
@@ -37,7 +36,7 @@ alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
 alias open="ael-open"
 
 # :/todo/ Should we still source automatically. See above.
-alias attack="source ${HOME}/.ael/.tryhackme"
+alias attack="source ${HOME}/.local/share/ael-files/bin/.tryhackme"
 
 alias pythonenvs=". ~/.ael/.pythonenvs"
 
@@ -254,36 +253,6 @@ docker666() {
   esac
   }
 
-# :---------- [ DOCKER STATS ]
-# :[docker-stats()]
-# :version       : 2023-08-01 02:38:21 UTC
-# :description   : "Show Docker Stats"
-# :todo          : '''
-# :+ Verify why IP addresses don't show. [2023-03-02]
-# :'''
-
-docker_stats() {
-
-    if [[ "$(systemctl is-active docker.service)" == "inactive" ]]; then
-      docker666 start
-    fi
-
-    message action "Checking docker stats..."
-    while read -r d; do
-      _containerID=$(awk '{ print $1 }' <<< "${d}")
-      if [[ -z "${_containerID}" ]]; then
-        message warning "No container exists..."
-      else
-        message title "CONTAINER ID\tIP ADDR   \tNAME"
-        _name=$(awk '{ print $2 }' <<< "${d}")
-        _ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${_containerID})
-        printf "%b\n" "${_containerID}\t${_ip}\t${_name}"
-      fi
-    done <<< $(docker ps -a | tail -n+2)
-  }
-
-  alias docker-stats="docker_stats"
-
 # :---------- [ DOCKER CLEANER ]
 # :[docker-container-cleaner()]
 # :version       : 2023-08-01 10:40:08 UTC
@@ -369,7 +338,7 @@ git_status() {
   }
   alias git-status='git_status'
 
-# :::::::::::::::::::: ( SHELLUTILS ) :::::::::::::::::::::::::::::::::::::::::
+# :: ---------- SHELLUTILS
 
 # :: Shellutils sourced by default.
 # :: Comment out to disable any of them.
@@ -387,6 +356,9 @@ SHELLUTILS=(
     # :: ( directory-size ) -> Check size of biggest directories.
     directory-size
 
+    # :: ( docker-info ) -> Docker status helper.
+    docker-info
+
     # :: ( elevate ) -> Repeats last command with sudo, if forgotten.
     elevate
 
@@ -401,6 +373,9 @@ SHELLUTILS=(
 
     # :: ( ispeed ) -> Internet connection speed meter.
     ispeed
+
+    # :: ( kali ) ->
+    kali
 
     # :: ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
     pacman-reset
@@ -438,6 +413,9 @@ SHELLUTILS=(
     # :: ( tmuxplus ) -> TMUX wrapper.
     tmuxplus
 
+    # :: ( tunnel-info ) -> Display tunnel + VPN info.
+    tunnel-info
+
     # :: ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
     whoisweb
 
@@ -460,10 +438,8 @@ source_shellutils
 [ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
 [ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
 [ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
-[ -f /home/ghost/.ael/shellutils/kali ] && . /home/ghost/.ael/shellutils/kali
 [ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
 [ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 [ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
 [ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
 [ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate
-[ -f /home/ghost/.ael/shellutils/tunnel-info ] && . /home/ghost/.ael/shellutils/tunnel-info

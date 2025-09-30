@@ -2,12 +2,20 @@
 # :: [share/ael-files/ael-files.toml]
 # :: author        : alterEGO Linux
 # :: created       : 2025-06-11 01:03:28 UTC
-# :: updated       : 2025-08-24 15:12:03 UTC
+# :: updated       : 2025-09-04 10:49:14 UTC
 # :: description   : AEL files.
 
 [bin.YnVzeQ==]
 filename    = "/bin/busy"
 description = "When the boss comes around to look busy."
+
+[bin.ZG9ja2VyLWluZm8ucHk=]
+filename    = "/bin/docker-info.py"
+description = "Docker status helper."
+
+[bin.dHVubmVsLWluZm8ucHk=]
+filename    = "/bin/tunnel-info.py"
+description = "Display tunnels + VPN info."
 
 [shellutils.ZGVsZXRl]
 filename    = "/shellutils/delete"
@@ -24,6 +32,10 @@ description = "Scans IP with rustscan and nmap."
 [shellutils.ZGlyZWN0b3J5LXNpemU=]
 filename    = "/shellutils/directory-size"
 description = "Check size of biggest directories."
+
+[shellutils.ZG9ja2VyLWluZm8=]
+filename    = "/shellutils/docker-info"
+description = "Docker status helper."
 
 [shellutils.ZWxldmF0ZQ==]
 filename    = "/shellutils/elevate"
@@ -92,6 +104,10 @@ description = "Netcat-based command-line pastebin."
 [shellutils.dG11eHBsdXM=]
 filename    = "shellutils/tmuxplus"
 description = "TMUX wrapper."
+
+[shellutils.dHVubmVsLWluZm8=]
+filename    = "/shellutils/tunnel-info"
+description = "Display tunnels + VPN info."
 
 [shellutils.d2hvaXN3ZWI=]
 filename    = "/shellutils/whoisweb"
