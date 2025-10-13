@@ -2,8 +2,13 @@
 # :: [share/ael-files/ael-files.toml]
 # :: author        : alterEGO Linux
 # :: created       : 2025-06-11 01:03:28 UTC
-# :: updated       : 2025-09-04 10:49:14 UTC
+# :: updated       : 2025-10-06 20:20:53 UTC
 # :: description   : AEL files.
+
+[bin.LmFuc2ktY29sb3Jz]
+filename    = "/bin/.ansi-colors"
+type        = "shellutils"
+description = "ANSI colors helper."
 
 [bin.YnVzeQ==]
 filename    = "/bin/busy"

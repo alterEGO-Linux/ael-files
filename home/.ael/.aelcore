@@ -344,6 +344,9 @@ git_status() {
 # :: Comment out to disable any of them.
 SHELLUTILS=(
 
+    # :: ( ansi-colors ) -> ANSI colors helper.
+    .ansi-colors
+
     # :: ( delete ) -> Delete directories.
     delete
 
@@ -429,6 +432,7 @@ source_shellutils() {
 
     for shellutil in "${SHELLUTILS[@]}"; do
         [ -f "${HOME}"/.ael/shellutils/"${shellutil}" ] && . "${HOME}"/.ael/shellutils/"${shellutil}"
+        [ -f "${HOME}"/.local/bin/"${shellutil}" ] && . "${HOME}"/.local/bin/"${shellutil}"
     done
 }
 source_shellutils

@@ -1,26 +1,36 @@
 snippet info# "# info header" b
-# :----------------------------------------------------------------------- INFO
-# :[`!p snip.rv = snip.fn`]
-# :author        : "${2:fantomH}"
-# :created       : `date --utc "+%F %H:%M:%S %Z"`
-# :updated       : `date --utc "+%F %H:%M:%S %Z"`
-# :description   : "${3:description}"
+# ------------------------------------------------------------------------ INFO
+# [`!p snip.rv = vim.eval("expand('%:p')")`]
+# author        : Pascal Malouin @https://github.com/fantomH
+# created       : `date --utc "+%F %H:%M:%S %Z"`
+# updated       : `date --utc "+%F %H:%M:%S %Z"`
+# description   : "${3:description}"
 
 endsnippet
 
 snippet info! "html info header" b
-<!------------------------------------------------------------------------ INFO
-# :[`!p snip.rv = snip.fn`]
-# :author        : "${2:fantomH}"
-# :created       : `date --utc "+%F %H:%M:%S %Z"`
-# :updated       : `date --utc "+%F %H:%M:%S %Z"`
-# :description   : "${3:description}"
--->
+<!-- INFO {{{
+
+# [`!p snip.rv = vim.eval("expand('%:p')")`]
+# author        : Pascal Malouin @https://github.com/fantomH
+# created       : `date --utc "+%F %H:%M:%S %Z"`
+# updated       : `date --utc "+%F %H:%M:%S %Z"`
+# description   : 
+# tags          : 
+
+}}} -->
 
 endsnippet
 
-snippet foot# "# footer" b
-# :------------------------------------------------------------- FIN ¯\_(ツ)_/¯
+snippet foot! "HTML INFO Footer" b
+
+<!--
+# vim: foldmethod=marker
+-->
+endsnippet
+
+snippet FIN "FIN" b
+# -------------------------------------------------------------- FIN ¯\_(ツ)_/¯
 endsnippet
 
 snippet task! "Task" b
