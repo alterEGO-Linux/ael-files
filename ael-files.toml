@@ -1,9 +1,14 @@
-# :: --------------------------------------------------------------------- INFO
-# :: [share/ael-files/ael-files.toml]
-# :: author        : alterEGO Linux
-# :: created       : 2025-06-11 01:03:28 UTC
-# :: updated       : 2025-10-06 20:20:53 UTC
-# :: description   : AEL files.
+# ------------------------------------------------------------------------ INFO
+# [/ael-files/ael-files.toml]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-06-11 01:03:28 UTC
+# updated       : 2025-11-10 02:18:06 UTC
+# description   : AEL files.
+
+[home.LnZpbXJj]
+filename    = "/.vimrc"
+type        = "vim/config"
+description = "vim configuration file."
 
 [bin.LmFuc2ktY29sb3Jz]
 filename    = "/bin/.ansi-colors"

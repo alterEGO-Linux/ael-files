@@ -1,55 +1,58 @@
-" :----------------------------------------------------------------------- INFO
-" :[~/.vimrc]
-" :author        : fantomH
-" :created       : 2021-02-23 02:54:43 UTC
-" :updated       : 2025-02-20 18:36:39 UTC
-" :description   : VIM main configuration file.
+" ------------------------------------------------------------------------ INFO
+" [/home/ghost/.vimrc]
+" author        : Pascal Malouin @https://github.com/fantomH
+" created       : 2021-02-23 02:54:43 UTC
+" updated       : 2025-11-10 01:04:50 UTC
+" description   : VIM main configuration file.
 
-" :----------/ GENERAL CONFIG
+" // GENERAL CONFIGURATION ------------------------------------------------- //
 
-  " :Forces vim to act like vim, not like vi.
+  " // Forces vim to act like vim, not like vi.
   set nocompatible
 
-  " :<leader>
+  " // <leader>
   let mapleader = '-'
 
-  " :Highlights the cursor line.
+  " // Highlights the cursorline.
   set cursorline
 
-  " :Disable the creation of swap files.
+  " // Disable the creation of swap files.
   set noswapfile
 
-  " :Used with colored column.
+  " // Used with colored column.
   set colorcolumn=80
 
-" :----------/ ARROW KEYS
+  " // Command section bigger.
+  set cmdheight=2
 
-  " : Disables arrow keys.
+" // ARROW KEYS ------------------------------------------------------------ //
+
+  " // Disables arrow keys.
   " noremap <UP> <NOP>
   " noremap <RIGHT> <NOP>
   " noremap <LEFT> <NOP>
   " noremap <DOWN> <NOP>
 
-" :----------/ BASE64
+" // BASE64 DECODER -------------------------------------------------------- //
 
-  " :Decode inplace base64 text.
-  " :[ref] https://stackoverflow.com/a/7849399/10500496
+  " // Decode inplace base64 text.
+  " // ref. <https://stackoverflow.com/a/7849399/10500496>
   vnoremap <leader>64 y:let @"=system('base64 --decode', @")<cr>gvP
 
-" :----------/ CHANGE CASES
+" // CHANGE CASES ---------------------------------------------------------- //
 
-  " :Upper case.
+  " // Upper case.
   inoremap <C-u> <ESC>viwUea
   nnoremap <C-u> viwUea
 
-  " :Lower case.
+  " // Lower case.
   inoremap <C-l> <ESC>viwu
   nnoremap <C-l> viwu
 
-" :----------/ COMMENTS TOGGLE
+" // COMMENTS TOGGLE ------------------------------------------------------- //
 
-  " :(ref) Stackoverflow, 'What's a quick way to comment/uncomment lines in Vim?'
-  " :(ref) https://stackoverflow.com/a/22246318
+  " // (ref) Stackoverflow, 'What's a quick way to comment/uncomment lines in Vim?'
+  " // (ref) <https://stackoverflow.com/a/22246318>
 
   autocmd FileType c,cpp,java,scala let b:comment_leader = '//'
   autocmd FileType sh,ruby,python   let b:comment_leader = '#'
@@ -64,32 +67,31 @@
   vnoremap <leader>c :call CommentToggle()<CR>
   nnoremap <leader>c :call CommentToggle()<CR>
 
-" :----------/ EDIT/SOURCE .vimrc
+" // EDIT/SOURCE .vimrc ---------------------------------------------------- //
 
   nnoremap <leader>ev :tabedit $MYVIMRC<CR>
   nnoremap <leader>so :source $MYVIMRC<CR>
 
-" :----------/ ENCODING
+" // ENCODING -------------------------------------------------------------- //
 
-  " :The encoding displayed.
+  " // The encoding displayed.
   set encoding=utf8
 
-  " : The encoding written to file.
+  " // The encoding written to file.
   set fileencoding=utf8
 
-  " :set BOM ...WARNING: doesn't work, need to set manually.
+  " // set BOM ...WARNING: doesn't work, need to set manually.
   " set bomb
 
-" :----------/ ESC
+" // ESC ------------------------------------------------------------------- //
 
   inoremap ,, <ESC>
   vnoremap ,, <ESC>
 
-" :----------/ FILE EXPLORER
+" // FILE EXPLORER --------------------------------------------------------- //
 
-  " :NerdTree-like
-  " :Vim: you don't need NERDtree or (maybe) netrw
-  " :(ref) https://shapeshed.com/vim-netrw/
+  " // NerdTree-like
+  " // (ref) https://shapeshed.com/vim-netrw/
   let g:netrw_banner = 0
   let g:netrw_liststyle = 3
   let g:netrw_browse_split = 4
@@ -98,8 +100,8 @@
 
   autocmd FileType netrw silent! wincmd H | vertical resize 35
 
-  " :Toggle netrw
-  " :(ref) https://vi.stackexchange.com/a/20832
+  " // Toggle netrw
+  " // (ref) https://vi.stackexchange.com/a/20832
   function! ToggleNetrw()
           let i = bufnr("$")
           let wasOpen = 0
@@ -116,7 +118,7 @@
   endfunction
   map <F4> :call ToggleNetrw()<CR>
 
-" :----------/ FOLDING
+" // FOLDING --------------------------------------------------------------- //
 
   function! AELFoldText()
       " :TODO: Add folding level
@@ -133,22 +135,22 @@
   endfunction
   set foldtext=AELFoldText()
 
-" :----------/ HELP
+" // HELP ------------------------------------------------------------------ //
 
-  " :View man pages of word under cursor.
-  nmap <leader>k :silent execute '!man <cword>'<cr>:redraw!<cr>
+  " // View man pages of word under cursor.
+  nnoremap <leader>k :silent execute '!man <cword>'<cr>:redraw!<cr>
 
-  " :View Python documentation of word under cursor.
-  nmap <leader>hp :silent execute '!pydoc <cword>'<cr>:redraw!<cr>
+  " // View Python documentation of word under cursor.
+  nnoremap <leader>hp :silent execute '!pydoc <cword>'<cr>:redraw!<cr>
 
-" :----------/ HIGHLIGHT LINES
+" // HIGHLIGHT LINES ------------------------------------------------------- //
 
-  " :(ref) https://vimtricks.com/p/highlight-specific-lines/
+  " // (ref) <https://vimtricks.com/p/highlight-specific-lines/>
 
-  " :Highlight the current line.
+  " // Highlight the current line.
   nnoremap <silent> <Leader>hl :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
 
-  " :Clear all the highlighted lines.
+  " // Clear all the highlighted lines.
   nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 
 " :----------/ HTML MAPPING
@@ -266,128 +268,114 @@
 
   " augroup end
 
-" :----------/ LINEBREAK/WRAP
+" // LINEBREAK/WRAP -------------------------------------------------------- //
 
   set linebreak
   set wrap
-  " set showbreak=[......]
-  set showbreak==>\ \ 
+  set showbreak=[......]
+  " set showbreak==>\ \ 
 
-  " :Toggle linewrap.
+  " // Toggle linewrap.
   map <leader>w :setlocal wrap!<CR>
 
-" :----------/ LINE NUMBERS
+" // LINE NUMBERS ---------------------------------------------------------- //
 
   set number
   set relativenumber
 
-  " :Toggle line numbering
+  " // Toggle line numbering
   nnoremap <leader>ln :set number! relativenumber!<CR>
 
-" :----------/ lorem
+" // lorem ----------------------------------------------------------------- //
 
   inoremap lorem<TAB> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales, dolor ut lobortis rhoncus, mauris leo condimentum metus, vel elementum arcu ipsum aliquam est. Integer a scelerisque turpis, at ultrices nisl. Nunc fermentum quam elementum, sagittis velit id, porta tellus. Nunc quis suscipit felis. Etiam et leo scelerisque, gravida elit nec, aliquet justo. Phasellus et neque vel turpis hendrerit fringilla sed in arcu. Suspendisse id enim lacinia libero auctor pellentesque. Proin sed sem non neque pellentesque vehicula. Nunc sapien justo, tincidunt vitae ultrices eu, consectetur sit amet orci.
 
-" :----------/ MOUSE
+" // MOUSE ----------------------------------------------------------------- //
 
   " set mouse=a
 
-" :----------/ PREVIEW WINDOW
+" // SAVE FILE ------------------------------------------------------------- //
 
-  " :Sends preview window to the right.
-  " :StackExchange
-  " :A fixed position for preview windows
-  " :https://vi.stackexchange.com/questions/12597/a-fixed-position-for-preview-windows
-  " augroup previewWindowPosition
-    " au!
-    " autocmd BufWinEnter * call PreviewWindowPosition()
-  " augroup END
-  " function! PreviewWindowPosition()
-    " if &previewwindow
-        " wincmd L
-    " endif
-  " endfunction 
-
-" :----------/ RUN SCRIPT
-
-  " :-( python )
-  " :Requires tmux, with a second pane open.
-
-  function! RunPython()
-      let pycmd = systemlist('command -v python')[0]
-      let filename = expand('%:p')
-      silent! call system('tmux send-key -t 1 "' . pycmd . ' ' . filename . '" enter;')
-  endfunction
-  nnoremap <leader>p :call RunPython()<CR>
-
-  " :-( kill script )
-  " :Kills the script.
-  nnoremap <leader>ss :!tmux send-keys -t 1 "C-c";<CR><C-l>
-
-" :----------/ SAVE FILE
-
-  " :CTRL+s to save file
-  " :(ref) https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
-  " :Requires `stty -ixon` in the sourced shell rc file
+  " // CTRL+s to save file
+  " // (ref) <https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s>
+  " // Requires `stty -ixon` in the sourced shell rc file
   inoremap <C-s> <ESC>:write<CR>
   nnoremap <C-s> :write<CR>
 
-" :----------/ SCROLL OFFSET
+" // SCROLL OFFSET --------------------------------------------------------- //
 
-  " :When scrolling, keeps the cursor at the vertical center.
-  " :Use so=999 for centered
-  " :(ref) http://vim.wikia.com/wiki/make_search_results_appear_in_the_middle_of_the_screen
+  " // When scrolling, keeps the cursor at the vertical center.
+  " // Use so=999 for centered
+  " // (ref) <http://vim.wikia.com/wiki/make_search_results_appear_in_the_middle_of_the_screen>
   set scrolloff=999
 
-" :----------/ SEARCH
+" // SEARCH ---------------------------------------------------------------- //
 
-  " :Fuzzy find and wildmenu.
+  " // Fuzzy find and wildmenu.
   set path+=**
   set wildmenu
 
-  " :text search
-  " :Search ignorecase.
+  " // text search
+  " // Search ignorecase.
   set ignorecase
 
-  " :Search highlight.
+  " // Search highlight.
   set hlsearch
 
-  " :Toggle search highlighting                      
+  " // Toggle search highlighting                      
   nnoremap <F3> :set hlsearch!<CR> 
 
-  " :Clear search
+  " // Clear search
   nnoremap <leader>cs :let @/ = ""<CR>
 
-" :----------/ SPELLCHECKER
+" // SPELLCHECKER ---------------------------------------------------------- //
 
-  " :Toggle spell checker.
-  map <F5> :setlocal spell! spelllang=en_us<CR>
+  " // Toggle spell checker. Default "en_us".
+  nnoremap <F5> :setlocal spell! spelllang=en_us<CR>
 
-" :----------/ STATUSLINE
+  " // Switch Language
+  function! ToggleSpellLang()
+    if &spelllang =~# 'en_us'
+      setlocal spelllang=fr
+      echo "Spell language: French (fr)"
+    else
+      setlocal spelllang=en_us
+      echo "Spell language: English (en_us)"
+    endif
+  endfunction
+
+  nnoremap <leader>sl :call ToggleSpellLang()<CR>
+
+" // STATUSLINE ------------------------------------------------------------ //
+
+  function! StatusFlags() abort
+    if &readonly
+      return &modified ? '**READONLY [+]**' : '**READONLY**'
+    endif
+    return &modified ? '**MODIFIED**' : ''
+  endfunction
 
   set laststatus=2
   set statusline=
-  set statusline+=\ %<%F\ "File+path
-  set statusline+=\ buffer:[%n] "buffernr
-  set statusline+=\ %y\ "FileType 
-  set statusline+=\ %{''.(&fenc!=''?&fenc:&enc).''} "Encoding 
-  set statusline+=\ %{(&bomb?\",BOM\":\"\")}\ "Encoding2 
-  set statusline+=\ %{&ff}\ "FileFormat (dos/unix..) 
-  set statusline+=\ %=\ row:%l/%L\ (%03p%%)\ "Rownumber/total (%) 
-  set statusline+=\ col:%03c\ "Colnr 
-  set statusline+=\ %m%r%w\ %P\ \ "Modified? Readonly? Top/bot.
+  set statusline+=\ BUFFER\ [%n]                                        " // Buffer
+  set statusline+=\ FILE\ [%{fnamemodify(expand('%'),':h:t')}/%t]       " // Direct parent directory + filename.
+  set statusline+=\ INFO\ [%{&ft}/%{&fenc!=''?&fenc:&enc}/%{&ff}]       " // Filetype / Encoding / File format.
+  set statusline+=\ %=                                                  " // Align right.
+  set statusline+=\ ROW\ [%l/%L\ (%03p%%)]                              " // Rownumber/total (%) 
+  set statusline+=\ COL\ [%03c]                                         " // Column Number. 
+  set statusline+=\ %{StatusFlags()}                                    " // Modified, readonly, readonly modified.
 
-" :----------/ TAB/INDENT
+" // TAB & INDENT ---------------------------------------------------------- //
 
   set tabstop=2
-  " :shiftround : rounds indent to multiple of shiftwidth.
-  " :Applies to < and > in normal mode. <C-t> and <C-d> in insert mode
-  " :always round the indent.
+  " // shiftround : rounds indent to multiple of shiftwidth.
+  " // Applies to < and > in normal mode. <C-t> and <C-d> in insert mode
+  " // always round the indent.
   set shiftround
   set shiftwidth=2
   set expandtab
 
-" :----------/ TAGS
+" // TAGS ------------------------------------------------------------------ //
 
   inoremap "<TAB> ""<left>
   inoremap '<TAB> ''<left>
@@ -397,37 +385,82 @@
   inoremap {<CR> {<CR>}<ESC>O
   inoremap {;<CR> {<CR>};<ESC>O
 
-" :----------/ TIMESTAMP
+" // TIMESTAMP ------------------------------------------------------------- //
 
-  " :Insert timestamp.
-  " :ex: 2022-03-25 15:49:24 UTC
+  " //Insert timestamp.
+  " //ex: 2022-03-25 15:49:24 UTC
   nnoremap <F12> "=system('echo -n $(date --utc "+%F %H:%M:%S %Z" )')<CR>p
 
-  " :Insert timestamp as ID.
-  " :ex: 202203251549
+  " //Insert timestamp as ID.
+  " //ex: 202203251549
   nnoremap <F9> "=system('echo -n $(date --utc "+%Y%m%d%H%M")')<CR>p
 
-" :----------/ COPY & PASTE
+" // COPY & PASTE ---------------------------------------------------------- //
 
-  " :Enable clipboard ability with xclip (X11) or wl-clipboard (Wayland).
-  " :(ref) Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
+  " // Enable clipboard ability with xclip (X11) or wl-clipboard (Wayland).
+  " // ref. Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
 
   if !empty($WAYLAND_DISPLAY)
-      " Running in Wayland, use wl-clipboard
-      vmap <F7> y:call system("wl-copy", getreg("\""))<CR>
-      nmap <S-F7> :call setreg("\"", system("wl-paste"))<CR>p
+      " // Running in Wayland, use wl-clipboard
+      vnoremap <F7> y:call system("wl-copy", getreg("\""))<CR>
+      nnoremap <S-F7> :call setreg("\"", system("wl-paste"))<CR>p
   elseif !empty($DISPLAY)
-      " Running in X11, use xclip
-      vmap <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
-      nmap <S-F7> :call setreg("\"", system("xclip -o -selection clipboard"))<CR>p
+      " // Running in X11, use xclip
+      vnoremap <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+      nnoremap <S-F7> :call setreg("\"", system("xclip -o -selection clipboard"))<CR>p
   endif
 
-" :----------/ PLUGINS - INSTALL
+" // BIONIC READING -------------------------------------------------------- //
+
+" // Bionic Reading: bold head, dim tail (adaptive to background)
+
+  function! s:SetBionic() abort
+    if &background ==# 'dark'
+      " // Dark background.
+      highlight default BionicHead cterm=BOLD ctermfg=WHITE gui=BOLD guifg=#FFFFFF
+      highlight default BionicTail cterm=NONE ctermfg=GRAY gui=NONE guifg=#6A6A6A
+    else
+      " // Light background
+      highlight default BionicHead cterm=BOLD ctermfg=BLACK gui=BOLD guifg=#000000
+      highlight default BionicTail cterm=NONE ctermfg=GRAY gui=NONE guifg=#9A9A9A
+    endif
+  endfunction
+
+  call s:SetBionic()
+
+  augroup BionicReading
+    autocmd!
+    autocmd ColorScheme * call s:SetBionic()
+    autocmd OptionSet background call s:SetBionic()
+  augroup END
+
+  function! ToggleBionic() abort
+    " // Turn off if already on.
+    if exists('w:bionic_head_id')
+      call matchdelete(w:bionic_head_id)
+      call matchdelete(w:bionic_tail_id)
+      unlet w:bionic_head_id w:bionic_tail_id
+      echo "Bionic Reading: off"
+      return
+    endif
+
+    " // Head
+    let w:bionic_head_id = matchadd('BionicHead', '\<\k\{1,4}', 10)
+
+    " // Tail
+    let w:bionic_tail_id = matchadd('BionicTail', '\<\k\{,4}\zs\k\+', 10)
+
+    echo "Bionic Reading: on"
+  endfunction
+
+  nnoremap <silent> <leader>b :call ToggleBionic()<CR>
+
+" // PLUGINS - INSTALL ----------------------------------------------------- //
 
   syntax enable
   filetype plugin on
 
-  " :-( vim-plug )
+  " // vim-plug //
 
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -437,139 +470,145 @@
 
   call plug#begin('~/.vim/plugged')
 
-  " :-( coloscheme iceberg )
-  " :(url) https://github.com/cocopon/iceberg.vim
+  " // coloscheme iceberg //
+  " // (url) <https://github.com/cocopon/iceberg.vim>
   Plug 'cocopon/iceberg.vim'
 
-  " :-( jedi )
+  " // jedi //
   Plug 'https://github.com/davidhalter/jedi-vim.git'
 
-  " :-( fzf )
+  " // fzf //
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  " :-( markdown-preview )
+  " // markdown-preview //
   " :https://github.com/iamcco/markdown-preview.vim
   Plug 'iamcco/markdown-preview.vim'
 
-  " :-( syntastic )
-  " :Syntax checker.
-  " :https://github.com/vim-syntastic/syntastic
-  " Plug 'vim-syntastic/syntastic'
-
-  " :-( ultisnips )
-  " :https://github.com/SirVer/ultisnips
+  " // ultisnips //
+  " // (url) <https://github.com/SirVer/ultisnips>
   Plug 'SirVer/ultisnips'
 
-  " :-( YouCompleteMe )
+  " // YouCompleteMe //
   Plug 'Valloric/YouCompleteMe'
 
   call plug#end()
 
-  " :Automatically install missing plugins.
-  " :(ref) https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup
+  " // Automatically install missing plugins.
+  " // (ref) <https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup>
   autocmd VimEnter *
     \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \|   PlugInstall --sync | q
     \| endif
 
-  " :Disable automatic indent on from vim-plug
+  " // Disable automatic indent on from vim-plug
   filetype indent off
 
-" :----------/ PLUGINS - CONFIGS
+" // PLUGINS - FZF --------------------------------------------------------- //
 
-  " :-( fzf.vim )
-
-  " :Buffers list.
+  " // Buffers list.
   nnoremap <silent> <leader>ls :Buffers<CR>
 
-  " :Open files in $HOME.
+  " // Open files in $HOME.
   nnoremap <silent> <C-o> :Files ~<CR>
 
-  " :Open files from /.
+  " // Open files starting at root.
   nnoremap <silent> <leader>sys :Files /<CR>
 
-  " :Find lines containing.
+  " // Find lines containing.
   nnoremap <silent> <C-f> :BLines<CR>
 
-  " :AEL files.
+  " // AEL files.
   nnoremap <leader>ael :call fzf#run(fzf#wrap({'source': 'rg --files --hidden --glob "!.git" ~/.local/share/ael-files/'}))<CR>
 
-  " :-( emmet-vim )     
+  " // FZF Spellcheck selector //
+  " // Select Spellcheck suggestion.
+  function! FzfSpelling()
+    " //Ensure spell is enabled.
+    if &spell == 0
+      setlocal spell
+    endif
 
-  " :Enable emmet-vim tab completion 
-  " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+    " //Get the list of spelling suggestions
+    let suggestions = spellsuggest(expand('<cword>'))
 
-  " :-( syntastic )
-  " map <leader>sx :SyntasticToggleMode<CR>
+    if empty(suggestions)
+      echo "No suggestions available."
+      return
+    endif
 
-  " :-( markdown-preview )
-  nmap <silent> <leader>vm <Plug>MarkdownPreview
-  nmap <silent> <leader>sm <Plug>StopMarkdownPreview
+    " //Select
+    call fzf#run(fzf#wrap({
+          \ 'source': suggestions,
+          \ 'sink':   function('FzfReplaceWord')
+          \ }))
+  endfunction
 
-  " :-( ultisnips )
-  " :Since we use YouCompleteMe, some triggers were changed.
-  " :In file types not covered by YouCompleteMe, it looks like you have to 
-  " :complete the word to select it.
+  function! FzfReplaceWord(choice)
+    " //Replace the current word with the selection.
+    execute "normal! ciw" . a:choice
+  endfunction
+
+  nnoremap <leader>z :call FzfSpelling()<CR>
+
+  " // PLUGINS - markdown-preview ------------------------------------------ //
+  nnoremap <silent> <leader>vm <Plug>MarkdownPreview
+  nnoremap <silent> <leader>sm <Plug>StopMarkdownPreview
+
+  " // PLUGINS -  ultisnips ------------------------------------------------ //
+  " // Since we use YouCompleteMe, some triggers were changed.
+  " // In file types not covered by YouCompleteMe, it looks like you have to 
+  " // complete the word to select it.
   nnoremap <silent> <leader>eu :Files ~/.vim/UltiSnips/<CR>
   let g:UltiSnipsExpandTrigger="<c-j>"
   let g:UltiSnipsEditSplit="vertical"
   let g:UltiSnipsJumpForwardTrigger="<c-k>"
   let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
-" :----------/ COLORSCHEME
-
-  " :-( colors )
-  " :   0  Black
-  " :  10  Lime
+" // COLORSCHEME ----------------------------------------------------------- //
 
   set t_Co=256
-
-  " :-( colorschemes )
-
-  " :base16-3024: https://github.com/RRethy/nvim-base16/blob/master/colors/base16-3024.vim
-  " colorscheme base16-3024
-
-  " :blaquemagick: https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim
-  " colorscheme blaquemagick
-
-  " :iceberg: https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim
-  colorscheme iceberg
-
-  " :silenthill: https://github.com/evilwaveforms/silenthill.vim
-  " colorscheme silenthill
-
   set background=dark
 
-  " :-( bionic reading )
-  " :(ref) https://stackoverflow.com/questions/4167425/custom-syntax-highlighting-in-vim
+  " // colorschemes //
 
-  nnoremap <silent> <leader>b :syn match bionic /\w\{,3}\zs\(\W\\|\w\)\{-}\(\s\\|\n\)\ze/<CR>
-  highlight bionic          cterm=NONE    ctermfg=GREY
+  " // base16-3024 <https://github.com/RRethy/nvim-base16/blob/master/colors/base16-3024.vim>
+  " colorscheme base16-3024
 
-  " :-( general )
+  " // blaquemagick <https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim>
+  " colorscheme blaquemagick
+
+  " // iceberg <https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim>
+  colorscheme iceberg
+
+  " // silenthill <https://github.com/evilwaveforms/silenthill.vim>
+  " colorscheme silenthill
+
+
+  " // general //
   
-  highlight ColorColumn     cterm=NONE    ctermfg=NONE  ctermbg=238
-  highlight Comment         cterm=NONE    ctermfg=grey  ctermbg=NONE
-  highlight CursorLine      cterm=NONE    ctermfg=NONE  ctermbg=238
-  highlight Function        cterm=BOLD    ctermfg=150   ctermbg=NONE
-  highlight LineHighlight   cterm=NONE    ctermfg=0     ctermbg=10
-  highlight LineNr          cterm=NONE    ctermfg=246   ctermbg=238
-  highlight MatchParen      cterm=NONE    ctermfg=NONE  ctermbg=NONE
-  " :Sets the background to transparent with cterm(fg/bg) to NONE.
-  highlight Normal          cterm=NONE    ctermfg=NONE  ctermbg=NONE
-  highlight Search          cterm=NONE    ctermfg=16    ctermbg=11
-  highlight Statement       cterm=ITALIC  ctermfg=110   ctermbg=NONE
-  highlight StatusLine      cterm=NONE    ctermfg=246   ctermbg=238
-  highlight StatusLineNC    cterm=NONE    ctermfg=0     ctermbg=238
-  highlight Visual          cterm=NONE    ctermfg=16    ctermbg=11
+  highlight ColorColumn     cterm=NONE       ctermfg=NONE      ctermbg=235      " // Column 80.
+  highlight CursorLine      cterm=NONE       ctermfg=NONE      ctermbg=235      " // Cursor Line.
+  highlight LineHighlight   cterm=NONE       ctermfg=0         ctermbg=10       " // Highlights lines. Custom.
+  highlight LineNr          cterm=NONE       ctermfg=248       ctermbg=235      " // Linenumber column.
+  highlight MatchParen      cterm=NONE       ctermfg=NONE      ctermbg=NONE     " // Parenthesis/bracket.
+  highlight Normal          cterm=NONE       ctermfg=NONE      ctermbg=NONE     " // Set the background to transparent with cterm(fg/bg) to NONE.
+  highlight Search          cterm=NONE       ctermfg=16        ctermbg=178      " // Search results.
+  highlight StatusLine      cterm=NONE       ctermfg=248       ctermbg=235      " // Status Line
+  highlight StatusLineNC    cterm=NONE       ctermfg=236       ctermbg=235      " // Non-active Status Line.
+  highlight Visual          cterm=NONE       ctermfg=16        ctermbg=11       " // Visual selection.
+
+  " // Prog. Language //
+  highlight Comment         cterm=ITALIC     ctermfg=109       ctermbg=NONE     " // Comments.
+  highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " // Function.
+  highlight Statement       cterm=ITALIC     ctermfg=110       ctermbg=NONE     " // Statement
 
   " :-( html/md )
   " :(ref) http://vimdoc.sourceforge.net/htmldoc/syntax.html
 
-  highlight htmlTagName     cterm=BOLD    ctermfg=WHITE ctermbg=NONE
-  highlight link htmlTag    htmlTagName
-  highlight link htmlEndTag htmlTagName
+  " highlight htmlTagName     cterm=BOLD    ctermfg=WHITE ctermbg=NONE
+  " highlight link htmlTag    htmlTagName
+  " highlight link htmlEndTag htmlTagName
   " hi htmlBold gui=bold guifg=#af0000 ctermfg=124
   " hi htmlItalic cterm=ITALIC ctermfg=27
   " hi htmlH1    term=NONE cterm=BOLD ctermfg=15  ctermbg=NONE
@@ -595,9 +634,9 @@
   " hi String             term=NONE cterm=NONE ctermfg=26   ctermbg=NONE
 
   " :-( window's tab )
-  hi TabLineSel         term=BOLD cterm=BOLD ctermfg=white      ctermbg=30      " :Focused
-  hi TabLine            term=NONE cterm=NONE ctermfg=246        ctermbg=238     " :Unfocused
-  hi TabLineFill        term=NONE cterm=NONE ctermfg=NONE       ctermbg=238     " :Rest of the line
+  " hi TabLineSel         term=BOLD cterm=BOLD ctermfg=white      ctermbg=30      " :Focused
+  " hi TabLine            term=NONE cterm=NONE ctermfg=246        ctermbg=238     " :Unfocused
+  " hi TabLineFill        term=NONE cterm=NONE ctermfg=NONE       ctermbg=238     " :Rest of the line
 
   " hi Todo               term=NONE cterm=NONE ctermfg=251  ctermbg=66
   " hi Type               term=NONE cterm=NONE ctermfg=96  ctermbg=NONE
