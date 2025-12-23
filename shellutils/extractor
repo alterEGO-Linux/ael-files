@@ -1,106 +1,11 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/extractor]
-# :author        : AlterEGO Linux
-# :created       : 2023-08-01 19:55:12 UTC
-# :updated       : 2025-07-12 15:50:38 UTC
-# :description   : Compressed files universal extractor.
+# ------------------------------------------------------------------------ INFO
+# [shellutils/extractor]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-01 19:55:12 UTC
+# updated       : 2025-12-22 04:23:05 UTC
+# description   : Compressed files universal extractor.
 
 extractor() {
-
-    local BLUE=$'\033[34m'
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
-
-    extractor_usage() {
-        cat <<EOF
-================================================================================
-[+] extractor - Compressed files universal extractor.
-================================================================================
-Usage: extractor <file1> [file2 ... fileN]
-
-This script extracts compressed files based on their extension.
-
-Supported formats:
-  *.tar.bz2  - Extracts a bzip2-compressed tar archive.
-  *.tar.gz   - Extracts a gzip-compressed tar archive.
-  *.bz2      - Decompresses a bzip2 file.
-  *.rar      - Extracts a RAR archive.
-  *.gz       - Decompresses a gzip file.
-  *.tar      - Extracts a tar archive.
-  *.tbz2     - Extracts a bzip2-compressed tar archive (alias for .tar.bz2).
-  *.tgz      - Extracts a gzip-compressed tar archive (alias for .tar.gz).
-  *.zip      - Extracts a ZIP archive.
-  *.7z       - Extracts a 7z archive.
-
-Except for .bz2 files, all other methods will extract files into
-a child directory named after the compressed file.
-================================================================================
-EOF
-    }
-
-    # :: Show help if no arguments.
-    if [[ "$#" -eq 0 ]]; then
-        extractor_usage
-        unset -f extractor_usage
-        return 1
-    fi
-
-    # :: Show help and ignore other arguments.
-    local arg
-    for arg in "$@"; do
-        if [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
-            extractor_usage
-            unset -f extractor_usage
-            return 1
-        fi
-    done
-
-    local file
-    for file in "$@"; do
-        if [ -f "$file" ]; then
-
-            # :: Convert filename into a proper extraction directory
-            local filename=$(basename "$file")
-            local directory="uncompressed-${filename//./-}"  # :: Replace dots with dashes.
-
-            case "$file" in
-                *.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz )
-                    mkdir -p "$directory"
-                    tar xvzf "$file" -C "$directory"
-                    printf "${BLUE}[-]${RESET} extractor: '$file' extracted."
-                    ;;
-                *.bz2 )
-                    bunzip2 "$file"  # :: bz2 files are single files, so no folder needed.
-                    printf "${BLUE}[-]${RESET} extractor: '$file' extracted."
-                    ;;
-                *.rar )
-                    mkdir -p "$directory"
-                    unrar x "$file" "$directory/"
-                    printf "${BLUE}[-]${RESET} extractor: '$file' extracted."
-                    ;;
-                *.gz )
-                    gunzip "$file"  # :: gz files are usually single files, no folder needed.
-                    printf "${BLUE}[-]${RESET} extractor: '$file' extracted."
-                    ;;
-                *.zip )
-                    mkdir -p "$directory"
-                    unzip "$file" -d "$directory"
-                    printf "${BLUE}[-]${RESET} extractor: '$file' extracted."
-                    ;;
-                *.7z )
-                    mkdir -p "$directory"
-                    7z x "$file" -o "$directory"
-                    printf "${BLUE}[-]${RESET} extractor: '$file' extracted."
-                    ;;
-                *) 
-                    printf '%s\n' "${RED}[!]${RESET} extractor: '$file' - unknown archive method."
-                    ;;
-            esac
-        else
-            printf "${RED}[!]${RESET} extractor: '$file' is not a valid file."
-        fi
-    done
-
-    unset -f extractor_usage
+    command bash ~/.ael/bin/extractor.sh "${@}"
 }

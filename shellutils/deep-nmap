@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/deep-nmap]
-# :author        : AlterEGO Linux
-# :created       : 2021-03-19 09:37:19 UTC
-# :updated       : 2025-08-14 11:12:55 UTC
-# :description   : Deep Nmap scan.
+# ------------------------------------------------------------------------ INFO
+# [shellutils/deep-nmap]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-12-22 02:05:30 UTC
+# updated       : 2025-12-22 02:05:30 UTC
+# description   : Deep Nmap scan.
 
 deep-nmap() {
 
+    # --- ( shell clean up )
     local ARGUMENTS_INPUT=("${@}")
 
-    # :: Unsetting functions to clean shell.
-    unsetter() {
-        unset -f usage
-        unset -f unsetter
-    }
+    trap '
+        unset -f usage; trap - RETURN' RETURN
 
-    # :: help / usage / documentation.
+    # --- ( help )
     usage() {
         cat <<EOF
 ================================================================================
@@ -40,22 +38,20 @@ Examples:
 EOF
     }
 
-    # :: No arguments.
+    # --- no arguments.
     if [[ $# == 0 ]]; then
         ARGUMENTS_INPUT=("-h")
     fi
 
-    # :: Show help and ignore other arguments.
+    # --- show help and ignore other arguments.
     local i
     for i in "${ARGUMENTS_INPUT[@]}"; do
         if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then
             usage
-            unsetter
             return 0
         fi
     done
 
     sudo grc nmap -sV -O -sC --traceroute "$@"
-    unsetter
     return 0
 }

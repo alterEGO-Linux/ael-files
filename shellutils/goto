@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/goto]
-# :author        : AlterEGO Linux
-# :created       : 2024-09-13 11:00:51 UTC
-# :updated       : 2025-07-09 16:52:53 UTC
-# :description   : Simple directory bookmarks system.
+# ------------------------------------------------------------------------ INFO
+# [/home/ghost/.local/share/ael-files/shellutils/goto]
+# author        : Pascal Malouin @https://github.com/fantomH
+# created       : 2024-09-13 11:00:51 UTC
+# updated       : 2025-12-23 01:33:14 UTC
+# description   : Simple directory bookmarks system.
 
 GOTODIR="${HOME}/.ael/.goto/"
 
@@ -23,7 +23,9 @@ goto() {
     local RED=$'\033[31m'
     local RESET=$'\033[0m'
 
-    goto-usage() {
+    trap 'unset -f usage; trap - RETURN' RETURN
+
+    usage() {
         cat <<EOF
 ================================================================================
 [+] goto - Simple directory bookmarks system.
@@ -42,20 +44,18 @@ Options:
 EOF
     }
 
-    # :-( help )
+    # --- help
     for __arg in "${__args[@]}"; do
         if [ "$__arg" == '-h' ] || [ "$__arg" == '--help' ]; then
-            goto-usage
-            unset -f goto-usage
+            usage
             return 0
         fi
     done
 
-    # :-( list )
+    # --- list
     for __arg in "${__args[@]}"; do
         if [ "$__arg" == '-l' ] || [ "$__arg" == '--list' ]; then
-            goto-usage
-            unset -f goto-usage
+            usage
             echo
             find "${GOTODIR}" -maxdepth 1 -type l | while read -r link; do
                 __target=$(readlink -f "${link}")
@@ -65,7 +65,7 @@ EOF
         fi
     done
 
-    # :-( add )
+    # --- add
     for i in "${!__args[@]}"; do
         if [[ "${__args[i]}" == "-a" ]] || [[ "${__args[i]}" == "--add" ]]; then
             if [[ -n "${__args[i+1]}" && -n "${__args[i+2]}" ]]; then
@@ -73,8 +73,7 @@ EOF
                 printf '%s\n' "${BLUE}[-]${RESET} goto - Bookmark '${__args[i+2]}' added for path '${__args[i+1]}'."
                 return 0
             else
-                goto-usage
-                unset -f goto-usage
+                usage
                 echo
                 printf '%s\n' "${RED}[!]${RESET} Error: Both PATH and BOOKMARK are required."
                 return 1
@@ -82,7 +81,7 @@ EOF
         fi
     done
 
-    # :-( remove )
+    # --- remove
     for i in "${!__args[@]}"; do
         if [[ "${__args[i]}" == "-r" ]] || [[ "${__args[i]}" == "--remove" ]]; then
             if [[ -n "${__args[i+1]}" ]]; then
@@ -98,15 +97,13 @@ EOF
                             return 0
                         fi
                 else
-                    goto-usage
-                    unset -f goto-usage
+                    usage
                     echo
                     printf '%s\n' "${RED}[!]${RESET} Error: Bookmark '${__args[i+1]}' not found."
                     return 1
                 fi
             else
-                goto-usage
-                unset -f goto-usage
+                usage
                 echo
                 printf '%s\n' "${RED}[!]${RESET} Error: BOOKMARK is required."
                 return 1
@@ -114,14 +111,12 @@ EOF
         fi
     done
 
-    # :-( goto )
+    # --- goto
     if [[ "${#__args[@]}" -eq 0 ]]; then
-        goto-usage
-        unset -f goto-usage
+        usage
         return 1
     elif [[ $# -ne 1 ]]; then
-        goto-usage
-        unset -f goto-usage
+        usage
         echo
         printf '%s\n' "${RED}[!]${RESET} Error: Too many arguments."
         return 1
@@ -130,15 +125,12 @@ EOF
             cd -P "${GOTODIR}/$1"
             return 0
         else
-            goto-usage
-            unset -f goto-usage
+            usage
             echo
             printf '%s\n' "${RED}[!]${RESET} Error: '$1' is not a valid bookmark."
             return 1
         fi
     fi
-
-    unset -f goto-usage
 }
 
 _goto_complete() {

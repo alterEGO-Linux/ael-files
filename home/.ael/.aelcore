@@ -1,10 +1,14 @@
-#!/usr/bin/env sh
-# :: --------------------------------------------------------------------- INFO
-# :: [~/.ael/.aelcore]
-# :: author        : AlterEGO Linux
-# :: created       : 2021-03-19 09:37:19 UTC
-# :: updated       : 2025-09-04 10:50:28 UTC
-# :: description   : AlterEGO Linux core shell configuration.
+# ------------------------------------------------------------------------ INFO
+# [.ael/.aelcore]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2021-03-19 09:37:19 UTC
+# updated       : 2025-12-21 12:50:28 UTC
+# description   : AlterEGO Linux core shell configuration.
+
+# ----------/ VARIABLES
+
+LOCAL_AEL_FILES_GIT="${HOME}/.local/share/ael-files"
+LOCAL_AEL_DIRECTORY="${HOME}/.ael"
 
 # :: ---------- SOURCE MODULES
 
@@ -106,7 +110,8 @@ stty -ixon
 
 # export QT_QPA_PLATFORMTHEME="qt5ct"
 
-# :---------- [ PROMPTS ]
+# ---------- [ PROMPTS ]
+
 prompt_command() {
     history -a
     dateNOW="$(date "+%F %H:%M:%S %Z")"
@@ -121,7 +126,10 @@ prompt_command() {
         # export PS1="\[${RESET}\]\[${GREEN}\]┌────(\[${RESET}\]\u@\h\[${GREEN}\])-[\[${RESET}\]\w\[${GREEN}\]]\n\[${GREEN}\]└─$ \[${RESET}\]"
 
         # :(* EGO *)
-        export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]❯ \[${RESET}\]"
+        # export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]❯ \[${RESET}\]"
+
+        # --- test prompt
+        export PS1="\[\e[0m\]\[\e[38;5;35m\]╭─(\[\e[38;5;38m\]\${dateNOW}\[\e[38;5;35m\])-(\[\e[38;5;38m\]\j\[\e[38;5;35m\])-(\[\e[38;5;38m\]\H\[\e[38;5;35m\])-(\[\e[38;5;38m\]\w\[\e[38;5;35m\])\n\[\e[38;5;35m\]╰──❯ \[\e[0m\]"
 
     else
         # :(* SIMPLE *)
@@ -338,101 +346,159 @@ git_status() {
   }
   alias git-status='git_status'
 
-# :: ---------- SHELLUTILS
+# ----------/ SHELLUTILS
 
-# :: Shellutils sourced by default.
-# :: Comment out to disable any of them.
+# --- Shellutils sourced by default.
+#     Comment out to disable any of them.
 SHELLUTILS=(
 
-    # :: ( ansi-colors ) -> ANSI colors helper.
-    .ansi-colors
+    # --- ( ansi-colors ) -> ANSI colors helper.
+    ansi-colors
 
-    # :: ( delete ) -> Delete directories.
-    delete
-
-    # :: ( deep-nmap ) -> Deep Nmap scan.
+    # --- ( deep-nmap ) -> Deep Nmap scan.
     deep-nmap
 
-    # :: ( deep-scan ) -> Scans IP with rustscan and nmap.
+    # --- ( deep-scan ) -> Scans IP with rustscan and nmap.
     deep-scan
 
-    # :: ( directory-size ) -> Check size of biggest directories.
+    # --- ( delete ) -> Delete directories.
+    delete
+
+    # --- ( directory-size ) -> Check size of biggest directories.
     directory-size
 
-    # :: ( docker-info ) -> Docker status helper.
+    # --- ( docker-info ) -> Docker status helper.
     docker-info
 
-    # :: ( elevate ) -> Repeats last command with sudo, if forgotten.
+    # --- ( elevate ) -> Repeats last command with sudo, if forgotten.
     elevate
 
-    # :: ( extractor ) -> Compressed files universal extractor.
+    # --- ( extractor ) -> Compressed files universal extractor.
     extractor
 
-    # :: ( getmp3 ) -> Extracting audio (.mp3) from video.
+    # --- ( getmp3 ) -> Extracting audio (.mp3) from video.
     getmp3
 
-    # :: ( goto ) -> Simple directory bookmarks system.
+    # --- ( goto ) -> Simple directory bookmarks system.
     goto
 
-    # :: ( ispeed ) -> Internet connection speed meter.
+    # --- ( ispeed ) -> Internet connection speed meter.
     ispeed
 
-    # :: ( kali ) ->
+    # --- ( kali ) ->
     kali
 
-    # :: ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
+    # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
     pacman-reset
 
-    # :: ( ports ) -> Displays open ports.
+    # --- ( ports ) -> Displays open ports.
     ports
 
-    # :: ( processes ) -> Show processes.
+    # --- ( processes ) -> Show processes.
     processes
 
-    # :: ( ps-grep ) -> Show processes for a particular application.
+    # --- ( ps-grep ) -> Show processes for a particular application.
     ps-grep
 
-    # :: ( py-cleaner ) -> Clean python current directory.
+    # --- ( py-cleaner ) -> Clean python current directory.
     py-cleaner
 
-    # :: ( py-server ) -> Create a Python HTTP server.
+    # --- ( py-server ) -> Create a Python HTTP server.
     py-server
 
-    # :: ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
+    # --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
     reset-time
 
-    # :: ( shell-info ) -> Show shell info.
+    # --- ( shell-info ) -> Show shell info.
     shell-info
 
-    # :: ( show-utc ) -> Show UTC time.
+    # --- ( show-utc ) -> Show UTC time.
     show-utc
 
-    # :: ( snake-env ) -> Manage python -m venv.
+    # --- ( snake-env ) -> Manage python -m venv.
     snake-env
 
-    # :: ( termbin ) -> Netcat-based command-line pastebin.
+    # --- ( termbin ) -> Netcat-based command-line pastebin.
     termbin
 
-    # :: ( tmuxplus ) -> TMUX wrapper.
+    # --- ( tmuxplus ) -> TMUX wrapper.
     tmuxplus
 
-    # :: ( tunnel-info ) -> Display tunnel + VPN info.
+    # --- ( tunnel-info ) -> Display tunnel + VPN info.
     tunnel-info
 
-    # :: ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
+    # --- ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
     whoisweb
 
-    # :: ( utils/ael-fzf ) -> FZF wrapper.
-    # :: Utility wrapper around FZF, commenting out might keep other shellutils
-    # :: from working properly.
+    # --- ( utils/ael-fzf ) -> FZF wrapper.
+    #     Utility wrapper around FZF, commenting out might keep other shellutils
+    #     from working properly.
     utils/ael-fzf
+
+    # --- ( utils/check-applications ) -> A more verbose command -v.
+    utils/check-applications
 )
 
 source_shellutils() {
 
+    local SHELLUTILS_SOURCE
+    local  SHELLUTILS_DIRECTORY
+    local _shellutils_as_symlinks
+    local _shellutils_copy_updated
+    local shellutil
+    local src dst
+
+    SHELLUTILS_SOURCE="${LOCAL_AEL_FILES_GIT}/shellutils"
+    SHELLUTILS_DIRECTORY="${LOCAL_AEL_DIRECTORY}/shellutils"
+    _shellutils_as_symlinks=true
+    _shellutils_copy_updated=true
+
+    for d in utils; do
+        mkdir -p "$SHELLUTILS_DIRECTORY"/${d}
+    done
+
     for shellutil in "${SHELLUTILS[@]}"; do
-        [ -f "${HOME}"/.ael/shellutils/"${shellutil}" ] && . "${HOME}"/.ael/shellutils/"${shellutil}"
-        [ -f "${HOME}"/.local/bin/"${shellutil}" ] && . "${HOME}"/.local/bin/"${shellutil}"
+
+        src="${SHELLUTILS_SOURCE}/${shellutil}"
+        dst="${SHELLUTILS_DIRECTORY}/${shellutil}"
+
+        [ -e "$src" ] || continue
+
+        # --- Symlink
+        if [ "${_shellutils_as_symlinks}" == true  ]; then
+            # --- Verify if symlink.
+            if [ -L "$dst" ]; then
+                # --- Verify if dst points somewhere else, fix it.
+                if [ "$(readlink -f -- "$dst")" != "$src" ]; then
+                    ln -sfn "$src" "$dst"
+                fi
+            else
+                # --- remove regular file if exist and create symlink.
+                [ -e "$dst" ] && rm -rf -- "$dst"
+                ln -s "$src" "$dst"
+            fi
+        else
+            # --- remove symlink if exist.
+            [ -L "$dst" ] && rm -f -- "$dst"
+
+            if [ -f "$dst" ]; then
+                # --- keep copy updated?
+                if [ "${_shellutils_copy_updated}" == true ]; then
+                    if [ "$(readlink -f -- "$dst")" != "$(readlink -f -- "$src")" ]; then
+                        # --- copy only if content differs.
+                        if ! cmp -s "$src" "$dst"; then
+                            cp -f "$src" "$dst"
+                        fi
+                    fi
+                fi
+            else
+                # --- make a copy.
+                cp "$src" "$dst"
+            fi
+        fi
+
+        [ -f "$dst" ] && . "$dst"
+
     done
 }
 source_shellutils

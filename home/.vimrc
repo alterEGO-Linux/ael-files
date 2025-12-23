@@ -2,7 +2,7 @@
 " [/home/ghost/.vimrc]
 " author        : Pascal Malouin @https://github.com/fantomH
 " created       : 2021-02-23 02:54:43 UTC
-" updated       : 2025-11-10 01:04:50 UTC
+" updated       : 2025-11-14 15:38:25 UTC
 " description   : VIM main configuration file.
 
 " // GENERAL CONFIGURATION ------------------------------------------------- //
@@ -289,6 +289,11 @@
 " // lorem ----------------------------------------------------------------- //
 
   inoremap lorem<TAB> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales, dolor ut lobortis rhoncus, mauris leo condimentum metus, vel elementum arcu ipsum aliquam est. Integer a scelerisque turpis, at ultrices nisl. Nunc fermentum quam elementum, sagittis velit id, porta tellus. Nunc quis suscipit felis. Etiam et leo scelerisque, gravida elit nec, aliquet justo. Phasellus et neque vel turpis hendrerit fringilla sed in arcu. Suspendisse id enim lacinia libero auctor pellentesque. Proin sed sem non neque pellentesque vehicula. Nunc sapien justo, tincidunt vitae ultrices eu, consectetur sit amet orci.
+
+" // MDVIEWER -------------------------------------------------------------- //
+  " // Requires mdviewer.bash
+  command! MdViewer silent !bash ~/main/dev/mdviewer/mdviewer.bash %
+  nnoremap <leader>mv :MdViewer<CR>:redraw!<CR>
 
 " // MOUSE ----------------------------------------------------------------- //
 

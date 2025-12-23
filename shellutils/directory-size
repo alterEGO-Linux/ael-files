@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/directory-size]
-# :author        : AlterEGO Linux
-# :created       : 2023-08-01 20:01:01 UTC
-# :updated       : 2025-08-15 11:06:43 UTC
-# :description   : Check size of biggest directories.
+# ------------------------------------------------------------------------ INFO
+# [shellutils/directory-size]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-01 20:01:01 UTC
+# updated       : 2025-12-22 02:20:50 UTC
+# description   : Check size of biggest directories.
 
 directory-size() {
 

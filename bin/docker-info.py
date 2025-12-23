@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# :: --------------------------------------------------------------------- INFO
-# :: [/bin/docker-info.py]
-# :: author        : AlterEGO Linux
-# :: created       : 2025-09-04 10:15:46 UTC
-# :: updated       : 2025-09-04 10:15:46 UTC
-# :: description   : Docker status helper.
+# ------------------------------------------------------------------------ INFO
+# [bin/docker-info.py]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-09-04 10:15:46 UTC
+# updated       : 2025-12-22 02:27:23 UTC
+# description   : Docker status helper.
 
 """
 Docker status helper with Rich tables.
@@ -42,7 +42,7 @@ except ImportError:
 
 console = Console()
 
-# :: ---------- UTILITIES
+# --- ( UTILITIES )
 
 def run(cmd: list[str], check: bool = False) -> subprocess.CompletedProcess:
     """Run a command and return the completed process (stdout captured as text)."""
@@ -77,7 +77,7 @@ def start_docker_service() -> None:
             msg = e.stderr.strip() or str(e)
             console.print(f"[red][!][/red] Failed to restart docker.service: {msg}")
 
-# :: ---------- CONTAINERS
+# --- ( CONTAINERS )
 
 def list_containers() -> int:
     """
@@ -124,7 +124,7 @@ def list_containers() -> int:
         except ValueError:
             continue
 
-        # :: Network names
+        # --- network names
         try:
             networks_cp = run(
                 [
@@ -139,7 +139,7 @@ def list_containers() -> int:
             networks = "-"
             exit_code = exit_code or 3
 
-        # :: IP addresses
+        # --- IP addresses
         try:
             ip_cp = run(
                 [
@@ -159,7 +159,7 @@ def list_containers() -> int:
     console.print(table)
     return exit_code
 
-# :: ---------- IMAGES
+# --- ( IMAGES )
 
 def list_images() -> int:
     """
@@ -207,7 +207,7 @@ def list_images() -> int:
     console.print(table)
     return 0
 
-# :: ---------- CLI
+# --- ( CLI )
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Docker status helper with Rich tables")

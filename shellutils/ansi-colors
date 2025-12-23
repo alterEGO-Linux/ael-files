@@ -1,11 +1,11 @@
-# :: --------------------------------------------------------------------- INFO
-# :: [/bin/.ansi-colors]
-# :: author        : Pascal Malouin @https://github.com/alterEGO-Linux
-# :: created       : 2025-10-06 20:31:28 UTC
-# :: updated       : 2025-10-06 20:31:28 UTC
-# :: description   : ANSI colors helper.
+# ------------------------------------------------------------------------ INFO
+# [shellutils/ansi-colors]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-10-06 20:31:28 UTC
+# updated       : 2025-12-22 01:43:10 UTC
+# description   : ANSI colors helper.
 
-# :: ( styles )
+# --- ( styles )
 declare -r reset=$'\e[0m'
 declare -r bold=$'\e[1m'
 declare -r dim=$'\e[2m'
@@ -16,7 +16,7 @@ declare -r reverse=$'\e[7m'
 declare -r hidden=$'\e[8m'
 declare -r strikethrough=$'\e[9m'
 
-# :: ( foreground - standard )
+# --- ( foreground - standard )
 declare -r fg_black=$'\e[30m'
 declare -r fg_red=$'\e[31m'
 declare -r fg_green=$'\e[32m'
@@ -27,7 +27,7 @@ declare -r fg_cyan=$'\e[36m'
 declare -r fg_white=$'\e[37m'
 declare -r fg_default=$'\e[39m'
 
-# :: ( foreground - bright )
+# --- ( foreground - bright )
 declare -r fg_bright_black=$'\e[90m'
 declare -r fg_bright_red=$'\e[91m'
 declare -r fg_bright_green=$'\e[92m'
@@ -37,7 +37,7 @@ declare -r fg_bright_magenta=$'\e[95m'
 declare -r fg_bright_cyan=$'\e[96m'
 declare -r fg_bright_white=$'\e[97m'
 
-# :: ( background - standard )
+# --- ( background - standard )
 declare -r bg_black=$'\e[40m'
 declare -r bg_red=$'\e[41m'
 declare -r bg_green=$'\e[42m'
@@ -48,7 +48,7 @@ declare -r bg_cyan=$'\e[46m'
 declare -r bg_white=$'\e[47m'
 declare -r bg_default=$'\e[49m'
 
-# :: ( background - bright )
+# --- ( background - bright )
 declare -r bg_bright_black=$'\e[100m'
 declare -r bg_bright_red=$'\e[101m'
 declare -r bg_bright_green=$'\e[102m'
@@ -58,9 +58,8 @@ declare -r bg_bright_magenta=$'\e[105m'
 declare -r bg_bright_cyan=$'\e[106m'
 declare -r bg_bright_white=$'\e[107m'
 
-
-# :: ( 256-color )
-# :: Usage: `printf "%sError:%s something went wrong\n" "$(fg256 196)" "$reset"`
+# --- ( 256-color )
+# --- usage: `printf "%sError:%s something went wrong\n" "$(fg256 196)" "$reset"`
 
 fg256() {
     printf $'\e[38;5;%sm' "$1";
@@ -70,8 +69,8 @@ bg256() {
     printf $'\e[48;5;%sm' "$1";
 }
 
-# :: ( Truecolor (RGB) )
-# :: Usage: `printf "%s%s★ Success%s\n" "$(rgb_bg 30 30 30)" "$(rgb_fg 255 180 0)" "$reset"`
+# --- ( Truecolor (RGB) )
+# --- usage: `printf "%s%s★ Success%s\n" "$(rgb_bg 30 30 30)" "$(rgb_fg 255 180 0)" "$reset"`
 
 rgb_fg() {
     printf $'\e[38;2;%s;%s;%sm' "$1" "$2" "$3";

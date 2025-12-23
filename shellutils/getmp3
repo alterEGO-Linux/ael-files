@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/getmp3]
-# :author        : AlterEGO Linux
-# :created       : 2023-08-02 00:36:18 UTC
-# :updated       : 2025-07-10 20:07:29 UTC
-# :description   : Extracting audio (.mp3) from video.
+# ------------------------------------------------------------------------ INFO
+# [shellutils/getmp3]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-02 00:36:18 UTC
+# updated       : 2025-12-23 01:26:00 UTC
+# description   : Extracting audio (.mp3) from video.
 
 getmp3() {
 
@@ -18,7 +18,9 @@ getmp3() {
     local RED=$'\033[31m'
     local RESET=$'\033[0m'
 
-    getmp3-usage() {
+    trap 'unset -f usage; trap - RETURN' RETURN
+
+    usage() {
         cat <<EOF
 ================================================================================
 [+] getmp3 - Extracting audio (.mp3) from video.
@@ -38,19 +40,17 @@ Options:
 EOF
     }
 
-    # :-( help )
+    # --- help
     for __ARG in "${@}"; do
         if [ "${__ARG}" == '-h' ] || [ "${__ARG}" == '--help' ]; then
-            getmp3-usage
-            unset -f getmp3-usage
+            usage
             return 0
         fi
     done
 
-    # :-( error: too many arguments )
+    # --- error: too many arguments
     if [ $# -gt 2 ]; then
-        getmp3-usage
-        unset -f getmp3-usage
+        usage
         echo
         printf '%s\n' "${RED}[!]${RESET} Too many arguments."
         return 1
@@ -64,34 +64,30 @@ EOF
         elif echo "${__ARG}" | grep -qE "^https?://"; then
             __URL="${__ARG}"
         else
-            getmp3-usage
-            unset -f getmp3-usage
+            usage
             echo
             printf '%s\n' "${RED}[!]${RESET} Unknown argument: ${__ARG}."
             return 1
         fi
     done
 
-    # :-( error: missing value )
+    # --- error: missing value
     if [ -z "${__ARTIST_SAFE}" ]; then
-        getmp3-usage
-        unset -f getmp3-usage
+        usage
         echo
         printf '%s\n' "${RED}[!]${RESET} Missing artist's value."
         return 1
     fi
 
     if [ -z "${__TITLE_SAFE}" ]; then
-        getmp3-usage
-        unset -f getmp3-usage
+        usage
         echo
         printf '%s\n' "${RED}[!]${RESET} Missing title's value."
         return 1
     fi
 
     if [ -z "${__URL}" ]; then
-        getmp3-usage
-        unset -f getmp3-usage
+        usage
         echo
         printf '%s\n' "${RED}[!]${RESET} Missing URL's value."
         return 1
@@ -126,6 +122,4 @@ EOF
     mv "${__TAGGED}" "${__FILENAME}"
 
     printf '%s\n' "${BLUE}[-]${RESET} Extraction done: ${__FILENAME}"
-
-  unset -f getmp3-usage
 }
