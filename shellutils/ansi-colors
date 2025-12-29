@@ -1,9 +1,12 @@
 # ------------------------------------------------------------------------ INFO
-# [shellutils/ansi-colors]
+# [/shellutils/ansi-colors]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2025-10-06 20:31:28 UTC
 # updated       : 2025-12-22 01:43:10 UTC
 # description   : ANSI colors helper.
+
+[ -n "${__SOURCED_ANSI_COLORS:-}" ] && return
+__SOURCED_ANSI_COLORS=1
 
 # --- ( styles )
 declare -r reset=$'\e[0m'

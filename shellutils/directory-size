@@ -6,6 +6,9 @@
 # updated       : 2025-12-22 02:20:50 UTC
 # description   : Check size of biggest directories.
 
+[ -n "${__SOURCED_DIRECTORY_SIZE:-}" ] && return
+__SOURCED_DIRECTORY_SIZE=1
+
 directory-size() {
 
     local BLUE=$'\033[34m'

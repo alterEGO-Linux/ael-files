@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [shellutils/elevate]
+# [/shellutils/elevate]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2023-08-02 00:10:38 UTC
-# updated       : 2025-12-22 03:05:26 UTC
+# updated       : 2025-12-29 00:39:06 UTC
 # description   : Repeats last command with sudo, if forgotten.
+
+[ -n "${__SOURCED_ELEVATE:-}" ] && return
+__SOURCED_ELEVATE=1
 
 elevate() {
 
@@ -15,7 +18,22 @@ elevate() {
     local RED=$'\033[31m'
     local RESET=$'\033[0m'
 
-    trap 'unset -f usage; trap - RETURN' RETURN
+    trap 'unset -f usage check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${RED}[!]${RESET} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications bash sudo || return 1
 
     usage() {
         cat <<EOF

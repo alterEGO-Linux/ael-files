@@ -129,7 +129,7 @@ prompt_command() {
         # export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]❯ \[${RESET}\]"
 
         # --- test prompt
-        export PS1="\[\e[0m\]\[\e[38;5;35m\]╭─(\[\e[38;5;38m\]\${dateNOW}\[\e[38;5;35m\])-(\[\e[38;5;38m\]\j\[\e[38;5;35m\])-(\[\e[38;5;38m\]\H\[\e[38;5;35m\])-(\[\e[38;5;38m\]\w\[\e[38;5;35m\])\n\[\e[38;5;35m\]╰──❯ \[\e[0m\]"
+        export PS1="\n\[${RESET}\]\[${GREEN}\]╭─(\[${dateNOW}\])-(\j)-(\H)-(\w)\n\[${GREEN}\]│\n\[${GREEN}\]╰──| \[${RESET}\]"
 
     else
         # :(* SIMPLE *)

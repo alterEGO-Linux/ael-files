@@ -1,58 +1,58 @@
 " ------------------------------------------------------------------------ INFO
-" [/home/ghost/.vimrc]
+" [~/.vimrc]
 " author        : Pascal Malouin @https://github.com/fantomH
 " created       : 2021-02-23 02:54:43 UTC
-" updated       : 2025-11-14 15:38:25 UTC
+" updated       : 2025-12-23 21:39:54 UTC
 " description   : VIM main configuration file.
 
-" // GENERAL CONFIGURATION ------------------------------------------------- //
+" ---------- [ general configuration ]
 
-  " // Forces vim to act like vim, not like vi.
+  " --- forces vim to act like vim, not like vi.
   set nocompatible
 
-  " // <leader>
+  " --- <leader>
   let mapleader = '-'
 
-  " // Highlights the cursorline.
+  " --- highlights the cursorline.
   set cursorline
 
-  " // Disable the creation of swap files.
+  " --- disable the creation of swap files.
   set noswapfile
 
-  " // Used with colored column.
+  " --- used with colored column.
   set colorcolumn=80
 
-  " // Command section bigger.
+  " --- command section bigger.
   set cmdheight=2
 
-" // ARROW KEYS ------------------------------------------------------------ //
+" ---------- [ arrow keys ]
 
-  " // Disables arrow keys.
+  " --- disables arrow keys.
   " noremap <UP> <NOP>
   " noremap <RIGHT> <NOP>
   " noremap <LEFT> <NOP>
   " noremap <DOWN> <NOP>
 
-" // BASE64 DECODER -------------------------------------------------------- //
+" ---------- [ base64 decoder ]
 
-  " // Decode inplace base64 text.
-  " // ref. <https://stackoverflow.com/a/7849399/10500496>
+  " --- decode inplace base64 text.
+  " ... <https://stackoverflow.com/a/7849399/10500496>
   vnoremap <leader>64 y:let @"=system('base64 --decode', @")<cr>gvP
 
-" // CHANGE CASES ---------------------------------------------------------- //
+" ---------- [ change cases ]
 
-  " // Upper case.
+  " --- upper case.
   inoremap <C-u> <ESC>viwUea
   nnoremap <C-u> viwUea
 
-  " // Lower case.
+  " --- lower case.
   inoremap <C-l> <ESC>viwu
   nnoremap <C-l> viwu
 
-" // COMMENTS TOGGLE ------------------------------------------------------- //
+" ---------- [ comments toggle ]
 
-  " // (ref) Stackoverflow, 'What's a quick way to comment/uncomment lines in Vim?'
-  " // (ref) <https://stackoverflow.com/a/22246318>
+  " --- stackoverflow, 'What's a quick way to comment/uncomment lines in Vim?'
+  " ... <https://stackoverflow.com/a/22246318>
 
   autocmd FileType c,cpp,java,scala let b:comment_leader = '//'
   autocmd FileType sh,ruby,python   let b:comment_leader = '#'
@@ -67,31 +67,31 @@
   vnoremap <leader>c :call CommentToggle()<CR>
   nnoremap <leader>c :call CommentToggle()<CR>
 
-" // EDIT/SOURCE .vimrc ---------------------------------------------------- //
+" ---------- [ edit/source .vimrc ]
 
   nnoremap <leader>ev :tabedit $MYVIMRC<CR>
   nnoremap <leader>so :source $MYVIMRC<CR>
 
-" // ENCODING -------------------------------------------------------------- //
+" ---------- [ encoding ]
 
-  " // The encoding displayed.
+  " --- the encoding displayed.
   set encoding=utf8
 
-  " // The encoding written to file.
+  " --- the encoding written to file.
   set fileencoding=utf8
 
-  " // set BOM ...WARNING: doesn't work, need to set manually.
+  " --- set BOM ...WARNING: doesn't work, need to set manually.
   " set bomb
 
-" // ESC ------------------------------------------------------------------- //
+" ---------- [ esc ]
 
   inoremap ,, <ESC>
   vnoremap ,, <ESC>
 
-" // FILE EXPLORER --------------------------------------------------------- //
+" ---------- [ file explorer ]
 
-  " // NerdTree-like
-  " // (ref) https://shapeshed.com/vim-netrw/
+  " --- nerdtree-like
+  " ... <https://shapeshed.com/vim-netrw/>
   let g:netrw_banner = 0
   let g:netrw_liststyle = 3
   let g:netrw_browse_split = 4
@@ -100,8 +100,8 @@
 
   autocmd FileType netrw silent! wincmd H | vertical resize 35
 
-  " // Toggle netrw
-  " // (ref) https://vi.stackexchange.com/a/20832
+  " --- toggle netrw
+  " ... <https://vi.stackexchange.com/a/20832>
   function! ToggleNetrw()
           let i = bufnr("$")
           let wasOpen = 0
@@ -118,10 +118,10 @@
   endfunction
   map <F4> :call ToggleNetrw()<CR>
 
-" // FOLDING --------------------------------------------------------------- //
+" ---------- [ folding ]
 
   function! AELFoldText()
-      " :TODO: Add folding level
+      " --- TODO: Add folding level
 
       let nl = v:foldend - v:foldstart + 1
       let linetext = getline(v:foldstart)
@@ -135,22 +135,22 @@
   endfunction
   set foldtext=AELFoldText()
 
-" // HELP ------------------------------------------------------------------ //
+" ---------- [ help ]
 
-  " // View man pages of word under cursor.
+  " --- view man pages of word under cursor.
   nnoremap <leader>k :silent execute '!man <cword>'<cr>:redraw!<cr>
 
-  " // View Python documentation of word under cursor.
+  " --- view Python documentation of word under cursor.
   nnoremap <leader>hp :silent execute '!pydoc <cword>'<cr>:redraw!<cr>
 
-" // HIGHLIGHT LINES ------------------------------------------------------- //
+" ---------- [ highlight lines ]
 
-  " // (ref) <https://vimtricks.com/p/highlight-specific-lines/>
+  " --- <https://vimtricks.com/p/highlight-specific-lines/>
 
-  " // Highlight the current line.
+  " --- highlight the current line.
   nnoremap <silent> <Leader>hl :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
 
-  " // Clear all the highlighted lines.
+  " --- clear all the highlighted lines.
   nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 
 " :----------/ HTML MAPPING
@@ -268,77 +268,79 @@
 
   " augroup end
 
-" // LINEBREAK/WRAP -------------------------------------------------------- //
+" ---------- [ linebreak/wrap ]
 
   set linebreak
   set wrap
   set showbreak=[......]
   " set showbreak==>\ \ 
 
-  " // Toggle linewrap.
+  " --- toggle linewrap.
   map <leader>w :setlocal wrap!<CR>
 
-" // LINE NUMBERS ---------------------------------------------------------- //
+" ---------- [ line numbers ]
 
   set number
   set relativenumber
 
-  " // Toggle line numbering
+  " --- toggle line numbering
   nnoremap <leader>ln :set number! relativenumber!<CR>
 
-" // lorem ----------------------------------------------------------------- //
+" ---------- [ lorem ]
 
   inoremap lorem<TAB> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales, dolor ut lobortis rhoncus, mauris leo condimentum metus, vel elementum arcu ipsum aliquam est. Integer a scelerisque turpis, at ultrices nisl. Nunc fermentum quam elementum, sagittis velit id, porta tellus. Nunc quis suscipit felis. Etiam et leo scelerisque, gravida elit nec, aliquet justo. Phasellus et neque vel turpis hendrerit fringilla sed in arcu. Suspendisse id enim lacinia libero auctor pellentesque. Proin sed sem non neque pellentesque vehicula. Nunc sapien justo, tincidunt vitae ultrices eu, consectetur sit amet orci.
 
-" // MDVIEWER -------------------------------------------------------------- //
-  " // Requires mdviewer.bash
+" ---------- [ mdviewer ]
+
+  " --- requires mdviewer.bash
   command! MdViewer silent !bash ~/main/dev/mdviewer/mdviewer.bash %
   nnoremap <leader>mv :MdViewer<CR>:redraw!<CR>
 
-" // MOUSE ----------------------------------------------------------------- //
+" ---------- [ mouse ]
 
   " set mouse=a
 
-" // SAVE FILE ------------------------------------------------------------- //
+" ---------- [ save file ]
 
-  " // CTRL+s to save file
-  " // (ref) <https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s>
-  " // Requires `stty -ixon` in the sourced shell rc file
+  " --- ctrl+s to save file
+  " ... ref. <https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s>
+  " ... requires `stty -ixon` in the sourced shell rc file
   inoremap <C-s> <ESC>:write<CR>
   nnoremap <C-s> :write<CR>
 
-" // SCROLL OFFSET --------------------------------------------------------- //
+" ---------- [ scroll offset ]
 
-  " // When scrolling, keeps the cursor at the vertical center.
-  " // Use so=999 for centered
-  " // (ref) <http://vim.wikia.com/wiki/make_search_results_appear_in_the_middle_of_the_screen>
+  " --- when scrolling, keeps the cursor at the vertical center.
+  " ... use so=999 for centered.
+  " ... ref. <http://vim.wikia.com/wiki/make_search_results_appear_in_the_middle_of_the_screen>
   set scrolloff=999
 
-" // SEARCH ---------------------------------------------------------------- //
+" ---------- [ search ]
 
-  " // Fuzzy find and wildmenu.
+  " --- fuzzy find and wildmenu.
   set path+=**
   set wildmenu
 
-  " // text search
-  " // Search ignorecase.
+  " --- text search
+  " ... search ignorecase.
   set ignorecase
 
-  " // Search highlight.
+  " --- search highlight.
   set hlsearch
 
-  " // Toggle search highlighting                      
+  " --- toggle search highlighting                      
   nnoremap <F3> :set hlsearch!<CR> 
 
-  " // Clear search
+  " --- clear search
   nnoremap <leader>cs :let @/ = ""<CR>
 
-" // SPELLCHECKER ---------------------------------------------------------- //
+" ---------- [ spellchecker ]
 
-  " // Toggle spell checker. Default "en_us".
+  " --- toggle spell checker.
+  " ... default "en_us".
   nnoremap <F5> :setlocal spell! spelllang=en_us<CR>
 
-  " // Switch Language
+  " --- switch language.
   function! ToggleSpellLang()
     if &spelllang =~# 'en_us'
       setlocal spelllang=fr
@@ -351,7 +353,7 @@
 
   nnoremap <leader>sl :call ToggleSpellLang()<CR>
 
-" // STATUSLINE ------------------------------------------------------------ //
+" ---------- [ statusline ]
 
   function! StatusFlags() abort
     if &readonly
@@ -370,17 +372,17 @@
   set statusline+=\ COL\ [%03c]                                         " // Column Number. 
   set statusline+=\ %{StatusFlags()}                                    " // Modified, readonly, readonly modified.
 
-" // TAB & INDENT ---------------------------------------------------------- //
+" ---------- [ tab & indent ]
 
   set tabstop=2
-  " // shiftround : rounds indent to multiple of shiftwidth.
-  " // Applies to < and > in normal mode. <C-t> and <C-d> in insert mode
-  " // always round the indent.
+  " --- shiftround : rounds indent to multiple of shiftwidth.
+  " ... Applies to < and > in normal mode. <C-t> and <C-d> in insert mode
+  " ... always round the indent.
   set shiftround
   set shiftwidth=2
   set expandtab
 
-" // TAGS ------------------------------------------------------------------ //
+" ---------- [ tags ]
 
   inoremap "<TAB> ""<left>
   inoremap '<TAB> ''<left>
@@ -390,42 +392,42 @@
   inoremap {<CR> {<CR>}<ESC>O
   inoremap {;<CR> {<CR>};<ESC>O
 
-" // TIMESTAMP ------------------------------------------------------------- //
+" ---------- [ timestamp ]
 
-  " //Insert timestamp.
-  " //ex: 2022-03-25 15:49:24 UTC
+  " --- Insert timestamp.
+  " ... ex: 2022-03-25 15:49:24 UTC
   nnoremap <F12> "=system('echo -n $(date --utc "+%F %H:%M:%S %Z" )')<CR>p
 
-  " //Insert timestamp as ID.
-  " //ex: 202203251549
+  " --- Insert timestamp as ID.
+  " ... ex: 202203251549
   nnoremap <F9> "=system('echo -n $(date --utc "+%Y%m%d%H%M")')<CR>p
 
-" // COPY & PASTE ---------------------------------------------------------- //
+" ---------- [ copy & paste ]
 
-  " // Enable clipboard ability with xclip (X11) or wl-clipboard (Wayland).
-  " // ref. Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
+  " --- Enable clipboard ability with xclip (X11) or wl-clipboard (Wayland).
+  " ... ref. Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
 
   if !empty($WAYLAND_DISPLAY)
-      " // Running in Wayland, use wl-clipboard
+      " --- Running in Wayland, use wl-clipboard
       vnoremap <F7> y:call system("wl-copy", getreg("\""))<CR>
       nnoremap <S-F7> :call setreg("\"", system("wl-paste"))<CR>p
   elseif !empty($DISPLAY)
-      " // Running in X11, use xclip
+      " --- Running in X11, use xclip
       vnoremap <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
       nnoremap <S-F7> :call setreg("\"", system("xclip -o -selection clipboard"))<CR>p
   endif
 
-" // BIONIC READING -------------------------------------------------------- //
+" ---------- [ bionic reading ]
 
-" // Bionic Reading: bold head, dim tail (adaptive to background)
+" --- Bionic Reading: bold head, dim tail (adaptive to background)
 
   function! s:SetBionic() abort
     if &background ==# 'dark'
-      " // Dark background.
+      " --- Dark background.
       highlight default BionicHead cterm=BOLD ctermfg=WHITE gui=BOLD guifg=#FFFFFF
       highlight default BionicTail cterm=NONE ctermfg=GRAY gui=NONE guifg=#6A6A6A
     else
-      " // Light background
+      " --- Light background
       highlight default BionicHead cterm=BOLD ctermfg=BLACK gui=BOLD guifg=#000000
       highlight default BionicTail cterm=NONE ctermfg=GRAY gui=NONE guifg=#9A9A9A
     endif
@@ -449,10 +451,10 @@
       return
     endif
 
-    " // Head
+    " --- Head
     let w:bionic_head_id = matchadd('BionicHead', '\<\k\{1,4}', 10)
 
-    " // Tail
+    " --- Tail
     let w:bionic_tail_id = matchadd('BionicTail', '\<\k\{,4}\zs\k\+', 10)
 
     echo "Bionic Reading: on"
@@ -460,12 +462,12 @@
 
   nnoremap <silent> <leader>b :call ToggleBionic()<CR>
 
-" // PLUGINS - INSTALL ----------------------------------------------------- //
+" ---------- [ plugins - install ]
 
   syntax enable
   filetype plugin on
 
-  " // vim-plug //
+  " --- vim-plug
 
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -475,66 +477,66 @@
 
   call plug#begin('~/.vim/plugged')
 
-  " // coloscheme iceberg //
-  " // (url) <https://github.com/cocopon/iceberg.vim>
+  " --- coloscheme iceberg //
+  " ... url <https://github.com/cocopon/iceberg.vim>
   Plug 'cocopon/iceberg.vim'
 
-  " // jedi //
+  " --- jedi
   Plug 'https://github.com/davidhalter/jedi-vim.git'
 
-  " // fzf //
+  " --- fzf
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  " // markdown-preview //
-  " :https://github.com/iamcco/markdown-preview.vim
+  " --- markdown-preview
+  " ... <https://github.com/iamcco/markdown-preview.vim>
   Plug 'iamcco/markdown-preview.vim'
 
-  " // ultisnips //
-  " // (url) <https://github.com/SirVer/ultisnips>
+  " --- ultisnips
+  " ... <https://github.com/SirVer/ultisnips>
   Plug 'SirVer/ultisnips'
 
-  " // YouCompleteMe //
+  " --- youcompleteme
   Plug 'Valloric/YouCompleteMe'
 
   call plug#end()
 
-  " // Automatically install missing plugins.
-  " // (ref) <https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup>
+  " --- Automatically install missing plugins.
+  " ... <https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup>
   autocmd VimEnter *
     \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \|   PlugInstall --sync | q
     \| endif
 
-  " // Disable automatic indent on from vim-plug
+  " --- Disable automatic indent on from vim-plug
   filetype indent off
 
-" // PLUGINS - FZF --------------------------------------------------------- //
+" ---------- [ plugins - fzf ]
 
-  " // Buffers list.
+  " --- buffers list.
   nnoremap <silent> <leader>ls :Buffers<CR>
 
-  " // Open files in $HOME.
+  " --- open files in $HOME.
   nnoremap <silent> <C-o> :Files ~<CR>
 
-  " // Open files starting at root.
+  " --- open files starting at root.
   nnoremap <silent> <leader>sys :Files /<CR>
 
-  " // Find lines containing.
+  " --- find lines containing.
   nnoremap <silent> <C-f> :BLines<CR>
 
-  " // AEL files.
+  " --- ael files.
   nnoremap <leader>ael :call fzf#run(fzf#wrap({'source': 'rg --files --hidden --glob "!.git" ~/.local/share/ael-files/'}))<CR>
 
-  " // FZF Spellcheck selector //
-  " // Select Spellcheck suggestion.
+  " --- fzf spellcheck selector
+  " ... select Spellcheck suggestion.
   function! FzfSpelling()
-    " //Ensure spell is enabled.
+    " --- Ensure spell is enabled.
     if &spell == 0
       setlocal spell
     endif
 
-    " //Get the list of spelling suggestions
+    " --- get the list of spelling suggestions
     let suggestions = spellsuggest(expand('<cword>'))
 
     if empty(suggestions)
@@ -542,7 +544,7 @@
       return
     endif
 
-    " //Select
+    " --- select
     call fzf#run(fzf#wrap({
           \ 'source': suggestions,
           \ 'sink':   function('FzfReplaceWord')
@@ -550,47 +552,47 @@
   endfunction
 
   function! FzfReplaceWord(choice)
-    " //Replace the current word with the selection.
+    " --- replace the current word with the selection.
     execute "normal! ciw" . a:choice
   endfunction
 
   nnoremap <leader>z :call FzfSpelling()<CR>
 
-  " // PLUGINS - markdown-preview ------------------------------------------ //
+  " ---------- [ plugins - markdown-preview ]
   nnoremap <silent> <leader>vm <Plug>MarkdownPreview
   nnoremap <silent> <leader>sm <Plug>StopMarkdownPreview
 
-  " // PLUGINS -  ultisnips ------------------------------------------------ //
-  " // Since we use YouCompleteMe, some triggers were changed.
-  " // In file types not covered by YouCompleteMe, it looks like you have to 
-  " // complete the word to select it.
+  " ---------- [ plugins -  ultisnips ]
+  " --- Since we use YouCompleteMe, some triggers were changed.
+  " ... In file types not covered by YouCompleteMe, it looks like you have to 
+  " ... complete the word to select it.
   nnoremap <silent> <leader>eu :Files ~/.vim/UltiSnips/<CR>
   let g:UltiSnipsExpandTrigger="<c-j>"
   let g:UltiSnipsEditSplit="vertical"
   let g:UltiSnipsJumpForwardTrigger="<c-k>"
   let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
-" // COLORSCHEME ----------------------------------------------------------- //
+" ---------- [ colorscheme ]
 
   set t_Co=256
   set background=dark
 
-  " // colorschemes //
+  " --- colorschemes
 
-  " // base16-3024 <https://github.com/RRethy/nvim-base16/blob/master/colors/base16-3024.vim>
+  " --- base16-3024 <https://github.com/RRethy/nvim-base16/blob/master/colors/base16-3024.vim>
   " colorscheme base16-3024
 
-  " // blaquemagick <https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim>
+  " --- blaquemagick <https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim>
   " colorscheme blaquemagick
 
-  " // iceberg <https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim>
+  " --- iceberg <https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim>
   colorscheme iceberg
 
-  " // silenthill <https://github.com/evilwaveforms/silenthill.vim>
+  " --- silenthill <https://github.com/evilwaveforms/silenthill.vim>
   " colorscheme silenthill
 
 
-  " // general //
+  " --- general
   
   highlight ColorColumn     cterm=NONE       ctermfg=NONE      ctermbg=235      " // Column 80.
   highlight CursorLine      cterm=NONE       ctermfg=NONE      ctermbg=235      " // Cursor Line.
@@ -603,7 +605,7 @@
   highlight StatusLineNC    cterm=NONE       ctermfg=236       ctermbg=235      " // Non-active Status Line.
   highlight Visual          cterm=NONE       ctermfg=16        ctermbg=11       " // Visual selection.
 
-  " // Prog. Language //
+  " --- prog. language
   highlight Comment         cterm=ITALIC     ctermfg=109       ctermbg=NONE     " // Comments.
   highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " // Function.
   highlight Statement       cterm=ITALIC     ctermfg=110       ctermbg=NONE     " // Statement

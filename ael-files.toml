@@ -1,0 +1,149 @@
+# ------------------------------------------------------------------------ INFO
+# [ael-files.toml]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2025-06-11 01:03:28 UTC
+# updated       : 2025-12-02 03:09:21 UTC
+# description   : AEL files.
+
+[home.LnZpbXJj]
+filename    = "/.vimrc"
+type        = "vim/config"
+description = "vim configuration file."
+
+[bin.YnVzeQ--]
+filename    = "/bin/busy"
+description = "When the boss comes around to look busy."
+
+[bin.ZG9ja2VyLWluZm8ucHk-]
+filename    = "/bin/docker-info.py"
+type        = "bin"
+description = "Docker status helper."
+
+[bin.ZXh0cmFjdG9yLnNo]
+filename    = "/bin/extractor.sh"
+type        = "bin"
+description = "Compressed files universal extractor."
+
+[bin.dHVubmVsLWluZm8ucHk-]
+filename    = "/bin/tunnel-info.py"
+description = "Display tunnels + VPN info."
+
+[shellutils.YW5zaS1jb2xvcnM-]
+filename    = "/shellutils/ansi-colors"
+type        = "shellutils"
+description = "ANSI colors helper."
+
+[shellutils.ZGVlcC1ubWFw]
+filename    = "/shellutils/deep-nmap"
+type        = "shellutils"
+description = "Deep Nmap scan."
+
+[shellutils.ZGVlcC1zY2Fu]
+filename    = "/shellutils/deep-scan"
+type        = "shellutils"
+description = "Scans IP with rustscan and nmap."
+
+[shellutils.ZGVsZXRl]
+filename    = "/shellutils/delete"
+type        = "shellutils"
+description = "Delete directories."
+
+[shellutils.ZGlyZWN0b3J5LXNpemU-]
+filename    = "/shellutils/directory-size"
+type        = "shellutils"
+description = "Check size of biggest directories."
+
+[shellutils.ZG9ja2VyLWluZm8-]
+filename    = "/shellutils/docker-info"
+type        = "shellutils"
+description = "Docker status helper."
+requires    = "bin/docker-info.py"
+
+[shellutils.ZWxldmF0ZQ--]
+filename    = "/shellutils/elevate"
+type        = "shellutils"
+description = "Repeats last command with sudo, if forgotten."
+
+[shellutils.ZXh0cmFjdG9y]
+filename    = "/shellutils/extractor"
+type        = "shellutils"
+description = "Compressed files universal extractor."
+requires    = "bin/extractor.sh"
+
+[shellutils.Z2V0bXAz]
+filename    = "/shellutils/getmp3"
+type        = "shellutils"
+description = "Extracting audio (.mp3) from video."
+
+[shellutils.Z290bw--]
+filename    = "/shellutils/goto"
+type        = "shellutils"
+description = "Simple directory bookmarks system."
+
+[shellutils.aXNwZWVk]
+filename    = "/shellutils/ispeed"
+description = "Internet connection speed meter."
+
+[shellutils.cGFjbWFuLXJlc2V0]
+filename    = "/shellutils/pacman-reset"
+description = "Re-initialize pacman sync, mirrorlist and keyring."
+
+[shellutils.cG9ydHM-]
+filename    = "/shellutils/ports"
+description = "Displays open ports."
+
+[shellutils.cHJvY2Vzc2Vz]
+filename    = "/shellutils/processes"
+description = "Show processes."
+
+[shellutils.cHMtZ3JlcA--]
+filename    = "/shellutils/ps-grep"
+description = "Show processes for a particular application."
+
+[shellutils.cHktY2xlYW5lcg--]
+filename    = "/shellutils/py-cleaner"
+description = "Clean python current directory."
+
+[shellutils.cHktc2VydmVy]
+filename    = "/shellutils/py-server"
+description = "Create a Python HTTP server."
+
+[shellutils.cmVzZXQtdGltZQ--]
+filename    = "/shellutils/reset-time"
+description = "Reset system time. Useful when Windows boot screws time."
+
+[shellutils.c2hlbGwtaW5mbw--]
+filename    = "/shellutils/shell-info"
+description = "Show shell info."
+
+[shellutils.c2hvdy11dGM-]
+filename    = "/shellutils/show-utc"
+description = "Show UTC time."
+
+[shellutils.c25ha2UtZW52]
+filename    = "/shellutils/snake-env"
+description = "Manage python -m venv."
+
+[shellutils.dGVybWJpbg--]
+filename    = "/shellutils/termbin"
+description = "Netcat-based command-line pastebin."
+
+[shellutils.dG11eHBsdXM-]
+filename    = "shellutils/tmuxplus"
+description = "TMUX wrapper."
+
+[shellutils.dHVubmVsLWluZm8-]
+filename    = "/shellutils/tunnel-info"
+description = "Display tunnels + VPN info."
+
+[shellutils.d2hvaXN3ZWI-]
+filename    = "/shellutils/whoisweb"
+description = "Query WHOIS web if <whois> port 43 is blocked on your network."
+
+[shellutils.utils.YWVsLWZ6Zg--]
+filename    = "/shellutils/utils/ael-fzf"
+description = "FZF wrapper."
+
+[shellutils.utils.YXJndW1lbnQtcGFyc2Vy]
+filename    = "/shellutils/utils/argument-parser"
+description = "Argument parser utility."

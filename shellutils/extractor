@@ -1,11 +1,14 @@
 #!/usr/bin/env sh
 # ------------------------------------------------------------------------ INFO
-# [shellutils/extractor]
+# [/shellutils/extractor]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2023-08-01 19:55:12 UTC
-# updated       : 2025-12-22 04:23:05 UTC
+# updated       : 2025-12-29 00:49:39 UTC
 # description   : Compressed files universal extractor.
 
+[ -n "${__SOURCED_EXTRACTOR:-}" ] && return
+__SOURCED_EXTRACTOR=1
+
 extractor() {
-    command bash ~/.ael/bin/extractor.sh "${@}"
+    command bash ${HOME}/.ael/bin/extractor.sh "${@}"
 }
