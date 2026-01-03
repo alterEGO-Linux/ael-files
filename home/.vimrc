@@ -606,7 +606,7 @@
   highlight Visual          cterm=NONE       ctermfg=16        ctermbg=11       " // Visual selection.
 
   " --- prog. language
-  highlight Comment         cterm=ITALIC     ctermfg=109       ctermbg=NONE     " // Comments.
+  highlight Comment         cterm=NONE       ctermfg=109       ctermbg=NONE     " // Comments.
   highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " // Function.
   highlight Statement       cterm=ITALIC     ctermfg=110       ctermbg=NONE     " // Statement
 
