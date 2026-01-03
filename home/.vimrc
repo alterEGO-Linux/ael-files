@@ -2,7 +2,7 @@
 " [~/.vimrc]
 " author        : Pascal Malouin @https://github.com/fantomH
 " created       : 2021-02-23 02:54:43 UTC
-" updated       : 2025-12-23 21:39:54 UTC
+" updated       : 2026-01-03 02:55:11 UTC
 " description   : VIM main configuration file.
 
 " ---------- [ general configuration ]

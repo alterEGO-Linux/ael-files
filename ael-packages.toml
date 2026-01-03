@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------ INFO
-# [/droidnotes/data/ael-packages.toml]
+# [/ael-files/ael-packages.toml]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2025-12-29 00:46:02 UTC
+# updated       : 2026-01-03 03:02:03 UTC
 # description   : Packages
 
 [bash]
@@ -212,6 +212,27 @@ included_app  = [
                 "/usr/bin/sudoedit",
                 "/usr/bin/sudoreplay",
                 "/usr/bin/visudo"
+                ]
+
+[tmux]
+url             = "https://github.com/tmux/tmux/wiki"
+description     = "Terminal multiplexer."
+repository      = "extra"
+included_app  = [
+                "/usr/bin/tmux"
+                ]
+
+[vim]
+url           = "https://www.vim.org"
+description   = "Vi Improved, a highly configurable, improved version of the vi text editor."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/rview",
+                "/usr/bin/rvim",
+                "/usr/bin/vim",
+                "/usr/bin/vimdiff",
+                "/usr/bin/vimtutor",
+                "/usr/bin/xxd"
                 ]
 
 [yt-dlp]
