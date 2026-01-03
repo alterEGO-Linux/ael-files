@@ -43,9 +43,10 @@ snippet task! "Task" b
 <!-- }}} -->
 endsnippet
 
-# /----------/ BASH & SH
+# ---------- [ SHELL ]
 
-snippet shargs "Bash & SH arguments" b
+# --- shell arguments.
+snippet shargs "Shell arguments" b
 
 # // Ensure variables are removed after the function or script terminates.
 local args=("$@")
@@ -87,7 +88,8 @@ return 1
 
 endsnippet
 
-snippet shusage "Bash & SH usage/help" b
+
+snippet sh-usage "Bash & SH usage/help" b
 usage() {
 		cat <<EOF
 ================================================================================
@@ -113,4 +115,21 @@ METHODS:
 ================================================================================
 EOF
 }
+endsnippet
+
+snippet sh-check_applications "check applications" b
+check_applications() {
+		if [[ -n ${__SOURCE_CHECK_APPLICATIONS} ]]; then
+				check-applications "${@}"
+		else
+				local app
+				for app in $@; do
+						if ! command -v $app; then
+								printf '%s\n' "${RED}[!]${RESET} ${app} is not installed."
+								return 1
+						fi
+				done
+		fi
+}
+check_applications <applications here> || return 1
 endsnippet

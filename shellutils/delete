@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # ------------------------------------------------------------------------ INFO
-# [/shellutils/delete]
+# [/.ael/shellutils/delete]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2023-08-01 19:59:45 UTC
-# updated       : 2025-12-22 01:51:42 UTC
+# updated       : 2026-01-03 15:57:12 UTC
 # description   : Delete directories.
 
 [ -n "${__SOURCED_DELETE:-}" ] && return
