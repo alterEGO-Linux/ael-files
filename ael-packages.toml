@@ -2,7 +2,7 @@
 # [/ael-files/ael-packages.toml]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-01-03 03:02:03 UTC
+# updated       : 2026-01-04 01:21:05 UTC
 # description   : Packages
 
 [bash]
@@ -125,6 +125,16 @@ included_app  = [
                 "/usr/bin/yes"
                 ] # }}}
 
+[curl]
+url           = "https://curl.se/"
+description   = "Command line tool and library for transferring data with URLs."
+repository    = "core"
+included_app  = [
+                "/usr/bin/curl",
+                "/usr/bin/curl-config",
+                "/usr/bin/wcurl"
+                ]
+
 [ffmpeg]
 url           = "https://ffmpeg.org"
 description   = "Complete solution to record, convert and stream audio and video."
@@ -142,6 +152,23 @@ repository    = "core"
 included_app  = [
                 "/usr/bin/find",
                 "/usr/bin/xargs"
+                ]
+
+[firefox]
+url           = "https://www.mozilla.org/firefox/"
+description   = "Fast, Private & Safe Web Browser."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/firefox"
+                ]
+
+[fzf]
+url           = "https://github.com/junegunn/fzf"
+description   = "Command-line fuzzy finder"
+repository    = "extra"
+included_app  = [
+                "/usr/bin/fzf",
+                "/usr/bin/fzf-tmux"
                 ]
 
 [grep]
@@ -173,6 +200,24 @@ included_app  = [
                 "/usr/bin/nping"
                 ]
 
+[pacman]
+url           = "https://www.archlinux.org/pacman/"
+description   = "A library-based package manager with dependency support."
+repository    = "core"
+included_app  = [
+                "/usr/bin/makepkg",
+                "/usr/bin/makepkg-template",
+                "/usr/bin/pacman",
+                "/usr/bin/pacman-conf",
+                "/usr/bin/pacman-db-upgrade",
+                "/usr/bin/pacman-key",
+                "/usr/bin/repo-add",
+                "/usr/bin/repo-elephant",
+                "/usr/bin/repo-remove",
+                "/usr/bin/testpkg",
+                "/usr/bin/vercmp"
+                ]
+
 [python]
 url           = "https://www.python.org/"
 description   = "The Python programming language"
@@ -198,6 +243,23 @@ description   = "A modern port scanner."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/rustscan"
+                ]
+
+[sed]
+url           = "https://www.gnu.org/software/sed/"
+description   = "GNU stream editor"
+repository    = "core"
+included_app  = [
+                "/usr/bin/sed"
+                ]
+
+[speedtest-cli]
+url           = "https://github.com/sivel/speedtest-cli"
+description   = "Command line interface for testing internet bandwidth using speedtest.net."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/speedtest",
+                "/usr/bin/speedtest-cli"
                 ]
 
 [sudo]

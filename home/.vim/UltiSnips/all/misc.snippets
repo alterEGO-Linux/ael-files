@@ -89,7 +89,7 @@ return 1
 endsnippet
 
 
-snippet sh-usage "Bash & SH usage/help" b
+snippet sh_usage "Bash & SH usage/help" b
 usage() {
 		cat <<EOF
 ================================================================================
@@ -117,9 +117,11 @@ EOF
 }
 endsnippet
 
-snippet sh-check_applications "check applications" b
+# ---------- [ shell - check_applications ]
+snippet sh_check_applications "shell - check_applications" b
+
 check_applications() {
-		if [[ -n ${__SOURCE_CHECK_APPLICATIONS} ]]; then
+		if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
 				check-applications "${@}"
 		else
 				local app
@@ -132,4 +134,35 @@ check_applications() {
 		fi
 }
 check_applications <applications here> || return 1
+
+endsnippet
+
+# ---------- [ shell - sourced ] 
+snippet sh_sourced "shell - sourced" b
+
+[ -n "${__SOURCED_DEEP_SCAN:-}" ] && return
+__SOURCED_DEEP_SCAN=1
+
+endsnippet
+
+# ---------- [ shell - trap functions ]
+snippet sh_trap_functions "shell - trap functions" b
+
+trap 'unset -f <functions>; trap - RETURN' RETURN
+
+endsnippet
+
+# ---------- [ shell - question ]
+snippet sh_question "shell - question" b
+
+local __input
+read -p "${BLUE}[?]${RESET} <YES/NO question>? [y/N] " __input
+		if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+				<do something>
+				return 0
+		else
+				<do something>
+				return 0
+		fi
+
 endsnippet

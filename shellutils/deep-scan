@@ -3,7 +3,7 @@
 # [/shellutils/deep-scan]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2023-10-20 09:10:13 UTC
-# updated       : 2025-12-22 02:09:58 UTC
+# updated       : 2026-01-03 23:36:39 UTC
 # description   : Scans IP with rustscan and nmap.
 
 [ -n "${__SOURCED_DEEP_SCAN:-}" ] && return
@@ -15,14 +15,11 @@ deep-scan() {
     local BLUE=$'\033[34m'
     local RED=$'\033[31m'
     local RESET=$'\033[0m'
-    local IP
-    local NMAP
-    local PORTS
 
     trap 'unset -f check_applications usage; trap - RETURN' RETURN
 
     check_applications() {
-        if [[ -n ${__SOURCE_CHECK_APPLICATIONS} ]]; then
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
             check-applications "${@}"
         else
             local app
@@ -56,6 +53,7 @@ EOF
     }
 
     # --- setting IP value.
+    local IP
     IP="${1:-127.0.0.1}"
     [[ "$IP" == "localhost" ]] && IP="127.0.0.1"
 
@@ -78,7 +76,7 @@ EOF
     # --- rustscan.
     printf '%s\n' "${BLUE}[+]${RESET} Running Rustscan to find open ports."
 
-    PORTS=$(rustscan -a "$IP" --ulimit 5000 --batch-size 2000 --greppable | grep -oP '\[\K[0-9,]+(?=\])')
+    local PORTS=$(rustscan -a "$IP" --ulimit 5000 --batch-size 2000 --greppable | grep -oP '\[\K[0-9,]+(?=\])')
 
     # --- nmap.
     if [[ -n "${PORTS}" ]]; then
@@ -86,6 +84,7 @@ EOF
         printf '%s\n' "${BLUE}[+]${RESET} Running Nmap."
 
         # --- check grc availability.
+        local NMAP
         if command -v grc >/dev/null 2>&1; then
             NMAP=(grc nmap)
         else

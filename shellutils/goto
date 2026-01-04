@@ -3,7 +3,7 @@
 # [/shellutils/goto]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2024-09-13 11:00:51 UTC
-# updated       : 2025-12-29 01:40:30 UTC
+# updated       : 2026-01-03 23:53:08 UTC
 # description   : Simple directory bookmarks system.
 
 [ -n "${__SOURCED_GOTO:-}" ] && return
@@ -16,10 +16,6 @@ export CDPATH=".:$GOTODIR:/"
 goto() {
 
     local IFS=$'\n'
-    local __args=("$@")
-    local __arg
-    local __input
-    local __target
     local BLUE=$'\033[34m'
     local RED=$'\033[31m'
     local RESET=$'\033[0m'
@@ -46,6 +42,8 @@ EOF
     }
 
     # --- help
+    local __args=("$@")
+    local __arg
     for __arg in "${__args[@]}"; do
         if [ "$__arg" == '-h' ] || [ "$__arg" == '--help' ]; then
             usage
@@ -59,7 +57,7 @@ EOF
             usage
             echo
             find "${GOTODIR}" -maxdepth 1 -type l | while read -r link; do
-                __target=$(readlink -f "${link}")
+                local __target=$(readlink -f "${link}")
                 printf "%-15s -> %s\n" "$(basename "${link}")" "${__target}"
             done
             return 0
@@ -67,6 +65,7 @@ EOF
     done
 
     # --- add
+    local i
     for i in "${!__args[@]}"; do
         if [[ "${__args[i]}" == "-a" ]] || [[ "${__args[i]}" == "--add" ]]; then
             if [[ -n "${__args[i+1]}" && -n "${__args[i+2]}" ]]; then
@@ -88,6 +87,7 @@ EOF
             if [[ -n "${__args[i+1]}" ]]; then
                 __target="${GOTODIR}/${__args[i+1]}"
                 if [[ -L "$__target" ]]; then
+                    local __input
                     read -p "${BLUE}[?]${RESET} Are you sure your want to delete this bookmark? [y/N] " __input
                         if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
                             rm -f "$__target"
