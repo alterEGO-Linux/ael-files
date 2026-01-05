@@ -1,20 +1,40 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/reset-time]
-# :author        : AlterEGO Linux
-# :created       : 2023-08-02 01:02:11 UTC
-# :updated       : 2025-07-08 17:47:30 UTC
-# :description   : Reset system time. Useful when Windows boot screws time.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/reset-time]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-02 01:02:11 UTC
+# updated       : 2026-01-05 09:47:16 UTC
+# description   : Reset system time. Useful when Windows boot screws time.
+
+[ -n "${__SOURCED_RESET_TIME:-}" ] && return
+__SOURCED_RESET_TIME=1
 
 reset-time() {
 
-    local BLUE=$'\033[34m'
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
 
-    printf '%s\n' "${BLUE}[-]${RESET} Time before resetting system: $(date "+%F %H:%M:%S %Z")"
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+    
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications date timedatectl hwclock || return 1
+
+    printf '%s\n' "${__blue}[-]${__reset} Time before resetting system: $(date "+%F %H:%M:%S %Z")"
 
     sudo timedatectl set-ntp true && sudo hwclock --systohc --utc
 
-    printf '%s\n' "${BLUE}[-]${RESET} Time now: $(date "+%F %H:%M:%S %Z")"
+    printf '%s\n' "${__blue}[-]${__reset} Time now: $(date "+%F %H:%M:%S %Z")"
 }

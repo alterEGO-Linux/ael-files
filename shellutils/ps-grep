@@ -6,13 +6,34 @@
 # updated       : 2026-01-05 03:18:18 UTC
 # description   : Show processes for a particular application.
 
+
+[ -n "${__SOURCED_PS_GREP:-}" ] && return
+__SOURCED_PS_GREP=1
+
 ps-grep() {
 
     local __yellow=$'\033[43m\033[30m'
     local __bold=$'\033[1m'
     local __reset=$'\033[0m'
     local __red=$'\033[31m'
-
+    
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+    
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications ps grep  || return 1
+    
     # --- error handler if no argument provided.
     if [ $# -eq 0 ]; then
         printf '%s\n' "${__red}[!]${__reset} No pattern provided."

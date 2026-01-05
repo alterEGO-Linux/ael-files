@@ -1,14 +1,24 @@
 #!/usr/bin/env bash
-# :: --------------------------------------------------------------------- INFO
-# :: [~/.ael/shellutils/shell-info]
-# :: author        : fantomH @alterEGO Linux
-# :: created       : 2023-08-02 01:18:13 UTC
-# :: updated       : 2025-08-24 15:08:17 UTC
-# :: description   : Show shell info.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/shell-info]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-02 01:18:13 UTC
+# updated       : 2026-01-05 10:25:41 UTC
+# description   : Show shell info.
+
+[ -n "${__SOURCED_DEEP_SCAN:-}" ] && return
+__SOURCED_DEEP_SCAN=1
 
 shell-info() {
 
-    # :: Shell clean up.
+    local ARGUMENTS_INPUT=("${@}")
+    local NAME
+    local TYPE
+    local SOURCE
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
     trap '
         [[ -n ${DUMPFILE-} ]] && rm -f -- "$DUMPFILE"
         unset -f _si_determine_type \
@@ -22,13 +32,6 @@ shell-info() {
                   _si_show_all \
                   _si_usage; trap - RETURN' RETURN
 
-    local ARGUMENTS_INPUT=("${@}")
-    local NAME
-    local TYPE
-    local SOURCE
-    local BLUE=$'\033[34m'
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
 
     # :: Getting bash run sequence.
     local TEMPDIR

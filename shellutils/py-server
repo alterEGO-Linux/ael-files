@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/py-server]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2024-09-10 16:58:34 UTC
-# :updated       : 2025-07-11 21:28:30 UTC
-# :description   : Create a Python HTTP server.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/py-server]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2024-09-10 16:58:34 UTC
+# updated       : 2026-01-05 09:28:37 UTC
+# description   : Create a Python HTTP server.
+
+[ -n "${__SOURCED_PY_SERVER:-}" ] && return
+__SOURCED_PY_SERVER=1
 
 py-server() {
 
-    # :: This script find an available port and starts a python HTTP server.
+    # --- This script find an available port and starts a python HTTP server.
 
-    local BLUE=$'\033[34m'
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
 
-    local PORTS=(
+    local __ports=(
         '8000'
         '8001'
         '8002'
@@ -28,18 +31,35 @@ py-server() {
         '8010'
     )
 
-    local CONTINUE=true
-    while ${CONTINUE}; do
-      local port
-      for port in "${PORTS[@]}"; do
-        if [[ -z $(sudo netstat -tulanp | command grep ":${port}") ]]; then
-          local PORT="${port}"
-          CONTINUE=false
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+    
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications netstat grep python || return 1
+
+    local __continue=true
+    while ${__continue}; do
+      local p
+      for p in "${__ports[@]}"; do
+        if [[ -z $(sudo netstat -tulanp | command grep ":${p}") ]]; then
+          local __port="${p}"
+          __continue=false
           break
         fi
       done
     done
 
-    printf '%s\n' "${BLUE}[-]${RESET} py-server: Starting HTTP server on port ${PORT}"
-    command python -m http.server ${PORT}
+    printf '%s\n' "${__blue}[-]${__reset} py-server: Starting HTTP server on port ${__port}"
+    command python -m http.server ${__port}
 }
