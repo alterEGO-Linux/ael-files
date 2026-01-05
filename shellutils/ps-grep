@@ -1,58 +1,58 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/ps-grep]
-# :author        : AlterEGO Linux
-# :created       : 2023-08-02 00:56:31 UTC
-# :updated       : 2025-07-12 13:26:54 UTC
-# :description   : Show processes for a particular application.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/ps-grep]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-02 00:56:31 UTC
+# updated       : 2026-01-05 03:18:18 UTC
+# description   : Show processes for a particular application.
 
 ps-grep() {
 
-    local YELLOW=$'\033[43m\033[30m'
-    local BOLD=$'\033[1m'
-    local RESET=$'\033[0m'
-    local RED=$'\033[31m'
+    local __yellow=$'\033[43m\033[30m'
+    local __bold=$'\033[1m'
+    local __reset=$'\033[0m'
+    local __red=$'\033[31m'
 
-    # :: Error handler: No argument provided.
+    # --- error handler if no argument provided.
     if [ $# -eq 0 ]; then
-        printf '%s\n' "${RED}[!]${RESET} No pattern provided."
+        printf '%s\n' "${__red}[!]${__reset} No pattern provided."
         return 1
     fi
 
-    local PATTERN="[${1:0:1}]${1:1}"
+    local __pattern="[${1:0:1}]${1:1}"
 
-    # :: Get header.
-    local HEADER=$(ps aux | head -n 1)
+    # --- get header.
+    local __header=$(ps aux | head -n 1)
 
-    # :: Get pattern.
-    local MATCHES=$(ps aux | grep -Ei "$PATTERN" | grep -Ev "ps-grep|grep")
+    # --- get pattern.
+    local __matches=$(ps aux | grep -Ei "$__pattern" | grep -Ev "ps-grep|grep")
 
-    # :: Error handler: No match found.
-    if [ -z "$MATCHES" ]; then
-        printf '%s\n' "${RED}[!]${RESET} No matching process found."
+    # --- error handler if no match found.
+    if [ -z "$__matches" ]; then
+        printf '%s\n' "${__red}[!]${__reset} No matching process found."
         return 1
     fi
 
-    # :: Compare width of terminal and lenght of lines to determine the display.
-    local NEED_SPACING=0
-    local WIDTH=$(tput cols)
-    local line
+    # --- compare width of terminal and lenght of lines to determine the display.
+    local __need_spacing=0
+    local __width=$(tput cols)
+    local __line
 
-    while IFS= read -r line; do
-        if [ "${#line}" -ge "$WIDTH" ]; then
-            NEED_SPACING=1
+    while IFS= read -r __line; do
+        if [ "${#__line}" -ge "$__width" ]; then
+            __need_spacing=1
             break
         fi
-    done <<< "$MATCHES"
+    done <<< "$__matches"
 
-    # :: Display.
+    # --- Display.
 
-    printf '%s\n' "${BOLD}${HEADER}${RESET}"
+    printf '%s\n' "${__bold}${__header}${__reset}"
 
-    while IFS= read -r line; do
-        local HIGHLIGHTED
-        HIGHLIGHTED=$(echo "$line" | GREP_COLORS='mt=43;30' grep --color=always -E "$PATTERN|$")
-        echo "$HIGHLIGHTED"
-        [ "$NEED_SPACING" -eq 1 ] && echo
-    done <<< "$MATCHES"
+    while IFS= read -r __line; do
+        local __highlighted
+        __highlighted=$(echo "$__line" | GREP_COLORS='mt=43;30' grep --color=always -E "$__pattern|$")
+        echo "$__highlighted"
+        [ "$__need_spacing" -eq 1 ] && echo
+    done <<< "$__matches"
 }

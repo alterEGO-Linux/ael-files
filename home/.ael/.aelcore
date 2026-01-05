@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------ INFO
-# [.ael/.aelcore]
+# [/.ael/.aelcore]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2025-12-21 12:50:28 UTC
+# updated       : 2026-01-05 02:23:07 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # ----------/ VARIABLES
@@ -442,7 +442,7 @@ SHELLUTILS=(
 source_shellutils() {
 
     local SHELLUTILS_SOURCE
-    local  SHELLUTILS_DIRECTORY
+    local SHELLUTILS_DIRECTORY
     local _shellutils_as_symlinks
     local _shellutils_copy_updated
     local shellutil

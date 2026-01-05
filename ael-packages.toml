@@ -2,7 +2,7 @@
 # [/ael-files/ael-packages.toml]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-01-04 01:21:05 UTC
+# updated       : 2026-01-05 03:11:08 UTC
 # description   : Packages
 
 [bash]
@@ -190,6 +190,24 @@ included_app  = [
                 "/usr/bin/grcat"
                 ]
 
+[net-tools]
+url           = "http://net-tools.sourceforge.net/"
+description   = "Configuration tools for Linux networking."
+repository    = "core"
+included_app  = [
+                "/usr/bin/arp",
+                "/usr/bin/ifconfig",
+                "/usr/bin/ipmaddr",
+                "/usr/bin/iptunnel",
+                "/usr/bin/mii-tool",
+                "/usr/bin/nameif",
+                "/usr/bin/netstat",
+                "/usr/bin/plipconfig",
+                "/usr/bin/rarp",
+                "/usr/bin/route",
+                "/usr/bin/slattach"
+                ]
+
 [nmap]
 url           = "https://nmap.org/"
 description   = "Utility for network discovery and security auditing."
@@ -216,6 +234,30 @@ included_app  = [
                 "/usr/bin/repo-remove",
                 "/usr/bin/testpkg",
                 "/usr/bin/vercmp"
+                ]
+
+[procps-ng]
+url           = "https://gitlab.com/procps-ng/procps"
+description   = "Utilities for monitoring your system and its processes."
+repository    = "core"
+included_app  = [
+                "/usr/bin/free",
+                "/usr/bin/hugetop",
+                "/usr/bin/pgrep",
+                "/usr/bin/pidof",
+                "/usr/bin/pidwait",
+                "/usr/bin/pkill",
+                "/usr/bin/pmap",
+                "/usr/bin/ps",
+                "/usr/bin/pwdx",
+                "/usr/bin/slabtop",
+                "/usr/bin/sysctl",
+                "/usr/bin/tload",
+                "/usr/bin/top",
+                "/usr/bin/uptime",
+                "/usr/bin/vmstat",
+                "/usr/bin/w",
+                "/usr/bin/watch"
                 ]
 
 [python]
