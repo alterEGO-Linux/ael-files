@@ -20,7 +20,7 @@ shell-info() {
     local __reset=$'\033[0m'
 
     trap '
-        [[ -n ${__dumpfile-} ]] && rm -f -- "$__dumpfile"
+        #[[ -n ${__dumpfile-} ]] && rm -f -- "$__dumpfile"
         unset -f determine_type \
                   display_alias \
                   display_builtin \
