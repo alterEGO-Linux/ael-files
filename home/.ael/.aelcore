@@ -5,6 +5,8 @@
 # updated       : 2026-01-05 02:23:07 UTC
 # description   : AlterEGO Linux core shell configuration.
 
+PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
+    export PS4
 # ----------/ VARIABLES
 
 LOCAL_AEL_FILES_GIT="${HOME}/.local/share/ael-files"

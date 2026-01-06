@@ -45,7 +45,7 @@ shell-info() {
     local __dumpfile="${__tempdir}/sourced_by_shell"
 
     # --- generating sourced files file.    
-    PS4='+ ${BASH_SOURCE}:${LINENO}: ' BASH_XTRACEFD=7 \
+    PS4='+ ${BASH_SOURCE[0]}:${LINENO}: ' BASH_XTRACEFD=7 \
     /bin/bash -lx 7> ${__dumpfile} -c 'exit' >/dev/null 2>&1
 
     determine_type() {
