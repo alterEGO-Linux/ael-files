@@ -6,196 +6,197 @@
 # updated       : 2026-01-05 10:25:41 UTC
 # description   : Show shell info.
 
-[ -n "${__SOURCED_DEEP_SCAN:-}" ] && return
-__SOURCED_DEEP_SCAN=1
+[ -n "${__SOURCED_SHELL_INFO:-}" ] && return
+__SOURCED_SHELL_INFO=1
 
 shell-info() {
 
-    local ARGUMENTS_INPUT=("${@}")
-    local NAME
-    local TYPE
-    local SOURCE
+    local __args_input=("${@}")
+    local __name
+    local __type
+    local __source
     local __blue=$'\033[34m'
     local __red=$'\033[31m'
     local __reset=$'\033[0m'
 
     trap '
-        [[ -n ${DUMPFILE-} ]] && rm -f -- "$DUMPFILE"
-        unset -f _si_determine_type \
-                  _si_display_alias \
-                  _si_display_builtin \
-                  _si_display_function \
-                  _si_display_keyword \
-                  _si_display_variable \
-                  _si_show_sourced \
-                  _si_show_sourced_tree \
-                  _si_show_all \
-                  _si_usage; trap - RETURN' RETURN
+        [[ -n ${__dumpfile-} ]] && rm -f -- "$__dumpfile"
+        unset -f determine_type \
+                  display_alias \
+                  display_builtin \
+                  display_function \
+                  display_keyword \
+                  display_variable \
+                  show_sourced \
+                  show_sourced_tree \
+                  show_all \
+                  usage; trap - RETURN' RETURN
 
 
-    # :: Getting bash run sequence.
-    local TEMPDIR
+    # --- setting up temporary file.
+    local __tempdir
     if [[ -d /tmp && -w /tmp && -x /tmp ]]; then
-        TEMPDIR=/tmp
+        __tempdir=/tmp
     else
-        TEMPDIR="$HOME/tmp"
-        mkdir -p -- "$TEMPDIR" || return 1
+        __tempdir="$HOME/tmp"
+        mkdir -p -- "$__tempdir" || return 1
     fi
 
-    local DUMPFILE="${TEMPDIR}/sourced_by_shell"
-    PS4='+ ${BASH_SOURCE}:${LINENO}: ' BASH_XTRACEFD=7 \
-    /bin/bash -lx 7> ${DUMPFILE} -c 'exit' >/dev/null 2>&1
+    local __dumpfile="${__tempdir}/sourced_by_shell"
 
-    # :: ( TYPE )
-    _si_determine_type() {
+    # --- generating sourced files file.    
+    PS4='+ ${BASH_SOURCE}:${LINENO}: ' BASH_XTRACEFD=7 \
+    /bin/bash -lx 7> ${__dumpfile} -c 'exit' >/dev/null 2>&1
+
+    determine_type() {
         local _name
         local _type
-        for _name in "${ARGUMENTS_INPUT[@]}"; do
+        for _name in "${__args_input[@]}"; do
             if _type=$(type -t -- "${_name}"); then
                 case "${_type}" in
                     alias )
-                        NAME="${_name}"
-                        TYPE="${_type}"
-                        _si_display_alias
+                        __name="${_name}"
+                        __type="${_type}"
+                        display_alias
                         ;;
                     builtin )
-                        NAME="${_name}"
-                        TYPE="${_type}"
-                        _si_display_builtin
+                        __name="${_name}"
+                        __type="${_type}"
+                        display_builtin
                         ;;
                     function ) 
-                        NAME="${_name}"
-                        TYPE="${_type}"
-                        _si_display_function
+                        __name="${_name}"
+                        __type="${_type}"
+                        display_function
                         ;;
-                    builtin )
-                        NAME="${_name}"
-                        TYPE="${_type}"
-                        _si_display_builtin
-                        ;;
+                    # builtin )
+                        # __name="${_name}"
+                        # __type="${_type}"
+                        # display_builtin
+                        # ;;
                     keyword )
-                        NAME="${_name}"
-                        TYPE="${_type}"
-                        _si_display_keyword
+                        __name="${_name}"
+                        __type="${_type}"
+                        display_keyword
                         ;;
-                    *) printf '%s\n' "${RED}[!]${RESET} Nothing found for ${_name}" ;;
+                    *) printf '%s\n' "${__red}[!]${__reset} Nothing found for ${_name}" ;;
                 esac
             else
-                # :: Verify if a variable.
+                # --- verify if a variable.
                 if [[ -v ${_name} ]]; then
-                    NAME="${_name}"
-                    TYPE="variable"
-                    _si_display_variable
+                    __name="${_name}"
+                    __type="variable"
+                    display_variable
                 else
-                    printf '%s\n' "${RED}[!]${RESET} Nothing found for ${_name}"
+                    printf '%s\n' "${__red}[!]${__reset} Nothing found for ${_name}"
                 fi
             fi
         done
     }
 
-    # :: ( ALIAS )
-    _si_display_alias() {
+    # --- [ alias ]
+    display_alias() {
         
-        local from_dumpfile="$(tac ${DUMPFILE} | grep -m1 -E "alias .${NAME}")"
+        local __from_dumpfile="$(tac ${__dumpfile} | grep -m1 -E "alias .${__name}")"
 
-        if [[ $from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*alias[[:space:]]+(.+)$ ]]; then
-            SOURCE="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
+        if [[ $__from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*alias[[:space:]]+(.+)$ ]]; then
+            __source="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
         fi
 
         cat <<EOF
 ===============================================================================
-${BLUE}[+]${RESET} shell-info - ${NAME}
+${__blue}[+]${__reset} shell-info - ${__name}
 ===============================================================================
 
-NAME   : ${NAME}
-TYPE   : ${TYPE}
-SOURCE : ${SOURCE}
+NAME   : ${__name}
+TYPE   : ${__type}
+SOURCE : ${__source}
 
-$(alias -- ${NAME} 2>/dev/null)
+$(alias -- ${__name} 2>/dev/null)
 ===============================================================================
 EOF
     }
 
-    # :: ( BUILTIN )
-    _si_display_builtin() {
+    # --- [ builtin ]
+    display_builtin() {
         
         cat <<EOF
 ===============================================================================
-${BLUE}[+]${RESET} shell-info - ${NAME}
+${__blue}[+]${__reset} shell-info - ${__name}
 ===============================================================================
 
-NAME   : ${NAME}
-TYPE   : ${TYPE}
+NAME   : ${__name}
+TYPE   : ${__type}
 
-$(help -d ${NAME})
+$(help -d ${__name})
 ===============================================================================
 EOF
     }
 
-    # :: ( FUNCTION )
-    _si_display_function() {
+    # --- [ function ]
+    display_function() {
 
-        SOURCE=$(shopt -s extdebug; \
-                 declare -F ${NAME} \
+        __source=$(shopt -s extdebug; \
+                 declare -F ${__name} \
                  | sed -E 's/^([^ ]+) ([0-9]+) (.*)$/found in \3 at line \2./'; \
                  shopt -u extdebug)
 
         cat <<EOF
 ===============================================================================
-${BLUE}[+]${RESET} shell-info - ${NAME}
+${__blue}[+]${__reset} shell-info - ${__name}
 ===============================================================================
 
-NAME   : ${NAME}
-TYPE   : ${TYPE}
-SOURCE : ${SOURCE}
+NAME   : ${__name}
+TYPE   : ${__type}
+SOURCE : ${__source}
 
-$(declare -f ${NAME})
+$(declare -f ${__name})
 ===============================================================================
 EOF
     }
 
-    # :: ( KEYWORD )
-    _si_display_keyword() {
+    # --- [ keyword ]
+    display_keyword() {
         cat <<EOF
 ===============================================================================
-${BLUE}[+]${RESET} shell-info - ${NAME}
+${__blue}[+]${__reset} shell-info - ${__name}
 ===============================================================================
 
-NAME   : ${NAME}
-TYPE   : ${TYPE}
+NAME   : ${__name}
+TYPE   : ${__type}
 
-$(help -d ${NAME})
+$(help -d ${__name})
 ===============================================================================
 EOF
     }
 
-    # :: ( VARIABLE )
-    _si_display_variable() {
+    # --- [ variable ]
+    display_variable() {
         
-        local from_dumpfile="$(tac ${DUMPFILE} | grep -m1 -E ":\s${NAME}=")"
+        local __from_dumpfile="$(tac ${__dumpfile} | grep -m1 -E ":\s${__name}=")"
 
-        if [[ $from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*${NAME}(.+)$ ]]; then
-            SOURCE="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
+        if [[ $__from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*${__name}(.+)$ ]]; then
+            __source="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
         fi
 
         cat <<EOF
 ===============================================================================
-${BLUE}[+]${RESET} shell-info - ${NAME}
+${__blue}[+]${__reset} shell-info - ${__name}
 ===============================================================================
 
-NAME   : ${NAME}
-TYPE   : ${TYPE}
-SOURCE : ${SOURCE}
+NAME   : ${__name}
+TYPE   : ${__type}
+SOURCE : ${__source}
 
-${NAME}="$(printf '%s\n' "${!NAME}")"
+${__name}="$(printf '%s\n' "${!__name}")"
 ===============================================================================
 EOF
     }
 
-    # :: ( FZF )
-    _si_show_all() {
+    # --- [ fzf ]
+    show_all() {
 
-        # :: Building arrays.
+        # --- building arrays.
 
         local A_ALIASES
         local A_BUILTIN
@@ -212,23 +213,23 @@ EOF
         local _tagged=()
         local x
 
-        # :: ( ALIAS )
+        # --- [ alias ]
         for x in "${A_ALIASES[@]}"; do
             _tagged+=("( alias ) ${x}")
         done
-        # :: ( BUILTIN )
+        # --- [ builtin ]
         for x in "${A_BUILTIN[@]}"; do
             _tagged+=("( builtin ) ${x}")
         done
-        # :: ( FUNCTIONS )
+        # --- [ functions ]
         for x in "${A_FUNCS[@]}"; do
             _tagged+=("( function ) ${x}")
         done
-        # :: ( KEYWORD )
+        # --- [ keyword ]
         for x in "${A_KEYWORD[@]}"; do
             _tagged+=("( keyword ) ${x}")
         done
-        # :: ( VARIABLE )
+        # --- [ variable ]
         for x in "${A_VARS[@]}"; do
             _tagged+=("( variable ) ${x}")
         done
@@ -244,59 +245,59 @@ EOF
 
         case "${_type}" in
             alias)
-                NAME="${_name}"
-                TYPE="${_type}"
-                _si_display_alias
+                __name="${_name}"
+                __type="${_type}"
+                display_alias
                 ;;
             builtin)
-                NAME="${_name}"
-                TYPE="${_type}"
-                _si_display_builtin
+                __name="${_name}"
+                __type="${_type}"
+                display_builtin
                 ;;
             function) 
-                NAME="${_name}"
-                TYPE="${_type}"
-                _si_display_function
+                __name="${_name}"
+                __type="${_type}"
+                display_function
                 ;;
             keyword)
-                NAME="${_name}"
-                TYPE="${_type}"
-                _si_display_keyword
+                __name="${_name}"
+                __type="${_type}"
+                display_keyword
                 ;;
             variable)
-                NAME="${_name}"
-                TYPE="${_type}"
-                _si_display_variable
+                __name="${_name}"
+                __type="${_type}"
+                display_variable
                 ;;
         esac
     }
 
-    # :: ( SOURCED )
-    _si_show_sourced() {
-        sed -nE 's/^[+[:space:]]*[^:]+:[0-9]+:[[:space:]]+(source|\.)[[:space:]]+(.+)$/\2/p' -- "$DUMPFILE"
+    # --- [ sourced ]
+    show_sourced() {
+        sed -nE 's/^[+[:space:]]*[^:]+:[0-9]+:[[:space:]]+(source|\.)[[:space:]]+(.+)$/\2/p' -- "$__dumpfile"
     }
 
-    # :: ( SOURCED TREE )
-    _si_show_sourced_tree() {
+    # --- [ sourced tree ]
+    show_sourced_tree() {
         awk -v OFS='' '
-            # Trim helpers
+            # --- trim helpers
             function ltrim(s){sub(/^[ \t\r\n]+/,"",s);return s}
             function rtrim(s){sub(/[ \t\r\n]+$/,"",s);return s}
             function trim(s){return rtrim(ltrim(s))}
 
-            # Collect only lines that are "source ..." or ". ..." from xtrace:
-            #   ++++ /path/to/file:LINE: source TARGET...
+            # --- collect only lines that are "source ..." or ". ..." from xtrace:
+            # ... ++++ /path/to/file:LINE: source TARGET...
             {
               line = $0
               if (match(line, /^([+]+)[[:space:]]*([^:]+):([0-9]+):[[:space:]]+(source|\.)[[:space:]]+(.*)$/, m)) {
                 n++
-                depth[n]  = length(m[1])         # number of '+' = nesting depth
-                target[n] = trim(m[5])           # what was sourced (as seen)
+                depth[n]  = length(m[1])         # --- number of '+' = nesting depth
+                target[n] = trim(m[5])           # --- what was sourced (as seen)
               }
             }
 
             END {
-              # Determine if each node is the last sibling at its depth
+              # --- determine if each node is the last sibling at its depth.
               for (i=1; i<=n; i++) {
                 last[i] = 1
                 for (j=i+1; j<=n; j++) {
@@ -307,35 +308,35 @@ EOF
                 }
               }
 
-              # Active vertical bars per depth (for nice tree branches)
+              # --- active vertical bars per depth (for nice tree branches).
               for (l=1; l<=256; l++) active[l]=0
               prevd = 0
 
               for (i=1; i<=n; i++) {
                 d = depth[i]
 
-                # Clear deeper actives when we move up the tree
+                # --- clear deeper actives when we move up the tree.
                 for (l=prevd; l>d; l--) active[l]=0
 
-                # Build ancestor prefix: │  if future siblings remain, else spaces
+                # --- build ancestor prefix: │  if future siblings remain, else spaces.
                 prefix = ""
                 for (l=1; l<d; l++) prefix = prefix (active[l] ? "│  " : "   ")
 
-                # Connector for this node
+                # --- connector for this node.
                 connector = (last[i] ? "└─ " : "├─ ")
 
                 print prefix, connector, target[i]
 
-                # Update active bar for this depth
+                # --- update active bar for this depth
                 active[d] = last[i] ? 0 : 1
                 prevd = d
               }
             }
-          ' "$DUMPFILE"
+          ' "$__dumpfile"
     }
 
-    # :: ( HELP )
-    _si_usage() {
+    # --- [ help ]
+    usage() {
         cat <<EOF
 ===============================================================================
 [+] shell-info - Show shell info.
@@ -361,32 +362,32 @@ Example:
 EOF
     }
 
-    # ::::: ( ARGUMENT PARSER ) :::::::::::::::::::::::::::::::::::::::::::::::
+    # ---------- [ argument parser ]
 
-    # :: No arguments.
-    if [[ $# == 0 ]]; then ARGUMENTS_INPUT=("--fzf"); fi
+    # --- no arguments.
+    if [[ $# == 0 ]]; then __args_input=("--fzf"); fi
 
     local i
-    # :: Show help and ignore other arguments.
-    for i in "${ARGUMENTS_INPUT[@]}"; do
-        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then _si_usage; return 0; fi
+    # --- show help and ignore other arguments.
+    for i in "${__args_input[@]}"; do
+        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then usage; return 0; fi
     done
 
-    # :: Execute --fzf and ignore other arguments. 
-    for i in "${ARGUMENTS_INPUT[@]}"; do
-        if [[ "${i}" == "--fzf" ]]; then _si_show_all; return 0; fi
+    # --- execute --fzf and ignore other arguments. 
+    for i in "${__args_input[@]}"; do
+        if [[ "${i}" == "--fzf" ]]; then show_all; return 0; fi
     done
 
-    # :: Execute --sourced and ignore other arguments. 
-    for i in "${ARGUMENTS_INPUT[@]}"; do
-        if [[ "${i}" == "--sourced" ]]; then _si_show_sourced; return 0; fi
+    # --- execute --sourced and ignore other arguments. 
+    for i in "${__args_input[@]}"; do
+        if [[ "${i}" == "--sourced" ]]; then show_sourced; return 0; fi
     done
 
-    # :: Execute --sourced-tree and ignore other arguments. 
-    for i in "${ARGUMENTS_INPUT[@]}"; do
-        if [[ "${i}" == "--sourced-tree" ]]; then _si_show_sourced_tree; return 0; fi
+    # --- execute --sourced-tree and ignore other arguments. 
+    for i in "${__args_input[@]}"; do
+        if [[ "${i}" == "--sourced-tree" ]]; then show_sourced_tree; return 0; fi
     done
 
-    _si_determine_type
+    determine_type
     return 0
 }

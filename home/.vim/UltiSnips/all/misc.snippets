@@ -170,3 +170,18 @@ local __red=$'\033[31m'
 local __reset=$'\033[0m'
 
 endsnippet
+
+# ---------- [ shell - dumpfile ]
+snippet sh_dumpfile "shell - dumpfile" b
+# --- setting up temporary file.
+local __tempdir
+if [[ -d /tmp && -w /tmp && -x /tmp ]]; then
+		__tempdir=/tmp
+else
+		__tempdir="$HOME/tmp"
+		mkdir -p -- "$__tempdir" || return 1
+fi
+
+local __dumpfile="${__tempdir}/<dumpfile>"
+
+endsnippet
