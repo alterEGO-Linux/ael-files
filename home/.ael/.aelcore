@@ -2,11 +2,13 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-01-05 02:23:07 UTC
+# updated       : 2026-01-06 10:15:42 UTC
 # description   : AlterEGO Linux core shell configuration.
 
+# --- required for shell-info function (.ael/shellutils/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
-    export PS4
+export PS4
+
 # ----------/ VARIABLES
 
 LOCAL_AEL_FILES_GIT="${HOME}/.local/share/ael-files"
