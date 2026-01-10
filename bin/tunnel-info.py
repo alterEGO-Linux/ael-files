@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# :: --------------------------------------------------------------------- INFO
-# :: [/bin/tunnel-info.py]
-# :: author        : AlterEgo Linux
-# :: created       : 2025-09-05 20:36:58 UTC
-# :: updated       : 2025-09-05 20:36:58 UTC
-# :: description   : "Display Tunnels/VPN info."
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/tunnel-info.py]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-09-05 20:36:58 UTC
+# updated       : 2026-01-10 12:19:44 UTC
+# description   : Display Tunnels/VPN info.
 
 import os, re, glob, subprocess
 from collections import defaultdict
@@ -13,7 +13,7 @@ from rich.console import Console
 from rich.table import Table
 from rich import box
 
-# :: -------------------- UTILITIES
+# ---------- [ utilities ]
 
 def run(cmd):
     p = subprocess.run(cmd, capture_output=True, text=True)
@@ -23,7 +23,7 @@ def sh_quote(s: str) -> str:
     return "'" + s.replace("'", "'\\''") + "'"
 
 def is_tunnel_iface(iface: str) -> bool:
-    # :: Heuristic via link flags: link/none or POINTOPOINT often indicates a tunnel.
+    # --- via link flags -> link/none or POINTOPOINT often indicates a tunnel.
     rc, out, _ = run(["ip", "-o", "link", "show", "dev", iface])
     if rc != 0 or not out:
         return False
@@ -35,7 +35,7 @@ def is_tunnel_iface(iface: str) -> bool:
         return True
     return False
 
-# :: -------------------- TUNNELS/VPN 
+#  ---------- [ tunnels/vpn ]
 
 IFACE_TUN_RE = re.compile(
     r"^(?:tun\w*|tap\w*|wg\d*|tailscale\d*|zt[0-9a-f]+|ppp\w*|vpn\w*|utun\d*|nordtun)$",
@@ -99,7 +99,7 @@ def pids_touching_iface_userland(iface: str):
 def sudo_pids_touching_iface(iface: str):
     """Match Bash: sudo grep -r <iface> /proc/*/fdinfo | cut -d/ -f3 (non-interactive)."""
 
-    # :: If sudo requires a TTY/password, this will just return empty.
+    # --- if sudo requires a TTY/password, this will just return empty.
     rc, _, _ = run(["sudo", "-n", "true"])
     if rc != 0:
         return []
@@ -159,19 +159,17 @@ def classify_provider(iface: str, cmds: str) -> str:
         return {"wg": "WireGuard", "ppp": "PPP"}.get(lname[:3], "TUN/TAP")
     return "UNDEFINED"
 
-# :: -------------------- MAIN
-
 def main():
     console = Console()
 
-    # :: Collect VPN/tunnel ifaces + IPs
+    # --- collect VPN/tunnel ifaces + IPs
     ifaces = list_vpn_ifaces()
     if not ifaces:
         console.print()
         console.print("[bold yellow][!][/bold yellow] NO TUNNELS, NOR VPN FOUND.")
         return 0
 
-    # :: Build rows: INT / IP / PID / NAME
+    # --- build rows: INT / IP / PID / NAME
     rows = []
     for iface, ip in ifaces:
         pids = pids_touching_iface_userland(iface)
@@ -181,7 +179,7 @@ def main():
         name = classify_provider(iface, cmds_joined)
         rows.append((iface, ip if ip else "-", ",".join(str(p) for p in pids) if pids else "-", name))
 
-    # :: Render table
+    # --- render table.
     table = Table(
         title="[*] Tunnels/VPN info",
         box=box.SIMPLE,

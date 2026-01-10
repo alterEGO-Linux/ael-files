@@ -2,7 +2,7 @@
 # [/ael-files/ael-packages.toml]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-01-05 03:11:08 UTC
+# updated       : 2026-01-10 12:45:25 UTC
 # description   : Packages
 
 [bash]
@@ -190,6 +190,24 @@ included_app  = [
                 "/usr/bin/grcat"
                 ]
 
+[jupyter-notebook]
+url           = "https://github.com/jupyter/notebook"
+description   = "The language-agnostic HTML notebook application for Project Jupyter."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/jupyter-notebook"
+                ]
+
+[less]
+url           = "https://www.greenwoodsoftware.com/less/"
+description   = "A terminal based program for viewing text files."
+repository    = "core"
+included_app  = [
+                "/usr/bin/less",
+                "/usr/bin/lessecho",
+                "/usr/bin/lesskey"
+                ]
+
 [net-tools]
 url           = "http://net-tools.sourceforge.net/"
 description   = "Configuration tools for Linux networking."
@@ -216,6 +234,19 @@ included_app  = [
                 "/usr/bin/ncat",
                 "/usr/bin/nmap",
                 "/usr/bin/nping"
+                ]
+
+[openbsd-netcat]
+url           = "https://salsa.debian.org/debian/netcat-openbsd"
+description   = "TCP/IP swiss army knife. OpenBSD variant."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/nc",
+                "/usr/bin/nc.openbsd",
+                "/usr/bin/netcat"
+                ]
+notes         = [
+                "To have the -e (remote execution) you need to install gnu-netcat from AUR"
                 ]
 
 [pacman]
@@ -278,6 +309,11 @@ included_app  = [
                 "/usr/bin/python3.13",
                 "/usr/bin/python3.13-config"
                 ]
+
+[python-rich]
+url           = "https://github.com/willmcgugan/rich"
+description   = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal."
+repository    = "extra"
 
 [ripgrep]
 url           = "https://github.com/BurntSushi/ripgrep"

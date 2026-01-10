@@ -1,19 +1,39 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/termbin]
-# :author        : AlterEGO Linux
-# :created       : 2023-11-26 17:45:44 UTC
-# :updated       : 2025-07-12 14:37:07 UTC
-# :description   : Netcat-based command-line pastebin.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/termbin]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-11-26 17:45:44 UTC
+# updated       : 2026-01-08 02:20:26 UTC
+# description   : Netcat-based command-line pastebin.
+
+[ -n "${__SOURCED_TERMBIN-}" ] && return
+__SOURCED_TERMBIN=1
 
 termbin() {
 
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
 
-    # :: Verify if any input is provided.
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications cat nc || return 1
+
+    # --- verify if any input is provided.
     if [ -t 0 ] && [ $# -eq 0 ]; then
-        printf '%s\n' "${RED}[!]${RESET} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
+        printf '%s\n' "${__red}[!]${__reset} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
         return 1
     fi
 

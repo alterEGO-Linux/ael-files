@@ -1,37 +1,54 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/snake-env]
-# :author        : alterEGO Linux
-# :created       : 2024-10-23 11:28:49 UTC
-# :updated       : 2025-07-07 18:26:06 UTC
-# :description   : Manage python -m venv.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/snake-env]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2024-10-23 11:28:49 UTC
+# updated       : 2026-01-06 15:00:10 UTC
+# description   : Manage python -m venv.
+
+[ -n "${__SOURCED_SNAKE_ENV:-}" ] && return
+__SOURCED_SNAKE_ENV=1
 
 snake-env() {
 
-    local args=("$@") GREEN RESET YELLOW BLUE RED
-
-    BLUE="\033[34m"
-    GREEN="\033[32m"
-    RED="\033[31m"
-    RESET="\033[0m"
-    YELLOW="\033[33m"
-
+    local __blue=$'\033[34m'
+    local __bold=$'\033[1m'
+    local __green=$'\033[32m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+    local __yellow=$'\033[33m'
+    
     export SNAKE_ENV_DIR="${SNAKE_ENV_DIR:-$HOME/.ael/snake-env}"
     export SNAKE_ENV="${SNAKE_ENV}"
+
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications python grep xargs find || return 1
 
     if [ ! -d "${SNAKE_ENV_DIR}" ]; then
         mkdir "${SNAKE_ENV_DIR}"
     fi
 
-    snake-unsetter() {
+    snake_unsetter() {
         unset SNAKE_ENV
         unset SNAKE_ENV_DIR
         unset SNAKE_ENV_ACTIVE
-        unset -f list-environments
-        unset -f list-all-environments
-        unset -f snake-activate
-        unset -f snake-create
-        unset -f snake-cd
+        unset -f snake_activate
+        unset -f snake_create
+        unset -f list_environments
+        unset -f list_all_environments
+        unset -f snake-go
         unset -f snake-exit
         unset -f snake-info
         unset -f snake-install-jupyter
@@ -39,37 +56,38 @@ snake-env() {
         unset -f snake-notebook
         unset -f snake-upgrade
         unset -f snake-usage
-        unset -f snake-unsetter
+        unset -f check_applications
+        unset -f snake_unsetter
         [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
     }
 
-    snake-activate() {
+    snake_activate() {
 
         if [ ! -d "${SNAKE_ENV_DIR}/${SNAKE_ENV}" ]; then
-            echo -e "${RED}[!]${RESET} Environment ${SNAKE_ENV} does not exists."
-            snake-unsetter
+            printf '%s\n' "${__red}[!]${__reset} Environment ${SNAKE_ENV} does not exists."
+            snake_unsetter
 
         else
-            echo -e "${BLUE}[-]${RESET} Starting python environment: ${SNAKE_ENV}."
+            printf '%s\n' "${__blue}[*]${__reset} Starting python environment: ${SNAKE_ENV}."
 
             if ! grep -q "$(readlink -f $(command -v python))" ${SNAKE_ENV_DIR}/${SNAKE_ENV}/pyvenv.cfg; then
-                echo -e "${RED}[!]${RESET} Outdated environment. Run snake-upgrade."
+                printf '%s\n' "${__red}[!]${__reset} Outdated environment. Run snake-upgrade."
             fi
 
             source "${SNAKE_ENV_DIR}/${SNAKE_ENV}/bin/activate"
 
-            # :: ( PROMPT )
+            # --- [ prompt ]
             prompt_command() {
                 history -a
                 local date_now="$(date "+%F %H:%M:%S %Z")"
 
-                # :/TTY won't show unicode character #10095.
+                # --- TTY won't show unicode character #10095.
                 if tty | grep pts &>/dev/null; then
 
-                    PS1="\[${RESET}\]\[${GREEN}\](snake-env: ${SNAKE_ENV})-[\[${RESET}\]\w\[${GREEN}\]] • \[$date_now\]\n\[${GREEN}\]❯ \[${RESET}\]"
+                    PS1="\[${__reset}\]\[${__green}\](snake-env: ${SNAKE_ENV})-[\[${__reset}\]\w\[${__green}\]] • \[$date_now\]\n\[${__green}\]❯ \[${__reset}\]"
 
                 else
-                    PS1="\[${RESET}\]\[${GREEN}\](snake-env: ${SNAKE_ENV})-[\[${RESET}\]\w\[${GREEN}\]] • \[$date_now\]\n\[${GREEN}\]> \[${RESET}\]"
+                    PS1="\[${__reset}\]\[${__green}\](snake-env: ${SNAKE_ENV})-[\[${__reset}\]\w\[${__green}\]] • \[$date_now\]\n\[${__green}\]> \[${__reset}\]"
                 fi
 
                 export PS1
@@ -80,41 +98,41 @@ snake-env() {
         fi
     }
 
-    snake-cd() {
+    snake-go() {
         cd "${SNAKE_ENV_DIR}/${SNAKE_ENV}"
     }
 
-    snake-create() {
-        local NEW_ENV="${SNAKE_ENV_DIR}/${SNAKE_ENV}"
-        if [ -d "${NEW_ENV}" ]; then
-            echo -e "${RED}[!]${RESET} Snake Environment ${SNAKE_ENV} already exists."
+    snake_create() {
+        local __new_env="${SNAKE_ENV_DIR}/${SNAKE_ENV}"
+        if [ -d "${__new_env}" ]; then
+            printf '%s\n' "${__red}[!]${__reset} Snake Environment ${SNAKE_ENV} already exists."
         else
-            python -m venv "${NEW_ENV}"
-            echo -e "${BLUE}[-]${RESET} Snake Environment ${SNAKE_ENV} created."
+            python -m venv "${__new_env}"
+            printf '%s\n' "${__blue}[*]${__reset} Snake Environment ${SNAKE_ENV} created."
         fi
     }
 
     snake-exit() {
-        echo -e "${YELLOW}[!]${RESET} Quitting python environment: ${SNAKE_ENV}."
+        printf '%s\n' "${__yellow}[!]${__reset} Quitting python environment: ${SNAKE_ENV}."
         deactivate
-        snake-unsetter
+        snake_unsetter
     }
 
     snake-info() {
 
-        local pkgs=()
+        local __pkgs=()
         while IFS= read -r line; do
-            pkgs+=("$line")
+            __pkgs+=("$line")
         done < <(pip freeze 2>/dev/null)
 
         echo "Info: snake-env \"${SNAKE_ENV}\""
         echo "    Env. Path     : ${SNAKE_ENV_DIR}/${SNAKE_ENV}"
         echo "    Python Path   : $(command -v python)"
 
-        if [ "${#pkgs[@]}" -gt 0 ]; then
-            echo "    Installed Pkg : ${pkgs[0]}"
-            for ((i=1; i<${#pkgs[@]}; i++)); do
-                echo "                    ${pkgs[i]}"
+        if [ "${#__pkgs[@]}" -gt 0 ]; then
+            echo "    Installed Pkg : ${__pkgs[0]}"
+            for ((i=1; i<${#__pkgs[@]}; i++)); do
+                echo "                    ${__pkgs[i]}"
             done
         else
             echo "    Installed Pkg : (none)"
@@ -123,13 +141,13 @@ snake-env() {
 
     snake-install-jupyter() {
 
-        # :/ref/ https://janakiev.com/blog/jupyter-virtual-envs/
+        # --- ref. <https://janakiev.com/blog/jupyter-virtual-envs/>
 
         if [ -n $(command -v jupyter-notebook) ]; then
             if pip freeze | grep -q "ipykernel"; then
-                echo -e "${YELLOW}[-]${RESET} Module ipykernel for Jupyter already installed."
+                printf '%s\n' "${__yellow}[!]${__reset} Module ipykernel for Jupyter already installed."
             else
-                echo -e "${BLUE}[-]${RESET} Installing ipykernel for Jupyter."
+                printf '%s\n' "${__blue}[*]${__reset} Installing ipykernel for Jupyter."
                 pip install ipykernel
             fi
             python -m ipykernel install --user --name="${SNAKE_ENV}"
@@ -172,48 +190,54 @@ EOF
             fi
 
         else
-            echo -e "${RED}[!]${RESET} Jupyter not installed!"
+            printf '%s\n' "${__red}[!]${__reset} Jupyter not installed!"
+            check_applications jypyter-notebook || return 1
         fi
     }
 
     snake-install-requirements() {
 
-        local REQUIREMENTS="${SNAKE_ENV_DIR}/${SNAKE_ENV}/requirements.txt"
+        local __requirements="${SNAKE_ENV_DIR}/${SNAKE_ENV}/requirements.txt"
         if [ "${#}" > 0 ]; then
-            cp "${1}" "${REQUIREMENTS}"
-            pip install -r "${REQUIREMENTS}"
+            cp "${1}" "${__requirements}"
+            pip install -r "${__requirements}"
+        elif [[ -e "${__requirements}" ]]; then
+            pip install -r "${__requirements}"
         else
-            echo -e "${RED}[!]${RESET} You must provide a valid requirements file."
+            printf '%s\n' "${__red}[!]${__reset} You must provide a valid requirements file."
         fi
         }
 
     snake-notebook() {
+
+        check_applications jupyter-notebook || return 1
+
         if [[ -e "${SNAKE_ENV_DIR}/${SNAKE_ENV}/${SNAKE_ENV}.ipynb" ]]; then
-           jupyter-notebook "${SNAKE_ENV_DIR}/${SNAKE_ENV}/${SNAKE_ENV}.ipynb" &
+           jupyter-notebook --allow-root "${SNAKE_ENV_DIR}/${SNAKE_ENV}/${SNAKE_ENV}.ipynb" &
         fi
         }
 
-    list-all-environments() {
+    list_all_environments() {
 
-        echo -e "${BLUE}[-]${RESET} Fetching ALL python environments' list:"
+        printf '%s\n' "${__blue}[*]${__reset} Fetching ALL python environments:"
 
-        environments=$(find ~ -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null)
+        local __environments=$(find ~ -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null)
 
-        if [[ -n "${environments}" ]]; then
-            echo "${environments}" | xargs dirname
+        if [[ -n "${__environments}" ]]; then
+            echo "${__environments}" | xargs dirname
         else
             echo "(none found)"
         fi
     }
 
-    list-environments() {
+    list_environments() {
 
-        echo -e "${BLUE}[-]${RESET} Fetching python environments' list:"
+        printf '%s\n' "${__blue}[*]${__reset} Fetching python environments"
 
-        environments=$(find "${SNAKE_ENV_DIR}" -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null)
+        local __environments=$(find "${SNAKE_ENV_DIR}" -type d -name 'bin' -exec test -e '{}/python' ';' -print 2>/dev/null)
 
-        if [[ -n "${environments}" ]]; then
-            echo "${environments}" | xargs dirname | xargs -n1 basename
+        if [[ -n "${__environments}" ]]; then
+            echo "${__environments}" | xargs dirname | xargs -n1 basename
         else
             echo "(none found)"
         fi
@@ -246,7 +270,7 @@ Examples:
   snake-env --listall              # List all Python environments on the system
 
 Internal commands:
-  snake-cd                         Change directory to the virtual environment.
+  snake-go                         Change directory to the virtual environment.
   snake-exit                       Exit environment.
   snake-info                       Show environment informations.
   snake-install-jupyter            Install Jypiter notebook.
@@ -258,30 +282,37 @@ Internal commands:
 EOF
     }
 
-    # :: If already in a snake-env session.
+    # --- if already in a snake-env session.
     if [[ ${SNAKE_ENV_ACTIVE} == 'true' ]]; then
-        echo -e "${RED}[!]${RESET} already in a session."
+        printf '%s\n' "${__red}[!]${__reset} already in a session."
         return 1
     fi
 
-    # :: Show help if no arguments.
+    # --- show help if no arguments.
     if [[ "${#}" -eq 0 ]]; then
         snake-usage
-        snake-unsetter
+        snake_unsetter
         return 1
     fi
 
-    # :: Show help and ignore other arguments.
+    # --- Show help and ignore other arguments.
+    local arg
     for arg in "${@}"; do
         if [[ "${arg}" == "-h" || "${arg}" == "--help" ]]; then
             snake-usage
-            snake-unsetter
+            snake_unsetter
             return 0
         fi
     done
 
-    # ::( argument parser )
-    source ${HOME}/.ael/shellutils/utils/argument-parser
+    # ---------- [ argument parser ]
+
+    # --- Verify if argument-parser exists.
+    if [[ ! -n ${__SOURCED_ARGUMENT_PARSER} ]]; then
+        printf '%s\n' "${__red}[!]${__reset} Snake-env might not work as intended without alterEGO Linux argument-parser."
+        printf '%s\n' "    Available at https://github.com/alterEGO-Linux/ael-files/blob/main/shellutils/utils/argument-parser"
+        printf '%s\n' "    Then source it in your .bashrc or .profile, if you are not using alterEGO Linux."
+    fi
 
     local ARGUMENT_INPUT=("${@}")
     declare -A activate=([short]="-a" [long]="--activate" [value_required]=true [conflicts_with]="create")
@@ -300,29 +331,29 @@ EOF
             -a|--activate)
                 shift
                 SNAKE_ENV="${1}"
-                snake-activate
-                unset -f snake-activate
-                unset -f snake-create
-                unset -f list-environments
-                unset -f list-all-environments
+                snake_activate
+                trap 'unset -f snake_ativate \
+                      unset -f snake_create \
+                      unset -f list_environments \
+                      unset -f list_all_environments; trap - RETURN' RETURN
                 ;;
             -c|--create)
                 shift
                 SNAKE_ENV="${1}"
-                snake-create
-                snake-unsetter
+                snake_create
+                snake_unsetter
                 ;;
             -d|--directory)
                 shift
                 SNAKE_ENV_DIR="${1}"
                 ;;
             -l|--list)
-                list-environments
-                snake-unsetter
+                list_environments
+                snake_unsetter
                 ;;
             --listall)
-                list-all-environments
-                snake-unsetter
+                list_all_environments
+                snake_unsetter
                 ;;
       esac
       shift

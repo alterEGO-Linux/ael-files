@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/utils/argument-parser]
-# :author        : AlterEGO Linux
-# :created       : 2025-06-27 10:50:27 UTC
-# :updated       : 2025-07-07 17:53:41 UTC
-# :description   : Argument parser utility.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/utils/argument-parser]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-06-27 10:50:27 UTC
+# updated       : 2026-01-07 10:48:43 UTC
+# description   : Argument parser utility.
+
+[ -n "${__SOURCED_ARGUMENT_PARSER-}" ] && return
+__SOURCED_ARGUMENT_PARSER=1
 
 argument-parser() {
 

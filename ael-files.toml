@@ -2,7 +2,7 @@
 # [ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2025-12-02 03:09:21 UTC
+# updated       : 2026-01-09 11:03:19 UTC
 # description   : AEL files.
 
 [home.LnZpbXJj]
@@ -14,6 +14,10 @@ description = "vim configuration file."
 filename    = "/bin/busy"
 description = "When the boss comes around to look busy."
 
+[bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
+filename    = "/bin/check-applications.sh"
+description = "Check applications' availability."
+
 [bin.ZG9ja2VyLWluZm8ucHk-]
 filename    = "/bin/docker-info.py"
 type        = "bin"
@@ -23,6 +27,10 @@ description = "Docker status helper."
 filename    = "/bin/extractor.sh"
 type        = "bin"
 description = "Compressed files universal extractor."
+
+[bin.dG11eHBsdXMuc2g-]
+filename    = "/bin/tmuxplus.sh"
+description = "TMUX wrapper."
 
 [bin.dHVubmVsLWluZm8ucHk-]
 filename    = "/bin/tunnel-info.py"
