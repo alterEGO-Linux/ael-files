@@ -1,19 +1,34 @@
 #!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/whoisweb]
-# :author        : alterEGO Linux
-# :created       : 2023-08-01 19:55:12 UTC
-# :updated       : 2025-07-07 20:08:14 UTC
-# :description   : Query WHOIS web if <whois> port 43 is blocked on your network.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/shellutils/whoisweb]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2023-08-01 19:55:12 UTC
+# updated       : 2026-01-10 23:51:13 UTC
+# description   : Query WHOIS web if <whois> port 43 is blocked on your network.
 
 whoisweb() {
 
-    local RED RESET
-    RED=$'\033[31m'
-    RESET=$'\033[0m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+        if [[ -e ${HOME}/.ael/bin/check-applications.sh ]]; then
+            bash ${HOME}/.ael/bin/check-applications.sh "${@}"
+        else
+            for app in "${@}"; do
+                if ! command -v $app >/dev/null 2>&1; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications curl jq sed || return 1
 
     if [[ -z "${@}" ]]; then
-        printf '%s\n' "${RED}[!]${RESET} You must provide a valid URL."
+        printf '%s\n' "${__red}[!]${__reset} You must provide a valid URL."
     else
         command curl --silent https://whoisjs.com/api/v1/${1} \
         | command jq ".raw" \

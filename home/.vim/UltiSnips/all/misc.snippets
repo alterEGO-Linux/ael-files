@@ -119,17 +119,16 @@ endsnippet
 # ---------- [ shell - check_applications ]
 snippet sh_check_applications "shell - check_applications" b
 check_applications() {
-		if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-				check-applications "${@}"
-		else
-				local app
-				for app in $@; do
-						if ! command -v $app; then
-								printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-								return 1
-						fi
-				done
-		fi
+    if [[ -e ${HOME}/.ael/bin/check-applications.sh ]]; then
+        bash ${HOME}/.ael/bin/check-applications.sh "${@}"
+   else
+        for app in "${@}"; do
+            if ! command -v $app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                return 1
+            fi
+        done
+    fi
 }
 check_applications <applications here> || return 1
 
