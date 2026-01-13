@@ -9,10 +9,14 @@
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# ----------/ VARIABLES
+# ---------- [ variables ]
 
 LOCAL_AEL_FILES_GIT="${HOME}/.local/share/ael-files"
 LOCAL_AEL_DIRECTORY="${HOME}/.ael"
+
+export __AEL_DIR="${HOME}/.ael"
+export __AEL_BIN="${__AEL_DIR}/bin"
+export __AEL_DATA="${__AEL_DIR}/data"
 
 # :: ---------- SOURCE MODULES
 

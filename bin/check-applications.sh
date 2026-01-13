@@ -3,7 +3,7 @@
 # [/.ael/bin/check-applications.sh]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2026-01-09 11:08:55 UTC
-# updated       : 2026-01-09 11:08:55 UTC
+# updated       : 2026-01-11 08:14:35 UTC
 # description   : Check applications' availability.
 
 __blue=$'\033[34m'
@@ -23,8 +23,8 @@ if (( ${#__missing[@]} > 0 )); then
     for app in "${__missing[@]}"; do
         printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
 
-        __converter="${HOME}/.ael/bin/convert-toml-json.py"
-        __packages="${HOME}/.local/share/ael-files/ael-packages.toml"
+        __converter="${__AEL_BIN}/convert-toml-json.py"
+        __packages="${__AEL_DATA}/ael-packages.toml"
         if [ -e "${__converter}" ] && [ -f "${__packages}"  ]; then
             mapfile -t pkgs < <(
                 python "$__converter" "$__packages" |
