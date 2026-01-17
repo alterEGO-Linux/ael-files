@@ -442,7 +442,7 @@
   augroup END
 
   function! ToggleBionic() abort
-    " // Turn off if already on.
+    " --- turn off if already on.
     if exists('w:bionic_head_id')
       call matchdelete(w:bionic_head_id)
       call matchdelete(w:bionic_tail_id)
@@ -591,24 +591,23 @@
   " --- silenthill <https://github.com/evilwaveforms/silenthill.vim>
   " colorscheme silenthill
 
-
   " --- general
   
-  highlight ColorColumn     cterm=NONE       ctermfg=NONE      ctermbg=235      " // Column 80.
-  highlight CursorLine      cterm=NONE       ctermfg=NONE      ctermbg=235      " // Cursor Line.
-  highlight LineHighlight   cterm=NONE       ctermfg=0         ctermbg=10       " // Highlights lines. Custom.
-  highlight LineNr          cterm=NONE       ctermfg=248       ctermbg=235      " // Linenumber column.
-  highlight MatchParen      cterm=NONE       ctermfg=NONE      ctermbg=NONE     " // Parenthesis/bracket.
-  highlight Normal          cterm=NONE       ctermfg=NONE      ctermbg=NONE     " // Set the background to transparent with cterm(fg/bg) to NONE.
-  highlight Search          cterm=NONE       ctermfg=16        ctermbg=178      " // Search results.
-  highlight StatusLine      cterm=NONE       ctermfg=248       ctermbg=235      " // Status Line
-  highlight StatusLineNC    cterm=NONE       ctermfg=236       ctermbg=235      " // Non-active Status Line.
-  highlight Visual          cterm=NONE       ctermfg=16        ctermbg=11       " // Visual selection.
+  highlight ColorColumn     cterm=NONE       ctermfg=NONE      ctermbg=235      " --- Column 80.
+  highlight CursorLine      cterm=NONE       ctermfg=NONE      ctermbg=235      " --- Cursor Line.
+  highlight LineHighlight   cterm=NONE       ctermfg=0         ctermbg=10       " --- Highlights lines. Custom.
+  highlight LineNr          cterm=NONE       ctermfg=248       ctermbg=235      " --- Linenumber column.
+  highlight MatchParen      cterm=NONE       ctermfg=NONE      ctermbg=NONE     " --- Parenthesis/bracket.
+  highlight Normal          cterm=NONE       ctermfg=NONE      ctermbg=NONE     " --- Set the background to transparent with cterm(fg/bg) to NONE.
+  highlight Search          cterm=NONE       ctermfg=16        ctermbg=178      " --- Search results.
+  highlight StatusLine      cterm=NONE       ctermfg=248       ctermbg=235      " --- Status Line
+  highlight StatusLineNC    cterm=NONE       ctermfg=236       ctermbg=235      " --- Non-active Status Line.
+  highlight Visual          cterm=NONE       ctermfg=16        ctermbg=11       " --- Visual selection.
 
   " --- prog. language
-  highlight Comment         cterm=NONE       ctermfg=109       ctermbg=NONE     " // Comments.
-  highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " // Function.
-  highlight Statement       cterm=ITALIC     ctermfg=110       ctermbg=NONE     " // Statement
+  highlight Comment         cterm=NONE       ctermfg=109       ctermbg=NONE     " --- Comments.
+  highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " --- Function.
+  highlight Statement       cterm=ITALIC     ctermfg=110       ctermbg=NONE     " --- Statement
 
   " :-( html/md )
   " :(ref) http://vimdoc.sourceforge.net/htmldoc/syntax.html
