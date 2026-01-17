@@ -2,7 +2,7 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-01-06 15:33:24 UTC
+# updated       : 2026-01-17 06:10:48 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
@@ -65,7 +65,7 @@ export EDITOR=${VISUAL}
 # :-----/ PATH /-----:
 # :ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
 
-PATH="${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
+PATH="${HOME}/.ael/bin:${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
 PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
 
 export PATH
