@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------ INFO
-# [/ael-files/ael-packages.toml]
+# [/.ael/data/ael-packages.toml]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-01-10 12:45:25 UTC
+# updated       : 2026-01-17 11:08:52 UTC
 # description   : Packages
 
 [bash]
@@ -135,6 +135,14 @@ included_app  = [
                 "/usr/bin/wcurl"
                 ]
 
+[dash]
+url           = "http://gondor.apana.org.au/~herbert/dash/"
+description   = "POSIX compliant shell that aims to be as small as possible."
+repository    = "core"
+included_app  = [
+                "/usr/bin/dash"
+                ]
+
 [ffmpeg]
 url           = "https://ffmpeg.org"
 description   = "Complete solution to record, convert and stream audio and video."
@@ -208,6 +216,14 @@ included_app  = [
                 "/usr/bin/lesskey"
                 ]
 
+[mpv]
+url           = "https://mpv.io/"
+description   = "a free, open source, and cross-platform media player."
+repository    = "extra"
+icluded_app   = [
+                "/usr/bin/mpv"
+                ]
+
 [net-tools]
 url           = "http://net-tools.sourceforge.net/"
 description   = "Configuration tools for Linux networking."
@@ -249,6 +265,23 @@ notes         = [
                 "To have the -e (remote execution) you need to install gnu-netcat from AUR"
                 ]
 
+[openssh]
+url           = "https://www.openssh.com/portable.html"
+description   = "SSH protocol implementation for remote login, command execution and file transfer."
+repository    = "core"
+included_app  = [
+                "/usr/bin/findssl.sh",
+                "/usr/bin/scp",
+                "/usr/bin/sftp",
+                "/usr/bin/ssh",
+                "/usr/bin/ssh-add",
+                "/usr/bin/ssh-agent",
+                "/usr/bin/ssh-copy-id",
+                "/usr/bin/ssh-keygen",
+                "/usr/bin/ssh-keyscan",
+                "/usr/bin/sshd"
+                ]
+
 [pacman]
 url           = "https://www.archlinux.org/pacman/"
 description   = "A library-based package manager with dependency support."
@@ -265,6 +298,14 @@ included_app  = [
                 "/usr/bin/repo-remove",
                 "/usr/bin/testpkg",
                 "/usr/bin/vercmp"
+                ]
+
+[pcmanfm-qt]
+url           = "https://github.com/lxqt/pcmanfm-qt"
+description   = "The LXQt file manager, Qt port of PCManFM."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/pcmanfm-qt"
                 ]
 
 [procps-ng]
@@ -589,6 +630,21 @@ included_app  = [
                 "/usr/bin/vimdiff",
                 "/usr/bin/vimtutor",
                 "/usr/bin/xxd"
+                ]
+
+[xdg-utils]
+url           = "https://gitlab.freedesktop.org/xdg/xdg-utils"
+description   = "Command line tools that assist applications with a variety of desktop integration tasks."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/xdg-desktop-icon",
+                "/usr/bin/xdg-desktop-menu",
+                "/usr/bin/xdg-email",
+                "/usr/bin/xdg-icon-resource",
+                "/usr/bin/xdg-mime",
+                "/usr/bin/xdg-open",
+                "/usr/bin/xdg-screensaver",
+                "/usr/bin/xdg-settings"
                 ]
 
 [yt-dlp]

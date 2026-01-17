@@ -2,18 +2,16 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-01-17 06:10:48 UTC
+# updated       : 2026-01-17 10:47:06 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# ---------- [ variables ]
+# -------------------- ( variables )
 
-LOCAL_AEL_FILES_GIT="${HOME}/.local/share/ael-files"
-LOCAL_AEL_DIRECTORY="${HOME}/.ael"
-
+export __AEL_FILES="${HOME}/.local/share/ael-files"
 export __AEL_DIR="${HOME}/.ael"
 export __AEL_BIN="${__AEL_DIR}/bin"
 export __AEL_DATA="${__AEL_DIR}/data"
@@ -354,174 +352,28 @@ git_status() {
   }
   alias git-status='git_status'
 
-# ----------/ SHELLUTILS
+# -------------------- ( shellutils )
 
-# --- Shellutils sourced by default.
-#     Comment out to disable any of them.
-SHELLUTILS=(
+shopt -s globstar dotglob nullglob
 
-    # --- ( ansi-colors ) -> ANSI colors helper.
-    ansi-colors
+__shellutils=()
+for f in ${HOME}/.ael/shellutils/**; do
+  [[ -f "$f" ]] && __shellutils+=("$f")
+done
 
-    # --- ( deep-nmap ) -> Deep Nmap scan.
-    deep-nmap
+shopt -u globstar dotglob nullglob
 
-    # --- ( deep-scan ) -> Scans IP with rustscan and nmap.
-    deep-scan
+for __shellutil in "${__shellutils[@]}"; do
+    source $__shellutil
+done
 
-    # --- ( delete ) -> Delete directories.
-    delete
-
-    # --- ( directory-size ) -> Check size of biggest directories.
-    directory-size
-
-    # --- ( docker-info ) -> Docker status helper.
-    docker-info
-
-    # --- ( elevate ) -> Repeats last command with sudo, if forgotten.
-    elevate
-
-    # --- ( extractor ) -> Compressed files universal extractor.
-    extractor
-
-    # --- ( getmp3 ) -> Extracting audio (.mp3) from video.
-    getmp3
-
-    # --- ( goto ) -> Simple directory bookmarks system.
-    goto
-
-    # --- ( ispeed ) -> Internet connection speed meter.
-    ispeed
-
-    # --- ( kali ) ->
-    kali
-
-    # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
-    pacman-reset
-
-    # --- ( ports ) -> Displays open ports.
-    ports
-
-    # --- ( processes ) -> Show processes.
-    processes
-
-    # --- ( ps-grep ) -> Show processes for a particular application.
-    ps-grep
-
-    # --- ( py-cleaner ) -> Clean python current directory.
-    py-cleaner
-
-    # --- ( py-server ) -> Create a Python HTTP server.
-    py-server
-
-    # --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
-    reset-time
-
-    # --- ( shell-info ) -> Show shell info.
-    shell-info
-
-    # --- ( show-utc ) -> Show UTC time.
-    show-utc
-
-    # --- ( snake-env ) -> Manage python -m venv.
-    snake-env
-
-    # --- ( termbin ) -> Netcat-based command-line pastebin.
-    termbin
-
-    # --- ( tmuxplus ) -> TMUX wrapper.
-    tmuxplus
-
-    # --- ( tunnel-info ) -> Display tunnel + VPN info.
-    tunnel-info
-
-    # --- ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
-    whoisweb
-
-    # --- ( utils/ael-fzf ) -> FZF wrapper.
-    # ... Utility wrapper around FZF, commenting out might keep other shellutils
-    # ... from working properly.
-    utils/ael-fzf
-
-    # --- ( utils/argument-parser ) -> Argument parser utility.
-    # ... Commenting out might keep other shellutils from working properly.
-    utils/argument-parser
-
-    # --- ( utils/check-applications ) -> A more verbose command -v.
-    utils/check-applications
-)
-
-source_shellutils() {
-
-    local SHELLUTILS_SOURCE
-    local SHELLUTILS_DIRECTORY
-    local _shellutils_as_symlinks
-    local _shellutils_copy_updated
-    local shellutil
-    local src dst
-
-    SHELLUTILS_SOURCE="${LOCAL_AEL_FILES_GIT}/shellutils"
-    SHELLUTILS_DIRECTORY="${LOCAL_AEL_DIRECTORY}/shellutils"
-    _shellutils_as_symlinks=true
-    _shellutils_copy_updated=true
-
-    for d in utils; do
-        mkdir -p "$SHELLUTILS_DIRECTORY"/${d}
-    done
-
-    for shellutil in "${SHELLUTILS[@]}"; do
-
-        src="${SHELLUTILS_SOURCE}/${shellutil}"
-        dst="${SHELLUTILS_DIRECTORY}/${shellutil}"
-
-        [ -e "$src" ] || continue
-
-        # --- Symlink
-        if [ "${_shellutils_as_symlinks}" == true  ]; then
-            # --- Verify if symlink.
-            if [ -L "$dst" ]; then
-                # --- Verify if dst points somewhere else, fix it.
-                if [ "$(readlink -f -- "$dst")" != "$src" ]; then
-                    ln -sfn "$src" "$dst"
-                fi
-            else
-                # --- remove regular file if exist and create symlink.
-                [ -e "$dst" ] && rm -rf -- "$dst"
-                ln -s "$src" "$dst"
-            fi
-        else
-            # --- remove symlink if exist.
-            [ -L "$dst" ] && rm -f -- "$dst"
-
-            if [ -f "$dst" ]; then
-                # --- keep copy updated?
-                if [ "${_shellutils_copy_updated}" == true ]; then
-                    if [ "$(readlink -f -- "$dst")" != "$(readlink -f -- "$src")" ]; then
-                        # --- copy only if content differs.
-                        if ! cmp -s "$src" "$dst"; then
-                            cp -f "$src" "$dst"
-                        fi
-                    fi
-                fi
-            else
-                # --- make a copy.
-                cp "$src" "$dst"
-            fi
-        fi
-
-        [ -f "$dst" ] && . "$dst"
-
-    done
-}
-source_shellutils
-
-[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
-[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa
-[ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
-[ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
-[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
-[ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
-[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
-[ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
-[ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
-[ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate
+#[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
+#[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa
+#[ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
+#[ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
+#[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
+#[ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
+#[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
+#[ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
+#[ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
+#[ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate
