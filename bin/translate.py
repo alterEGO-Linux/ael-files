@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/translate.py]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2026-01-22 08:03:05 UTC
+# updated       : 2026-01-22 08:03:05 UTC
+# description   : Translate using Google translate.
+
 import argparse
 import sys
 import requests
 from typing import Tuple
 
-# Try Rich
+# --- try rich module.
 try:
     from rich.console import Console
     from rich.table import Table
@@ -72,14 +79,12 @@ def print_rich_table(original: str, src: str, translated: str, tgt: str):
     table.add_row(f"Translation ({tgt})", translated)
 
 
-    # Print a horizontal line of that width
+    # --- print a horizontal line of that width.
     console.print(Rule(style="cyan"), end="")
 
     console.print(table)
 
     console.print(Rule(style="cyan"))
-
-    # console.print(table)
 
 def print_plain(original: str, src: str, translated: str, tgt: str):
     print(f"Original ({src}) :  {original}")

@@ -2,7 +2,7 @@
 # [ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-01-09 11:03:19 UTC
+# updated       : 2026-01-22 08:36:20 UTC
 # description   : AEL files.
 
 [home.LnZpbXJj]
@@ -10,8 +10,8 @@ filename    = "/.vimrc"
 type        = "vim/config"
 description = "vim configuration file."
 
-[bin.YnVzeQ--]
-filename    = "/bin/busy"
+[bin.YnVzeS5zaA--]
+filename    = "/bin/busy.sh"
 description = "When the boss comes around to look busy."
 
 [bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
@@ -31,6 +31,10 @@ description = "Compressed files universal extractor."
 [bin.dG11eHBsdXMuc2g-]
 filename    = "/bin/tmuxplus.sh"
 description = "TMUX wrapper."
+
+[bin.dHJhbnNsYXRlLnB5]
+filename    = "/bin/translate.py"
+description = "Translate using Google translate."
 
 [bin.dHVubmVsLWluZm8ucHk-]
 filename    = "/bin/tunnel-info.py"
@@ -139,6 +143,10 @@ description = "Netcat-based command-line pastebin."
 [shellutils.dG11eHBsdXM-]
 filename    = "shellutils/tmuxplus"
 description = "TMUX wrapper."
+
+[shellutils.dHJhbnNsYXRl]
+filename    = "/shellutils/translate"
+description = "Translate using Google translate."
 
 [shellutils.dHVubmVsLWluZm8-]
 filename    = "/shellutils/tunnel-info"

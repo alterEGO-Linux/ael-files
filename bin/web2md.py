@@ -29,7 +29,10 @@ import requests
 def download_html(url: str) -> str:
     """Download HTML content from a URL and return it as text."""
     try:
-        resp = requests.get(url, timeout=30)
+        header = {
+            "User-Agent": "convert-web-md/1.0 (https://github.com/alterEGO-Linux;)"
+        }
+        resp = requests.get(url, headers=header, timeout=30)
         resp.raise_for_status()
     except requests.RequestException as e:
         print(f"[ERROR] Failed to download {url}: {e}", file=sys.stderr)

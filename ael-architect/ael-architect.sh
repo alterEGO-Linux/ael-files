@@ -3,34 +3,58 @@
 # [/ael-architect/ael-architect.sh]
 # author        : Pascal Malouin @https://github.com/alterEGO-Linux
 # created       : 2026-01-17 04:32:50 UTC
-# updated       : 2026-01-17 04:32:50 UTC
+# updated       : 2026-01-23 04:58:31 UTC
 # description   : Post Arch Linux install
 
 set -euo pipefail
 
-# --- ( default configuration )
+__blue=$'\033[34m'
+__bold=$'\033[1m'
+__red=$'\033[31m'
+__reset=$'\033[0m'
+__yellow=$'\033[33m'
 
-__aelfiles_directory="${HOME}/.local/share/ael-files"
-__ael_directory="${HOME}/.ael"
+# -------------------- [ default configuration ]
 
-# --- scripts (/bin)
-__aelfiles_bin_directory="${__aelfiles_directory}/bin"
-__ael_bin_directory="${__ael_directory}/bin"
-__ael_bin_applications=(
-                        check-applications.sh
-                        convert-toml-json.py
-                        extractor.sh
-                        tmuxplus.sh
-                        tunnel-info.py
-                       )
-__ael_bin_symlinked=false
-__ael_bin_updated_copy=true
+AEL_USER="ghost"
+AEL_USER_HOME="/home/${AEL_USER}"
+AELFILES_GIT="https://github.com/alterEGO-Linux/ael-files.git"
+AELFILES_DIRECTORY="${AEL_USER_HOME}/.local/share/ael-files"
+AEL_DIRECTORY="${AEL_USER_HOME}/.ael"
 
-# --- shellutils (/shellutils)
+# -------------------- [ scripts (/bin) ]
+AEL_BIN_DIRECTORY="${AELFILES_DIRECTORY}/bin"
+AEL_BIN_DIRECTORY="${AEL_DIRECTORY}/bin"
+AEL_BIN_APPS=(
+    # --- ( busy.sh ) -> Look busy when the boss comes around.
+    busy.sh
 
-__aelfiles_shellutils_directory="${__aelfiles_directory}/shellutils"
-__ael_shellutils_directory="${__ael_directory}/shellutils"
-__shellutils=(
+    # --- ( check-applications.sh ) -> Check applications' availability.
+    check-applications.sh
+    
+    # --- ( converst-toml-json.py ) -> Convert TOML -> JSON
+    convert-toml-json.py
+
+    # --- ( extractor.sh ) -> Compressed files universal extractor.
+    extractor.sh
+
+    # --- ( tmuxplus.sh ) -> TMUX wrapper.
+    tmuxplus.sh
+    
+    # --- ( translate.py) -> Translate using Google translate.
+    translate.py
+
+    # --- ( tunnel-info.py ) ->  Display Tunnels/VPN info.
+    tunnel-info.py
+    )
+AEL_BIN_SYMLINKED=false
+AEL_BIN_UPDATED_COPY=true
+
+# -------------------- [ shellutils (/shellutils) ]
+
+AELFILES_SHELLUTILS_DIRECTORY="${AELFILES_DIRECTORY}/shellutils"
+AEL_SHELLUTILS_DIRECTORY="${AEL_DIRECTORY}/shellutils"
+AEL_SHELLUTILS=(
 
     # --- ( ansi-colors ) -> ANSI colors helper.
     ansi-colors
@@ -104,6 +128,9 @@ __shellutils=(
     # --- ( tmuxplus ) -> TMUX wrapper.
     tmuxplus
 
+    # --- ( translate.py) -> Translate using Google translate.
+    translate.py
+
     # --- ( tunnel-info ) -> Display tunnel + VPN info.
     tunnel-info
 
@@ -122,21 +149,35 @@ __shellutils=(
     # --- ( utils/check-applications ) -> A more verbose command -v.
     utils/check-applications
                   )
-__shellutils_symlinked=true
-__shellutils_updated_copy=true
-# --- ( end of configuration )
+AEL_SHELLUTILS_SYMLINKED=true
+AEL_SHELLUTILS_UPDATED_COPY=true
 
+# -------------------- [ /.build ]
+# --- Directory to build tools.
+BUILD_DIRECTORY="${AEL_DIRECTORY}/.build"
+
+# -------------------- [ AUR package manager ]
+AEU_PKG_MANAGER_URL="https://aur.archlinux.org/paru.git"
+AUR_PKG_MANAGER="paru"
+
+# -------------------- [ end of configuration ]
+
+# -------------------- [ utilities ]
 copy_files() {
 
-    for __file in "${__files[@]}"; do
+    local src
+    local dst
+    local file
 
-        src="${__src_directory}/${__file}"
-        dst="${__dst_directory}/${__file}"
+    for __file in "${FILES[@]}"; do
+
+        src="${SRC_DIRECTORY}/${__file}"
+        dst="${DST_DIRECTORY}/${__file}"
 
         [ -e "$src" ] || continue
 
         # --- symlink
-        if [ "${__symlinked}" == true  ]; then
+        if [ "${SYMLINKED}" == true  ]; then
             # --- verify if symlink.
             if [ -L "$dst" ]; then
                 # --- verify if dst points somewhere else, fix it.
@@ -154,7 +195,7 @@ copy_files() {
 
             if [ -f "$dst" ]; then
                 # --- keep copy updated?
-                if [ "${__updated}" == true ]; then
+                if [ "${UPDATED_COPY}" == true ]; then
                     if [ "$(readlink -f -- "$dst")" != "$(readlink -f -- "$src")" ]; then
                         # --- copy only if content differs.
                         if ! cmp -s "$src" "$dst"; then
@@ -171,37 +212,184 @@ copy_files() {
     done
 }
 
+fix_ownership() {
+    # --- fixes ownership recursively to the ael user.
+    # ... ex: fix_ownership ghost ~/.local/share/ael-files
+
+    local user="${1:?missing user}"
+    local path="${2:-.}"
+    local group
+
+    group="$(id -gn "$user")"
+
+    find "$path" \
+      \( ! -user "$user" -o ! -group "$group" \) \
+      -exec chown "$user:$group" {} +
+}
+
+pull_aelfiles() {
+
+    mkdir -p ${AEL_USER_HOME}/.local/share
+
+    if [[ ! -d ${AELFILES_DIRECTORY}/.git ]]; then
+        git clone ${AELFILES_GIT} ${AELFILES_DIRECTORY}
+        # --- fix ownership to $AEL_USER.
+        fix_ownership $AEL_USER $AELFILES_DIRECTORY
+    fi
+
+}
+
+# -------------------- [ setup ]
 set_bin() {
 
-    __src_directory="${__aelfiles_bin_directory}"
-    __dst_directory="${__ael_bin_directory}"
-    __files=("${__ael_bin_applications[@]}")
-    __symlinked="${__ael_bin_symlinked}"
-    __updated="${__ael_bin_updated_copy}"
+    SRC_DIRECTORY="${AEL_BIN_DIRECTORY}"
+    DST_DIRECTORY="${AEL_BIN_DIRECTORY}"
+    FILES=("${AEL_BIN_APPS[@]}")
+    SYMLINKED="${AEL_BIN_SYMLINKED}"
+    UPDATED_COPY="${AEL_BIN_UPDATED_COPY}"
+    local file
 
-    mkdir -p "${__dst_directory}"
+    mkdir -p "${DST_DIRECTORY}"
     copy_files
 
-    for __file in "${__files[@]}"; do
-        [[ -L "${__dst_directory}/${__file}" ]] || chmod +x "${__dst_directory}/${__file}"
+    for file in "${FILES[@]}"; do
+        [[ -L "${DST_DIRECTORY}/${file}" ]] || chmod +x "${DST_DIRECTORY}/${file}"
     done
 
 }
 
 set_shellutils() {
 
-    __src_directory="${__aelfiles_shellutils_directory}"
-    __dst_directory="${__ael_shellutils_directory}"
-    __files=("${__shellutils[@]}")
-    __symlinked="${__shellutils_symlinked}"
-    __updated="${__shellutils_updated_copy}"
+    SRC_DIRECTORY="${AELFILES_SHELLUTILS_DIRECTORY}"
+    DST_DIRECTORY="${AEL_SHELLUTILS_DIRECTORY}"
+    FILES=("${AEL_SHELLUTILS[@]}")
+    SYMLINKED="${AEL_SHELLUTILS_SYMLINKED}"
+    UPDATED_COPY="${AEL_SHELLUTILS_UPDATED_COPY}"
 
     for directory in utils; do
-        mkdir -p "${__dst_directory}/$directory"
+        mkdir -p "${DST_DIRECTORY}/$directory"
     done
 
     copy_files
 }
 
-set_shellutils
-set_bin
+# -------------------- [ installers ]
+
+create_user() {
+
+    local user="${AEL_USER:-ael}"
+    local sudoers_file="/etc/sudoers.d/${AEL_USER}"
+
+    # --- create user if missing.
+    if ! id "${AEL_USER}" &>/dev/null; then
+        useradd \
+            --create-home \
+            --shell /bin/bash \
+            --groups wheel \
+            "${AEL_USER}"
+    else
+        # --- Ensure wheel group membership
+        usermod -aG wheel "${AEL_USER}"
+    fi
+
+    # --- configure passwordless sudo.
+    if [[ ! -f "${sudoers_file}" ]]; then
+        echo "${AEL_USER} ALL=(ALL) NOPASSWD: ALL" > "${sudoers_file}"
+        chmod 0440 "${sudoers_file}"
+    fi
+}
+
+install_aur_pkg_manager() {
+
+    if [[ ${USER} != ${AEL_USER} ]]; then
+        sudo -u ${AEL_USER} bash -lc "
+            mkdir -p $BUILD_DIRECTORY
+            cd $BUILD_DIRECTORY
+            git clone $AEU_PKG_MANAGER_URL $AUR_PKG_MANAGER
+            cd $AUR_PKG_MANAGER
+            makepkg -si --noconfirm
+            "
+    else
+        mkdir -p $BUILD_DIRECTORY
+        cd $BUILD_DIRECTORY
+        git clone $AEU_PKG_MANAGER_URL $AUR_PKG_MANAGER
+        cd $AUR_PKG_MANAGER
+        makepkg -si --noconfirm
+    fi
+}
+
+# -------------------- [ options ]
+
+create_config_file() {
+    local src_config="$(realpath "$0")"
+    local config_file="ael.conf"
+
+    awk '
+      /\[ default configuration \]/ {flag=1; next}
+      /\[ end of configuration \]/ {flag=0}
+      flag
+    ' "$src_config" > "$config_file"
+
+    printf "%s\n" "${__blue}[*]${__reset} ${config_file} created."
+    
+}
+
+option_parser() {
+
+    if [[ "${CREATE_CONFIG_FILE}" == true ]]; then
+        create_config_file
+        exit 0
+    fi
+
+    if [[ "${UPDATE}" == true ]]; then
+        set_shellutils
+        set_bin
+        exit 0
+    fi
+
+    if [[ "${CREATE_USER}" == true ]]; then
+        create_user
+    fi
+
+    if [[ "${PULL_AELFILES}" == true ]]; then
+        pull_aelfiles
+    fi
+
+    if [[ "${INSTALL_AUR_PKG_MANAGER}" == true ]]; then
+        install_aur_pkg_manager
+    fi
+
+}
+
+CREATE_CONFIG_FILE=false
+CREATE_USER=false
+INSTALL_AUR_PKG_MANAGER=false
+PULL_AELFILES=false
+UPDATE=false
+for arg in "${@}"; do
+    case "${arg}" in
+        --create-config-file)
+            CREATE_CONFIG_FILE=true
+            option_parser
+            ;;
+        --create-user)
+            CREATE_USER=true
+            option_parser
+            ;;
+        --install-aur-pkg-manager)
+            INSTALL_AUR_PKG_MANAGER=true
+            option_parser
+            ;;
+        --pull-aelfiles)
+            PULL_AELFILES=true
+            option_parser
+            ;;
+        --update)
+            UPDATE=true
+            option_parser
+            ;;
+        *)
+            echo wrong
+            ;;
+    esac
+done

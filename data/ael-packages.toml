@@ -372,6 +372,39 @@ included_app  = [
                 "/usr/bin/rustscan"
                 ]
 
+[shadow]
+url           = "https://github.com/shadow-maint/shadow"
+description   = "Password and account management tool suite with support for shadow files and PAM"
+repository    = "core"
+included_app  = [
+                "/usr/bin/chage",
+                "/usr/bin/chgpasswd",
+                "/usr/bin/chpasswd",
+                "/usr/bin/expiry",
+                "/usr/bin/faillog",
+                "/usr/bin/getsubids",
+                "/usr/bin/gpasswd",
+                "/usr/bin/groupadd",
+                "/usr/bin/groupdel",
+                "/usr/bin/groupmems",
+                "/usr/bin/groupmod",
+                "/usr/bin/grpck",
+                "/usr/bin/grpconv",
+                "/usr/bin/grpunconv",
+                "/usr/bin/lastlog",
+                "/usr/bin/newgidmap",
+                "/usr/bin/newuidmap",
+                "/usr/bin/newusers",
+                "/usr/bin/passwd",
+                "/usr/bin/pwck",
+                "/usr/bin/pwconv",
+                "/usr/bin/pwunconv",
+                "/usr/bin/sg",
+                "/usr/bin/useradd",
+                "/usr/bin/userdel",
+                "/usr/bin/usermod"
+                ]
+
 [sed]
 url           = "https://www.gnu.org/software/sed/"
 description   = "GNU stream editor"
