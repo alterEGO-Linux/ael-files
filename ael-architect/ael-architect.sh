@@ -162,11 +162,6 @@ AUR_PKG_MANAGER="paru"
 
 # -------------------- [ end of configuration ]
 
-export AEL_USER
-export AEL_USER_HOME
-export AELFILES_GIT
-export AELFILES_DIRECTORY
-
 # -------------------- [ utilities ]
 copy_files() {
 
@@ -233,20 +228,22 @@ fix_ownership() {
 }
 
 run_as_ael_user() {
-    local user="${AEL_USER:?AEL_USER not set}"
     local cmd="${1:?missing command}"
+    local user="${AEL_USER:?AEL_USER not set}"
 
-    if [[ $(id -un) == "$user" ]]; then
+    if [[ "$(id -un)" == "$user" ]]; then
         bash -lc "$cmd"
         return
     fi
 
-    [[ $EUID -ne 0 ]] && {
-        echo "Cannot switch to $user without root"
-        return 1
-    }
+    [[ $EUID -ne 0 ]] && { echo "Need root to run as $user"; return 1; }
 
-    sudo -u "$user" bash -lc "$cmd"
+    sudo -u "$user" env \
+        AEL_USER="$AEL_USER" \
+        AEL_USER_HOME="$AEL_USER_HOME" \
+        AELFILES_DIRECTORY="$AELFILES_DIRECTORY" \
+        AELFILES_GIT="$AELFILES_GIT" \
+        bash -lc "$cmd"
 }
 
 pull_aelfiles() {
