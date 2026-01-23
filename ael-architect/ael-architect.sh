@@ -157,7 +157,7 @@ AEL_SHELLUTILS_UPDATED_COPY=true
 BUILD_DIRECTORY="${AEL_DIRECTORY}/.build"
 
 # -------------------- [ AUR package manager ]
-AEU_PKG_MANAGER_URL="https://aur.archlinux.org/paru.git"
+AUR_PKG_MANAGER_URL="https://aur.archlinux.org/paru.git"
 AUR_PKG_MANAGER="paru"
 
 # -------------------- [ end of configuration ]
@@ -210,6 +210,33 @@ copy_files() {
         fi
 
     done
+}
+
+require_user() {
+    local allowed_user="${1:?missing allowed user}"
+    local action="${2:?missing action description}"
+    local current_user
+
+    current_user="$(id -un)"
+
+    case "$allowed_user" in
+        root)
+            if [[ $EUID -ne 0 ]]; then
+                echo "[!] $action can only be run by root."
+                exit 1
+            fi
+            ;;
+        "$AEL_USER")
+            if [[ "$current_user" != "$AEL_USER" ]]; then
+                echo "[!] $action can only be run by $AEL_USER."
+                exit 1
+            fi
+            ;;
+        *)
+            echo "[!] Invalid allowed user: $allowed_user"
+            exit 1
+            ;;
+    esac
 }
 
 fix_ownership() {
@@ -345,21 +372,13 @@ create_user() {
 
 install_aur_pkg_manager() {
 
-    if [[ ${USER} != ${AEL_USER} ]]; then
-        sudo -u ${AEL_USER} bash -lc "
-            mkdir -p $BUILD_DIRECTORY
-            cd $BUILD_DIRECTORY
-            git clone $AEU_PKG_MANAGER_URL $AUR_PKG_MANAGER
-            cd $AUR_PKG_MANAGER
-            makepkg -si --noconfirm
-            "
-    else
-        mkdir -p $BUILD_DIRECTORY
-        cd $BUILD_DIRECTORY
-        git clone $AEU_PKG_MANAGER_URL $AUR_PKG_MANAGER
-        cd $AUR_PKG_MANAGER
-        makepkg -si --noconfirm
-    fi
+    require_user "${AEL_USER}" "AUR package manager installation"
+
+    mkdir -p $BUILD_DIRECTORY
+    cd $BUILD_DIRECTORY
+    git clone $AUR_PKG_MANAGER_URL $AUR_PKG_MANAGER
+    cd $AUR_PKG_MANAGER
+    makepkg -si --noconfirm
 }
 
 # -------------------- [ options ]
