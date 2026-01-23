@@ -230,11 +230,14 @@ fix_ownership() {
 pull_aelfiles() {
 
     mkdir -p ${AEL_USER_HOME}/.local/share
+    fix_ownership $AEL_USER ${AEL_USER}/.local
 
     if [[ ! -d ${AELFILES_DIRECTORY}/.git ]]; then
         git clone ${AELFILES_GIT} ${AELFILES_DIRECTORY}
-        # --- fix ownership to $AEL_USER.
         fix_ownership $AEL_USER $AELFILES_DIRECTORY
+    else
+        cd "$AELFILES_DIRECTORY"
+        git pull
     fi
 
 }
