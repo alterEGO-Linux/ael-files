@@ -315,7 +315,7 @@ install_aur_pkg_manager() {
 
     require_user "${AEL_USER}" "AUR package manager installation"
 
-    if command -v ${AUR_PKG_MANAGER} >/dev/null 2>&1; then
+    if ! command -v ${AUR_PKG_MANAGER} >/dev/null 2>&1; then
         mkdir -p $BUILD_DIRECTORY
         cd $BUILD_DIRECTORY
         git clone $AUR_PKG_MANAGER_URL $AUR_PKG_MANAGER
