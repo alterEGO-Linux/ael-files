@@ -23,7 +23,7 @@ AELFILES_DIRECTORY="${AEL_USER_HOME}/.local/share/ael-files"
 AEL_DIRECTORY="${AEL_USER_HOME}/.ael"
 
 # -------------------- [ rc files (/home) ]
-AELFILES_RC_DIRECTORY="${AELFILES_DIRECTORY}"
+AELFILES_RC_DIRECTORY="${AELFILES_DIRECTORY}/home"
 AEL_RC_DIRECTORY="${AEL_USER_HOME}" 
 AEL_RC_FILES=(
     .bashrc
