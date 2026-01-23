@@ -22,6 +22,17 @@ AELFILES_GIT="https://github.com/alterEGO-Linux/ael-files.git"
 AELFILES_DIRECTORY="${AEL_USER_HOME}/.local/share/ael-files"
 AEL_DIRECTORY="${AEL_USER_HOME}/.ael"
 
+# -------------------- [ rc files (/home) ]
+AELFILES_RC_DIRECTORY="${AELFILES_DIRECTORY}"
+AEL_RC_DIRECTORY="${AEL_USER_HOME}" 
+AEL_RC_FILES=(
+    .bashrc
+    .profile
+    .ael/.aelcore
+    )
+AEL_RC_SYMLINKED=true
+AEL_RC_UPDATED_COPY=true
+
 # -------------------- [ scripts (/bin) ]
 AELFILES_BIN_DIRECTORY="${AELFILES_DIRECTORY}/bin"
 AEL_BIN_DIRECTORY="${AEL_DIRECTORY}/bin"
@@ -324,6 +335,31 @@ install_aur_pkg_manager() {
     fi
 }
 
+set_rc(){
+
+    require_user $AEL_USER "Setting up home"
+
+    SRC_DIRECTORY="${AELFILES_RC_DIRECTORY}"
+    DST_DIRECTORY="${AEL_RC_DIRECTORY}"
+    FILES=("${AEL_RC_FILES[@]}")
+    SYMLINKED="${AEL_RC_SYMLINKED}"
+    UPDATED_COPY="${AEL_RC_UPDATED_COPY}"
+
+    for rc in "$AEL_USER_HOME/.bashrc" "$AEL_USER_HOME/.profile"; do
+        [[ -f "$rc" ]] || continue
+
+        if ! grep -q "alterEGO-Linux" "$rc"; then
+            mv "$rc" "$rc.aelbkp"
+        fi
+    done
+
+    for directory in .ael; do
+        mkdir -p "${DST_DIRECTORY}/$directory"
+    done
+
+    copy_files
+}
+
 set_bin() {
 
     require_user $AEL_USER "Setting up bin"
@@ -413,6 +449,7 @@ configure_ael() {
 
     pull_aelfiles    
     install_aur_pkg_manager
+    set_rc
     set_bin
     set_shellutils
 
