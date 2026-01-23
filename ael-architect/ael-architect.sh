@@ -473,6 +473,7 @@ for arg in "${@}"; do
         --ael-configuration)
             AEL_CONFIRATION=true
             option_parser
+            ;;
         --pull-aelfiles)
             PULL_AELFILES=true
             option_parser
