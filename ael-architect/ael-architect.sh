@@ -428,6 +428,7 @@ option_parser() {
     if [[ "${AEL_CONFIGURATION}" == true ]]; then
         configure_ael
         exit 0
+    fi
 
     if [[ "${UPDATE}" == true ]]; then
         set_shellutils
