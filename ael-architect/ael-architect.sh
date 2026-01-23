@@ -227,19 +227,38 @@ fix_ownership() {
       -exec chown "$user:$group" {} +
 }
 
-pull_aelfiles() {
+run_as_ael_user() {
+    local user="${AEL_USER:?AEL_USER not set}"
+    local cmd="${1:?missing command}"
 
-    mkdir -p ${AEL_USER_HOME}/.local/share
-    fix_ownership $AEL_USER ${AEL_USER_HOME}/.local
-
-    if [[ ! -d ${AELFILES_DIRECTORY}/.git ]]; then
-        git clone ${AELFILES_GIT} ${AELFILES_DIRECTORY}
-        fix_ownership $AEL_USER $AELFILES_DIRECTORY
-    else
-        cd "$AELFILES_DIRECTORY"
-        git pull
+    if [[ $(id -un) == "$user" ]]; then
+        bash -lc "$cmd"
+        return
     fi
 
+    [[ $EUID -ne 0 ]] && {
+        echo "Cannot switch to $user without root"
+        return 1
+    }
+
+    sudo -u "$user" bash -lc "$cmd"
+}
+
+pull_aelfiles() {
+
+    cmd=$(cat <<'EOF'
+mkdir -p ${AEL_USER_HOME}/.local/share
+
+if [[ ! -d ${AELFILES_DIRECTORY}/.git ]]; then
+    git clone ${AELFILES_GIT} ${AELFILES_DIRECTORY}
+else
+    cd "$AELFILES_DIRECTORY"
+    git pull
+fi
+EOF
+)
+
+    run_as_ael_user "$cmd"
 }
 
 # -------------------- [ setup ]
