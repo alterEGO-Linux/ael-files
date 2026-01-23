@@ -227,23 +227,43 @@ fix_ownership() {
       -exec chown "$user:$group" {} +
 }
 
-run_as_ael_user() {
-    local cmd="${1:?missing command}"
-    local user="${AEL_USER:?AEL_USER not set}"
+__extract_vars_from_cmd() {
+    # Extract variable names used in a command string ($VAR and ${VAR})
+    local cmd="$1"
 
+    # 1) ${VAR} patterns
+    # 2) $VAR patterns (skip $1, $?, $$, $@, etc. by only allowing [A-Za-z_])
+    printf '%s\n' "$cmd" |
+        grep -oE '\$\{[A-Za-z_][A-Za-z0-9_]*\}|\$[A-Za-z_][A-Za-z0-9_]*' |
+        sed -E 's/^\$\{?//; s/\}?$//; s/^\$//' |
+        sort -u
+}
+
+run_as_ael_user() {
+    local user="${AEL_USER:?AEL_USER not set}"
+    local cmd="${1:?missing command}"
+
+    # Already running as the target user → run directly
     if [[ "$(id -un)" == "$user" ]]; then
         bash -lc "$cmd"
         return
     fi
 
+    # Need privilege to switch users
     [[ $EUID -ne 0 ]] && { echo "Need root to run as $user"; return 1; }
 
-    sudo -u "$user" env \
-        AEL_USER="$AEL_USER" \
-        AEL_USER_HOME="$AEL_USER_HOME" \
-        AELFILES_DIRECTORY="$AELFILES_DIRECTORY" \
-        AELFILES_GIT="$AELFILES_GIT" \
-        bash -lc "$cmd"
+    # Build env args only for vars referenced in cmd and defined in this shell
+    local -a env_args=(env)
+    local var
+    while IFS= read -r var; do
+        # Only pass through vars that are set in the current shell
+        # (so we don't trigger nounset issues when composing env)
+        if [[ -v $var ]]; then
+            env_args+=("$var=${!var}")
+        fi
+    done < <(__extract_vars_from_cmd "$cmd")
+
+    sudo -u "$user" "${env_args[@]}" bash -lc "$cmd"
 }
 
 pull_aelfiles() {
