@@ -162,6 +162,11 @@ AUR_PKG_MANAGER="paru"
 
 # -------------------- [ end of configuration ]
 
+export AEL_USER
+export AEL_USER_HOME
+export AELFILES_GIT
+export AELFILES_DIRECTORY
+
 # -------------------- [ utilities ]
 copy_files() {
 
