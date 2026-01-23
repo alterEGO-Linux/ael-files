@@ -452,7 +452,7 @@ option_parser() {
 
 CREATE_CONFIG_FILE=false
 CREATE_USER=false
-AEL_CONFIRATION=false
+AEL_CONFIGURATION=false
 INSTALL_AUR_PKG_MANAGER=false
 PULL_AELFILES=false
 UPDATE=false
@@ -471,7 +471,7 @@ for arg in "${@}"; do
             option_parser
             ;;
         --ael-configuration)
-            AEL_CONFIRATION=true
+            AEL_CONFIGURATION=true
             option_parser
             ;;
         --pull-aelfiles)
