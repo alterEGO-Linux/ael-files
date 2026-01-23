@@ -23,7 +23,7 @@ AELFILES_DIRECTORY="${AEL_USER_HOME}/.local/share/ael-files"
 AEL_DIRECTORY="${AEL_USER_HOME}/.ael"
 
 # -------------------- [ scripts (/bin) ]
-AEL_BIN_DIRECTORY="${AELFILES_DIRECTORY}/bin"
+AELFILES_BIN_DIRECTORY="${AELFILES_DIRECTORY}/bin"
 AEL_BIN_DIRECTORY="${AEL_DIRECTORY}/bin"
 AEL_BIN_APPS=(
     # --- ( busy.sh ) -> Look busy when the boss comes around.
@@ -328,7 +328,7 @@ set_bin() {
 
     require_user $AEL_USER "Setting up bin"
 
-    SRC_DIRECTORY="${AEL_BIN_DIRECTORY}"
+    SRC_DIRECTORY="${AELFILES_BIN_DIRECTORY}"
     DST_DIRECTORY="${AEL_BIN_DIRECTORY}"
     FILES=("${AEL_BIN_APPS[@]}")
     SYMLINKED="${AEL_BIN_SYMLINKED}"
