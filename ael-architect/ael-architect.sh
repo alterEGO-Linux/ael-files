@@ -8,11 +8,11 @@
 
 set -euo pipefail
 
-__blue=$'\033[34m'
-__bold=$'\033[1m'
-__red=$'\033[31m'
-__reset=$'\033[0m'
-__yellow=$'\033[33m'
+blue=$'\033[34m'
+bold=$'\033[1m'
+red=$'\033[31m'
+reset=$'\033[0m'
+yellow=$'\033[33m'
 
 # -------------------- [ default configuration ]
 
@@ -219,21 +219,21 @@ require_user() {
 
     current_user="$(id -un)"
 
-    case "$allowed_user" in
+    case "${allowed_user}" in
         root)
             if [[ $EUID -ne 0 ]]; then
-                echo "[!] $action can only be run by root."
+                printf "%s\n" "${red}[!]${reset} ${action} can only be run by root."
                 exit 1
             fi
             ;;
         "$AEL_USER")
-            if [[ "$current_user" != "$AEL_USER" ]]; then
-                echo "[!] $action can only be run by $AEL_USER."
+            if [[ "${current_user}" != "${AEL_USER}" ]]; then
+                printf "%s\n" "${red}[!]${reset} ${action} can only be run by ${AEL_USER}."
                 exit 1
             fi
             ;;
         *)
-            echo "[!] Invalid allowed user: $allowed_user"
+            printf "%s\n" "${red}[!]${reset} Invalid allowed user: ${allowed_user}."
             exit 1
             ;;
     esac
@@ -293,25 +293,40 @@ run_as_ael_user() {
     sudo -u "$user" "${env_args[@]}" bash -lc "$cmd"
 }
 
+
+# -------------------- [ ael configuration ]
+
 pull_aelfiles() {
 
-    cmd=$(cat <<'EOF'
-mkdir -p ${AEL_USER_HOME}/.local/share
+    require_user $AEL_USER "Getting AEL files"
 
-if [[ ! -d ${AELFILES_DIRECTORY}/.git ]]; then
-    git clone ${AELFILES_GIT} ${AELFILES_DIRECTORY}
-else
-    cd "$AELFILES_DIRECTORY"
-    git pull
-fi
-EOF
-)
+    mkdir -p ${AEL_USER_HOME}/.local/share
 
-    run_as_ael_user "$cmd"
+    if [[ ! -d ${AELFILES_DIRECTORY}/.git ]]; then
+        git clone ${AELFILES_GIT} ${AELFILES_DIRECTORY}
+    else
+        cd "$AELFILES_DIRECTORY"
+        git pull
+    fi
+
 }
 
-# -------------------- [ setup ]
+install_aur_pkg_manager() {
+
+    require_user "${AEL_USER}" "AUR package manager installation"
+
+    if command -v ${AUR_PKG_MANAGER} >/dev/null 2>&1; then
+        mkdir -p $BUILD_DIRECTORY
+        cd $BUILD_DIRECTORY
+        git clone $AUR_PKG_MANAGER_URL $AUR_PKG_MANAGER
+        cd $AUR_PKG_MANAGER
+        makepkg -si --noconfirm
+    fi
+}
+
 set_bin() {
+
+    require_user $AEL_USER "Setting up bin"
 
     SRC_DIRECTORY="${AEL_BIN_DIRECTORY}"
     DST_DIRECTORY="${AEL_BIN_DIRECTORY}"
@@ -331,6 +346,8 @@ set_bin() {
 
 set_shellutils() {
 
+    require_user $AEL_USER "Setting up Shellutils"
+
     SRC_DIRECTORY="${AELFILES_SHELLUTILS_DIRECTORY}"
     DST_DIRECTORY="${AEL_SHELLUTILS_DIRECTORY}"
     FILES=("${AEL_SHELLUTILS[@]}")
@@ -347,6 +364,10 @@ set_shellutils() {
 # -------------------- [ installers ]
 
 create_user() {
+
+    require_user root "Creating new user"
+    pull_aelfiles
+    
 
     local user="${AEL_USER:-ael}"
     local sudoers_file="/etc/sudoers.d/${AEL_USER}"
@@ -370,17 +391,6 @@ create_user() {
     fi
 }
 
-install_aur_pkg_manager() {
-
-    require_user "${AEL_USER}" "AUR package manager installation"
-
-    mkdir -p $BUILD_DIRECTORY
-    cd $BUILD_DIRECTORY
-    git clone $AUR_PKG_MANAGER_URL $AUR_PKG_MANAGER
-    cd $AUR_PKG_MANAGER
-    makepkg -si --noconfirm
-}
-
 # -------------------- [ options ]
 
 create_config_file() {
@@ -393,8 +403,19 @@ create_config_file() {
       flag
     ' "$src_config" > "$config_file"
 
-    printf "%s\n" "${__blue}[*]${__reset} ${config_file} created."
+    printf "%s\n" "${blue}[*]${reset} ${config_file} created."
     
+}
+
+configure_ael() {
+
+    require_user ${AEL_USER} "AEL Post-installation"
+
+    pull_aelfiles    
+    install_aur_pkg_manager
+    set_bin
+    set_shellutils
+
 }
 
 option_parser() {
@@ -403,6 +424,10 @@ option_parser() {
         create_config_file
         exit 0
     fi
+
+    if [[ "${AEL_CONFIGURATION}" == true ]]; then
+        configure_ael
+        exit 0
 
     if [[ "${UPDATE}" == true ]]; then
         set_shellutils
@@ -426,6 +451,7 @@ option_parser() {
 
 CREATE_CONFIG_FILE=false
 CREATE_USER=false
+AEL_CONFIRATION=false
 INSTALL_AUR_PKG_MANAGER=false
 PULL_AELFILES=false
 UPDATE=false
@@ -443,6 +469,9 @@ for arg in "${@}"; do
             INSTALL_AUR_PKG_MANAGER=true
             option_parser
             ;;
+        --ael-configuration)
+            AEL_CONFIRATION=true
+            option_parser
         --pull-aelfiles)
             PULL_AELFILES=true
             option_parser
