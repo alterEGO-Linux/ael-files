@@ -18,7 +18,7 @@ yellow=$'\033[33m'
 
 AEL_USER="ghost"
 AEL_USER_HOME="/home/${AEL_USER}"
-AELFILES_GIT="https://github.com/alterEGO-Linux/ael-files.git"
+AELFILES_GIT="git@github.com/alterEGO-Linux/ael-files.git"
 AELFILES_DIRECTORY="${AEL_USER_HOME}/.local/share/ael-files"
 AEL_DIRECTORY="${AEL_USER_HOME}/.ael"
 
@@ -303,7 +303,6 @@ run_as_ael_user() {
 
     sudo -u "$user" "${env_args[@]}" bash -lc "$cmd"
 }
-
 
 # -------------------- [ ael configuration ]
 
