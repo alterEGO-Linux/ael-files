@@ -176,47 +176,49 @@ AUR_PKG_MANAGER="paru"
 # -------------------- [ utilities ]
 copy_files() {
 
+    local -n cfg="${1}"
+    local -n files_list="${cfg[files]}"
     local src
     local dst
     local file
 
-    for __file in "${FILES[@]}"; do
+    for file in "${files_list[@]}"; do
 
-        src="${SRC_DIRECTORY}/${__file}"
-        dst="${DST_DIRECTORY}/${__file}"
+        src="${cfg[src_directory]}/${file}"
+        dst="${cfg[dst_directory]}/${file}"
 
-        [ -e "$src" ] || continue
+        [ -e "${src}" ] || continue
 
         # --- symlink
-        if [ "${SYMLINKED}" == true  ]; then
+        if [ "${cfg[symlinked]}" == true  ]; then
             # --- verify if symlink.
-            if [ -L "$dst" ]; then
+            if [ -L "${dst}" ]; then
                 # --- verify if dst points somewhere else, fix it.
-                if [ "$(readlink -f -- "$dst")" != "$src" ]; then
-                    ln -sfn "$src" "$dst"
+                if [ "$(readlink -f -- "${dst}")" != "${src}" ]; then
+                    ln -sfn "${src}" "${dst}"
                 fi
             else
                 # --- remove regular file if exist and create symlink.
-                [ -e "$dst" ] && rm -rf -- "$dst"
-                ln -s "$src" "$dst"
+                [ -e "${dst}" ] && rm -rf -- "${dst}"
+                ln -s "${src}" "${dst}"
             fi
         else
             # --- remove symlink if exist.
-            [ -L "$dst" ] && rm -f -- "$dst"
+            [ -L "${dst}" ] && rm -f -- "${dst}"
 
-            if [ -f "$dst" ]; then
+            if [ -f "${dst}" ]; then
                 # --- keep copy updated?
-                if [ "${UPDATED_COPY}" == true ]; then
-                    if [ "$(readlink -f -- "$dst")" != "$(readlink -f -- "$src")" ]; then
+                if [ "${cfg[updated_copy]}" == true ]; then
+                    if [ "$(readlink -f -- "${dst}")" != "$(readlink -f -- "${src}")" ]; then
                         # --- copy only if content differs.
-                        if ! cmp -s "$src" "$dst"; then
-                            cp -f "$src" "$dst"
+                        if ! cmp -s "${src}" "${dst}"; then
+                            cp -f "${src}" "${dst}"
                         fi
                     fi
                 fi
             else
                 # --- make a copy.
-                cp "$src" "$dst"
+                cp "${src}" "${dst}"
             fi
         fi
 
@@ -304,7 +306,6 @@ run_as_ael_user() {
     sudo -u "$user" "${env_args[@]}" bash -lc "$cmd"
 }
 
-
 # -------------------- [ ael configuration ]
 
 pull_aelfiles() {
@@ -339,12 +340,19 @@ set_rc(){
 
     require_user $AEL_USER "Setting up home"
 
-    SRC_DIRECTORY="${AELFILES_RC_DIRECTORY}"
-    DST_DIRECTORY="${AEL_RC_DIRECTORY}"
-    FILES=("${AEL_RC_FILES[@]}")
-    SYMLINKED="${AEL_RC_SYMLINKED}"
-    UPDATED_COPY="${AEL_RC_UPDATED_COPY}"
+    local rc directory
 
+    local -A cfg=(
+        [src_directory]="${AELFILES_RC_DIRECTORY}"
+        [dst_directory]="${AEL_RC_DIRECTORY}"
+        [symlinked]="${AEL_RC_SYMLINKED}"
+        [updated_copy]="${AEL_RC_UPDATED_COPY}"
+        )
+
+    local -a files_list=("${AEL_RC_FILES[@]}")
+    cfg[files]=files_list
+
+    # --- make sure to backup non AEL bashrc and profile.
     for rc in "$AEL_USER_HOME/.bashrc" "$AEL_USER_HOME/.profile"; do
         [[ -f "$rc" ]] || continue
 
@@ -353,29 +361,37 @@ set_rc(){
         fi
     done
 
+    # --- create necessary subdirectories.
     for directory in .ael; do
-        mkdir -p "${DST_DIRECTORY}/$directory"
+        mkdir -p "${AEL_RC_DIRECTORY}/$directory"
     done
 
-    copy_files
+    copy_files cfg
 }
 
 set_bin() {
 
     require_user $AEL_USER "Setting up bin"
 
-    SRC_DIRECTORY="${AELFILES_BIN_DIRECTORY}"
-    DST_DIRECTORY="${AEL_BIN_DIRECTORY}"
-    FILES=("${AEL_BIN_APPS[@]}")
-    SYMLINKED="${AEL_BIN_SYMLINKED}"
-    UPDATED_COPY="${AEL_BIN_UPDATED_COPY}"
     local file
 
-    mkdir -p "${DST_DIRECTORY}"
-    copy_files
+    local -A cfg=(
+        [src_directory]="${AELFILES_BIN_DIRECTORY}"
+        [dst_directory]="${AEL_BIN_DIRECTORY}"
+        [symlinked]="${AEL_BIN_SYMLINKED}"
+        [updated_copy]="${AEL_BIN_UPDATED_COPY}"
+        )
 
+    local -a files_list=("${AEL_BIN_APPS[@]}")
+    cfg[files]=files_list
+
+    mkdir -p "${AEL_BIN_DIRECTORY}"
+
+    copy_files cfg
+
+    # --- make applications executable.
     for file in "${FILES[@]}"; do
-        [[ -L "${DST_DIRECTORY}/${file}" ]] || chmod +x "${DST_DIRECTORY}/${file}"
+        [[ -L "${AEL_BIN_DIRECTORY}/${file}" ]] || chmod +x "${AEL_BIN_DIRECTORY}/${file}"
     done
 
 }
@@ -384,27 +400,34 @@ set_shellutils() {
 
     require_user $AEL_USER "Setting up Shellutils"
 
-    SRC_DIRECTORY="${AELFILES_SHELLUTILS_DIRECTORY}"
-    DST_DIRECTORY="${AEL_SHELLUTILS_DIRECTORY}"
-    FILES=("${AEL_SHELLUTILS[@]}")
-    SYMLINKED="${AEL_SHELLUTILS_SYMLINKED}"
-    UPDATED_COPY="${AEL_SHELLUTILS_UPDATED_COPY}"
+    local directory utils
 
+    local -A cfg=(
+        [src_directory]="${AELFILES_SHELLUTILS_DIRECTORY}"
+        [dst_directory]="${AEL_SHELLUTILS_DIRECTORY}"
+        [symlinked]="${AEL_SHELLUTILS_SYMLINKED}"
+        [updated_copy]="${AEL_SHELLUTILS_UPDATED_COPY}"
+        )
+
+    local -a files_list=("${AEL_SHELLUTILS[@]}")
+    cfg[files]=files_list
+
+    # --- create necessary subdirectories.
     for directory in utils; do
-        mkdir -p "${DST_DIRECTORY}/$directory"
+        mkdir -p "${AEL_SHELLUTILS_DIRECTORY}/$directory"
     done
 
-    copy_files
+    copy_files cfg
 }
 
-# -------------------- [ installers ]
+# -------------------- [ installer ]
 
 create_user() {
 
     require_user root "Creating new user"
+
     pull_aelfiles
     
-
     local user="${AEL_USER:-ael}"
     local sudoers_file="/etc/sudoers.d/${AEL_USER}"
 
