@@ -18,7 +18,7 @@ yellow=$'\033[33m'
 
 AEL_USER="ghost"
 AEL_USER_HOME="/home/${AEL_USER}"
-AELFILES_GIT="git@github.com/alterEGO-Linux/ael-files.git"
+AELFILES_GIT="https://github.com/alterEGO-Linux/ael-files.git"
 AELFILES_DIRECTORY="${AEL_USER_HOME}/.local/share/ael-files"
 AEL_DIRECTORY="${AEL_USER_HOME}/.ael"
 
@@ -176,21 +176,21 @@ AUR_PKG_MANAGER="paru"
 # -------------------- [ utilities ]
 copy_files() {
 
-    local -n cfg="${1}"
-    local -n files_list="${cfg[files]}"
+    local -n config="${1}"
+    local -n files_list="${config[files]}"
     local src
     local dst
     local file
 
     for file in "${files_list[@]}"; do
 
-        src="${cfg[src_directory]}/${file}"
-        dst="${cfg[dst_directory]}/${file}"
+        src="${config[src_directory]}/${file}"
+        dst="${config[dst_directory]}/${file}"
 
         [ -e "${src}" ] || continue
 
         # --- symlink
-        if [ "${cfg[symlinked]}" == true  ]; then
+        if [ "${config[symlinked]}" == true  ]; then
             # --- verify if symlink.
             if [ -L "${dst}" ]; then
                 # --- verify if dst points somewhere else, fix it.
@@ -208,7 +208,7 @@ copy_files() {
 
             if [ -f "${dst}" ]; then
                 # --- keep copy updated?
-                if [ "${cfg[updated_copy]}" == true ]; then
+                if [ "${config[updated_copy]}" == true ]; then
                     if [ "$(readlink -f -- "${dst}")" != "$(readlink -f -- "${src}")" ]; then
                         # --- copy only if content differs.
                         if ! cmp -s "${src}" "${dst}"; then
@@ -349,8 +349,8 @@ set_rc(){
         [updated_copy]="${AEL_RC_UPDATED_COPY}"
         )
 
-    local -a files_list=("${AEL_RC_FILES[@]}")
-    cfg[files]=files_list
+    local -a files_rc=("${AEL_RC_FILES[@]}")
+    cfg[files]=files_rc
 
     # --- make sure to backup non AEL bashrc and profile.
     for rc in "$AEL_USER_HOME/.bashrc" "$AEL_USER_HOME/.profile"; do
@@ -382,15 +382,15 @@ set_bin() {
         [updated_copy]="${AEL_BIN_UPDATED_COPY}"
         )
 
-    local -a files_list=("${AEL_BIN_APPS[@]}")
-    cfg[files]=files_list
+    local -a files_bin=("${AEL_BIN_APPS[@]}")
+    cfg[files]=files_bin
 
     mkdir -p "${AEL_BIN_DIRECTORY}"
 
     copy_files cfg
 
     # --- make applications executable.
-    for file in "${FILES[@]}"; do
+    for file in "${AEL_BIN_APPS[@]}"; do
         [[ -L "${AEL_BIN_DIRECTORY}/${file}" ]] || chmod +x "${AEL_BIN_DIRECTORY}/${file}"
     done
 
@@ -409,8 +409,8 @@ set_shellutils() {
         [updated_copy]="${AEL_SHELLUTILS_UPDATED_COPY}"
         )
 
-    local -a files_list=("${AEL_SHELLUTILS[@]}")
-    cfg[files]=files_list
+    local -a files_shellutils=("${AEL_SHELLUTILS[@]}")
+    cfg[files]=files_shellutils
 
     # --- create necessary subdirectories.
     for directory in utils; do
