@@ -1,10 +1,25 @@
 #!/usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.local/bin/dicomTAG.sh]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2021-07-14 09:38:38 UTC
-# :updated       : 2025-02-17 20:40:00 UTC
-# :description   : Search DICOM tags.
+# ------------------------------------------------------------------------ INFO
+# [/home/ghost/.local/share/ael-files/bin/dicom-tag.sh]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2021-07-14 09:38:38 UTC
+# updated       : 2026-01-30 20:29:20 UTC
+# description   : Search DICOM tags.
+
+check_applications() {
+    if command -v check-applications.sh >/dev/null 2>&1; then
+        echo hello
+        check-applications.sh "${@}"
+   else
+        for app in "${@}"; do
+            if ! command -v $app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                return 1
+            fi
+        done
+    fi
+}
+check_applications fzf sort || exit 1
 
 declare -A tags=(
     ["0002,0000"]="FileMetaInfoGroupLength"
@@ -3157,7 +3172,7 @@ declare -A tags=(
 
 for tag in "${!tags[@]}"; do
     printf "%b" "($tag)\t${tags[$tag]}\n"
-done | fzf --color=gutter:-1                                                  \
+done | sort | fzf --color=gutter:-1                                           \
            --margin=4%                                                        \
            --border=none                                                      \
            --prompt="DICOM TAG ❯ "                                            \
@@ -3167,5 +3182,4 @@ done | fzf --color=gutter:-1                                                  \
            -i                                                                 \
            --exact                                                            \
            --tiebreak=begin                                                   \
-           --no-info                                                          \
-           --pointer=•
+           --no-info

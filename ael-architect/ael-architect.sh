@@ -43,8 +43,14 @@ AEL_BIN_APPS=(
     # --- ( check-applications.sh ) -> Check applications' availability.
     check-applications.sh
     
-    # --- ( converst-toml-json.py ) -> Convert TOML -> JSON
+    # --- ( convert-toml-json.py ) -> Convert TOML -> JSON
     convert-toml-json.py
+
+    # --- ( convert-web-md.py ) -> Web to markdown converter.
+    convert-web-md.py
+
+    # --- ( dicom-tag.sh ) -> Search DICOM tags.
+    dicom-tag.sh
 
     # --- ( extractor.sh ) -> Compressed files universal extractor.
     extractor.sh

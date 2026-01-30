@@ -18,6 +18,18 @@ description = "When the boss comes around to look busy."
 filename    = "/bin/check-applications.sh"
 description = "Check applications' availability."
 
+[bin.Y29udmVydC10b21sLWpzb24ucHk-]
+filename    = "/bin/convert-toml-json.py"
+description = "Convert TOML -> JSON."
+
+[bin.Y29udmVydC13ZWItbWQucHk-]
+filename    = "/bin/convert-web-md.py"
+description = "Web to markdown converter."
+
+[bin.ZGljb20tdGFnLnNo]
+filename    = "/bin/dicom-tag.sh"
+description = "Search DICOM tags."
+
 [bin.ZG9ja2VyLWluZm8ucHk-]
 filename    = "/bin/docker-info.py"
 type        = "bin"

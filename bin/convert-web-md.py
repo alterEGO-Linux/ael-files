@@ -1,11 +1,11 @@
-# ------------------------------------------------------------------------ INFO
-# [/home/ghost/.local/share/ael-files/bin/web2md.py]
-# author        : Pascal Malouin @https://github.com/fantomH
-# created       : 2025-11-16 19:15:59 UTC
-# updated       : 2025-11-16 19:15:59 UTC
-# description   : description
-
 #!/usr/bin/env python3
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/convert-web-md.py]
+# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# created       : 2025-11-16 19:15:59 UTC
+# updated       : 2026-01-30 19:34:09 UTC
+# description   : Web to markdown converter.
+
 """
 Download an HTML page and convert it to Markdown using pandoc.
 
@@ -69,17 +69,17 @@ def main():
     parser.add_argument("--url", help="URL to download (optional)")
     parser.add_argument("--out", help="Output Markdown file (optional)")
 
-    # Positional arguments (optional if --url/--out are used)
+    # --- Positional arguments (optional if --url/--out are used)
     parser.add_argument("positional", nargs="*", help="Optional positional URL + output.md")
 
     args = parser.parse_args()
 
-    # Case 1: Using --url and --out explicitly
+    # --- Case 1: Using --url and --out explicitly.
     if args.url and args.out:
         url = args.url
         output_md = Path(args.out).resolve()
 
-    # Case 2: Using positional URL + output.md
+    # --- Case 2: Using positional URL + output.md.
     elif len(args.positional) == 2:
         first, second = args.positional
 
@@ -88,7 +88,7 @@ def main():
             url = first
             output_md = Path(second).resolve()
         else:
-            # INVALID ORDER
+            # --- Invalid order.
             print(
                 "[ERROR] Invalid positional order.\n"
                 "When using positional arguments, the URL must come first.\n\n"
@@ -111,7 +111,7 @@ def main():
     print(f"[INFO] Downloading HTML from: {url}")
     html_content = download_html(url)
 
-    # Write to temporary file
+    # --- Write to temporary file.
     with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as tmp:
         html_path = Path(tmp.name)
         tmp.write(html_content.encode("utf-8"))
@@ -121,7 +121,6 @@ def main():
     run_pandoc(html_path, output_md)
 
     print(f"[OK] Markdown written to: {output_md}")
-
 
 if __name__ == "__main__":
     main()
