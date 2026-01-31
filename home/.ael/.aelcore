@@ -371,12 +371,29 @@ git_status() {
 #    source $__shellutil
 #done
 
+# --- ( busy ) -> Look busy when the boss comes around.
 busy() {
 
     if ! command -v busy.sh >/dev/null 2>&1; then
         printf "%s\n" "${fg_red}[info]${reset} busy.sh is not installed."
     else
         busy.sh
+    fi
+}
+
+# --- ( deep-nmap ) -> Deep Nmap scan.
+[ -f ${shellutils_directory}/deep-nmap ] && . ${shellutils_directory}/deep-nmap
+
+# --- ( deep-scan ) -> Scans IP with rustscan and nmap.
+[ -f ${shellutils_directory}/deep-scan ] && . ${shellutils_directory}/deep-scan
+
+# --- ( docker-info ) -> Docker status helper.
+docker-info() {
+
+    if ! command -v docker-info.py >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[info]${reset} docker-info.py is not installed."
+    else
+        docker-info.py "${@}"
     fi
 }
 

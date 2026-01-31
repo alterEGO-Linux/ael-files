@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # ------------------------------------------------------------------------ INFO
-# [bin/docker-info.py]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/bin/docker-info.py]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-09-04 10:15:46 UTC
-# updated       : 2025-12-22 02:27:23 UTC
+# updated       : 2026-01-31 19:12:28 UTC
 # description   : Docker status helper.
 
 """

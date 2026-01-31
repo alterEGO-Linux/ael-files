@@ -143,6 +143,17 @@ included_app  = [
                 "/usr/bin/dash"
                 ] # }}}
 
+[docker] # {{{
+url           = "https://www.docker.com/"
+description   = "Pack, ship and run any application as a lightweight container."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/docker",
+                "/usr/bin/docker-init",
+                "/usr/bin/docker-proxy",
+                "/usr/bin/dockerd"
+                ] # }}}
+
 [ffmpeg] # {{{
 url           = "https://ffmpeg.org"
 description   = "Complete solution to record, convert and stream audio and video."

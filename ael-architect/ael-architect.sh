@@ -52,6 +52,9 @@ AEL_BIN_APPS=(
     # --- ( dicom-tag.sh ) -> Search DICOM tags.
     dicom-tag.sh
 
+    # --- ( docker-info.py ) -> Docker status helper.
+    docker-info.py
+
     # --- ( extractor.sh ) -> Compressed files universal extractor.
     extractor.sh
 
@@ -96,9 +99,6 @@ AEL_SHELLUTILS=(
 
     # --- ( directory-size ) -> Check size of biggest directories.
     directory-size
-
-    # --- ( docker-info ) -> Docker status helper.
-    docker-info
 
     # --- ( elevate ) -> Repeats last command with sudo, if forgotten.
     elevate

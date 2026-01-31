@@ -90,12 +90,6 @@ filename    = "/shellutils/directory-size"
 type        = "shellutils"
 description = "Check size of biggest directories."
 
-[shellutils.ZG9ja2VyLWluZm8-]
-filename    = "/shellutils/docker-info"
-type        = "shellutils"
-description = "Docker status helper."
-requires    = "bin/docker-info.py"
-
 [shellutils.ZWxldmF0ZQ--]
 filename    = "/shellutils/elevate"
 type        = "shellutils"
