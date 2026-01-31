@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-01-31 12:33:16 UTC
+# updated       : 2026-01-31 17:42:22 UTC
 # description   : AEL files.
 
 [home.LnZpbXJj]
@@ -79,6 +79,11 @@ description = "Scans IP with rustscan and nmap."
 filename    = "/shellutils/delete"
 type        = "shellutils"
 description = "Delete directories."
+
+[shellutils.ZGlyY29sb3Jz]
+filename    = "/shellutils/dircolors"
+type        = "shellutils"
+description = "Terminal colors."
 
 [shellutils.ZGlyZWN0b3J5LXNpemU-]
 filename    = "/shellutils/directory-size"

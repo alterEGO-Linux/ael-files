@@ -91,6 +91,9 @@ AEL_SHELLUTILS=(
     # --- ( delete ) -> Delete directories.
     delete
 
+    # --- (dircolors) -> Terminal colors.
+    dircolors
+
     # --- ( directory-size ) -> Check size of biggest directories.
     directory-size
 

@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------ INFO
 # [/.ael/.aelcore]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-01-17 10:47:06 UTC
+# updated       : 2026-01-31 17:35:11 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
@@ -15,6 +15,7 @@ export __AEL_FILES="${HOME}/.local/share/ael-files"
 export __AEL_DIR="${HOME}/.ael"
 export __AEL_BIN="${__AEL_DIR}/bin"
 export __AEL_DATA="${__AEL_DIR}/data"
+shellutils_directory="${HOME}/.ael/shellutils"
 
 # :: ---------- SOURCE MODULES
 
@@ -26,11 +27,14 @@ alias architect="python ~/main/ael-architect/ael_architect/cli-textual.py"
 
 # -------------------- [ colors ]
 
+# --- sourcing colors
+[ -f ${shellutils_directory}/ansi-colors ] && . ${shellutils_directory}/ansi-colors
+
 export TERM="xterm-256color"
 
-# :Sets LS_COLORS
-[[ -e ${HOME}/.ael/.dircolors ]] \
-&& eval "`dircolors --sh ${HOME}/.ael/.dircolors`"
+# --- Set LS_COLORS
+[[ -e ${shellutils_directory}/dircolors ]] \
+&& eval "`dircolors --sh ${shellutils_directory}/dircolors`"
 
 # :-----/ ALIASES /-----:
 
@@ -352,20 +356,20 @@ git_status() {
   }
   alias git-status='git_status'
 
-# -------------------- ( shellutils )
+# -------------------- ( functions and aliases )
 
-shopt -s globstar dotglob nullglob
-
-__shellutils=()
-for f in ${HOME}/.ael/shellutils/**; do
-  [[ -f "$f" ]] && __shellutils+=("$f")
-done
-
-shopt -u globstar dotglob nullglob
-
-for __shellutil in "${__shellutils[@]}"; do
-    source $__shellutil
-done
+#shopt -s globstar dotglob nullglob
+#
+#__shellutils=()
+#for f in ${HOME}/.ael/shellutils/**; do
+#  [[ -f "$f" ]] && __shellutils+=("$f")
+#done
+#
+#shopt -u globstar dotglob nullglob
+#
+#for __shellutil in "${__shellutils[@]}"; do
+#    source $__shellutil
+#done
 
 busy() {
 
