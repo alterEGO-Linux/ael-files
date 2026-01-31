@@ -387,6 +387,12 @@ busy() {
 # --- ( deep-scan ) -> Scans IP with rustscan and nmap.
 [ -f ${shellutils_directory}/deep-scan ] && . ${shellutils_directory}/deep-scan
 
+# --- ( delete ) -> Delete directories.
+[ -f ${shellutils_directory}/delete ] && . ${shellutils_directory}/delete
+
+# --- ( directory-size ) -> Check size of biggest directories.
+[ -f ${shellutils_directory}/directory-size ] && . ${shellutils_directory}/directory-size
+
 # --- ( docker-info ) -> Docker status helper.
 docker-info() {
 
@@ -396,6 +402,53 @@ docker-info() {
         docker-info.py "${@}"
     fi
 }
+
+# --- ( elevate ) -> Repeats last command with sudo, if forgotten.
+[ -f ${shellutils_directory}/elevate ] && . ${shellutils_directory}/elevate
+
+# --- ( extractor ) -> Compressed files universal extractor.
+extractor() {
+
+    if ! command -v extractor.sh >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[info]${reset} extractor.sh is not installed."
+    else
+        extractor.sh "${@}"
+    fi
+}
+
+# --- ( getmp3 ) -> Extracting audio (.mp3) from video.
+[ -f ${shellutils_directory}/getmp3 ] && . ${shellutils_directory}/getmp3
+
+# --- ( goto ) -> Simple directory bookmarks system.
+[ -f ${shellutils_directory}/goto ] && . ${shellutils_directory}/goto
+
+# --- ( ispeed ) -> Internet connection speed meter.
+[ -f ${shellutils_directory}/ispeed ] && . ${shellutils_directory}/ispeed
+
+# --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
+[ -f ${shellutils_directory}/pacman-reset ] && . ${shellutils_directory}/pacman-reset
+
+# --- ( ports ) -> Displays open ports.
+[ -f ${shellutils_directory}/ports ] && . ${shellutils_directory}/ports
+
+# --- ( processes ) -> Show processes.
+[ -f ${shellutils_directory}/processes ] && . ${shellutils_directory}/processes
+
+# --- ( ps-grep ) -> Show processes for a particular application.
+[ -f ${shellutils_directory}/ps-grep ] && . ${shellutils_directory}/ps-grep
+
+# --- ( py-cleaner ) -> Clean python current directory.
+[ -f ${shellutils_directory}/py-cleaner ] && . ${shellutils_directory}/py-cleaner
+
+# --- ( py-server ) -> Create a Python HTTP server.
+[ -f ${shellutils_directory}/py-server ] && . ${shellutils_directory}/py-server
+
+# --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
+[ -f ${shellutils_directory}/reset-time ] && . ${shellutils_directory}/reset-time
+
+# --- ( shell-info ) -> Show shell info.
+[ -f ${shellutils_directory}/shell-info ] && . ${shellutils_directory}/shell-info
+
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 #[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa

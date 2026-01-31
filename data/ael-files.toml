@@ -95,12 +95,6 @@ filename    = "/shellutils/elevate"
 type        = "shellutils"
 description = "Repeats last command with sudo, if forgotten."
 
-[shellutils.ZXh0cmFjdG9y]
-filename    = "/shellutils/extractor"
-type        = "shellutils"
-description = "Compressed files universal extractor."
-requires    = "bin/extractor.sh"
-
 [shellutils.Z2V0bXAz]
 filename    = "/shellutils/getmp3"
 type        = "shellutils"

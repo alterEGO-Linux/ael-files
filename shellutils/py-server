@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [/.ael/shellutils/py-server]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-09-10 16:58:34 UTC
-# updated       : 2026-01-05 09:28:37 UTC
+# updated       : 2026-01-31 20:50:47 UTC
 # description   : Create a Python HTTP server.
-
-[ -n "${__SOURCED_PY_SERVER:-}" ] && return
-__SOURCED_PY_SERVER=1
 
 py-server() {
 

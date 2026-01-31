@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/shellutils/goto]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/shellutils/goto]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-09-13 11:00:51 UTC
-# updated       : 2026-01-03 23:53:08 UTC
+# updated       : 2026-01-31 20:11:48 UTC
 # description   : Simple directory bookmarks system.
-
-[ -n "${__SOURCED_GOTO:-}" ] && return
-__SOURCED_GOTO=1
 
 GOTODIR="${HOME}/.ael/.goto/"
 [[ ! -d "${GOTODIR}" ]] && mkdir -p "${GOTODIR}"

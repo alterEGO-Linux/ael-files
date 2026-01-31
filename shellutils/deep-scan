@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/shellutils/deep-scan]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/shellutils/deep-scan]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-10-20 09:10:13 UTC
-# updated       : 2026-01-03 23:36:39 UTC
+# updated       : 2026-01-31 19:51:07 UTC
 # description   : Scans IP with rustscan and nmap.
-
-[ -n "${__SOURCED_DEEP_SCAN:-}" ] && return
-__SOURCED_DEEP_SCAN=1
 
 deep-scan() {
 

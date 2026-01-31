@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/shellutils/elevate]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/shellutils/elevate]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-02 00:10:38 UTC
-# updated       : 2025-12-29 00:39:06 UTC
+# updated       : 2026-01-31 19:57:24 UTC
 # description   : Repeats last command with sudo, if forgotten.
-
-[ -n "${__SOURCED_ELEVATE:-}" ] && return
-__SOURCED_ELEVATE=1
 
 elevate() {
 

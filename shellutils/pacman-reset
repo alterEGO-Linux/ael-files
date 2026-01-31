@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [/.ael/shellutils/pacman-reset]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-10-20 10:46:22 UTC
-# updated       : 2026-01-04 01:51:30 UTC
+# updated       : 2026-01-31 20:18:01 UTC
 # description   : Re-initialize pacman sync, mirrorlist and keyring.
-
-
-[ -n "${__SOURCED_PACMAN_RESET:-}" ] && return
-__SOURCED_PACMAN_RESET=1
 
 pacman-reset() {
 

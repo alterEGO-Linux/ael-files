@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [/shellutils/deep-nmap]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-22 02:05:30 UTC
-# updated       : 2025-12-28 23:05:38 UTC
+# updated       : 2026-01-31 19:50:14 UTC
 # description   : Deep Nmap scan.
-
-[ -n "${__SOURCED_DEEP_NMAP:-}" ] && return
-__SOURCED_DEEP_NMAP=1
 
 deep-nmap() {
 

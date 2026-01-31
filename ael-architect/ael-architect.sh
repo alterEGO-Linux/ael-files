@@ -103,9 +103,6 @@ AEL_SHELLUTILS=(
     # --- ( elevate ) -> Repeats last command with sudo, if forgotten.
     elevate
 
-    # --- ( extractor ) -> Compressed files universal extractor.
-    extractor
-
     # --- ( getmp3 ) -> Extracting audio (.mp3) from video.
     getmp3
 
@@ -114,9 +111,6 @@ AEL_SHELLUTILS=(
 
     # --- ( ispeed ) -> Internet connection speed meter.
     ispeed
-
-    # --- ( kali ) ->
-    kali
 
     # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
     pacman-reset

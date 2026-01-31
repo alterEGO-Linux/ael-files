@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [/.ael/shellutils/shell-info]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-02 01:18:13 UTC
-# updated       : 2026-01-06 10:15:14 UTC
+# updated       : 2026-01-31 22:04:05 UTC
 # description   : Show shell info.
-
-[ -n "${__SOURCED_SHELL_INFO:-}" ] && return
-__SOURCED_SHELL_INFO=1
 
 shell-info() {
 

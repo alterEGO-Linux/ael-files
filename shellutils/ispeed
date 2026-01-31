@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/shellutils/ispeed]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/shellutils/ispeed]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-05-16 14:54:18 UTC
-# updated       : 2026-01-04 00:24:56 UTC
+# updated       : 2026-01-31 20:16:02 UTC
 # description   : Internet connection speed meter.
-
-[ -n "${__SOURCED_ISPEED:-}" ] && return
-__SOURCED_ISPEED=1
-
-
 
 ispeed() {
 
