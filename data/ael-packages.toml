@@ -1,11 +1,11 @@
 # ------------------------------------------------------------------------ INFO
 # [/.ael/data/ael-packages.toml]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
 # updated       : 2026-01-30 19:45:37 UTC
 # description   : Packages
 
-[bash]
+[bash] # {{{
 url           = "https://www.gnu.org/software/bash/bash.html"
 description   = "The GNU Bourne Again shell."
 repository    = "core"
@@ -14,7 +14,7 @@ included_app  = [
                 "/usr/bin/bashbug",
                 "/usr/bin/rbash",
                 "/usr/bin/sh",
-                ]
+                ] # }}}
 
 [coreutils] # {{{
 url           = "https://www.gnu.org/software/coreutils/"
@@ -125,7 +125,7 @@ included_app  = [
                 "/usr/bin/yes"
                 ] # }}}
 
-[curl]
+[curl] # {{{
 url           = "https://curl.se/"
 description   = "Command line tool and library for transferring data with URLs."
 repository    = "core"
@@ -133,17 +133,17 @@ included_app  = [
                 "/usr/bin/curl",
                 "/usr/bin/curl-config",
                 "/usr/bin/wcurl"
-                ]
+                ] # }}}
 
-[dash]
+[dash] # {{{
 url           = "http://gondor.apana.org.au/~herbert/dash/"
 description   = "POSIX compliant shell that aims to be as small as possible."
 repository    = "core"
 included_app  = [
                 "/usr/bin/dash"
-                ]
+                ] # }}}
 
-[ffmpeg]
+[ffmpeg] # {{{
 url           = "https://ffmpeg.org"
 description   = "Complete solution to record, convert and stream audio and video."
 repository    = "extra"
@@ -151,35 +151,45 @@ included_app  = [
                 "/usr/bin/ffmpeg",
                 "/usr/bin/ffprobe",
                 "/usr/bin/qt-faststart"
-                ]
+                ] # }}}
 
-[findutils]
+[findutils] # {{{
 url           = "https://www.gnu.org/software/findutils/"
 description   = "GNU utilities to locate files."
 repository    = "core"
 included_app  = [
                 "/usr/bin/find",
                 "/usr/bin/xargs"
-                ]
+                ] # }}}
 
-[firefox]
+[firefox] # {{{
 url           = "https://www.mozilla.org/firefox/"
 description   = "Fast, Private & Safe Web Browser."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/firefox"
-                ]
+                ] # }}}
 
-[fzf]
+[fzf] # {{{
 url           = "https://github.com/junegunn/fzf"
 description   = "Command-line fuzzy finder"
 repository    = "extra"
 included_app  = [
                 "/usr/bin/fzf",
                 "/usr/bin/fzf-tmux"
-                ]
+                ] # }}}
 
-[grep]
+[gawk] # {{{
+url           = "https://www.gnu.org/software/gawk/"
+description   = "GNU version of awk."
+repository    = "core"
+included_app  = [
+                "/usr/bin/awk",
+                "/usr/bin/gawk",
+                "/usr/bin/gawkbug"
+                ] # }}}
+
+[grep] # {{{
 url           = "https://www.gnu.org/software/grep/"
 description   = "A string search utility."
 repository    = "core"
@@ -187,26 +197,26 @@ included_app  = [
                 "/usr/bin/egrep",
                 "/usr/bin/fgrep",
                 "/usr/bin/grep"
-                ]
+                ] # }}}
 
-[grc]
+[grc] # {{{
 url           = "https://github.com/garabik/grc"
 description   = "Yet another colouriser for beautifying your logfiles or output of commands."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/grc",
                 "/usr/bin/grcat"
-                ]
+                ] # }}}
 
-[jupyter-notebook]
+[jupyter-notebook] # {{{
 url           = "https://github.com/jupyter/notebook"
 description   = "The language-agnostic HTML notebook application for Project Jupyter."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/jupyter-notebook"
-                ]
+                ] # }}}
 
-[less]
+[less] # {{{
 url           = "https://www.greenwoodsoftware.com/less/"
 description   = "A terminal based program for viewing text files."
 repository    = "core"
@@ -214,17 +224,17 @@ included_app  = [
                 "/usr/bin/less",
                 "/usr/bin/lessecho",
                 "/usr/bin/lesskey"
-                ]
+                ] # }}}
 
-[mpv]
+[mpv] # {{{
 url           = "https://mpv.io/"
 description   = "a free, open source, and cross-platform media player."
 repository    = "extra"
 icluded_app   = [
                 "/usr/bin/mpv"
-                ]
+                ] # }}}
 
-[net-tools]
+[net-tools] # {{{
 url           = "http://net-tools.sourceforge.net/"
 description   = "Configuration tools for Linux networking."
 repository    = "core"
@@ -240,9 +250,9 @@ included_app  = [
                 "/usr/bin/rarp",
                 "/usr/bin/route",
                 "/usr/bin/slattach"
-                ]
+                ] # }}}
 
-[nmap]
+[nmap] # {{{
 url           = "https://nmap.org/"
 description   = "Utility for network discovery and security auditing."
 repository    = "extra"
@@ -250,9 +260,9 @@ included_app  = [
                 "/usr/bin/ncat",
                 "/usr/bin/nmap",
                 "/usr/bin/nping"
-                ]
+                ] # }}}
 
-[openbsd-netcat]
+[openbsd-netcat] # {{{
 url           = "https://salsa.debian.org/debian/netcat-openbsd"
 description   = "TCP/IP swiss army knife. OpenBSD variant."
 repository    = "extra"
@@ -263,9 +273,9 @@ included_app  = [
                 ]
 notes         = [
                 "To have the -e (remote execution) you need to install gnu-netcat from AUR"
-                ]
+                ] # }}}
 
-[openssh]
+[openssh] # {{{
 url           = "https://www.openssh.com/portable.html"
 description   = "SSH protocol implementation for remote login, command execution and file transfer."
 repository    = "core"
@@ -280,9 +290,9 @@ included_app  = [
                 "/usr/bin/ssh-keygen",
                 "/usr/bin/ssh-keyscan",
                 "/usr/bin/sshd"
-                ]
+                ] # }}}
 
-[pacman]
+[pacman] # {{{
 url           = "https://www.archlinux.org/pacman/"
 description   = "A library-based package manager with dependency support."
 repository    = "core"
@@ -298,9 +308,9 @@ included_app  = [
                 "/usr/bin/repo-remove",
                 "/usr/bin/testpkg",
                 "/usr/bin/vercmp"
-                ]
+                ] # }}}
 
-[pandoc-bin]
+[pandoc-bin] # {{{
 url           = "https://pandoc.org"
 aur_url       = "https://aur.archlinux.org/packages/pandoc-bin"
 description   = "Conversion between documentation formats."
@@ -309,17 +319,17 @@ included_app  = [
                 "/usr/bin/pandoc",
                 "/usr/bin/pandoc-lua",
                 "/usr/bin/pandoc-server"
-                ]
+                ] # }}}
 
-[pcmanfm-qt]
+[pcmanfm-qt] # {{{
 url           = "https://github.com/lxqt/pcmanfm-qt"
 description   = "The LXQt file manager, Qt port of PCManFM."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/pcmanfm-qt"
-                ]
+                ] # }}}
 
-[procps-ng]
+[procps-ng] # {{{
 url           = "https://gitlab.com/procps-ng/procps"
 description   = "Utilities for monitoring your system and its processes."
 repository    = "core"
@@ -341,9 +351,9 @@ included_app  = [
                 "/usr/bin/vmstat",
                 "/usr/bin/w",
                 "/usr/bin/watch"
-                ]
+                ] # }}}
 
-[python]
+[python] # {{{
 url           = "https://www.python.org/"
 description   = "The Python programming language"
 repository    = "core"
@@ -360,30 +370,31 @@ included_app  = [
                 "/usr/bin/python3-config",
                 "/usr/bin/python3.13",
                 "/usr/bin/python3.13-config"
-                ]
+                ] # }}}
 
-[python-rich]
+[python-rich] # {{{
 url           = "https://github.com/willmcgugan/rich"
 description   = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal."
 repository    = "extra"
+included_app  = [ "none" ] # }}}
 
-[ripgrep]
+[ripgrep] # {{{
 url           = "https://github.com/BurntSushi/ripgrep"
 description   = "A search tool that combines the usability of ag with the raw speed of grep."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/rg"
-                ]
+                ] # }}}
 
-[rustscan]
+[rustscan] # {{{
 url           = "https://github.com/rustscan/RustScan"
 description   = "A modern port scanner."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/rustscan"
-                ]
+                ] # }}}
 
-[shadow]
+[shadow] # {{{
 url           = "https://github.com/shadow-maint/shadow"
 description   = "Password and account management tool suite with support for shadow files and PAM"
 repository    = "core"
@@ -414,26 +425,26 @@ included_app  = [
                 "/usr/bin/useradd",
                 "/usr/bin/userdel",
                 "/usr/bin/usermod"
-                ]
+                ] # }}}
 
-[sed]
+[sed] # {{{
 url           = "https://www.gnu.org/software/sed/"
 description   = "GNU stream editor"
 repository    = "core"
 included_app  = [
                 "/usr/bin/sed"
-                ]
+                ] # }}}
 
-[speedtest-cli]
+[speedtest-cli] # {{{
 url           = "https://github.com/sivel/speedtest-cli"
 description   = "Command line interface for testing internet bandwidth using speedtest.net."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/speedtest",
                 "/usr/bin/speedtest-cli"
-                ]
+                ] # }}}
 
-[sudo]
+[sudo] # {{{
 url           = "https://www.sudo.ws/sudo/"
 description   = "Give certain users the ability to run some commands as root."
 repository    = "core"
@@ -445,7 +456,7 @@ included_app  = [
                 "/usr/bin/sudoedit",
                 "/usr/bin/sudoreplay",
                 "/usr/bin/visudo"
-                ]
+                ] # }}}
 
 [systemd] # {{{
 url           = "https://www.github.com/systemd/systemd"
@@ -512,15 +523,15 @@ included_app  = [
                 "/usr/bin/udevadm",
                 "/usr/bin/userdbctl",
                 "/usr/bin/varlinkctl"
-                ]
+                ] # }}}
 
-[tmux]
+[tmux] # {{{
 url           = "https://github.com/tmux/tmux/wiki"
 description   = "Terminal multiplexer."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/tmux"
-                ]
+                ] # }}}
 
 [util-linux] # {{{
 url           = "https://github.com/util-linux/util-linux"
@@ -663,7 +674,7 @@ included_app  = [
                 "/usr/bin/zramctl"
                 ] # }}}
 
-[vim]
+[vim] # {{{
 url           = "https://www.vim.org"
 description   = "Vi Improved, a highly configurable, improved version of the vi text editor."
 repository    = "extra"
@@ -674,9 +685,46 @@ included_app  = [
                 "/usr/bin/vimdiff",
                 "/usr/bin/vimtutor",
                 "/usr/bin/xxd"
-                ]
+                ] # }}}
 
-[xdg-utils]
+[virtualbox] # {{{
+url           = "https://virtualbox.org/"
+description   = "Powerful x86 virtualization for enterprise as well as home use."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/VBox",
+                "/usr/bin/VBoxAutostart",
+                "/usr/bin/VBoxBalloonCtrl",
+                "/usr/bin/VBoxBugReport",
+                "/usr/bin/VBoxHeadless",
+                "/usr/bin/VBoxManage",
+                "/usr/bin/VBoxSDL",
+                "/usr/bin/VirtualBox",
+                "/usr/bin/VirtualBoxVM",
+                "/usr/bin/rcvboxdrv",
+                "/usr/bin/vbox-img",
+                "/usr/bin/vboxautostart",
+                "/usr/bin/vboxballoonctrl",
+                "/usr/bin/vboxbugreport",
+                "/usr/bin/vboxheadless",
+                "/usr/bin/vboximg-mount",
+                "/usr/bin/vboxmanage",
+                "/usr/bin/vboxreload",
+                "/usr/bin/vboxsdl",
+                "/usr/bin/vboxwebsrv",
+                "/usr/bin/virtualbox",
+                "/usr/bin/virtualboxvm"
+                ] # }}}
+
+[wget] # {{{
+url           = "https://www.gnu.org/software/wget/wget.html"
+description   = "Network utility to retrieve files from the web"
+repository    = "extra"
+included_app  = [
+                "/usr/bin/wget"
+                ] # }}}
+
+[xdg-utils] # {{{
 url           = "https://gitlab.freedesktop.org/xdg/xdg-utils"
 description   = "Command line tools that assist applications with a variety of desktop integration tasks."
 repository    = "extra"
@@ -689,14 +737,14 @@ included_app  = [
                 "/usr/bin/xdg-open",
                 "/usr/bin/xdg-screensaver",
                 "/usr/bin/xdg-settings"
-                ]
+                ] # }}}
 
-[yt-dlp]
+[yt-dlp] # {{{
 url           = "https://github.com/yt-dlp/yt-dlp"
 description   = "A youtube-dl fork with additional features and fixes."
 repository    = "extra"
 included_app  = [
                 "/usr/bin/yt-dlp"
-                ]
+                ] # }}}
 
 # vim: foldmethod=marker

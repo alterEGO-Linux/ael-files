@@ -116,21 +116,22 @@ EOF
 }
 endsnippet
 
-# ---------- [ shell - check_applications ]
+# -------------------- [ shell - check_applications ]
 snippet sh_check_applications "shell - check_applications" b
 check_applications() {
-    if [[ -e ${HOME}/.ael/bin/check-applications.sh ]]; then
-        bash ${HOME}/.ael/bin/check-applications.sh "${@}"
+		# --- Verify if check-applications.sh is on PATH.
+    if command -v check-applications.sh >/dev/null 2>&1; then
+        check-applications.sh "${@}"
    else
         for app in "${@}"; do
             if ! command -v $app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                printf '%s\n' "${red}[!]${reset} ${app} is not installed."
                 return 1
             fi
         done
     fi
 }
-check_applications <applications here> || return 1
+check_applications <applications here> || exit 1
 
 endsnippet
 
@@ -161,13 +162,14 @@ read -p "${__blue}[?]${__reset} <YES/NO question>? [y/N] " __input
 
 endsnippet
 
-# ---------- [ shell - colors ] 
+# -------------------- [ shell - colors ] 
 snippet sh_colors "shell - colors" b
-local __blue=$'\033[34m'
-local __bold=$'\033[1m'
-local __red=$'\033[31m'
-local __reset=$'\033[0m'
-local __yellow=$'\033[33m'
+# -------------------- [ colors ]
+blue=$'\033[34m'
+bold=$'\033[1m'
+red=$'\033[31m'
+reset=$'\033[0m'
+yellow=$'\033[33m'
 
 endsnippet
 

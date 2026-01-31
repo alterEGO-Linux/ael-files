@@ -63,6 +63,9 @@ AEL_BIN_APPS=(
 
     # --- ( tunnel-info.py ) ->  Display Tunnels/VPN info.
     tunnel-info.py
+    
+    # --- ( virtual-boxes.sh ) -> Virtualbox VMs launcher.
+    virtual-boxes.sh
     )
 AEL_BIN_SYMLINKED=false
 AEL_BIN_UPDATED_COPY=true
