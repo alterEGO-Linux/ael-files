@@ -1,13 +1,10 @@
 #!/usr/bin/env sh
 # ------------------------------------------------------------------------ INFO
 # [/.ael/shellutils/snake-env]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-10-23 11:28:49 UTC
 # updated       : 2026-01-06 15:00:10 UTC
 # description   : Manage python -m venv.
-
-[ -n "${__SOURCED_SNAKE_ENV:-}" ] && return
-__SOURCED_SNAKE_ENV=1
 
 snake-env() {
 

@@ -1,13 +1,10 @@
 #!/usr/bin/env sh
 # ------------------------------------------------------------------------ INFO
 # [/.ael/shellutils/termbin]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-11-26 17:45:44 UTC
-# updated       : 2026-01-08 02:20:26 UTC
+# updated       : 2026-01-31 22:33:49 UTC
 # description   : Netcat-based command-line pastebin.
-
-[ -n "${__SOURCED_TERMBIN-}" ] && return
-__SOURCED_TERMBIN=1
 
 termbin() {
 
@@ -33,7 +30,7 @@ termbin() {
 
     # --- verify if any input is provided.
     if [ -t 0 ] && [ $# -eq 0 ]; then
-        printf '%s\n' "${__red}[!]${__reset} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
+        printf '%s\n' "${__red}[error]${__reset} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
         return 1
     fi
 

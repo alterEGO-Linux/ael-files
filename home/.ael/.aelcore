@@ -449,6 +449,36 @@ extractor() {
 # --- ( shell-info ) -> Show shell info.
 [ -f ${shellutils_directory}/shell-info ] && . ${shellutils_directory}/shell-info
 
+# --- ( show-utc ) -> Show UTC time.
+[ -f ${shellutils_directory}/show-utc ] && . ${shellutils_directory}/show-utc
+
+# --- ( snake-env ) -> Manage python -m venv.
+[ -f ${shellutils_directory}/snake-env ] && . ${shellutils_directory}/snake-env
+
+# --- ( termbin ) -> Netcat-based command-line pastebin.
+[ -f ${shellutils_directory}/termbin ] && . ${shellutils_directory}/termbin
+
+# --- ( tmuxplus ) -> TMUX wrapper.
+tmuxplus() {
+
+    if ! command -v tmuxplus.sh >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[info]${reset} tmuxplus.sh is not installed."
+    else
+        tmuxplus.sh "${@}"
+    fi
+}
+
+# --- ( tunnel-info ) -> Display tunnel + VPN info.
+tunnel-info() {
+
+    if ! command -v tunnel-info.py >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[info]${reset} tunnel-info.py is not installed."
+    else
+        tunnel-info.py
+    fi
+}
+
+
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 #[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa

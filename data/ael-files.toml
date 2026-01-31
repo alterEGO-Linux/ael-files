@@ -157,14 +157,6 @@ description = "Netcat-based command-line pastebin."
 filename    = "shellutils/tmuxplus"
 description = "TMUX wrapper."
 
-[shellutils.dHJhbnNsYXRl]
-filename    = "/shellutils/translate"
-description = "Translate using Google translate."
-
-[shellutils.dHVubmVsLWluZm8-]
-filename    = "/shellutils/tunnel-info"
-description = "Display tunnels + VPN info."
-
 [shellutils.d2hvaXN3ZWI-]
 filename    = "/shellutils/whoisweb"
 description = "Query WHOIS web if <whois> port 43 is blocked on your network."

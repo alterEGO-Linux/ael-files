@@ -145,14 +145,8 @@ AEL_SHELLUTILS=(
     # --- ( termbin ) -> Netcat-based command-line pastebin.
     termbin
 
-    # --- ( tmuxplus ) -> TMUX wrapper.
-    tmuxplus
-
     # --- ( translate.py) -> Translate using Google translate.
     translate.py
-
-    # --- ( tunnel-info ) -> Display tunnel + VPN info.
-    tunnel-info
 
     # --- ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
     whoisweb
