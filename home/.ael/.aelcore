@@ -24,7 +24,7 @@ export __AEL_DATA="${__AEL_DIR}/data"
 
 alias architect="python ~/main/ael-architect/ael_architect/cli-textual.py"
 
-# :-----/ COLORS /-----:
+# -------------------- [ colors ]
 
 export TERM="xterm-256color"
 
@@ -366,6 +366,15 @@ shopt -u globstar dotglob nullglob
 for __shellutil in "${__shellutils[@]}"; do
     source $__shellutil
 done
+
+busy() {
+
+    if ! command -v busy.sh >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[info]${reset} busy.sh is not installed."
+    else
+        busy.sh
+    fi
+}
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 #[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa

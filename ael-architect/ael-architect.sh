@@ -55,6 +55,9 @@ AEL_BIN_APPS=(
     # --- ( extractor.sh ) -> Compressed files universal extractor.
     extractor.sh
 
+    # --- ( menu-ael-files.sh ) -> Opens AEL files.
+    menu-ael-files.sh
+
     # --- ( tmuxplus.sh ) -> TMUX wrapper.
     tmuxplus.sh
     

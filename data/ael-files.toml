@@ -40,6 +40,10 @@ filename    = "/bin/extractor.sh"
 type        = "bin"
 description = "Compressed files universal extractor."
 
+[bin.bWVudS1hZWwtZmlsZXMuc2g-]
+filename    = "/bin/menu-ael-files.sh"
+description = "Opens AEL files."
+
 [bin.dG11eHBsdXMuc2g-]
 filename    = "/bin/tmuxplus.sh"
 description = "TMUX wrapper."
