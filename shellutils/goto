@@ -3,8 +3,11 @@
 # [/.ael/shellutils/goto]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-09-13 11:00:51 UTC
-# updated       : 2026-01-31 20:11:48 UTC
+# updated       : 2026-01-31 23:16:24 UTC
 # description   : Simple directory bookmarks system.
+
+# --- ref. <https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774>
+# ... ref. <https://twitter.com/mattn_jp/status/1434192554036137995>
 
 GOTODIR="${HOME}/.ael/.goto/"
 [[ ! -d "${GOTODIR}" ]] && mkdir -p "${GOTODIR}"

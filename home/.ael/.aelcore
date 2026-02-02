@@ -59,13 +59,12 @@ alias pythonenvs=". ~/.ael/.pythonenvs"
 export BROWSER=firefox
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
-# export TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
 export TERMINAL="alacritty"
 export VISUAL=vim
 export EDITOR=${VISUAL}
 
-# :-----/ PATH /-----:
-# :ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
+# -------------------- [ path ]
+# --- ref. <https://www.linuxjournal.com/content/removing-duplicate-path-entries>
 
 PATH="${HOME}/.ael/bin:${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
 PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
@@ -93,12 +92,12 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
-# :-----/ VIM /-----:
+# -------------------- [ vim ]
 
-# :Enables CTRL+s in vim.
-# :ref. https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
-# :Requires mapping in .vimrc:
-# :inoremap <C-s> <ESC>:write<CR>
+# --- Enable CTRL+s in vim.
+# ... ref. https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
+# ... Requires mapping in .vimrc:
+# ... inoremap <C-s> <ESC>:write<CR>
 
 stty -ixon
 
@@ -153,23 +152,6 @@ prompt_command() {
     fi
   }
   PROMPT_COMMAND=prompt_command
-
-# :---------- [ GOTO ]
-# :ref. https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
-# :ref. https://twitter.com/mattn_jp/status/1434192554036137995
-# :Requires `bash-completion` and sourced in .bashrc.
-# :To add a goto link:
-# :$ `ln -s </some/directory/path> ${HOME}/.ael/.goto/@<gotolink>` in  directory.
-# :Usage: `goto @<gotolink>`
-
-# if [ -d "${HOME}/.ael/.goto/" ]; then
-  # export CDPATH=".:${HOME}/.ael/.goto:/"
-  # alias goto="cd -P"
-  # _goto() {
-    # local IFS=$'\n'
-    # COMPREPLY=( $(compgen -W "$(/bin/ls ~/.ael/.goto)" -- ${COMP_WORDS[COMP_CWORD]}) )
-  # } && complete -F _goto goto
-# fi
 
 # :---------- [ RELOAD ]
 reload() {
@@ -358,19 +340,6 @@ git_status() {
 
 # -------------------- ( functions and aliases )
 
-#shopt -s globstar dotglob nullglob
-#
-#__shellutils=()
-#for f in ${HOME}/.ael/shellutils/**; do
-#  [[ -f "$f" ]] && __shellutils+=("$f")
-#done
-#
-#shopt -u globstar dotglob nullglob
-#
-#for __shellutil in "${__shellutils[@]}"; do
-#    source $__shellutil
-#done
-
 # --- ( busy ) -> Look busy when the boss comes around.
 busy() {
 
@@ -478,6 +447,17 @@ tunnel-info() {
     fi
 }
 
+# --- ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
+[ -f ${shellutils_directory}/whoisweb ] && . ${shellutils_directory}/whoisweb
+
+
+# --- temp
+#
+. ${shellutils_directory}/utils/ael-fzf
+. ${shellutils_directory}/utils/check-applications
+. ${shellutils_directory}/utils/argument-parser
+
+
 
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
@@ -488,5 +468,3 @@ tunnel-info() {
 #[ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
 #[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 #[ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
-#[ -f /home/ghost/.ael/shellutils/tagalog ] && . /home/ghost/.ael/shellutils/tagalog
-#[ -f /home/ghost/.ael/shellutils/translate ] && . /home/ghost/.ael/shellutils/translate

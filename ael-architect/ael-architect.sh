@@ -145,9 +145,6 @@ AEL_SHELLUTILS=(
     # --- ( termbin ) -> Netcat-based command-line pastebin.
     termbin
 
-    # --- ( translate.py) -> Translate using Google translate.
-    translate.py
-
     # --- ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
     whoisweb
 
