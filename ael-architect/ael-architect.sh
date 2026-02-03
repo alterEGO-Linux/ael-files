@@ -61,6 +61,9 @@ AEL_BIN_APPS=(
     # --- ( menu-ael-files.sh ) -> Opens AEL files.
     menu-ael-files.sh
 
+    # --- ( systeminfo.sh ) -> Gather system information.
+    systeminfo.sh
+
     # --- ( tmuxplus.sh ) -> TMUX wrapper.
     tmuxplus.sh
     

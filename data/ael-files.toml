@@ -44,6 +44,10 @@ description = "Compressed files universal extractor."
 filename    = "/bin/menu-ael-files.sh"
 description = "Opens AEL files."
 
+[bin.c3lzdGVtaW5mby5zaA--]
+filename    = "/bin/systeminfo.sh"
+description = "Gather system information."
+
 [bin.dG11eHBsdXMuc2g-]
 filename    = "/bin/tmuxplus.sh"
 description = "TMUX wrapper."

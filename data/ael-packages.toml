@@ -2,7 +2,7 @@
 # [/.ael/data/ael-packages.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-01-30 19:45:37 UTC
+# updated       : 2026-02-03 12:45:17 UTC
 # description   : Packages
 
 [bash] # {{{
@@ -14,6 +14,42 @@ included_app  = [
                 "/usr/bin/bashbug",
                 "/usr/bin/rbash",
                 "/usr/bin/sh",
+                ] # }}}
+
+[bind] # {{{
+url           = "https://www.isc.org/software/bind/"
+description   = "A complete, highly portable implementation of the DNS protocol"
+repository    = "extra"
+included_app  = [
+                "/usr/bin/arpaname",
+                "/usr/bin/ddns-confgen",
+                "/usr/bin/delv",
+                "/usr/bin/dig",
+                "/usr/bin/dnssec-cds",
+                "/usr/bin/dnssec-dsfromkey",
+                "/usr/bin/dnssec-importkey",
+                "/usr/bin/dnssec-keyfromlabel",
+                "/usr/bin/dnssec-keygen",
+                "/usr/bin/dnssec-ksr",
+                "/usr/bin/dnssec-revoke",
+                "/usr/bin/dnssec-settime",
+                "/usr/bin/dnssec-signzone",
+                "/usr/bin/dnssec-verify",
+                "/usr/bin/host",
+                "/usr/bin/mdig",
+                "/usr/bin/named",
+                "/usr/bin/named-checkconf",
+                "/usr/bin/named-checkzone",
+                "/usr/bin/named-compilezone",
+                "/usr/bin/named-journalprint",
+                "/usr/bin/named-nzd2nzf",
+                "/usr/bin/named-rrchecker",
+                "/usr/bin/nsec3hash",
+                "/usr/bin/nslookup",
+                "/usr/bin/nsupdate",
+                "/usr/bin/rndc",
+                "/usr/bin/rndc-confgen",
+                "/usr/bin/tsig-keygen"
                 ] # }}}
 
 [coreutils] # {{{
@@ -217,6 +253,26 @@ repository    = "extra"
 included_app  = [
                 "/usr/bin/grc",
                 "/usr/bin/grcat"
+                ] # }}}
+
+[inetutils] # {{{
+url           = "https://www.gnu.org/software/inetutils/"
+description   = "A collection of common network programs"
+repository    = "core"
+included_app  = [
+                "/usr/bin/dnsdomainname",
+                "/usr/bin/ftp",
+                "/usr/bin/ftpd",
+                "/usr/bin/hostname",
+                "/usr/bin/rcp",
+                "/usr/bin/rlogin",
+                "/usr/bin/rlogind",
+                "/usr/bin/rsh",
+                "/usr/bin/rshd",
+                "/usr/bin/talk",
+                "/usr/bin/talkd",
+                "/usr/bin/telnet",
+                "/usr/bin/telnetd"
                 ] # }}}
 
 [jupyter-notebook] # {{{
