@@ -791,6 +791,14 @@ included_app  = [
                 "/usr/bin/wget"
                 ] # }}}
 
+[wireshark-qt] #{{{
+url           = "https://www.wireshark.org/"
+description   = "Network traffic and protocol analyzer/sniffer - Qt GUI."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/wireshark"
+                ] # }}}
+
 [xdg-utils] # {{{
 url           = "https://gitlab.freedesktop.org/xdg/xdg-utils"
 description   = "Command line tools that assist applications with a variety of desktop integration tasks."
