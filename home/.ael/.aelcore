@@ -2,7 +2,7 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-01-31 17:35:11 UTC
+# updated       : 2026-03-20 20:36:44 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
@@ -344,7 +344,7 @@ git_status() {
 busy() {
 
     if ! command -v busy.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[info]${reset} busy.sh is not installed."
+        printf "%s\n" "${fg_red}[!]${reset} busy.sh is not installed."
     else
         busy.sh
     fi
@@ -366,7 +366,7 @@ busy() {
 docker-info() {
 
     if ! command -v docker-info.py >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[info]${reset} docker-info.py is not installed."
+        printf "%s\n" "${fg_red}[!]${reset} docker-info.py is not installed."
     else
         docker-info.py "${@}"
     fi
@@ -379,7 +379,7 @@ docker-info() {
 extractor() {
 
     if ! command -v extractor.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[info]${reset} extractor.sh is not installed."
+        printf "%s\n" "${fg_red}[!]${reset} extractor.sh is not installed."
     else
         extractor.sh "${@}"
     fi
@@ -425,13 +425,46 @@ extractor() {
 [ -f ${shellutils_directory}/snake-env ] && . ${shellutils_directory}/snake-env
 
 # --- ( termbin ) -> Netcat-based command-line pastebin.
-[ -f ${shellutils_directory}/termbin ] && . ${shellutils_directory}/termbin
+termbin() {
+
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+            check-applications "${@}"
+        else
+            local app
+            for app in $@; do
+                if ! command -v $app; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications cat nc || return 1
+
+    # --- verify if any input is provided.
+    if [ -t 0 ] && [ $# -eq 0 ]; then
+        printf '%s\n' "${__red}[error]${__reset} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
+        return 1
+    fi
+
+    if [ $# -gt 0 ]; then
+        printf '%s\n' "$*"
+    else
+        cat
+    fi | nc termbin.com 9999
+}
 
 # --- ( tmuxplus ) -> TMUX wrapper.
 tmuxplus() {
 
     if ! command -v tmuxplus.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[info]${reset} tmuxplus.sh is not installed."
+        printf "%s\n" "${fg_red}[!]${reset} tmuxplus.sh is not installed."
     else
         tmuxplus.sh "${@}"
     fi
@@ -441,15 +474,42 @@ tmuxplus() {
 tunnel-info() {
 
     if ! command -v tunnel-info.py >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[info]${reset} tunnel-info.py is not installed."
+        printf "%s\n" "${fg_red}[!]${reset} tunnel-info.py is not installed."
     else
         tunnel-info.py
     fi
 }
 
 # --- ( whoisweb ) -> Query WHOIS web if <whois> port 43 is blocked on your network.
-[ -f ${shellutils_directory}/whoisweb ] && . ${shellutils_directory}/whoisweb
+whoisweb() {
 
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+        if [[ -e ${HOME}/.ael/bin/check-applications.sh ]]; then
+            bash ${HOME}/.ael/bin/check-applications.sh "${@}"
+        else
+            for app in "${@}"; do
+                if ! command -v $app >/dev/null 2>&1; then
+                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
+                    return 1
+                fi
+            done
+        fi
+    }
+    check_applications curl jq sed || return 1
+
+    if [[ -z "${@}" ]]; then
+        printf '%s\n' "${__red}[!]${__reset} You must provide a valid URL."
+    else
+        command curl --silent https://whoisjs.com/api/v1/${1} \
+        | command jq ".raw" \
+        | command sed "s/\\\r\\\n/\\n/g"
+    fi
+}
 
 # --- temp
 #

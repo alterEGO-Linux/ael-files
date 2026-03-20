@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-01-31 17:42:22 UTC
+# updated       : 2026-03-20 20:36:34 UTC
 # description   : AEL files.
 
 [home.LnZpbXJj]
@@ -152,18 +152,6 @@ description = "Show UTC time."
 [shellutils.c25ha2UtZW52]
 filename    = "/shellutils/snake-env"
 description = "Manage python -m venv."
-
-[shellutils.dGVybWJpbg--]
-filename    = "/shellutils/termbin"
-description = "Netcat-based command-line pastebin."
-
-[shellutils.dG11eHBsdXM-]
-filename    = "shellutils/tmuxplus"
-description = "TMUX wrapper."
-
-[shellutils.d2hvaXN3ZWI-]
-filename    = "/shellutils/whoisweb"
-description = "Query WHOIS web if <whois> port 43 is blocked on your network."
 
 [shellutils.utils.YWVsLWZ6Zg--]
 filename    = "/shellutils/utils/ael-fzf"

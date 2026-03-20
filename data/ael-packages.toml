@@ -2,7 +2,7 @@
 # [/.ael/data/ael-packages.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-02-03 12:45:17 UTC
+# updated       : 2026-03-20 14:25:08 UTC
 # description   : Packages
 
 [bash] # {{{
@@ -396,6 +396,26 @@ included_app  = [
                 "/usr/bin/pcmanfm-qt"
                 ] # }}}
 
+[poppler] # {{{
+url           = "https://poppler.freedesktop.org/"
+description   = "PDF rendering library based on xpdf 3.0."
+repository    = "extra"
+included_app  = [
+                "/usr/bin/pdfattach",
+                "/usr/bin/pdfdetach",
+                "/usr/bin/pdffonts",
+                "/usr/bin/pdfimages",
+                "/usr/bin/pdfinfo",
+                "/usr/bin/pdfseparate",
+                "/usr/bin/pdfsig",
+                "/usr/bin/pdftocairo",
+                "/usr/bin/pdftohtml",
+                "/usr/bin/pdftoppm",
+                "/usr/bin/pdftops",
+                "/usr/bin/pdftotext",
+                "/usr/bin/pdfunite",
+                ] # }}}
+
 [procps-ng] # {{{
 url           = "https://gitlab.com/procps-ng/procps"
 description   = "Utilities for monitoring your system and its processes."
@@ -451,6 +471,16 @@ description   = "A search tool that combines the usability of ag with the raw sp
 repository    = "extra"
 included_app  = [
                 "/usr/bin/rg"
+                ] # }}}
+
+[rsync] # {{{
+url           = "https://rsync.samba.org/"
+description   = "A fast and versatile file copying tool for remote and local files"
+repository    = "extra"
+included_app  = [
+                "/usr/bin/rrsync",
+                "/usr/bin/rsync",
+                "/usr/bin/rsync-ssl"
                 ] # }}}
 
 [rustscan] # {{{
@@ -789,6 +819,28 @@ description   = "Network utility to retrieve files from the web"
 repository    = "extra"
 included_app  = [
                 "/usr/bin/wget"
+                ] # }}}
+
+[wireshark-cli] # {{{
+url           = "https://www.wireshark.org/"
+description   = "Network traffic and protocol analyzer/sniffer - CLI tools and data files"
+repository    = "extra"
+included_app  = [
+                "/usr/bin/",
+                "/usr/bin/capinfos",
+                "/usr/bin/captype",
+                "/usr/bin/dftest",
+                "/usr/bin/dumpcap",
+                "/usr/bin/editcap",
+                "/usr/bin/idl2wrs",
+                "/usr/bin/mergecap",
+                "/usr/bin/mmdbresolve",
+                "/usr/bin/randpkt",
+                "/usr/bin/rawshark",
+                "/usr/bin/reordercap",
+                "/usr/bin/sharkd",
+                "/usr/bin/text2pcap",
+                "/usr/bin/tshark"
                 ] # }}}
 
 [wireshark-qt] #{{{
