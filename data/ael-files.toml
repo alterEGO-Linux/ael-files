@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-03-20 20:36:34 UTC
+# updated       : 2026-03-21 16:19:55 UTC
 # description   : AEL files.
 
 [home.LnZpbXJj]
@@ -44,6 +44,11 @@ description = "Compressed files universal extractor."
 filename    = "/bin/menu-ael-files.sh"
 description = "Opens AEL files."
 
+[bin.LnNuYWtlLWVudi5zaA--]
+filename    = "/bin/.snake-env.sh"
+description = "Manage python -m venv."
+notes       = ["This script must be sourced."]
+
 [bin.c3lzdGVtaW5mby5zaA--]
 filename    = "/bin/systeminfo.sh"
 description = "Gather system information."
@@ -69,16 +74,6 @@ filename    = "/shellutils/ansi-colors"
 type        = "shellutils"
 description = "ANSI colors helper."
 
-[shellutils.ZGVlcC1ubWFw]
-filename    = "/shellutils/deep-nmap"
-type        = "shellutils"
-description = "Deep Nmap scan."
-
-[shellutils.ZGVlcC1zY2Fu]
-filename    = "/shellutils/deep-scan"
-type        = "shellutils"
-description = "Scans IP with rustscan and nmap."
-
 [shellutils.ZGVsZXRl]
 filename    = "/shellutils/delete"
 type        = "shellutils"
@@ -103,11 +98,6 @@ description = "Repeats last command with sudo, if forgotten."
 filename    = "/shellutils/getmp3"
 type        = "shellutils"
 description = "Extracting audio (.mp3) from video."
-
-[shellutils.Z290bw--]
-filename    = "/shellutils/goto"
-type        = "shellutils"
-description = "Simple directory bookmarks system."
 
 [shellutils.aXNwZWVk]
 filename    = "/shellutils/ispeed"
@@ -149,14 +139,10 @@ description = "Show shell info."
 filename    = "/shellutils/show-utc"
 description = "Show UTC time."
 
-[shellutils.c25ha2UtZW52]
-filename    = "/shellutils/snake-env"
-description = "Manage python -m venv."
-
-[shellutils.utils.YWVsLWZ6Zg--]
+[shellutils.LmFlbC1memY-]
 filename    = "/shellutils/utils/ael-fzf"
 description = "FZF wrapper."
 
-[shellutils.utils.YXJndW1lbnQtcGFyc2Vy]
-filename    = "/shellutils/utils/argument-parser"
+[shellutils.LmFyZ3VtZW50LXBhcnNlcg--]
+filename    = "/shellutils/.argument-parser"
 description = "Argument parser utility."

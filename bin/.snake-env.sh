@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # ------------------------------------------------------------------------ INFO
-# [/.ael/shellutils/snake-env]
+# [/.ael/bin/.snake-env.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-10-23 11:28:49 UTC
-# updated       : 2026-01-06 15:00:10 UTC
+# updated       : 2026-03-24 17:35:35 UTC
 # description   : Manage python -m venv.
 
 snake-env() {
@@ -19,7 +19,7 @@ snake-env() {
     export SNAKE_ENV="${SNAKE_ENV}"
 
     check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
+        if [[ -n ${__CHECK_APPLICATIONS_ACTIVE} ]]; then
             check-applications "${@}"
         else
             local app
@@ -305,7 +305,7 @@ EOF
     # ---------- [ argument parser ]
 
     # --- Verify if argument-parser exists.
-    if [[ ! -n ${__SOURCED_ARGUMENT_PARSER} ]]; then
+    if [[ ! -n ${__ARGUMENT_PARSER_ACTIVE} ]]; then
         printf '%s\n' "${__red}[!]${__reset} Snake-env might not work as intended without alterEGO Linux argument-parser."
         printf '%s\n' "    Available at https://github.com/alterEGO-Linux/ael-files/blob/main/shellutils/utils/argument-parser"
         printf '%s\n' "    Then source it in your .bashrc or .profile, if you are not using alterEGO Linux."
@@ -356,3 +356,7 @@ EOF
       shift
     done
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    printf '%s\n' "[!] This script must be sourced..."
+fi
