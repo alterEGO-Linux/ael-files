@@ -1,25 +1,18 @@
-# :----------------------------------------------------------------------- INFO
-# :[~/.bashrc]
-# :author        = alterEGO Linux
-# :created       = 2021-02-26 02:54:43 UTC
-# :updated       = 2025-02-20 11:45:12 UTC
-# :description   = Bash config file.
+# ------------------------------------------------------------------------ INFO
+# [/.bashrc]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2021-02-26 02:54:43 UTC
+# updated       : 2026-03-27 11:26:28 UTC
+# description   : Bash configuration file.
 
-  # : If not running interactively, don't do anything
-  [[ $- != *i* ]] && return
+# --- If not running interactively, don't do anything.
+[[ $- != *i* ]] && return
 
-# :----------/ MODULES
+LOADED='bashrc'
 
-  [ -f ${HOME}/.ael/.aelcore ] && . ${HOME}/.ael/.aelcore
-  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ${HOME}/.ael/.aelcore ] && . ${HOME}/.ael/.aelcore
 
 # :----------/ BASH COMPLETION
 
   [ -r /usr/share/bash-completion/bash_completion ]                           \
   && . /usr/share/bash-completion/bash_completion
-
-# :----------/ LOADED
-
-  export LOADED='bashrc'
-  # : Message function from bash-ael/messages.bash
-  # message action "$(basename $BASH_SOURCE) @ $(date | sed 's/  / /g')."
