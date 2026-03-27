@@ -1,12 +1,12 @@
 # ------------------------------------------------------------------------ INFO
-# [/shellutils/ansi-colors]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/shellutils/ansi-colors]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-10-06 20:31:28 UTC
-# updated       : 2025-12-22 01:43:10 UTC
+# updated       : 2026-03-26 20:01:30 UTC
 # description   : ANSI colors helper.
 
-[ -n "${__SOURCED_ANSI_COLORS:-}" ] && return
-__SOURCED_ANSI_COLORS=1
+[ -n "${__ANSI_COLORS_ACTIVE:-}" ] && return
+readonly __ANSI_COLORS_ACTIVE=1
 
 # --- ( styles )
 declare -r reset=$'\e[0m'
@@ -62,7 +62,7 @@ declare -r bg_bright_cyan=$'\e[106m'
 declare -r bg_bright_white=$'\e[107m'
 
 # --- ( 256-color )
-# --- usage: `printf "%sError:%s something went wrong\n" "$(fg256 196)" "$reset"`
+# ... usage: `printf "%sError:%s something went wrong\n" "$(fg256 196)" "$reset"`
 
 fg256() {
     printf $'\e[38;5;%sm' "$1";
@@ -73,7 +73,7 @@ bg256() {
 }
 
 # --- ( Truecolor (RGB) )
-# --- usage: `printf "%s%s★ Success%s\n" "$(rgb_bg 30 30 30)" "$(rgb_fg 255 180 0)" "$reset"`
+# ... usage: `printf "%s%s★ Success%s\n" "$(rgb_bg 30 30 30)" "$(rgb_fg 255 180 0)" "$reset"`
 
 rgb_fg() {
     printf $'\e[38;2;%s;%s;%sm' "$1" "$2" "$3";

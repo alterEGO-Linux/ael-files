@@ -15,111 +15,270 @@ export __AEL_FILES="${HOME}/.local/share/ael-files"
 export __AEL_DIR="${HOME}/.ael"
 export __AEL_BIN="${__AEL_DIR}/bin"
 export __AEL_DATA="${__AEL_DIR}/data"
-shellutils_directory="${HOME}/.ael/shellutils"
 __ael_directory="${HOME}/.ael"
 __ael_bin_directory="${__ael_directory}/bin"
 
 # -------------------- ( ael )
 
+export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
 export AEL_FILES="${HOME}/.local/share/ael-files"
 export AEL_DIR="${HOME}/.ael"
 export AEL_BIN="${AEL_DIR}/bin"
 export AEL_DATA="${AEL_DIR}/data"
 export AEL_SHELLUTILS="${AEL_DIR}/shellutils"
+export AEL_CUSTOM="${AEL_DIR}/custom"
+export AEL_DEBUG_LEVEL=2
 
-# -------------------- ( shellutils )
-
-[ -f ${AEL_SHELLUTILS}/.ael-fzf ] && . ${AEL_SHELLUTILS}/.ael-fzf
-[ -f ${AEL_SHELLUTILS}/.argument-parser ] && . ${AEL_SHELLUTILS}/.argument-parser
-[ -f ${AEL_SHELLUTILS}/.check-applications ] && . ${AEL_SHELLUTILS}/.check-applications
-
-# :: ---------- SOURCE MODULES
-
-
-
-[ -f ${HOME}/.ael/bash-ael/messages.bash ] && . ${HOME}/.ael/bash-ael/messages.bash
-[ -f ${HOME}/.ael/bash-ael/colors.bash ] && . ${HOME}/.ael/bash-ael/colors.bash
-[ -f ${HOME}/.ael/.extra ] && . ${HOME}/.ael/.extra
-
-
-
-alias architect="python ~/main/ael-architect/ael_architect/cli-textual.py"
-
-# -------------------- [ colors ]
-
-# --- sourcing colors
-[ -f ${shellutils_directory}/ansi-colors ] && . ${shellutils_directory}/ansi-colors
-
-export TERM="xterm-256color"
-
-# --- Set LS_COLORS
-[[ -e ${shellutils_directory}/dircolors ]] \
-&& eval "`dircolors --sh ${shellutils_directory}/dircolors`"
-
-# :-----/ ALIASES /-----:
-
-alias less="bat"
-alias grep="grep --color=auto"
-alias ll='ls --all --human-readable -l --color=auto'
-alias ls='ls --all --color=auto'
-
-# :Makes tmux understand the environment is important.
-alias tmux="env TERM=screen-256color tmux -u"
-
-alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
-alias open="ael-open"
-
-# :/todo/ Should we still source automatically. See above.
-alias attack="source ${HOME}/.local/share/ael-files/bin/.tryhackme"
-
-alias pythonenvs=". ~/.ael/.pythonenvs"
-
-# :-----/ DEFAULT APPLICATIONS /-----:
+# -------------------- ( default apps )
 
 export BROWSER=firefox
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
-
 export TERMINAL="alacritty"
 export VISUAL=vim
 export EDITOR=${VISUAL}
+export MANPAGER='bat -l man -p'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
-# -------------------- [ path ]
-# --- ref. <https://www.linuxjournal.com/content/removing-duplicate-path-entries>
+# -------------------- ( shellutils )
+
+# --- ( ansi-colors )
+shellutil="${AEL_SHELLUTILS}/ansi-colors"
+
+if [[ -f "${shellutil}" ]]; then
+    . "${shellutil}"
+else
+    # --- Colors fallback
+    export reset=$'\e[0m'
+    export fg_blue=$'\e[34m'
+    export fg_green=$'\e[32m'
+    export fg_red=$'\e[31m'
+    export fg_yellow=$'\e[33m'
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
+export TERM="${TERM:-xterm-256color}"
+
+# --- ( ael-help )
+shellutil="${AEL_SHELLUTILS}/ael-help"
+
+if [[ -f "${shellutil}" ]]; then
+    . "${shellutil}"
+else
+    # --- Help fallback.
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+        ael-help() {
+            cat <<EOF
+===============================================================================
+[+] ael-help fallback
+-------------------------------------------------------------------------------
+
+It looks like some modules of alterEGO Linux are missing or not installed
+properly (including ael-help).
+
+You can find the full documentation at:
+${AEL_FILES_REPOSITORY}/documentation
+
+Locally, it should be at the following location:
+${AEL_FILES}/documentation
+
+-------------------------------------------------------------------------------
+EOF
+        }
+    fi
+fi
+
+# --- ( ael-fzf )
+shellutil="${AEL_SHELLUTILS}/ael-fzf"
+
+if [[ -f "${shellutil}" ]]; then
+    . "${shellutil}"
+else
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
+# --- ( argument-parser )
+shellutil="${AEL_SHELLUTILS}/argument-parser"
+
+if [[ -f "${shellutil}" ]]; then
+    . "${shellutil}"
+else
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
+# --- ( check-applications )
+shellutil="${AEL_SHELLUTILS}/check-applications"
+
+if [[ -f "${shellutil}" ]]; then
+    . "${shellutil}"
+else
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
+# --- ( dircolors ) -> LS_COLORS
+shellutil="${AEL_SHELLUTILS}/dircolors"
+
+if [[ -f "${shellutil}" ]]; then
+    eval "$(dircolors --sh ${shellutil})"
+else
+    # --- Fallback.
+    eval "$(dircolors --sh)"
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
+# -------------------- ( aliases )
+
+alias grep="grep --color=auto"
+alias ll='ls --all --human-readable -l --color=auto'
+alias ls='ls --all --color=auto'
+# --- ( tmux ) Makes tmux understand the environment is important.
+alias tmux="env TERM=screen-256color tmux -u"
+
+# -------------------- ( path )
+# --- (ref) <https://www.linuxjournal.com/content/removing-duplicate-path-entries>
 
 PATH="${HOME}/.ael/bin:${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
 PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
 
 export PATH
 
-# :-----/ HISTORY /-----:
+# -------------------- ( history )
+# --- Allows custom HISTIGNORE patterns.
+# ... Excepted /.ael/custom/histignore file.
+histignore_default=(
+    "cd"
+    "history"
+    "history *"
+    "ls"
+    "pwd"
+)
 
-export HISTIGNORE="cd:clear:delete:exit:gitall:history:ls:mv:nohup:vim"
-export HISTCONTROL=ignoreboth:erasedups
+patterns=("${histignore_default[@]}")
+
+histignore="${AEL_CUSTOM}/histignore"
+
+if [[ -f "$histignore" ]]; then
+    while IFS= read -r line; do
+
+        # --- Trim leading whitespace.
+        line="${line#"${line%%[![:space:]]*}"}"
+
+        # --- Trim trailing whitespace.
+        line="${line%"${line##*[![:space:]]}"}"
+
+        # --- Skip commented lines.
+        [[ "${line}" =~ ^# ]] && continue
+
+        # --- Skip empty lines.
+        [[ -z "$line" ]] && continue
+
+        patterns+=("$line")
+    done < "$histignore"
+fi
+
+HISTIGNORE="$(IFS=:; printf '%s' "${patterns[*]}")"
+
+export HISTIGNORE
+export HISTCONTROL=ignorespace
 export HISTSIZE=1000000
-export HISEFILESIZE=1000000
+export HISTFILESIZE=1000000
+export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
-# :Uncomment if your want timestamp in history
-# export HISTTIMEFORMAT="%Y-%m-%d %T %z "
+# -------------------- ( terminal behavior / Ctrl+S / Ctrl+Q )
 
-# :-----/ MAN IN COLOR /-----:
-
-# :/todo/ Need to work on the colors.
-export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
-export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
-export LESS_TERMCAP_me=$(printf '\e[0m')     # turn off all appearance modes (mb, md, so, us)
-export LESS_TERMCAP_se=$(printf '\e[0m')     # leave standout mode
-export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
-export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
-export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
-
-# -------------------- [ vim ]
-
-# --- Enable CTRL+s in vim.
-# ... ref. https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
-# ... Requires mapping in .vimrc:
+# --- Enable Ctrl+S inside terminal applications (e.g. Vim).
+# ... By default, the terminal uses Ctrl+S / Ctrl+Q for software flow control:
+# ... - Ctrl+S → pauses terminal output
+# ... - Ctrl+Q → resumes output
+# ... This prevents applications like Vim from receiving Ctrl+S.
+# ... Disabling flow control with `stty -ixon` frees Ctrl+S so it can be used
+# ... as a normal keybinding (e.g. save in Vim).
+# ... Example Vim mapping:
 # ... inoremap <C-s> <ESC>:write<CR>
+# ... Note: This will not work in a remote SSH session.
 
 stty -ixon
+
+# -------------------- ( prompt )
+
+prompt_command() {
+    local style="${1:-default}"
+
+    history -a
+
+    case "$style" in
+        simple)
+            PS1='[\u@\h \W]\$ '
+            ;;
+
+        kali_style)
+            PS1="\[${reset}\]\[${fg_green}\]┌────(\[${reset}\]\u@\h\[${fg_green}\])-[\[${reset}\]\w\[${fg_green}\]]\n\[${fg_green}\]└─$ \[${reset}\]"
+            ;;
+
+        ego)
+            PS1="\[${reset}\]\[${fg_green}\](\u@\h)-[\w] • \D{%F %H:%M:%S %Z}\n\[${fg_green}\]❯ \[${reset}\]"
+            ;;
+
+        default)
+            if [[ $(tty) == /dev/pts/* ]]; then
+                PS1="\n\[${reset}\]\[${fg_green}\]╭─(\D{%F %H:%M:%S %Z})-(\j)-(\H)-(\w)\n\[${fg_green}\]│\n\[${fg_green}\]╰──| \[${reset}\]"
+            else
+                PS1="\[${reset}\]\[${fg_green}\](\u@\h)-[\w] • \D{%F %H:%M:%S %Z}\n\[${fg_green}\]> \[${reset}\]"
+            fi
+            ;;
+    esac
+}
+
+PROMPT_COMMAND='prompt_command default'
+
+# -------------------- ( reload )
+# --- Source again the file that initiated the current shell.
+
+reload() {
+
+    if [[ "${LOADED:-}" = "bashrc" ]]; then
+        . "${HOME}/.bashrc"
+    elif [[ "${LOADED:-}" = "profile" ]]; then
+        . "${HOME}/.profile"
+    else
+        printf '%s\n' "${fg_red}[!]${reset} An error occurred while reloading."
+        return 1
+    fi
+}
+
+
+
+
+
+
+
+# :: ---------- SOURCE MODULES
+
+[ -f ${HOME}/.ael/bash-ael/messages.bash ] && . ${HOME}/.ael/bash-ael/messages.bash
+[ -f ${HOME}/.ael/bash-ael/colors.bash ] && . ${HOME}/.ael/bash-ael/colors.bash
+[ -f ${HOME}/.ael/.extra ] && . ${HOME}/.ael/.extra
+
+# :-----/ ALIASES /-----:
+
+alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
+alias open="ael-open"
+
+# :/todo/ Should we still source automatically. See above.
+alias attack="source ${HOME}/.local/share/ael-files/bin/.tryhackme"
 
 # :---------- [ QT5 ]
 
@@ -139,50 +298,6 @@ stty -ixon
 
 # export QT_QPA_PLATFORMTHEME="qt5ct"
 
-# ---------- [ PROMPTS ]
-
-prompt_command() {
-    history -a
-    dateNOW="$(date "+%F %H:%M:%S %Z")"
-
-    # :tty won't show unicode character #10095.
-    if tty | grep pts &>/dev/null; then
-
-        # :(* SIMPLE *)
-        # export PS1='[\u@\h \W]\$ '
-        
-        # :(* KALI STYLE *)
-        # export PS1="\[${RESET}\]\[${GREEN}\]┌────(\[${RESET}\]\u@\h\[${GREEN}\])-[\[${RESET}\]\w\[${GREEN}\]]\n\[${GREEN}\]└─$ \[${RESET}\]"
-
-        # :(* EGO *)
-        # export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]❯ \[${RESET}\]"
-
-        # --- test prompt
-        export PS1="\n\[${RESET}\]\[${GREEN}\]╭─(\[${dateNOW}\])-(\j)-(\H)-(\w)\n\[${GREEN}\]│\n\[${GREEN}\]╰──| \[${RESET}\]"
-
-    else
-        # :(* SIMPLE *)
-        # export PS1='[\u@\h \W]\$ '
-        
-        # :(* KALI STYLE *)
-        # export PS1="\[${RESET}\]\[${GREEN}\]┌────(\[${RESET}\]\u@\h\[${GREEN}\])-[\[${RESET}\]\w\[${GREEN}\]]\n\[${GREEN}\]└─$ \[${RESET}\]"
-
-        # :(* EGO *)
-        export PS1="\[${RESET}\]\[${GREEN}\](\u@\h)-[\[${RESET}\]\w\[${GREEN}\]] • \[$dateNOW\]\n\[${GREEN}\]> \[${RESET}\]"
-    fi
-  }
-  PROMPT_COMMAND=prompt_command
-
-# :---------- [ RELOAD ]
-reload() {
-  if [ $LOADED = 'bashrc' ]; then
-    . "${HOME}/.bashrc"
-  elif [ $LOADED = 'profile' ]; then
-    . "${HOME}/.profile"
-  else
-    message error "An error occured while reloading"
-  fi
-  }
 
 # :========================= | HACKER | ====================================: #
 
@@ -360,7 +475,7 @@ git_status() {
 
 # -------------------- ( functions and aliases )
 
-# --- ( busy ) -> Look busy when the boss comes around. # {{{
+# --- ( busy ) -> Look busy when the boss comes around.
 busy() {
 
     if ! command -v busy.sh >/dev/null 2>&1; then
@@ -368,7 +483,7 @@ busy() {
     else
         busy.sh
     fi
-} # }}}
+}
 
 # --- ( deep-nmap ) -> Deep Nmap scan. # {{{
 deep-nmap() {
@@ -567,7 +682,7 @@ delete() {
 } # }}}
 
 # --- ( directory-size ) -> Check size of biggest directories.
-[ -f ${shellutils_directory}/directory-size ] && . ${shellutils_directory}/directory-size
+[ -f ${AEL_SHELLUTILS}/directory-size ] && . ${AEL_SHELLUTILS}/directory-size
 
 # --- ( docker-info ) -> Docker status helper. # {{{
 docker-info() {
@@ -580,7 +695,7 @@ docker-info() {
 } # }}}
 
 # --- ( elevate ) -> Repeats last command with sudo, if forgotten.
-[ -f ${shellutils_directory}/elevate ] && . ${shellutils_directory}/elevate
+[ -f ${AEL_SHELLUTILS}/elevate ] && . ${AEL_SHELLUTILS}/elevate
 
 # --- ( extractor ) -> Compressed files universal extractor. # {{{
 extractor() {
@@ -593,7 +708,7 @@ extractor() {
 } # }}}
 
 # --- ( getmp3 ) -> Extracting audio (.mp3) from video.
-[ -f ${shellutils_directory}/getmp3 ] && . ${shellutils_directory}/getmp3
+[ -f ${AEL_SHELLUTILS}/getmp3 ] && . ${AEL_SHELLUTILS}/getmp3
 
 # --- ( goto ) -> Simple directory bookmarks system. # {{{
 
@@ -732,34 +847,34 @@ _goto_complete() {
 } && complete -F _goto_complete goto # }}}
 
 # --- ( ispeed ) -> Internet connection speed meter.
-[ -f ${shellutils_directory}/ispeed ] && . ${shellutils_directory}/ispeed
+[ -f ${AEL_SHELLUTILS}/ispeed ] && . ${AEL_SHELLUTILS}/ispeed
 
 # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
-[ -f ${shellutils_directory}/pacman-reset ] && . ${shellutils_directory}/pacman-reset
+[ -f ${AEL_SHELLUTILS}/pacman-reset ] && . ${AEL_SHELLUTILS}/pacman-reset
 
 # --- ( ports ) -> Displays open ports.
-[ -f ${shellutils_directory}/ports ] && . ${shellutils_directory}/ports
+[ -f ${AEL_SHELLUTILS}/ports ] && . ${AEL_SHELLUTILS}/ports
 
 # --- ( processes ) -> Show processes.
-[ -f ${shellutils_directory}/processes ] && . ${shellutils_directory}/processes
+[ -f ${AEL_SHELLUTILS}/processes ] && . ${AEL_SHELLUTILS}/processes
 
 # --- ( ps-grep ) -> Show processes for a particular application.
-[ -f ${shellutils_directory}/ps-grep ] && . ${shellutils_directory}/ps-grep
+[ -f ${AEL_SHELLUTILS}/ps-grep ] && . ${AEL_SHELLUTILS}/ps-grep
 
 # --- ( py-cleaner ) -> Clean python current directory.
-[ -f ${shellutils_directory}/py-cleaner ] && . ${shellutils_directory}/py-cleaner
+[ -f ${AEL_SHELLUTILS}/py-cleaner ] && . ${AEL_SHELLUTILS}/py-cleaner
 
 # --- ( py-server ) -> Create a Python HTTP server.
-[ -f ${shellutils_directory}/py-server ] && . ${shellutils_directory}/py-server
+[ -f ${AEL_SHELLUTILS}/py-server ] && . ${AEL_SHELLUTILS}/py-server
 
 # --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
-[ -f ${shellutils_directory}/reset-time ] && . ${shellutils_directory}/reset-time
+[ -f ${AEL_SHELLUTILS}/reset-time ] && . ${AEL_SHELLUTILS}/reset-time
 
 # --- ( shell-info ) -> Show shell info.
-[ -f ${shellutils_directory}/shell-info ] && . ${shellutils_directory}/shell-info
+[ -f ${AEL_SHELLUTILS}/shell-info ] && . ${AEL_SHELLUTILS}/shell-info
 
 # --- ( show-utc ) -> Show UTC time.
-[ -f ${shellutils_directory}/show-utc ] && . ${shellutils_directory}/show-utc
+[ -f ${AEL_SHELLUTILS}/show-utc ] && . ${AEL_SHELLUTILS}/show-utc
 
 # --- ( snake-env ) -> Manage python -m venv. # {{{
 [ -f ${__ael_bin_directory}/.snake-env.sh ] && . ${__ael_bin_directory}/.snake-env.sh # }}}

@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [shellutils/utils/check-applications]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-22 12:14:50 UTC
-# updated       : 2025-12-28 21:04:37 UTC
+# updated       : 2026-03-25 13:25:18 UTC
 # description   : Function to check applications' availability.
 
 [ -n "${__CHECK_APPLICATIONS_ACTIVE:-}" ] && return

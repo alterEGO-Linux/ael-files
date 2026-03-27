@@ -1,0 +1,13 @@
+# ------------------------------------------------------------------------ INFO
+# [/.ael/custom/histignore]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-03-26 09:47:24 UTC
+# updated       : 2026-03-26 10:25:47 UTC
+# description   : List of words to exclude from bash HISTORY.
+
+# --- Add one entry per line, for example:
+# ... *secret*
+# ... ls *
+# ... Commented lines (beginning with #) will be ignored.
+# ... Inline comments will not be excluded, thus:
+# ... *secret* # this will add the whole line, including this comment to HISTIGNORE.

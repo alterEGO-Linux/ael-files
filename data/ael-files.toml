@@ -2,17 +2,81 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-03-21 16:19:55 UTC
+# updated       : 2026-03-25 13:29:06 UTC
 # description   : AEL files.
 
-[home.LnZpbXJj]
-filename    = "/.vimrc"
-type        = "vim/config"
-description = "vim configuration file."
-
-[bin.YnVzeS5zaA--]
-filename    = "/bin/busy.sh"
+[bin.busy]
+filename    = "busy.sh"
+type        = "bin"
 description = "When the boss comes around to look busy."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/busy.sh"
+symlinked   = true
+
+[bin.extractor]
+filename    = "extractor.sh"
+type        = "bin"
+description = "Compressed files universal extractor."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/extractor.sh"
+symlinked   = true
+
+[bin.snake-env]
+filename    = ".snake-env.sh"
+type        = "bin"
+description = "Manage python -m venv."
+src         = "/ael-files/bin"
+dst         = "/ael/bin/.snake-env.sh"
+symlinked   = true
+notes       = ["This script must be sourced."]
+
+[shellutils.ael-fzf]
+filename    = "ael-fzf"
+type        = "shellutils"
+description = "FZF wrapper."
+src         = "/ael-files/shellutils"
+dst         = "/ael/shellutils/ael-fzf"
+symlinked   = true
+
+[shellutils.ansi-colors]
+filename    = "ansi-colors"
+type        = "shellutils"
+description = "ANSI colors helper."
+src         = "/ael-files/shellutils"
+dst         = "/ael/shellutils/ansi-colors"
+symlinked   = true
+
+[shellutils.argument-parser]
+filename    = "argument-parser"
+type        = "shellutils"
+description = "Argument parser utility."
+src         = "/ael-files/shellutils"
+dst         = "/ael/shellutils/argument-parser"
+symlinked   = true
+
+[shellutils.check-applications]
+filename    = "check-applications"
+type        = "shellutils"
+description = "Function to check applications' availability."
+src         = "/ael-files/shelltutils"
+dst         = "/ael/shellutils/check-applications"
+symlinked   = true
+
+[shellutils.dircolors]
+filename    = "dircolors"
+type        = "shellutils"
+description = "Terminal colors."
+src         = "/ael-files/shellutils"
+dst         = "/ael/shellutils/dircolors"
+symlinked   = true
+
+[vim.vimrc]
+filename    = ".vimrc"
+type        = "config/vim"
+description = "vim configuration file."
+src         = "/ael-files/vim/"
+dst         = "/home/.vimrc"
+symlinked   = true
 
 [bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
 filename    = "/bin/check-applications.sh"
@@ -35,19 +99,9 @@ filename    = "/bin/docker-info.py"
 type        = "bin"
 description = "Docker status helper."
 
-[bin.ZXh0cmFjdG9yLnNo]
-filename    = "/bin/extractor.sh"
-type        = "bin"
-description = "Compressed files universal extractor."
-
 [bin.bWVudS1hZWwtZmlsZXMuc2g-]
 filename    = "/bin/menu-ael-files.sh"
 description = "Opens AEL files."
-
-[bin.LnNuYWtlLWVudi5zaA--]
-filename    = "/bin/.snake-env.sh"
-description = "Manage python -m venv."
-notes       = ["This script must be sourced."]
 
 [bin.c3lzdGVtaW5mby5zaA--]
 filename    = "/bin/systeminfo.sh"
@@ -69,20 +123,10 @@ description = "Display tunnels + VPN info."
 filename    = "/bin/virtual-boxes.sh"
 description = "Virtualbox VMs launcher."
 
-[shellutils.YW5zaS1jb2xvcnM-]
-filename    = "/shellutils/ansi-colors"
-type        = "shellutils"
-description = "ANSI colors helper."
-
 [shellutils.ZGVsZXRl]
 filename    = "/shellutils/delete"
 type        = "shellutils"
 description = "Delete directories."
-
-[shellutils.ZGlyY29sb3Jz]
-filename    = "/shellutils/dircolors"
-type        = "shellutils"
-description = "Terminal colors."
 
 [shellutils.ZGlyZWN0b3J5LXNpemU-]
 filename    = "/shellutils/directory-size"
@@ -138,11 +182,3 @@ description = "Show shell info."
 [shellutils.c2hvdy11dGM-]
 filename    = "/shellutils/show-utc"
 description = "Show UTC time."
-
-[shellutils.LmFlbC1memY-]
-filename    = "/shellutils/utils/ael-fzf"
-description = "FZF wrapper."
-
-[shellutils.LmFyZ3VtZW50LXBhcnNlcg--]
-filename    = "/shellutils/.argument-parser"
-description = "Argument parser utility."

@@ -7,7 +7,7 @@
 # description   : FZF wrapper.
 
 [ -n "${__AEL_FZF_ACTIVE:-}" ] && return
-__AEL_FZF_ACTIVE=1
+readonly __AEL_FZF_ACTIVE=1
 
 ael-fzf() {
 

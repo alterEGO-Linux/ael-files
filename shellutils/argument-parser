@@ -7,7 +7,7 @@
 # description   : Argument parser utility.
 
 [ -n "${__ARGUMENT_PARSER_ACTIVE:-}" ] && return
-__ARGUMENT_PARSER_ACTIVE=1
+readonly __ARGUMENT_PARSER_ACTIVE=1
 
 argument-parser() {
 
