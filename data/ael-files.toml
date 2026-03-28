@@ -30,6 +30,24 @@ dst         = "/ael/bin/.snake-env.sh"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
+[home.bashrc]
+filename    = ".bashrc"
+type        = "config/bash"
+description = "Bash configuration file."
+src         = "/ael-files/home"
+dst         = "/home/.bashrc"
+symlinked   = true
+backup      = true
+
+[home.profile]
+filename    = ".profile"
+type        = "config/shell"
+description = "Loaded in non interactive shell."
+src         = "/ael-files/home"
+dst         = "/home/.profile"
+symlinked   = true
+backup      = true
+
 [shellutils.ael-fzf]
 filename    = "ael-fzf"
 type        = "shellutils"
@@ -69,6 +87,15 @@ description = "Terminal colors."
 src         = "/ael-files/shellutils"
 dst         = "/ael/shellutils/dircolors"
 symlinked   = true
+
+[tmux.tmux_conf]
+filename    = ".tmux.conf"
+type        = "config/tmux"
+description = "Tmux configuration."
+src         = "/ael-files/tmux"
+dst         = "/home/.tmux.conf"
+symlinked   = true
+backup      = true
 
 [vim.vimrc]
 filename    = ".vimrc"
