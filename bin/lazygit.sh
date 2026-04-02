@@ -9,6 +9,25 @@
 lazygit() {
 
     trap 'unset -f usage; trap - RETURN' RETURN
+
+    local __show_status=0
+    local __mgs=""
+    local __blue=$'\033[34m'
+    local __bold=$'\033[1m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+    local __yellow=$'\033[33m'
+
+    check_applications() {
+        local __app
+        for __app in "${@}"; do
+            if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
+    }
+    check_applications git || return 1
     
     usage() {
         cat <<EOF
@@ -29,14 +48,6 @@ To do the full workflow:
 ================================================================================
 EOF
 }
-
-    local __show_status=0
-    local __mgs=""
-    local __blue=$'\033[34m'
-    local __bold=$'\033[1m'
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-    local __yellow=$'\033[33m'
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
