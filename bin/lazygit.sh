@@ -1,3 +1,4 @@
+#! /usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [/.ael/bin/lazygit.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
@@ -106,9 +107,9 @@ EOF
 
     # --- Confirmation request for commit and push.
     local __input
-    read -p "${__blue}[?]${__reset} Proceed with commit and push? [y/N] " __input
+    read -r -p "${__blue}[?]${__reset} Proceed with commit and push? [y/N] " __input
         if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-            continue
+            :
         else
             printf '%s\n' "${__blue}[*]${__reset} Aborted. Unstaging changes..."
             git reset
