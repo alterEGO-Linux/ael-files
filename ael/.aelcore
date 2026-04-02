@@ -415,63 +415,6 @@ docker_container_cleaner() {
 
   alias docker-container-cleaner="docker_container_cleaner"
 
-# :========================= | GIT | =======================================: #
-
-# :---------- [ gitall ]
-# :[gitall()]
-# :version       = 2023-08-02 20:04:33 UTC
-# :description   = "Fast update of git repo."
-
-gitall() {
-
-    git pull && git add . && git commit && git push
-  }
-
-# :---------- [ git-status ]
-# :[git-status()]
-# :version       = 2023-08-02 20:06:20 UTC
-# :description   = "Get status of local git repository."
-# :notes         = '''
-# :ref. https://gist.github.com/giggio/1704664
-# :'''
-
-git_status() {
-
-    dumpfile="/tmp/git-status.dump"
-
-    if [ -z ${1} ]; then
-      local_git_repository=$(find ${HOME} -name ".git" -type d | grep -v /.cache/ | sed 's/.git//' | fzf)
-    else
-      local_git_repository=${1}
-    fi
-    
-    cd ${local_git_repository}
-    git fetch
-    git status > ${dumpfile}
-
-    message action "Checking local repository status for\n    ${local_git_repository}"
-
-    untracked=$(grep "Untracked files" ${dumpfile});
-    unstaged=$(grep "Changes not staged for commit" ${dumpfile});
-    to_commit=$(grep "Changes to be committed" ${dumpfile});
-    is_ahead=$(grep "Your branch is ahead of" ${dumpfile});
-    is_behind=$(grep "Your branch is behind" ${dumpfile});
-
-    if [[ -n "${untracked}" ]]; then
-      message result "ADD Files to add to repo."
-    elif [[ -n ${unstaged} ]]; then
-      message result "ADD Files to be staged."
-    elif [[ -n "${to_commit}" ]]; then
-      message result "COMMIT Files to commit."
-    elif [[ -n "${is_ahead}" ]]; then
-      message result "PUSH Time to push."
-    elif [[ -n "${is_behind}" ]]; then
-      message result "PULL Time to pull."
-    else
-      message result "STAY Nothing to do."
-    fi
-  }
-  alias git-status='git_status'
 
 # -------------------- ( functions and aliases )
 
@@ -849,6 +792,18 @@ _goto_complete() {
 # --- ( ispeed ) -> Internet connection speed meter.
 [ -f ${AEL_SHELLUTILS}/ispeed ] && . ${AEL_SHELLUTILS}/ispeed
 
+# --- ( lazygit ) -> Automated git pull, add, commit and pull.  
+app="${AEL_BIN}/lazygit.sh"
+
+if [[ -f "${app}" ]]; then
+    . "${app}"
+else
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${app} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
 # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
 [ -f ${AEL_SHELLUTILS}/pacman-reset ] && . ${AEL_SHELLUTILS}/pacman-reset
 
@@ -972,7 +927,6 @@ whoisweb() {
 #[ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
 #[ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
 #[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
-#[ -f /home/ghost/.ael/shellutils/lazygit ] && . /home/ghost/.ael/shellutils/lazygit
 #[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 #[ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
 
