@@ -120,6 +120,12 @@ EOF
     fi
 
     # --- Confirmation request for commit and push.
+    # ... Will exit in non-interactive context.
+    if [[ ! -t 0 ]]; then
+        printf '%s\n' "${__red}[!]${__reset} No interactive terminal available for confirmation prompt." >&2
+        return 1
+    fi
+
     local __input
     printf "${__blue}[?]${__reset} Proceed with commit and push? [y/N] "
     read -r __input
