@@ -3,7 +3,7 @@
 # [/.ael/bin/lazygit.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-02 00:31:34 UTC
-# updated       : 2026-04-02 15:02:25 UTC
+# updated       : 2026-04-02 15:48:47 UTC
 # description   : Automated git pull, add, commit and push.
 
 lazygit() {
@@ -11,7 +11,7 @@ lazygit() {
     trap 'unset -f usage; trap - RETURN' RETURN
 
     local __show_status=0
-    local __mgs=""
+    local __msg=""
     local __blue=$'\033[34m'
     local __bold=$'\033[1m'
     local __red=$'\033[31m'
@@ -60,7 +60,7 @@ EOF
                 return 0
                 ;;
             *)
-                __mgs="${__mgs:+${__mgs} }$1"
+                __msg="${__msg:+${__msg} }$1"
                 shift
                 ;;
         esac
@@ -125,7 +125,7 @@ EOF
         return 0
     fi
 
-    if [[ -z "$__mgs" ]]; then
+    if [[ -z "$__msg" ]]; then
         printf '%s\n' "${__red}[!]${__reset} Commit message required." >&2
         return 1
     fi
@@ -149,7 +149,7 @@ EOF
         return 0
     fi
 
-    git commit -m "$__mgs" || return 1
+    git commit -m "$__msg" || return 1
 
     printf '%s\n' "${__blue}[*]${__reset} Pushing..."
     git push
