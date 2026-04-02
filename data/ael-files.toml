@@ -2,8 +2,16 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-03-25 13:29:06 UTC
+# updated       : 2026-04-01 11:13:09 UTC
 # description   : AEL files.
+
+[ael.aelcore]
+filename    = ".aelcore"
+type        = "config/shell"
+description = "alterEGO Linux core shell config."
+src         = "/ael-files/ael/"
+dst         = "/home/.ael/.aelcore"
+symlinked   = true
 
 [bin.busy]
 filename    = "busy.sh"
