@@ -6,15 +6,29 @@
 # description   : description
 
 lazygit() {
+
+    trap 'unset -f usage; trap - RETURN' RETURN
+    
     usage() {
-        printf '%s\n' \
-            "${__blue}[*]${__reset} lazygit — git add, commit, push (interactive)" \
-            "============================================================" \
-            "Usage:" \
-            "  lazygit \"message\"" \
-            "  lazygit -n              # dry-run (status only)" \
-            "  lazygit -h|--help       # show help"
-    }
+        cat <<EOF
+================================================================================
+[+] lazygit - Automated git pull, add, commit and pull..
+================================================================================
+Usage:
+  lazygit [-h|--help] [-s|--status] <message...>
+
+Options:
+  -h, --help    Show this help.
+  -s, --status  Show current git status and exits.
+
+To do the full workflow:
+  lazygit "This is the commit message." (if the script is sourced)
+  bash lazygit.sh "This is the commit message." (if runned as regular script)
+
+
+================================================================================
+EOF
+}
 
     local __show_status=0
     local __mgs=""
@@ -49,7 +63,7 @@ lazygit() {
 
     if ! git diff --quiet || ! git diff --cached --quiet; then
         git stash push -u -m "lazygit-auto-stash" >/dev/null 2>&1
-        __stashed=1
+        local __stashed=1
     fi
 
     printf '%s\n' "${__blue}[*]${__reset} Pulling..."
