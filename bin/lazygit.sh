@@ -3,8 +3,8 @@
 # [/.ael/bin/lazygit.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-02 00:31:34 UTC
-# updated       : 2026-04-02 04:42:28 UTC
-# description   : Automated git pull, add, commit and pull.
+# updated       : 2026-04-02 15:02:25 UTC
+# description   : Automated git pull, add, commit and push.
 
 lazygit() {
 
@@ -13,7 +13,7 @@ lazygit() {
     usage() {
         cat <<EOF
 ================================================================================
-[+] lazygit - Automated git pull, add, commit and pull.
+[+] lazygit - Automated git pull, add, commit and push.
 ================================================================================
 Usage:
   lazygit [-h|--help] [-s|--status] <message...>
@@ -61,23 +61,37 @@ EOF
         return 1
     fi
 
-    # --- Stash uncommitted work temporarily.
-    if ! git diff --quiet || ! git diff --cached --quiet; then
-        git stash push -u -m "lazygit-auto-stash" >/dev/null 2>&1
-        local __stashed=1
+    # --- Stach non commited and pull.
+    local __stashed=0
+
+    if ! git diff --quiet || ! git diff --cached --quiet || [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
+        git stash push -u -m "lazygit-auto-stash" >/dev/null 2>&1 || {
+            printf '%s\n' "${__red}[!]${__reset} Failed to create temporary stash." >&2
+            return 1
+        }
+        __stashed=1
     fi
 
-    # --- Pulls from main.
     printf '%s\n' "${__blue}[*]${__reset} Pulling..."
-    git pull --rebase || {
-        printf '%s\n' "${__red}[!]${__reset} Pull failed. Restoring stash..."
-        git stash pop >/dev/null 2>&1
-        return 1
-    }
+    if ! git pull --rebase; then
+        printf '%s\n' "${__red}[!]${__reset} Pull failed."
 
-    # --- Restore stach.
-    if [[ "${__stashed:-0}" -eq 1 ]]; then
-        git stash pop >/dev/null 2>&1
+        if (( __stashed )); then
+            printf '%s\n' "${__yellow}[*]${__reset} Restoring stashed changes..."
+            if ! git stash pop >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} Failed to restore stash cleanly. Please check 'git stash list'." >&2
+            fi
+        fi
+
+        return 1
+    fi
+
+    if (( __stashed )); then
+        printf '%s\n' "${__blue}[*]${__reset} Restoring stashed changes..."
+        if ! git stash pop >/dev/null 2>&1; then
+            printf '%s\n' "${__red}[!]${__reset} Failed to restore stash cleanly. Please check 'git stash list'." >&2
+            return 1
+        fi
     fi
 
     # --- Shows status.
