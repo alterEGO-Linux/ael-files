@@ -107,14 +107,16 @@ EOF
 
     # --- Confirmation request for commit and push.
     local __input
-    read -r -p "${__blue}[?]${__reset} Proceed with commit and push? [y/N] " __input
-        if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-            :
-        else
-            printf '%s\n' "${__blue}[*]${__reset} Aborted. Unstaging changes..."
-            git reset
-            return 0
-        fi
+    printf "${__blue}[?]${__reset} Proceed with commit and push? [y/N] "
+    read -r __input
+
+    if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        :
+    else
+        printf '%s\n' "${__blue}[*]${__reset} Aborted. Unstaging changes..."
+        git reset
+        return 0
+    fi
 
     git commit -m "$__mgs" || return 1
 
