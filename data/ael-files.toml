@@ -29,6 +29,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/extractor.sh"
 symlinked   = true
 
+[bin.lazygit]
+filename    = "lazygit.sh"
+type        = "bin"
+description = "Automated git pull, add, commit and push."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/lazygit.sh"
+symlinked   = true
+
 [bin.snake-env]
 filename    = ".snake-env.sh"
 type        = "bin"
@@ -80,13 +88,13 @@ src         = "/ael-files/shellutils"
 dst         = "/ael/shellutils/argument-parser"
 symlinked   = true
 
-[shellutils.check-applications]
-filename    = "check-applications"
-type        = "shellutils"
-description = "Function to check applications' availability."
-src         = "/ael-files/shelltutils"
-dst         = "/ael/shellutils/check-applications"
-symlinked   = true
+#[shellutils.check-applications]
+#filename    = "check-applications"
+#type        = "shellutils"
+#description = "Function to check applications' availability."
+#src         = "/ael-files/shelltutils"
+#dst         = "/ael/shellutils/check-applications"
+#symlinked   = true
 
 [shellutils.dircolors]
 filename    = "dircolors"

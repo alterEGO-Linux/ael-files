@@ -2,21 +2,12 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-03-24 17:24:03 UTC
+# updated       : 2026-04-03 02:32:24 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
-
-# -------------------- ( variables )
-
-export __AEL_FILES="${HOME}/.local/share/ael-files"
-export __AEL_DIR="${HOME}/.ael"
-export __AEL_BIN="${__AEL_DIR}/bin"
-export __AEL_DATA="${__AEL_DIR}/data"
-__ael_directory="${HOME}/.ael"
-__ael_bin_directory="${__ael_directory}/bin"
 
 # -------------------- ( ael )
 
@@ -115,16 +106,16 @@ else
 fi
 
 # --- ( check-applications )
-shellutil="${AEL_SHELLUTILS}/check-applications"
-
-if [[ -f "${shellutil}" ]]; then
-    . "${shellutil}"
-else
-    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
-        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
-        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
-    fi
-fi
+#shellutil="${AEL_SHELLUTILS}/check-applications"
+#
+#if [[ -f "${shellutil}" ]]; then
+#    . "${shellutil}"
+#else
+#    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+#        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
+#        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+#    fi
+#fi
 
 # --- ( dircolors ) -> LS_COLORS
 shellutil="${AEL_SHELLUTILS}/dircolors"
@@ -145,6 +136,7 @@ fi
 alias grep="grep --color=auto"
 alias ll='ls --all --human-readable -l --color=auto'
 alias ls='ls --all --color=auto'
+alias lt='ls --format=long --sort=time --all --human-readable'
 # --- ( tmux ) Makes tmux understand the environment is important.
 alias tmux="env TERM=screen-256color tmux -u"
 
@@ -260,8 +252,31 @@ reload() {
     fi
 }
 
+# -------------------- ( functions ) ------------------------------------------
 
+# --- ( busy ) -> Look busy when the boss comes around.
+app="${AEL_BIN}/busy.sh"
 
+if [[ -f "${app}" ]]; then
+    . "${app}"
+else
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${app} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
+
+# --- ( lazygit ) -> Automated git pull, add, commit and pull.  
+app="${AEL_BIN}/lazygit.sh"
+
+if [[ -f "${app}" ]]; then
+    . "${app}"
+else
+    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+        printf '%s\n' "${fg_red}[!]${reset} ${app} is missing..." 
+        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+    fi
+fi
 
 
 
@@ -418,15 +433,6 @@ docker_container_cleaner() {
 
 # -------------------- ( functions and aliases )
 
-# --- ( busy ) -> Look busy when the boss comes around.
-busy() {
-
-    if ! command -v busy.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} busy.sh is not installed."
-    else
-        busy.sh
-    fi
-}
 
 # --- ( deep-nmap ) -> Deep Nmap scan. # {{{
 deep-nmap() {
@@ -792,17 +798,6 @@ _goto_complete() {
 # --- ( ispeed ) -> Internet connection speed meter.
 [ -f ${AEL_SHELLUTILS}/ispeed ] && . ${AEL_SHELLUTILS}/ispeed
 
-# --- ( lazygit ) -> Automated git pull, add, commit and pull.  
-app="${AEL_BIN}/lazygit.sh"
-
-if [[ -f "${app}" ]]; then
-    . "${app}"
-else
-    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
-        printf '%s\n' "${fg_red}[!]${reset} ${app} is missing..." 
-        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
-    fi
-fi
 
 # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
 [ -f ${AEL_SHELLUTILS}/pacman-reset ] && . ${AEL_SHELLUTILS}/pacman-reset

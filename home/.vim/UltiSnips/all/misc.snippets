@@ -1,3 +1,101 @@
+# =============================================================================
+#                                 ( SHELL )
+# =============================================================================
+
+# --- ( SHELL - check applications ) ------------------------------------------
+# ... (rev) 2026-04-02
+
+snippet sh_check_applications "SHELL - check applications" b
+check_applications() {
+	local __app
+	for __app in "${@}"; do
+			if ! command -v $__app >/dev/null 2>&1; then
+						printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+						return 1
+				fi
+		done
+}
+check_applications git || return 1
+endsnippet
+
+# --- ( SHELL - colors ) ------------------------------------------------------
+# ... (rev) 2026-04-02
+
+snippet sh_colors "SHELL - colors" b
+local __blue=$'\033[34m'
+local __bold=$'\033[1m'
+local __red=$'\033[31m'
+local __reset=$'\033[0m'
+local __yellow=$'\033[33m'
+endsnippet
+
+# --- ( SHELL - main guard ) --------------------------------------------------
+# ... (rev) 2026-04-01
+# ... Same purpose as Python __name__ == "__main__".
+snippet sh_main_guard "SHELL - main guard" b
+if [[ "${BASH_SOURCE[0]}" == "\${0}" ]]; then
+    <function> "$@"
+fi
+endsnippet
+
+# --- ( SHELL - question ) ----------------------------------------------------
+# ... (rev) 2026-04-01
+
+snippet sh_question "SHELL - question" b
+# --- Confirmation request.
+# ... Will exit in non-interactive context.
+if [[ ! -t 0 ]]; then
+		printf '%s\n' "${__red}[!]${__reset} No interactive terminal available for confirmation prompt." >&2
+		return 1
+fi
+
+local __input
+printf "${__blue}[?]${__reset} <question>? [y/N] "
+read -r __input
+
+if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+		: # --- this does nothing.
+else
+		<do something>
+fi
+endsnippet
+
+# --- ( SHELL - trap functions ) ----------------------------------------------
+# ... (rev) 2026-04-02
+
+snippet sh_trap_functions "SHELL - trap functions" b
+trap 'unset -f <functions>; trap - RETURN' RETURN
+endsnippet
+
+# --- ( SHELL - Usage ) -------------------------------------------------------
+# ... (rev) 2026-04-02
+
+snippet sh_usage "SHELL - Usage" b
+usage() {
+	cat <<EOF
+================================================================================
+[+] <function name> - <function description>
+================================================================================
+Usage:
+<function name> [-h|--help] [-s|--status] <message...>
+
+Options:
+-h, --help    Show this help.
+-s, --status  Show status and exits.
+
+<...>
+================================================================================
+EOF
+}
+endsnippet
+
+
+
+
+
+
+
+
 snippet info# "# info header" b
 # ------------------------------------------------------------------------ INFO
 # [`!p snip.rv = vim.eval("expand('%:p')")`]
@@ -88,52 +186,7 @@ return 1
 
 endsnippet
 
-snippet sh_usage "Bash & SH usage/help" b
-usage() {
-		cat <<EOF
-================================================================================
-[+] ispeed - Calculate Internet connection speed.
-================================================================================
-Usage: ispeed [--fzf|--web METHOD|--cli METHOD|--git METHOD|--help]
 
-ispeed offers different ways to calculate your Internet speed.
-
-METHODS:
-    - (cli) speedtest
-            Uses the speedtest-cli package.
-    - (git) speedtest
-            Uses curl and python.
-            URL: https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
-    - (web) speedtest
-            URL: https://www.speedtest.net/
-    - (web) Fast.com
-            URL: https://fast.com
-    - (web) speedof.me
-            URL: https://speedof.me/
-
-================================================================================
-EOF
-}
-endsnippet
-
-# -------------------- [ shell - check_applications ]
-snippet sh_check_applications "shell - check_applications" b
-check_applications() {
-		# --- Verify if check-applications.sh is on PATH.
-    if command -v check-applications.sh >/dev/null 2>&1; then
-        check-applications.sh "${@}"
-   else
-        for app in "${@}"; do
-            if ! command -v $app >/dev/null 2>&1; then
-                printf '%s\n' "${red}[!]${reset} ${app} is not installed."
-                return 1
-            fi
-        done
-    fi
-}
-check_applications <applications here> || exit 1
-
-endsnippet
 
 # ---------- [ shell - sourced ] 
 snippet sh_sourced "shell - sourced" b
@@ -142,36 +195,8 @@ __SOURCED_DEEP_SCAN=1
 
 endsnippet
 
-# ---------- [ shell - trap functions ]
-snippet sh_trap_functions "shell - trap functions" b
-trap 'unset -f <functions>; trap - RETURN' RETURN
 
-endsnippet
 
-# ---------- [ shell - question ]
-snippet sh_question "shell - question" b
-local __input
-read -p "${__blue}[?]${__reset} <YES/NO question>? [y/N] " __input
-		if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-				<do something>
-				return 0
-		else
-				<do something>
-				return 0
-		fi
-
-endsnippet
-
-# -------------------- [ shell - colors ] 
-snippet sh_colors "shell - colors" b
-# -------------------- [ colors ]
-blue=$'\033[34m'
-bold=$'\033[1m'
-red=$'\033[31m'
-reset=$'\033[0m'
-yellow=$'\033[33m'
-
-endsnippet
 
 # ---------- [ shell - dumpfile ]
 snippet sh_dumpfile "shell - dumpfile" b
