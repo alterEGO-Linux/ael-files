@@ -473,7 +473,7 @@ docker_container_cleaner() {
 
 
 
-# --- ( deep-scan ) -> Scans IP with rustscan and nmap. # {{{
+# --- ( deep-scan ) -> Scans IP with rustscan and nmap.
 deep-scan() {
 
     # --- shell clean up.
@@ -562,7 +562,7 @@ EOF
         printf '%s\n' "${RED}[!]${RESET} Found nothing."
         return 1
     fi
-} # }}}
+}
 
 # --- ( delete ) -> Delete directories. # {{{
 delete() {
