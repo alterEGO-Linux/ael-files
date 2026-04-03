@@ -2,6 +2,23 @@
 #                                 ( SHELL )
 # =============================================================================
 
+# --- ( SHELL - case statement ) ----------------------------------------------
+# ... (rev) 2026-04-03
+
+snippet sh_case_statement "SHELL - case statement" b
+# --- No args.
+[[ $# -eq 0 ]] && { <do something>; return 1; }
+
+for arg in "$@"; do
+		case "${arg}" in
+				-h|--help)
+						usage
+						return 1
+						;;
+		esac
+done
+endsnippet
+
 # --- ( SHELL - check applications ) ------------------------------------------
 # ... (rev) 2026-04-02
 
@@ -141,50 +158,6 @@ snippet task! "Task" b
 <!-- }}} -->
 endsnippet
 
-# ---------- [ SHELL ]
-
-# --- shell arguments.
-snippet shargs "Shell arguments" b
-
-# // Ensure variables are removed after the function or script terminates.
-local args=("$@")
-
-# // If no arguments are given.
-if [[ $# == 0 ]]; then
-		<do something...>
-		return 0
-fi
-
-# // Check each argument.
-for i in "${!args[@]}"; do
-		# // Show usage if '-h' or '--help' is found.
-		# // Stops the loop with return when an argument is found.
-		if [[ "${args[i]}" == "-h" ]] || [[ "${args[i]}" == "--help" ]]; then
-				usage
-				unsetter && unset -f unsetter
-				return 0
-		elif [[ "${args[i]}" == "<something> ]]; then
-				<do something...>
-				return 0
-		elif [[ "${args[i]}" == "<something>" ]]; then
-				# // Check if the argument is followed by a value.
-				if [[ -n "${args[i+1]}" && "${args[i+1]}" == "<something>" ]]; then
-						<do something...>
-						return 0
-				else
-						<do something...>
-						return 1
-				fi
-		fi
-done
-
-usage
-echo
-echo "[!] No valid arguments found."
-unsetter && unset -f unsetter
-return 1
-
-endsnippet
 
 
 

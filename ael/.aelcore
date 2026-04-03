@@ -269,19 +269,19 @@ reload() {
 
 # -------------------- ( functions ) ------------------------------------------
 
-# --- ( busy ) -> Look busy when the boss comes around.
+# [+] busy - Look busy when the boss comes around.
 load-module "${AEL_BIN}/busy.sh"
 
-# --- ( deep-nmap ) -> Deep Nmap scan.
+# [+] deep-nmap - Deep Nmap scan.
 load-module "${AEL_BIN}/deep-nmap.sh"
 
-# --- ( lazygit ) -> Automated git pull, add, commit and pull.  
+# [+] lazygit - Automated git pull, add, commit and pull.  
 load-module "${AEL_BIN}/lazygit.sh"
 
-# --- ( py-server ) -> Create a Python HTTP server.
+# [+] py-server - Create a Python HTTP server.
 load-module "${AEL_BIN}/py-server.sh"
 
-# --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
+# [+] reset-time - Reset system time. Usefull when Windows boot screws time.
 reset-time() {
 
     local __blue=$'\033[34m'
@@ -308,11 +308,13 @@ reset-time() {
     printf '%s\n' "${__blue}[*]${__reset} Time now: $(date "+%F %H:%M:%S %Z")"
 }
 
-# --- ( show-utc ) -> Display UTC time.
+# [+] show-utc - Display UTC time.
 show-utc() {
     command date --utc "+%F %H:%M:%S %Z"
 }
 
+# [+] termbin - Send message to termbin.com from the terminal.
+load-module "${AEL_BIN}/termbin.sh"
 
 
 
@@ -783,42 +785,6 @@ _goto_complete() {
 
 # --- ( snake-env ) -> Manage python -m venv. # {{{
 [ -f ${__ael_bin_directory}/.snake-env.sh ] && . ${__ael_bin_directory}/.snake-env.sh # }}}
-
-# --- ( termbin ) -> Netcat-based command-line pastebin. # {{{
-termbin() {
-
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-
-    trap 'unset -f check_applications; trap - RETURN' RETURN
-
-    check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
-    }
-    check_applications cat nc || return 1
-
-    # --- verify if any input is provided.
-    if [ -t 0 ] && [ $# -eq 0 ]; then
-        printf '%s\n' "${__red}[error]${__reset} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
-        return 1
-    fi
-
-    if [ $# -gt 0 ]; then
-        printf '%s\n' "$*"
-    else
-        cat
-    fi | nc termbin.com 9999
-} # }}}
 
 # --- ( tmuxplus ) -> TMUX wrapper. # {{{
 tmuxplus() {

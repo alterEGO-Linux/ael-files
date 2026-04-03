@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/termbin.sh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-03 19:05:57 UTC
+# updated       : 2026-04-03 20:43:36 UTC
+# description   : Send message to termbin.com from the terminal.
+
+termbin() {
+
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+    local __input
+    local AEL_TMP="${HOME}/.ael/tmp"
+    local __tmp_directory
+
+    trap 'unset -f check_applications usage; trap - RETURN' RETURN
+
+    check_applications() {
+      local __app
+      for __app in "${@}"; do
+          if ! command -v "${__app}" >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
+    }
+    check_applications cat nc || return 1
+
+    usage(){
+        printf '%s\n' "${__red}[error]${__reset} No input provided. Use: echo 'text' | termbin or termbin \"your text\""
+    }
+    usage() {
+      cat <<EOF
+================================================================================
+[+] termbin - Send message to termbin.com from the terminal.
+================================================================================
+Usage:
+  termbin [-h|--help] [-l|--log] <message...>
+
+Options:
+  -h, --help    Show this help.
+  -l, --log     Log the returned URL to a file.
+                Either in /tmp or $\{HOME}/.ael/tmp
+
+Examples:
+  echo "Hello, world!" | termbin
+  cat file.txt | termbin --log
+  termbin Hello, world!
+================================================================================
+EOF
+    }
+
+    while (($#)); do
+        case "$1" in
+            -h|--help)
+                usage
+                return 1
+                ;;
+            -l|--log)
+                __log=1
+                shift
+                ;;
+            --)
+                shift
+                __input="${*}"
+                break
+                ;;
+            *)
+                __input="${*}"
+                break
+                ;;
+        esac
+    done
+
+    if [[ ! -t 0 ]]; then
+        __input="$(cat)"
+    fi
+
+    if [[ -z "${__input}" ]]; then
+        usage
+        return 1
+    fi
+
+
+    [[ -d "$AEL_TMP" ]] && __tmp_directory="$AEL_TMP" || __tmp_directory="/tmp"
+       
+    if (( __log )); then
+        printf '%s\n' "${__input}" | nc termbin.com 9999 | tee "/${__tmp_directory}/termbin-$(date +%Y%m%d-%H%M%S).log"
+    else
+        printf '%s\n' "${__input}" | nc termbin.com 9999
+    fi
+
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    termbin "$@"
+fi

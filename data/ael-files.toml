@@ -62,6 +62,14 @@ dst         = "/ael/bin/.snake-env.sh"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
+[bin.termbin]
+filename    = "termbin.sh"
+type        = "bin"
+description = "Send message to termbin.com from the terminal."
+src         = "ael-files/bin"
+dst         = "/ael/bin/termbin.sh"
+symlinked   = true
+
 [home.bashrc]
 filename    = ".bashrc"
 type        = "config/bash"
