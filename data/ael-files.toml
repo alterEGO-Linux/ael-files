@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-01 11:13:09 UTC
+# updated       : 2026-04-03 16:36:31 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -21,6 +21,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/busy.sh"
 symlinked   = true
 
+[bin.deep-nmap]
+filename    = "deep-nmap.sh"
+type        = "bin"
+description = "Deep Nmap scan."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/deep-nmap.sh"
+symlinked   = true
+
 [bin.extractor]
 filename    = "extractor.sh"
 type        = "bin"
@@ -35,6 +43,14 @@ type        = "bin"
 description = "Automated git pull, add, commit and push."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/lazygit.sh"
+symlinked   = true
+
+[bin.py-server]
+filename    = "py-server.sh"
+type        = "bin"
+description = "Create a Python HTTP server."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/py-server.sh"
 symlinked   = true
 
 [bin.snake-env]
@@ -210,18 +226,6 @@ description = "Show processes for a particular application."
 filename    = "/shellutils/py-cleaner"
 description = "Clean python current directory."
 
-[shellutils.cHktc2VydmVy]
-filename    = "/shellutils/py-server"
-description = "Create a Python HTTP server."
-
-[shellutils.cmVzZXQtdGltZQ--]
-filename    = "/shellutils/reset-time"
-description = "Reset system time. Useful when Windows boot screws time."
-
 [shellutils.c2hlbGwtaW5mbw--]
 filename    = "/shellutils/shell-info"
 description = "Show shell info."
-
-[shellutils.c2hvdy11dGM-]
-filename    = "/shellutils/show-utc"
-description = "Show UTC time."

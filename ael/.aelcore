@@ -2,7 +2,7 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-04-03 02:32:24 UTC
+# updated       : 2026-04-03 16:36:49 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
@@ -80,6 +80,21 @@ EOF
         }
     fi
 fi
+
+# --- ( simple sourcing )
+load-module() {
+    local module
+    module="$@"
+
+    if [[ -f "${module}" ]]; then
+        . "${module}"
+    else
+        if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+            printf '%s\n' "${fg_red}[!]${reset} ${module} is missing..." 
+            printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+        fi
+    fi
+}
 
 # --- ( ael-fzf )
 shellutil="${AEL_SHELLUTILS}/ael-fzf"
@@ -255,28 +270,48 @@ reload() {
 # -------------------- ( functions ) ------------------------------------------
 
 # --- ( busy ) -> Look busy when the boss comes around.
-app="${AEL_BIN}/busy.sh"
+load-module "${AEL_BIN}/busy.sh"
 
-if [[ -f "${app}" ]]; then
-    . "${app}"
-else
-    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
-        printf '%s\n' "${fg_red}[!]${reset} ${app} is missing..." 
-        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
-    fi
-fi
+# --- ( deep-nmap ) -> Deep Nmap scan.
+load-module "${AEL_BIN}/deep-nmap.sh"
 
 # --- ( lazygit ) -> Automated git pull, add, commit and pull.  
-app="${AEL_BIN}/lazygit.sh"
+load-module "${AEL_BIN}/lazygit.sh"
 
-if [[ -f "${app}" ]]; then
-    . "${app}"
-else
-    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
-        printf '%s\n' "${fg_red}[!]${reset} ${app} is missing..." 
-        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
-    fi
-fi
+# --- ( py-server ) -> Create a Python HTTP server.
+load-module "${AEL_BIN}/py-server.sh"
+
+# --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
+reset-time() {
+
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+    
+    check_applications() {
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
+    }
+    check_applications date timedatectl hwclock || return 1
+
+    printf '%s\n' "${__blue}[*]${__reset} Time before resetting system: $(date "+%F %H:%M:%S %Z")"
+
+    sudo timedatectl set-ntp true && sudo hwclock --systohc --utc
+
+    printf '%s\n' "${__blue}[*]${__reset} Time now: $(date "+%F %H:%M:%S %Z")"
+}
+
+# --- ( show-utc ) -> Display UTC time.
+show-utc() {
+    command date --utc "+%F %H:%M:%S %Z"
+}
 
 
 
@@ -434,80 +469,7 @@ docker_container_cleaner() {
 # -------------------- ( functions and aliases )
 
 
-# --- ( deep-nmap ) -> Deep Nmap scan. # {{{
-deep-nmap() {
 
-    # --- ( shell clean up )
-    local ARGUMENTS_INPUT=("${@}")
-    local BLUE=$'\033[34m'
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
-
-    trap '
-        unset -f usage check_applications; trap - RETURN' RETURN
-
-    check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${RED}[!]${RESET} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
-    }
-    check_applications cat nmap sudo || return 1
-
-    # --- ( help )
-    usage() {
-        cat <<EOF
-================================================================================
-[+] deep-nmap - Deep Nmap scan.
-================================================================================
-Usage: deep-nmap <Target> [Nmap Options] | [-h|--help]
-
-Runs Nmap as sudo with customizable arguments. Defaults to:
-  -sV          - Detect service versions.
-  -O           - Enable OS detection.
-  -sC          - Run Nmap's default scripts.
-  --traceroute - Perform a traceroute to the target.
-
-Options:
-  -h, --help    - Display this help message.
-
-Examples:
-  deep-nmap 192.168.1.1
-  deep-nmap scanme.nmap.org --Pn
-================================================================================
-EOF
-    }
-
-    # --- ( aguments )
-
-    # --- no arguments.
-    if [[ $# == 0 ]]; then
-        ARGUMENTS_INPUT=("-h")
-    fi
-
-    # --- show help and ignore other arguments.
-    local i
-    for i in "${ARGUMENTS_INPUT[@]}"; do
-        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then
-            usage
-            return 0
-        fi
-    done
-
-    if ! command -v grc >/dev/null; then
-        sudo nmap -sV -O -sC --traceroute "$@"
-    else
-        sudo grc nmap -sV -O -sC --traceroute "$@"
-    fi
-
-    return 0
-} # }}}
 
 # --- ( deep-scan ) -> Scans IP with rustscan and nmap. # {{{
 deep-scan() {
@@ -814,17 +776,10 @@ _goto_complete() {
 # --- ( py-cleaner ) -> Clean python current directory.
 [ -f ${AEL_SHELLUTILS}/py-cleaner ] && . ${AEL_SHELLUTILS}/py-cleaner
 
-# --- ( py-server ) -> Create a Python HTTP server.
-[ -f ${AEL_SHELLUTILS}/py-server ] && . ${AEL_SHELLUTILS}/py-server
 
-# --- ( reset-time ) -> Reset system time. Usefull when Windows boot screws time.
-[ -f ${AEL_SHELLUTILS}/reset-time ] && . ${AEL_SHELLUTILS}/reset-time
 
 # --- ( shell-info ) -> Show shell info.
 [ -f ${AEL_SHELLUTILS}/shell-info ] && . ${AEL_SHELLUTILS}/shell-info
-
-# --- ( show-utc ) -> Show UTC time.
-[ -f ${AEL_SHELLUTILS}/show-utc ] && . ${AEL_SHELLUTILS}/show-utc
 
 # --- ( snake-env ) -> Manage python -m venv. # {{{
 [ -f ${__ael_bin_directory}/.snake-env.sh ] && . ${__ael_bin_directory}/.snake-env.sh # }}}

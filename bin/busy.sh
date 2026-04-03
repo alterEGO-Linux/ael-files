@@ -12,7 +12,7 @@ busy() {
 
   command cat /dev/urandom \
   | command hexdump -C \
-  | command grep --color=always 'ca fe' | head
+  | command grep --color=always 'ca fe'
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

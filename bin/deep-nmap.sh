@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/deep-nmap.sh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-03 15:53:06 UTC
+# updated       : 2026-04-03 15:53:06 UTC
+# description   : Deep Nmap scan.
+
+deep-nmap() {
+
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    trap '
+        unset -f usage check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
+    }
+    check_applications cat nmap sudo || return 1
+
+    usage() {
+        cat <<EOF
+================================================================================
+[+] deep-nmap - Deep Nmap scan.
+================================================================================
+Usage:
+  deep-nmap <Target> [Nmap Options] | [-h|--help]
+
+Runs Nmap as sudo with customizable arguments. Defaults to:
+  -sV          - Detect service versions.
+  -O           - Enable OS detection.
+  -sC          - Run Nmap's default scripts.
+  --traceroute - Perform a traceroute to the target.
+
+Options:
+  -h, --help    - Display this help message.
+
+Examples:
+  deep-nmap 192.168.1.1
+  deep-nmap scanme.nmap.org --Pn
+================================================================================
+EOF
+    }
+
+    # --- ( Arguments parsing )
+
+    # --- No args.
+    [[ $# -eq 0 ]] && { usage; return 1; }
+
+    for arg in "$@"; do
+        case "${arg}" in
+            -h|--help)
+                usage
+                return 1
+                ;;
+        esac
+    done
+
+    # --- Run deep-nmap.
+
+    printf '%s\n' "${__blue}[*]${__reset} Runing deep-nmap (sudo nmap -sV -O -sC --traceroute ${*})."
+    if ! command -v grc >/dev/null; then
+        sudo nmap -sV -O -sC --traceroute "$@"
+    else
+        sudo grc nmap -sV -O -sC --traceroute "$@"
+    fi
+
+    return 0
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    deep-nmap "$@"
+fi

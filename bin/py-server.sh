@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/shellutils/py-server]
+# [/.ael/bin/py-server]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-09-10 16:58:34 UTC
-# updated       : 2026-01-31 20:50:47 UTC
+# updated       : 2026-04-03 15:40:38 UTC
 # description   : Create a Python HTTP server.
 
 py-server() {
@@ -31,17 +31,13 @@ py-server() {
     trap 'unset -f check_applications; trap - RETURN' RETURN
     
     check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
     }
     check_applications netstat grep python || return 1
 
@@ -60,3 +56,7 @@ py-server() {
     printf '%s\n' "${__blue}[-]${__reset} py-server: Starting HTTP server on port ${__port}"
     command python -m http.server ${__port}
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    py-server
+fi
