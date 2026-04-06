@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/delete.sh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-04 13:34:04 UTC
+# updated       : 2026-04-06 02:31:22 UTC
+# description   : Delete directories.
+
+delete() {
+    
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+    local __dir
+    local __input
+
+    if [ "$#" -eq 0 ]; then
+        printf '%s\n' "${__red}[!]${__reset} Usage: delete <dir1> [dir2] [dir3] ..."
+        return 1
+    fi
+
+    for __dir in "${@}"; do
+        if [ -d "${__dir}" ]; then
+            printf '%s\n' "${__blue}[-]${__reset} Processing deletion: ${__dir} ..."
+
+            # --- Confirmation request.
+            # ... Will exit in non-interactive context.
+            if [[ ! -t 0 ]]; then
+                printf '%s\n' "${__red}[!]${__reset} No interactive terminal available for confirmation prompt." >&2
+                return 1
+            fi
+            
+            local __input
+            printf "${__blue}[?]${__reset} Are you sure you want to delete this directory? [y/N] "
+            read -r __input
+            
+            if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                command rm --recursive --force "${__dir}" 
+                printf '%s\n' "${__blue}[-]${__reset} Deleted: '${__dir}'."
+            else
+                printf '%s\n' "${__red}[!]${__reset} Skipping: '${__dir}'."
+            fi
+        else
+            printf '%s\n' "${__red}[!]${__reset} '${__dir}' is not a directory or does not exist!"
+        fi
+    done
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    delete "$@"
+fi

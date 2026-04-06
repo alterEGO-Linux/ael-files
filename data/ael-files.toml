@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-03 16:36:31 UTC
+# updated       : 2026-04-04 02:42:09 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -27,6 +27,14 @@ type        = "bin"
 description = "Deep Nmap scan."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/deep-nmap.sh"
+symlinked   = true
+
+[bin.deep-scan]
+filename    = "deep-scan.sh"
+type        = "bin"
+description = "Scans IP with rustscan and nmap."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/deep-scan.sh"
 symlinked   = true
 
 [bin.extractor]
