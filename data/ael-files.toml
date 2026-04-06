@@ -37,6 +37,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/deep-scan.sh"
 symlinked   = true
 
+[bin.delete]
+filename    = "delete.sh"
+type        = "bin"
+description = "Delete directories."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/delete.sh"
+symlinked   = true
+
 [bin.extractor]
 filename    = "extractor.sh"
 type        = "bin"
