@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 # ------------------------------------------------------------------------ INFO
 # [/.ael/bin/tmuxplus.sh]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2020-10-15 17:14:53 UTC
-# updated       : 2026-01-09 09:33:14 UTC
+# updated       : 2026-04-07 02:49:05 UTC
 # description   : TMUX wrapper.
 
 
@@ -12,16 +12,13 @@ __reset=$'\033[0m'
 __args=("${@}")
 
 check_applications() {
-    if [[ -e ${HOME}/.ael/bin/check-applications.sh ]]; then
-        bash ${HOME}/.ael/bin/check-applications.sh "${@}"
-    else
-        for app in "${@}"; do
-            if ! command -v $app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                return 1
-            fi
-        done
-    fi
+  local __app
+  for __app in "${@}"; do
+      if ! command -v $__app >/dev/null 2>&1; then
+            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+            return 1
+        fi
+    done
 }
 check_applications tmux || exit 1
 
@@ -83,7 +80,8 @@ tmux_usage() {
 ================================================================================
 [+] tmuxplus - TMUX wrapper.
 ================================================================================
-Usage: tmuxplus [OPTIONS] <session>
+Usage: 
+  tmuxplus [OPTIONS] <session>
 
 A wrapper around TMUX.
 

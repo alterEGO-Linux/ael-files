@@ -338,6 +338,16 @@ show-utc() {
 # [+] termbin - Send message to termbin.com from the terminal.
 load-module "${AEL_BIN}/termbin.sh"
 
+# [+] tmuxplus - TMUX wrapper.
+tmuxplus() {
+
+    if ! command -v tmuxplus.sh >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[!]${reset} tmuxplus.sh is not installed."
+    else
+        tmuxplus.sh "${@}"
+    fi
+}
+
 
 
 # :: ---------- SOURCE MODULES
@@ -671,15 +681,6 @@ _goto_complete() {
 # --- ( snake-env ) -> Manage python -m venv. # {{{
 [ -f ${__ael_bin_directory}/.snake-env.sh ] && . ${__ael_bin_directory}/.snake-env.sh # }}}
 
-# --- ( tmuxplus ) -> TMUX wrapper. # {{{
-tmuxplus() {
-
-    if ! command -v tmuxplus.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} tmuxplus.sh is not installed."
-    else
-        tmuxplus.sh "${@}"
-    fi
-} # }}}
 
 # --- ( tunnel-info ) -> Display tunnel + VPN info. # {{{
 tunnel-info() {

@@ -111,6 +111,14 @@ src         = "ael-files/bin"
 dst         = "/ael/bin/termbin.sh"
 symlinked   = true
 
+[bin.tmuxplus]
+filename    = "tmuxplus.sh"
+type        = "bin"
+description = "TMUX wrapper."
+src         = "/ael-files/bin/"
+dst         = "ael/bin/tmuxplus.sh"
+symlinked   = true
+
 [home.bashrc]
 filename    = ".bashrc"
 type        = "config/bash"
@@ -210,10 +218,6 @@ description = "Opens AEL files."
 [bin.c3lzdGVtaW5mby5zaA--]
 filename    = "/bin/systeminfo.sh"
 description = "Gather system information."
-
-[bin.dG11eHBsdXMuc2g-]
-filename    = "/bin/tmuxplus.sh"
-description = "TMUX wrapper."
 
 [bin.dHJhbnNsYXRlLnB5]
 filename    = "/bin/translate.py"
