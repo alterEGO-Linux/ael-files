@@ -303,6 +303,9 @@ load-module "${AEL_BIN}/elevate.sh"
 # [+] lazygit - Automated git pull, add, commit and pull.  
 load-module "${AEL_BIN}/lazygit.sh"
 
+# [+] ps-grep - Show processes for a particular application.
+load-module "${AEL_BIN}/ps-grep.sh"
+
 # [+] py-cleaner - Clean python current directory.
 load-module "${AEL_BIN}/py-cleaner.sh"
 
@@ -556,8 +559,6 @@ extractor() {
 # --- ( processes ) -> Show processes.
 [ -f ${AEL_SHELLUTILS}/processes ] && . ${AEL_SHELLUTILS}/processes
 
-# --- ( ps-grep ) -> Show processes for a particular application.
-[ -f ${AEL_SHELLUTILS}/ps-grep ] && . ${AEL_SHELLUTILS}/ps-grep
 
 
 

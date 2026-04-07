@@ -16,21 +16,17 @@ ps-grep() {
     trap 'unset -f check_applications; trap - RETURN' RETURN
     
     check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
     }
     check_applications ps grep  || return 1
     
-    # --- error handler if no argument provided.
+    # --| Error handler if no argument provided.
     if [ $# -eq 0 ]; then
         printf '%s\n' "${__red}[!]${__reset} No pattern provided."
         return 1
@@ -38,19 +34,19 @@ ps-grep() {
 
     local __pattern="[${1:0:1}]${1:1}"
 
-    # --- get header.
+    # --| get header.
     local __header=$(ps aux | head -n 1)
 
-    # --- get pattern.
+    # --| get pattern.
     local __matches=$(ps aux | grep -Ei "$__pattern" | grep -Ev "ps-grep|grep")
 
-    # --- error handler if no match found.
+    # --| error handler if no match found.
     if [ -z "$__matches" ]; then
         printf '%s\n' "${__red}[!]${__reset} No matching process found."
         return 1
     fi
 
-    # --- compare width of terminal and lenght of lines to determine the display.
+    # --| compare width of terminal and lenght of lines to determine the display.
     local __need_spacing=0
     local __width=$(tput cols)
     local __line
@@ -62,7 +58,7 @@ ps-grep() {
         fi
     done <<< "$__matches"
 
-    # --- Display.
+    # --| Display.
 
     printf '%s\n' "${__bold}${__header}${__reset}"
 
@@ -73,3 +69,7 @@ ps-grep() {
         [ "$__need_spacing" -eq 1 ] && echo
     done <<< "$__matches"
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    ps-grep "$@"
+fi

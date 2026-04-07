@@ -102,6 +102,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/lazygit.sh"
 symlinked   = true
 
+[bin.ps-grep]
+filename    = "ps-grep.sh"
+type        = "bin"
+description = "Show processes for a particular application."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/ps-grep.sh"
+symlinked   = true
+
 [bin.py-cleaner]
 filename    = "py-cleaner.sh"
 type        = "bin"
