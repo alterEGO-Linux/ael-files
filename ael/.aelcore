@@ -281,6 +281,19 @@ load-module "${AEL_BIN}/deep-scan.sh"
 # [+] delete - Delete directories.
 load-module "${AEL_BIN}/delete.sh"
 
+# [+] directory-size - Check size of biggest directories.
+load-module "${AEL_BIN}/directory-size.sh"
+
+# [+] docker-info - Docker status helper.
+docker-info() {
+
+    if ! command -v docker-info.py >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[!]${reset} docker-info.py is not installed."
+    else
+        docker-info.py "${@}"
+    fi
+}
+
 # [+] lazygit - Automated git pull, add, commit and pull.  
 load-module "${AEL_BIN}/lazygit.sh"
 
@@ -313,6 +326,9 @@ reset-time() {
 
     printf '%s\n' "${__blue}[*]${__reset} Time now: $(date "+%F %H:%M:%S %Z")"
 }
+
+# [+] shell-info - Show shell info.
+load-module "${AEL_BIN}/shell-info.sh"
 
 # [+] show-utc - Display UTC time.
 show-utc() {
@@ -476,18 +492,7 @@ docker_container_cleaner() {
 
 # -------------------- ( functions and aliases )
 
-# --- ( directory-size ) -> Check size of biggest directories.
-[ -f ${AEL_SHELLUTILS}/directory-size ] && . ${AEL_SHELLUTILS}/directory-size
 
-# --- ( docker-info ) -> Docker status helper. # {{{
-docker-info() {
-
-    if ! command -v docker-info.py >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} docker-info.py is not installed."
-    else
-        docker-info.py "${@}"
-    fi
-} # }}}
 
 # --- ( elevate ) -> Repeats last command with sudo, if forgotten.
 [ -f ${AEL_SHELLUTILS}/elevate ] && . ${AEL_SHELLUTILS}/elevate
@@ -662,8 +667,6 @@ _goto_complete() {
 
 
 
-# --- ( shell-info ) -> Show shell info.
-[ -f ${AEL_SHELLUTILS}/shell-info ] && . ${AEL_SHELLUTILS}/shell-info
 
 # --- ( snake-env ) -> Manage python -m venv. # {{{
 [ -f ${__ael_bin_directory}/.snake-env.sh ] && . ${__ael_bin_directory}/.snake-env.sh # }}}

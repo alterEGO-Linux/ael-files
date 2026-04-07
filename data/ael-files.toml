@@ -45,6 +45,22 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/delete.sh"
 symlinked   = true
 
+[bin.directory-size]
+filename    = "directory-size.sh"
+type        = "bin"
+description = "Check size of biggest directories."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/directory-size.sh"
+symlinked   = true
+
+[bin.docker-info]
+filename    = "docker-info.py"
+type        = "bin"
+description = "Docker status helper."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/docker-info.py"
+symlinked   = true
+
 [bin.extractor]
 filename    = "extractor.sh"
 type        = "bin"
@@ -68,6 +84,15 @@ description = "Create a Python HTTP server."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/py-server.sh"
 symlinked   = true
+
+[bin.shell-info]
+filename    = "shell-info.sh"
+type        = "bin"
+description = "Show shell info."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/shell-info.sh"
+symlinked   = true
+notes       = ["This script must be sourced."]
 
 [bin.snake-env]
 filename    = ".snake-env.sh"
@@ -177,10 +202,6 @@ description = "Web to markdown converter."
 filename    = "/bin/dicom-tag.sh"
 description = "Search DICOM tags."
 
-[bin.ZG9ja2VyLWluZm8ucHk-]
-filename    = "/bin/docker-info.py"
-type        = "bin"
-description = "Docker status helper."
 
 [bin.bWVudS1hZWwtZmlsZXMuc2g-]
 filename    = "/bin/menu-ael-files.sh"
@@ -250,6 +271,3 @@ description = "Show processes for a particular application."
 filename    = "/shellutils/py-cleaner"
 description = "Clean python current directory."
 
-[shellutils.c2hlbGwtaW5mbw--]
-filename    = "/shellutils/shell-info"
-description = "Show shell info."

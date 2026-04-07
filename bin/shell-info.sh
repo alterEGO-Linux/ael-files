@@ -30,17 +30,13 @@ shell-info() {
                   usage; trap - RETURN' RETURN
 
     check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
     }
     check_applications bash tac grep sed cat awk || return 1
 
@@ -356,13 +352,24 @@ EOF
 ===============================================================================
 [+] shell-info - Show shell info.
 ===============================================================================
-Usage: shell-info [--fzf|--sourced|--sourced-tree|-h|--help] [NAME]
+Usage: 
+  shell-info [--fzf|--sourced|--sourced-tree|-h|--help] [NAME]
 
 Options:
   --fzf            Open the interactive selector (default if no args)
   --sourced        List files sourced during startup
   --sourced-tree   Tree view of sourced files (based on + depth)
   -h, --help       Show this help and exit
+
+This script must be sourced, otherwise it won't run as you expect.
+
+It relies on PS4. It must be exported at the shell initialization.
+
+It is already set up in .ael/.aelcore if you are using alterEGO system.
+
+Otherwise, add the following in .bashrc or .profile:
+    # ... PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
+    # ... export PS4
 
 Will return the name, type and if available, the source of current shell
 variable, alias, function, builtin or keyword.
@@ -406,3 +413,7 @@ EOF
     determine_type
     return 0
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    shell-info --help
+fi
