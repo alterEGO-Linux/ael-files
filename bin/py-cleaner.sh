@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/shellutils/py-cleaner]
+# [/.ael/bin/py-cleaner.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-02 00:59:00 UTC
-# updated       : 2026-01-31 20:27:18 UTC
+# updated       : 2026-04-07 12:23:14 UTC
 # description   : Clean python current directory.
 
 py-cleaner () {
@@ -17,21 +17,21 @@ py-cleaner () {
     trap 'unset -f check_applications; trap - RETURN' RETURN
     
     check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
     }
     check_applications find || return 1
 
-    printf '%s\n' "${__blue}[+]${__reset} py-cleaner - Cleaning python current directory."
+    printf '%s\n' "${__blue}[*]${__reset} py-cleaner - Cleaning python current directory."
 
     command find . \( -type f -name '*.py[co]' -o -type d -name __pycache__ \) -delete
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    py-cleaner
+fi

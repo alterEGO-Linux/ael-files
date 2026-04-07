@@ -77,12 +77,37 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/extractor.sh"
 symlinked   = true
 
+[bin.geoip]
+filename    = "geoip.py"
+type        = "bin"
+description = "Uses ip-api.com to output geolocalization info."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/geoip.py"
+symlinked   = true
+
+[bin.goto]
+filename    = "goto.sh"
+type        = "bin"
+description = "Simple directory bookmarks system."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/goto.sh"
+symlinked   = true
+notes       = ["This script must be sourced."]
+
 [bin.lazygit]
 filename    = "lazygit.sh"
 type        = "bin"
 description = "Automated git pull, add, commit and push."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/lazygit.sh"
+symlinked   = true
+
+[bin.py-cleaner]
+filename    = "py-cleaner.sh"
+type        = "bin"
+description = "Clean python current directory."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/py-cleaner.sh"
 symlinked   = true
 
 [bin.py-server]

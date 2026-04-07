@@ -19,7 +19,7 @@ argument-parser() {
 # ... 
 # ...   - short flags.
 # ...   - long flags.
-# ...   - if a value is requi__red.
+# ...   - if a value is required.
 # ...   - state the conflicting flags.
 # ... 
 # ... In the main script:
@@ -30,7 +30,7 @@ argument-parser() {
 # ...   source ${HOME}/.ael/shellutils/utils/argument-parser
 # ... ```
 # ... 
-# ... 2. Define the requi__red value for `ARGUMENT_INPUT`. It is suggested to make 
+# ... 2. Define the required value for `ARGUMENT_INPUT`. It is suggested to make 
 # ...    `ARGUMENT_INPUT` a local variable in order to avoid polluting the shell.
 # ... 
 # ... ```
@@ -40,12 +40,12 @@ argument-parser() {
 # ... 3. Define the flags using associative arrays (dictionaries).
 # ... 
 # ... ```
-# ...   declare -A active=([short]="-a" [long]="--active" [value_requi__red]=false [conflicts_with]="inactive key")
-# ...   declare -A inactive=([short]="-i" [long]="--inactive" [value_requi__red]=true [conflicts_with]="active")
+# ...   declare -A active=([short]="-a" [long]="--active" [value_required]=false [conflicts_with]="inactive key")
+# ...   declare -A inactive=([short]="-i" [long]="--inactive" [value_required]=true [conflicts_with]="active")
 # ...   declare -A key=([short]="-k" [long]="--key")
 # ... ```
 # ... 
-# ... 4. Define the requi__red value `FLAGS`.
+# ... 4. Define the required value `FLAGS`.
 # ... 
 # ... ```
 # ...   local FLAGS=("active" "inactive" "key")
@@ -92,14 +92,12 @@ argument-parser() {
 
     local __red=$'\033[31m'
     local __reset=$'\033[0m'
-    local ARGUMENT_INPUT
-    local FLAGS
     local __arg
     local __conflict
     local __flag
     local __flags_name
     local __is_valid_flag
-    local __is_value_requi__red
+    local __is_value_required
     local __next
     local __possible_conflicts
     local __split_flags
@@ -139,8 +137,8 @@ argument-parser() {
                 if [[ "${__arg}" == "${ref[short]}" || "${__arg}" == "${ref[long]}" ]]; then
                     __flags_name+=("${__flag}")
                     __is_valid_flag=true
-                    __is_value_requi__red="${ref[value_requi__red]:-false}"
-                    if [[ ${__is_valid_flag} && ${__is_value_requi__red} == 'true' ]]; then
+                    __is_value_required="${ref[value_required]:-false}"
+                    if [[ ${__is_valid_flag} && ${__is_value_required} == 'true' ]]; then
                         if [[ "${__next}" =~ ^-{1,2}[a-zA-Z]+$ || "${__next}" == '' ]]; then
                             printf '%s\n' "${__red}[!]${__reset} ${__arg} requires a valid value."
                             unset ARGUMENTS
@@ -149,7 +147,7 @@ argument-parser() {
                         ARGUMENTS+=("${__arg}")
                         ARGUMENTS+=("${__next}")
                         ((i+=2))
-                    elif [[ ${__is_valid_flag} && ${__is_value_requi__red} == 'false' ]]; then 
+                    elif [[ ${__is_valid_flag} && ${__is_value_required} == 'false' ]]; then 
                         ARGUMENTS+=("${__arg}")
                         ((i++))
                     fi

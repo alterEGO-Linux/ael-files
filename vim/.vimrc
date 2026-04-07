@@ -2,24 +2,24 @@
 " [~/.vimrc]
 " author        : Pascal Malouin @https://github.com/fantomH
 " created       : 2021-02-23 02:54:43 UTC
-" updated       : 2026-01-03 02:55:11 UTC
+" updated       : 2026-04-07 21:01:49 UTC
 " description   : VIM main configuration file.
 
-" ---------- [ general configuration ]
+" ---------- ( general configuration ) ----------------------------------------
 
-  " --- forces vim to act like vim, not like vi.
+  " --| forces vim to act like vim, not like vi.
   set nocompatible
 
-  " --- <leader>
+  " --| <leader>
   let mapleader = '-'
 
-  " --- highlights the cursorline.
+  " --| highlights the cursorline.
   set cursorline
 
-  " --- disable the creation of swap files.
+  " --| disable the creation of swap files.
   set noswapfile
 
-  " --- used with colored column.
+  " --| used with colored column.
   set colorcolumn=80
 
   " --- command section bigger.
@@ -607,7 +607,7 @@
   " --- prog. language
   highlight Comment         cterm=NONE       ctermfg=109       ctermbg=NONE     " --- Comments.
   highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " --- Function.
-  highlight Statement       cterm=ITALIC     ctermfg=110       ctermbg=NONE     " --- Statement
+  highlight Statement       cterm=BOLD     ctermfg=110       ctermbg=NONE     " --- Statement
 
   " :-( html/md )
   " :(ref) http://vimdoc.sourceforge.net/htmldoc/syntax.html
@@ -620,7 +620,7 @@
   " hi htmlH1    term=NONE cterm=BOLD ctermfg=15  ctermbg=NONE
 
   " hi Constant           term=NONE cterm=NONE ctermfg=125  ctermbg=NONE
-  " hi Cursor             term=NONE cterm=NONE ctermfg=242  ctermbg=NONE
+  hi Cursor             term=NONE cterm=NONE ctermfg=242  ctermbg=NONE
   " hi DiffAdd            term=NONE cterm=NONE ctermfg=103  ctermbg=NONE
   " hi DiffChange         term=NONE cterm=NONE ctermfg=NONE ctermbg=16
   " hi DiffDelete         term=NONE cterm=NONE ctermfg=251  ctermbg=16
