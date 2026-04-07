@@ -61,6 +61,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/docker-info.py"
 symlinked   = true
 
+[bin.elevate]
+filename    = "elevate.sh"
+type        = "bin"
+description = "Repeats last command with sudo, if forgotten."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/elevate.sh"
+symlinked   = true
+
 [bin.extractor]
 filename    = "extractor.sh"
 type        = "bin"

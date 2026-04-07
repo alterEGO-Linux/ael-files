@@ -294,6 +294,9 @@ docker-info() {
     fi
 }
 
+# [+] elevate - Repeats last command with sudo, if forgotten.
+load-module "${AEL_BIN}/elevate.sh"
+
 # [+] lazygit - Automated git pull, add, commit and pull.  
 load-module "${AEL_BIN}/lazygit.sh"
 
@@ -516,8 +519,6 @@ docker_container_cleaner() {
 
 
 
-# --- ( elevate ) -> Repeats last command with sudo, if forgotten.
-[ -f ${AEL_SHELLUTILS}/elevate ] && . ${AEL_SHELLUTILS}/elevate
 
 # --- ( extractor ) -> Compressed files universal extractor. # {{{
 extractor() {

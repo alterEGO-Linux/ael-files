@@ -1,34 +1,29 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/shellutils/elevate]
+# [/.ael/bin/elevate.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-02 00:10:38 UTC
-# updated       : 2026-01-31 19:57:24 UTC
+# updated       : 2026-04-07 11:15:26 UTC
 # description   : Repeats last command with sudo, if forgotten.
 
 elevate() {
 
-    # --- shell clean up
     local __args=("${@}")
     local __arg
-    local BLUE=$'\033[34m'
-    local RED=$'\033[31m'
-    local RESET=$'\033[0m'
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
 
     trap 'unset -f usage check_applications; trap - RETURN' RETURN
 
     check_applications() {
-        if [[ -n ${__SOURCED_CHECK_APPLICATIONS} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${RED}[!]${RESET} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
     }
     check_applications bash sudo || return 1
 
@@ -37,14 +32,18 @@ elevate() {
 ================================================================================
 [+] elevate - Repeats last command with sudo, if forgotten.
 ================================================================================
-Usage: elevate [--help]
+Usage:
+  elevate [--interactive][--help]
 
-The shellutil <elevate> runs sudo \$(history -p !!), which allows to run the
-last command with elevated privileges.
+<elevate> runs sudo \$(history -p !!), which allows to run the last command 
+with elevated privileges.
 
 Options:
-  -h, --help           Display this help message.
   -i, --interactive    Prompt for confirmation.
+  -h, --help           Display this help message.
+
+IMPORTANT:
+  This script must be sourced, otherwise history won't act as intented.
 ================================================================================
 EOF
     }
@@ -59,15 +58,23 @@ EOF
         fi
     done
 
+    # --- Interactive.
+    # ... Will exit in non-interactive context.
+    
     local __input
     for __arg in "${__args[@]}"; do
         if [[ "${__arg}" == '-i' ]] || [[ "${__arg}" == '--interactive' ]]; then
-            read -p "${BLUE}[?]${RESET} Are you sure you want to proceed? [y/N] " __input
+            if [[ ! -t 0 ]]; then
+                printf '%s\n' "${__red}[!]${__reset} No interactive terminal available for confirmation prompt." >&2
+                return 1
+            fi
+            printf "${__blue}[?]${__reset} Are you sure you want to proceed? [y/N] "
+            read -r __input
                 if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
                     sudo bash -c "${__command}"
                     return 0
                 else
-                    printf '%s\n' "${RED}[!]${RESET} Aborting running '${__command}' with elevated privileges."
+                    printf '%s\n' "${__red}[!]${__reset} Aborting running '${__command}' with elevated privileges."
                     return 1
                 fi
         fi
@@ -75,3 +82,7 @@ EOF
 
     sudo bash -c "${__command}"
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    usage --help
+fi
