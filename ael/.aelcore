@@ -338,6 +338,9 @@ show-utc() {
     command date --utc "+%F %H:%M:%S %Z"
 }
 
+# [+] snake-env - Manage python -m venv.
+load-module "${AEL_BIN}/snake-env.sh"
+
 # [+] termbin - Send message to termbin.com from the terminal.
 load-module "${AEL_BIN}/termbin.sh"
 
@@ -691,8 +694,6 @@ _goto_complete() {
 
 
 
-# --- ( snake-env ) -> Manage python -m venv. # {{{
-[ -f ${__ael_bin_directory}/.snake-env.sh ] && . ${__ael_bin_directory}/.snake-env.sh # }}}
 
 
 
@@ -705,5 +706,3 @@ _goto_complete() {
 #[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
 #[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
 #[ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
-
-# vim: foldmethod=marker

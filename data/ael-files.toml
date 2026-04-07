@@ -103,11 +103,11 @@ symlinked   = true
 notes       = ["This script must be sourced."]
 
 [bin.snake-env]
-filename    = ".snake-env.sh"
+filename    = "snake-env.sh"
 type        = "bin"
 description = "Manage python -m venv."
-src         = "/ael-files/bin"
-dst         = "/ael/bin/.snake-env.sh"
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/snake-env.sh"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
@@ -234,7 +234,6 @@ description = "Web to markdown converter."
 filename    = "/bin/dicom-tag.sh"
 description = "Search DICOM tags."
 
-
 [bin.bWVudS1hZWwtZmlsZXMuc2g-]
 filename    = "/bin/menu-ael-files.sh"
 description = "Opens AEL files."
@@ -247,28 +246,9 @@ description = "Gather system information."
 filename    = "/bin/translate.py"
 description = "Translate using Google translate."
 
-[bin.dHVubmVsLWluZm8ucHk-]
-filename    = "/bin/tunnel-info.py"
-description = "Display tunnels + VPN info."
-
 [bin.dmlydHVhbC1ib3hlcy5zaA--]
 filename    = "/bin/virtual-boxes.sh"
 description = "Virtualbox VMs launcher."
-
-[shellutils.ZGVsZXRl]
-filename    = "/shellutils/delete"
-type        = "shellutils"
-description = "Delete directories."
-
-[shellutils.ZGlyZWN0b3J5LXNpemU-]
-filename    = "/shellutils/directory-size"
-type        = "shellutils"
-description = "Check size of biggest directories."
-
-[shellutils.ZWxldmF0ZQ--]
-filename    = "/shellutils/elevate"
-type        = "shellutils"
-description = "Repeats last command with sudo, if forgotten."
 
 [shellutils.Z2V0bXAz]
 filename    = "/shellutils/getmp3"
@@ -298,4 +278,3 @@ description = "Show processes for a particular application."
 [shellutils.cHktY2xlYW5lcg--]
 filename    = "/shellutils/py-cleaner"
 description = "Clean python current directory."
-

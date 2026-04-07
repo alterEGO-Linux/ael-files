@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/.snake-env.sh]
+# [/.ael/bin/snake-env.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2024-10-23 11:28:49 UTC
-# updated       : 2026-03-24 17:35:35 UTC
+# updated       : 2026-04-07 11:28:44 UTC
 # description   : Manage python -m venv.
 
 snake-env() {
@@ -19,17 +19,13 @@ snake-env() {
     export SNAKE_ENV="${SNAKE_ENV}"
 
     check_applications() {
-        if [[ -n ${__CHECK_APPLICATIONS_ACTIVE} ]]; then
-            check-applications "${@}"
-        else
-            local app
-            for app in $@; do
-                if ! command -v $app; then
-                    printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                    return 1
-                fi
-            done
-        fi
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
     }
     check_applications python grep xargs find || return 1
 
