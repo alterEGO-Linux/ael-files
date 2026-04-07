@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-04 02:42:09 UTC
+# updated       : 2026-04-07 10:49:01 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -117,6 +117,22 @@ type        = "bin"
 description = "TMUX wrapper."
 src         = "/ael-files/bin/"
 dst         = "ael/bin/tmuxplus.sh"
+symlinked   = true
+
+[bin.tunnel-info]
+filename    = "tunnel-info.py"
+type        = "bin"
+description = "Display Tunnels/VPN info."
+src         = "/ael-files/bin/"
+dst         = "ael/bin/tunnel-info.py"
+symlinked   = true
+
+[bin.whoisweb]
+filename    = "whoisweb.sh"
+type        = "bin"
+description = "Query WHOIS web if <whois> port 43 is blocked on your network."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/whoisweb.sh"
 symlinked   = true
 
 [home.bashrc]

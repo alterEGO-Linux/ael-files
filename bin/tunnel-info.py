@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ------------------------------------------------------------------------ INFO
 # [/.ael/bin/tunnel-info.py]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-09-05 20:36:58 UTC
 # updated       : 2026-01-10 12:19:44 UTC
 # description   : Display Tunnels/VPN info.

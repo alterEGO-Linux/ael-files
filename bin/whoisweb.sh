@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/whoisweb.sh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-07 10:33:23 UTC
+# updated       : 2026-04-07 10:33:23 UTC
+# description   : Query WHOIS web if <whois> port 43 is blocked on your network.
+
+whoisweb() {
+
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+                return 1
+            fi
+        done
+    }
+    check_applications curl jq sed || return 1
+
+    if [[ -z "${@}" ]]; then
+        printf '%s\n' "${__red}[!]${__reset} You must provide a valid URL."
+    else
+        command curl --silent https://whoisjs.com/api/v1/${1} \
+        | command jq ".raw" \
+        | command sed "s/\\\r\\\n/\\n/g"
+    fi
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    whoisweb "$@"
+fi
