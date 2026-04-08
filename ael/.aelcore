@@ -303,6 +303,12 @@ load-module "${AEL_BIN}/elevate.sh"
 # [+] lazygit - Automated git pull, add, commit and pull.  
 load-module "${AEL_BIN}/lazygit.sh"
 
+# [+] ports - Displays open ports.
+load-module "${AEL_BIN}/ports.sh"
+
+# [+] processes - Show processes.
+load-module "${AEL_BIN}/processes.sh"
+
 # [+] ps-grep - Show processes for a particular application.
 load-module "${AEL_BIN}/ps-grep.sh"
 
@@ -552,20 +558,6 @@ extractor() {
 
 # --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
 [ -f ${AEL_SHELLUTILS}/pacman-reset ] && . ${AEL_SHELLUTILS}/pacman-reset
-
-# --- ( ports ) -> Displays open ports.
-[ -f ${AEL_SHELLUTILS}/ports ] && . ${AEL_SHELLUTILS}/ports
-
-# --- ( processes ) -> Show processes.
-[ -f ${AEL_SHELLUTILS}/processes ] && . ${AEL_SHELLUTILS}/processes
-
-
-
-
-
-
-
-
 
 
 

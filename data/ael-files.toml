@@ -102,6 +102,22 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/lazygit.sh"
 symlinked   = true
 
+[bin.ports]
+filename    = "ports.sh"
+type        = "bin"
+description = "Displays open ports."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/ports.sh"
+symlinked   = true
+
+[bin.processes]
+filename    = "processes.sh"
+type        = "bin"
+description = "Show processes"
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/processes.sh"
+symlinked   = true
+
 [bin.ps-grep]
 filename    = "ps-grep.sh"
 type        = "bin"
@@ -295,19 +311,3 @@ description = "Internet connection speed meter."
 [shellutils.cGFjbWFuLXJlc2V0]
 filename    = "/shellutils/pacman-reset"
 description = "Re-initialize pacman sync, mirrorlist and keyring."
-
-[shellutils.cG9ydHM-]
-filename    = "/shellutils/ports"
-description = "Displays open ports."
-
-[shellutils.cHJvY2Vzc2Vz]
-filename    = "/shellutils/processes"
-description = "Show processes."
-
-[shellutils.cHMtZ3JlcA--]
-filename    = "/shellutils/ps-grep"
-description = "Show processes for a particular application."
-
-[shellutils.cHktY2xlYW5lcg--]
-filename    = "/shellutils/py-cleaner"
-description = "Clean python current directory."
