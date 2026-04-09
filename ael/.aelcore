@@ -300,8 +300,14 @@ load-module "${AEL_BIN}/goto.sh"
 # [+] elevate - Repeats last command with sudo, if forgotten.
 load-module "${AEL_BIN}/elevate.sh"
 
+# [+] ispeed - Internet connection speed meter.
+load-module "${AEL_BIN}/ispeed.sh"
+
 # [+] lazygit - Automated git pull, add, commit and pull.  
 load-module "${AEL_BIN}/lazygit.sh"
+
+# [+] pacman-reset - Re-initialize pacman sync, mirrorlist and keyring.
+load-module "${AEL_BIN}/pacman-reset.sh"
 
 # [+] ports - Displays open ports.
 load-module "${AEL_BIN}/ports.sh"
@@ -550,16 +556,6 @@ extractor() {
 
 # --- ( getmp3 ) -> Extracting audio (.mp3) from video.
 [ -f ${AEL_SHELLUTILS}/getmp3 ] && . ${AEL_SHELLUTILS}/getmp3
-
-
-# --- ( ispeed ) -> Internet connection speed meter.
-[ -f ${AEL_SHELLUTILS}/ispeed ] && . ${AEL_SHELLUTILS}/ispeed
-
-
-# --- ( pacman-reset ) -> Re-initialize pacman sync, mirrorlist and keyring.
-[ -f ${AEL_SHELLUTILS}/pacman-reset ] && . ${AEL_SHELLUTILS}/pacman-reset
-
-
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 #[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa

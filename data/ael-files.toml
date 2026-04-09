@@ -94,12 +94,28 @@ dst         = "/ael/bin/goto.sh"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
+[bin.ispeed]
+filename    = "ispeed.sh"
+type        = "bin"
+description = "Internet connection speed meter."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/ispeed.sh"
+symlinked   = true
+
 [bin.lazygit]
 filename    = "lazygit.sh"
 type        = "bin"
 description = "Automated git pull, add, commit and push."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/lazygit.sh"
+symlinked   = true
+
+[bin.pacman-reset]
+filename    = "pacman-reset.sh"
+type        = "bin"
+description = "Re-initialize pacman sync, mirrorlist and keyring."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/pacman-reset.sh"
 symlinked   = true
 
 [bin.ports]
