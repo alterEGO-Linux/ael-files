@@ -2,14 +2,14 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-04-06 02:33:33 UTC
+# updated       : 2026-04-09 11:59:05 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --- required for shell-info function (.ael/shellutils/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# -------------------- ( ael )
+# -------------------- ( AEL ) ------------------------------------------------
 
 export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
 export AEL_FILES="${HOME}/.local/share/ael-files"
@@ -20,7 +20,7 @@ export AEL_SHELLUTILS="${AEL_DIR}/shellutils"
 export AEL_CUSTOM="${AEL_DIR}/custom"
 export AEL_DEBUG_LEVEL=2
 
-# -------------------- ( default apps )
+# -------------------- ( DEFAULT APPS ) ---------------------------------------
 
 export BROWSER=firefox
 export TERMINAL="alacritty"
@@ -29,7 +29,7 @@ export EDITOR=${VISUAL}
 export MANPAGER='bat -l man -p'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
-# -------------------- ( shellutils )
+# -------------------- ( SHELLUTILS ) -----------------------------------------
 
 # --- ( ansi-colors )
 shellutil="${AEL_SHELLUTILS}/ansi-colors"
@@ -146,26 +146,27 @@ else
     fi
 fi
 
-# -------------------- ( aliases )
+# -------------------- ( ALIASES ) --------------------------------------------
 
 alias grep="grep --color=auto"
 alias ll='ls --all --human-readable -l --color=auto'
 alias ls='ls --all --color=auto'
 alias lt='ls --format=long --sort=time --all --human-readable'
-# --- ( tmux ) Makes tmux understand the environment is important.
+
+# --| Makes tmux understand the environment is important.
 alias tmux="env TERM=screen-256color tmux -u"
 
-# -------------------- ( path )
-# --- (ref) <https://www.linuxjournal.com/content/removing-duplicate-path-entries>
+# -------------------- ( PATH ) -----------------------------------------------
 
+# --| ref. <https://www.linuxjournal.com/content/removing-duplicate-path-entries>
 PATH="${HOME}/.ael/bin:${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
 PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
 
 export PATH
 
-# -------------------- ( history )
-# --- Allows custom HISTIGNORE patterns.
-# ... Excepted /.ael/custom/histignore file.
+# -------------------- ( HISTORY ) --------------------------------------------
+# --| Allows custom HISTIGNORE patterns.
+# ..| Excepted /.ael/custom/histignore file.
 histignore_default=(
     "cd"
     "history"
@@ -181,16 +182,16 @@ histignore="${AEL_CUSTOM}/histignore"
 if [[ -f "$histignore" ]]; then
     while IFS= read -r line; do
 
-        # --- Trim leading whitespace.
+        # --| Trim leading whitespace.
         line="${line#"${line%%[![:space:]]*}"}"
 
-        # --- Trim trailing whitespace.
+        # --| Trim trailing whitespace.
         line="${line%"${line##*[![:space:]]}"}"
 
-        # --- Skip commented lines.
+        # --| Skip commented lines.
         [[ "${line}" =~ ^# ]] && continue
 
-        # --- Skip empty lines.
+        # --| Skip empty lines.
         [[ -z "$line" ]] && continue
 
         patterns+=("$line")
@@ -205,22 +206,22 @@ export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
-# -------------------- ( terminal behavior / Ctrl+S / Ctrl+Q )
+# -------------------- ( TERMINAL BEHAVIOR / CTRL+S / CTRL+Q ) ----------------
 
-# --- Enable Ctrl+S inside terminal applications (e.g. Vim).
-# ... By default, the terminal uses Ctrl+S / Ctrl+Q for software flow control:
-# ... - Ctrl+S → pauses terminal output
-# ... - Ctrl+Q → resumes output
-# ... This prevents applications like Vim from receiving Ctrl+S.
-# ... Disabling flow control with `stty -ixon` frees Ctrl+S so it can be used
-# ... as a normal keybinding (e.g. save in Vim).
-# ... Example Vim mapping:
-# ... inoremap <C-s> <ESC>:write<CR>
-# ... Note: This will not work in a remote SSH session.
+# --| Enable Ctrl+S inside terminal applications (e.g. Vim).
+# ..| By default, the terminal uses Ctrl+S / Ctrl+Q for software flow control:
+# ..| - Ctrl+S → pauses terminal output
+# ..| - Ctrl+Q → resumes output
+# ..| This prevents applications like Vim from receiving Ctrl+S.
+# ..| Disabling flow control with `stty -ixon` frees Ctrl+S so it can be used
+# ..| as a normal keybinding (e.g. save in Vim).
+# ..| Example Vim mapping:
+# ..| inoremap <C-s> <ESC>:write<CR>
+# ..| Note: This will not work in a remote SSH session.
 
 stty -ixon
 
-# -------------------- ( prompt )
+# -------------------- ( PROMPT ) ---------------------------------------------
 
 prompt_command() {
     local style="${1:-default}"
@@ -252,8 +253,9 @@ prompt_command() {
 
 PROMPT_COMMAND='prompt_command default'
 
-# -------------------- ( reload )
-# --- Source again the file that initiated the current shell.
+# -------------------- ( reload ) ---------------------------------------------
+
+# --| Source again the file that initiated the current shell.
 
 reload() {
 
@@ -294,11 +296,24 @@ docker-info() {
     fi
 }
 
-# [+] goto - Simple directory bookmarks system.
-load-module "${AEL_BIN}/goto.sh"
-
 # [+] elevate - Repeats last command with sudo, if forgotten.
 load-module "${AEL_BIN}/elevate.sh"
+
+# [+] extractor - Compressed files universal extractor.
+extractor() {
+
+    if ! command -v extractor.sh >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[!]${reset} extractor.sh is not installed."
+    else
+        extractor.sh "${@}"
+    fi
+}
+
+# [+] getmp3 - Extracting audio (.mp3) from video.
+load-module "${AEL_BIN}/getmp3.sh"
+
+# [+] goto - Simple directory bookmarks system.
+load-module "${AEL_BIN}/goto.sh"
 
 # [+] ispeed - Internet connection speed meter.
 load-module "${AEL_BIN}/ispeed.sh"
@@ -544,18 +559,7 @@ docker_container_cleaner() {
 
 
 
-# --- ( extractor ) -> Compressed files universal extractor. # {{{
-extractor() {
 
-    if ! command -v extractor.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} extractor.sh is not installed."
-    else
-        extractor.sh "${@}"
-    fi
-} # }}}
-
-# --- ( getmp3 ) -> Extracting audio (.mp3) from video.
-[ -f ${AEL_SHELLUTILS}/getmp3 ] && . ${AEL_SHELLUTILS}/getmp3
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
 #[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa
