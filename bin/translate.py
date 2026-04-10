@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # ------------------------------------------------------------------------ INFO
 # [/.ael/bin/translate.py]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-01-22 08:03:05 UTC
-# updated       : 2026-01-22 08:03:05 UTC
+# updated       : 2026-04-10 14:59:54 UTC
 # description   : Translate using Google translate.
 
 import argparse
@@ -11,7 +11,7 @@ import sys
 import requests
 from typing import Tuple
 
-# --- try rich module.
+# --| try rich module.
 try:
     from rich.console import Console
     from rich.table import Table
@@ -79,7 +79,7 @@ def print_rich_table(original: str, src: str, translated: str, tgt: str):
     table.add_row(f"Translation ({tgt})", translated)
 
 
-    # --- print a horizontal line of that width.
+    # --| print a horizontal line of that width.
     console.print(Rule(style="cyan"), end="")
 
     console.print(table)

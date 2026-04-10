@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/home/ghost/.local/share/ael-files/bin/dicom-tag.sh]
-# author        : Pascal Malouin @https://github.com/alterEGO-Linux
+# [/.ael/bin/dicom-tag.sh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-07-14 09:38:38 UTC
-# updated       : 2026-01-30 20:29:20 UTC
+# updated       : 2026-04-09 12:13:39 UTC
 # description   : Search DICOM tags.
 
+__red=$'\033[31m'
+__reset=$'\033[0m'
+
 check_applications() {
-    if command -v check-applications.sh >/dev/null 2>&1; then
-        echo hello
-        check-applications.sh "${@}"
-   else
-        for app in "${@}"; do
-            if ! command -v $app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${app} is not installed."
-                return 1
-            fi
-        done
-    fi
+  local __app
+  for __app in "${@}"; do
+      if ! command -v $__app >/dev/null 2>&1; then
+            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+            return 1
+        fi
+    done
 }
 check_applications fzf sort || exit 1
 
-declare -A tags=(
+declare -A __tags=(
     ["0002,0000"]="FileMetaInfoGroupLength"
     ["0002,0001"]="FileMetaInfoVersion"
     ["0002,0002"]="MediaStorageSOPClassUID"
@@ -3170,16 +3169,18 @@ declare -A tags=(
     ["FFFE,E0DD"]="EndOfSequence"
     )
 
-for tag in "${!tags[@]}"; do
-    printf "%b" "($tag)\t${tags[$tag]}\n"
-done | sort | fzf --color=gutter:-1                                           \
-           --margin=4%                                                        \
-           --border=none                                                      \
-           --prompt="DICOM TAG ❯ "                                            \
-           --header=" "                                                       \
-           --no-hscroll                                                       \
-           --reverse                                                          \
-           -i                                                                 \
-           --exact                                                            \
-           --tiebreak=begin                                                   \
-           --no-info
+for __tag in "${!__tags[@]}"; do
+    printf "%b" "($__tag)\t${__tags[$__tag]}\n"
+done | sort | fzf \
+              --color=gutter:-1 \
+              --margin=1% \
+              --border=rounded \
+              --prompt="DICOM TAG ❯ " \
+              --header=" " \
+              --no-hscroll \
+              --reverse \
+              -i \
+              --exact \
+              --tiebreak=begin \
+              --no-info \
+              --pointer="•"

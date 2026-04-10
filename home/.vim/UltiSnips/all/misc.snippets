@@ -1,12 +1,10 @@
-# =============================================================================
-#                                 ( SHELL )
-# =============================================================================
+# -------------------- ( SHELL ) ----------------------------------------------
 
-# --- ( SHELL - case statement ) ----------------------------------------------
-# ... (rev) 2026-04-03
+# [+] SHELL - case statement
+# --| rev. 2026-04-03
 
 snippet sh_case_statement "SHELL - case statement" b
-# --- No args.
+# --| No args.
 [[ $# -eq 0 ]] && { <do something>; return 1; }
 
 for arg in "$@"; do
@@ -19,8 +17,8 @@ for arg in "$@"; do
 done
 endsnippet
 
-# --- ( SHELL - check applications ) ------------------------------------------
-# ... (rev) 2026-04-02
+# [+] SHELL - check applications
+# --| rev. 2026-04-02
 
 snippet sh_check_applications "SHELL - check applications" b
 check_applications() {
@@ -35,8 +33,8 @@ check_applications() {
 check_applications git || return 1
 endsnippet
 
-# --- ( SHELL - colors ) ------------------------------------------------------
-# ... (rev) 2026-04-02
+# [+] SHELL - colors
+# --| rev. 2026-04-02
 
 snippet sh_colors "SHELL - colors" b
 local __blue=$'\033[34m'
@@ -46,21 +44,45 @@ local __reset=$'\033[0m'
 local __yellow=$'\033[33m'
 endsnippet
 
-# --- ( SHELL - main guard ) --------------------------------------------------
-# ... (rev) 2026-04-01
-# ... Same purpose as Python __name__ == "__main__".
+# [+] SHELL -> Fuzzy Finder.
+# --| rev. 2026-04-10
+# ..| usage: fuzzyfinder "${__fuzzyfinder_prompt}"
+
+snippet sh_fuzzy_finder "SHELL - Fuzzy Finder" b
+__fuzzyfinder_prompt="<prompt> ❯ "
+fuzzyfinder() {
+    local __fuzzyfinder_prompt="${1}"
+    fzf --color=gutter:-1                    \
+        --margin=1%                          \
+        --border=rounded                     \
+        --prompt="${__fuzzyfinder_prompt}"   \
+        --header=" "                         \
+        --no-hscroll                         \
+        --reverse                            \
+        -i                                   \
+        --exact                              \
+        --tiebreak=begin                     \
+        --no-info                            \
+        --pointer="•"
+}
+endsnippet
+
+# [+] SHELL - main guard
+# --| rev. 2026-04-01
+# ..| Same purpose as Python __name__ == "__main__".
+
 snippet sh_main_guard "SHELL - main guard" b
 if [[ "${BASH_SOURCE[0]}" == "\${0}" ]]; then
     <function> "$@"
 fi
 endsnippet
 
-# --- ( SHELL - question ) ----------------------------------------------------
-# ... (rev) 2026-04-01
+# [+] SHELL - question
+# --| rev. 2026-04-01
 
 snippet sh_question "SHELL - question" b
-# --- Confirmation request.
-# ... Will exit in non-interactive context.
+# --| Confirmation request.
+# ..| Will exit in non-interactive context.
 if [[ ! -t 0 ]]; then
 		printf '%s\n' "${__red}[!]${__reset} No interactive terminal available for confirmation prompt." >&2
 		return 1
@@ -71,21 +93,21 @@ printf "${__blue}[?]${__reset} <question>? [y/N] "
 read -r __input
 
 if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-		: # --- this does nothing.
+		: # --| this does nothing.
 else
 		<do something>
 fi
 endsnippet
 
-# --- ( SHELL - trap functions ) ----------------------------------------------
-# ... (rev) 2026-04-02
+# [+] SHELL - trap functions
+# --| rev. 2026-04-02
 
 snippet sh_trap_functions "SHELL - trap functions" b
 trap 'unset -f <functions>; trap - RETURN' RETURN
 endsnippet
 
-# --- ( SHELL - Usage ) -------------------------------------------------------
-# ... (rev) 2026-04-02
+# [+] SHELL - Usage
+# --| rev. 2026-04-02
 
 snippet sh_usage "SHELL - Usage" b
 usage() {
@@ -94,11 +116,11 @@ usage() {
 [+] <function name> - <function description>
 ================================================================================
 Usage:
-<function name> [-h|--help] [-s|--status] <message...>
+  <function name> [-h|--help] [-s|--status] <message...>
 
 Options:
--h, --help    Show this help.
--s, --status  Show status and exits.
+  -h, --help    Show this help.
+  -s, --status  Show status and exits.
 
 <...>
 ================================================================================

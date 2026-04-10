@@ -3,51 +3,54 @@
 # [/.ael/bin/virtual-boxes.sh]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-02-18 20:57:09 UTC
-# updated       : 2026-01-31 14:06:23 UTC
+# updated       : 2026-04-10 14:44:17 UTC
 # description   : Virtualbox VMs launcher.
 
-# -------------------- [ colors ]
-blue=$'\033[34m'
-bold=$'\033[1m'
-red=$'\033[31m'
-reset=$'\033[0m'
-yellow=$'\033[33m'
+__blue=$'\033[34m'
+__red=$'\033[31m'
+__reset=$'\033[0m'
 
 check_applications() {
-    # --- Verify if check-applications.sh is on PATH.
-    if command -v check-applications.sh >/dev/null 2>&1; then
-        check-applications.sh "${@}"
-   else
-        for app in "${@}"; do
-            if ! command -v $app >/dev/null 2>&1; then
-                printf '%s\n' "${red}[!]${reset} ${app} is not installed."
-                return 1
-            fi
-        done
-    fi
+  local __app
+  for __app in "${@}"; do
+      if ! command -v $__app >/dev/null 2>&1; then
+            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+            return 1
+        fi
+    done
 }
 check_applications vboxmanage awk fzf || exit 1
 
-selection=$(vboxmanage list vms | awk -F\" '{print $2, $3}'                  \
-    | fzf --color=gutter:-1                                                  \
-          --margin=4%                                                        \
-          --border=none                                                      \
-          --prompt="START VM ❯ "                                             \
-          --header=" "                                                       \
-          --no-hscroll                                                       \
-          --reverse                                                          \
-          -i                                                                 \
-          --exact                                                            \
-          --tiebreak=begin                                                   \
-          --no-info)
+__fuzzyfinder_prompt="START VM ❯ "
+fuzzyfinder() {
+    local __fuzzyfinder_prompt="${1}"
+    fzf --color=gutter:-1                    \
+        --margin=1%                          \
+        --border=rounded                     \
+        --prompt="${__fuzzyfinder_prompt}"   \
+        --header=" "                         \
+        --no-hscroll                         \
+        --reverse                            \
+        -i                                   \
+        --exact                              \
+        --tiebreak=begin                     \
+        --no-info                            \
+        --pointer="•"
+}
 
-# --- Extract the UUID (removes curly braces).
-vm_uuid=$(echo "$selection" | awk '{gsub(/[{}]/, "", $2); print $2}')
+__selection=$(
+    vboxmanage list vms           \
+    | awk -F\" '{print $2, $3}'   \
+    | fuzzyfinder "${__fuzzyfinder_prompt}"
+)
 
-# --- Start the selected VM.
-if [[ -n "$vm_uuid" ]]; then
-    printf "%s\n" "${blue}[action]${reset} Starting VM: ${vm_uuid}"
-    vboxmanage startvm "$vm_uuid"
+# --| Extract the UUID (removes curly braces).
+__vm_uuid=$(echo "${__selection}" | awk '{gsub(/[{}]/, "", $2); print $2}')
+
+# --| Start the selected VM.
+if [[ -n "${__vm_uuid}" ]]; then
+    printf "%s\n" "${__blue}[+]${__reset} Starting VM: ${__vm_uuid}"
+    vboxmanage startvm "${__vm_uuid}"
 else
-    printf "%s\n" "${red}[info]${reset} No VM selected."
+    printf "%s\n" "${__red}[!]${__reset} No VM selected."
 fi

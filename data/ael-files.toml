@@ -45,6 +45,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/delete.sh"
 symlinked   = true
 
+[bin.dicom-tag]
+filename    = "dicom-tag.sh"
+type        = "bin"
+description = "Search DICOM tags."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/dicom-tag.sh"
+symlinked   = true
+
 [bin.directory-size]
 filename    = "directory-size.sh"
 type        = "bin"
@@ -67,6 +75,14 @@ type        = "bin"
 description = "Repeats last command with sudo, if forgotten."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/elevate.sh"
+symlinked   = true
+
+[bin.emojis]
+filename    = "emojis.sh"
+type        = "bin"
+description = "Search emojis."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/emojis.sh"
 symlinked   = true
 
 [bin.extractor]
@@ -184,6 +200,14 @@ dst         = "/ael/bin/snake-env.sh"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
+[bin.systeminfo]
+filename    = "systeminfo.sh"
+type        = "bin"
+description = "Gather system information."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/systeminfo.sh"
+symlinked   = true
+
 [bin.termbin]
 filename    = "termbin.sh"
 type        = "bin"
@@ -200,12 +224,28 @@ src         = "/ael-files/bin/"
 dst         = "ael/bin/tmuxplus.sh"
 symlinked   = true
 
+[bin.translate]
+filename    = "translate.py"
+type        = "bin"
+description = "Translate using Google translate."
+src         = "/ael-files/bin/"
+dst         = "ael/bin/translate.py"
+symlinked   = true
+
 [bin.tunnel-info]
 filename    = "tunnel-info.py"
 type        = "bin"
 description = "Display Tunnels/VPN info."
 src         = "/ael-files/bin/"
 dst         = "ael/bin/tunnel-info.py"
+symlinked   = true
+
+[bin.virtual-boxes]
+filename    = "virtual-boxes.sh"
+type        = "bin"
+description = "Virtualbox VMs launcher."
+src         = "/ael-files/bin/"
+dst         = "ael/bin/virtual-boxes.sh"
 symlinked   = true
 
 [bin.whoisweb]
@@ -315,10 +355,3 @@ description = "Opens AEL files."
 filename    = "/bin/systeminfo.sh"
 description = "Gather system information."
 
-[bin.dHJhbnNsYXRlLnB5]
-filename    = "/bin/translate.py"
-description = "Translate using Google translate."
-
-[bin.dmlydHVhbC1ib3hlcy5zaA--]
-filename    = "/bin/virtual-boxes.sh"
-description = "Virtualbox VMs launcher."

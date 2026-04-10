@@ -1,12 +1,27 @@
 #! /usr/bin/env bash
-# :----------------------------------------------------------------------- INFO
-# :[~/.local/bin/emojis.md]
-# :author        : fantomH
-# :created       : 2022-06-02 08:56:47 UTC
-# :updated       : 2025-02-17 21:21:29 UTC
-# :description   : Search emojis using fzf and xclip.
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/emojis.sh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2022-06-02 08:56:47 UTC
+# updated       : 2026-04-09 20:07:03 UTC
+# description   : Search emojis.
 
-declare -A emojis=(
+__blue=$'\033[34m'
+__red=$'\033[31m'
+__reset=$'\033[0m'
+
+check_applications() {
+  local __app
+  for __app in "${@}"; do
+      if ! command -v $__app >/dev/null 2>&1; then
+            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+            return 1
+        fi
+    done
+}
+check_applications fzf || exit 0
+
+declare -A __emojis=(
         ["😀"]="U+1F600 | grinning face"                                  
         ["😃"]="U+1F603 | grinning face with big eyes"
         ["😄"]="U+1F604 | grinning face with smiling eyes"
@@ -1277,20 +1292,37 @@ declare -A emojis=(
         ["🏳"]="U+1F3F3 | white flag"
     )
 
-for emoji in "${!emojis[@]}"; do
-    printf "%b" "$emoji\t${emojis[$emoji]}\n"
-done | fzf --color=gutter:-1                                                  \
-           --margin=4%                                                        \
-           --border=none                                                      \
-           --prompt="EMOJIS ❯ "                                               \
-           --header=" "                                                       \
-           --no-hscroll                                                       \
-           --reverse                                                          \
-           -i                                                                 \
-           --exact                                                            \
-           --tiebreak=begin                                                   \
-           --no-info                                                          \
-           --pointer=•                                                        \
-     | cut -f1                                                                \
-     | tr -d '\r|\n'                                                          \
-     | xclip -selection clipboard
+
+__selection=$(
+    for __emoji in "${!__emojis[@]}"; do
+        printf "%b" "$__emoji\t${__emojis[$__emoji]}\n"
+    done | fzf --color=gutter:-1     \
+              --margin=1%            \
+              --border=rounded       \
+              --prompt="EMOJIS ❯ "   \
+              --header=" "           \
+              --no-hscroll           \
+              --reverse              \
+              -i                     \
+              --exact                \
+              --tiebreak=begin       \
+              --no-info              \
+              --pointer="•"          \
+         | cut -f1                   \
+         | tr -d '\r|\n'
+)
+
+if [[ -z "${__selection}" ]]; then
+    exit 0
+fi
+
+if [[ -n "$WAYLAND_DISPLAY" ]]; then
+    check_applications wl-copy || exit 0
+    printf '%s' "$__selection" | wl-copy
+else
+    check_applications xclip || exit 0
+    printf '%s' "$__selection" | xclip -selection clipboard
+fi
+
+printf '%s\n' "${__blue}[+]${__reset} emojis - Selected emoji:"
+printf '%s\n' "${__selection}"
