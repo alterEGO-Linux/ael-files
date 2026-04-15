@@ -1,4 +1,18 @@
-# -------------------- ( SHELL ) ----------------------------------------------
+# --- ( PYTHON ) --------------------------------------------------------------
+
+# [+] PYTHON - AEL env
+# --| rev. 2026-04-15
+
+snippet py_ael_env "PYTHON - AEL env." b
+from pathlib import Path
+import os
+
+__cache_home = Path(os.getenv("XDG_CACHE_HOME") or (Path.home() / ".cache"))
+__base_build_dir = Path(os.getenv("AEL_BUILD") or (__cache_home / "ael" / "build"))
+BUILD_DIR = __base_build_dir / "kali-on-ael" / container_name
+endsnippet
+
+# --- ( SHELL ) ---------------------------------------------------------------
 
 # [+] SHELL - case statement
 # --| rev. 2026-04-03
@@ -18,17 +32,17 @@ done
 endsnippet
 
 # [+] SHELL - check applications
-# --| rev. 2026-04-02
+# --| rev. 2026-04-10
 
 snippet sh_check_applications "SHELL - check applications" b
 check_applications() {
 	local __app
 	for __app in "${@}"; do
 			if ! command -v $__app >/dev/null 2>&1; then
-						printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-						return 1
-				fi
-		done
+					printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+					return 1
+			fi
+	done
 }
 check_applications git || return 1
 endsnippet
@@ -44,6 +58,20 @@ local __reset=$'\033[0m'
 local __yellow=$'\033[33m'
 endsnippet
 
+# [+] SHELL -> AEL env.
+# --| rev. 2026-04-15
+
+snippet sh_ael_env "SHELL - AEL env" b
+# --| Cache home
+__cache_home="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+# --| base_build_dir
+__base_build_dir="${AEL_BUILD:-$__cache_home/ael}"
+
+# --| final BUILD_DIR
+BUILD_DIR="${__base_build_dir}/kali-on-ael/${container_name}"
+endsnippet
+
 # [+] SHELL -> Fuzzy Finder.
 # --| rev. 2026-04-10
 # ..| usage: fuzzyfinder "${__fuzzyfinder_prompt}"
@@ -51,7 +79,7 @@ endsnippet
 snippet sh_fuzzy_finder "SHELL - Fuzzy Finder" b
 __fuzzyfinder_prompt="<prompt> ❯ "
 fuzzyfinder() {
-    local __fuzzyfinder_prompt="${1}"
+    local __fuzzyfinder_prompt="\${1}"
     fzf --color=gutter:-1                    \
         --margin=1%                          \
         --border=rounded                     \

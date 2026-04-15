@@ -1,0 +1,391 @@
+#!/usr/bin/env python3
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/kali-on-ael]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-14 21:15:29 UTC
+# updated       : 2026-04-15 00:00:00 UTC
+# description   : Kali Linux on alterEGO Linux (Docker version).
+
+"""
+kali-on-ael.py
+
+Options:
+  --config PATH         Use an external TOML config.
+  --create-config       Write kali-on-ael.toml in the config directory.
+  --vnc                 Launch vncviewer.
+  --shell               Launch a shell in the container.
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+
+DEFAULT_CONFIG_TOML = """# Example config for kali-on-ael.py
+
+[app]
+container_name = "kali-on-ael"
+service_name = "kali_on_ael"
+host_vnc_port = 5900
+restart = "unless-stopped"
+
+[kali]
+base_image = "kalilinux/kali-rolling"
+image_name = "kali-vnc:latest"
+extra_packages = ["curl", "wget", "vim", "firefox-esr"]
+
+[desktop]
+width = 1280
+height = 800
+depth = 24
+
+[auth]
+username = "kali"
+password = "kali"
+
+# Optional bind mounts
+[[mounts]]
+host = "/home/user/scripts"
+container = "/scripts"
+mode = "rw"
+"""
+
+
+def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(cmd, text=True, capture_output=True)
+
+
+def fatal(msg: str, exit_code: int = 1) -> None:
+    print(f"[!] {msg}", file=sys.stderr)
+    sys.exit(exit_code)
+
+
+def write(path: Path, content: str, chmod: int | None = None) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    if chmod is not None:
+        path.chmod(chmod)
+
+
+def ensure_command(name: str) -> None:
+    if shutil.which(name) is None:
+        fatal(f"{name} not found")
+
+
+def get_cache_home() -> Path:
+    return Path(os.getenv("XDG_CACHE_HOME") or (Path.home() / ".cache"))
+
+
+def get_config_home() -> Path:
+    return Path(os.getenv("XDG_CONFIG_HOME") or (Path.home() / ".config"))
+
+
+def get_base_build_dir() -> Path:
+    return Path(os.getenv("AEL_BUILD") or (get_cache_home() / "ael" / "build"))
+
+
+def get_base_config_dir() -> Path:
+    return Path(os.getenv("AEL_CUSTOM") or (get_config_home() / "ael" / "custom"))
+
+
+def get_config_dir() -> Path:
+    return get_base_config_dir() / "kali-on-ael"
+
+
+def get_default_config_path() -> Path:
+    return get_config_dir() / "kali-on-ael.toml"
+
+
+def get_build_dir(container_name: str) -> Path:
+    return get_base_build_dir() / "kali-on-ael" / container_name
+
+
+def ensure_config_dir() -> Path:
+    config_dir = get_config_dir()
+    config_dir.mkdir(parents=True, exist_ok=True)
+    return config_dir
+
+
+def ensure_build_dir(container_name: str) -> Path:
+    build_dir = get_build_dir(container_name)
+    build_dir.mkdir(parents=True, exist_ok=True)
+    return build_dir
+
+
+def write_default_config(output_path: Path) -> None:
+    if output_path.exists():
+        fatal(f"{output_path} already exists")
+    write(output_path, DEFAULT_CONFIG_TOML)
+    print(f"[+] Wrote config: {output_path}")
+
+
+def load_toml(path: Path | None = None) -> dict:
+    import tomllib
+
+    config_path = path or get_default_config_path()
+
+    if not config_path.exists():
+        ensure_config_dir()
+        write_default_config(config_path)
+
+    with open(config_path, "rb") as f:
+        return tomllib.load(f)
+
+
+def ensure_docker() -> None:
+    ensure_command("docker")
+
+    if run(["docker", "info"]).returncode != 0:
+        fatal("docker not running")
+
+    if run(["docker", "compose", "version"]).returncode != 0:
+        fatal("docker compose not available")
+
+
+def container_exists(name: str) -> bool:
+    return run(["docker", "container", "inspect", name]).returncode == 0
+
+
+def container_running(name: str) -> bool:
+    result = run(["docker", "inspect", "-f", "{{.State.Running}}", name])
+    return result.returncode == 0 and result.stdout.strip() == "true"
+
+
+def start_container(name: str) -> None:
+    if not container_running(name):
+        print(f"[*] Starting {name}")
+        subprocess.run(["docker", "start", name], check=True)
+
+
+def build_files(cfg: dict) -> Path:
+    app = cfg["app"]
+    kali = cfg["kali"]
+    auth = cfg["auth"]
+    desktop = cfg["desktop"]
+
+    container_name = app["container_name"]
+    service_name = app.get("service_name", "kali_on_ael")
+    host_vnc_port = app.get("host_vnc_port", 5900)
+    restart_policy = app.get("restart", "unless-stopped")
+
+    base_image = kali.get("base_image", "kalilinux/kali-rolling")
+    image_name = kali.get("image_name", "kali-vnc:latest")
+    extra_packages = kali.get("extra_packages", [])
+
+    username = auth["username"]
+    password = auth["password"]
+
+    width = desktop.get("width", 1280)
+    height = desktop.get("height", 800)
+    depth = desktop.get("depth", 24)
+
+    build_dir = ensure_build_dir(container_name)
+
+    default_packages = [
+        "xfce4",
+        "xfce4-goodies",
+        "x11vnc",
+        "xvfb",
+        "dbus-x11",
+        "sudo",
+        "procps",
+        "net-tools",
+    ]
+    all_packages = default_packages + extra_packages
+    packages_str = " ".join(dict.fromkeys(all_packages))
+
+    dockerfile = f"""FROM {base_image}
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DISPLAY=:0
+
+RUN apt update && apt install -y {packages_str} && apt clean
+
+RUN useradd -m -s /bin/bash {username} \\
+    && echo "{username}:{password}" | chpasswd \\
+    && usermod -aG sudo {username}
+
+USER {username}
+WORKDIR /home/{username}
+
+RUN mkdir -p /home/{username}/.vnc \\
+    && x11vnc -storepasswd {password} /home/{username}/.vnc/passwd
+
+COPY --chown={username}:{username} --chmod=0755 start.sh /home/{username}/start.sh
+
+EXPOSE 5900
+CMD ["/home/{username}/start.sh"]
+"""
+
+    start_sh = f"""#!/usr/bin/env bash
+set -euo pipefail
+
+export DISPLAY=:0
+export HOME=/home/{username}
+export XDG_RUNTIME_DIR=/tmp/runtime-{username}
+
+mkdir -p "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_RUNTIME_DIR"
+
+rm -f /tmp/.X0-lock
+
+Xvfb :0 -screen 0 {width}x{height}x{depth} -ac +extension GLX +render -noreset > /tmp/xvfb.log 2>&1 &
+XVFB_PID=$!
+
+sleep 2
+
+if ! kill -0 "$XVFB_PID" 2>/dev/null; then
+    echo "[!] Xvfb failed to start"
+    cat /tmp/xvfb.log || true
+    exit 1
+fi
+
+dbus-launch --exit-with-session startxfce4 > /tmp/xfce.log 2>&1 &
+sleep 3
+
+exec x11vnc \\
+  -display :0 \\
+  -forever \\
+  -shared \\
+  -rfbport 5900 \\
+  -rfbauth /home/{username}/.vnc/passwd
+"""
+
+    mounts = cfg.get("mounts", [])
+    volume_lines: list[str] = []
+
+    for mount in mounts:
+        host = Path(mount["host"]).expanduser()
+        container = mount["container"]
+        mode = mount.get("mode", "rw")
+        volume_lines.append(f'      - "{host}:{container}:{mode}"')
+
+    volumes_block = "\n".join(volume_lines) if volume_lines else "      []"
+
+    compose = f"""services:
+  {service_name}:
+    image: {image_name}
+    build: .
+    container_name: {container_name}
+    restart: {restart_policy}
+    ports:
+      - "{host_vnc_port}:5900"
+    volumes:
+{volumes_block}
+"""
+
+    write(build_dir / "Dockerfile", dockerfile)
+    write(build_dir / "start.sh", start_sh, 0o755)
+    write(build_dir / "compose.yml", compose)
+
+    print(f"[*] Files written to {build_dir}")
+    return build_dir
+
+
+def create_container(build_dir: Path) -> None:
+    subprocess.run(
+        ["docker", "compose", "-f", str(build_dir / "compose.yml"), "up", "-d", "--build"],
+        check=True,
+        cwd=build_dir,
+    )
+
+
+def ensure_container(cfg: dict) -> None:
+    ensure_docker()
+
+    container_name = cfg["app"]["container_name"]
+
+    if container_exists(container_name):
+        print("[*] Container exists")
+        start_container(container_name)
+        return
+
+    print("[*] Creating container")
+    build_dir = build_files(cfg)
+    create_container(build_dir)
+
+
+def launch_vncviewer(cfg: dict) -> None:
+    ensure_command("vncviewer")
+    host_vnc_port = cfg["app"].get("host_vnc_port", 5900)
+    print(f"[*] Launching vncviewer on 127.0.0.1:{host_vnc_port}")
+    subprocess.run(["vncviewer", f"127.0.0.1:{host_vnc_port}"], check=True)
+
+
+def open_shell(cfg: dict) -> None:
+    container_name = cfg["app"]["container_name"]
+    print(f"[*] Opening shell in {container_name}")
+    subprocess.run(["docker", "exec", "-it", container_name, "bash"], check=True)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Manage a persistent Kali XFCE + VNC Docker container."
+    )
+
+    parser.add_argument(
+        "--config",
+        type=Path,
+        help="Path to TOML config file. If omitted, use the default config path.",
+    )
+
+    parser.add_argument(
+        "--create-config",
+        action="store_true",
+        help="Write a default config file in the config directory and exit.",
+    )
+
+    action_group = parser.add_mutually_exclusive_group()
+    action_group.add_argument(
+        "--vnc",
+        action="store_true",
+        help="Start container and launch vncviewer.",
+    )
+    action_group.add_argument(
+        "--shell",
+        action="store_true",
+        help="Start container and open a bash shell in it.",
+    )
+
+    return parser
+
+
+def main() -> None:
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.create_config:
+        ensure_config_dir()
+        config_path = args.config if args.config else get_default_config_path()
+        write_default_config(config_path)
+        return
+
+    cfg = load_toml(args.config)
+
+    ensure_container(cfg)
+
+    host_vnc_port = cfg["app"].get("host_vnc_port", 5900)
+    print(f"[+] VNC -> 127.0.0.1:{host_vnc_port}")
+
+    if args.vnc:
+        launch_vncviewer(cfg)
+    elif args.shell:
+        open_shell(cfg)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n[!] Interrupted", file=sys.stderr)
+        sys.exit(130)
+    except subprocess.CalledProcessError as exc:
+        print(f"[!] Command failed with exit code {exc.returncode}", file=sys.stderr)
+        if exc.cmd:
+            print(f"[!] Command: {exc.cmd}", file=sys.stderr)
+        sys.exit(exc.returncode)

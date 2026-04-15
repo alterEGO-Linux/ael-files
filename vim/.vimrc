@@ -607,7 +607,7 @@
   " --- prog. language
   highlight Comment         cterm=NONE       ctermfg=109       ctermbg=NONE     " --- Comments.
   highlight Function        cterm=BOLD       ctermfg=150       ctermbg=NONE     " --- Function.
-  highlight Statement       cterm=BOLD     ctermfg=110       ctermbg=NONE     " --- Statement
+  highlight Statement       cterm=BOLD       ctermfg=110       ctermbg=NONE     " --- Statement
 
   " :-( html/md )
   " :(ref) http://vimdoc.sourceforge.net/htmldoc/syntax.html

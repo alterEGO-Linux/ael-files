@@ -6,49 +6,46 @@
 # updated       : 2026-01-31 15:29:07 UTC
 # description   : Opens AEL files.
 
-# -------------------- [ colors ]
-blue=$'\033[34m'
-bold=$'\033[1m'
-red=$'\033[31m'
-reset=$'\033[0m'
-yellow=$'\033[33m'
+__red=$'\033[31m'
+__reset=$'\033[0m'
 
 check_applications() {
-    # --- Verify if check-applications.sh is on PATH.
-    if command -v check-applications.sh >/dev/null 2>&1; then
-        check-applications.sh "${@}"
-   else
-        for app in "${@}"; do
-            if ! command -v $app >/dev/null 2>&1; then
-                printf '%s\n' "${red}[!]${reset} ${app} is not installed."
-                return 1
-            fi
-        done
-    fi
+  local __app
+  for __app in "${@}"; do
+      if ! command -v $__app >/dev/null 2>&1; then
+          printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+          return 1
+      fi
+  done
 }
 check_applications rg fzf vim sed sort || exit 1
 
-git_directory="${HOME}/.local/share/ael-files"
+__git_directory="${HOME}/.local/share/ael-files"
 
-selection=$(rg --files --hidden --glob "!.git" "${git_directory}"            \
-    | sed -e "s:${git_directory}::g"                                         \
-    | sort                                                                   \
-    | fzf --color=gutter:-1                                                  \
-          --margin=4%                                                        \
-          --border=none                                                      \
-          --prompt="Select a file ❯ "                                        \
-          --header=" "                                                       \
-          --no-hscroll                                                       \
-          --reverse                                                          \
-          -i                                                                 \
-          --exact                                                            \
-          --tiebreak=begin                                                   \
-          --no-info)
+__fuzzyfinder_prompt="Select a file ❯ "
+fuzzyfinder() {
+    local __fuzzyfinder_prompt="${1}"
+    fzf --color=gutter:-1                    \
+        --margin=1%                          \
+        --border=rounded                     \
+        --prompt="${__fuzzyfinder_prompt}"   \
+        --header=" "                         \
+        --no-hscroll                         \
+        --reverse                            \
+        -i                                   \
+        --exact                              \
+        --tiebreak=begin                     \
+        --no-info
+}
 
-selection="${git_directory}${selection}"
+__selection=$(rg --files --hidden --glob "!.git" "${__git_directory}" \
+    | sed -e "s:${__git_directory}::g"  \
+    | sort                            \
+    | fuzzyfinder "${__fuzzyfinder_prompt}"
+)
 
-if [[ -n "$selection" ]]; then
-    vim "$selection"
+if [[ -z "${__selection}" ]]; then
+    printf "%s\n" "${__red}[!]${__reset} menu-ael-file -  Nothing selected."
 else
-    printf "%s\n" "${red}[info]${reset} Nothing selected."
+    vim "${__git_directory}${__selection}"
 fi

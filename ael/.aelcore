@@ -2,22 +2,25 @@
 # [/.ael/.aelcore]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-04-09 11:59:05 UTC
+# updated       : 2026-04-15 12:01:17 UTC
 # description   : AlterEGO Linux core shell configuration.
 
-# --- required for shell-info function (.ael/shellutils/shell-info)
+# --| required for shell-info function (.ael/shellutils/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
 # -------------------- ( AEL ) ------------------------------------------------
 
+export AEL=1
 export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
 export AEL_FILES="${HOME}/.local/share/ael-files"
-export AEL_DIR="${HOME}/.ael"
-export AEL_BIN="${AEL_DIR}/bin"
-export AEL_DATA="${AEL_DIR}/data"
-export AEL_SHELLUTILS="${AEL_DIR}/shellutils"
-export AEL_CUSTOM="${AEL_DIR}/custom"
+export AEL_HOME="${HOME}/.ael"
+#export AEL_DIR="${HOME}/.ael"
+export AEL_BIN="${AEL_HOME}/bin"
+export AEL_BUILD="${AEL_HOME}/build"
+export AEL_DATA="${AEL_HOME}/data"
+export AEL_SHELLUTILS="${AEL_HOME}/shellutils"
+export AEL_CUSTOM="${AEL_HOME}/custom"
 export AEL_DEBUG_LEVEL=2
 
 # -------------------- ( DEFAULT APPS ) ---------------------------------------
@@ -82,7 +85,7 @@ EOF
 fi
 
 # --- ( simple sourcing )
-load-module() {
+load-source() {
     local module
     module="$@"
 
@@ -155,6 +158,9 @@ alias lt='ls --format=long --sort=time --all --human-readable'
 
 # --| Makes tmux understand the environment is important.
 alias tmux="env TERM=screen-256color tmux -u"
+
+# --| .ael/custom/aliases -> Custom aliases file.
+load-source "${AEL_CUSTOM}/aliases"
 
 # -------------------- ( PATH ) -----------------------------------------------
 
@@ -272,19 +278,19 @@ reload() {
 # -------------------- ( functions ) ------------------------------------------
 
 # [+] busy - Look busy when the boss comes around.
-load-module "${AEL_BIN}/busy.sh"
+load-source "${AEL_BIN}/busy.sh"
 
 # [+] deep-nmap - Deep Nmap scan.
-load-module "${AEL_BIN}/deep-nmap.sh"
+load-source "${AEL_BIN}/deep-nmap.sh"
 
 # [+] deep-scan - Scans IP with rustscan and nmap.
-load-module "${AEL_BIN}/deep-scan.sh"
+load-source "${AEL_BIN}/deep-scan.sh"
 
 # [+] delete - Delete directories.
-load-module "${AEL_BIN}/delete.sh"
+load-source "${AEL_BIN}/delete.sh"
 
 # [+] directory-size - Check size of biggest directories.
-load-module "${AEL_BIN}/directory-size.sh"
+load-source "${AEL_BIN}/directory-size.sh"
 
 # [+] docker-info - Docker status helper.
 docker-info() {
@@ -297,7 +303,7 @@ docker-info() {
 }
 
 # [+] elevate - Repeats last command with sudo, if forgotten.
-load-module "${AEL_BIN}/elevate.sh"
+load-source "${AEL_BIN}/elevate.sh"
 
 # [+] extractor - Compressed files universal extractor.
 extractor() {
@@ -310,34 +316,34 @@ extractor() {
 }
 
 # [+] getmp3 - Extracting audio (.mp3) from video.
-load-module "${AEL_BIN}/getmp3.sh"
+load-source "${AEL_BIN}/getmp3.sh"
 
 # [+] goto - Simple directory bookmarks system.
-load-module "${AEL_BIN}/goto.sh"
+load-source "${AEL_BIN}/goto.sh"
 
 # [+] ispeed - Internet connection speed meter.
-load-module "${AEL_BIN}/ispeed.sh"
+load-source "${AEL_BIN}/ispeed.sh"
 
 # [+] lazygit - Automated git pull, add, commit and pull.  
-load-module "${AEL_BIN}/lazygit.sh"
+load-source "${AEL_BIN}/lazygit.sh"
 
 # [+] pacman-reset - Re-initialize pacman sync, mirrorlist and keyring.
-load-module "${AEL_BIN}/pacman-reset.sh"
+load-source "${AEL_BIN}/pacman-reset.sh"
 
 # [+] ports - Displays open ports.
-load-module "${AEL_BIN}/ports.sh"
+load-source "${AEL_BIN}/ports.sh"
 
 # [+] processes - Show processes.
-load-module "${AEL_BIN}/processes.sh"
+load-source "${AEL_BIN}/processes.sh"
 
 # [+] ps-grep - Show processes for a particular application.
-load-module "${AEL_BIN}/ps-grep.sh"
+load-source "${AEL_BIN}/ps-grep.sh"
 
 # [+] py-cleaner - Clean python current directory.
-load-module "${AEL_BIN}/py-cleaner.sh"
+load-source "${AEL_BIN}/py-cleaner.sh"
 
 # [+] py-server - Create a Python HTTP server.
-load-module "${AEL_BIN}/py-server.sh"
+load-source "${AEL_BIN}/py-server.sh"
 
 # [+] reset-time - Reset system time. Usefull when Windows boot screws time.
 reset-time() {
@@ -367,7 +373,7 @@ reset-time() {
 }
 
 # [+] shell-info - Show shell info.
-load-module "${AEL_BIN}/shell-info.sh"
+load-source "${AEL_BIN}/shell-info.sh"
 
 # [+] show-utc - Display UTC time.
 show-utc() {
@@ -375,10 +381,20 @@ show-utc() {
 }
 
 # [+] snake-env - Manage python -m venv.
-load-module "${AEL_BIN}/snake-env.sh"
+load-source "${AEL_BIN}/snake-env.sh"
+
+# [+] systeminfo - Gather system information.
+systeminfo() {
+
+    if ! command -v systeminfo.sh >/dev/null 2>&1; then
+        printf "%s\n" "${fg_red}[!]${reset} systeminfo.sh is not installed."
+    else
+        systeminfo.sh "${@}"
+    fi
+}
 
 # [+] termbin - Send message to termbin.com from the terminal.
-load-module "${AEL_BIN}/termbin.sh"
+load-source "${AEL_BIN}/termbin.sh"
 
 # [+] tmuxplus - TMUX wrapper.
 tmuxplus() {
@@ -401,7 +417,7 @@ tunnel-info() {
 }
 
 # [+] whoisweb - Query WHOIS web if <whois> port 43 is blocked on your network.
-load-module "${AEL_BIN}/whoisweb.sh"
+load-source "${AEL_BIN}/whoisweb.sh"
 
 
 # :: ---------- SOURCE MODULES
@@ -567,4 +583,3 @@ docker_container_cleaner() {
 #[ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
 #[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
 #[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content
-#[ -f /home/ghost/.ael/shellutils/systeminfo ] && . /home/ghost/.ael/shellutils/systeminfo
