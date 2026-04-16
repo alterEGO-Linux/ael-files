@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/terminal-colors]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2020-11-25 13:14:03 UTC
+# updated       : 2026-04-16 12:25:51 UTC
+# description   : Collection of functions showing terminal colors.
+
+__blue=$'\033[34m'
+__red=$'\033[31m'
+__reset=$'\033[0m'
+
+stack() {
+    # --| ref. <https://unix.stackexchange.com/a/60969>
+
+    local i
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolour${i}\n"
+    done
+}
+
+columns() {
+    # --| ref. <https://superuser.com/a/1104214>
+
+    local i
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i
+        if ! (( ($i + 1 ) % 8 )); then
+            echo
+        fi
+    done
+}
+
+usage() {
+  cat <<EOF
+================================================================================
+[+] terminal-colors - Collection of functions showing terminal colors.
+================================================================================
+Usage:
+  terminal-colors [--stack] [--columns] [-h|--help|--usage]
+
+Options:
+      --columns Show terminal colors in columns.
+      --stack   Show terminal colors in a stack.
+  -h, --help
+      --usage   Show this help.
+================================================================================
+EOF
+}
+
+if [[ ${#} -lt 1 ]]; then
+    usage
+    printf '%s\n' "${__red}[!]${__reset} Requires at least one option."
+    exit 1
+fi
+
+for __arg in "${@}"; do
+    case "${__arg}" in
+
+        --stack)
+            stack
+            exit 0
+            ;;
+
+        --columns)
+            columns
+            exit 0
+            ;;
+
+        -h|--help|--usage)
+            usage
+            exit 0
+            ;;
+
+
+        *)
+            usage
+            printf '%s\n' "${__red}[!]${__reset} Unknown arguments used."
+            exit 1
+            ;;
+
+    esac
+done

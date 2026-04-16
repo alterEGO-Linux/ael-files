@@ -21,6 +21,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/busy"
 symlinked   = true
 
+[bin.cyberchef-on-ael]
+filename    = "cyberchef-on-ael"
+type        = "bin/bash"
+description = "Run CyberChef as a Docker container."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/cyberchef-on-ael"
+symlinked   = true
+
 [bin.deep-nmap]
 filename    = "deep-nmap"
 type        = "bin/bash"
