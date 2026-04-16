@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-15 21:30:44 UTC
+# updated       : 2026-04-16 13:17:21 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -247,6 +247,14 @@ type        = "bin/bash"
 description = "Send message to termbin.com from the terminal."
 src         = "ael-files/bin"
 dst         = "/ael/bin/termbin"
+symlinked   = true
+
+[bin.terminal-colors]
+filename    = "terminal-colors"
+type        = "bin/bash"
+description = "Collection of functions showing terminal colors."
+src         = "ael-files/bin"
+dst         = "/ael/bin/terminal-colors"
 symlinked   = true
 
 [bin.tmuxplus]

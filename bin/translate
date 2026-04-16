@@ -6,6 +6,18 @@
 # updated       : 2026-04-10 14:59:54 UTC
 # description   : Translate using Google translate.
 
+"""
+[+] translate - Translate using Google translate.
+
+Inspired by:
+
+```bash
+echo "Original: ${@}"
+TRANSLATION=$(command wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=tl&dt=t&q=${@}" | command awk -F '"' '{print $2}' | command head -n 1)
+echo "Translation to Tagalog: "${TRANSLATION}""
+```
+"""
+
 import argparse
 import sys
 import requests
