@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/dvwa-on-ael]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2023-08-01 19:55:12 UTC
+# updated       : 2026-04-16 00:11:21 UTC
+# description   : Run Damn Vulnerable Webapp (DVWA).
+
+dvwa() {
+
+    local __blue=$'\033[34m'
+    local __red=$'\033[31m'
+    local __reset=$'\033[0m'
+
+    local __name="dvwa-on-ael"
+    local __container_image="vulnerables/web-dvwa"
+    local __url="http://localhost:81"
+
+    trap 'unset -f check_applications; trap - RETURN' RETURN
+
+    check_applications() {
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+              printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+              return 1
+          fi
+      done
+    }
+    check_applications docker xdg-open || return 1
+
+    if ! docker info >/dev/null 2>&1; then
+        printf '%s\n' "${__red}[!]${__reset} docker is not running."
+    fi
+
+    if docker container inspect "${__name}" >/dev/null 2>&1; then
+        docker start "${__name}"
+        printf '%s\n' "${__blue}[+]${__reset} Starting ${__name} container."
+        printf '%s\n' "${__blue}[*]${__reset} It should open ${__url} automatically in your browser."
+        printf '%s\n'
+        printf '%s\n' "${__blue}[*]${__reset} docker stop ${__name} to terminate the container."
+    else
+        docker run --name "${__name}" -it -p 81:80 "${__container_image}"
+        printf '%s\n' "${__blue}[+]${__reset} Creating ${__name} container."
+        printf '%s\n' "${__blue}[*]${__reset} It should open ${__url} automatically in your browser."
+        printf '%s\n' "${__blue}[*]${__reset} docker stop ${__name} to terminate the container."
+    fi
+
+    sleep 5
+
+    "${BROWSER:-xdg-open}" "${__url}" >/dev/null 2>&1 &
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    dvwa "$@"
+fi

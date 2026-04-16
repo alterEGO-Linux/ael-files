@@ -2,7 +2,7 @@
 # [/.ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-09 11:58:55 UTC
+# updated       : 2026-04-15 21:30:44 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -14,246 +14,271 @@ dst         = "/home/.ael/.aelcore"
 symlinked   = true
 
 [bin.busy]
-filename    = "busy.sh"
-type        = "bin"
+filename    = "busy"
+type        = "bin/bash"
 description = "When the boss comes around to look busy."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/busy.sh"
+dst         = "/ael/bin/busy"
 symlinked   = true
 
 [bin.deep-nmap]
-filename    = "deep-nmap.sh"
-type        = "bin"
+filename    = "deep-nmap"
+type        = "bin/bash"
 description = "Deep Nmap scan."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/deep-nmap.sh"
+dst         = "/ael/bin/deep-nmap"
 symlinked   = true
 
 [bin.deep-scan]
-filename    = "deep-scan.sh"
-type        = "bin"
+filename    = "deep-scan"
+type        = "bin/bash"
 description = "Scans IP with rustscan and nmap."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/deep-scan.sh"
+dst         = "/ael/bin/deep-scan"
 symlinked   = true
 
 [bin.delete]
-filename    = "delete.sh"
-type        = "bin"
+filename    = "delete"
+type        = "bin/bash"
 description = "Delete directories."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/delete.sh"
+dst         = "/ael/bin/delete"
 symlinked   = true
 
 [bin.dicom-tag]
-filename    = "dicom-tag.sh"
-type        = "bin"
+filename    = "dicom-tag"
+type        = "bin/bash"
 description = "Search DICOM tags."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/dicom-tag.sh"
+dst         = "/ael/bin/dicom-tag"
 symlinked   = true
 
 [bin.directory-size]
-filename    = "directory-size.sh"
-type        = "bin"
+filename    = "directory-size"
+type        = "bin/bash"
 description = "Check size of biggest directories."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/directory-size.sh"
+dst         = "/ael/bin/directory-size"
 symlinked   = true
 
 [bin.docker-info]
-filename    = "docker-info.py"
-type        = "bin"
+filename    = "docker-info"
+type        = "bin/python"
 description = "Docker status helper."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/docker-info.py"
+dst         = "/ael/bin/docker-info"
+symlinked   = true
+
+[bin.dvwa-on-ael]
+filename    = "dvwa-on-ael"
+type        = "bin/bash"
+description = "Run Damn Vulnerable Webapp (DVWA)."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/dvwa-on-ael"
 symlinked   = true
 
 [bin.elevate]
-filename    = "elevate.sh"
-type        = "bin"
+filename    = "elevate"
+type        = "bin/bash"
 description = "Repeats last command with sudo, if forgotten."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/elevate.sh"
+dst         = "/ael/bin/elevate"
 symlinked   = true
+notes       = ["This script must be sourced."]
 
 [bin.emojis]
-filename    = "emojis.sh"
-type        = "bin"
+filename    = "emojis"
+type        = "bin/bash"
 description = "Search emojis."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/emojis.sh"
+dst         = "/ael/bin/emojis"
 symlinked   = true
 
 [bin.extractor]
-filename    = "extractor.sh"
-type        = "bin"
+filename    = "extractor"
+type        = "bin/bash"
 description = "Compressed files universal extractor."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/extractor.sh"
+dst         = "/ael/bin/extractor"
 symlinked   = true
 
 [bin.getmp3]
-filename    = "getmp3.sh"
-type        = "bin"
+filename    = "getmp3"
+type        = "bin/bash"
 description = "Extracting audio (.mp3) from video."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/getmp3.sh"
+dst         = "/ael/bin/getmp3"
 symlinked   = true
 
 [bin.geoip]
-filename    = "geoip.py"
-type        = "bin"
+filename    = "geoip"
+type        = "bin/python"
 description = "Uses ip-api.com to output geolocalization info."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/geoip.py"
+dst         = "/ael/bin/geoip"
 symlinked   = true
 
 [bin.goto]
-filename    = "goto.sh"
-type        = "bin"
+filename    = "goto"
+type        = "bin/bash"
 description = "Simple directory bookmarks system."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/goto.sh"
+dst         = "/ael/bin/goto"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
 [bin.ispeed]
-filename    = "ispeed.sh"
+filename    = "ispeed"
 type        = "bin"
 description = "Internet connection speed meter."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/ispeed.sh"
+dst         = "/ael/bin/ispeed"
+symlinked   = true
+
+[bin.juice-shop]
+filename    = "juice-shop"
+type        = "bin"
+description = "Run OWASP Juice Shop container."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/juice-shop"
+symlinked   = true
+
+[bin.kali-on-ael]
+filename    = "kali-on-ael"
+type        = "bin/python"
+description = "Kali Linux on alterEGO Linux (Docker version)."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/kali-on-ael"
 symlinked   = true
 
 [bin.lazygit]
-filename    = "lazygit.sh"
-type        = "bin"
+filename    = "lazygit"
+type        = "bin/bash"
 description = "Automated git pull, add, commit and push."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/lazygit.sh"
+dst         = "/ael/bin/lazygit"
 symlinked   = true
 
 [bin.pacman-reset]
-filename    = "pacman-reset.sh"
-type        = "bin"
+filename    = "pacman-reset"
+type        = "bin/bash"
 description = "Re-initialize pacman sync, mirrorlist and keyring."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/pacman-reset.sh"
+dst         = "/ael/bin/pacman-reset"
 symlinked   = true
 
 [bin.ports]
-filename    = "ports.sh"
-type        = "bin"
+filename    = "ports"
+type        = "bin/bash"
 description = "Displays open ports."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/ports.sh"
+dst         = "/ael/bin/ports"
 symlinked   = true
 
 [bin.processes]
-filename    = "processes.sh"
-type        = "bin"
+filename    = "processes"
+type        = "bin/bash"
 description = "Show processes"
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/processes.sh"
+dst         = "/ael/bin/processes"
 symlinked   = true
 
 [bin.ps-grep]
-filename    = "ps-grep.sh"
-type        = "bin"
+filename    = "ps-grep"
+type        = "bin/bash"
 description = "Show processes for a particular application."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/ps-grep.sh"
+dst         = "/ael/bin/ps-grep"
 symlinked   = true
 
 [bin.py-cleaner]
-filename    = "py-cleaner.sh"
-type        = "bin"
+filename    = "py-cleaner"
+type        = "bin/bash"
 description = "Clean python current directory."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/py-cleaner.sh"
+dst         = "/ael/bin/py-cleaner"
 symlinked   = true
 
 [bin.py-server]
-filename    = "py-server.sh"
-type        = "bin"
+filename    = "py-server"
+type        = "bin/bash"
 description = "Create a Python HTTP server."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/py-server.sh"
+dst         = "/ael/bin/py-server"
 symlinked   = true
 
 [bin.shell-info]
-filename    = "shell-info.sh"
-type        = "bin"
+filename    = "shell-info"
+type        = "bin/bash"
 description = "Show shell info."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/shell-info.sh"
+dst         = "/ael/bin/shell-info"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
 [bin.snake-env]
-filename    = "snake-env.sh"
-type        = "bin"
+filename    = "snake-env"
+type        = "bin/bash"
 description = "Manage python -m venv."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/snake-env.sh"
+dst         = "/ael/bin/snake-env"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
 [bin.systeminfo]
-filename    = "systeminfo.sh"
-type        = "bin"
+filename    = "systeminfo"
+type        = "bin/bash"
 description = "Gather system information."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/systeminfo.sh"
+dst         = "/ael/bin/systeminfo"
 symlinked   = true
 
 [bin.termbin]
-filename    = "termbin.sh"
-type        = "bin"
+filename    = "termbin"
+type        = "bin/bash"
 description = "Send message to termbin.com from the terminal."
 src         = "ael-files/bin"
-dst         = "/ael/bin/termbin.sh"
+dst         = "/ael/bin/termbin"
 symlinked   = true
 
 [bin.tmuxplus]
-filename    = "tmuxplus.sh"
-type        = "bin"
+filename    = "tmuxplus"
+type        = "bin/bash"
 description = "TMUX wrapper."
 src         = "/ael-files/bin/"
-dst         = "ael/bin/tmuxplus.sh"
+dst         = "ael/bin/tmuxplus"
 symlinked   = true
 
 [bin.translate]
-filename    = "translate.py"
-type        = "bin"
+filename    = "translate"
+type        = "bin/python"
 description = "Translate using Google translate."
 src         = "/ael-files/bin/"
-dst         = "ael/bin/translate.py"
+dst         = "ael/bin/translate"
 symlinked   = true
 
 [bin.tunnel-info]
-filename    = "tunnel-info.py"
-type        = "bin"
+filename    = "tunnel-info"
+type        = "bin/python"
 description = "Display Tunnels/VPN info."
 src         = "/ael-files/bin/"
-dst         = "ael/bin/tunnel-info.py"
+dst         = "ael/bin/tunnel-info"
 symlinked   = true
 
 [bin.virtual-boxes]
-filename    = "virtual-boxes.sh"
-type        = "bin"
+filename    = "virtual-boxes"
+type        = "bin/bash"
 description = "Virtualbox VMs launcher."
 src         = "/ael-files/bin/"
-dst         = "ael/bin/virtual-boxes.sh"
+dst         = "ael/bin/virtual-boxes"
 symlinked   = true
 
 [bin.whoisweb]
-filename    = "whoisweb.sh"
-type        = "bin"
+filename    = "whoisweb"
+type        = "bin/bash"
 description = "Query WHOIS web if <whois> port 43 is blocked on your network."
 src         = "/ael-files/bin/"
-dst         = "/ael/bin/whoisweb.sh"
+dst         = "/ael/bin/whoisweb"
 symlinked   = true
 
 [home.bashrc]
@@ -343,15 +368,6 @@ description = "Convert TOML -> JSON."
 filename    = "/bin/convert-web-md.py"
 description = "Web to markdown converter."
 
-[bin.ZGljb20tdGFnLnNo]
-filename    = "/bin/dicom-tag.sh"
-description = "Search DICOM tags."
-
 [bin.bWVudS1hZWwtZmlsZXMuc2g-]
 filename    = "/bin/menu-ael-files.sh"
 description = "Opens AEL files."
-
-[bin.c3lzdGVtaW5mby5zaA--]
-filename    = "/bin/systeminfo.sh"
-description = "Gather system information."
-

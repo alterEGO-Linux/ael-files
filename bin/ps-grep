@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
 # [/.ael/shellutils/ps-grep]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)

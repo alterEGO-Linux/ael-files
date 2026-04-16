@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/deep-scan.sh]
+# [/.ael/bin/deep-scan]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-03 23:33:30 UTC
-# updated       : 2026-04-03 23:33:30 UTC
+# updated       : 2026-04-15 17:36:56 UTC
 # description   : Scans IP with rustscan and nmap.
 
 deep-scan() {

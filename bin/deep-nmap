@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/deep-nmap.sh]
+# [/.ael/bin/deep-nmap]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-03 15:53:06 UTC
-# updated       : 2026-04-03 15:53:06 UTC
+# updated       : 2026-04-15 17:33:39 UTC
 # description   : Deep Nmap scan.
 
 deep-nmap() {

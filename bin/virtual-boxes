@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/menu-ael-files.sh]
+# [/.ael/bin/virtual-boxes]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2025-02-21 14:44:41 UTC
-# updated       : 2026-01-31 15:29:07 UTC
-# description   : Opens AEL files.
+# created       : 2025-02-18 20:57:09 UTC
+# updated       : 2026-04-10 14:44:17 UTC
+# description   : Virtualbox VMs launcher.
 
+__blue=$'\033[34m'
 __red=$'\033[31m'
 __reset=$'\033[0m'
 
@@ -13,16 +14,14 @@ check_applications() {
   local __app
   for __app in "${@}"; do
       if ! command -v $__app >/dev/null 2>&1; then
-          printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-          return 1
-      fi
-  done
+            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+            return 1
+        fi
+    done
 }
-check_applications rg fzf vim sed sort || exit 1
+check_applications vboxmanage awk fzf || exit 1
 
-__git_directory="${HOME}/.local/share/ael-files"
-
-__fuzzyfinder_prompt="Select a file ❯ "
+__fuzzyfinder_prompt="START VM ❯ "
 fuzzyfinder() {
     local __fuzzyfinder_prompt="${1}"
     fzf --color=gutter:-1                    \
@@ -35,17 +34,23 @@ fuzzyfinder() {
         -i                                   \
         --exact                              \
         --tiebreak=begin                     \
-        --no-info
+        --no-info                            \
+        --pointer="•"
 }
 
-__selection=$(rg --files --hidden --glob "!.git" "${__git_directory}" \
-    | sed -e "s:${__git_directory}::g"  \
-    | sort                            \
+__selection=$(
+    vboxmanage list vms           \
+    | awk -F\" '{print $2, $3}'   \
     | fuzzyfinder "${__fuzzyfinder_prompt}"
 )
 
-if [[ -z "${__selection}" ]]; then
-    printf "%s\n" "${__red}[!]${__reset} menu-ael-file -  Nothing selected."
+# --| Extract the UUID (removes curly braces).
+__vm_uuid=$(echo "${__selection}" | awk '{gsub(/[{}]/, "", $2); print $2}')
+
+# --| Start the selected VM.
+if [[ -n "${__vm_uuid}" ]]; then
+    printf "%s\n" "${__blue}[+]${__reset} Starting VM: ${__vm_uuid}"
+    vboxmanage startvm "${__vm_uuid}"
 else
-    vim "${__git_directory}${__selection}"
+    printf "%s\n" "${__red}[!]${__reset} No VM selected."
 fi

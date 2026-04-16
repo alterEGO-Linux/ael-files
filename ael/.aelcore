@@ -9,13 +9,12 @@
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# -------------------- ( AEL ) ------------------------------------------------
+# --- ( ael ) -----------------------------------------------------------------
 
 export AEL=1
 export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
 export AEL_FILES="${HOME}/.local/share/ael-files"
 export AEL_HOME="${HOME}/.ael"
-#export AEL_DIR="${HOME}/.ael"
 export AEL_BIN="${AEL_HOME}/bin"
 export AEL_BUILD="${AEL_HOME}/build"
 export AEL_DATA="${AEL_HOME}/data"
@@ -23,7 +22,7 @@ export AEL_SHELLUTILS="${AEL_HOME}/shellutils"
 export AEL_CUSTOM="${AEL_HOME}/custom"
 export AEL_DEBUG_LEVEL=2
 
-# -------------------- ( DEFAULT APPS ) ---------------------------------------
+# --- ( default apps ) --------------------------------------------------------
 
 export BROWSER=firefox
 export TERMINAL="alacritty"
@@ -32,15 +31,15 @@ export EDITOR=${VISUAL}
 export MANPAGER='bat -l man -p'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
-# -------------------- ( SHELLUTILS ) -----------------------------------------
+# --- ( utilities )- ----------------------------------------------------------
 
-# --- ( ansi-colors )
+# [+] ansi-colors
 shellutil="${AEL_SHELLUTILS}/ansi-colors"
 
 if [[ -f "${shellutil}" ]]; then
     . "${shellutil}"
 else
-    # --- Colors fallback
+    # --| Colors fallback
     export reset=$'\e[0m'
     export fg_blue=$'\e[34m'
     export fg_green=$'\e[32m'
@@ -277,73 +276,11 @@ reload() {
 
 # -------------------- ( functions ) ------------------------------------------
 
-# [+] busy - Look busy when the boss comes around.
-load-source "${AEL_BIN}/busy.sh"
-
-# [+] deep-nmap - Deep Nmap scan.
-load-source "${AEL_BIN}/deep-nmap.sh"
-
-# [+] deep-scan - Scans IP with rustscan and nmap.
-load-source "${AEL_BIN}/deep-scan.sh"
-
-# [+] delete - Delete directories.
-load-source "${AEL_BIN}/delete.sh"
-
-# [+] directory-size - Check size of biggest directories.
-load-source "${AEL_BIN}/directory-size.sh"
-
-# [+] docker-info - Docker status helper.
-docker-info() {
-
-    if ! command -v docker-info.py >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} docker-info.py is not installed."
-    else
-        docker-info.py "${@}"
-    fi
-}
-
 # [+] elevate - Repeats last command with sudo, if forgotten.
-load-source "${AEL_BIN}/elevate.sh"
-
-# [+] extractor - Compressed files universal extractor.
-extractor() {
-
-    if ! command -v extractor.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} extractor.sh is not installed."
-    else
-        extractor.sh "${@}"
-    fi
-}
-
-# [+] getmp3 - Extracting audio (.mp3) from video.
-load-source "${AEL_BIN}/getmp3.sh"
+load-source "${AEL_BIN}/elevate"
 
 # [+] goto - Simple directory bookmarks system.
-load-source "${AEL_BIN}/goto.sh"
-
-# [+] ispeed - Internet connection speed meter.
-load-source "${AEL_BIN}/ispeed.sh"
-
-# [+] lazygit - Automated git pull, add, commit and pull.  
-load-source "${AEL_BIN}/lazygit.sh"
-
-# [+] pacman-reset - Re-initialize pacman sync, mirrorlist and keyring.
-load-source "${AEL_BIN}/pacman-reset.sh"
-
-# [+] ports - Displays open ports.
-load-source "${AEL_BIN}/ports.sh"
-
-# [+] processes - Show processes.
-load-source "${AEL_BIN}/processes.sh"
-
-# [+] ps-grep - Show processes for a particular application.
-load-source "${AEL_BIN}/ps-grep.sh"
-
-# [+] py-cleaner - Clean python current directory.
-load-source "${AEL_BIN}/py-cleaner.sh"
-
-# [+] py-server - Create a Python HTTP server.
-load-source "${AEL_BIN}/py-server.sh"
+load-source "${AEL_BIN}/goto"
 
 # [+] reset-time - Reset system time. Usefull when Windows boot screws time.
 reset-time() {
@@ -373,7 +310,7 @@ reset-time() {
 }
 
 # [+] shell-info - Show shell info.
-load-source "${AEL_BIN}/shell-info.sh"
+load-source "${AEL_BIN}/shell-info"
 
 # [+] show-utc - Display UTC time.
 show-utc() {
@@ -381,49 +318,15 @@ show-utc() {
 }
 
 # [+] snake-env - Manage python -m venv.
-load-source "${AEL_BIN}/snake-env.sh"
+load-source "${AEL_BIN}/snake-env"
 
-# [+] systeminfo - Gather system information.
-systeminfo() {
 
-    if ! command -v systeminfo.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} systeminfo.sh is not installed."
-    else
-        systeminfo.sh "${@}"
-    fi
-}
 
-# [+] termbin - Send message to termbin.com from the terminal.
-load-source "${AEL_BIN}/termbin.sh"
 
-# [+] tmuxplus - TMUX wrapper.
-tmuxplus() {
-
-    if ! command -v tmuxplus.sh >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} tmuxplus.sh is not installed."
-    else
-        tmuxplus.sh "${@}"
-    fi
-}
-
-# [+] tunnel-info - Display tunnel + VPN info.
-tunnel-info() {
-
-    if ! command -v tunnel-info.py >/dev/null 2>&1; then
-        printf "%s\n" "${fg_red}[!]${reset} tunnel-info.py is not installed."
-    else
-        tunnel-info.py
-    fi
-}
-
-# [+] whoisweb - Query WHOIS web if <whois> port 43 is blocked on your network.
-load-source "${AEL_BIN}/whoisweb.sh"
 
 
 # :: ---------- SOURCE MODULES
 
-[ -f ${HOME}/.ael/bash-ael/messages.bash ] && . ${HOME}/.ael/bash-ael/messages.bash
-[ -f ${HOME}/.ael/bash-ael/colors.bash ] && . ${HOME}/.ael/bash-ael/colors.bash
 [ -f ${HOME}/.ael/.extra ] && . ${HOME}/.ael/.extra
 
 # :-----/ ALIASES /-----:
@@ -433,24 +336,6 @@ alias open="ael-open"
 
 # :/todo/ Should we still source automatically. See above.
 alias attack="source ${HOME}/.local/share/ael-files/bin/.tryhackme"
-
-# :---------- [ QT5 ]
-
-# :ref. https://wiki.manjaro.org/index.php/Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
-# :Set all Qt app's to use GTK+ font & theme settings
-# :Overview
-# :When using a Desktop Environment or Window Manager that doesn't allow for the settings of QT themes,
-# :you can set QT to use your GTK themes instead.
-# :Using qt5ct
-# :note: In some Manjaro editions, this is already done for you by default
-# :Install qt5ct using your favorite package manager or the command:
-# :pamac install qt5ct
-# :Set environment variables in ~/.profile by adding or updating the following lines:
-# :export QT_QPA_PLATFORMTHEME="qt5ct"
-# :Run the application QT5 Configuration Manager from the menu or run the command qt5ct.
-# :Logout and login again to make the change effective
-
-# export QT_QPA_PLATFORMTHEME="qt5ct"
 
 
 # :========================= | HACKER | ====================================: #
@@ -472,114 +357,8 @@ export RSNODEJS="${REVSHELLS}/patt_nodeJS.js"
 export RSPHP="${REVSHELLS}/php-reverse-shell.php"
 export RSWEB="${REVSHELLS}/webshell.php"
 
-# :========================= | CONTAINERS | ================================: #
-
-# :---------- [ DOCKER SERVICES ]
-# :[docker666()]
-# :version       : 2023-08-01 02:18:59 UTC
-# :description   : START/STATUS/STOP docker service.
-
-docker666() {
-
-  # :Checking the current status of docker.service
-  _status=$(systemctl is-active docker.service)
-
-  # :Checking the provided argument (start, status, or stop) to determine the action
-  case "${1}" in
-
-    # :Start Docker service
-    start )
-      # :Checking if docker.service is already running
-      if [ ${_status} = 'active' ]; then
-        message alert "Docker.service is active"
-      else
-        # :If not running, start the Docker service
-        sudo systemctl start docker.service
-        message result "Starting docker.service..."
-      fi
-      ;;
-
-    # :Get the status of Docker service
-    status )
-      message action "Checking docker.service status:"
-      message result "Docker.service is ${_status}"
-      ;;
-
-    # :Stop Docker service
-    stop )
-      # :Checking docker.servie status
-      if [ ${_status} = 'inactive' ]; then
-        message alert "Docker.service is already stopped."
-      else
-        # :Confirm with the user before stopping the Docker service
-        message question "Should I stop docker.service? [y/N]"
-          if [[ "${_INPUT}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-            # :Stopping Docker service and associated socket
-            sudo systemctl stop docker.socket
-            sudo systemctl stop docker.service
-
-            # :Ask if the user wants to delete the docker0 network interface
-            message question "Would you like to delete docker0 network interface? [y/N]"
-              if [[ "$_INPUT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                # :If confirmed, delete the docker0 network interface
-                sudo ip link delete docker0 
-              else
-                # :If not confirmed, moving on
-                message result "Leaving network interface intact."
-                message result "Moving on..."
-              fi
-          else
-            # :If not confirmed, moving on
-            message result "Leaving docker.service running..."
-            message result "Moving on..."
-          fi
-      fi
-      ;;
-
-    * )
-      message warning "Usage: docker666 [start|status|stop]"
-
-  esac
-  }
-
-# :---------- [ DOCKER CLEANER ]
-# :[docker-container-cleaner()]
-# :version       : 2023-08-01 10:40:08 UTC
-# :description   : Delete all docker container.
-# :todo          : '''
-# :+ Make it list to delete with fzf. [2023-08-01]
-# :'''
-
-docker_container_cleaner() {
-
-    if [[ "$(systemctl is-active docker.service)" == "inactive" ]]; then
-        docker666 start
-    fi
-
-    message action "This will remove all Docker containers on this machine..."
-    message question "Proceed? [Y/n]"
-    if [[ "$_INPUT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        for c in $(docker container ls --all | awk 'FNR > 1 {print $1}'); do
-            docker container rm $c
-        done
-    else
-        message result "GoodBye!!!"
-    fi
-  }
-
-  alias docker-container-cleaner="docker_container_cleaner"
-
-
-# -------------------- ( functions and aliases )
-
-
-
-
-
 
 #[ -f /home/ghost/.ael/shellutils/cyberchef ] && . /home/ghost/.ael/shellutils/cyberchef
-#[ -f /home/ghost/.ael/shellutils/dvwa ] && . /home/ghost/.ael/shellutils/dvwa
 #[ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
-#[ -f /home/ghost/.ael/shellutils/juice-shop ] && . /home/ghost/.ael/shellutils/juice-shop
 #[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
 #[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content

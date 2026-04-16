@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/tmuxplus.sh]
+# [/.ael/bin/tmuxplus]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2020-10-15 17:14:53 UTC
 # updated       : 2026-04-07 02:49:05 UTC

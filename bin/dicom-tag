@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/dicom-tag.sh]
+# [/.ael/bin/dicom-tag]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-07-14 09:38:38 UTC
 # updated       : 2026-04-09 12:13:39 UTC
