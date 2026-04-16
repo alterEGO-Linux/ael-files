@@ -1,24 +1,56 @@
-#!/usr/bin/env sh
-# :----------------------------------------------------------------------- INFO
-# :[~/.ael/shellutils/cheat]
-# :author        : alterEGO Linux
-# :created       : 2023-08-01 19:57:57 UTC
-# :updated       : 2025-04-03 09:48:38 UTC
-# :description   : Query https://cheat.sh.
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/.ael/bin/cheat]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2023-08-01 19:57:57 UTC
+# updated       : 2026-04-16 13:55:49 UTC
+# description   : Query https://cheat.sh.
 
 cheat() {
 
-    # :-| (ref) https://github.com/chubin/cheat.sh
+    # --| ref. <https://github.com/chubin/cheat.sh>
 
-    local cheat
+    local __cheat
 
-    cheat="$(command curl -s cheat.sh/:list \
-            | command fzf --layout="reverse" \
-                          --prompt='::' \
-                          --preview-window=up:80% \
-                          --preview 'command cat <(command curl -s cheat.sh/{})')"
+    trap 'unset -f check_applications fuzzyfinder; trap - RETURN' RETURN
 
-    if [[ -n ${cheat} ]]; then
-        command curl -s cheat.sh/"${cheat}" | command less -R
-    fi
+    check_applications() {
+      local __app
+      for __app in "${@}"; do
+          if ! command -v $__app >/dev/null 2>&1; then
+              printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+              return 1
+          fi
+      done
     }
+    check_applications cat curl fzf less || return 1
+
+    fuzzyfinder() {
+        local __fuzzyfinder_prompt="${1}"
+        fzf --color=gutter:-1                    \
+            --margin=1%                          \
+            --border=rounded                     \
+            --prompt="CHEAT ❯ "   \
+            --header=" "                         \
+            --no-hscroll                         \
+            --reverse                            \
+            -i                                   \
+            --exact                              \
+            --tiebreak=begin                     \
+            --no-info                            \
+            --color "header:66,prompt:66,pointer:66,marker:67,fg+:white,bg+:black" \
+            --preview-window=up:80% \
+            --preview 'command cat <(command curl -s cheat.sh/{})'
+    }
+
+    __cheat="$(command curl -s cheat.sh/:list \
+               | fuzzyfinder)"
+                     
+    if [[ -n ${__cheat} ]]; then
+        command curl -s cheat.sh/"${__cheat}" | command less -R
+    fi
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    cheat "$@"
+fi

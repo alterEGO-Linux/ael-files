@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------ INFO
-# [/.ael/data/ael-packages.toml]
+# [/ael/data/ael-packages.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-03-20 14:25:08 UTC
+# updated       : 2026-04-16 17:01:54 UTC
 # description   : Packages
 
 [bash] # {{{
@@ -183,6 +183,7 @@ included_app  = [
 url           = "https://www.docker.com/"
 description   = "Pack, ship and run any application as a lightweight container."
 repository    = "extra"
+notes         = ["See /data/documentation/packages.md for docker compose installation instruction."]
 included_app  = [
                 "/usr/bin/docker",
                 "/usr/bin/docker-init",

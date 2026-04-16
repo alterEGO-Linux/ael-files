@@ -21,6 +21,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/busy"
 symlinked   = true
 
+[bin.cheat]
+filename    = "cheat"
+type        = "bin/bash"
+description = "Query https://cheat.sh."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/cheat"
+symlinked   = true
+
 [bin.cyberchef-on-ael]
 filename    = "cyberchef-on-ael"
 type        = "bin/bash"
@@ -134,6 +142,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/goto"
 symlinked   = true
 notes       = ["This script must be sourced."]
+
+[bin.install-paru]
+filename    = "install-paru"
+type        = "bin/bash"
+description = "Install AUR package manager PARU."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/install-paru"
+symlinked   = true
 
 [bin.ispeed]
 filename    = "ispeed"
@@ -295,6 +311,23 @@ type        = "bin/bash"
 description = "Query WHOIS web if <whois> port 43 is blocked on your network."
 src         = "/ael-files/bin/"
 dst         = "/ael/bin/whoisweb"
+symlinked   = true
+
+[collection.webshellphp]
+filename    = "webshell.php"
+type        = "reverse_shell/php"
+description = "PHP web reverse shell."
+src         = "/ael-files/collection/reverse-shells/"
+dst         = "/ael/collection/reverse-shells/webshell.php"
+info        = ['/ael/data/documentation/collection.md']
+symlinked   = true
+
+[documentation.collection]
+filename    = "collection.md"
+type        = "documentation"
+description = "AEL Collection documentation."
+src         = "/ael-files/data/documentation/"
+dst         = "/ael/data/documentation/collection.md"
 symlinked   = true
 
 [home.bashrc]
