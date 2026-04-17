@@ -355,7 +355,6 @@ export WLXPLATFORM="${WORDLISTS}/xplatform.txt"
 export REVSHELLS="/usr/local/share/reverse_shells"
 export RSNODEJS="${REVSHELLS}/patt_nodeJS.js"
 export RSPHP="${REVSHELLS}/php-reverse-shell.php"
-export RSWEB="${REVSHELLS}/webshell.php"
 
 
 #[ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout

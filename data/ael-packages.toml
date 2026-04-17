@@ -2,7 +2,7 @@
 # [/ael/data/ael-packages.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-04-16 17:01:54 UTC
+# updated       : 2026-04-17 11:57:50 UTC
 # description   : Packages
 
 [bash] # {{{
@@ -161,15 +161,13 @@ included_app  = [
                 "/usr/bin/yes"
                 ] # }}}
 
-[curl] # {{{
+[curl]
 url           = "https://curl.se/"
 description   = "Command line tool and library for transferring data with URLs."
 repository    = "core"
-included_app  = [
-                "/usr/bin/curl",
+included_app  = ["/usr/bin/curl",
                 "/usr/bin/curl-config",
-                "/usr/bin/wcurl"
-                ] # }}}
+                "/usr/bin/wcurl"]
 
 [dash] # {{{
 url           = "http://gondor.apana.org.au/~herbert/dash/"
@@ -360,12 +358,11 @@ included_app  = [
                 "/usr/bin/sshd"
                 ] # }}}
 
-[pacman] # {{{
+[pacman]
 url           = "https://www.archlinux.org/pacman/"
 description   = "A library-based package manager with dependency support."
 repository    = "core"
-included_app  = [
-                "/usr/bin/makepkg",
+included_app  = ["/usr/bin/makepkg",
                 "/usr/bin/makepkg-template",
                 "/usr/bin/pacman",
                 "/usr/bin/pacman-conf",
@@ -375,8 +372,7 @@ included_app  = [
                 "/usr/bin/repo-elephant",
                 "/usr/bin/repo-remove",
                 "/usr/bin/testpkg",
-                "/usr/bin/vercmp"
-                ] # }}}
+                "/usr/bin/vercmp"]
 
 [pandoc-bin] # {{{
 url           = "https://pandoc.org"
@@ -389,20 +385,34 @@ included_app  = [
                 "/usr/bin/pandoc-server"
                 ] # }}}
 
-[pcmanfm-qt] # {{{
+[paru]
+url           = "https://github.com/morganamilo/paru"
+aur_url       = "https://aur.archlinux.org/packages/paru"
+description   = "Feature packed AUR helper"
+repository    = "aur"
+included_app  = ["/usr/bin/paru"]
+
+[pcmanfm-qt]
 url           = "https://github.com/lxqt/pcmanfm-qt"
 description   = "The LXQt file manager, Qt port of PCManFM."
 repository    = "extra"
-included_app  = [
-                "/usr/bin/pcmanfm-qt"
-                ] # }}}
+included_app  = ["/usr/bin/pcmanfm-qt"]
 
-[poppler] # {{{
+[php]
+url           = "https://www.php.net/"
+description   = "A general-purpose scripting language that is especially suited to web development"
+repository    = "extra"
+included_app  = ["/usr/bin/phar",
+                "/usr/bin/phar.phar",
+                "/usr/bin/php",
+                "/usr/bin/php-config",
+                "/usr/bin/phpize"]
+
+[poppler]
 url           = "https://poppler.freedesktop.org/"
 description   = "PDF rendering library based on xpdf 3.0."
 repository    = "extra"
-included_app  = [
-                "/usr/bin/pdfattach",
+included_app  = ["/usr/bin/pdfattach",
                 "/usr/bin/pdfdetach",
                 "/usr/bin/pdffonts",
                 "/usr/bin/pdfimages",
@@ -414,15 +424,13 @@ included_app  = [
                 "/usr/bin/pdftoppm",
                 "/usr/bin/pdftops",
                 "/usr/bin/pdftotext",
-                "/usr/bin/pdfunite",
-                ] # }}}
+                "/usr/bin/pdfunite"]
 
-[procps-ng] # {{{
+[procps-ng]
 url           = "https://gitlab.com/procps-ng/procps"
 description   = "Utilities for monitoring your system and its processes."
 repository    = "core"
-included_app  = [
-                "/usr/bin/free",
+included_app  = ["/usr/bin/free",
                 "/usr/bin/hugetop",
                 "/usr/bin/pgrep",
                 "/usr/bin/pidof",
@@ -438,15 +446,13 @@ included_app  = [
                 "/usr/bin/uptime",
                 "/usr/bin/vmstat",
                 "/usr/bin/w",
-                "/usr/bin/watch"
-                ] # }}}
+                "/usr/bin/watch"]
 
-[python] # {{{
+[python]
 url           = "https://www.python.org/"
 description   = "The Python programming language"
 repository    = "core"
-included_app  = [
-                "/usr/bin/idle",
+included_app  = ["/usr/bin/idle",
                 "/usr/bin/idle3",
                 "/usr/bin/idle3.13",
                 "/usr/bin/pydoc",
@@ -457,47 +463,46 @@ included_app  = [
                 "/usr/bin/python3",
                 "/usr/bin/python3-config",
                 "/usr/bin/python3.13",
-                "/usr/bin/python3.13-config"
-                ] # }}}
+                "/usr/bin/python3.13-config"]
 
-[python-rich] # {{{
+[python-rich]
 url           = "https://github.com/willmcgugan/rich"
 description   = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal."
 repository    = "extra"
-included_app  = [ "none" ] # }}}
+included_app  = [ "none" ]
 
-[ripgrep] # {{{
+[ripgrep]
 url           = "https://github.com/BurntSushi/ripgrep"
 description   = "A search tool that combines the usability of ag with the raw speed of grep."
 repository    = "extra"
-included_app  = [
-                "/usr/bin/rg"
-                ] # }}}
+included_app  = ["/usr/bin/rg"]
 
-[rsync] # {{{
+[rsync]
 url           = "https://rsync.samba.org/"
 description   = "A fast and versatile file copying tool for remote and local files"
 repository    = "extra"
-included_app  = [
-                "/usr/bin/rrsync",
+included_app  = ["/usr/bin/rrsync",
                 "/usr/bin/rsync",
-                "/usr/bin/rsync-ssl"
-                ] # }}}
+                "/usr/bin/rsync-ssl"]
 
-[rustscan] # {{{
+[rustdesk-bin]
+url           = "https://github.com/rustdesk/rustdesk"
+aur_url       = "https://aur.archlinux.org/packages/rustdesk-bin"
+description   = "Yet another remote desktop software, written in Rust. Works out of the box, no configuration required."
+repository    = "aur"
+included_app  = ["/usr/bin/rustdesk"]
+
+[rustscan]
 url           = "https://github.com/rustscan/RustScan"
 description   = "A modern port scanner."
 repository    = "extra"
-included_app  = [
-                "/usr/bin/rustscan"
-                ] # }}}
+included_app  = ["/usr/bin/rustscan"]
 
-[shadow] # {{{
+[shadow]
 url           = "https://github.com/shadow-maint/shadow"
 description   = "Password and account management tool suite with support for shadow files and PAM"
 repository    = "core"
-included_app  = [
-                "/usr/bin/chage",
+included_app  = ["/usr/bin/chage",
                 "/usr/bin/chgpasswd",
                 "/usr/bin/chpasswd",
                 "/usr/bin/expiry",
@@ -522,39 +527,32 @@ included_app  = [
                 "/usr/bin/sg",
                 "/usr/bin/useradd",
                 "/usr/bin/userdel",
-                "/usr/bin/usermod"
-                ] # }}}
+                "/usr/bin/usermod"]
 
-[sed] # {{{
+[sed]
 url           = "https://www.gnu.org/software/sed/"
 description   = "GNU stream editor"
 repository    = "core"
-included_app  = [
-                "/usr/bin/sed"
-                ] # }}}
+included_app  = ["/usr/bin/sed"]
 
-[speedtest-cli] # {{{
+[speedtest-cli]
 url           = "https://github.com/sivel/speedtest-cli"
 description   = "Command line interface for testing internet bandwidth using speedtest.net."
 repository    = "extra"
-included_app  = [
-                "/usr/bin/speedtest",
-                "/usr/bin/speedtest-cli"
-                ] # }}}
+included_app  = ["/usr/bin/speedtest",
+                "/usr/bin/speedtest-cli"]
 
-[sudo] # {{{
+[sudo]
 url           = "https://www.sudo.ws/sudo/"
 description   = "Give certain users the ability to run some commands as root."
 repository    = "core"
-included_app  = [
-                "/usr/bin/cvtsudoers",
+included_app  = ["/usr/bin/cvtsudoers",
                 "/usr/bin/sudo",
                 "/usr/bin/sudo_logsrvd",
                 "/usr/bin/sudo_sendlog",
                 "/usr/bin/sudoedit",
                 "/usr/bin/sudoreplay",
-                "/usr/bin/visudo"
-                ] # }}}
+                "/usr/bin/visudo"]
 
 [systemd] # {{{
 url           = "https://www.github.com/systemd/systemd"
@@ -852,20 +850,18 @@ included_app  = [
                 "/usr/bin/wireshark"
                 ] # }}}
 
-[xdg-utils] # {{{
+[xdg-utils]
 url           = "https://gitlab.freedesktop.org/xdg/xdg-utils"
 description   = "Command line tools that assist applications with a variety of desktop integration tasks."
 repository    = "extra"
-included_app  = [
-                "/usr/bin/xdg-desktop-icon",
+included_app  = ["/usr/bin/xdg-desktop-icon",
                 "/usr/bin/xdg-desktop-menu",
                 "/usr/bin/xdg-email",
                 "/usr/bin/xdg-icon-resource",
                 "/usr/bin/xdg-mime",
                 "/usr/bin/xdg-open",
                 "/usr/bin/xdg-screensaver",
-                "/usr/bin/xdg-settings"
-                ] # }}}
+                "/usr/bin/xdg-settings"]
 
 [yt-dlp] # {{{
 url           = "https://github.com/yt-dlp/yt-dlp"

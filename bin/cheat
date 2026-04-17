@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------ INFO
-# [/.ael/bin/cheat]
+# [/ael/bin/cheat]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-01 19:57:57 UTC
-# updated       : 2026-04-16 13:55:49 UTC
+# updated       : 2026-04-17 12:39:00 UTC
 # description   : Query https://cheat.sh.
 
 cheat() {
@@ -26,20 +26,32 @@ cheat() {
     check_applications cat curl fzf less || return 1
 
     fuzzyfinder() {
-        local __fuzzyfinder_prompt="${1}"
-        fzf --color=gutter:-1                    \
-            --margin=1%                          \
-            --border=rounded                     \
-            --prompt="CHEAT ❯ "   \
-            --header=" "                         \
-            --no-hscroll                         \
-            --reverse                            \
-            -i                                   \
-            --exact                              \
-            --tiebreak=begin                     \
-            --no-info                            \
+        local __preview_window
+        local __height __width
+
+        __height=$(tput lines)
+        __width=$(tput cols)
+
+        if (( __width < 100 || __height < 30 )); then
+            __preview_window="down:80%"
+        else
+            __preview_window="right:80%"
+        fi
+
+        fzf --color=gutter:-1    \
+            --margin=1%          \
+            --border=rounded     \
+            --prompt="CHEAT ❯ "  \
+            --header=" "         \
+            --no-hscroll         \
+            --reverse            \
+            -i                   \
+            --exact              \
+            --tiebreak=begin     \
+            --no-info            \
             --color "header:66,prompt:66,pointer:66,marker:67,fg+:white,bg+:black" \
-            --preview-window=up:80% \
+            --preview-window="${__preview_window}" \
+            --bind 'ctrl-/:change-preview-window(right,80%|down,80%|hidden)' \
             --preview 'command cat <(command curl -s cheat.sh/{})'
     }
 

@@ -1,6 +1,6 @@
-# --- ( PYTHON ) --------------------------------------------------------------
+# --- ( python ) --------------------------------------------------------------
 
-# [+] PYTHON - AEL env
+# [+] python - ael env --------------------------------------------------------
 # --| rev. 2026-04-15
 
 snippet py_ael_env "PYTHON - AEL env." b
@@ -12,9 +12,9 @@ __base_build_dir = Path(os.getenv("AEL_BUILD") or (__cache_home / "ael" / "build
 BUILD_DIR = __base_build_dir / "kali-on-ael" / container_name
 endsnippet
 
-# --- ( SHELL ) ---------------------------------------------------------------
+# --- ( shell ) ---------------------------------------------------------------
 
-# [+] SHELL - case statement
+# [+] shell - case statement --------------------------------------------------
 # --| rev. 2026-04-03
 
 snippet sh_case_statement "SHELL - case statement" b
@@ -31,7 +31,7 @@ for arg in "$@"; do
 done
 endsnippet
 
-# [+] SHELL - check applications
+# [+] shell - check applications ----------------------------------------------
 # --| rev. 2026-04-10
 
 snippet sh_check_applications "SHELL - check applications" b
@@ -47,7 +47,7 @@ check_applications() {
 check_applications git || return 1
 endsnippet
 
-# [+] SHELL - colors
+# [+] shell - colors ----------------------------------------------------------
 # --| rev. 2026-04-02
 
 snippet sh_colors "SHELL - colors" b
@@ -58,44 +58,54 @@ local __reset=$'\033[0m'
 local __yellow=$'\033[33m'
 endsnippet
 
-# [+] SHELL -> AEL env.
-# --| rev. 2026-04-15
+# [+] shell -> AEL build directory. -------------------------------------------
+# --| rev. 2026-04-17
 
-snippet sh_ael_env "SHELL - AEL env" b
-# --| Cache home
+snippet sh_ael_build "SHELL - AEL build directory" b
+# --| build directory
 __cache_home="${XDG_CACHE_HOME:-$HOME/.cache}"
-
-# --| base_build_dir
 __base_build_dir="${AEL_BUILD:-$__cache_home/ael}"
-
-# --| final BUILD_DIR
-BUILD_DIR="${__base_build_dir}/kali-on-ael/${container_name}"
+__BUILD_DIR="${__base_build_dir}/<directory>"
 endsnippet
 
-# [+] SHELL -> Fuzzy Finder.
-# --| rev. 2026-04-10
-# ..| usage: fuzzyfinder "${__fuzzyfinder_prompt}"
+# [+] shell -> Fuzzy Finder. --------------------------------------------------
+# --| rev. 2026-04-17
+# ..| usage: fuzzyfinder
 
 snippet sh_fuzzy_finder "SHELL - Fuzzy Finder" b
-__fuzzyfinder_prompt="<prompt> ❯ "
 fuzzyfinder() {
-    local __fuzzyfinder_prompt="\${1}"
-    fzf --color=gutter:-1                    \
-        --margin=1%                          \
-        --border=rounded                     \
-        --prompt="${__fuzzyfinder_prompt}"   \
-        --header=" "                         \
-        --no-hscroll                         \
-        --reverse                            \
-        -i                                   \
-        --exact                              \
-        --tiebreak=begin                     \
-        --no-info                            \
-        --pointer="•"
+		local __preview_window
+		local __height __width
+
+		__height=$(tput lines)
+		__width=$(tput cols)
+
+		if (( __width < 100 || __height < 30 )); then
+				__preview_window="down:80%"
+		else
+				__preview_window="right:80%"
+		fi
+
+		fzf --color=gutter:-1    \
+				--margin=1%          \
+				--border=rounded     \
+				--prompt="CHEAT ❯ "  \
+				--header=" "         \
+				--no-hscroll         \
+				--reverse            \
+				-i                   \
+				--exact              \
+				--tiebreak=begin     \
+				--no-info            \
+				--color "header:66,prompt:66,pointer:66,marker:67,fg+:white,bg+:black" \
+				--preview-window="${__preview_window}" \
+				--bind 'ctrl-/:change-preview-window(right,80%|down,80%|hidden)' \
+				--preview 'command cat <(command curl -s cheat.sh/{})'
+
 }
 endsnippet
 
-# [+] SHELL - main guard
+# [+] shell - main guard ------------------------------------------------------
 # --| rev. 2026-04-01
 # ..| Same purpose as Python __name__ == "__main__".
 
@@ -105,7 +115,7 @@ if [[ "${BASH_SOURCE[0]}" == "\${0}" ]]; then
 fi
 endsnippet
 
-# [+] SHELL - question
+# [+] shell - question --------------------------------------------------------
 # --| rev. 2026-04-01
 
 snippet sh_question "SHELL - question" b
@@ -127,14 +137,14 @@ else
 fi
 endsnippet
 
-# [+] SHELL - trap functions
+# [+] shell - trap functions --------------------------------------------------
 # --| rev. 2026-04-02
 
 snippet sh_trap_functions "SHELL - trap functions" b
 trap 'unset -f <functions>; trap - RETURN' RETURN
 endsnippet
 
-# [+] SHELL - Usage
+# [+] shell - Usage -----------------------------------------------------------
 # --| rev. 2026-04-02
 
 snippet sh_usage "SHELL - Usage" b
@@ -156,12 +166,10 @@ EOF
 }
 endsnippet
 
+# --- ( headers ) -------------------------------------------------------------
 
-
-
-
-
-
+# [+] info# -------------------------------------------------------------------
+# --| rev. 2026-04-17
 
 snippet info# "# info header" b
 # ------------------------------------------------------------------------ INFO
@@ -173,7 +181,10 @@ snippet info# "# info header" b
 
 endsnippet
 
-snippet info! "html info header" b
+# [+] info! -------------------------------------------------------------------
+# --| rev. 2026-04-17
+
+snippet info! "html/markdown info header" b
 <!-- INFO {{{
 
 # [`!p snip.rv = vim.eval("expand('%:p')")`]
@@ -187,12 +198,21 @@ snippet info! "html info header" b
 
 endsnippet
 
-snippet foot! "HTML INFO Footer" b
+# [+] foot! -------------------------------------------------------------------
+# --| rev. 2026-04-17
+snippet foot! "html/markdown foldmethod" b
 
 <!--
 # vim: foldmethod=marker
 -->
 endsnippet
+
+
+
+
+
+
+
 
 snippet output "Commented output" b
 # //output --------------------------------------------------------------------

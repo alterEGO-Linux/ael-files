@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ INFO
-# [/.ael/data/ael-files.toml]
+# [/ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
 # updated       : 2026-04-16 13:17:21 UTC
@@ -11,6 +11,15 @@ type        = "config/shell"
 description = "alterEGO Linux core shell config."
 src         = "/ael-files/ael/"
 dst         = "/home/.ael/.aelcore"
+symlinked   = true
+
+[bin.ael-menu]
+filename    = "ael-menu"
+type        = "bin/python"
+description = "alterEGO-Linux application launcher."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/ael-menu"
+config      = ["/ael/config/ael-menu/ael-menu.toml"]
 symlinked   = true
 
 [bin.busy]
@@ -322,6 +331,24 @@ dst         = "/ael/collection/reverse-shells/webshell.php"
 info        = ['/ael/data/documentation/collection.md']
 symlinked   = true
 
+[config.ael-menu]
+filename    = "ael-menu.toml"
+type        = "config/ael-menu"
+description = "ael-menu main configuration."
+src         = "/ael-files/config/ael-menu/"
+dst         = "/ael/config/ael-menu/ael-menu.toml"
+symlinked   = false
+notes       = ["Custom entries go in /.ael/custom/ael-menu/ael-menu-extra.toml"]
+
+[config.hyprlandconf]
+filename    = "hyprland.conf"
+type        = "config/hyprland"
+description = "Hyprland configuration files."
+src         = "/ael-files/config/hypr/"
+dst         = "/home/.config/hypr/hyprland.conf"
+symlinked   = false
+backup      = true
+
 [documentation.collection]
 filename    = "collection.md"
 type        = "documentation"
@@ -403,6 +430,14 @@ type        = "config/vim"
 description = "vim configuration file."
 src         = "/ael-files/vim/"
 dst         = "/home/.vimrc"
+symlinked   = true
+
+[wallpaper.ael-penguin]
+filename    = "ael-penguin.jpg"
+type        = "wallpaper"
+description = "alterEGO Penguin edition."
+src         = "/ael-files/wallpapers/"
+dst         = "/ael/wallpapers/ael-penguin.jpg"
 symlinked   = true
 
 [bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
