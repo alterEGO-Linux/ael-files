@@ -322,6 +322,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/whoisweb"
 symlinked   = true
 
+[bin.word-frequency]
+filename    = "word-frequency"
+type        = "bin/python"
+description = "Count frequency of words."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/word-frequency"
+symlinked   = false
+
 [collection.webshellphp]
 filename    = "webshell.php"
 type        = "reverse_shell/php"
@@ -349,12 +357,28 @@ dst         = "/home/.config/hypr/hyprland.conf"
 symlinked   = false
 backup      = true
 
+[documentation.ael-menu]
+filename    = "ael-menu.md"
+type        = "documentation"
+description = "ael-menu documentation."
+src         = "/ael-files/data/documentation/"
+dst         = "/ael/data/documentation/ael-menu.md"
+symlinked   = true
+
 [documentation.collection]
 filename    = "collection.md"
 type        = "documentation"
 description = "AEL Collection documentation."
 src         = "/ael-files/data/documentation/"
 dst         = "/ael/data/documentation/collection.md"
+symlinked   = true
+
+[documentation.packages]
+filename    = "packages.md"
+type        = "documentation"
+description = "Packages specification."
+src         = "/ael-files/data/documentation/"
+dst         = "/ael/data/documentation/packages.md"
 symlinked   = true
 
 [home.bashrc]

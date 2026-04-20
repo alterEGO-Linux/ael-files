@@ -1,0 +1,152 @@
+#!/usr/bin/env python3
+# ------------------------------------------------------------------------ INFO
+# [/ael/bin/word-frequency]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-18 15:59:44 UTC
+# updated       : 2026-04-18 15:59:44 UTC
+# description   : Count frequency of words.
+
+import sys
+import argparse
+import signal
+import re
+from collections import Counter
+
+STOPWORDS = {
+    "the", "a", "an", "and", "or", "but", "if", "to", "of", "in", "on",
+    "for", "with", "as", "by", "at", "from", "that", "this", "it",
+    "is", "was", "are", "were", "be", "been", "being",
+    "he", "she", "they", "them", "his", "her", "their",
+    "you", "your", "we", "our", "i", "me", "my",
+    "do", "does", "did", "so", "not"
+}
+
+
+def read_input(file_path: str | None) -> str:
+    """Read text to analyze."""
+    if file_path:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return f.read()
+    else:
+        return sys.stdin.read()
+
+
+def extract_words(text: str, case_sensitive: bool = False) -> list[str]:
+    """Returns a list of words."""
+
+    if not case_sensitive:
+        text = text.lower()
+
+    # Extract words (letters + numbers, tweak if needed)
+    return re.findall(r"\b\w+\b", text)
+
+
+def load_stopwords_file(path: str) -> set[str]:
+    "Loads stopwords from a file and returns a set."
+    stopwords = set()
+
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            word = line.strip().lower()
+            if word and not word.startswith("#"):
+                stopwords.add(word)
+
+    return stopwords
+
+
+def build_stopwords(paths: list[str] | None) -> set[str]:
+    "Returns a set of stopwords."
+    # --| If user provided custom files → use ONLY those.
+    if paths:
+        combined = set()
+        for p in paths:
+            combined |= load_stopwords_file(p)
+        return combined
+
+    # --| Otherwise fallback to built-ins.
+    return set(STOPWORDS)
+
+
+def filter_stopwords(words: list[str], stopwords: set[str]) -> list[str]:
+    "Returns a list of words after filtering out the stopwords."
+    return [w for w in words if w not in stopwords]
+
+
+def compute_frequencies(words: list[str]) -> Counter:
+    "Retuns a count of each words."
+    return Counter(words)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Count word frequencies from stdin or a file"
+    )
+
+    parser.add_argument(
+        "-i", "--input",
+        help="Input file (if not provided, reads from stdin)",
+        default=None
+    )
+
+    parser.add_argument(
+        "--case-sensitive",
+        action="store_true",
+        help="Make word counting case-sensitive"
+    )
+
+    parser.add_argument(
+        "--sort",
+        choices=["freq", "alpha"],
+        default="freq",
+        help="Sort output by frequency or alphabetically"
+    )
+
+    parser.add_argument(
+        "--significant",
+        action="store_true",
+        help="Filter out common stopwords"
+    )
+
+    parser.add_argument(
+        "--stopwords",
+        action="append",
+        help="Path to stopwords file (can be used multiple times)",
+    )
+
+    parser.add_argument(
+        "--nocount",
+        action="store_true",
+        help="Just gives the words, no count.",
+    )
+
+    args = parser.parse_args()
+
+    text = read_input(args.input)
+    words = extract_words(text, args.case_sensitive)
+
+    if args.significant:
+        stopwords = build_stopwords(args.stopwords)
+        words = filter_stopwords(words, stopwords)
+
+    freq = compute_frequencies(words)
+
+    if args.sort == "alpha":
+        items = sorted(freq.items())
+    else:
+        items = sorted(freq.items(), key=lambda x: (-x[1], x[0]))
+
+    try:
+        for word, count in items:
+            if args.nocount:
+                print(word)
+            else:
+                print(f"{word}\t{count}")
+    except BrokenPipeError:
+        return 0
+
+    return 0
+
+
+if __name__ == "__main__":
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    sys.exit(main())
