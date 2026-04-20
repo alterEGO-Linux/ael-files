@@ -2,7 +2,7 @@
 # [/ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-16 13:17:21 UTC
+# updated       : 2026-04-20 11:33:51 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -379,6 +379,14 @@ type        = "documentation"
 description = "Packages specification."
 src         = "/ael-files/data/documentation/"
 dst         = "/ael/data/documentation/packages.md"
+symlinked   = true
+
+[documentation.word-frequency]
+filename    = "word-frequency.md"
+type        = "documentation"
+description = "word-frequency documentation."
+src         = "/ael-files/data/documentation/"
+dst         = "/ael/data/documentation/word-frequency.md"
 symlinked   = true
 
 [home.bashrc]

@@ -3,7 +3,7 @@
 # [/ael/data/documentation/word-frequency.md]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-20 11:01:02 UTC
-# updated       : 2026-04-20 11:01:02 UTC
+# updated       : 2026-04-20 11:44:34 UTC
 # description   : word-frequency documentation.
 # tags          : 
 
@@ -15,7 +15,8 @@ word-frequency is a simple and multi purpose utility, written in Python, to coun
 
 ## Options
 
-[**-i, --input INPUT**]\
+[**-i, --input INPUT**]
+
 Input file (if not provided, reads from stdin).
 
 Analysing Moby Dick from stdin.
@@ -53,19 +54,24 @@ his     2530
 i       2120
 ```
 
-[**--case-sensitive**]\
+[**--case-sensitive**]
+
 Make word counting case-sensitive. The count will preserve the case sensitivity.
 
-[**--sort {freq,alpha}**]\
+[**--sort {freq,alpha}**]
+
 Sort output by frequency or alphabetically. Default is frequency.
 
-[**--significant**]\
+[**--significant**]
+
 Filter out common English stopwords. 
 
-[**--stopwords STOPWORDS**]\
+[**--stopwords STOPWORDS**]
+
 Path to stopwords file (can be used multiple times). Use custom stopwords files, one word per line.
 
-[**--nocount**]\
+[**--nocount**]
+
 Just gives the words, no count. Great to create a custom stopwords file.
 
 <!--
