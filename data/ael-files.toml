@@ -498,6 +498,24 @@ dst         = "/ael/collection/wordlists/big.txt"
 symlinked   = true
 source      = "/usr/share/dirb/wordlists/big.txt"
 
+[wordlist.directory-list-2-3-medium]
+filename    = "directory-list-2.3-medium.txt"
+type        = "wordlist"
+desciption  = "Dirbuster directory-list-2.3-medium.txt wordlist."
+src         = "/ael-files/collection/wordlists/"
+dst         = "/ael/collection/wordlists/directory-list-2.3-medium.txt"
+symlinked   = true
+source      = "/usr/share/dirbuster/directory-list-2.3-medium.txt"
+
+[wordlist.raft-large-files]
+filename    = "raft-large-files.txt"
+type        = "wordlist"
+desciption  = "RAFT raft-large-files.txt wordlist (SecLists version)."
+src         = "/ael-files/collection/wordlists/"
+dst         = "/ael/collection/wordlists/raft-large-files.txt"
+symlinked   = true
+source      = "https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/raft-large-words.txt"
+
 [wordlist.rockyou]
 filename    = "rockyou.txt.gz"
 type        = "wordlist"
@@ -507,6 +525,15 @@ dst         = "/ael/collection/wordlists/rockyou.txt"
 notes       = ["Must decompress to rockyou.txt"]
 symlinked   = false
 source      = "https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz"
+
+[wordlist.xplatform]
+filename    = "xplatform.txt"
+type        = "wordlist"
+description = "SQLi list."
+src         = "/ael-files/collection/wordlists/"
+dst         = "/ael/collection/wordlists/xplatform.txt"
+symlinked   = true
+source      = "https://raw.githubusercontent.com/fuzzdb-project/fuzzdb/refs/heads/master/attack/sql-injection/detect/xplatform.txt"
 
 [bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
 filename    = "/bin/check-applications.sh"

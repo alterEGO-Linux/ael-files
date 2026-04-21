@@ -67,6 +67,22 @@ This list is part of the DIRB wordlist's buddle.
 
 Version used by alterEGO Linux is from DIRB ('/usr/share/dirb/wordlists/big.txt').
 
+### directory-list-2.3-medium.txt
+
+Part of the OWASP DirBuster Project, lead by James Fisher aimed at web directory/file discovery.
+
+Version used by alterEGO Linux is from Dirbuster ('/usr/share/dirbuster/directory-list-2.3-medium.txt').
+
+### raft-large-files.txt
+
+Part of the RAFT (Response Analysis and Further Testing Tool) project <https://code.google.com/archive/p/raft/>.
+
+Version used by alterEGO Linux is from SecLists.
+
+```shell
+curl https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/raft-large-words.txt -o $AEL_FILES/collection/wordlists/raft-large-files.txt
+```
+
 ### Rockyou.txt
 
 The rockyou.txt file is one of the most well-known password datasets in cybersecurity history. It originates from a 2009 data breach of the company RockYou, where millions of user passwords were exposed due to poor security practices—specifically, storing passwords in plain text. Containing over 14 million real-world passwords, rockyou.txt has since become a widely used resource for security research, password strength analysis, and penetration testing. Its significance lies in revealing common human tendencies in password creation, highlighting patterns such as simple words, names, and predictable number combinations, which continue to inform modern approaches to authentication and cybersecurity defense.
@@ -75,6 +91,16 @@ Version sourced from Kali Linux.
 
 ```shell
 curl https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz -o $AEL_FILES/collection/wordlists/rockyou.txt.gz
+```
+
+### xplatform.txt
+
+SQL injection list.
+
+Version used by alterEGO Linux is from Fuzzdb-project.
+
+```shell
+curl https://raw.githubusercontent.com/fuzzdb-project/fuzzdb/refs/heads/master/attack/sql-injection/detect/xplatform.txt -o $AEL_FILES/collection/wordlists/raft-large-files.txt
 ```
 
 <!--

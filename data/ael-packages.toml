@@ -169,15 +169,37 @@ included_app  = ["/usr/bin/curl",
                 "/usr/bin/curl-config",
                 "/usr/bin/wcurl"]
 
-[dash] # {{{
+[dash]
 url           = "http://gondor.apana.org.au/~herbert/dash/"
 description   = "POSIX compliant shell that aims to be as small as possible."
 repository    = "core"
 included_app  = [
                 "/usr/bin/dash"
-                ] # }}}
+                ]
 
-[docker] # {{{
+[dirb]
+pkg_name      = "dirb"
+description   = "DIRB is a web content scanner, brute forceing for hidden files."
+url           = "http://dirb.sourceforge.net/"
+aur_url       = "https://aur.archlinux.org/packages/dirb"
+repository    = "aur"
+included_app  = [
+                "/usr/bin/dirb",
+                "/usr/bin/gendict_dirb",
+                "/usr/bin/html2dic"
+                ]
+mode          = ["hacker"]
+
+[dirbuster]
+pkg_name      = "dirbuster"
+description   = "An application designed to brute force directories and files names on web/application servers."
+url           = "http://www.owasp.org/index.php/Category:OWASP_DirBuster_Project"
+aur_url       = "https://aur.archlinux.org/packages/dirbuster"
+repository    = "aur"
+included_app  = ["/usr/bin/dirbuster"]
+mode          = ["hacker"]
+
+[docker]
 url           = "https://www.docker.com/"
 description   = "Pack, ship and run any application as a lightweight container."
 repository    = "extra"
@@ -187,7 +209,7 @@ included_app  = [
                 "/usr/bin/docker-init",
                 "/usr/bin/docker-proxy",
                 "/usr/bin/dockerd"
-                ] # }}}
+                ]
 
 [ffmpeg] # {{{
 url           = "https://ffmpeg.org"
