@@ -472,6 +472,24 @@ src         = "/ael-files/wallpapers/"
 dst         = "/ael/wallpapers/ael-penguin.jpg"
 symlinked   = true
 
+[wallpaper.ael-xp]
+filename    = "ael-xp.png"
+type        = "wallpaper"
+description = "alterEGO XP edition."
+src         = "/ael-files/wallpapers/"
+dst         = "/ael/wallpapers/xp.png"
+symlinked   = true
+
+[wordlist.rockyou]
+filename    = "rockyou.txt.gz"
+type        = "wordlist"
+desciption  = "rockyou wordlist."
+src         = "/ael-files/collection/wordlists/"
+dst         = "/ael/collection/wordlists/rockyou.txt"
+notes       = ["Must decompress to rockyou.txt"]
+symlinked   = false
+url         = "https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz"
+
 [bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
 filename    = "/bin/check-applications.sh"
 description = "Check applications' availability."

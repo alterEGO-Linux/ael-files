@@ -3,7 +3,7 @@
 # [/ael/data/documentation/collection.md]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-16 15:56:01 UTC
-# updated       : 2026-04-16 15:56:01 UTC
+# updated       : 2026-04-20 17:43:05 UTC
 # description   : Collection documentation.
 # tags          : #reverse shell #wordlist
 
@@ -45,6 +45,18 @@ This also works with TUI web browser.
 
 ```shell
 lynx http://127.0.0.1:8000/webshell.php?cmd=ls
+```
+
+## Wordlists
+
+### Rockyou.txt
+
+The rockyou.txt file is one of the most well-known password datasets in cybersecurity history. It originates from a 2009 data breach of the company RockYou, where millions of user passwords were exposed due to poor security practices—specifically, storing passwords in plain text. Containing over 14 million real-world passwords, rockyou.txt has since become a widely used resource for security research, password strength analysis, and penetration testing. Its significance lies in revealing common human tendencies in password creation, highlighting patterns such as simple words, names, and predictable number combinations, which continue to inform modern approaches to authentication and cybersecurity defense.
+
+Version sourced from Kali Linux.
+
+```shell
+curl https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz -o $AEL_FILES/collection/wordlists/rockyou.txt.gz
 ```
 
 <!--
