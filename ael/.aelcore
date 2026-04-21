@@ -338,20 +338,12 @@ alias open="ael-open"
 alias attack="source ${HOME}/.local/share/ael-files/bin/.tryhackme"
 
 
-# :========================= | HACKER | ====================================: #
-
-# :---------- [ WORDLISTS ]
-
-export WORDLISTS="/usr/local/share/wordlists"
-export WLBEST1050="${WORDLISTS}/best1050.txt"
-export WLBIG="${WORDLISTS}/seclist-big.txt"
 export WLDIRMEDIUM="${WORDLISTS}/directory-list-2.3-medium.txt"
 export WLLARGEFILES="${WORDLISTS}/raft-large-files.txt"
 export WLXPLATFORM="${WORDLISTS}/xplatform.txt"
 
 # :---------- [ REVERSE SHELLS ]
 
-export REVSHELLS="/usr/local/share/reverse_shells"
 export RSNODEJS="${REVSHELLS}/patt_nodeJS.js"
 export RSPHP="${REVSHELLS}/php-reverse-shell.php"
 

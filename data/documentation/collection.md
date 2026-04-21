@@ -49,6 +49,24 @@ lynx http://127.0.0.1:8000/webshell.php?cmd=ls
 
 ## Wordlists
 
+### best1050.txt
+
+Curated list of 1049 words designed for fast and standard web directory/file brute-forcing.
+
+The origin of best1050.txt is not clear, but was an early addition to DIRB CLI-based brute forcing tool. Thus, when DIRB is installed, the list can be found at `/usr/share/dirb/wordlists/others/best1050.txt`.
+
+It used to be available on SecLists GitHub, but was removed.
+
+Version used by alterEGO Linux is from DIRB.
+
+### big.txt
+
+Curated medium size (according to modern standard) directories and files common names.
+
+This list is part of the DIRB wordlist's buddle.
+
+Version used by alterEGO Linux is from DIRB ('/usr/share/dirb/wordlists/big.txt').
+
 ### Rockyou.txt
 
 The rockyou.txt file is one of the most well-known password datasets in cybersecurity history. It originates from a 2009 data breach of the company RockYou, where millions of user passwords were exposed due to poor security practices—specifically, storing passwords in plain text. Containing over 14 million real-world passwords, rockyou.txt has since become a widely used resource for security research, password strength analysis, and penetration testing. Its significance lies in revealing common human tendencies in password creation, highlighting patterns such as simple words, names, and predictable number combinations, which continue to inform modern approaches to authentication and cybersecurity defense.

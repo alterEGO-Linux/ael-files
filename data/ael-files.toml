@@ -480,6 +480,24 @@ src         = "/ael-files/wallpapers/"
 dst         = "/ael/wallpapers/xp.png"
 symlinked   = true
 
+[wordlist.best1050]
+filename    = "best1050.txt"
+type        = "wordlist"
+desciption  = "DIRB best1050 wordlist."
+src         = "/ael-files/collection/wordlists/"
+dst         = "/ael/collection/wordlists/best1050.txt"
+symlinked   = true
+source      = "/usr/share/dirb/wordlists/others/best1050.txt"
+
+[wordlist.big]
+filename    = "big.txt"
+type        = "wordlist"
+desciption  = "DIRB big wordlist."
+src         = "/ael-files/collection/wordlists/"
+dst         = "/ael/collection/wordlists/big.txt"
+symlinked   = true
+source      = "/usr/share/dirb/wordlists/big.txt"
+
 [wordlist.rockyou]
 filename    = "rockyou.txt.gz"
 type        = "wordlist"
@@ -488,7 +506,7 @@ src         = "/ael-files/collection/wordlists/"
 dst         = "/ael/collection/wordlists/rockyou.txt"
 notes       = ["Must decompress to rockyou.txt"]
 symlinked   = false
-url         = "https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz"
+source      = "https://gitlab.com/kalilinux/packages/wordlists/-/raw/kali/master/rockyou.txt.gz"
 
 [bin.Y2hlY2stYXBwbGljYXRpb25zLnNo]
 filename    = "/bin/check-applications.sh"
