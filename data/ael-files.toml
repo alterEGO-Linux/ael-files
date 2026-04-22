@@ -192,6 +192,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/lazygit"
 symlinked   = true
 
+[bin.network-switch]
+filename    = "network-switch"
+type        = "bin/bash"
+description = "Quickly turn network on and off."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/network-switch"
+symlinked   = false
+
 [bin.pacman-reset]
 filename    = "pacman-reset"
 type        = "bin/bash"

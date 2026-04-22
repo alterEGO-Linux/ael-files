@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------ INFO
+# [/ael/bin/network-switch]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-21 19:22:00 UTC
+# updated       : 2026-04-21 19:22:00 UTC
+# description   : Quickly turn network on and off.
+
+network-off() {
+    sudo systemctl stop NetworkManager \
+        && notify-send -t 1500 "Internet OFF"
+}
+
+network-on() {
+    local wifi_dev eth_dev
+
+    if ! systemctl is-active --quiet NetworkManager; then
+        sudo systemctl start NetworkManager || return 1
+        sleep 2
+    fi
+
+    wifi_dev="$(nmcli -t -f DEVICE,TYPE device status | awk -F: '$2=="wifi"{print $1; exit}')"
+    eth_dev="$(nmcli -t -f DEVICE,TYPE device status | awk -F: '$2=="ethernet"{print $1; exit}')"
+
+    if [[ -n "${wifi_dev}" ]] && nmcli device connect "${wifi_dev}" >/dev/null 2>&1; then
+        :
+    elif [[ -n "${eth_dev}" ]] && nmcli device connect "$eth_dev" >/dev/null 2>&1; then
+        :
+    fi
+
+    notify-send -t 1500 "Internet ON"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+
+    [[ $# -eq 0 ]] && { printf '%s\n' "[!] You must provide [--on/--off]"; exit 1; }
+    
+    for arg in "$@"; do
+        case "${arg}" in
+            --off)
+                network-off
+                exit 0
+                ;;
+            --on)
+                network-on
+                exit 0
+                ;;
+        esac
+    done
+fi
