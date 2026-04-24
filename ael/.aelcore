@@ -1,15 +1,15 @@
-# ------------------------------------------------------------------------ INFO
+# [+] -------------------------------------------------------------------| INFO
 # [/.ael/.aelcore]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-04-15 12:01:17 UTC
+# updated       : 2026-04-22 14:51:50 UTC
 # description   : AlterEGO Linux core shell configuration.
 
 # --| required for shell-info function (.ael/shellutils/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# --- ( ael ) -----------------------------------------------------------------
+# [+] --------------------------------------------------------------------| ael
 
 export AEL=1
 export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
@@ -22,7 +22,7 @@ export AEL_SHELLUTILS="${AEL_HOME}/shellutils"
 export AEL_CUSTOM="${AEL_HOME}/custom"
 export AEL_DEBUG_LEVEL=2
 
-# --- ( default apps ) --------------------------------------------------------
+# [+] -----------------------------------------------------------| default apps
 
 export BROWSER=firefox
 export TERMINAL="alacritty"
@@ -31,9 +31,8 @@ export EDITOR=${VISUAL}
 export MANPAGER='bat -l man -p'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
-# --- ( utilities )- ----------------------------------------------------------
+# [+] -----------------------------------------------------------| shell colors
 
-# [+] ansi-colors
 shellutil="${AEL_SHELLUTILS}/ansi-colors"
 
 if [[ -f "${shellutil}" ]]; then
@@ -53,7 +52,7 @@ fi
 
 export TERM="${TERM:-xterm-256color}"
 
-# --- ( ael-help )
+# [+] ---------------------------------------------------------------| ael-help
 shellutil="${AEL_SHELLUTILS}/ael-help"
 
 if [[ -f "${shellutil}" ]]; then
@@ -83,7 +82,7 @@ EOF
     fi
 fi
 
-# --- ( simple sourcing )
+# [+] ------------------------------------------------------------| load-source
 load-source() {
     local module
     module="$@"
@@ -98,7 +97,7 @@ load-source() {
     fi
 }
 
-# --- ( ael-fzf )
+# [+] ----------------------------------------------------------------| ael-fzf
 shellutil="${AEL_SHELLUTILS}/ael-fzf"
 
 if [[ -f "${shellutil}" ]]; then
@@ -110,7 +109,7 @@ else
     fi
 fi
 
-# --- ( argument-parser )
+# [+] --------------------------------------------------------| argument-parser
 shellutil="${AEL_SHELLUTILS}/argument-parser"
 
 if [[ -f "${shellutil}" ]]; then
@@ -122,7 +121,7 @@ else
     fi
 fi
 
-# --- ( check-applications )
+# [+] -----------------------------------------------------| check-applications
 #shellutil="${AEL_SHELLUTILS}/check-applications"
 #
 #if [[ -f "${shellutil}" ]]; then
@@ -134,7 +133,9 @@ fi
 #    fi
 #fi
 
-# --- ( dircolors ) -> LS_COLORS
+# [+] --------------------------------------------------------------| dircolors
+
+# --| LS_COLORS
 shellutil="${AEL_SHELLUTILS}/dircolors"
 
 if [[ -f "${shellutil}" ]]; then
@@ -148,7 +149,7 @@ else
     fi
 fi
 
-# -------------------- ( ALIASES ) --------------------------------------------
+# [+] ----------------------------------------------------------------| aliases
 
 alias grep="grep --color=auto"
 alias ll='ls --all --human-readable -l --color=auto'
@@ -161,7 +162,7 @@ alias tmux="env TERM=screen-256color tmux -u"
 # --| .ael/custom/aliases -> Custom aliases file.
 load-source "${AEL_CUSTOM}/aliases"
 
-# -------------------- ( PATH ) -----------------------------------------------
+# [+] -------------------------------------------------------------------| PATH
 
 # --| ref. <https://www.linuxjournal.com/content/removing-duplicate-path-entries>
 PATH="${HOME}/.ael/bin:${HOME}/.local/bin:${PATH}:${HOME}/scripts:${HOME}/bin"
@@ -169,7 +170,8 @@ PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", le
 
 export PATH
 
-# -------------------- ( HISTORY ) --------------------------------------------
+# [+] ----------------------------------------------------------------| HISTORY
+
 # --| Allows custom HISTIGNORE patterns.
 # ..| Excepted /.ael/custom/histignore file.
 histignore_default=(
@@ -211,7 +213,7 @@ export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
-# -------------------- ( TERMINAL BEHAVIOR / CTRL+S / CTRL+Q ) ----------------
+# [+] ------------------------------------| TERMINAL BEHAVIOR / CTRL+S / CTRL+Q
 
 # --| Enable Ctrl+S inside terminal applications (e.g. Vim).
 # ..| By default, the terminal uses Ctrl+S / Ctrl+Q for software flow control:
@@ -226,7 +228,7 @@ export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
 stty -ixon
 
-# -------------------- ( PROMPT ) ---------------------------------------------
+# [+] -----------------------------------------------------------------| PROMPT
 
 prompt_command() {
     local style="${1:-default}"
@@ -258,7 +260,7 @@ prompt_command() {
 
 PROMPT_COMMAND='prompt_command default'
 
-# -------------------- ( reload ) ---------------------------------------------
+# [+] -----------------------------------------------------------------| reload
 
 # --| Source again the file that initiated the current shell.
 
@@ -274,15 +276,19 @@ reload() {
     fi
 }
 
-# -------------------- ( functions ) ------------------------------------------
+# [+] ----------------------------------------------------------------| elevate
 
-# [+] elevate - Repeats last command with sudo, if forgotten.
+# --| Repeats last command with sudo, if forgotten.
 load-source "${AEL_BIN}/elevate"
 
-# [+] goto - Simple directory bookmarks system.
+# [+] -------------------------------------------------------------------| goto
+
+# --|  Simple directory bookmarks system.
 load-source "${AEL_BIN}/goto"
 
-# [+] reset-time - Reset system time. Usefull when Windows boot screws time.
+# [+] -------------------------------------------------------------| reset-time
+
+# --| Reset system time. Usefull when Windows boot screws time.
 reset-time() {
 
     local __blue=$'\033[34m'
@@ -309,45 +315,19 @@ reset-time() {
     printf '%s\n' "${__blue}[*]${__reset} Time now: $(date "+%F %H:%M:%S %Z")"
 }
 
-# [+] shell-info - Show shell info.
+# [+] -------------------------------------------------------------| shell-info
+
+# --| Show shell info.
 load-source "${AEL_BIN}/shell-info"
 
-# [+] show-utc - Display UTC time.
+# [+] ---------------------------------------------------------------| show-utc
+
+# --| Display UTC time.
 show-utc() {
     command date --utc "+%F %H:%M:%S %Z"
 }
 
-# [+] snake-env - Manage python -m venv.
+# [+] --------------------------------------------------------------| snake-env
+
+# --| Manage python -m venv.
 load-source "${AEL_BIN}/snake-env"
-
-
-
-
-
-
-# :: ---------- SOURCE MODULES
-
-[ -f ${HOME}/.ael/.extra ] && . ${HOME}/.ael/.extra
-
-# :-----/ ALIASES /-----:
-
-alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
-alias open="ael-open"
-
-# :/todo/ Should we still source automatically. See above.
-alias attack="source ${HOME}/.local/share/ael-files/bin/.tryhackme"
-
-
-export WLDIRMEDIUM="${WORDLISTS}/directory-list-2.3-medium.txt"
-export WLLARGEFILES="${WORDLISTS}/raft-large-files.txt"
-export WLXPLATFORM="${WORDLISTS}/xplatform.txt"
-
-# :---------- [ REVERSE SHELLS ]
-
-export RSNODEJS="${REVSHELLS}/patt_nodeJS.js"
-export RSPHP="${REVSHELLS}/php-reverse-shell.php"
-
-
-#[ -f /home/ghost/.ael/shellutils/fixout ] && . /home/ghost/.ael/shellutils/fixout
-#[ -f /home/ghost/.ael/shellutils/history-cleaner ] && . /home/ghost/.ael/shellutils/history-cleaner
-#[ -f /home/ghost/.ael/shellutils/search-content ] && . /home/ghost/.ael/shellutils/search-content

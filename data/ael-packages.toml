@@ -885,6 +885,21 @@ included_app  = ["/usr/bin/xdg-desktop-icon",
                 "/usr/bin/xdg-screensaver",
                 "/usr/bin/xdg-settings"]
 
+[freerdp]
+pkg_name      = "freerdp"
+description     : Free implementation of the Remote Desktop Protocol (RDP)
+url             : https://www.freerdp.com/
+repository      : extra
+included_app  = ["/usr/bin/freerdp-proxy3",
+                 "/usr/bin/freerdp-shadow-cli3",
+                 "/usr/bin/sdl-freerdp3",
+                 "/usr/bin/sfreerdp-server3",
+                 "/usr/bin/sfreerdp3",
+                 "/usr/bin/winpr-hash3",
+                 "/usr/bin/winpr-makecert3",
+                 "/usr/bin/wlfreerdp3",
+                 "/usr/bin/xfreerdp3"]
+
 [yt-dlp] # {{{
 url           = "https://github.com/yt-dlp/yt-dlp"
 description   = "A youtube-dl fork with additional features and fixes."

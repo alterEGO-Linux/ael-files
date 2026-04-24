@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+# [+] -------------------------------------------------------------------| INFO
+# [/ael/bin/easyrdp]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-23 20:59:15 UTC
+# updated       : 2026-04-23 20:59:15 UTC
+# description   : Simple RDP wrapper.
+
+set -euo pipefail
+
+__red=$'\033[31m'
+__reset=$'\033[0m'
+
+check_applications() {
+  local __app
+  for __app in "${@}"; do
+      if ! command -v $__app >/dev/null 2>&1; then
+          printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+          return 1
+      fi
+  done
+}
+check_applications xfreerdp3 || exit 1
+
+# [+] ------------------------------------------------------------------| usage
+
+usage() {
+  cat <<EOF
+================================================================================
+[+] easyrdp - Simple RDP wrapper
+================================================================================
+Usage:
+  easyrdp [-h|--help] CONIG_FILE
+
+Options:
+  -h, --help    Show this help and exit.
+
+CONFIG_FILE example:
+
+---
+user="a_regular_user"
+domain="MyDomain"
+server="my_domain.com"
+password='password1'
+
+gateway_server="remote.gateway.ca"
+gateway_user="gateway_user"
+gateway_password='gateway_password'
+
+clipboard="yes"
+sound="yes"
+usb="auto"
+fullscreen="yes"
+---
+
+The gateway information is only needed if a gateway is used.
+
+================================================================================
+EOF
+}
+
+# [+] ----------------------------------------------------------------| options
+
+# --| No args.
+[[ $# -eq 0 ]] && { usage; exit 0; }
+
+for arg in "$@"; do
+    case "${arg}" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+           CONFIG_FILE="${1}"
+    esac
+done
+
+# [+] ----------------------------------------------------------| configuration
+
+# --| Defaults
+: "${clipboard:=yes}"
+: "${sound:=yes}"
+: "${usb:=}"
+: "${fullscreen:=no}"
+
+if [[ -f "${CONFIG_FILE}" ]]; then
+    . "${CONFIG_FILE}"
+else
+    printf '%s\n' "${__red}[!]${__reset} easyrdp - Cannot find the config file provided."
+    printf '%s\n' ''
+    usage
+    exit 1
+fi
+
+# --| Required values
+: "${user:?missing user in config}"
+: "${domain:?missing domain in config}"
+: "${server:?missing server in config}"
+: "${password:?missing password in config}"
+
+# [+] --------------------------------------------------------| command builder
+cmd=(
+    xfreerdp3
+    "/u:${user}"
+    "/d:${domain}"
+    "/v:${server}"
+    "/p:${password}"
+)
+
+if [[ -n "${gateway_server:-}" ]]; then
+    : "${gateway_user:?missing gateway_user in config}"
+    : "${gateway_password:?missing gateway_password in config}"
+
+    cmd+=("/gateway:g:${gateway_server},u:${gateway_user},p:${gateway_password}")
+fi
+
+[[ "${clipboard}" == "yes" ]] && cmd+=("/clipboard")
+[[ "${sound}" == "yes" ]] && cmd+=("/sound")
+[[ -n "${usb}" ]] && cmd+=("/usb:${usb}")
+[[ "${fullscreen}" == "yes" ]] && cmd+=("/f")
+
+exec "${cmd[@]}"

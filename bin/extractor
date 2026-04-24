@@ -1,25 +1,25 @@
 #!/usr/bin/env sh
-# ------------------------------------------------------------------------ INFO
-# [.ael/bin/extractor]
+# [+] -------------------------------------------------------------------| INFO
+# [ael/bin/extractor]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-01 19:55:12 UTC
-# updated       : 2026-04-09 10:45:25 UTC
+# updated       : 2026-04-24 11:19:22 UTC
 # description   : Compressed files universal extractor.
 
 set -eu
 
-__blue=$'\033[34m'
-__red=$'\033[31m'
-__reset=$'\033[0m'
+foreground_blue=$'\033[34m'
+foreground_red=$'\033[31m'
+reset_colors=$'\033[0m'
 
 check_applications() {
-  local __app
-  for __app in "${@}"; do
-      if ! command -v $__app >/dev/null 2>&1; then
-            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-            return 1
-        fi
-    done
+  local app
+  for app in "${@}"; do
+      if ! command -v "${app}" >/dev/null 2>&1; then
+          printf '%s\n' "${foreground_red}[!]${reset_colors} ${app} is not installed."
+          return 1
+      fi
+  done
 }
 
 usage() {
@@ -71,124 +71,124 @@ EOF
 }
 
 # --| show help if no arguments.
-if [[ "$#" -eq 0 ]]; then
+if [[ "${#}" -eq 0 ]]; then
     usage
     exit 0
 fi
 
 # --| show help and ignore other arguments.
-for arg in "$@"; do
-    if [[ "$arg" == "-h" || "$arg" == "--help" ]]; then
+for arg in "${@}"; do
+    if [[ "${arg}" == "-h" || "${arg}" == "--help" ]]; then
         usage
         exit 0
     fi
 done
 
-for file in "$@"; do
-    if [ -f "$file" ]; then
+for file in "${@}"; do
+    if [ -f "${file}" ]; then
 
         # --| convert filename into a proper extraction directory
-        filename=$(basename "$file")
-        directory="$(dirname $file)/${filename//./-}-uncompressed"
+        filename=$(basename "${file}")
+        directory="$(dirname "${file}")/"${filename//./-}"-uncompressed"
 
-        case "$file" in
+        case "${file}" in
             # --| tar archives (ordered: most specific first)
             *.tar.gz|*.tgz)
                 check_applications tar || exit 1
-                mkdir -p "$directory"
-                tar xzf -- "$file" -C "$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                tar xzf -- "${file}" -C "${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar.bz2|*.tbz2)
                 check_applications tar || exit 1
-                mkdir -p "$directory"
-                tar xjf -- "$file" -C "$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                tar xjf -- "${file}" -C "${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar.xz|*.txz)
                 check_applications tar || exit 1
-                mkdir -p "$directory"
-                tar xJf -- "$file" -C "$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                tar xJf -- "${file}" -C "${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar.zst|*.tzst)
                 check_applications tar || exit 1
-                mkdir -p "$directory"
-                tar --zstd -xf -- "$file" -C "$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                tar --zstd -xf -- "${file}" -C "${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar)
                 check_applications tar || exit 1
-                mkdir -p "$directory"
-                tar xf -- "$file" -C "$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                tar xf -- "${file}" -C "${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
 
             # --| single-file compressions
             *.gz)
                 check_applications gunzip || exit 1
-                gunzip -- "$file"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                gunzip -- "${file}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.bz2)
                 check_applications bunzip2 || exit 1
-                bunzip2 -- "$file"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                bunzip2 -- "${file}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.xz)
                 check_applications unxz || exit 1
-                unxz -- "$file"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                unxz -- "${file}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.lzma)
                 check_applications unlzma || exit 1
-                unlzma -- "$file"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                unlzma -- "${file}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.Z)
                 check_applications uncompress || exit 1
-                uncompress -- "$file"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                uncompress -- "${file}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
 
             # --| other archive formats
             *.zip)
                 check_applications unzip || exit 1
-                mkdir -p "$directory"
-                unzip -- "$file" -d "$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                unzip -- "${file}" -d "${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.rar)
                 check_applications unrar || exit 1
-                mkdir -p "$directory"
-                unrar x -- "$file" "$directory/"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                unrar x -- "${file}" "${directory}/"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.7z)
                 check_applications 7z || exit 1
-                mkdir -p "$directory"
-                7z x -- "$file" -o"$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted.\n" "$file"
+                mkdir -p "${directory}"
+                7z x -- "${file}" -o"${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.iso)
                 check_applications 7z || exit 1
-                mkdir -p "$directory"
-                7z x -- "$file" -o"$directory"
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted (ISO image).\n" "$file"
+                mkdir -p "${directory}"
+                7z x -- "${file}" -o"${directory}"
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.cpio)
                 check_applications cpio || exit 1
-                mkdir -p "$directory"
-                ( cd "$directory" && cpio -id < "$file" )
-                printf "${__blue}[-]${__reset} extractor: '%s' extracted (cpio archive).\n" "$file"
+                mkdir -p "${directory}"
+                ( cd "${directory}" && cpio -id < "${file}" )
+                printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
 
             # --| fallback
             *)
-                printf '%s\n' "${__red}[!]${__reset} extractor: '$file' - unknown archive method."
+                printf '%s\n' "${foreground_red}[!]${reset_colors} extractor - unknown archive method."
                 ;;
         esac
     else
-        printf "${__red}[!]${__reset} extractor: '$file' is not a valid file."
+        printf '%s\n' "${foreground_red}[!]${reset_colors} extractor - ${file} is not a valid file."
     fi
 done

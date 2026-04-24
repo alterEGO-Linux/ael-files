@@ -111,6 +111,14 @@ dst         = "/ael/bin/elevate"
 symlinked   = true
 notes       = ["This script must be sourced."]
 
+[bin.easyrdp]
+filename    = "easyrdp"
+type        = "bin/bash"
+description = "Simple rdp wrapper."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/easyrdp"
+symlinked   = true
+
 [bin.emojis]
 filename    = "emojis"
 type        = "bin/bash"
