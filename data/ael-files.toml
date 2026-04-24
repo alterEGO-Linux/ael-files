@@ -1,8 +1,8 @@
-# ------------------------------------------------------------------------ INFO
+# [+] -------------------------------------------------------------------| INFO
 # [/ael/data/ael-files.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-20 11:33:51 UTC
+# updated       : 2026-04-24 20:28:34 UTC
 # description   : AEL files.
 
 [ael.aelcore]
@@ -256,6 +256,14 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/py-server"
 symlinked   = true
 
+[bin.reverse-ssh]
+filename    = "reverse-ssh"
+type        = "bin/bash"
+description = "Set up a reverse ssh tunnel."
+src         = "/ael-files/bin/"
+dst         = "/ael/bin/reverse-ssh"
+symlinked   = true
+
 [bin.shell-info]
 filename    = "shell-info"
 type        = "bin/bash"
@@ -346,9 +354,18 @@ src         = "/ael-files/bin/"
 dst         = "/ael/bin/word-frequency"
 symlinked   = false
 
+[collection.php-reverse-shell]
+filename    = "php-reverse-shell.php"
+type        = "reverse-shell/php"
+description = "Pentestmonkey PHP reverse shell."
+src         = "/ael-files/collection/reverse-shells/"
+dst         = "/ael/collection/reverse-shells/php-reverse-shell.php"
+info        = ['/ael/data/documentation/collection.md']
+symlinked   = true
+
 [collection.webshellphp]
 filename    = "webshell.php"
-type        = "reverse_shell/php"
+type        = "reverse-shell/php"
 description = "PHP web reverse shell."
 src         = "/ael-files/collection/reverse-shells/"
 dst         = "/ael/collection/reverse-shells/webshell.php"

@@ -34,7 +34,7 @@ tmux_access_session() {
                   --color=gutter:-1 \
                   --margin=1% \
                   --border=rounded \
-                  --prompt="SESSIONS" \
+                  --prompt="SESSIONS " \
                   --header=" " \
                   --no-hscroll \
                   --reverse \

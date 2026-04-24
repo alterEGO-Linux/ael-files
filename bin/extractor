@@ -1,9 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # [+] -------------------------------------------------------------------| INFO
 # [ael/bin/extractor]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2023-08-01 19:55:12 UTC
-# updated       : 2026-04-24 11:19:22 UTC
+# updated       : 2026-04-24 18:04:43 UTC
 # description   : Compressed files universal extractor.
 
 set -eu
@@ -96,58 +96,58 @@ for file in "${@}"; do
             *.tar.gz|*.tgz)
                 check_applications tar || exit 1
                 mkdir -p "${directory}"
-                tar xzf -- "${file}" -C "${directory}"
+                tar xzf "${file}" -C "${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar.bz2|*.tbz2)
                 check_applications tar || exit 1
                 mkdir -p "${directory}"
-                tar xjf -- "${file}" -C "${directory}"
+                tar xjf "${file}" -C "${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar.xz|*.txz)
                 check_applications tar || exit 1
                 mkdir -p "${directory}"
-                tar xJf -- "${file}" -C "${directory}"
+                tar xJf "${file}" -C "${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar.zst|*.tzst)
                 check_applications tar || exit 1
                 mkdir -p "${directory}"
-                tar --zstd -xf -- "${file}" -C "${directory}"
+                tar --zstd -xf "${file}" -C "${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.tar)
                 check_applications tar || exit 1
                 mkdir -p "${directory}"
-                tar xf -- "${file}" -C "${directory}"
+                tar xf "${file}" -C "${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
 
             # --| single-file compressions
             *.gz)
                 check_applications gunzip || exit 1
-                gunzip -- "${file}"
+                gunzip "${file}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.bz2)
                 check_applications bunzip2 || exit 1
-                bunzip2 -- "${file}"
+                bunzip2 "${file}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.xz)
                 check_applications unxz || exit 1
-                unxz -- "${file}"
+                unxz "${file}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.lzma)
                 check_applications unlzma || exit 1
-                unlzma -- "${file}"
+                unlzma "${file}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.Z)
                 check_applications uncompress || exit 1
-                uncompress -- "${file}"
+                uncompress "${file}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
 
@@ -155,25 +155,25 @@ for file in "${@}"; do
             *.zip)
                 check_applications unzip || exit 1
                 mkdir -p "${directory}"
-                unzip -- "${file}" -d "${directory}"
+                unzip "${file}" -d "${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.rar)
                 check_applications unrar || exit 1
                 mkdir -p "${directory}"
-                unrar x -- "${file}" "${directory}/"
+                unrar x "${file}" "${directory}/"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.7z)
                 check_applications 7z || exit 1
                 mkdir -p "${directory}"
-                7z x -- "${file}" -o"${directory}"
+                7z x "${file}" -o"${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.iso)
                 check_applications 7z || exit 1
                 mkdir -p "${directory}"
-                7z x -- "${file}" -o"${directory}"
+                7z x "${file}" -o"${directory}"
                 printf '%s\n' "${foreground_blue}[-]${reset_colors} extractor - ${file} extracted"
                 ;;
             *.cpio)

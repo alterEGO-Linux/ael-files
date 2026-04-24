@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+# [+] -------------------------------------------------------------------| INFO
+# [/ael/bin/reverse-ssh]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2022-01-10 16:23:27 UTC
+# updated       : 2026-04-24 19:28:57 UTC
+# description   : Set up a reverse ssh connection.
+
+foreground_blue=$'\033[34m'
+foreground_bold=$'\033[1m'
+foreground_red=$'\033[31m'
+foreground_yellow=$'\033[33m'
+reset_colors=$'\033[0m'
+
+check_applications() {
+    local app
+    for app in "${@}"; do
+        if ! command -v ${app} >/dev/null 2>&1; then
+            printf '%s\n' "${foreground_red}[!]${reset_colors} ${app} is not installed."
+            return 1
+        fi
+    done
+}
+check_applications ssh || exit 1
+
+
+usage() {
+    cat <<EOF | more
+===============================================================================
+[+] reverse-ssh - Set up a reverse ssh connection.
+===============================================================================
+Usage:
+  reverse-ssh <user@home_address:port> [-h|--help]
+
+Options:
+  -h, --help    Show this help.
+
+-------------------------------------------------------------------------------
+
+This script creates a ssh reverse tunnel that allows you to bypass firewalls
+blocking ssh incomming connections to a server or PC.
+
+It will call home and establish a secure connection which you can use to call
+back using its reverse tunnelling feature.
+
+Run on the remote server:
+
+  $ bash reverse-ssh <user@home_address:port>
+
+On the home machine:
+
+  $ ssh -p <port> localhost
+
+[ The basics ]
+
+SSH reverse tunneling uses local port forwarding on the local machine from an
+already existing ssh connection:
+
+  $ ssh user@local_machine
+
+  local machine:22 <- ssh connection <- remote server
+
+Using -R option, a specified port on the local machine will be listening and
+forward the reverse connection through the secured tunnel to port 22 on the 
+remote server.
+
+                                         ssh tunnel
+                                <-------------------------
+  local machine:<local_port> ->    reversed connection     -> remote server:22
+                                <-------------------------
+
+[ ServerAliveInterval=60 ]
+
+Usually, a ssh connection will timeout and disconnect from the server if no
+data is received. In order to bypass this, ServerAliveInterval
+option sets automatic message every 60 seconds if no activity occurs.
+
+[ localhost ]
+
+ssh doesn't seem to require localhost to be defined to work, but it doesn't 
+hurt to set the localhost on the home device in /etc/hosts:
+
+  127.0.0.1        localhost
+  ::1              localhost
+
+[ Password vs ssh-key ]
+
+Using this script with a password will work with limitation.
+
+- The password to connect home will be required on first launch.
+- The password will be required on every reconnections.
+
+This is a problem knowing the script runs on the remote server...
+
+To connect or reconnect automatically, it is a good idea to use a ssh key.
+
+On the remote server:
+
+  $ ssh-keygen -t rsa
+  $ ssh-copy-id <user>@<home_address>
+
+This will create a public and private key on the remote server, and then copy 
+the public key to home.
+
+[ In the background with tmux ]
+
+Although running reverse-ssh by itself is nice, to enable a more permanent
+reverse connection, you can use a multiplexer like tmux to keep the process
+running, even if you logout from your remote server session.
+
+  $ tmux new-session -d -s <session_name>
+  $ tmux send-keys -t <session_name> "bash reverse-ssh <user@home_address:port>" enter
+
+For example,
+
+  $ tmux new-session -d -s ETphoneHOME
+  $ tmux send-keys -t ETphoneHOME "bash reverse-ssh ghost@23.80.888.23O:6666" enter
+
+Once the tmux session started and reverse-ssh running within it, you can 
+logout. Unless you shutdown the remote server, the reverse ssh tunnel should 
+be up for you to access from home.
+
+If you want to access the tmux session later, to debbug or to kill the tunnel, 
+you can access it like so:
+
+  $ env TERM=screen-256color tmux -u a -t <session_name>
+
+[ Further reading ]
+
+• ServerFault - SSH remote port forwarding failed
+  https://serverfault.com/questions/595323/ssh-remote-port-forwarding-failed/615751#615751
+
+• SSH.com - SSH port forwarding - Example, command, server config
+  https://www.ssh.com/academy/ssh/tunneling/example
+
+• Dave McKay - What Is Reverse SSH Tunneling? (and How to Use It)
+  https://www.howtogeek.com/428413/what-is-reverse-ssh-tunneling-and-how-to-use-it/
+
+• Hussein Nasser - SSH Tunneling - Local & Remote Port Forwarding (by Example)
+  https://www.youtube.com/watch?v=N8f5zv9UUMI
+
+• branko, "Bypassing corporate firewall with reverse ssh port forwarding", think shell
+  http://toic.org/blog/2009/reverse-ssh-port-forwarding/
+
+                              { alterEGO Linux: "Open the vault of knowledge" } 
+===============================================================================
+EOF
+}
+
+
+reverse_ssh() {
+
+    # --| ref. <https://serverfault.com/a/615751>
+    printf '%s\n' "${foreground_blue}[+]${reset_colors} reverse-ssh - Initiating reverse ssh connection..."
+    printf '%s\n' "${foreground_blue}[-]${reset_colors} Use ssh -p ${port} localhost at home..."
+
+    while true; do
+        ssh -f ${user}@${home_address} -R ${port}:localhost:22  -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=60
+        sleep 180
+    done
+}
+
+
+for arg in "$@"; do
+    case "${arg}" in
+        *"@"*":"* )
+            user=$(cut -d '@' -f1 <<< "${@}")
+            home_address=$(grep -oP "(?<=@).*(?=:)" <<< "${@}")
+            port=$(cut -d ':' -f2 <<< "${@}")
+            reverse_ssh
+            ;; 
+
+        -h|--help )
+            usage
+            exit 0
+            ;;
+
+        * ) usage
+            exit 1
+            ;;
+    esac
+done
+
+# [+] -------------------------------------------------------------------| TODO
+
+# --| Include an option --tmux, to start the connection in the background.

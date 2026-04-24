@@ -1,20 +1,25 @@
-# ------------------------------------------------------------------------ INFO
+# [+] -------------------------------------------------------------------| INFO
 # [/ael/data/ael-packages.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
 # updated       : 2026-04-17 11:57:50 UTC
 # description   : Packages
 
-[bash] # {{{
+[alacritty]
+pkg_name      = "alacritty"
+description   = "A cross-platform, GPU-accelerated terminal emulator"
+url           = "https://github.com/alacritty/alacritty"
+repository    = "extra"
+included_app  = ["/usr/bin/alacritty"]
+
+[bash]
 url           = "https://www.gnu.org/software/bash/bash.html"
 description   = "The GNU Bourne Again shell."
 repository    = "core"
-included_app  = [
-                "/usr/bin/bash",
-                "/usr/bin/bashbug",
-                "/usr/bin/rbash",
-                "/usr/bin/sh",
-                ] # }}}
+included_app  = ["/usr/bin/bash",
+                 "/usr/bin/bashbug",
+                 "/usr/bin/rbash",
+                 "/usr/bin/sh"]
 
 [bind] # {{{
 url           = "https://www.isc.org/software/bind/"
