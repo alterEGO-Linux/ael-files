@@ -1,9 +1,10 @@
-# :----------------------------------------------------------------------- INFO
-# :[/usr/share/ael-config/firefox.toml]
-# :author        : fantomH @alterEGO Linux
-# :created       : 2024-09-21 01:22:04 UTC
-# :updated       : 2024-09-21 13:10:19 UTC
-# :description   : Firefox.
+# [+] -------------------------------------------------------------------| INFO
+# [/ael/data/firefox.toml]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2024-09-21 01:22:04 UTC
+# updated       : 2026-04-26 13:29:01 UTC
+# description   : Firefox.
+
 
 [addon.adblock-plus]
 name              = 'Adblock Plus'
