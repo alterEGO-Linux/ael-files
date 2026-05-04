@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# ------------------------------------------------------------------------ INFO
+# [+] -------------------------------------------------------------------| INFO
 # [/.ael/bin/geoip]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2026-04-07 19:29:17 UTC
-# updated       : 2026-04-07 19:29:17 UTC
+# updated       : 2026-04-27 17:19:24 UTC
 # description   : Uses ip-api.com to output geolocalization info.
 
 #!/usr/bin/env python3
@@ -151,18 +151,17 @@ def main() -> int:
 
             ok, reason = classify_ip(ip)
             if not ok:
-                print_row(make_error_row(ip, fields, reason))
+                print(ip, "ERROR")
             else:
                 try:
                     data = fetch_ip_data(ip, fields)
                     if data.get("status") != "success":
-                        message = str(data.get("message", "ERROR"))
-                        print_row(make_error_row(ip, fields, message))
+                        print(ip, "ERROR")
                     else:
                         row = [str(data.get(field, "")) for field in fields]
                         print_row(row, fields)
                 except requests.RequestException as e:
-                    print_row(make_error_row(ip, fields, f"REQUEST_ERROR: {e}"))
+                    print(ip, "ERROR")
 
             elapsed = time.monotonic() - started
             sleep_for = REQUEST_INTERVAL - elapsed

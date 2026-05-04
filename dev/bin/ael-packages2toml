@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# [+] -------------------------------------------------------------------| INFO
+# [/ael/dev/bin/ael-packages2toml]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-04-29 16:02:14 UTC
+# updated       : 2026-04-29 16:02:14 UTC
+# description   : Query packages information and convert to toml entry.
+
+package="${1}"
+
+printf '%s\n' "[${package}]"
+
+# [+] ---------------------------------------------------------------| paru -Si
+tmp_paru_Si="/tmp/tmp_paru_SI"
+
+paru -Si "${package}" > "${tmp_paru_Si}"
+
+pkg_name="$(grep ^Name ${tmp_paru_Si} \
+            | sed 's/Name            : /pkg_name      = "/' \
+            | sed 's/$/"/')"
+
+description="$(grep ^Description ${tmp_paru_Si} \
+            | sed 's/Description     : /description   = "/' \
+            | sed 's/$/"/')"
+
+url="$(grep ^URL ${tmp_paru_Si} \
+            | sed 's/URL             : /url           = "/' \
+            | sed 's/$/"/')"
+
+url_aur="$(grep "^AUR URL" ${tmp_paru_Si} \
+            | sed 's/AUR URL         : /url_aur       = "/' \
+            | sed 's/$/"/')"
+
+repository="$(grep ^Repository ${tmp_paru_Si} \
+            | sed 's/Repository      : /repository    = "/' \
+            | sed 's/$/"/')"
+
+printf '%s\n' "${pkg_name}"
+printf '%s\n' "${description}"
+printf '%s\n' "${url}"
+if [[ ! -z "${url_aur}" ]]; then
+    printf '%s\n' "${url_aur}"
+fi
+printf '%s\n' "${repository}"
+
+# [+] ---------------------------------------------------------------| paru -Ql
+tmp_paru_Ql="/tmp/tmp_paru_Ql"
+
+paru -Qlq "${package}" > "${tmp_paru_Ql}"
+
+# [+] /usr/bin/
+mapfile -t apps < <(grep '^/usr/bin/.' "${tmp_paru_Ql}" | rev | cut -d'/' -f1 | rev)
+
+printf 'included_app  = ['
+for i in "${!apps[@]}"; do
+    [[ $i -gt 0 ]] && printf ',\n                 '
+    printf '"%s"' "${apps[i]}"
+done
+printf ']\n'
+
+# [+] /man/
+mapfile -t mans < <(grep -E 'man/man[1-9]/.' "${tmp_paru_Ql}" | rev | cut -d'/' -f1 | rev | sed -E 's/\.([0-9]+)\.gz$/ (\1)/')
+
+printf 'manpages      = ['
+for i in "${!mans[@]}"; do
+    [[ $i -gt 0 ]] && printf ',\n                 '
+    printf '"%s"' "${mans[i]}"
+done
+printf ']\n'
+
+printf '%s\n' "mode          = [\"evaluation\"]"
