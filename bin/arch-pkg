@@ -1,0 +1,103 @@
+#!/usr/bin/env python
+# [+] -------------------------------------------------------------------| INFO
+# [/ael/bin/arch-pkg]
+# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
+# created       : 2026-05-06 20:06:51 UTC
+# updated       : 2026-05-06 20:06:51 UTC
+# description   : Arch Linux packages functions.
+
+import subprocess
+import sys
+import click
+
+
+CONTEXT_SETTINGS = {
+    "help_option_names": ["-h", "--help"],
+}
+
+
+def run_cmd(cmd: list[str]) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        cmd,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+
+
+@click.group(context_settings=CONTEXT_SETTINGS)
+@click.version_option("0.1.0")
+def cli():
+    """
+    Arch package helper.
+    """
+
+
+@cli.command("required-by")
+@click.argument("packages", nargs=-1, required=True)
+def required_by(packages):
+    """
+    Show the 'Required By' field for PACKAGE.
+    """
+    result = run_cmd(["paru", "-Qi", *packages])
+
+    for line in result.stdout.splitlines():
+        if "Required By" in line:
+            click.echo(line)
+
+    if result.stderr:
+        click.echo(result.stderr, err=True, nl=False)
+
+    raise SystemExit(result.returncode)
+
+
+@cli.command("mark-as-explicit")
+@click.argument("packages", nargs=-1, required=True)
+def mark_as_explicit(packages):
+    """
+    Mark PACKAGE as explicitly installed.
+    """
+    result = run_cmd(["paru", "-D", "--asexplicit", *packages])
+
+    if result.stdout:
+        click.echo(result.stdout, nl=False)
+
+    if result.stderr:
+        click.echo(result.stderr, err=True, nl=False)
+
+    raise SystemExit(result.returncode)
+
+
+@cli.command("list-explicit")
+def list_explicit():
+    """
+    List explicitly installed packages.
+    """
+    result = run_cmd(["paru", "-Qeq"])
+
+    if result.stdout:
+        click.echo(result.stdout, nl=False)
+
+    if result.stderr:
+        click.echo(result.stderr, err=True, nl=False)
+
+    raise SystemExit(result.returncode)
+
+@cli.command("list-orphans")
+def list_orphans():
+    """
+    List orphan packages.
+    """
+    result = run_cmd(["paru", "-Qtdq"])
+
+    if result.stdout:
+        click.echo(result.stdout, nl=False)
+
+    if result.stderr:
+        click.echo(result.stderr, err=True, nl=False)
+
+    raise SystemExit(result.returncode)
+
+
+if __name__ == "__main__":
+    cli()

@@ -2,7 +2,7 @@
 # [/ael/data/ael-packages.toml]
 # author        : Pascal Malouin (https://github.com/alterEGO-Linux)
 # created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-05-04 11:16:17 UTC
+# updated       : 2026-05-07 20:26:35 UTC
 # description   : Packages
 
 [7zip]
@@ -16,6 +16,15 @@ included_app  = ["7z",
 manpages      = []
 mode          = ["ael-bare"]
 
+[adobe-source-code-pro-fonts]
+pkg_name      = "adobe-source-code-pro-fonts"
+description   = "Monospaced font family for user interface and coding environments"
+url           = "https://adobe-fonts.github.io/source-code-pro/"
+repository    = "extra"
+included_app  = []
+manpages      = []
+mode          = ["evaluation"]
+
 [alacritty]
 pkg_name      = "alacritty"
 description   = "A cross-platform, GPU-accelerated terminal emulator"
@@ -27,6 +36,16 @@ manpages      = ["alacritty-msg (1)",
                  "alacritty-bindings (5)",
                  "alacritty (5)"]
 mode          = ["ael-desktop"]
+
+[archlinux-keyring]
+pkg_name      = "archlinux-keyring"
+description   = "Arch Linux PGP keyring"
+url           = "https://gitlab.archlinux.org/archlinux/archlinux-keyring/"
+repository    = "core"
+included_app  = ["archlinux-keyring-wkd-sync"]
+manpages      = []
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [arp-scan]
 pkg_name      = "arp-scan"
@@ -42,6 +61,44 @@ manpages      = ["arp-fingerprint (1)",
                  "mac-vendor (5)"]
 mode          = ["ael-hacker"]
 
+[autoconf]
+pkg_name      = "autoconf"
+description   = "A GNU tool for automatically configuring source code"
+url           = "https://www.gnu.org/software/autoconf"
+repository    = "core"
+included_app  = ["autoconf",
+                 "autoheader",
+                 "autom4te",
+                 "autoreconf",
+                 "autoscan",
+                 "autoupdate",
+                 "ifnames"]
+manpages      = ["autoconf (1)",
+                 "autoheader (1)",
+                 "autom4te (1)",
+                 "autoreconf (1)",
+                 "autoscan (1)",
+                 "autoupdate (1)",
+                 "ifnames (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[automake]
+pkg_name      = "automake"
+description   = "A GNU tool for automatically creating Makefiles"
+url           = "https://www.gnu.org/software/automake"
+repository    = "core"
+included_app  = ["aclocal",
+                 "aclocal-1.18",
+                 "automake",
+                 "automake-1.18"]
+manpages      = ["aclocal-1.18 (1)",
+                 "aclocal (1)",
+                 "automake-1.18 (1)",
+                 "automake (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
 [bash]
 pkg_name      = "bash"
 description   = "The GNU Bourne Again shell"
@@ -54,7 +111,36 @@ included_app  = ["bash",
 manpages      = ["bash (1)",
                  "bashbug (1)"]
 install       = ["core/base"]
-mode          = ["arch-bare"]
+mode          = ["arch-base"]
+
+[bash-completion]
+pkg_name      = "bash-completion"
+description   = "Programmable completion for the bash shell"
+url           = "https://github.com/scop/bash-completion"
+repository    = "extra"
+included_app  = []
+manpages      = []
+mode          = ["ael-bare"]
+
+[bat]
+pkg_name      = "bat"
+description   = "Cat clone with syntax highlighting and git integration"
+url           = "https://github.com/sharkdp/bat"
+repository    = "extra"
+included_app  = ["bat"]
+manpages      = ["bat (1)"]
+mode          = ["ael-bare"]
+
+[bc]
+pkg_name      = "bc"
+description   = "An arbitrary precision calculator language"
+url           = "https://www.gnu.org/software/bc/"
+repository    = "extra"
+included_app  = ["bc",
+                 "dc"]
+manpages      = ["bc (1)",
+                 "dc (1)"]
+mode          = ["ael-bare"]
 
 [bind]
 pkg_name      = "bind"
@@ -124,6 +210,106 @@ manpages      = ["arpaname (1)",
                  "rndc (8)",
                  "tsig-keygen (8)"]
 mode          = ["ael-bare"]
+
+[binutils]
+pkg_name      = "binutils"
+description   = "A set of programs to assemble and manipulate binary and object files"
+url           = "https://www.gnu.org/software/binutils/"
+repository    = "core"
+included_app  = ["addr2line",
+                 "ar",
+                 "as",
+                 "c++filt",
+                 "dwp",
+                 "elfedit",
+                 "gp-archive",
+                 "gp-collect-app",
+                 "gp-display-html",
+                 "gp-display-src",
+                 "gp-display-text",
+                 "gprof",
+                 "gprofng",
+                 "gprofng-archive",
+                 "gprofng-collect-app",
+                 "gprofng-display-html",
+                 "gprofng-display-src",
+                 "gprofng-display-text",
+                 "gprofng-gmon",
+                 "ld",
+                 "ld.bfd",
+                 "ld.gold",
+                 "nm",
+                 "objcopy",
+                 "objdump",
+                 "ranlib",
+                 "readelf",
+                 "size",
+                 "strings",
+                 "strip"]
+manpages      = ["addr2line (1)",
+                 "ar (1)",
+                 "as (1)",
+                 "c++filt (1)",
+                 "elfedit (1)",
+                 "gprof (1)",
+                 "gprofng-archive (1)",
+                 "gprofng-collect-app (1)",
+                 "gprofng-display-gmon (1)",
+                 "gprofng-display-html (1)",
+                 "gprofng-display-src (1)",
+                 "gprofng-display-text (1)",
+                 "gprofng (1)",
+                 "ld (1)",
+                 "nm (1)",
+                 "objcopy (1)",
+                 "objdump (1)",
+                 "ranlib (1)",
+                 "readelf (1)",
+                 "size (1)",
+                 "strings (1)",
+                 "strip (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[bison]
+pkg_name      = "bison"
+description   = "The GNU general-purpose parser generator"
+url           = "https://www.gnu.org/software/bison/bison.html"
+repository    = "core"
+included_app  = ["bison",
+                 "yacc"]
+manpages      = ["bison (1)",
+                 "yacc (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[brightnessctl]
+pkg_name      = "brightnessctl"
+description   = "Lightweight brightness control tool"
+url           = "https://github.com/Hummer12007/brightnessctl"
+repository    = "extra"
+included_app  = ["brightnessctl"]
+manpages      = ["brightnessctl (1)"]
+mode          = ["evaluation"]
+
+[bzip2]
+pkg_name      = "bzip2"
+description   = "A high-quality data compression program"
+url           = "https://sourceware.org/bzip2/"
+repository    = "core"
+included_app  = ["bunzip2",
+                 "bzcat",
+                 "bzdiff",
+                 "bzgrep",
+                 "bzip2",
+                 "bzip2recover",
+                 "bzmore"]
+manpages      = ["bunzip2 (1)",
+                 "bzcat (1)",
+                 "bzip2 (1)",
+                 "bzip2recover (1)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [bleachbit]
 pkg_name      = "bleachbit"
@@ -758,6 +944,20 @@ manpages      = ["cda2dcm (1)",
                  "xml2dsr (1)"]
 mode          = ["evaluation"]
 
+[debugedit]
+pkg_name      = "debugedit"
+description   = "Tool to mangle source locations in .debug files"
+url           = "https://sourceware.org/debugedit/"
+repository    = "core"
+included_app  = ["debugedit",
+                 "find-debuginfo",
+                 "sepdebugcrcfix"]
+manpages      = ["debugedit (1)",
+                 "find-debuginfo (1)",
+                 "sepdebugcrcfix (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
 [dex]
 pkg_name      = "dex"
 description   = "Program to generate and execute DesktopEntry files of type Application"
@@ -1055,6 +1255,33 @@ manpages      = ["dos2unix (1)",
                  "unix2mac (1)"]
 mode          = ["ael-bare"]
 
+[dosfstools]
+pkg_name      = "dosfstools"
+description   = "DOS filesystem utilities"
+url           = "https://github.com/dosfstools/dosfstools"
+repository    = "core"
+included_app  = ["dosfsck",
+                 "dosfslabel",
+                 "fatlabel",
+                 "fsck.fat",
+                 "fsck.msdos",
+                 "fsck.vfat",
+                 "mkdosfs",
+                 "mkfs.fat",
+                 "mkfs.msdos",
+                 "mkfs.vfat"]
+manpages      = ["dosfsck (8)",
+                 "dosfslabel (8)",
+                 "fatlabel (8)",
+                 "fsck.fat (8)",
+                 "fsck.msdos (8)",
+                 "fsck.vfat (8)",
+                 "mkdosfs (8)",
+                 "mkfs.fat (8)",
+                 "mkfs.msdos (8)",
+                 "mkfs.vfat (8)"]
+mode          = ["evaluation"]
+
 [duf]
 pkg_name      = "duf"
 description   = "Disk Usage/Free Utility"
@@ -1077,6 +1304,15 @@ manpages      = ["dunst (1)",
                  "dunstify (1)",
                  "dunst (5)"]
 mode          = ["ael-desktop"]
+
+[easy-rsa]
+pkg_name      = "easy-rsa"
+description   = "Simple shell based CA utility"
+url           = "https://github.com/OpenVPN/easy-rsa"
+repository    = "extra"
+included_app  = ["easyrsa"]
+manpages      = []
+mode          = ["evaluation"]
 
 [entr]
 pkg_name      = "entr"
@@ -1134,6 +1370,18 @@ manpages      = ["eza (1)",
                  "eza_colors (5)"]
 mode          = ["evaluation"]
 
+[fakeroot]
+pkg_name      = "fakeroot"
+description   = "Tool for simulating superuser privileges"
+url           = "https://tracker.debian.org/pkg/fakeroot"
+repository    = "core"
+included_app  = ["faked",
+                 "fakeroot"]
+manpages      = ["faked (1)",
+                 "fakeroot (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
 [ffmpeg]
 pkg_name      = "ffmpeg"
 description   = "Complete solution to record, convert and stream audio and video"
@@ -1166,6 +1414,28 @@ manpages      = ["ffmpeg-all (1)",
                  "libswresample (3)",
                  "libswscale (3)"]
 mode          = ["ael-bare"]
+
+[file]
+pkg_name      = "file"
+description   = "File type identification utility"
+url           = "https://www.darwinsys.com/file/"
+repository    = "core"
+included_app  = ["file"]
+manpages      = ["file (1)",
+                 "libmagic (3)",
+                 "magic (5)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
+[filesystem]
+pkg_name      = "filesystem"
+description   = "Base Arch Linux files"
+url           = "https://archlinux.org"
+repository    = "core"
+included_app  = []
+manpages      = []
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [findutils]
 pkg_name      = "findutils"
@@ -1204,6 +1474,18 @@ manpages      = ["firecfg (1)",
                  "firejail-profile (5)",
                  "firejail-users (5)"]
 mode          = ["evaluation"]
+
+[flex]
+pkg_name      = "flex"
+description   = "A tool for generating text-scanning programs"
+url           = "https://github.com/westes/flex"
+repository    = "core"
+included_app  = ["flex",
+                 "flex++",
+                 "lex"]
+manpages      = ["flex (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
 
 [freerdp]
 pkg_name      = "freerdp"
@@ -1253,7 +1535,940 @@ manpages      = ["gawk (1)",
                  "gawkbug (1)",
                  "pm-gawk (1)"]
 install       = ["core/base"]
-mode          = ["ael-bare"]
+mode          = ["arch-base"]
+
+[gcc]
+pkg_name      = "gcc"
+description   = "The GNU Compiler Collection - C and C++ frontends"
+url           = "https://gcc.gnu.org"
+repository    = "core"
+included_app  = ["c++",
+                 "c89",
+                 "c99",
+                 "cc",
+                 "cpp",
+                 "g++",
+                 "gcc",
+                 "gcc-ar",
+                 "gcc-nm",
+                 "gcc-ranlib",
+                 "gcov",
+                 "gcov-tool",
+                 "x86_64-linux-gnu-c++",
+                 "x86_64-linux-gnu-g++",
+                 "x86_64-linux-gnu-gcc",
+                 "x86_64-linux-gnu-gcc-ar",
+                 "x86_64-linux-gnu-gcc-nm",
+                 "x86_64-linux-gnu-gcc-ranlib",
+                 "x86_64-pc-linux-gnu-c++",
+                 "x86_64-pc-linux-gnu-g++",
+                 "x86_64-pc-linux-gnu-gcc",
+                 "x86_64-pc-linux-gnu-gcc-16.1.1",
+                 "x86_64-pc-linux-gnu-gcc-ar",
+                 "x86_64-pc-linux-gnu-gcc-nm",
+                 "x86_64-pc-linux-gnu-gcc-ranlib"]
+manpages      = ["cpp (1)",
+                 "g++ (1)",
+                 "gcc (1)",
+                 "gcov-dump (1)",
+                 "gcov-tool (1)",
+                 "gcov (1)",
+                 "C++Intro (3)",
+                 "SGIextensions (3)",
+                 "__gnu_cxx (3)",
+                 "__gnu_cxx::_Caster (3)",
+                 "__gnu_cxx::_Char_types (3)",
+                 "__gnu_cxx::_ExtPtr_allocator (3)",
+                 "__gnu_cxx::_Invalid_type (3)",
+                 "__gnu_cxx::_Pointer_adapter (3)",
+                 "__gnu_cxx::_Relative_pointer_impl (3)",
+                 "__gnu_cxx::_Std_pointer_impl (3)",
+                 "__gnu_cxx::_Temporary_buffer (3)",
+                 "__gnu_cxx::_Unqualified_type (3)",
+                 "__gnu_cxx::__alloc_traits (3)",
+                 "__gnu_cxx::__common_pool_policy (3)",
+                 "__gnu_cxx::__detail (3)",
+                 "__gnu_cxx::__detail::_Bitmap_counter (3)",
+                 "__gnu_cxx::__detail::_Ffit_finder (3)",
+                 "__gnu_cxx::__detail::__mini_vector (3)",
+                 "__gnu_cxx::__mt_alloc (3)",
+                 "__gnu_cxx::__mt_alloc_base (3)",
+                 "__gnu_cxx::__per_type_pool_policy (3)",
+                 "__gnu_cxx::__pool (3)",
+                 "__gnu_cxx::__pool_alloc (3)",
+                 "__gnu_cxx::__pool_alloc_base (3)",
+                 "__gnu_cxx::__pool_base (3)",
+                 "__gnu_cxx::__rc_string_base (3)",
+                 "__gnu_cxx::__scoped_lock (3)",
+                 "__gnu_cxx::__versa_string (3)",
+                 "__gnu_cxx::allocator (3)",
+                 "__gnu_cxx::annotate_base (3)",
+                 "__gnu_cxx::binary_compose (3)",
+                 "__gnu_cxx::bitmap_allocator (3)",
+                 "__gnu_cxx::char_traits (3)",
+                 "__gnu_cxx::character (3)",
+                 "__gnu_cxx::condition_base (3)",
+                 "__gnu_cxx::constant_binary_fun (3)",
+                 "__gnu_cxx::constant_unary_fun (3)",
+                 "__gnu_cxx::constant_void_fun (3)",
+                 "__gnu_cxx::debug_allocator (3)",
+                 "__gnu_cxx::enc_filebuf (3)",
+                 "__gnu_cxx::encoding_char_traits (3)",
+                 "__gnu_cxx::encoding_state (3)",
+                 "__gnu_cxx::equal_to (3)",
+                 "__gnu_cxx::forced_error (3)",
+                 "__gnu_cxx::free_list (3)",
+                 "__gnu_cxx::hash_map (3)",
+                 "__gnu_cxx::hash_multimap (3)",
+                 "__gnu_cxx::hash_multiset (3)",
+                 "__gnu_cxx::hash_set (3)",
+                 "__gnu_cxx::limit_condition (3)",
+                 "__gnu_cxx::limit_condition_always_adjustor (3)",
+                 "__gnu_cxx::limit_condition_limit_adjustor (3)",
+                 "__gnu_cxx::limit_condition_never_adjustor (3)",
+                 "__gnu_cxx::malloc_allocator (3)",
+                 "__gnu_cxx::new_allocator (3)",
+                 "__gnu_cxx::pair (3)",
+                 "__gnu_cxx::project1st (3)",
+                 "__gnu_cxx::project2nd (3)",
+                 "__gnu_cxx::random_condition (3)",
+                 "__gnu_cxx::random_condition_always_adjustor (3)",
+                 "__gnu_cxx::random_condition_group_adjustor (3)",
+                 "__gnu_cxx::random_condition_never_adjustor (3)",
+                 "__gnu_cxx::rb_tree (3)",
+                 "__gnu_cxx::recursive_init_error (3)",
+                 "__gnu_cxx::rope (3)",
+                 "__gnu_cxx::select1st (3)",
+                 "__gnu_cxx::select2nd (3)",
+                 "__gnu_cxx::slist (3)",
+                 "__gnu_cxx::stdio_filebuf (3)",
+                 "__gnu_cxx::stdio_sync_filebuf (3)",
+                 "__gnu_cxx::subtractive_rng (3)",
+                 "__gnu_cxx::temporary_buffer (3)",
+                 "__gnu_cxx::throw_allocator_base (3)",
+                 "__gnu_cxx::throw_allocator_limit (3)",
+                 "__gnu_cxx::throw_allocator_random (3)",
+                 "__gnu_cxx::throw_value_base (3)",
+                 "__gnu_cxx::throw_value_limit (3)",
+                 "__gnu_cxx::throw_value_random (3)",
+                 "__gnu_cxx::typelist (3)",
+                 "__gnu_cxx::unary_compose (3)",
+                 "__gnu_debug (3)",
+                 "__gnu_debug::_After_nth_from (3)",
+                 "__gnu_debug::_BeforeBeginHelper (3)",
+                 "__gnu_debug::_Equal_to (3)",
+                 "__gnu_debug::_Not_equal_to (3)",
+                 "__gnu_debug::_Safe_container (3)",
+                 "__gnu_debug::_Safe_forward_list (3)",
+                 "__gnu_debug::_Safe_iterator (3)",
+                 "__gnu_debug::_Safe_iterator_base (3)",
+                 "__gnu_debug::_Safe_local_iterator (3)",
+                 "__gnu_debug::_Safe_local_iterator_base (3)",
+                 "__gnu_debug::_Safe_node_sequence (3)",
+                 "__gnu_debug::_Safe_sequence (3)",
+                 "__gnu_debug::_Safe_sequence_base (3)",
+                 "__gnu_debug::_Safe_unordered_container (3)",
+                 "__gnu_debug::_Safe_unordered_container_base (3)",
+                 "__gnu_debug::_Safe_vector (3)",
+                 "__gnu_debug::_Sequence_traits (3)",
+                 "__gnu_debug::basic_string (3)",
+                 "__gnu_debug::type_info (3)",
+                 "__gnu_internal (3)",
+                 "__gnu_parallel (3)",
+                 "__gnu_parallel::_DRSSorterPU (3)",
+                 "__gnu_parallel::_DRandomShufflingGlobalData (3)",
+                 "__gnu_parallel::_DummyReduct (3)",
+                 "__gnu_parallel::_EqualFromLess (3)",
+                 "__gnu_parallel::_EqualTo (3)",
+                 "__gnu_parallel::_GuardedIterator (3)",
+                 "__gnu_parallel::_IteratorPair (3)",
+                 "__gnu_parallel::_IteratorTriple (3)",
+                 "__gnu_parallel::_Job (3)",
+                 "__gnu_parallel::_Less (3)",
+                 "__gnu_parallel::_Lexicographic (3)",
+                 "__gnu_parallel::_LexicographicReverse (3)",
+                 "__gnu_parallel::_LoserTree (3)",
+                 "__gnu_parallel::_LoserTreeBase (3)",
+                 "__gnu_parallel::_LoserTreeBase__Loser (3)",
+                 "__gnu_parallel::_LoserTreePointer (3)",
+                 "__gnu_parallel::_LoserTreePointerBase (3)",
+                 "__gnu_parallel::_LoserTreePointerBase__Loser (3)",
+                 "__gnu_parallel::_LoserTreePointerUnguarded (3)",
+                 "__gnu_parallel::_LoserTreePointerUnguardedBase (3)",
+                 "__gnu_parallel::_LoserTreeTraits (3)",
+                 "__gnu_parallel::_LoserTreeUnguarded (3)",
+                 "__gnu_parallel::_LoserTreeUnguardedBase (3)",
+                 "__gnu_parallel::_Multiplies (3)",
+                 "__gnu_parallel::_Nothing (3)",
+                 "__gnu_parallel::_PMWMSSortingData (3)",
+                 "__gnu_parallel::_Piece (3)",
+                 "__gnu_parallel::_Plus (3)",
+                 "__gnu_parallel::_PseudoSequence (3)",
+                 "__gnu_parallel::_PseudoSequenceIterator (3)",
+                 "__gnu_parallel::_QSBThreadLocal (3)",
+                 "__gnu_parallel::_RandomNumber (3)",
+                 "__gnu_parallel::_RestrictedBoundedConcurrentQueue (3)",
+                 "__gnu_parallel::_SamplingSorter (3)",
+                 "__gnu_parallel::_Settings (3)",
+                 "__gnu_parallel::_SplitConsistently (3)",
+                 "__gnu_parallel::__accumulate_binop_reduct (3)",
+                 "__gnu_parallel::__accumulate_selector (3)",
+                 "__gnu_parallel::__adjacent_difference_selector (3)",
+                 "__gnu_parallel::__adjacent_find_selector (3)",
+                 "__gnu_parallel::__binder1st (3)",
+                 "__gnu_parallel::__binder2nd (3)",
+                 "__gnu_parallel::__count_if_selector (3)",
+                 "__gnu_parallel::__count_selector (3)",
+                 "__gnu_parallel::__fill_selector (3)",
+                 "__gnu_parallel::__find_first_of_selector (3)",
+                 "__gnu_parallel::__find_if_selector (3)",
+                 "__gnu_parallel::__for_each_selector (3)",
+                 "__gnu_parallel::__generate_selector (3)",
+                 "__gnu_parallel::__generic_find_selector (3)",
+                 "__gnu_parallel::__generic_for_each_selector (3)",
+                 "__gnu_parallel::__identity_selector (3)",
+                 "__gnu_parallel::__inner_product_selector (3)",
+                 "__gnu_parallel::__max_element_reduct (3)",
+                 "__gnu_parallel::__min_element_reduct (3)",
+                 "__gnu_parallel::__mismatch_selector (3)",
+                 "__gnu_parallel::__multiway_merge_3_variant_sentinel_switch (3)",
+                 "__gnu_parallel::__multiway_merge_4_variant_sentinel_switch (3)",
+                 "__gnu_parallel::__multiway_merge_k_variant_sentinel_switch (3)",
+                 "__gnu_parallel::__replace_if_selector (3)",
+                 "__gnu_parallel::__replace_selector (3)",
+                 "__gnu_parallel::__transform1_selector (3)",
+                 "__gnu_parallel::__transform2_selector (3)",
+                 "__gnu_parallel::__unary_negate (3)",
+                 "__gnu_parallel::balanced_quicksort_tag (3)",
+                 "__gnu_parallel::balanced_tag (3)",
+                 "__gnu_parallel::constant_size_blocks_tag (3)",
+                 "__gnu_parallel::default_parallel_tag (3)",
+                 "__gnu_parallel::equal_split_tag (3)",
+                 "__gnu_parallel::exact_tag (3)",
+                 "__gnu_parallel::find_tag (3)",
+                 "__gnu_parallel::growing_blocks_tag (3)",
+                 "__gnu_parallel::multiway_mergesort_exact_tag (3)",
+                 "__gnu_parallel::multiway_mergesort_sampling_tag (3)",
+                 "__gnu_parallel::multiway_mergesort_tag (3)",
+                 "__gnu_parallel::omp_loop_static_tag (3)",
+                 "__gnu_parallel::omp_loop_tag (3)",
+                 "__gnu_parallel::parallel_tag (3)",
+                 "__gnu_parallel::quicksort_tag (3)",
+                 "__gnu_parallel::sampling_tag (3)",
+                 "__gnu_parallel::sequential_tag (3)",
+                 "__gnu_parallel::unbalanced_tag (3)",
+                 "__gnu_pbds (3)",
+                 "__gnu_pbds::associative_tag (3)",
+                 "__gnu_pbds::basic_branch (3)",
+                 "__gnu_pbds::basic_branch_tag (3)",
+                 "__gnu_pbds::basic_hash_table (3)",
+                 "__gnu_pbds::basic_hash_tag (3)",
+                 "__gnu_pbds::basic_invalidation_guarantee (3)",
+                 "__gnu_pbds::binary_heap_tag (3)",
+                 "__gnu_pbds::binomial_heap_tag (3)",
+                 "__gnu_pbds::cc_hash_max_collision_check_resize_trigger (3)",
+                 "__gnu_pbds::cc_hash_table (3)",
+                 "__gnu_pbds::cc_hash_tag (3)",
+                 "__gnu_pbds::container_error (3)",
+                 "__gnu_pbds::container_tag (3)",
+                 "__gnu_pbds::container_traits (3)",
+                 "__gnu_pbds::container_traits_base (3)",
+                 "__gnu_pbds::detail::bin_search_tree_const_it_ (3)",
+                 "__gnu_pbds::detail::bin_search_tree_const_node_it_ (3)",
+                 "__gnu_pbds::detail::bin_search_tree_it_ (3)",
+                 "__gnu_pbds::detail::bin_search_tree_node_it_ (3)",
+                 "__gnu_pbds::detail::bin_search_tree_traits (3)",
+                 "__gnu_pbds::detail::binary_heap (3)",
+                 "__gnu_pbds::detail::binary_heap_const_iterator_ (3)",
+                 "__gnu_pbds::detail::binary_heap_point_const_iterator_ (3)",
+                 "__gnu_pbds::detail::binomial_heap (3)",
+                 "__gnu_pbds::detail::binomial_heap_base (3)",
+                 "__gnu_pbds::detail::branch_policy (3)",
+                 "__gnu_pbds::detail::cc_ht_map (3)",
+                 "__gnu_pbds::detail::cond_dealtor (3)",
+                 "__gnu_pbds::detail::container_base_dispatch (3)",
+                 "__gnu_pbds::detail::default_comb_hash_fn (3)",
+                 "__gnu_pbds::detail::default_eq_fn (3)",
+                 "__gnu_pbds::detail::default_hash_fn (3)",
+                 "__gnu_pbds::detail::default_probe_fn (3)",
+                 "__gnu_pbds::detail::default_resize_policy (3)",
+                 "__gnu_pbds::detail::default_trie_access_traits (3)",
+                 "__gnu_pbds::detail::default_update_policy (3)",
+                 "__gnu_pbds::detail::dumnode_const_iterator (3)",
+                 "__gnu_pbds::detail::entry_cmp (3)",
+                 "__gnu_pbds::detail::entry_pred (3)",
+                 "__gnu_pbds::detail::eq_by_less (3)",
+                 "__gnu_pbds::detail::gp_ht_map (3)",
+                 "__gnu_pbds::detail::hash_eq_fn (3)",
+                 "__gnu_pbds::detail::hash_load_check_resize_trigger_size_base (3)",
+                 "__gnu_pbds::detail::left_child_next_sibling_heap (3)",
+                 "__gnu_pbds::detail::left_child_next_sibling_heap_const_iterator_ (3)",
+                 "__gnu_pbds::detail::left_child_next_sibling_heap_node_ (3)",
+                 "__gnu_pbds::detail::left_child_next_sibling_heap_node_point_const_iterator_ (3)",
+                 "__gnu_pbds::detail::lu_counter_metadata (3)",
+                 "__gnu_pbds::detail::lu_counter_policy_base (3)",
+                 "__gnu_pbds::detail::lu_map (3)",
+                 "__gnu_pbds::detail::mask_based_range_hashing (3)",
+                 "__gnu_pbds::detail::maybe_null_type (3)",
+                 "__gnu_pbds::detail::mod_based_range_hashing (3)",
+                 "__gnu_pbds::detail::no_throw_copies (3)",
+                 "__gnu_pbds::detail::ov_tree_map (3)",
+                 "__gnu_pbds::detail::ov_tree_map_cond_dtor (3)",
+                 "__gnu_pbds::detail::ov_tree_node_const_it_ (3)",
+                 "__gnu_pbds::detail::ov_tree_node_it_ (3)",
+                 "__gnu_pbds::detail::pairing_heap (3)",
+                 "__gnu_pbds::detail::pat_trie_base (3)",
+                 "__gnu_pbds::detail::pat_trie_base__CIter (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Head (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Inode (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Inode_const_iterator (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Inode_iterator (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Iter (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Leaf (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Metadata (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Node_base (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Node_citer (3)",
+                 "__gnu_pbds::detail::pat_trie_base__Node_iter (3)",
+                 "__gnu_pbds::detail::pat_trie_map (3)",
+                 "__gnu_pbds::detail::probe_fn_base (3)",
+                 "__gnu_pbds::detail::ranged_hash_fn (3)",
+                 "__gnu_pbds::detail::ranged_probe_fn (3)",
+                 "__gnu_pbds::detail::rb_tree_map (3)",
+                 "__gnu_pbds::detail::rb_tree_node_ (3)",
+                 "__gnu_pbds::detail::rc (3)",
+                 "__gnu_pbds::detail::rc_binomial_heap (3)",
+                 "__gnu_pbds::detail::rebind_traits (3)",
+                 "__gnu_pbds::detail::resize_policy (3)",
+                 "__gnu_pbds::detail::select_value_type (3)",
+                 "__gnu_pbds::detail::splay_tree_map (3)",
+                 "__gnu_pbds::detail::splay_tree_node_ (3)",
+                 "__gnu_pbds::detail::stored_data (3)",
+                 "__gnu_pbds::detail::stored_hash (3)",
+                 "__gnu_pbds::detail::stored_value (3)",
+                 "__gnu_pbds::detail::synth_access_traits (3)",
+                 "__gnu_pbds::detail::thin_heap (3)",
+                 "__gnu_pbds::detail::tree_metadata_helper (3)",
+                 "__gnu_pbds::detail::tree_node_metadata_dispatch (3)",
+                 "__gnu_pbds::detail::tree_traits (3)",
+                 "__gnu_pbds::detail::trie_metadata_helper (3)",
+                 "__gnu_pbds::detail::trie_node_metadata_dispatch (3)",
+                 "__gnu_pbds::detail::trie_policy_base (3)",
+                 "__gnu_pbds::detail::trie_traits (3)",
+                 "__gnu_pbds::detail::types_traits (3)",
+                 "__gnu_pbds::direct_mask_range_hashing (3)",
+                 "__gnu_pbds::direct_mod_range_hashing (3)",
+                 "__gnu_pbds::gp_hash_table (3)",
+                 "__gnu_pbds::gp_hash_tag (3)",
+                 "__gnu_pbds::hash_exponential_size_policy (3)",
+                 "__gnu_pbds::hash_load_check_resize_trigger (3)",
+                 "__gnu_pbds::hash_prime_size_policy (3)",
+                 "__gnu_pbds::hash_standard_resize_policy (3)",
+                 "__gnu_pbds::insert_error (3)",
+                 "__gnu_pbds::join_error (3)",
+                 "__gnu_pbds::linear_probe_fn (3)",
+                 "__gnu_pbds::list_update (3)",
+                 "__gnu_pbds::list_update_tag (3)",
+                 "__gnu_pbds::lu_counter_policy (3)",
+                 "__gnu_pbds::lu_move_to_front_policy (3)",
+                 "__gnu_pbds::null_node_update (3)",
+                 "__gnu_pbds::null_type (3)",
+                 "__gnu_pbds::ov_tree_tag (3)",
+                 "__gnu_pbds::pairing_heap_tag (3)",
+                 "__gnu_pbds::pat_trie_tag (3)",
+                 "__gnu_pbds::point_invalidation_guarantee (3)",
+                 "__gnu_pbds::priority_queue (3)",
+                 "__gnu_pbds::priority_queue_tag (3)",
+                 "__gnu_pbds::quadratic_probe_fn (3)",
+                 "__gnu_pbds::range_invalidation_guarantee (3)",
+                 "__gnu_pbds::rb_tree_tag (3)",
+                 "__gnu_pbds::rc_binomial_heap_tag (3)",
+                 "__gnu_pbds::resize_error (3)",
+                 "__gnu_pbds::sample_probe_fn (3)",
+                 "__gnu_pbds::sample_range_hashing (3)",
+                 "__gnu_pbds::sample_ranged_hash_fn (3)",
+                 "__gnu_pbds::sample_ranged_probe_fn (3)",
+                 "__gnu_pbds::sample_resize_policy (3)",
+                 "__gnu_pbds::sample_resize_trigger (3)",
+                 "__gnu_pbds::sample_size_policy (3)",
+                 "__gnu_pbds::sample_tree_node_update (3)",
+                 "__gnu_pbds::sample_trie_access_traits (3)",
+                 "__gnu_pbds::sample_trie_node_update (3)",
+                 "__gnu_pbds::sample_update_policy (3)",
+                 "__gnu_pbds::sequence_tag (3)",
+                 "__gnu_pbds::splay_tree_tag (3)",
+                 "__gnu_pbds::string_tag (3)",
+                 "__gnu_pbds::thin_heap_tag (3)",
+                 "__gnu_pbds::tree (3)",
+                 "__gnu_pbds::tree_order_statistics_node_update (3)",
+                 "__gnu_pbds::tree_tag (3)",
+                 "__gnu_pbds::trie (3)",
+                 "__gnu_pbds::trie_order_statistics_node_update (3)",
+                 "__gnu_pbds::trie_prefix_search_node_update (3)",
+                 "__gnu_pbds::trie_string_access_traits (3)",
+                 "__gnu_pbds::trie_tag (3)",
+                 "__gnu_pbds::trivial_iterator_tag (3)",
+                 "__gnu_sequential (3)",
+                 "abi::__forced_unwind (3)",
+                 "std::_Base_bitset (3)",
+                 "std::_Bind (3)",
+                 "std::_Bind_result (3)",
+                 "std::_Deque_base (3)",
+                 "std::_Deque_iterator (3)",
+                 "std::_Function_base (3)",
+                 "std::_Fwd_list_base (3)",
+                 "std::_Fwd_list_const_iterator (3)",
+                 "std::_Fwd_list_iterator (3)",
+                 "std::_Fwd_list_node (3)",
+                 "std::_Fwd_list_node_base (3)",
+                 "std::_List_base (3)",
+                 "std::_List_const_iterator (3)",
+                 "std::_List_iterator (3)",
+                 "std::_List_node (3)",
+                 "std::_Not_fn (3)",
+                 "std::_Placeholder (3)",
+                 "std::_Temporary_buffer (3)",
+                 "std::_Vector_base (3)",
+                 "std::__basic_future (3)",
+                 "std::__codecvt_abstract_base (3)",
+                 "std::__ctype_abstract_base (3)",
+                 "std::__cxx11_collate (3)",
+                 "std::__cxx11_collate_byname (3)",
+                 "std::__debug (3)",
+                 "std::__debug::bitset (3)",
+                 "std::__debug::deque (3)",
+                 "std::__debug::forward_list (3)",
+                 "std::__debug::list (3)",
+                 "std::__debug::map (3)",
+                 "std::__debug::multimap (3)",
+                 "std::__debug::multiset (3)",
+                 "std::__debug::set (3)",
+                 "std::__debug::unordered_map (3)",
+                 "std::__debug::unordered_multimap (3)",
+                 "std::__debug::unordered_multiset (3)",
+                 "std::__debug::unordered_set (3)",
+                 "std::__debug::vector (3)",
+                 "std::__detail (3)",
+                 "std::__detail::_BracketMatcher (3)",
+                 "std::__detail::_Compiler (3)",
+                 "std::__detail::_Executor (3)",
+                 "std::__detail::_List_node_base (3)",
+                 "std::__detail::_List_node_header (3)",
+                 "std::__detail::_Quoted_string (3)",
+                 "std::__detail::_Scanner (3)",
+                 "std::__detail::_StateSeq (3)",
+                 "std::__fwdlist__Iterator (3)",
+                 "std::__fwdlist__Node (3)",
+                 "std::__fwdlist__Node_base (3)",
+                 "std::__is_fast_hash (3)",
+                 "std::__is_location_invariant (3)",
+                 "std::__new_allocator (3)",
+                 "std::__numeric_limits_base (3)",
+                 "std::__parallel (3)",
+                 "std::__parallel::_CRandNumber (3)",
+                 "std::add_const (3)",
+                 "std::add_cv (3)",
+                 "std::add_lvalue_reference (3)",
+                 "std::add_pointer (3)",
+                 "std::add_rvalue_reference (3)",
+                 "std::add_volatile (3)",
+                 "std::aligned_storage (3)",
+                 "std::aligned_union (3)",
+                 "std::alignment_of (3)",
+                 "std::allocator (3)",
+                 "std::allocator_traits (3)",
+                 "std::array (3)",
+                 "std::assignable_from (3)",
+                 "std::atomic (3)",
+                 "std::atomic_flag (3)",
+                 "std::auto_ptr (3)",
+                 "std::auto_ptr_ref (3)",
+                 "std::back_insert_iterator (3)",
+                 "std::bad_alloc (3)",
+                 "std::bad_cast (3)",
+                 "std::bad_exception (3)",
+                 "std::bad_function_call (3)",
+                 "std::bad_typeid (3)",
+                 "std::bad_weak_ptr (3)",
+                 "std::basic_filebuf (3)",
+                 "std::basic_fstream (3)",
+                 "std::basic_ifstream (3)",
+                 "std::basic_ios (3)",
+                 "std::basic_iostream (3)",
+                 "std::basic_istream (3)",
+                 "std::basic_istream_sentry (3)",
+                 "std::basic_istringstream (3)",
+                 "std::basic_ofstream (3)",
+                 "std::basic_ostream (3)",
+                 "std::basic_ostream_sentry (3)",
+                 "std::basic_ostringstream (3)",
+                 "std::basic_regex (3)",
+                 "std::basic_streambuf (3)",
+                 "std::basic_string (3)",
+                 "std::basic_string_view (3)",
+                 "std::basic_stringbuf (3)",
+                 "std::basic_stringstream (3)",
+                 "std::bernoulli_distribution (3)",
+                 "std::bernoulli_distribution::param_type (3)",
+                 "std::bidirectional_iterator_tag (3)",
+                 "std::binary_function (3)",
+                 "std::binary_negate (3)",
+                 "std::binder1st (3)",
+                 "std::binder2nd (3)",
+                 "std::binomial_distribution (3)",
+                 "std::binomial_distribution::param_type (3)",
+                 "std::bitset (3)",
+                 "std::bitset_reference (3)",
+                 "std::cauchy_distribution (3)",
+                 "std::cauchy_distribution::param_type (3)",
+                 "std::char_traits (3)",
+                 "std::chi_squared_distribution (3)",
+                 "std::chi_squared_distribution::param_type (3)",
+                 "std::chrono (3)",
+                 "std::chrono::duration (3)",
+                 "std::chrono::duration_values (3)",
+                 "std::chrono::gps_clock (3)",
+                 "std::chrono::hh_mm_ss (3)",
+                 "std::chrono::steady_clock (3)",
+                 "std::chrono::system_clock (3)",
+                 "std::chrono::tai_clock (3)",
+                 "std::chrono::time_point (3)",
+                 "std::chrono::treat_as_floating_point (3)",
+                 "std::chrono::tzdb_list (3)",
+                 "std::chrono::tzdb_list::const_iterator (3)",
+                 "std::chrono::utc_clock (3)",
+                 "std::codecvt (3)",
+                 "std::codecvt_base (3)",
+                 "std::codecvt_byname (3)",
+                 "std::common_iterator (3)",
+                 "std::common_reference_with (3)",
+                 "std::common_type (3)",
+                 "std::common_with (3)",
+                 "std::compare_three_way_result (3)",
+                 "std::complex (3)",
+                 "std::condition_variable (3)",
+                 "std::condition_variable_any (3)",
+                 "std::conditional (3)",
+                 "std::constructible_from (3)",
+                 "std::contiguous_iterator_tag (3)",
+                 "std::convertible_to (3)",
+                 "std::copy_constructible (3)",
+                 "std::counted_iterator (3)",
+                 "std::ctype (3)",
+                 "std::ctype_base (3)",
+                 "std::ctype_byname (3)",
+                 "std::decimal (3)",
+                 "std::decimal::decimal128 (3)",
+                 "std::decimal::decimal32 (3)",
+                 "std::decimal::decimal64 (3)",
+                 "std::default_delete (3)",
+                 "std::default_initializable (3)",
+                 "std::deque (3)",
+                 "std::derived_from (3)",
+                 "std::destructible (3)",
+                 "std::discard_block_engine (3)",
+                 "std::discrete_distribution (3)",
+                 "std::discrete_distribution::param_type (3)",
+                 "std::divides (3)",
+                 "std::domain_error (3)",
+                 "std::enable_if (3)",
+                 "std::enable_shared_from_this (3)",
+                 "std::encoding_state (3)",
+                 "std::equal_to (3)",
+                 "std::equivalence_relation (3)",
+                 "std::error_category (3)",
+                 "std::error_code (3)",
+                 "std::error_condition (3)",
+                 "std::exception (3)",
+                 "std::exception_ptr (3)",
+                 "std::experimental (3)",
+                 "std::experimental::any (3)",
+                 "std::experimental::bad_any_cast (3)",
+                 "std::experimental::bad_optional_access (3)",
+                 "std::experimental::basic_string_view (3)",
+                 "std::experimental::filesystem::basic_string_view (3)",
+                 "std::experimental::filesystem::filesystem_error (3)",
+                 "std::experimental::filesystem::path (3)",
+                 "std::experimental::filesystem::path::iterator (3)",
+                 "std::experimental::filesystem::space_info (3)",
+                 "std::experimental::optional (3)",
+                 "std::experimental::ostream_joiner (3)",
+                 "std::experimental::propagate_const (3)",
+                 "std::exponential_distribution (3)",
+                 "std::exponential_distribution::param_type (3)",
+                 "std::extent (3)",
+                 "std::extreme_value_distribution (3)",
+                 "std::extreme_value_distribution::param_type (3)",
+                 "std::filebuf (3)",
+                 "std::filesystem (3)",
+                 "std::filesystem::directory_entry (3)",
+                 "std::filesystem::directory_iterator (3)",
+                 "std::filesystem::file_status (3)",
+                 "std::filesystem::filesystem_error (3)",
+                 "std::filesystem::path (3)",
+                 "std::filesystem::path::iterator (3)",
+                 "std::filesystem::recursive_directory_iterator (3)",
+                 "std::filesystem::space_info (3)",
+                 "std::fisher_f_distribution (3)",
+                 "std::fisher_f_distribution::param_type (3)",
+                 "std::forward_iterator_tag (3)",
+                 "std::forward_list (3)",
+                 "std::fpos (3)",
+                 "std::from_chars_result (3)",
+                 "std::front_insert_iterator (3)",
+                 "std::fstream (3)",
+                 "std::future (3)",
+                 "std::future_error (3)",
+                 "std::gamma_distribution (3)",
+                 "std::gamma_distribution::param_type (3)",
+                 "std::geometric_distribution (3)",
+                 "std::geometric_distribution::param_type (3)",
+                 "std::greater (3)",
+                 "std::greater_equal (3)",
+                 "std::gslice (3)",
+                 "std::gslice_array (3)",
+                 "std::has_virtual_destructor (3)",
+                 "std::hash (3)",
+                 "std::identity (3)",
+                 "std::ifstream (3)",
+                 "std::independent_bits_engine (3)",
+                 "std::indirect_array (3)",
+                 "std::indirectly_comparable (3)",
+                 "std::indirectly_copyable (3)",
+                 "std::indirectly_movable (3)",
+                 "std::indirectly_readable (3)",
+                 "std::indirectly_swappable (3)",
+                 "std::indirectly_writable (3)",
+                 "std::initializer_list (3)",
+                 "std::input_iterator_tag (3)",
+                 "std::insert_iterator (3)",
+                 "std::integer_sequence (3)",
+                 "std::integral_constant (3)",
+                 "std::invalid_argument (3)",
+                 "std::invocable (3)",
+                 "std::ios (3)",
+                 "std::ios_base (3)",
+                 "std::ios_base_failure (3)",
+                 "std::iostream (3)",
+                 "std::is_abstract (3)",
+                 "std::is_arithmetic (3)",
+                 "std::is_array (3)",
+                 "std::is_assignable (3)",
+                 "std::is_base_of (3)",
+                 "std::is_bind_expression (3)",
+                 "std::is_class (3)",
+                 "std::is_compound (3)",
+                 "std::is_const (3)",
+                 "std::is_constructible (3)",
+                 "std::is_copy_assignable (3)",
+                 "std::is_copy_constructible (3)",
+                 "std::is_default_constructible (3)",
+                 "std::is_destructible (3)",
+                 "std::is_empty (3)",
+                 "std::is_enum (3)",
+                 "std::is_error_code_enum (3)",
+                 "std::is_error_condition_enum (3)",
+                 "std::is_floating_point (3)",
+                 "std::is_function (3)",
+                 "std::is_fundamental (3)",
+                 "std::is_integral (3)",
+                 "std::is_layout_compatible (3)",
+                 "std::is_literal_type (3)",
+                 "std::is_lvalue_reference (3)",
+                 "std::is_member_function_pointer (3)",
+                 "std::is_member_object_pointer (3)",
+                 "std::is_member_pointer (3)",
+                 "std::is_move_assignable (3)",
+                 "std::is_move_constructible (3)",
+                 "std::is_nothrow_assignable (3)",
+                 "std::is_nothrow_constructible (3)",
+                 "std::is_nothrow_copy_assignable (3)",
+                 "std::is_nothrow_copy_constructible (3)",
+                 "std::is_nothrow_default_constructible (3)",
+                 "std::is_nothrow_destructible (3)",
+                 "std::is_nothrow_move_assignable (3)",
+                 "std::is_nothrow_move_constructible (3)",
+                 "std::is_object (3)",
+                 "std::is_placeholder (3)",
+                 "std::is_pod (3)",
+                 "std::is_pointer (3)",
+                 "std::is_pointer_interconvertible_base_of (3)",
+                 "std::is_polymorphic (3)",
+                 "std::is_reference (3)",
+                 "std::is_rvalue_reference (3)",
+                 "std::is_same (3)",
+                 "std::is_scalar (3)",
+                 "std::is_signed (3)",
+                 "std::is_standard_layout (3)",
+                 "std::is_trivial (3)",
+                 "std::is_trivially_assignable (3)",
+                 "std::is_trivially_constructible (3)",
+                 "std::is_trivially_copy_assignable (3)",
+                 "std::is_trivially_copy_constructible (3)",
+                 "std::is_trivially_copyable (3)",
+                 "std::is_trivially_default_constructible (3)",
+                 "std::is_trivially_destructible (3)",
+                 "std::is_trivially_move_assignable (3)",
+                 "std::is_trivially_move_constructible (3)",
+                 "std::is_union (3)",
+                 "std::is_unsigned (3)",
+                 "std::is_void (3)",
+                 "std::is_volatile (3)",
+                 "std::istream (3)",
+                 "std::istream_iterator (3)",
+                 "std::istreambuf_iterator (3)",
+                 "std::istringstream (3)",
+                 "std::iterator (3)",
+                 "std::iterator_traits (3)",
+                 "std::length_error (3)",
+                 "std::less (3)",
+                 "std::less_equal (3)",
+                 "std::linear_congruential_engine (3)",
+                 "std::list (3)",
+                 "std::literals (3)",
+                 "std::literals::chrono_literals (3)",
+                 "std::locale (3)",
+                 "std::locale_facet (3)",
+                 "std::locale_id (3)",
+                 "std::lock_guard (3)",
+                 "std::logic_error (3)",
+                 "std::logical_and (3)",
+                 "std::logical_not (3)",
+                 "std::logical_or (3)",
+                 "std::lognormal_distribution (3)",
+                 "std::lognormal_distribution::param_type (3)",
+                 "std::make_signed (3)",
+                 "std::make_unsigned (3)",
+                 "std::map (3)",
+                 "std::mask_array (3)",
+                 "std::match_results (3)",
+                 "std::mergeable (3)",
+                 "std::mersenne_twister_engine (3)",
+                 "std::messages (3)",
+                 "std::messages_base (3)",
+                 "std::messages_byname (3)",
+                 "std::minus (3)",
+                 "std::modulus (3)",
+                 "std::money_base (3)",
+                 "std::money_get (3)",
+                 "std::money_put (3)",
+                 "std::moneypunct (3)",
+                 "std::moneypunct_byname (3)",
+                 "std::move_constructible (3)",
+                 "std::move_iterator (3)",
+                 "std::move_sentinel (3)",
+                 "std::multimap (3)",
+                 "std::multiplies (3)",
+                 "std::multiset (3)",
+                 "std::mutex (3)",
+                 "std::negate (3)",
+                 "std::negative_binomial_distribution (3)",
+                 "std::negative_binomial_distribution::param_type (3)",
+                 "std::nested_exception (3)",
+                 "std::normal_distribution (3)",
+                 "std::normal_distribution::param_type (3)",
+                 "std::not_equal_to (3)",
+                 "std::num_get (3)",
+                 "std::num_put (3)",
+                 "std::numeric_limits (3)",
+                 "std::numpunct (3)",
+                 "std::numpunct_byname (3)",
+                 "std::ofstream (3)",
+                 "std::once_flag (3)",
+                 "std::ostream (3)",
+                 "std::ostream_iterator (3)",
+                 "std::ostreambuf_iterator (3)",
+                 "std::ostringstream (3)",
+                 "std::out_of_range (3)",
+                 "std::output_iterator_tag (3)",
+                 "std::overflow_error (3)",
+                 "std::owner_less (3)",
+                 "std::pair (3)",
+                 "std::permutable (3)",
+                 "std::philox_engine (3)",
+                 "std::piecewise_constant_distribution (3)",
+                 "std::piecewise_constant_distribution::param_type (3)",
+                 "std::piecewise_linear_distribution (3)",
+                 "std::piecewise_linear_distribution::param_type (3)",
+                 "std::placeholders (3)",
+                 "std::plus (3)",
+                 "std::pmr_memory_resource (3)",
+                 "std::pmr_monotonic_buffer_resource (3)",
+                 "std::pmr_polymorphic_allocator (3)",
+                 "std::pmr_pool_options (3)",
+                 "std::pmr_unsynchronized_pool_resource (3)",
+                 "std::pointer_to_binary_function (3)",
+                 "std::pointer_to_unary_function (3)",
+                 "std::pointer_traits (3)",
+                 "std::poisson_distribution (3)",
+                 "std::poisson_distribution::param_type (3)",
+                 "std::predicate (3)",
+                 "std::priority_queue (3)",
+                 "std::promise (3)",
+                 "std::queue (3)",
+                 "std::random_access_iterator_tag (3)",
+                 "std::random_device (3)",
+                 "std::range_error (3)",
+                 "std::ranges::bidirectional_range (3)",
+                 "std::ranges::borrowed_range (3)",
+                 "std::ranges::common_range (3)",
+                 "std::ranges::contiguous_range (3)",
+                 "std::ranges::dangling (3)",
+                 "std::ranges::elements_of (3)",
+                 "std::ranges::empty_view (3)",
+                 "std::ranges::equal_to (3)",
+                 "std::ranges::forward_range (3)",
+                 "std::ranges::greater (3)",
+                 "std::ranges::greater_equal (3)",
+                 "std::ranges::input_range (3)",
+                 "std::ranges::less (3)",
+                 "std::ranges::less_equal (3)",
+                 "std::ranges::not_equal_to (3)",
+                 "std::ranges::output_range (3)",
+                 "std::ranges::random_access_range (3)",
+                 "std::ranges::range (3)",
+                 "std::ranges::single_view (3)",
+                 "std::ranges::sized_range (3)",
+                 "std::ranges::subrange (3)",
+                 "std::ranges::view (3)",
+                 "std::ranges::view_base (3)",
+                 "std::ranges::view_interface (3)",
+                 "std::ranges::viewable_range (3)",
+                 "std::rank (3)",
+                 "std::ratio (3)",
+                 "std::ratio_equal (3)",
+                 "std::ratio_greater (3)",
+                 "std::ratio_greater_equal (3)",
+                 "std::ratio_less (3)",
+                 "std::ratio_less_equal (3)",
+                 "std::ratio_not_equal (3)",
+                 "std::raw_storage_iterator (3)",
+                 "std::recursive_mutex (3)",
+                 "std::recursive_timed_mutex (3)",
+                 "std::reference_wrapper (3)",
+                 "std::regex_constants (3)",
+                 "std::regex_error (3)",
+                 "std::regex_iterator (3)",
+                 "std::regex_token_iterator (3)",
+                 "std::regex_traits (3)",
+                 "std::regular_invocable (3)",
+                 "std::rel_ops (3)",
+                 "std::relation (3)",
+                 "std::remove_all_extents (3)",
+                 "std::remove_const (3)",
+                 "std::remove_cv (3)",
+                 "std::remove_extent (3)",
+                 "std::remove_pointer (3)",
+                 "std::remove_reference (3)",
+                 "std::remove_volatile (3)",
+                 "std::result_of (3)",
+                 "std::reverse_iterator (3)",
+                 "std::runtime_error (3)",
+                 "std::same_as (3)",
+                 "std::scoped_allocator_adaptor (3)",
+                 "std::seed_seq (3)",
+                 "std::set (3)",
+                 "std::shared_future (3)",
+                 "std::shared_lock (3)",
+                 "std::shared_ptr (3)",
+                 "std::shared_timed_mutex (3)",
+                 "std::shuffle_order_engine (3)",
+                 "std::simd___vec_builtin (3)",
+                 "std::simd___vec_builtin_of (3)",
+                 "std::slice (3)",
+                 "std::slice_array (3)",
+                 "std::sortable (3)",
+                 "std::stack (3)",
+                 "std::streambuf (3)",
+                 "std::strict_weak_order (3)",
+                 "std::string (3)",
+                 "std::stringbuf (3)",
+                 "std::stringstream (3)",
+                 "std::student_t_distribution (3)",
+                 "std::student_t_distribution::param_type (3)",
+                 "std::sub_match (3)",
+                 "std::subtract_with_carry_engine (3)",
+                 "std::system_error (3)",
+                 "std::this_thread (3)",
+                 "std::thread (3)",
+                 "std::thread_id (3)",
+                 "std::time_base (3)",
+                 "std::time_get (3)",
+                 "std::time_get_byname (3)",
+                 "std::time_put (3)",
+                 "std::time_put_byname (3)",
+                 "std::timed_mutex (3)",
+                 "std::to_chars_result (3)",
+                 "std::tr1 (3)",
+                 "std::tr1::__detail (3)",
+                 "std::tr2 (3)",
+                 "std::tr2::__detail (3)",
+                 "std::tr2::__dynamic_bitset_base (3)",
+                 "std::tr2::__reflection_typelist (3)",
+                 "std::tr2::__reflection_typelist__ (3)",
+                 "std::tr2::bases (3)",
+                 "std::tr2::bool_set (3)",
+                 "std::tr2::direct_bases (3)",
+                 "std::tr2::dynamic_bitset (3)",
+                 "std::tr2::dynamic_bitset_reference (3)",
+                 "std::tuple (3)",
+                 "std::tuple_element (3)",
+                 "std::tuple_size (3)",
+                 "std::type_index (3)",
+                 "std::type_info (3)",
+                 "std::type_order (3)",
+                 "std::unary_function (3)",
+                 "std::unary_negate (3)",
+                 "std::underflow_error (3)",
+                 "std::underlying_type (3)",
+                 "std::uniform_int_distribution (3)",
+                 "std::uniform_int_distribution::param_type (3)",
+                 "std::uniform_random_bit_generator (3)",
+                 "std::uniform_real_distribution (3)",
+                 "std::uniform_real_distribution::param_type (3)",
+                 "std::unique_lock (3)",
+                 "std::unique_ptr (3)",
+                 "std::unordered_map (3)",
+                 "std::unordered_multimap (3)",
+                 "std::unordered_multiset (3)",
+                 "std::unordered_set (3)",
+                 "std::uses_allocator (3)",
+                 "std::valarray (3)",
+                 "std::vector (3)",
+                 "std::wbuffer_convert (3)",
+                 "std::weak_ptr (3)",
+                 "std::weakly_incrementable (3)",
+                 "std::weibull_distribution (3)",
+                 "std::weibull_distribution::param_type (3)",
+                 "std::wfilebuf (3)",
+                 "std::wfstream (3)",
+                 "std::wifstream (3)",
+                 "std::wios (3)",
+                 "std::wiostream (3)",
+                 "std::wistream (3)",
+                 "std::wistringstream (3)",
+                 "std::wofstream (3)",
+                 "std::wostream (3)",
+                 "std::wostringstream (3)",
+                 "std::wstreambuf (3)",
+                 "std::wstring (3)",
+                 "std::wstring_convert (3)",
+                 "std::wstringbuf (3)",
+                 "std::wstringstream (3)",
+                 "fsf-funding (7)",
+                 "gfdl (7)",
+                 "gpl (7)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[gcc-libs]
+pkg_name      = "gcc-libs"
+description   = "Runtime libraries shipped by GCC"
+url           = "https://gcc.gnu.org"
+repository    = "core"
+included_app  = []
+manpages      = []
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [gendesk]
 pkg_name      = "gendesk"
@@ -1263,6 +2478,363 @@ repository    = "extra"
 included_app  = ["gendesk"]
 manpages      = ["gendesk (1)"]
 mode          = ["evaluation"]
+
+[gettext]
+pkg_name      = "gettext"
+description   = "GNU internationalization library"
+url           = "https://www.gnu.org/software/gettext/"
+repository    = "core"
+included_app  = ["autopoint",
+                 "envsubst",
+                 "gettext",
+                 "gettext.sh",
+                 "gettextize",
+                 "msgattrib",
+                 "msgcat",
+                 "msgcmp",
+                 "msgcomm",
+                 "msgconv",
+                 "msgen",
+                 "msgexec",
+                 "msgfilter",
+                 "msgfmt",
+                 "msggrep",
+                 "msginit",
+                 "msgmerge",
+                 "msgpre",
+                 "msgunfmt",
+                 "msguniq",
+                 "ngettext",
+                 "po-fetch",
+                 "printf_gettext",
+                 "printf_ngettext",
+                 "recode-sr-latin",
+                 "spit",
+                 "xgettext"]
+manpages      = ["autopoint (1)",
+                 "envsubst (1)",
+                 "gettext (1)",
+                 "gettextize (1)",
+                 "msgattrib (1)",
+                 "msgcat (1)",
+                 "msgcmp (1)",
+                 "msgcomm (1)",
+                 "msgconv (1)",
+                 "msgen (1)",
+                 "msgexec (1)",
+                 "msgfilter (1)",
+                 "msgfmt (1)",
+                 "msggrep (1)",
+                 "msginit (1)",
+                 "msgmerge (1)",
+                 "msgpre (1)",
+                 "msgunfmt (1)",
+                 "msguniq (1)",
+                 "ngettext (1)",
+                 "po-fetch (1)",
+                 "printf_gettext (1)",
+                 "printf_ngettext (1)",
+                 "recode-sr-latin (1)",
+                 "spit (1)",
+                 "xgettext (1)",
+                 "bind_textdomain_codeset (3)",
+                 "bindtextdomain (3)",
+                 "dcgettext (3)",
+                 "dcngettext (3)",
+                 "dgettext (3)",
+                 "dngettext (3)",
+                 "gettext (3)",
+                 "ngettext (3)",
+                 "textdomain (3)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
+[gimp]
+pkg_name      = "gimp"
+description   = "GNU Image Manipulation Program"
+url           = "https://www.gimp.org/"
+repository    = "extra"
+included_app  = ["gimp",
+                 "gimp-3",
+                 "gimp-3.2",
+                 "gimp-console",
+                 "gimp-console-3",
+                 "gimp-console-3.2",
+                 "gimp-debug-tool",
+                 "gimp-debug-tool-3",
+                 "gimp-debug-tool-3.2",
+                 "gimp-script-fu-interpreter-3.0",
+                 "gimp-test-clipboard",
+                 "gimp-test-clipboard-3",
+                 "gimp-test-clipboard-3.2",
+                 "gimptool",
+                 "gimptool-3",
+                 "gimptool-3.2"]
+manpages      = ["gimp-3 (1)",
+                 "gimp-3.2 (1)",
+                 "gimp-console-3 (1)",
+                 "gimp-console-3.2 (1)",
+                 "gimp-console (1)",
+                 "gimp (1)",
+                 "gimptool-3 (1)",
+                 "gimptool-3.2 (1)",
+                 "gimptool (1)",
+                 "gimprc-3.2 (5)",
+                 "gimprc-3 (5)",
+                 "gimprc (5)"]
+mode          = ["ael-desktop"]
+
+[git]
+pkg_name      = "git"
+description   = "the fast distributed version control system"
+url           = "https://git-scm.com/"
+repository    = "extra"
+included_app  = ["git",
+                 "git-cvsserver",
+                 "git-receive-pack",
+                 "git-shell",
+                 "git-upload-archive",
+                 "git-upload-pack",
+                 "gitk",
+                 "scalar"]
+manpages      = ["git-add (1)",
+                 "git-am (1)",
+                 "git-annotate (1)",
+                 "git-apply (1)",
+                 "git-archimport (1)",
+                 "git-archive (1)",
+                 "git-backfill (1)",
+                 "git-bisect (1)",
+                 "git-blame (1)",
+                 "git-branch (1)",
+                 "git-bugreport (1)",
+                 "git-bundle (1)",
+                 "git-cat-file (1)",
+                 "git-check-attr (1)",
+                 "git-check-ignore (1)",
+                 "git-check-mailmap (1)",
+                 "git-check-ref-format (1)",
+                 "git-checkout-index (1)",
+                 "git-checkout (1)",
+                 "git-cherry-pick (1)",
+                 "git-cherry (1)",
+                 "git-citool (1)",
+                 "git-clean (1)",
+                 "git-clone (1)",
+                 "git-column (1)",
+                 "git-commit-graph (1)",
+                 "git-commit-tree (1)",
+                 "git-commit (1)",
+                 "git-config (1)",
+                 "git-count-objects (1)",
+                 "git-credential-cache--daemon (1)",
+                 "git-credential-cache (1)",
+                 "git-credential-store (1)",
+                 "git-credential (1)",
+                 "git-cvsexportcommit (1)",
+                 "git-cvsimport (1)",
+                 "git-cvsserver (1)",
+                 "git-daemon (1)",
+                 "git-describe (1)",
+                 "git-diagnose (1)",
+                 "git-diff-files (1)",
+                 "git-diff-index (1)",
+                 "git-diff-pairs (1)",
+                 "git-diff-tree (1)",
+                 "git-diff (1)",
+                 "git-difftool (1)",
+                 "git-fast-export (1)",
+                 "git-fast-import (1)",
+                 "git-fetch-pack (1)",
+                 "git-fetch (1)",
+                 "git-filter-branch (1)",
+                 "git-fmt-merge-msg (1)",
+                 "git-for-each-ref (1)",
+                 "git-for-each-repo (1)",
+                 "git-format-patch (1)",
+                 "git-fsck-objects (1)",
+                 "git-fsck (1)",
+                 "git-fsmonitor--daemon (1)",
+                 "git-gc (1)",
+                 "git-get-tar-commit-id (1)",
+                 "git-grep (1)",
+                 "git-gui (1)",
+                 "git-hash-object (1)",
+                 "git-help (1)",
+                 "git-history (1)",
+                 "git-hook (1)",
+                 "git-http-backend (1)",
+                 "git-http-fetch (1)",
+                 "git-http-push (1)",
+                 "git-imap-send (1)",
+                 "git-index-pack (1)",
+                 "git-init-db (1)",
+                 "git-init (1)",
+                 "git-instaweb (1)",
+                 "git-interpret-trailers (1)",
+                 "git-last-modified (1)",
+                 "git-log (1)",
+                 "git-ls-files (1)",
+                 "git-ls-remote (1)",
+                 "git-ls-tree (1)",
+                 "git-mailinfo (1)",
+                 "git-mailsplit (1)",
+                 "git-maintenance (1)",
+                 "git-merge-base (1)",
+                 "git-merge-file (1)",
+                 "git-merge-index (1)",
+                 "git-merge-one-file (1)",
+                 "git-merge-tree (1)",
+                 "git-merge (1)",
+                 "git-mergetool--lib (1)",
+                 "git-mergetool (1)",
+                 "git-mktag (1)",
+                 "git-mktree (1)",
+                 "git-multi-pack-index (1)",
+                 "git-mv (1)",
+                 "git-name-rev (1)",
+                 "git-notes (1)",
+                 "git-p4 (1)",
+                 "git-pack-objects (1)",
+                 "git-pack-redundant (1)",
+                 "git-pack-refs (1)",
+                 "git-patch-id (1)",
+                 "git-prune-packed (1)",
+                 "git-prune (1)",
+                 "git-pull (1)",
+                 "git-push (1)",
+                 "git-quiltimport (1)",
+                 "git-range-diff (1)",
+                 "git-read-tree (1)",
+                 "git-rebase (1)",
+                 "git-receive-pack (1)",
+                 "git-reflog (1)",
+                 "git-refs (1)",
+                 "git-remote-ext (1)",
+                 "git-remote-fd (1)",
+                 "git-remote (1)",
+                 "git-repack (1)",
+                 "git-replace (1)",
+                 "git-replay (1)",
+                 "git-repo (1)",
+                 "git-request-pull (1)",
+                 "git-rerere (1)",
+                 "git-reset (1)",
+                 "git-restore (1)",
+                 "git-rev-list (1)",
+                 "git-rev-parse (1)",
+                 "git-revert (1)",
+                 "git-rm (1)",
+                 "git-send-email (1)",
+                 "git-send-pack (1)",
+                 "git-sh-i18n--envsubst (1)",
+                 "git-sh-i18n (1)",
+                 "git-sh-setup (1)",
+                 "git-shell (1)",
+                 "git-shortlog (1)",
+                 "git-show-branch (1)",
+                 "git-show-index (1)",
+                 "git-show-ref (1)",
+                 "git-show (1)",
+                 "git-sparse-checkout (1)",
+                 "git-stage (1)",
+                 "git-stash (1)",
+                 "git-status (1)",
+                 "git-stripspace (1)",
+                 "git-submodule (1)",
+                 "git-subtree (1)",
+                 "git-svn (1)",
+                 "git-switch (1)",
+                 "git-symbolic-ref (1)",
+                 "git-tag (1)",
+                 "git-unpack-file (1)",
+                 "git-unpack-objects (1)",
+                 "git-update-index (1)",
+                 "git-update-ref (1)",
+                 "git-update-server-info (1)",
+                 "git-upload-archive (1)",
+                 "git-upload-pack (1)",
+                 "git-var (1)",
+                 "git-verify-commit (1)",
+                 "git-verify-pack (1)",
+                 "git-verify-tag (1)",
+                 "git-version (1)",
+                 "git-web--browse (1)",
+                 "git-whatchanged (1)",
+                 "git-worktree (1)",
+                 "git-write-tree (1)",
+                 "git (1)",
+                 "gitk (1)",
+                 "gitweb (1)",
+                 "scalar (1)",
+                 "Git.3pm.gz",
+                 "gitattributes (5)",
+                 "gitformat-bundle (5)",
+                 "gitformat-chunk (5)",
+                 "gitformat-commit-graph (5)",
+                 "gitformat-index (5)",
+                 "gitformat-loose (5)",
+                 "gitformat-pack (5)",
+                 "gitformat-signature (5)",
+                 "githooks (5)",
+                 "gitignore (5)",
+                 "gitmailmap (5)",
+                 "gitmodules (5)",
+                 "gitprotocol-capabilities (5)",
+                 "gitprotocol-common (5)",
+                 "gitprotocol-http (5)",
+                 "gitprotocol-pack (5)",
+                 "gitprotocol-v2 (5)",
+                 "gitrepository-layout (5)",
+                 "gitweb.conf (5)",
+                 "gitcli (7)",
+                 "gitcore-tutorial (7)",
+                 "gitcredentials (7)",
+                 "gitcvs-migration (7)",
+                 "gitdatamodel (7)",
+                 "gitdiffcore (7)",
+                 "giteveryday (7)",
+                 "gitfaq (7)",
+                 "gitglossary (7)",
+                 "gitnamespaces (7)",
+                 "gitpacking (7)",
+                 "gitremote-helpers (7)",
+                 "gitrevisions (7)",
+                 "gitsubmodules (7)",
+                 "gittutorial-2 (7)",
+                 "gittutorial (7)",
+                 "gitworkflows (7)"]
+mode          = ["ael-bare"]
+
+[glibc]
+pkg_name      = "glibc"
+description   = "GNU C Library"
+url           = "https://www.gnu.org/software/libc"
+repository    = "core"
+included_app  = ["gencat",
+                 "getconf",
+                 "getent",
+                 "iconv",
+                 "iconvconfig",
+                 "ld.so",
+                 "ldconfig",
+                 "ldd",
+                 "locale",
+                 "locale-gen",
+                 "localedef",
+                 "makedb",
+                 "memusage",
+                 "memusagestat",
+                 "mtrace",
+                 "pcprofiledump",
+                 "pldd",
+                 "sln",
+                 "sotruss",
+                 "sprof",
+                 "xtrace"]
+manpages      = []
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [gping]
 pkg_name      = "gping"
@@ -1305,6 +2877,115 @@ repository    = "aur"
 included_app  = ["grimblast"]
 manpages      = ["grimblast (1)"]
 mode          = ["ael-desktop"]
+
+[groff]
+pkg_name      = "groff"
+description   = "GNU troff text-formatting system"
+url           = "https://www.gnu.org/software/groff/groff.html"
+repository    = "core"
+included_app  = ["addftinfo",
+                 "afmtodit",
+                 "chem",
+                 "eqn",
+                 "eqn2graph",
+                 "gdiffmk",
+                 "geqn",
+                 "glilypond",
+                 "gperl",
+                 "gpinyin",
+                 "grap2graph",
+                 "grn",
+                 "grodvi",
+                 "groff",
+                 "grog",
+                 "grolbp",
+                 "grolj4",
+                 "gropdf",
+                 "grops",
+                 "grotty",
+                 "gtbl",
+                 "gxditview",
+                 "hpftodit",
+                 "indxbib",
+                 "lkbib",
+                 "lookbib",
+                 "mmroff",
+                 "neqn",
+                 "nroff",
+                 "pdfmom",
+                 "pfbtops",
+                 "pic",
+                 "pic2graph",
+                 "post-grohtml",
+                 "pre-grohtml",
+                 "preconv",
+                 "refer",
+                 "soelim",
+                 "tbl",
+                 "tfmtodit",
+                 "troff",
+                 "xtotroff",
+                 "zsoelim"]
+manpages      = ["addftinfo (1)",
+                 "afmtodit (1)",
+                 "chem (1)",
+                 "eqn (1)",
+                 "eqn2graph (1)",
+                 "gdiffmk (1)",
+                 "glilypond (1)",
+                 "gperl (1)",
+                 "gpinyin (1)",
+                 "grap2graph (1)",
+                 "grn (1)",
+                 "grodvi (1)",
+                 "groff (1)",
+                 "grog (1)",
+                 "grohtml (1)",
+                 "grolbp (1)",
+                 "grolj4 (1)",
+                 "gropdf (1)",
+                 "grops (1)",
+                 "grotty (1)",
+                 "gxditview (1)",
+                 "hpftodit (1)",
+                 "indxbib (1)",
+                 "lkbib (1)",
+                 "lookbib (1)",
+                 "mmroff (1)",
+                 "neqn (1)",
+                 "nroff (1)",
+                 "pdfmom (1)",
+                 "pfbtops (1)",
+                 "pic (1)",
+                 "pic2graph (1)",
+                 "preconv (1)",
+                 "refer (1)",
+                 "soelim (1)",
+                 "tbl (1)",
+                 "tfmtodit (1)",
+                 "troff (1)",
+                 "xtotroff (1)",
+                 "groff_font (5)",
+                 "groff_out (5)",
+                 "groff_tmac (5)",
+                 "groff (7)",
+                 "groff_char (7)",
+                 "groff_diff (7)",
+                 "groff_hdtbl (7)",
+                 "groff_man (7)",
+                 "groff_man_style (7)",
+                 "groff_mdoc (7)",
+                 "groff_me (7)",
+                 "groff_mm (7)",
+                 "groff_mmse (7)",
+                 "groff_mom (7)",
+                 "groff_ms (7)",
+                 "groff_rfc1345 (7)",
+                 "groff_trace (7)",
+                 "groff_www (7)",
+                 "roff (7)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
 
 [gromit-mpx]
 pkg_name      = "gromit-mpx-git"
@@ -1418,6 +3099,39 @@ manpages      = ["gvfsd-fuse (1)",
                  "gvfsd (1)",
                  "gvfs (7)"]
 mode          = ["ael-bare"]
+
+[gzip]
+pkg_name      = "gzip"
+description   = "GNU compression utility"
+url           = "https://www.gnu.org/software/gzip/"
+repository    = "core"
+included_app  = ["gunzip",
+                 "gzexe",
+                 "gzip",
+                 "uncompress",
+                 "zcat",
+                 "zcmp",
+                 "zdiff",
+                 "zegrep",
+                 "zfgrep",
+                 "zforce",
+                 "zgrep",
+                 "zless",
+                 "zmore",
+                 "znew"]
+manpages      = ["gunzip (1)",
+                 "gzexe (1)",
+                 "gzip (1)",
+                 "zcat (1)",
+                 "zcmp (1)",
+                 "zdiff (1)",
+                 "zforce (1)",
+                 "zgrep (1)",
+                 "zless (1)",
+                 "zmore (1)",
+                 "znew (1)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [hashid]
 pkg_name      = "hashid"
@@ -1538,6 +3252,48 @@ included_app  = ["ifuse"]
 manpages      = ["ifuse (1)"]
 mode          = ["ael-bare"]
 
+[imagemagick]
+pkg_name      = "imagemagick"
+description   = "An image viewing/manipulation program"
+url           = "https://www.imagemagick.org/"
+repository    = "extra"
+included_app  = ["Magick++-config",
+                 "MagickCore-config",
+                 "MagickWand-config",
+                 "animate",
+                 "compare",
+                 "composite",
+                 "conjure",
+                 "convert",
+                 "display",
+                 "identify",
+                 "import",
+                 "magick",
+                 "magick-script",
+                 "mogrify",
+                 "montage",
+                 "stream"]
+manpages      = ["ImageMagick (1)",
+                 "Magick++-config (1)",
+                 "MagickCore-config (1)",
+                 "MagickWand-config (1)",
+                 "animate (1)",
+                 "compare (1)",
+                 "composite (1)",
+                 "conjure (1)",
+                 "convert (1)",
+                 "display (1)",
+                 "identify (1)",
+                 "import (1)",
+                 "magick-script (1)",
+                 "magick (1)",
+                 "mogrify (1)",
+                 "montage (1)",
+                 "stream (1)",
+                 "Image::Magick.3pm.gz",
+                 "Image::Magick::Q16HDRI.3pm.gz"]
+mode          = ["evaluation"]
+
 [inetutils]
 pkg_name      = "inetutils"
 description   = "A collection of common network programs"
@@ -1609,6 +3365,190 @@ manpages      = ["intltool-extract (8)",
                  "intltoolize (8)"]
 mode          = ["evaluation"]
 
+[iproute2]
+pkg_name      = "iproute2"
+description   = "IP Routing Utilities"
+url           = "https://git.kernel.org/pub/scm/network/iproute2/iproute2.git"
+repository    = "core"
+included_app  = ["arpd",
+                 "bridge",
+                 "ctstat",
+                 "dcb",
+                 "devlink",
+                 "dpll",
+                 "genl",
+                 "ifstat",
+                 "ip",
+                 "lnstat",
+                 "netshaper",
+                 "nstat",
+                 "rdma",
+                 "routel",
+                 "rtacct",
+                 "rtmon",
+                 "rtstat",
+                 "ss",
+                 "tc",
+                 "tipc",
+                 "vdpa"]
+manpages      = ["libnetlink (3)",
+                 "tc-hfsc (7)",
+                 "arpd (8)",
+                 "bridge (8)",
+                 "ctstat (8)",
+                 "dcb-app (8)",
+                 "dcb-apptrust (8)",
+                 "dcb-buffer (8)",
+                 "dcb-dcbx (8)",
+                 "dcb-ets (8)",
+                 "dcb-maxrate (8)",
+                 "dcb-pfc (8)",
+                 "dcb-rewr (8)",
+                 "dcb (8)",
+                 "devlink-dev (8)",
+                 "devlink-dpipe (8)",
+                 "devlink-health (8)",
+                 "devlink-lc (8)",
+                 "devlink-monitor (8)",
+                 "devlink-port (8)",
+                 "devlink-rate (8)",
+                 "devlink-region (8)",
+                 "devlink-resource (8)",
+                 "devlink-sb (8)",
+                 "devlink-trap (8)",
+                 "devlink (8)",
+                 "dpll (8)",
+                 "genl (8)",
+                 "ifstat (8)",
+                 "ip-address (8)",
+                 "ip-addrlabel (8)",
+                 "ip-fou (8)",
+                 "ip-gue (8)",
+                 "ip-ioam (8)",
+                 "ip-l2tp (8)",
+                 "ip-link (8)",
+                 "ip-macsec (8)",
+                 "ip-maddress (8)",
+                 "ip-monitor (8)",
+                 "ip-mptcp (8)",
+                 "ip-mroute (8)",
+                 "ip-neighbour (8)",
+                 "ip-netconf (8)",
+                 "ip-netns (8)",
+                 "ip-nexthop (8)",
+                 "ip-ntable (8)",
+                 "ip-route (8)",
+                 "ip-rule (8)",
+                 "ip-sr (8)",
+                 "ip-stats (8)",
+                 "ip-tcp_metrics (8)",
+                 "ip-token (8)",
+                 "ip-tunnel (8)",
+                 "ip-vrf (8)",
+                 "ip-xfrm (8)",
+                 "ip (8)",
+                 "lnstat (8)",
+                 "netshaper (8)",
+                 "nstat (8)",
+                 "rdma-dev (8)",
+                 "rdma-link (8)",
+                 "rdma-monitor (8)",
+                 "rdma-resource (8)",
+                 "rdma-statistic (8)",
+                 "rdma-system (8)",
+                 "rdma (8)",
+                 "routel (8)",
+                 "rtacct (8)",
+                 "rtmon (8)",
+                 "rtstat (8)",
+                 "ss (8)",
+                 "tc-actions (8)",
+                 "tc-basic (8)",
+                 "tc-bfifo (8)",
+                 "tc-bpf (8)",
+                 "tc-cake (8)",
+                 "tc-cbs (8)",
+                 "tc-cgroup (8)",
+                 "tc-choke (8)",
+                 "tc-codel (8)",
+                 "tc-connmark (8)",
+                 "tc-csum (8)",
+                 "tc-ct (8)",
+                 "tc-ctinfo (8)",
+                 "tc-drr (8)",
+                 "tc-dualpi2 (8)",
+                 "tc-ematch (8)",
+                 "tc-etf (8)",
+                 "tc-ets (8)",
+                 "tc-flow (8)",
+                 "tc-flower (8)",
+                 "tc-fq (8)",
+                 "tc-fq_codel (8)",
+                 "tc-fq_pie (8)",
+                 "tc-fw (8)",
+                 "tc-gact (8)",
+                 "tc-gate (8)",
+                 "tc-hfsc (8)",
+                 "tc-htb (8)",
+                 "tc-ife (8)",
+                 "tc-matchall (8)",
+                 "tc-mirred (8)",
+                 "tc-mpls (8)",
+                 "tc-mqprio (8)",
+                 "tc-nat (8)",
+                 "tc-netem (8)",
+                 "tc-pedit (8)",
+                 "tc-pfifo (8)",
+                 "tc-pfifo_fast (8)",
+                 "tc-pie (8)",
+                 "tc-police (8)",
+                 "tc-prio (8)",
+                 "tc-red (8)",
+                 "tc-route (8)",
+                 "tc-sample (8)",
+                 "tc-sfb (8)",
+                 "tc-sfq (8)",
+                 "tc-simple (8)",
+                 "tc-skbedit (8)",
+                 "tc-skbmod (8)",
+                 "tc-skbprio (8)",
+                 "tc-stab (8)",
+                 "tc-taprio (8)",
+                 "tc-tbf (8)",
+                 "tc-tunnel_key (8)",
+                 "tc-u32 (8)",
+                 "tc-vlan (8)",
+                 "tc (8)",
+                 "tipc-bearer (8)",
+                 "tipc-link (8)",
+                 "tipc-media (8)",
+                 "tipc-nametable (8)",
+                 "tipc-node (8)",
+                 "tipc-peer (8)",
+                 "tipc-socket (8)",
+                 "tipc (8)",
+                 "vdpa-dev (8)",
+                 "vdpa-mgmtdev (8)",
+                 "vdpa (8)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
+[iputils]
+pkg_name      = "iputils"
+description   = "Network monitoring tools, including ping"
+url           = "https://github.com/iputils/iputils"
+repository    = "core"
+included_app  = ["arping",
+                 "clockdiff",
+                 "ping",
+                 "tracepath"]
+manpages      = ["arping (8)",
+                 "clockdiff (8)",
+                 "ping (8)",
+                 "tracepath (8)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
 [itstool]
 pkg_name      = "itstool"
 description   = "Translate XML with PO files using W3C Internationalization Tag Set rules"
@@ -1617,6 +3557,15 @@ repository    = "extra"
 included_app  = ["itstool"]
 manpages      = ["itstool (1)"]
 mode          = ["evaluation"]
+
+[inxi]
+pkg_name      = "inxi"
+description   = "Full featured CLI system information tool"
+url           = "https://smxi.org/docs/inxi.htm"
+repository    = "extra"
+included_app  = ["inxi"]
+manpages      = ["inxi (1)"]
+mode          = ["ael-bare"]
 
 [jd-gui-bin]
 pkg_name      = "jd-gui-bin"
@@ -1635,6 +3584,15 @@ url           = "https://github.com/jupyter/notebook"
 repository    = "extra"
 included_app  = ["jupyter-notebook"]
 manpages      = []
+mode          = ["evaluation"]
+
+[jq]
+pkg_name      = "jq"
+description   = "Command-line JSON processor"
+url           = "https://jqlang.github.io/jq/"
+repository    = "extra"
+included_app  = ["jq"]
+manpages      = ["jq (1)"]
 mode          = ["evaluation"]
 
 [kdenlive]
@@ -1671,6 +3629,39 @@ included_app  = ["librespeed-cli"]
 manpages      = []
 mode          = ["ael-bare"]
 
+[libtool]
+pkg_name      = "libtool"
+description   = "A generic library support script"
+url           = "https://www.gnu.org/software/libtool"
+repository    = "core"
+included_app  = ["libtool",
+                 "libtool-next-version",
+                 "libtoolize"]
+manpages      = ["libtool-next-version (1)",
+                 "libtool (1)",
+                 "libtoolize (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[licenses]
+pkg_name      = "licenses"
+description   = "A set of common license files"
+url           = "https://www.archlinux.org/"
+repository    = "core"
+included_app  = []
+manpages      = []
+install       = ["core/base"]
+mode          = ["arch-base"]
+
+[linux]
+pkg_name      = "linux"
+description   = "The Linux kernel and modules"
+url           = "https://github.com/archlinux/linux"
+repository    = "core"
+included_app  = []
+manpages      = []
+mode          = ["arch-base"]
+
 [linux-firmware]
 pkg_name      = "linux-firmware"
 description   = "Firmware files for Linux - Default set"
@@ -1699,6 +3690,15 @@ included_app  = ["gtk-lshw",
                  "lshw"]
 manpages      = ["lshw (1)"]
 mode          = ["ael-bare"]
+
+[lsof]
+pkg_name      = "lsof"
+description   = "Lists open files for running Unix processes"
+url           = "https://github.com/lsof-org/lsof"
+repository    = "extra"
+included_app  = ["lsof"]
+manpages      = ["lsof (8)"]
+mode          = ["evaluation"]
 
 [lxappearance]
 pkg_name      = "lxappearance"
@@ -1772,6 +3772,35 @@ manpages      = ["lxc-attach (1)",
                  "lxc.system.conf (5)",
                  "lxc (7)"]
 mode          = ["evaluation"]
+
+[lynx]
+pkg_name      = "lynx"
+description   = "A text browser for the World Wide Web"
+url           = "https://lynx.invisible-island.net/"
+repository    = "extra"
+included_app  = ["lynx"]
+manpages      = ["lynx (1)"]
+mode          = ["evaluation"]
+
+[m4]
+pkg_name      = "m4"
+description   = "The GNU macro processor"
+url           = "https://www.gnu.org/software/m4"
+repository    = "core"
+included_app  = ["m4"]
+manpages      = ["m4 (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[make]
+pkg_name      = "make"
+description   = "GNU make utility to maintain groups of programs"
+url           = "https://www.gnu.org/software/make"
+repository    = "core"
+included_app  = ["make"]
+manpages      = ["make (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
 
 [man-db]
 pkg_name      = "man-db"
@@ -4996,8 +7025,8 @@ manpages      = ["makepkg-template (1)",
                  "repo-remove (8)",
                  "testpkg (8)",
                  "vercmp (8)"]
-mode          = ["arch-base"]
 install       = ["core/base"]
+mode          = ["arch-base"]
 
 [pacman-contrib]
 pkg_name      = "pacman-contrib"
@@ -5053,13 +7082,23 @@ manpages      = ["paru.conf (5)",
                  "paru (8)"]
 mode          = ["ael-bare"]
 
-[pasystray]
-pkg_name      = "pasystray"
-description   = "PulseAudio system tray (a replacement for padevchooser)"
-url           = "https://github.com/christophgysin/pasystray"
+[patch]
+pkg_name      = "patch"
+description   = "A utility to apply patch files to original sources"
+url           = "https://www.gnu.org/software/patch/"
+repository    = "core"
+included_app  = ["patch"]
+manpages      = ["patch (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[pavucontrol]
+pkg_name      = "pavucontrol"
+description   = "PulseAudio Volume Control"
+url           = "https://freedesktop.org/software/pulseaudio/pavucontrol/"
 repository    = "extra"
-included_app  = ["pasystray"]
-manpages      = ["pasystray (1)"]
+included_app  = ["pavucontrol"]
+manpages      = []
 mode          = ["ael-desktop"]
 
 [pcmanfm]
@@ -5070,6 +7109,24 @@ repository    = "extra"
 included_app  = ["pcmanfm-qt"]
 manpages      = ["pcmanfm-qt (1)"]
 mode          = ["ael-desktop"]
+
+[pciutils]
+pkg_name      = "pciutils"
+description   = "PCI bus configuration space access library and tools"
+url           = "https://mj.ucw.cz/sw/pciutils/"
+repository    = "core"
+included_app  = ["lspci",
+                 "pcilmr",
+                 "setpci",
+                 "update-pciids"]
+manpages      = ["pci.ids (5)",
+                 "pcilib (7)",
+                 "lspci (8)",
+                 "pcilmr (8)",
+                 "setpci (8)",
+                 "update-pciids (8)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [php]
 pkg_name      = "php"
@@ -5097,6 +7154,142 @@ repository    = "aur"
 included_app  = ["pipdeptree"]
 manpages      = []
 mode          = ["ael-bare"]
+
+[pipewire]
+pkg_name      = "pipewire"
+description   = "Low-latency audio/video router and processor"
+url           = "https://pipewire.org"
+repository    = "extra"
+included_app  = ["pipewire",
+                 "pw-cli",
+                 "pw-config",
+                 "pw-container",
+                 "pw-dot",
+                 "pw-dump",
+                 "pw-link",
+                 "pw-metadata",
+                 "pw-mon",
+                 "pw-profiler",
+                 "pw-reserve",
+                 "pw-top",
+                 "spa-inspect",
+                 "spa-json-dump",
+                 "spa-monitor"]
+manpages      = ["pipewire (1)",
+                 "pw-cli (1)",
+                 "pw-config (1)",
+                 "pw-container (1)",
+                 "pw-dot (1)",
+                 "pw-dump (1)",
+                 "pw-link (1)",
+                 "pw-metadata (1)",
+                 "pw-mon (1)",
+                 "pw-profiler (1)",
+                 "pw-reserve (1)",
+                 "pw-top (1)",
+                 "spa-inspect (1)",
+                 "spa-json-dump (1)",
+                 "spa-monitor (1)",
+                 "pipewire-client.conf (5)",
+                 "pipewire.conf (5)",
+                 "libpipewire-module-access (7)",
+                 "libpipewire-module-adapter (7)",
+                 "libpipewire-module-client-device (7)",
+                 "libpipewire-module-client-node (7)",
+                 "libpipewire-module-combine-stream (7)",
+                 "libpipewire-module-example-filter (7)",
+                 "libpipewire-module-example-sink (7)",
+                 "libpipewire-module-example-source (7)",
+                 "libpipewire-module-link-factory (7)",
+                 "libpipewire-module-metadata (7)",
+                 "libpipewire-module-portal (7)",
+                 "libpipewire-module-profiler (7)",
+                 "libpipewire-module-protocol-native (7)",
+                 "libpipewire-module-rt (7)",
+                 "libpipewire-module-session-manager (7)",
+                 "libpipewire-module-spa-device-factory (7)",
+                 "libpipewire-module-spa-device (7)",
+                 "libpipewire-module-spa-node-factory (7)",
+                 "libpipewire-module-spa-node (7)",
+                 "libpipewire-modules (7)",
+                 "pipewire-props (7)"]
+mode          = ["ael-desktop"]
+
+[pipewire-pulse]
+pkg_name      = "pipewire-pulse"
+description   = "Low-latency audio/video router and processor - PulseAudio replacement"
+url           = "https://pipewire.org"
+repository    = "extra"
+included_app  = ["pipewire-pulse"]
+manpages      = ["pipewire-pulse (1)",
+                 "pipewire-pulse.conf (5)",
+                 "libpipewire-module-protocol-pulse (7)",
+                 "libpipewire-module-pulse-tunnel (7)",
+                 "pipewire-pulse-module-alsa-sink (7)",
+                 "pipewire-pulse-module-alsa-source (7)",
+                 "pipewire-pulse-module-always-sink (7)",
+                 "pipewire-pulse-module-combine-sink (7)",
+                 "pipewire-pulse-module-device-manager (7)",
+                 "pipewire-pulse-module-device-restore (7)",
+                 "pipewire-pulse-module-echo-cancel (7)",
+                 "pipewire-pulse-module-gsettings (7)",
+                 "pipewire-pulse-module-jackdbus-detect (7)",
+                 "pipewire-pulse-module-ladspa-sink (7)",
+                 "pipewire-pulse-module-ladspa-source (7)",
+                 "pipewire-pulse-module-loopback (7)",
+                 "pipewire-pulse-module-native-protocol-tcp (7)",
+                 "pipewire-pulse-module-null-sink (7)",
+                 "pipewire-pulse-module-pipe-sink (7)",
+                 "pipewire-pulse-module-pipe-source (7)",
+                 "pipewire-pulse-module-raop-discover (7)",
+                 "pipewire-pulse-module-remap-sink (7)",
+                 "pipewire-pulse-module-remap-source (7)",
+                 "pipewire-pulse-module-roc-sink-input (7)",
+                 "pipewire-pulse-module-roc-sink (7)",
+                 "pipewire-pulse-module-roc-source (7)",
+                 "pipewire-pulse-module-rtp-recv (7)",
+                 "pipewire-pulse-module-rtp-send (7)",
+                 "pipewire-pulse-module-simple-protocol-tcp (7)",
+                 "pipewire-pulse-module-stream-restore (7)",
+                 "pipewire-pulse-module-switch-on-connect (7)",
+                 "pipewire-pulse-module-tunnel-sink (7)",
+                 "pipewire-pulse-module-tunnel-source (7)",
+                 "pipewire-pulse-module-virtual-sink (7)",
+                 "pipewire-pulse-module-virtual-source (7)",
+                 "pipewire-pulse-module-x11-bell (7)",
+                 "pipewire-pulse-module-zeroconf-discover (7)",
+                 "pipewire-pulse-module-zeroconf-publish (7)",
+                 "pipewire-pulse-modules (7)"]
+mode          = ["ael-desktop"]
+
+[pkgconf]
+pkg_name      = "pkgconf"
+description   = "Package compiler and linker metadata toolkit"
+url           = "https://github.com/pkgconf/pkgconf"
+repository    = "core"
+included_app  = ["bomtool",
+                 "i686-pc-linux-gnu-pkg-config",
+                 "pkg-config",
+                 "pkgconf",
+                 "x86_64-pc-linux-gnu-pkg-config"]
+manpages      = ["bomtool (1)",
+                 "pkg-config (1)",
+                 "pkgconf (1)",
+                 "pc (5)",
+                 "pkgconf-personality (5)",
+                 "pkg.m4 (7)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
+
+[playerctl]
+pkg_name      = "playerctl"
+description   = "mpris media player controller and lib for spotify, vlc, audacious, bmp, xmms2, and others."
+url           = "https://github.com/altdesktop/playerctl"
+repository    = "extra"
+included_app  = ["playerctl",
+                 "playerctld"]
+manpages      = ["playerctl (1)"]
+mode          = ["ael-desktop"]
 
 [polenum]
 pkg_name      = "polenum"
@@ -5525,8 +7718,8 @@ manpages      = ["free (1)",
                  "sysctl.conf (5)",
                  "sysctl (8)",
                  "vmstat (8)"]
-mode          = ["arch-base"]
 install       = ["core/base"]
+mode          = ["arch-base"]
 
 [proxychains-ng]
 pkg_name      = "proxychains-ng"
@@ -5538,6 +7731,27 @@ included_app  = ["proxychains",
                  "proxychains4-daemon"]
 manpages      = []
 mode          = ["evaluation"]
+
+[psmisc]
+pkg_name      = "psmisc"
+description   = "Miscellaneous procfs tools"
+url           = "https://gitlab.com/psmisc/psmisc"
+repository    = "core"
+included_app  = ["fuser",
+                 "killall",
+                 "peekfd",
+                 "prtstat",
+                 "pslog",
+                 "pstree",
+                 "pstree.x11"]
+manpages      = ["fuser (1)",
+                 "killall (1)",
+                 "peekfd (1)",
+                 "prtstat (1)",
+                 "pslog (1)",
+                 "pstree (1)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [pv]
 pkg_name      = "pv"
@@ -5569,6 +7783,15 @@ manpages      = ["python (1)",
                  "python3 (1)",
                  "python3.14 (1)"]
 mode          = ["ael-bare"]
+
+[qrencode]
+pkg_name      = "qrencode"
+description   = "C library for encoding data in a QR Code symbol."
+url           = "https://fukuchi.org/works/qrencode/"
+repository    = "extra"
+included_app  = ["qrencode"]
+manpages      = ["qrencode (1)"]
+mode          = ["evaluation"]
 
 [qsolocards]
 pkg_name      = "qsolocards"
@@ -5734,7 +7957,41 @@ url           = "https://www.gnu.org/software/sed/"
 repository    = "core"
 included_app  = ["sed"]
 manpages      = ["sed (1)"]
-mode          = ["ael-bare"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
+[sendmail]
+pkg_name      = "sendmail"
+description   = "A general purpose internetwork email routing MTA"
+url           = "http://www.sendmail.org"
+url_aur       = "https://aur.archlinux.org/packages/sendmail"
+repository    = "aur"
+included_app  = ["editmap",
+                 "hoststat",
+                 "mail.local",
+                 "mailq",
+                 "mailstats",
+                 "makemap",
+                 "newaliases",
+                 "praliases",
+                 "purgestat",
+                 "rmail",
+                 "sendmail",
+                 "smrsh",
+                 "vacation"]
+manpages      = ["mailq (1)",
+                 "newaliases (1)",
+                 "vacation (1)",
+                 "aliases (5)",
+                 "editmap (8)",
+                 "mail.local (8)",
+                 "mailstats (8)",
+                 "makemap (8)",
+                 "praliases (8)",
+                 "rmail (8)",
+                 "sendmail (8)",
+                 "smrsh (8)"]
+mode          = ["evaluation"]
 
 [shadow]
 pkg_name      = "shadow"
@@ -5802,7 +8059,8 @@ manpages      = ["chage (1)",
                  "useradd (8)",
                  "userdel (8)",
                  "usermod (8)"]
-mode          = ["ael-bare"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [shellcheck]
 pkg_name      = "shellcheck"
@@ -5823,6 +8081,34 @@ included_app  = ["simple-mtpfs"]
 manpages      = ["simple-mtpfs (1)"]
 mode          = ["ael-bare"]
 
+[smbclient]
+pkg_name      = "smbclient"
+description   = "Tools to access a server's filespace and printers via SMB"
+url           = "https://www.samba.org"
+repository    = "extra"
+included_app  = ["net",
+                 "nmblookup",
+                 "rpcclient",
+                 "smbcacls",
+                 "smbclient",
+                 "smbcquotas",
+                 "smbget",
+                 "smbspool",
+                 "smbtar",
+                 "smbtree"]
+manpages      = ["nmblookup (1)",
+                 "rpcclient (1)",
+                 "smbcacls (1)",
+                 "smbclient (1)",
+                 "smbcquotas (1)",
+                 "smbget (1)",
+                 "smbtar (1)",
+                 "smbtree (1)",
+                 "libsmbclient (7)",
+                 "net (8)",
+                 "smbspool (8)"]
+mode          = ["evaluation"]
+
 [snapd]
 pkg_name      = "snapd"
 description   = "Service and tools for management of snap packages."
@@ -5837,6 +8123,22 @@ manpages      = ["snap-confine (8)",
                  "snapd-env-generator (8)"]
 mode          = ["ael-bare"]
 
+[socat]
+pkg_name      = "socat"
+description   = "Multipurpose relay"
+url           = "http://www.dest-unreach.org/socat/"
+repository    = "extra"
+included_app  = ["filan",
+                 "procan",
+                 "socat",
+                 "socat-broker.sh",
+                 "socat-chain.sh",
+                 "socat-mux.sh",
+                 "socat1"]
+manpages      = ["socat (1)",
+                 "socat1 (1)"]
+mode          = ["evaluation"]
+
 [speedtest-cli]
 pkg_name      = "speedtest-cli"
 description   = "Command line interface for testing internet bandwidth using speedtest.net"
@@ -5845,6 +8147,28 @@ repository    = "extra"
 included_app  = ["speedtest",
                  "speedtest-cli"]
 manpages      = ["speedtest-cli (1)"]
+mode          = ["ael-bare"]
+
+[sqlite]
+pkg_name      = "sqlite"
+description   = "A C library that implements an SQL database engine"
+url           = "https://www.sqlite.org/"
+repository    = "core"
+included_app  = ["dbdump",
+                 "dbhash",
+                 "dbtotxt",
+                 "index_usage",
+                 "showdb",
+                 "showjournal",
+                 "showshm",
+                 "showstat4",
+                 "showwal",
+                 "sqldiff",
+                 "sqlite3",
+                 "sqlite3_expert",
+                 "sqlite3_rsync",
+                 "sqlite3_scrub"]
+manpages      = ["sqlite3 (1)"]
 mode          = ["ael-bare"]
 
 [sqlitebrowser]
@@ -5901,8 +8225,8 @@ manpages      = ["cvtsudoers (1)",
                  "sudoedit (8)",
                  "sudoreplay (8)",
                  "visudo (8)"]
-mode          = ["ael-bare"]
 install       = ["core/base-devel"]
+mode          = ["arch-base"]
 
 [sxiv]
 pkg_name      = "sxiv"
@@ -6416,8 +8740,38 @@ manpages      = ["bootctl (1)",
                  "systemd-volatile-root.service (8)",
                  "systemd-xdg-autostart-generator (8)",
                  "udevadm (8)"]
-mode          = ["arch-base"]
 install       = ["core/base"]
+mode          = ["arch-base"]
+
+[systemd-sysvcompat]
+pkg_name      = "systemd-sysvcompat"
+description   = "sysvinit compat for systemd"
+url           = "https://www.github.com/systemd/systemd"
+repository    = "core"
+included_app  = ["halt",
+                 "init",
+                 "poweroff",
+                 "reboot",
+                 "shutdown"]
+manpages      = ["halt (8)",
+                 "poweroff (8)",
+                 "reboot (8)",
+                 "shutdown (8)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
+[tar]
+pkg_name      = "tar"
+description   = "Utility used to store, backup, and transport files"
+url           = "https://www.gnu.org/software/tar/"
+repository    = "core"
+included_app  = ["backup",
+                 "restore",
+                 "tar"]
+manpages      = ["tar (1)",
+                 "rmt (8)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [tcpdump]
 pkg_name      = "tcpdump"
@@ -6427,6 +8781,76 @@ repository    = "extra"
 included_app  = ["tcpdump"]
 manpages      = ["tcpdump (1)"]
 mode          = ["ael-bare"]
+
+[tesseract]
+pkg_name      = "tesseract"
+description   = "An OCR program"
+url           = "https://github.com/tesseract-ocr/tesseract"
+repository    = "extra"
+included_app  = ["ambiguous_words",
+                 "classifier_tester",
+                 "cntraining",
+                 "combine_lang_model",
+                 "combine_tessdata",
+                 "dawg2wordlist",
+                 "lstmeval",
+                 "lstmtraining",
+                 "merge_unicharsets",
+                 "mftraining",
+                 "set_unicharset_properties",
+                 "shapeclustering",
+                 "tesseract",
+                 "text2image",
+                 "unicharset_extractor",
+                 "wordlist2dawg"]
+manpages      = ["ambiguous_words (1)",
+                 "classifier_tester (1)",
+                 "cntraining (1)",
+                 "combine_lang_model (1)",
+                 "combine_tessdata (1)",
+                 "dawg2wordlist (1)",
+                 "lstmeval (1)",
+                 "lstmtraining (1)",
+                 "merge_unicharsets (1)",
+                 "mftraining (1)",
+                 "set_unicharset_properties (1)",
+                 "shapeclustering (1)",
+                 "tesseract (1)",
+                 "text2image (1)",
+                 "unicharset_extractor (1)",
+                 "wordlist2dawg (1)",
+                 "unicharambigs (5)",
+                 "unicharset (5)"]
+notes         = ["Install tesseract-data-eng, tesseract-data-fra, tesseract-data-osd"]
+mode          = ["evaluation"]
+
+[texinfo]
+pkg_name      = "texinfo"
+description   = "GNU documentation system for on-line information and printed output"
+url           = "https://www.gnu.org/software/texinfo/"
+repository    = "core"
+included_app  = ["info",
+                 "install-info",
+                 "makeinfo",
+                 "pdftexi2dvi",
+                 "pod2texi",
+                 "texi2any",
+                 "texi2dvi",
+                 "texi2pdf",
+                 "texindex"]
+manpages      = ["info (1)",
+                 "install-info (1)",
+                 "makeinfo (1)",
+                 "pdftexi2dvi (1)",
+                 "pod2texi (1)",
+                 "texi2any (1)",
+                 "texi2dvi (1)",
+                 "texi2pdf (1)",
+                 "texindex (1)",
+                 "info (5)",
+                 "texinfo (5)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
 
 [tidy]
 pkg_name      = "tidy"
@@ -6490,6 +8914,15 @@ included_app  = ["transmission-gtk"]
 manpages      = ["transmission-gtk (1)"]
 mode          = ["ael-desktop"]
 
+[tree]
+pkg_name      = "tree"
+description   = "A directory listing program displaying a depth indented list of files"
+url           = "https://gitlab.com/OldManProgrammer/unix-tree"
+repository    = "extra"
+included_app  = ["tree"]
+manpages      = ["tree (1)"]
+mode          = ["evaluation"]
+
 [ufw]
 pkg_name      = "ufw"
 description   = "Uncomplicated and easy to use CLI tool for managing a netfilter firewall"
@@ -6514,6 +8947,32 @@ manpages      = ["ug (1)",
                  "ugrep-indexer (1)",
                  "ugrep (1)"]
 mode          = ["evaluation"]
+
+[unrar]
+pkg_name      = "unrar"
+description   = "The RAR uncompression program"
+url           = "https://www.rarlab.com/rar_add.htm"
+repository    = "extra"
+included_app  = ["unrar"]
+manpages      = []
+mode          = ["ael-bare"]
+
+[unzip]
+pkg_name      = "unzip"
+description   = "For extracting and viewing files in .zip archives"
+url           = "http://infozip.sourceforge.net/UnZip.html"
+repository    = "extra"
+included_app  = ["funzip",
+                 "unzip",
+                 "unzipsfx",
+                 "zipgrep",
+                 "zipinfo"]
+manpages      = ["funzip (1)",
+                 "unzip (1)",
+                 "unzipsfx (1)",
+                 "zipgrep (1)",
+                 "zipinfo (1)"]
+mode          = ["ael-bare"]
 
 [util-linux]
 pkg_name      = "util-linux"
@@ -6797,7 +9256,8 @@ manpages      = ["bits (1)",
                  "wipefs (8)",
                  "x86_64 (8)",
                  "zramctl (8)"]
-mode          = ["evaluation"]
+install       = ["core/base"]
+mode          = ["arch-base"]
 
 [vim]
 pkg_name      = "vim"
@@ -6872,6 +9332,17 @@ included_app  = []
 manpages      = []
 mode          = ["ael-desktop"]
 
+[w3m]
+pkg_name      = "w3m"
+description   = "Text-based Web browser as well as pager"
+url           = "https://git.sr.ht/~rkta/w3m"
+repository    = "extra"
+included_app  = ["w3m",
+                 "w3mman"]
+manpages      = ["w3m (1)",
+                 "w3mman (1)"]
+mode          = ["evaluation"]
+
 [waypaper]
 pkg_name      = "waypaper-git"
 description   = "GUI wallpaper setter for Wayland and Xorg window managers. It works as a frontend for popular wallpaper backends like swaybg, swww, wallutils, hyprpaper and feh."
@@ -6901,6 +9372,16 @@ repository    = "extra"
 included_app  = ["wget"]
 manpages      = ["wget (1)"]
 mode          = ["ael-bare"]
+
+[which]
+pkg_name      = "which"
+description   = "A utility to show the full path of commands"
+url           = "https://savannah.gnu.org/projects/which/"
+repository    = "core"
+included_app  = ["which"]
+manpages      = ["which (1)"]
+install       = ["core/base-devel"]
+mode          = ["arch-base"]
 
 [whois]
 pkg_name      = "whois"
@@ -6990,6 +9471,17 @@ manpages      = ["iftab (5)",
                  "iwspy (8)"]
 mode          = ["evaluation"]
 
+[wireplumber]
+pkg_name      = "wireplumber"
+description   = "Session / policy manager implementation for PipeWire"
+url           = "https://pipewire.pages.freedesktop.org/wireplumber/"
+repository    = "extra"
+included_app  = ["wireplumber",
+                 "wpctl",
+                 "wpexec"]
+manpages      = ["wpctl (1)"]
+mode          = ["ael-desktop"]
+
 [wireshark-cli]
 pkg_name      = "wireshark-cli"
 description   = "Network traffic and protocol analyzer/sniffer - CLI tools and data files"
@@ -7078,6 +9570,60 @@ manpages      = ["xdg-desktop-icon (1)",
                  "xdg-settings (1)"]
 mode          = ["arch-base"]
 
+[xz]
+pkg_name      = "xz"
+description   = "Library and command line tools for XZ and LZMA compressed files"
+url           = "https://tukaani.org/xz/"
+repository    = "core"
+included_app  = ["lzcat",
+                 "lzcmp",
+                 "lzdiff",
+                 "lzegrep",
+                 "lzfgrep",
+                 "lzgrep",
+                 "lzless",
+                 "lzma",
+                 "lzmadec",
+                 "lzmainfo",
+                 "lzmore",
+                 "unlzma",
+                 "unxz",
+                 "xz",
+                 "xzcat",
+                 "xzcmp",
+                 "xzdec",
+                 "xzdiff",
+                 "xzegrep",
+                 "xzfgrep",
+                 "xzgrep",
+                 "xzless",
+                 "xzmore"]
+manpages      = ["lzcat (1)",
+                 "lzcmp (1)",
+                 "lzdiff (1)",
+                 "lzegrep (1)",
+                 "lzfgrep (1)",
+                 "lzgrep (1)",
+                 "lzless (1)",
+                 "lzma (1)",
+                 "lzmadec (1)",
+                 "lzmainfo (1)",
+                 "lzmore (1)",
+                 "unlzma (1)",
+                 "unxz (1)",
+                 "xz (1)",
+                 "xzcat (1)",
+                 "xzcmp (1)",
+                 "xzdec (1)",
+                 "xzdiff (1)",
+                 "xzegrep (1)",
+                 "xzfgrep (1)",
+                 "xzgrep (1)",
+                 "xzless (1)",
+                 "xzmore (1)"]
+install       = ["core/base"]
+mode          = ["arch-base"]
+
 [yt-dlp]
 pkg_name      = "yt-dlp"
 description   = "A youtube-dl fork with additional features and fixes"
@@ -7086,6 +9632,19 @@ repository    = "extra"
 included_app  = ["yt-dlp"]
 manpages      = ["yt-dlp (1)"]
 mode          = ["ael-bare"]
+
+[zathura]
+pkg_name      = "zathura"
+description   = "Minimalistic document viewer"
+url           = "https://pwmt.org/projects/zathura/"
+repository    = "extra"
+included_app  = ["zathura",
+                 "zathura-sandbox"]
+manpages      = ["zathura-sandbox (1)",
+                 "zathura (1)",
+                 "zathurarc (5)"]
+notes         = ["zathura-pdf-mupdf"]
+mode          = ["evaluation"]
 
 [zbar]
 pkg_name      = "zbar"
@@ -7099,3 +9658,18 @@ included_app  = ["zbarcam",
 manpages      = ["zbarcam (1)",
                  "zbarimg (1)"]
 mode          = ["evaluation"]
+
+[zip]
+pkg_name      = "zip"
+description   = "Compressor/archiver for creating and modifying zipfiles"
+url           = "http://www.info-zip.org/Zip.html"
+repository    = "extra"
+included_app  = ["zip",
+                 "zipcloak",
+                 "zipnote",
+                 "zipsplit"]
+manpages      = ["zip (1)",
+                 "zipcloak (1)",
+                 "zipnote (1)",
+                 "zipsplit (1)"]
+mode          = ["ael-bare"]
