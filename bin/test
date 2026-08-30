@@ -1,0 +1,26 @@
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/test]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-08-30 14:24:55 UTC
+# Updated     : 2026-08-30 14:24:55 UTC
+# Description : Test script.
+# -----------------------------------------------------------------------------
+
+source ~/.ael/lib/bash/ael
+
+import test
+import applications
+import messages
+
+print_something
+
+check_applications bash bimbo
+
+message success Why
+message action Why
+message banner Why
+
+echo 'continuing'

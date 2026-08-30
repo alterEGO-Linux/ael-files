@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# +---------------------------------------------------------------------------+
+# [+] INFO
+# +---------------------------------------------------------------------------+
+# [/ael-files/bin/show-utc]
+# 
+# Author      : Pascal Malouin (https://github.com/fantomH)
+# Created     : 2026-08-10 15:46:54 UTC
+# Updated     : 2026-08-10 15:46:54 UTC
+# Description : Show UTC time in terminal.
+# +---------------------------------------------------------------------------+
+
+show-utc() {
+    command date --utc "+%F %H:%M:%S %Z"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    show-utc
+fi

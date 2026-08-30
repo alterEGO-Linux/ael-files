@@ -1,9 +1,13 @@
-# [+] -------------------------------------------------------------------| INFO
-# [/ael/data/ael-packages.toml]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2025-12-28 18:15:12 UTC
-# updated       : 2026-05-07 20:26:35 UTC
-# description   : Packages
+# +---------------------------------------------------------------------------+
+# [+] INFO
+# +---------------------------------------------------------------------------+
+# [ael-files/data/ael-packages.toml]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2025-12-28 18:15:12 UTC
+# Updated     : 2026-08-14 19:23:07 UTC
+# Description : AlterEGO Linux packages.
+# +---------------------------------------------------------------------------+
 
 [7zip]
 pkg_name      = "7zip"
@@ -14,7 +18,7 @@ included_app  = ["7z",
                  "7za",
                  "7zr"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [adobe-source-code-pro-fonts]
 pkg_name      = "adobe-source-code-pro-fonts"
@@ -35,7 +39,7 @@ manpages      = ["alacritty-msg (1)",
                  "alacritty (1)",
                  "alacritty-bindings (5)",
                  "alacritty (5)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [archlinux-keyring]
 pkg_name      = "archlinux-keyring"
@@ -45,7 +49,7 @@ repository    = "core"
 included_app  = ["archlinux-keyring-wkd-sync"]
 manpages      = []
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [arp-scan]
 pkg_name      = "arp-scan"
@@ -81,7 +85,7 @@ manpages      = ["autoconf (1)",
                  "autoupdate (1)",
                  "ifnames (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [automake]
 pkg_name      = "automake"
@@ -97,7 +101,7 @@ manpages      = ["aclocal-1.18 (1)",
                  "automake-1.18 (1)",
                  "automake (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [bash]
 pkg_name      = "bash"
@@ -111,7 +115,7 @@ included_app  = ["bash",
 manpages      = ["bash (1)",
                  "bashbug (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [bash-completion]
 pkg_name      = "bash-completion"
@@ -120,7 +124,7 @@ url           = "https://github.com/scop/bash-completion"
 repository    = "extra"
 included_app  = []
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [bat]
 pkg_name      = "bat"
@@ -129,7 +133,7 @@ url           = "https://github.com/sharkdp/bat"
 repository    = "extra"
 included_app  = ["bat"]
 manpages      = ["bat (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [bc]
 pkg_name      = "bc"
@@ -140,7 +144,7 @@ included_app  = ["bc",
                  "dc"]
 manpages      = ["bc (1)",
                  "dc (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [bind]
 pkg_name      = "bind"
@@ -209,7 +213,7 @@ manpages      = ["arpaname (1)",
                  "rndc-confgen (8)",
                  "rndc (8)",
                  "tsig-keygen (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [binutils]
 pkg_name      = "binutils"
@@ -269,7 +273,7 @@ manpages      = ["addr2line (1)",
                  "strings (1)",
                  "strip (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [bison]
 pkg_name      = "bison"
@@ -281,7 +285,7 @@ included_app  = ["bison",
 manpages      = ["bison (1)",
                  "yacc (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [brightnessctl]
 pkg_name      = "brightnessctl"
@@ -309,7 +313,7 @@ manpages      = ["bunzip2 (1)",
                  "bzip2 (1)",
                  "bzip2recover (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [bleachbit]
 pkg_name      = "bleachbit"
@@ -337,7 +341,7 @@ manpages      = ["blueman-adapters (1)",
                  "blueman-sendto (1)",
                  "blueman-services (1)",
                  "blueman-tray (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [bluez-utils]
 pkg_name      = "bluez-utils"
@@ -469,7 +473,7 @@ url           = "https://github.com/aristocratos/bpytop"
 repository    = "extra"
 included_app  = ["bpytop"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [brasero]
 pkg_name      = "brasero"
@@ -555,9 +559,12 @@ mode          = ["evaluation"]
 
 [coreutils]
 pkg_name      = "coreutils"
-description   = "The basic file, shell and text manipulation utilities of the GNU operating system"
+description   = "The basic file, shell and text manipulation utilities of the GNU operating system."
 url           = "https://www.gnu.org/software/coreutils/"
-repository    = "core"
+cmd           = ["cat"]
+installer     = "pacman"
+instructions  = ["Install core/base"]
+mode          = ["arch-base", "ael-bare", "ael-hacker"]
 included_app  = ["[",
                  "b2sum",
                  "base32",
@@ -660,109 +667,6 @@ included_app  = ["[",
                  "who",
                  "whoami",
                  "yes"]
-manpages      = ["b2sum (1)",
-                 "base32 (1)",
-                 "base64 (1)",
-                 "basename (1)",
-                 "basenc (1)",
-                 "cat (1)",
-                 "chgrp (1)",
-                 "chmod (1)",
-                 "chown (1)",
-                 "chroot (1)",
-                 "cksum (1)",
-                 "comm (1)",
-                 "cp (1)",
-                 "csplit (1)",
-                 "cut (1)",
-                 "date (1)",
-                 "dd (1)",
-                 "df (1)",
-                 "dir (1)",
-                 "dircolors (1)",
-                 "dirname (1)",
-                 "du (1)",
-                 "echo (1)",
-                 "env (1)",
-                 "expand (1)",
-                 "expr (1)",
-                 "factor (1)",
-                 "false (1)",
-                 "fmt (1)",
-                 "fold (1)",
-                 "groups (1)",
-                 "head (1)",
-                 "hostid (1)",
-                 "id (1)",
-                 "install (1)",
-                 "join (1)",
-                 "link (1)",
-                 "ln (1)",
-                 "logname (1)",
-                 "ls (1)",
-                 "md5sum (1)",
-                 "mkdir (1)",
-                 "mkfifo (1)",
-                 "mknod (1)",
-                 "mktemp (1)",
-                 "mv (1)",
-                 "nice (1)",
-                 "nl (1)",
-                 "nohup (1)",
-                 "nproc (1)",
-                 "numfmt (1)",
-                 "od (1)",
-                 "paste (1)",
-                 "pathchk (1)",
-                 "pinky (1)",
-                 "pr (1)",
-                 "printenv (1)",
-                 "printf (1)",
-                 "ptx (1)",
-                 "pwd (1)",
-                 "readlink (1)",
-                 "realpath (1)",
-                 "rm (1)",
-                 "rmdir (1)",
-                 "seq (1)",
-                 "sha1sum (1)",
-                 "sha224sum (1)",
-                 "sha256sum (1)",
-                 "sha384sum (1)",
-                 "sha512sum (1)",
-                 "shred (1)",
-                 "shuf (1)",
-                 "sleep (1)",
-                 "sort (1)",
-                 "split (1)",
-                 "stat (1)",
-                 "stdbuf (1)",
-                 "stty (1)",
-                 "sum (1)",
-                 "sync (1)",
-                 "tac (1)",
-                 "tail (1)",
-                 "tee (1)",
-                 "test (1)",
-                 "timeout (1)",
-                 "touch (1)",
-                 "tr (1)",
-                 "true (1)",
-                 "truncate (1)",
-                 "tsort (1)",
-                 "tty (1)",
-                 "uname (1)",
-                 "unexpand (1)",
-                 "uniq (1)",
-                 "unlink (1)",
-                 "users (1)",
-                 "vdir (1)",
-                 "wc (1)",
-                 "who (1)",
-                 "whoami (1)",
-                 "yes (1)"]
-install       = ["core/base"]
-mode          = ["arch-base"]
 
 [cronie]
 pkg_name      = "cronie"
@@ -780,7 +684,7 @@ manpages      = ["cronnext (1)",
                  "anacron (8)",
                  "cron (8)",
                  "crond (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [curl]
 pkg_name      = "curl"
@@ -793,7 +697,7 @@ included_app  = ["curl",
 manpages      = ["curl-config (1)",
                  "curl (1)",
                  "wcurl (1)"]
-mode          = ["ael-bare"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [curlftpfs]
 pkg_name      = "curlftpfs"
@@ -956,7 +860,7 @@ manpages      = ["debugedit (1)",
                  "find-debuginfo (1)",
                  "sepdebugcrcfix (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [dex]
 pkg_name      = "dex"
@@ -965,7 +869,7 @@ url           = "https://github.com/jceb/dex"
 repository    = "extra"
 included_app  = ["dex"]
 manpages      = ["dex (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [dirb]
 pkg_name      = "dirb"
@@ -1190,7 +1094,7 @@ manpages      = ["docker-attach (1)",
                  "docker (1)",
                  "Dockerfile (5)",
                  "docker-config-json (5)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [dos2unix]
 pkg_name      = "dos2unix"
@@ -1253,7 +1157,7 @@ manpages      = ["dos2unix (1)",
                  "mac2unix (1)",
                  "unix2dos (1)",
                  "unix2mac (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [dosfstools]
 pkg_name      = "dosfstools"
@@ -1289,7 +1193,7 @@ url           = "https://github.com/muesli/duf"
 repository    = "extra"
 included_app  = ["duf"]
 manpages      = ["duf (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [dunst]
 pkg_name      = "dunst"
@@ -1303,7 +1207,7 @@ manpages      = ["dunst (1)",
                  "dunstctl (1)",
                  "dunstify (1)",
                  "dunst (5)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [easy-rsa]
 pkg_name      = "easy-rsa"
@@ -1356,7 +1260,7 @@ manpages      = ["dumpexfat (8)",
                  "exfatlabel (8)",
                  "mkexfatfs (8)",
                  "mount.exfat-fuse (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [eza]
 pkg_name      = "eza"
@@ -1380,7 +1284,7 @@ included_app  = ["faked",
 manpages      = ["faked (1)",
                  "fakeroot (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [ffmpeg]
 pkg_name      = "ffmpeg"
@@ -1413,7 +1317,7 @@ manpages      = ["ffmpeg-all (1)",
                  "libavutil (3)",
                  "libswresample (3)",
                  "libswscale (3)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [file]
 pkg_name      = "file"
@@ -1425,7 +1329,7 @@ manpages      = ["file (1)",
                  "libmagic (3)",
                  "magic (5)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [filesystem]
 pkg_name      = "filesystem"
@@ -1435,7 +1339,7 @@ repository    = "core"
 included_app  = []
 manpages      = []
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [findutils]
 pkg_name      = "findutils"
@@ -1446,7 +1350,7 @@ included_app  = ["find",
                  "xargs"]
 manpages      = ["find (1)",
                  "xargs (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [firefox]
 pkg_name      = "firefox"
@@ -1455,7 +1359,7 @@ url           = "https://www.mozilla.org/firefox/"
 repository    = "extra"
 included_app  = ["firefox"]
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [firejail]
 pkg_name      = "firejail"
@@ -1485,7 +1389,7 @@ included_app  = ["flex",
                  "lex"]
 manpages      = ["flex (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [freerdp]
 pkg_name      = "freerdp"
@@ -1509,7 +1413,7 @@ manpages      = ["freerdp-proxy3 (1)",
                  "wlfreerdp3 (1)",
                  "xfreerdp3 (1)",
                  "wlog3 (7)"]
-mode          = ["ael-bare"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [fzf]
 pkg_name      = "fzf"
@@ -1520,7 +1424,7 @@ included_app  = ["fzf",
                  "fzf-tmux"]
 manpages      = ["fzf-tmux (1)",
                  "fzf (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [gawk]
 pkg_name      = "gawk"
@@ -1535,7 +1439,7 @@ manpages      = ["gawk (1)",
                  "gawkbug (1)",
                  "pm-gawk (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gcc]
 pkg_name      = "gcc"
@@ -2458,7 +2362,7 @@ manpages      = ["cpp (1)",
                  "gfdl (7)",
                  "gpl (7)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gcc-libs]
 pkg_name      = "gcc-libs"
@@ -2468,7 +2372,7 @@ repository    = "core"
 included_app  = []
 manpages      = []
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gendesk]
 pkg_name      = "gendesk"
@@ -2547,7 +2451,7 @@ manpages      = ["autopoint (1)",
                  "ngettext (3)",
                  "textdomain (3)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gimp]
 pkg_name      = "gimp"
@@ -2582,7 +2486,7 @@ manpages      = ["gimp-3 (1)",
                  "gimprc-3.2 (5)",
                  "gimprc-3 (5)",
                  "gimprc (5)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [git]
 pkg_name      = "git"
@@ -2804,7 +2708,7 @@ manpages      = ["git-add (1)",
                  "gittutorial-2 (7)",
                  "gittutorial (7)",
                  "gitworkflows (7)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [glibc]
 pkg_name      = "glibc"
@@ -2834,7 +2738,7 @@ included_app  = ["gencat",
                  "xtrace"]
 manpages      = []
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gping]
 pkg_name      = "gping"
@@ -2854,19 +2758,16 @@ included_app  = ["grc",
                  "grcat"]
 manpages      = ["grc (1)",
                  "grcat (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [grep]
 pkg_name      = "grep"
 description   = "A string search utility"
 url           = "https://www.gnu.org/software/grep/"
-repository    = "core"
-included_app  = ["egrep",
-                 "fgrep",
-                 "grep"]
-manpages      = ["grep (1)"]
-install       = ["core/base"]
-mode          = ["arch-base"]
+cmd           = ["grep"]
+installer     = "pacman"
+instructions  = ["install core/base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [grimblast]
 pkg_name      = "grimblast-git"
@@ -2876,7 +2777,7 @@ url_aur       = "https://aur.archlinux.org/packages/grimblast-git"
 repository    = "aur"
 included_app  = ["grimblast"]
 manpages      = ["grimblast (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [groff]
 pkg_name      = "groff"
@@ -2985,7 +2886,7 @@ manpages      = ["addftinfo (1)",
                  "groff_www (7)",
                  "roff (7)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gromit-mpx]
 pkg_name      = "gromit-mpx-git"
@@ -3058,7 +2959,7 @@ manpages      = ["grub-editenv (1)",
                  "grub-reboot (8)",
                  "grub-set-default (8)",
                  "grub-sparc64-setup (8)"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [gscan2pdf]
 pkg_name      = "gscan2pdf"
@@ -3086,7 +2987,7 @@ repository    = "extra"
 included_app  = ["gunicorn",
                  "gunicornc"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [gvfs]
 pkg_name      = "gvfs"
@@ -3098,7 +2999,7 @@ manpages      = ["gvfsd-fuse (1)",
                  "gvfsd-metadata (1)",
                  "gvfsd (1)",
                  "gvfs (7)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [gzip]
 pkg_name      = "gzip"
@@ -3131,7 +3032,7 @@ manpages      = ["gunzip (1)",
                  "zmore (1)",
                  "znew (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [hashid]
 pkg_name      = "hashid"
@@ -3182,7 +3083,7 @@ url           = "https://htop.dev/"
 repository    = "extra"
 included_app  = ["htop"]
 manpages      = ["htop (1)"]
-mode          = ["ael"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [hyprpaper]
 pkg_name      = "hyprpaper"
@@ -3201,7 +3102,7 @@ url           = "https://github.com/hyprwm/hyprpolkitagent"
 repository    = "extra"
 included_app  = []
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [icedtea-web]
 pkg_name      = "icedtea-web"
@@ -3241,7 +3142,7 @@ url           = "http://www.ex-parrot.com/~pdw/iftop/"
 repository    = "extra"
 included_app  = ["iftop"]
 manpages      = ["iftop (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [ifuse]
 pkg_name      = "ifuse"
@@ -3250,7 +3151,7 @@ url           = "https://libimobiledevice.org/"
 repository    = "extra"
 included_app  = ["ifuse"]
 manpages      = ["ifuse (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [imagemagick]
 pkg_name      = "imagemagick"
@@ -3325,7 +3226,7 @@ manpages      = ["dnsdomainname (1)",
                  "rshd (8)",
                  "talkd (8)",
                  "telnetd (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [inkscape]
 pkg_name      = "inkscape"
@@ -3336,7 +3237,7 @@ included_app  = ["inkscape",
                  "inkview"]
 manpages      = ["inkscape (1)",
                  "inkview (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [insomnia]
 pkg_name      = "insomnia"
@@ -3531,7 +3432,7 @@ manpages      = ["libnetlink (3)",
                  "vdpa-mgmtdev (8)",
                  "vdpa (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [iputils]
 pkg_name      = "iputils"
@@ -3547,7 +3448,7 @@ manpages      = ["arping (8)",
                  "ping (8)",
                  "tracepath (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [itstool]
 pkg_name      = "itstool"
@@ -3565,7 +3466,7 @@ url           = "https://smxi.org/docs/inxi.htm"
 repository    = "extra"
 included_app  = ["inxi"]
 manpages      = ["inxi (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [jd-gui-bin]
 pkg_name      = "jd-gui-bin"
@@ -3606,6 +3507,17 @@ manpages      = ["kdenlive (1)",
                  "kdenlive_render (1)"]
 mode          = ["evaluation"]
 
+[kvantum]
+pkg_name      = "kvantum"
+description   = "SVG-based theme engine for Qt6 (including config tool and extra themes)"
+url           = "https://github.com/tsujan/Kvantum"
+repository    = "extra"
+included_app  = ["kvantummanager",
+                 "kvantumpreview"]
+manpages      = []
+notes         = ["For Qt theming. See dev notes."]
+mode          = ["ael-desktop", "ael-hacker"]
+
 [less]
 pkg_name      = "less"
 description   = "A terminal based program for viewing text files"
@@ -3617,7 +3529,7 @@ included_app  = ["less",
 manpages      = ["less (1)",
                  "lessecho (1)",
                  "lesskey (1)"]
-mode          = ["ael-bare"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [librespeed-cli]
 pkg_name      = "librespeed-cli-bin"
@@ -3627,7 +3539,7 @@ url_aur       = "https://aur.archlinux.org/packages/librespeed-cli-bin"
 repository    = "aur"
 included_app  = ["librespeed-cli"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [libtool]
 pkg_name      = "libtool"
@@ -3641,7 +3553,7 @@ manpages      = ["libtool-next-version (1)",
                  "libtool (1)",
                  "libtoolize (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [licenses]
 pkg_name      = "licenses"
@@ -3651,7 +3563,7 @@ repository    = "core"
 included_app  = []
 manpages      = []
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [linux]
 pkg_name      = "linux"
@@ -3660,7 +3572,7 @@ url           = "https://github.com/archlinux/linux"
 repository    = "core"
 included_app  = []
 manpages      = []
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [linux-firmware]
 pkg_name      = "linux-firmware"
@@ -3669,7 +3581,7 @@ url           = "https://gitlab.com/kernel-firmware/linux-firmware"
 repository    = "core"
 included_app  = []
 manpages      = []
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [llmfit]
 pkg_name      = "llmfit"
@@ -3689,7 +3601,7 @@ repository    = "extra"
 included_app  = ["gtk-lshw",
                  "lshw"]
 manpages      = ["lshw (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [lsof]
 pkg_name      = "lsof"
@@ -3790,7 +3702,7 @@ repository    = "core"
 included_app  = ["m4"]
 manpages      = ["m4 (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [make]
 pkg_name      = "make"
@@ -3800,7 +3712,7 @@ repository    = "core"
 included_app  = ["make"]
 manpages      = ["make (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [man-db]
 pkg_name      = "man-db"
@@ -3828,7 +3740,7 @@ manpages      = ["apropos (1)",
                  "accessdb (8)",
                  "catman (8)",
                  "mandb (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [man-pages]
 pkg_name      = "man-pages"
@@ -6459,7 +6371,7 @@ manpages      = ["getent (1)",
                  "ld.so (8)",
                  "ldconfig (8)",
                  "sln (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [mangl]
 pkg_name      = "mangl"
@@ -6469,7 +6381,7 @@ url_aur       = "https://aur.archlinux.org/packages/mangl"
 repository    = "aur"
 included_app  = ["mangl"]
 manpages      = ["mangl (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [mariadb-clients]
 pkg_name      = "mariadb-clients"
@@ -6531,7 +6443,7 @@ url           = "https://meldmerge.org/"
 repository    = "extra"
 included_app  = ["meld"]
 manpages      = ["meld (1)"]
-mode          = ["ael"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [metasploit]
 pkg_name      = "metasploit"
@@ -6556,7 +6468,7 @@ url           = "https://mpv.io/"
 repository    = "extra"
 included_app  = ["mpv"]
 manpages      = ["mpv (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [mpvpaper]
 pkg_name      = "mpvpaper"
@@ -6567,7 +6479,7 @@ repository    = "aur"
 included_app  = ["mpvpaper",
                  "mpvpaper-holder"]
 manpages      = ["mpvpaper (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [mtools]
 pkg_name      = "mtools"
@@ -6638,7 +6550,7 @@ manpages      = ["floppyd (1)",
                  "mtype (1)",
                  "mzip (1)",
                  "mtools (5)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [mtr]
 pkg_name      = "mtr"
@@ -6661,7 +6573,7 @@ included_app  = ["nano",
 manpages      = ["nano (1)",
                  "rnano (1)",
                  "nanorc (5)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [netcat]
 pkg_name      = "openbsd-netcat"
@@ -6672,7 +6584,7 @@ included_app  = ["nc",
                  "nc.openbsd",
                  "netcat"]
 manpages      = ["nc (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 notes         = ["To have the -e (remote execution) you need to install gnu-netcat from AUR"]
 
 [net-tools]
@@ -6703,7 +6615,7 @@ manpages      = ["ethers (5)",
                  "rarp (8)",
                  "route (8)",
                  "slattach (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [network-manager-applet]
 pkg_name      = "network-manager-applet"
@@ -6712,7 +6624,7 @@ url           = "https://gitlab.gnome.org/GNOME/network-manager-applet"
 repository    = "extra"
 included_app  = ["nm-applet"]
 manpages      = ["nm-applet (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [networkmanager]
 pkg_name      = "networkmanager"
@@ -6744,7 +6656,7 @@ manpages      = ["nm-online (1)",
                  "NetworkManager-wait-online.service (8)",
                  "NetworkManager (8)",
                  "nm-initrd-generator (8)"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [nfs-utils]
 pkg_name      = "nfs-utils"
@@ -6816,7 +6728,7 @@ manpages      = ["exports (5)",
                  "sm-notify (8)",
                  "statd (8)",
                  "umount.nfs (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [nginx]
 pkg_name      = "nginx"
@@ -6847,7 +6759,7 @@ included_app  = ["ncat",
 manpages      = ["ncat (1)",
                  "nmap (1)",
                  "nping (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [nomacs]
 pkg_name      = "nomacs-git"
@@ -6857,7 +6769,7 @@ url_aur       = "https://aur.archlinux.org/packages/nomacs-git"
 repository    = "aur"
 included_app  = ["nomacs"]
 manpages      = ["nomacs (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [ntfs-3g]
 pkg_name      = "ntfs-3g"
@@ -6913,7 +6825,7 @@ manpages      = ["mkfs.ntfs (8)",
                  "ntfsundelete (8)",
                  "ntfsusermap (8)",
                  "ntfswipe (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [nwg-displays]
 pkg_name      = "nwg-displays"
@@ -6924,7 +6836,7 @@ included_app  = ["nwg-displays",
                  "nwg-displays-apply",
                  "nwg-displays-toggle-wallpapers"]
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [nwg-look]
 pkg_name      = "nwg-look"
@@ -6933,7 +6845,7 @@ url           = "https://github.com/nwg-piotr/nwg-look"
 repository    = "extra"
 included_app  = ["nwg-look"]
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [openssh]
 pkg_name      = "openssh"
@@ -6966,7 +6878,7 @@ manpages      = ["scp (1)",
                  "ssh-pkcs11-helper (8)",
                  "ssh-sk-helper (8)",
                  "sshd (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [openvpn]
 pkg_name      = "openvpn"
@@ -6976,7 +6888,7 @@ repository    = "extra"
 included_app  = ["openvpn"]
 manpages      = ["openvpn-examples (5)",
                  "openvpn (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [pacman]
 pkg_name      = "pacman"
@@ -7026,7 +6938,7 @@ manpages      = ["makepkg-template (1)",
                  "testpkg (8)",
                  "vercmp (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [pacman-contrib]
 pkg_name      = "pacman-contrib"
@@ -7055,7 +6967,7 @@ manpages      = ["checkupdates (8)",
                  "pactree (8)",
                  "rankmirrors (8)",
                  "updpkgsums (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [pandoc]
 pkg_name      = "pandoc-bin"
@@ -7069,7 +6981,7 @@ included_app  = ["pandoc",
 manpages      = ["pandoc-lua (1)",
                  "pandoc-server (1)",
                  "pandoc (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [paru]
 pkg_name      = "paru"
@@ -7080,7 +6992,7 @@ repository    = "aur"
 included_app  = ["paru"]
 manpages      = ["paru.conf (5)",
                  "paru (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [patch]
 pkg_name      = "patch"
@@ -7090,7 +7002,7 @@ repository    = "core"
 included_app  = ["patch"]
 manpages      = ["patch (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [pavucontrol]
 pkg_name      = "pavucontrol"
@@ -7099,7 +7011,7 @@ url           = "https://freedesktop.org/software/pulseaudio/pavucontrol/"
 repository    = "extra"
 included_app  = ["pavucontrol"]
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [pcmanfm]
 pkg_name      = "pcmanfm-qt"
@@ -7108,7 +7020,7 @@ url           = "https://github.com/lxqt/pcmanfm-qt"
 repository    = "extra"
 included_app  = ["pcmanfm-qt"]
 manpages      = ["pcmanfm-qt (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [pciutils]
 pkg_name      = "pciutils"
@@ -7126,7 +7038,7 @@ manpages      = ["pci.ids (5)",
                  "setpci (8)",
                  "update-pciids (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [php]
 pkg_name      = "php"
@@ -7143,7 +7055,7 @@ manpages      = ["phar (1)",
                  "php-config (1)",
                  "php (1)",
                  "phpize (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [pipdeptree]
 pkg_name      = "pipdeptree"
@@ -7153,7 +7065,7 @@ url_aur       = "https://aur.archlinux.org/packages/pipdeptree"
 repository    = "aur"
 included_app  = ["pipdeptree"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [pipewire]
 pkg_name      = "pipewire"
@@ -7213,7 +7125,7 @@ manpages      = ["pipewire (1)",
                  "libpipewire-module-spa-node (7)",
                  "libpipewire-modules (7)",
                  "pipewire-props (7)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [pipewire-pulse]
 pkg_name      = "pipewire-pulse"
@@ -7260,7 +7172,7 @@ manpages      = ["pipewire-pulse (1)",
                  "pipewire-pulse-module-zeroconf-discover (7)",
                  "pipewire-pulse-module-zeroconf-publish (7)",
                  "pipewire-pulse-modules (7)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [pkgconf]
 pkg_name      = "pkgconf"
@@ -7279,7 +7191,7 @@ manpages      = ["bomtool (1)",
                  "pkgconf-personality (5)",
                  "pkg.m4 (7)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [playerctl]
 pkg_name      = "playerctl"
@@ -7289,7 +7201,7 @@ repository    = "extra"
 included_app  = ["playerctl",
                  "playerctld"]
 manpages      = ["playerctl (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [polenum]
 pkg_name      = "polenum"
@@ -7332,7 +7244,7 @@ manpages      = ["pdfattach (1)",
                  "pdftops (1)",
                  "pdftotext (1)",
                  "pdfunite (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [postgresql]
 pkg_name      = "postgresql"
@@ -7644,7 +7556,7 @@ manpages      = ["initdb (1)",
                  "VACUUM (7)",
                  "VALUES (7)",
                  "WITH (7)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [powershell]
 pkg_name      = "powershell-bin"
@@ -7654,7 +7566,7 @@ url_aur       = "https://aur.archlinux.org/packages/powershell-bin"
 repository    = "aur"
 included_app  = ["pwsh"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [pptpclient]
 pkg_name      = "pptpclient"
@@ -7719,7 +7631,7 @@ manpages      = ["free (1)",
                  "sysctl (8)",
                  "vmstat (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [proxychains-ng]
 pkg_name      = "proxychains-ng"
@@ -7751,7 +7663,7 @@ manpages      = ["fuser (1)",
                  "pslog (1)",
                  "pstree (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [pv]
 pkg_name      = "pv"
@@ -7782,7 +7694,7 @@ included_app  = ["idle",
 manpages      = ["python (1)",
                  "python3 (1)",
                  "python3.14 (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [qrencode]
 pkg_name      = "qrencode"
@@ -7803,6 +7715,16 @@ included_app  = ["qsolocards"]
 manpages      = []
 mode          = ["evaluation"]
 
+[qt6ct]
+pkg_name      = "qt6ct"
+description   = "Qt 6 Configuration Utility"
+url           = "https://www.opencode.net/trialuser/qt6ct"
+repository    = "extra"
+included_app  = ["qt6ct"]
+manpages      = []
+notes         = ["For Qt theming. See dev notes."]
+mode          = ["ael-desktop", "ael-hacker"]
+
 [ranger]
 pkg_name      = "ranger"
 description   = "Simple, vim-like file manager"
@@ -7812,7 +7734,7 @@ included_app  = ["ranger",
                  "rifle"]
 manpages      = ["ranger (1)",
                  "rifle (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [reflector]
 pkg_name      = "reflector"
@@ -7821,7 +7743,7 @@ url           = "https://xyne.dev/projects/reflector"
 repository    = "extra"
 included_app  = ["reflector"]
 manpages      = ["reflector (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [remmina]
 pkg_name      = "remmina"
@@ -7832,7 +7754,7 @@ included_app  = ["remmina",
                  "remmina-file-wrapper"]
 manpages      = ["remmina-file-wrapper (1)",
                  "remmina (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [ripgrep]
 pkg_name      = "ripgrep"
@@ -7841,7 +7763,7 @@ url           = "https://github.com/BurntSushi/ripgrep"
 repository    = "extra"
 included_app  = ["rg"]
 manpages      = ["rg (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [rsync]
 pkg_name      = "rsync"
@@ -7855,7 +7777,7 @@ manpages      = ["rrsync (1)",
                  "rsync-ssl (1)",
                  "rsync (1)",
                  "rsyncd.conf (5)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [rust]
 pkg_name      = "rust"
@@ -7910,7 +7832,7 @@ manpages      = ["cargo-add (1)",
                  "cargo (1)",
                  "rustc (1)",
                  "rustdoc (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [rustdesk-bin]
 pkg_name      = "rustdesk-bin"
@@ -7920,7 +7842,7 @@ url_aur       = "https://aur.archlinux.org/packages/rustdesk-bin"
 repository    = "aur"
 included_app  = ["rustdesk"]
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [rustscan]
 pkg_name      = "rustscan"
@@ -7929,7 +7851,7 @@ url           = "https://github.com/rustscan/RustScan"
 repository    = "extra"
 included_app  = ["rustscan"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [screen]
 pkg_name      = "screen"
@@ -7939,7 +7861,7 @@ repository    = "extra"
 included_app  = ["screen",
                  "screen-5.0.1"]
 manpages      = ["screen (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [screenkey]
 pkg_name      = "screenkey"
@@ -7958,7 +7880,7 @@ repository    = "core"
 included_app  = ["sed"]
 manpages      = ["sed (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [sendmail]
 pkg_name      = "sendmail"
@@ -8060,7 +7982,7 @@ manpages      = ["chage (1)",
                  "userdel (8)",
                  "usermod (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [shellcheck]
 pkg_name      = "shellcheck"
@@ -8069,7 +7991,7 @@ url           = "https://www.shellcheck.net"
 repository    = "extra"
 included_app  = ["shellcheck"]
 manpages      = ["shellcheck (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [simple-mtpfs]
 pkg_name      = "simple-mtpfs"
@@ -8079,7 +8001,7 @@ url_aur       = "https://aur.archlinux.org/packages/simple-mtpfs"
 repository    = "aur"
 included_app  = ["simple-mtpfs"]
 manpages      = ["simple-mtpfs (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [smbclient]
 pkg_name      = "smbclient"
@@ -8121,7 +8043,7 @@ manpages      = ["snap-confine (8)",
                  "snap-discard-ns (8)",
                  "snap (8)",
                  "snapd-env-generator (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [socat]
 pkg_name      = "socat"
@@ -8147,7 +8069,7 @@ repository    = "extra"
 included_app  = ["speedtest",
                  "speedtest-cli"]
 manpages      = ["speedtest-cli (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [sqlite]
 pkg_name      = "sqlite"
@@ -8169,7 +8091,7 @@ included_app  = ["dbdump",
                  "sqlite3_rsync",
                  "sqlite3_scrub"]
 manpages      = ["sqlite3 (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [sqlitebrowser]
 pkg_name      = "sqlitebrowser"
@@ -8178,7 +8100,7 @@ url           = "https://sqlitebrowser.org"
 repository    = "extra"
 included_app  = ["sqlitebrowser"]
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [sqlmap]
 pkg_name      = "sqlmap"
@@ -8188,7 +8110,7 @@ repository    = "extra"
 included_app  = ["sqlmap",
                  "sqlmapapi"]
 manpages      = []
-mode          = ["ael-hacker"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [streamlink]
 pkg_name      = "streamlink"
@@ -8226,7 +8148,7 @@ manpages      = ["cvtsudoers (1)",
                  "sudoreplay (8)",
                  "visudo (8)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [sxiv]
 pkg_name      = "sxiv"
@@ -8235,7 +8157,7 @@ url           = "https://github.com/muennich/sxiv"
 repository    = "extra"
 included_app  = ["sxiv"]
 manpages      = ["sxiv (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [system-config-printer]
 pkg_name      = "system-config-printer"
@@ -8741,7 +8663,7 @@ manpages      = ["bootctl (1)",
                  "systemd-xdg-autostart-generator (8)",
                  "udevadm (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [systemd-sysvcompat]
 pkg_name      = "systemd-sysvcompat"
@@ -8758,7 +8680,7 @@ manpages      = ["halt (8)",
                  "reboot (8)",
                  "shutdown (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [tar]
 pkg_name      = "tar"
@@ -8771,7 +8693,7 @@ included_app  = ["backup",
 manpages      = ["tar (1)",
                  "rmt (8)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [tcpdump]
 pkg_name      = "tcpdump"
@@ -8780,7 +8702,7 @@ url           = "https://www.tcpdump.org/"
 repository    = "extra"
 included_app  = ["tcpdump"]
 manpages      = ["tcpdump (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [tesseract]
 pkg_name      = "tesseract"
@@ -8850,7 +8772,7 @@ manpages      = ["info (1)",
                  "info (5)",
                  "texinfo (5)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [tidy]
 pkg_name      = "tidy"
@@ -8859,7 +8781,7 @@ url           = "https://www.html-tidy.org/"
 repository    = "extra"
 included_app  = ["tidy"]
 manpages      = ["tidy (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [tigervnc]
 pkg_name      = "tigervnc"
@@ -8885,7 +8807,7 @@ manpages      = ["Xvnc (1)",
                  "x0vncserver (1)",
                  "vncserver (8)",
                  "vncsession (8)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [tmux]
 pkg_name      = "tmux"
@@ -8894,7 +8816,7 @@ url           = "https://github.com/tmux/tmux/wiki"
 repository    = "extra"
 included_app  = ["tmux"]
 manpages      = ["tmux (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [traceroute]
 pkg_name      = "traceroute"
@@ -8903,7 +8825,7 @@ url           = "http://traceroute.sourceforge.net"
 repository    = "extra"
 included_app  = ["traceroute"]
 manpages      = ["traceroute (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [transmission]
 pkg_name      = "transmission-gtk"
@@ -8912,7 +8834,7 @@ url           = "http://www.transmissionbt.com/"
 repository    = "extra"
 included_app  = ["transmission-gtk"]
 manpages      = ["transmission-gtk (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [tree]
 pkg_name      = "tree"
@@ -8931,7 +8853,7 @@ repository    = "extra"
 included_app  = ["ufw"]
 manpages      = ["ufw-framework (8)",
                  "ufw (8)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [ugrep]
 pkg_name      = "ugrep"
@@ -8955,7 +8877,7 @@ url           = "https://www.rarlab.com/rar_add.htm"
 repository    = "extra"
 included_app  = ["unrar"]
 manpages      = []
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [unzip]
 pkg_name      = "unzip"
@@ -8972,13 +8894,16 @@ manpages      = ["funzip (1)",
                  "unzipsfx (1)",
                  "zipgrep (1)",
                  "zipinfo (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [util-linux]
 pkg_name      = "util-linux"
 description   = "Miscellaneous system utilities for Linux"
 url           = "https://github.com/util-linux/util-linux"
-repository    = "core"
+cmd           = ["hexdump"]
+installer     = "pacman"
+instructions  = ["Install core/base"]
+mode          = ["arch-base", "ael-bare", "ael-hacker"]
 included_app  = ["addpart",
                  "agetty",
                  "bits",
@@ -9115,149 +9040,6 @@ included_app  = ["addpart",
                  "write",
                  "x86_64",
                  "zramctl"]
-manpages      = ["bits (1)",
-                 "cal (1)",
-                 "chfn (1)",
-                 "choom (1)",
-                 "chrt (1)",
-                 "chsh (1)",
-                 "col (1)",
-                 "colcrt (1)",
-                 "colrm (1)",
-                 "column (1)",
-                 "copyfilerange (1)",
-                 "coresched (1)",
-                 "dmesg (1)",
-                 "eject (1)",
-                 "enosys (1)",
-                 "exch (1)",
-                 "fadvise (1)",
-                 "fallocate (1)",
-                 "fincore (1)",
-                 "flock (1)",
-                 "getino (1)",
-                 "getopt (1)",
-                 "hardlink (1)",
-                 "hexdump (1)",
-                 "ionice (1)",
-                 "ipcmk (1)",
-                 "ipcrm (1)",
-                 "ipcs (1)",
-                 "irqtop (1)",
-                 "kill (1)",
-                 "last (1)",
-                 "lastb (1)",
-                 "logger (1)",
-                 "login (1)",
-                 "look (1)",
-                 "lsclocks (1)",
-                 "lscpu (1)",
-                 "lsfd (1)",
-                 "lsipc (1)",
-                 "lsirq (1)",
-                 "lslogins (1)",
-                 "lsmem (1)",
-                 "mcookie (1)",
-                 "mesg (1)",
-                 "more (1)",
-                 "mountpoint (1)",
-                 "namei (1)",
-                 "newgrp (1)",
-                 "nsenter (1)",
-                 "pg (1)",
-                 "pipesz (1)",
-                 "prlimit (1)",
-                 "rename (1)",
-                 "renice (1)",
-                 "rev (1)",
-                 "runuser (1)",
-                 "script (1)",
-                 "scriptlive (1)",
-                 "scriptreplay (1)",
-                 "setpgid (1)",
-                 "setpriv (1)",
-                 "setsid (1)",
-                 "setterm (1)",
-                 "su (1)",
-                 "taskset (1)",
-                 "uclampset (1)",
-                 "ul (1)",
-                 "unshare (1)",
-                 "utmpdump (1)",
-                 "uuidgen (1)",
-                 "uuidparse (1)",
-                 "waitpid (1)",
-                 "wall (1)",
-                 "whereis (1)",
-                 "write (1)",
-                 "adjtime_config (5)",
-                 "fstab (5)",
-                 "scols-filter (5)",
-                 "terminal-colors.d (5)",
-                 "addpart (8)",
-                 "agetty (8)",
-                 "blkdiscard (8)",
-                 "blkid (8)",
-                 "blkpr (8)",
-                 "blkzone (8)",
-                 "blockdev (8)",
-                 "cfdisk (8)",
-                 "chcpu (8)",
-                 "chmem (8)",
-                 "ctrlaltdel (8)",
-                 "delpart (8)",
-                 "fdisk (8)",
-                 "findfs (8)",
-                 "findmnt (8)",
-                 "fsck (8)",
-                 "fsck.cramfs (8)",
-                 "fsck.minix (8)",
-                 "fsfreeze (8)",
-                 "fstrim (8)",
-                 "hwclock (8)",
-                 "i386 (8)",
-                 "isosize (8)",
-                 "lastlog2 (8)",
-                 "ldattach (8)",
-                 "linux32 (8)",
-                 "linux64 (8)",
-                 "losetup (8)",
-                 "lsblk (8)",
-                 "lslocks (8)",
-                 "lsns (8)",
-                 "mkfs (8)",
-                 "mkfs.bfs (8)",
-                 "mkfs.cramfs (8)",
-                 "mkfs.minix (8)",
-                 "mkswap (8)",
-                 "mount (8)",
-                 "nologin (8)",
-                 "pam_lastlog2 (8)",
-                 "partx (8)",
-                 "pivot_root (8)",
-                 "readprofile (8)",
-                 "resizepart (8)",
-                 "rfkill (8)",
-                 "rtcwake (8)",
-                 "setarch (8)",
-                 "sfdisk (8)",
-                 "sulogin (8)",
-                 "swaplabel (8)",
-                 "swapoff (8)",
-                 "swapon (8)",
-                 "switch_root (8)",
-                 "tunelp (8)",
-                 "umount (8)",
-                 "uname26 (8)",
-                 "uuidd (8)",
-                 "vigr (8)",
-                 "vipw (8)",
-                 "wdctl (8)",
-                 "wipefs (8)",
-                 "x86_64 (8)",
-                 "zramctl (8)"]
-install       = ["core/base"]
-mode          = ["arch-base"]
 
 [vim]
 pkg_name      = "vim"
@@ -9276,7 +9058,7 @@ manpages      = ["rview (1)",
                  "vimdiff (1)",
                  "vimtutor (1)",
                  "xxd (1)"]
-mode          = ["arch-base"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [virtualbox]
 pkg_name      = "virtualbox"
@@ -9330,7 +9112,7 @@ url           = "https://www.videolan.org/vlc/"
 repository    = "extra"
 included_app  = []
 manpages      = []
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [w3m]
 pkg_name      = "w3m"
@@ -9351,7 +9133,7 @@ url_aur       = "https://aur.archlinux.org/packages/waypaper-git"
 repository    = "aur"
 included_app  = ["waypaper"]
 manpages      = ["waypaper (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [weasis-bin]
 pkg_name      = "weasis-bin"
@@ -9371,7 +9153,7 @@ url           = "https://www.gnu.org/software/wget/wget.html"
 repository    = "extra"
 included_app  = ["wget"]
 manpages      = ["wget (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [which]
 pkg_name      = "which"
@@ -9381,7 +9163,7 @@ repository    = "core"
 included_app  = ["which"]
 manpages      = ["which (1)"]
 install       = ["core/base-devel"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [whois]
 pkg_name      = "whois"
@@ -9393,7 +9175,7 @@ included_app  = ["mkpasswd",
 manpages      = ["mkpasswd (1)",
                  "whois (1)",
                  "whois.conf (5)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [wine]
 pkg_name      = "wine"
@@ -9446,7 +9228,7 @@ manpages      = ["msiexec (1)",
                  "wineserver (1)",
                  "wmc (1)",
                  "wrc (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [wireless_tools]
 pkg_name      = "wireless_tools"
@@ -9480,7 +9262,7 @@ included_app  = ["wireplumber",
                  "wpctl",
                  "wpexec"]
 manpages      = ["wpctl (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [wireshark-cli]
 pkg_name      = "wireshark-cli"
@@ -9527,7 +9309,7 @@ manpages      = ["androiddump (1)",
                  "wifidump (1)",
                  "extcap (4)",
                  "wireshark-filter (4)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [wireshark]
 pkg_name      = "wireshark-qt"
@@ -9536,7 +9318,7 @@ url           = "https://www.wireshark.org/"
 repository    = "extra"
 included_app  = ["wireshark"]
 manpages      = ["wireshark (1)"]
-mode          = ["ael-desktop"]
+mode          = ["ael-desktop", "ael-hacker"]
 
 [wlr-randr]
 pkg_name      = "wlr-randr"
@@ -9568,7 +9350,7 @@ manpages      = ["xdg-desktop-icon (1)",
                  "xdg-open (1)",
                  "xdg-screensaver (1)",
                  "xdg-settings (1)"]
-mode          = ["arch-base"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [xz]
 pkg_name      = "xz"
@@ -9622,7 +9404,7 @@ manpages      = ["lzcat (1)",
                  "xzless (1)",
                  "xzmore (1)"]
 install       = ["core/base"]
-mode          = ["arch-base"]
+mode          = ["arch-base", "ael-bare", "ael-desktop", "ael-hacker"]
 
 [yt-dlp]
 pkg_name      = "yt-dlp"
@@ -9631,7 +9413,7 @@ url           = "https://github.com/yt-dlp/yt-dlp"
 repository    = "extra"
 included_app  = ["yt-dlp"]
 manpages      = ["yt-dlp (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]
 
 [zathura]
 pkg_name      = "zathura"
@@ -9644,7 +9426,16 @@ manpages      = ["zathura-sandbox (1)",
                  "zathura (1)",
                  "zathurarc (5)"]
 notes         = ["zathura-pdf-mupdf"]
-mode          = ["evaluation"]
+mode          = ["ael-desktop", "ael-hacker"]
+
+[zathura-pdf-mupdf]
+pkg_name      = "zathura-pdf-mupdf"
+description   = "PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)"
+url           = "https://pwmt.org/projects/zathura-pdf-mupdf/"
+repository    = "extra"
+included_app  = []
+manpages      = []
+mode          = ["ael-desktop", "ael-hacker"]
 
 [zbar]
 pkg_name      = "zbar"
@@ -9657,7 +9448,7 @@ included_app  = ["zbarcam",
                  "zbarimg"]
 manpages      = ["zbarcam (1)",
                  "zbarimg (1)"]
-mode          = ["evaluation"]
+mode          = ["ael-hacker"]
 
 [zip]
 pkg_name      = "zip"
@@ -9672,4 +9463,4 @@ manpages      = ["zip (1)",
                  "zipcloak (1)",
                  "zipnote (1)",
                  "zipsplit (1)"]
-mode          = ["ael-bare"]
+mode          = ["ael-bare", "ael-desktop", "ael-hacker"]

@@ -24,6 +24,11 @@ DEFAULT_FIELDS = [
     "lon",
     "timezone",
     "isp",
+    "org",
+    "as",
+    "mobile",
+    "proxy",
+    "hosting",
 ]
 
 RATE_LIMIT_PER_MINUTE = 40
@@ -128,6 +133,12 @@ def print_row(row: list[str], fields: list[str]) -> None:
             width = 17
         elif field == "city":
             width = 35
+        elif field == "isp":
+            width = 50
+        elif field == "org":
+            width = 50
+        elif field == "as":
+            width = 50
         else:
             width = 20
 

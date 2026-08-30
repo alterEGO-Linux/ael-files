@@ -1,9 +1,13 @@
-# [+] -------------------------------------------------------------------| INFO
-# [/ael/data/ael-files.toml]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2025-06-11 01:03:28 UTC
-# updated       : 2026-04-24 20:28:34 UTC
-# description   : AEL files.
+# +---------------------------------------------------------------------------+
+# [+] INFO
+# +---------------------------------------------------------------------------+
+# [ael-files/data/ael-files.toml]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2025-06-11 01:03:28 UTC
+# Updated     : 2026-08-14 19:21:20 UTC
+# Description : AlterEGO Linux files.
+# +---------------------------------------------------------------------------+
 
 [ael.aelcore]
 filename    = ".aelcore"
@@ -26,7 +30,10 @@ symlinked   = true
 filename    = "busy"
 type        = "bin/bash"
 description = "When the boss comes around to look busy."
-src         = "/ael-files/bin/"
+requires    = ["cat",
+               "grep",
+               "hexdump"]
+src         = "/ael-files/bin/busy"
 dst         = "/ael/bin/busy"
 symlinked   = true
 

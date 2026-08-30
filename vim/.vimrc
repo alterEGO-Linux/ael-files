@@ -300,6 +300,41 @@
 
   " set mouse=a
 
+" +---------------------------------------------------------------------------+
+" [+] RANGER
+" +---------------------------------------------------------------------------+
+
+function! Ranger()
+    let l:temp = tempname()
+
+    if expand('%:p') !=# ''
+        let l:start = expand('%:p:h')
+    else
+        let l:start = getcwd()
+    endif
+
+    silent execute '!ranger --choosefile='
+                \ . shellescape(l:temp)
+                \ . ' '
+                \ . shellescape(l:start)
+
+    if filereadable(l:temp)
+        let l:files = readfile(l:temp)
+
+        if !empty(l:files)
+            execute 'edit ' . fnameescape(l:files[0])
+        endif
+
+        call delete(l:temp)
+    endif
+
+    redraw!
+endfunction
+
+command! Ranger call Ranger()
+
+nnoremap <leader>er :Ranger<CR>
+
 " ---------- [ save file ]
 
   " --- ctrl+s to save file
@@ -462,12 +497,14 @@
 
   nnoremap <silent> <leader>b :call ToggleBionic()<CR>
 
-" ---------- [ plugins - install ]
+" +---------------------------------------------------------------------------+
+" [+] PLUGINS - INSTALL
+" +---------------------------------------------------------------------------+
 
   syntax enable
   filetype plugin on
 
-  " --- vim-plug
+  " [-] vim-plug
 
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -491,6 +528,10 @@
   " --- markdown-preview
   " ... <https://github.com/iamcco/markdown-preview.vim>
   Plug 'iamcco/markdown-preview.vim'
+
+" [-] francoiscabrol/ranger
+" ... <https://github.com/francoiscabrol/ranger.vim>
+"Plug 'francoiscabrol/ranger.vim'
 
   " --- ultisnips
   " ... <https://github.com/SirVer/ultisnips>
@@ -571,6 +612,12 @@
   let g:UltiSnipsEditSplit="vertical"
   let g:UltiSnipsJumpForwardTrigger="<c-k>"
   let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+
+" +---------------------------------------------------------------------------+
+" [+] PLUGIN - RANGER
+" +---------------------------------------------------------------------------+
+
+"nnoremap <leader>e :Ranger<CR>
 
 " ---------- [ colorscheme ]
 

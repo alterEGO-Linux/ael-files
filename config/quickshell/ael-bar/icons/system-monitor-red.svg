@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800"
+   height="700"
+   viewBox="0 0 16 14"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="system-monitor-red.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.73450717"
+     inkscape:cx="423.41316"
+     inkscape:cy="358.74395"
+     inkscape:window-width="1896"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="M 3.994,0 C 2.736,0.015 1.815,-0.03 1.063,0.385 0.6736148,0.60711748 0.37641405,0.96106308 0.225,1.383 0.06,1.822 0,2.343 0,3 v 8 c 0,0.658 0.06,1.179 0.225,1.617 0.164,0.439 0.461,0.79 0.838,0.998 0.752,0.416 1.673,0.37 2.931,0.385 h 8.012 c 1.258,-0.014 2.179,0.03 2.932,-0.385 0.330621,-0.188597 0.594782,-0.472234 0.759671,-0.811835 0.02931,-0.06036 0.05548,-0.122488 0.07833,-0.186165 C 15.94,12.179 16,11.657 16,11 V 3 C 16,2.342 15.94,1.822 15.775,1.383 15.623837,0.96122358 15.327009,0.60730038 14.938,0.385 14.185,-0.031 13.264,0.015 12.006,0 H 3.998 Z m 1.5,4 C 5.719089,3.99699 5.9184398,4.1447585 5.981,4.361 L 7.586,9.8980002 8.531,7.328 C 8.6829954,6.9178061 9.2512597,6.8867873 9.447,7.278 L 10.31,9 H 15 v 1 H 10 C 9.810556,9.9998042 9.637492,9.8925592 9.553,9.7230002 L 9.07,8.758 8,11.672 C 7.8339846,12.126176 7.1841,12.103601 7.05,11.639 L 5.493,6.266 4.48,9.6450002 C 4.415957,9.8563522 4.2208413,10.000656 4,10 H 1 V 9 H 3.629 L 5.022,4.356 C 5.084813,4.1470647 5.2758473,4.0029799 5.494,4 Z"
+     style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;fill:#ff0000;stroke:none;marker:none"
+     color="#000000"
+     font-weight="400"
+     font-family="sans-serif"
+     white-space="normal"
+     overflow="visible"
+     fill="#808080"
+     id="path1"
+     sodipodi:nodetypes="cccsscccccscsscccccccccccccccccccccccccc" />
+</svg>

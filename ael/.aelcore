@@ -97,6 +97,10 @@ load-source() {
     fi
 }
 
+if [[ -f "${AEL_HOME}/.modules" ]]; then
+    . "${AEL_HOME}/.modules"
+fi
+
 # [+] ----------------------------------------------------------------| ael-fzf
 shellutil="${AEL_SHELLUTILS}/ael-fzf"
 
@@ -323,9 +327,9 @@ load-source "${AEL_BIN}/shell-info"
 # [+] ---------------------------------------------------------------| show-utc
 
 # --| Display UTC time.
-show-utc() {
-    command date --utc "+%F %H:%M:%S %Z"
-}
+# show-utc() {
+    # command date --utc "+%F %H:%M:%S %Z"
+# }
 
 # [+] --------------------------------------------------------------| snake-env
 

@@ -1,0 +1,26 @@
+# +---------------------------------------------------------------------------+
+# [+] INFO
+# +---------------------------------------------------------------------------+
+# [/ael-files/ael/.modules]
+# 
+# Author      : Pascal Malouin (https://github.com/fantomH)
+# Created     : 2026-08-10 15:42:41 UTC
+# Updated     : 2026-08-10 15:42:41 UTC
+# Description : Source modules.
+# +---------------------------------------------------------------------------+
+
+source_module() {
+    local module
+    module="$@"
+
+    if [[ -f "${module}" ]]; then
+        . "${module}"
+    else
+        if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
+            printf '%s\n' "${fg_red}[!]${reset} ${module} is missing..." 
+            printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
+        fi
+    fi
+}
+
+source_module "${AEL_BIN}/show-utc"

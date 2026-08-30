@@ -1,18 +1,27 @@
-#!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/busy]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-01 19:55:12 UTC
-# updated       : 2026-04-02 20:41:12 UTC
-# description   : Look busy when the boss comes around.
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/busy]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-01 19:55:12 UTC
+# Updated     : 2026-08-30 15:53:09 UTC
+# Description : Look busy when the boss comes around.
+# -----------------------------------------------------------------------------
 
 busy() {
-  # --- (ref) <https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee>
-  # ... CTRL+c to quit.
+    # (ref) <https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee>
+    # Ctrl+C to quit.
 
-  command cat /dev/urandom \
-  | command hexdump -C \
-  | command grep --color=always 'ca fe'
+    source ~/.ael/lib/bash/ael
+    import applications
+
+    check_applications bash cat grep hexdump || return 1
+
+    command cat /dev/urandom \
+    | command hexdump -C \
+    | command grep --color=always 'ca fe'
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

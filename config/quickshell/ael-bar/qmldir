@@ -1,0 +1,15 @@
+singleton PackageService 1.0 PackageService.qml
+singleton Appearance 1.0 Appearance.qml
+singleton PiPService 1.0 PiPService.qml
+singleton ScreenshotService 1.0 ScreenshotService.qml
+
+WindowsMenu 1.0 WindowsMenu.qml
+NetworkButton 1.0 NetworkButton.qml
+BluetoothButton 1.0 BluetoothButton.qml
+AudioButton 1.0 AudioButton.qml
+SystemMonitor 1.0 SystemMonitor.qml
+Packages 1.0 Packages.qml
+Workspaces 1.0 Workspaces.qml
+PiPButton 1.0 PiPButton.qml
+ScreenshotButton 1.0 ScreenshotButton.qml
+ScreenshotPreview 1.0 ScreenshotPreview.qml

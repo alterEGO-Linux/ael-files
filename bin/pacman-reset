@@ -1,45 +1,37 @@
-#!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/ael/bin/pacman-reset]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-10-20 10:46:22 UTC
-# updated       : 2026-04-17 13:00:08 UTC
-# description   : Re-initialize pacman sync, mirrorlist and keyring.
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/pacman-reset]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-10-20 10:46:22 UTC
+# Updated     : 2026-08-30 15:42:02 UTC
+# Description : Re-initialize pacman sync, mirrorlist and keyring.
+# -----------------------------------------------------------------------------
 
 pacman-reset() {
 
-    local __blue=$'\033[34m'
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-    
-    trap 'unset -f check_applications; trap - RETURN' RETURN
+    source ~/.ael/lib/bash/ael
+
+    import applications
+    import messages
         
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-                return 1
-            fi
-        done
-    }
-    check_applications curl sudo pacman sed || return 1
+    check_applications reflector sudo pacman sed || return 1
 
-    printf '%s\n' "${__blue}[+]${__reset} pacmn-reset - Re-initializing Pacman."
+    message banner "pacmn-reset - Re-initializing Pacman."
 
-    printf '%s\n' "${__blue}[*]${__reset} Removing sync file."
+    message step "Removing sync file."
     sudo $(command -v rm) -rf /var/lib/pacman/sync
 
-    printf '%s\n' "${__blue}[*]${__reset} Fetching Pacman mirrorlist."
-    sudo $(command -v curl) -o /etc/pacman.d/mirrorlist 'https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4'
+    # Resetting mirror list using `reflector` instead of curl.
+    message step "Resetting mirrorlist."
+    sudo reflector --country Canada --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-    printf '%s\n' "${__blue}[*]${__reset} Fixing Pacman mirrorlist."
-    sudo $(command -v sed) -i -e 's/\#Server/Server/g' /etc/pacman.d/mirrorlist
-
-    printf '%s\n' "${__blue}[*]${__reset} Updating archlinux-keyring."
+    message step "Updating archlinux-keyring."
     sudo $(command -v pacman) -Syy --noconfirm archlinux-keyring
 
-    printf '%s\n' "${__blue}[*]${__reset} All done!"
+    message success "All done!"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
