@@ -1,0 +1,43 @@
+# =============================================================================
+# INFO
+# =============================================================================
+# [/lib/bash/messages]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-08-30 14:41:12 UTC
+# Updated     : 2026-08-30 16:09:46 UTC
+# Description : CLI messages.
+# -----------------------------------------------------------------------------
+
+message() {
+    local blue=$'\033[34m'
+    local bold=$'\033[1m'
+    local red=$'\033[31m'
+    local green=$'\033[32m'
+    local reset=$'\033[0m'
+    local type="$1"
+    shift
+
+    case "$type" in
+        banner)
+            printf '%s\n' "================================================================================"
+            printf '%s\n' "${bold}${green}[+] $*${reset}"
+            printf '%s\n' "================================================================================"
+            ;;
+        info)
+            printf '%s\n' "${blue}[+]${reset} $*"
+            ;;
+        step)
+            printf '%s\n' "${blue}[*]${reset} $*"
+            ;;
+        success)
+            printf '%s\n' "${green}[✓]${reset} $*"
+            ;;
+        error)
+            printf '%s\n' "${red}[!]${reset} $*" >&2
+            ;;
+        *)
+            printf '%s\n' "$*"
+            ;;
+    esac
+}

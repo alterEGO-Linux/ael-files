@@ -1,0 +1,30 @@
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/home/ghost/.local/share/ael-files/lib/bash/ael]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-08-30 14:11:44 UTC
+# Updated     : 2026-08-30 14:11:44 UTC
+# Description : alterEGO Linux bash import module.
+# -----------------------------------------------------------------------------
+
+# This module mimicks partially the Python's import for sourcing convenience.
+
+readonly AEL_BASH_LIB="${HOME}/.ael/lib/bash"
+
+import() {
+    local module file
+
+    for module in "$@"; do
+        file="${AEL_BASH_LIB}/${module}"
+
+        if [[ ! -r "$file" ]]; then
+            printf '[!] AEL: module not found: %s\n' "$module" >&2
+            return 1
+        fi
+
+        source "$file" || return 1
+    done
+}
