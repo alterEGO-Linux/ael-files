@@ -108,6 +108,18 @@ Useful for troubleshooting Pacman synchronization, outdated mirrors, or package-
 
 **Requirements:** `pacman`, `reflector`, `sudo`, `sed`, and the AlterEGO Linux Bash library (`~/.ael/lib/bash/ael`).
 
+### ports
+
+Displays all listening and active TCP/UDP ports, including the processes associated with them.
+
+```bash
+ports
+```
+
+Uses `netstat` with elevated privileges to show addresses, ports, connection states, PIDs, and process names. If `grc` is available, the output is automatically colorized.
+
+**Requirements:** `netstat`, `sudo`, and the AEL Bash library.
+
 ### show-utc
 
 Displays the current date and time in UTC using a compact, standardized format.

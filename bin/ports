@@ -1,28 +1,23 @@
 #!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/ports]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-04 02:11:08 UTC
-# updated       : 2026-04-08 18:53:02 UTC
-# description   : Displays open ports.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/ports]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-04 02:11:08 UTC
+# Updated     : 2026-08-31 21:26:14 UTC
+# Description : Displays open ports.
+# -----------------------------------------------------------------------------
 
 ports() {
 
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-    
-    trap 'unset -f check_applications; trap - RETURN' RETURN
+    source ${HOME}/.ael/lib/bash/ael
+    import applications messages
 
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-                return 1
-            fi
-        done
-    }
     check_applications netstat || return 1
+
+    message banner "ports - Displays open ports"
 
     if [[ $(command -v grc) ]]; then
         sudo grc netstat -tulanp
