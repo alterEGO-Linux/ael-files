@@ -33,22 +33,11 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
 
 # [+] -----------------------------------------------------------| shell colors
 
-shellutil="${AEL_SHELLUTILS}/ansi-colors"
-
-if [[ -f "${shellutil}" ]]; then
-    . "${shellutil}"
-else
-    # --| Colors fallback
     export reset=$'\e[0m'
     export fg_blue=$'\e[34m'
     export fg_green=$'\e[32m'
     export fg_red=$'\e[31m'
     export fg_yellow=$'\e[33m'
-    if (( ${AEL_DEBUG_LEVEL:-0} >= 1 )); then
-        printf '%s\n' "${fg_red}[!]${reset} ${shellutil} is missing..." 
-        printf '%s\n' "${fg_red}[!]${reset} Try ael-help for documentation." 
-    fi
-fi
 
 export TERM="${TERM:-xterm-256color}"
 

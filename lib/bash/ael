@@ -12,7 +12,7 @@
 
 # This module mimicks partially the Python's import for sourcing convenience.
 
-readonly AEL_BASH_LIB="${HOME}/.ael/lib/bash"
+AEL_BASH_LIB="${HOME}/.ael/lib/bash"
 
 import() {
     local module file

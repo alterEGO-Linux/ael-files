@@ -1,47 +1,50 @@
 #!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/delete]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2026-04-04 13:34:04 UTC
-# updated       : 2026-04-06 02:31:22 UTC
-# description   : Delete directories.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/delete]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-04-04 13:34:04 UTC
+# Updated     : 2026-08-31 12:58:48 UTC
+# Description : Delete directories.
+# -----------------------------------------------------------------------------
 
 delete() {
-    
-    local __blue=$'\033[34m'
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-    local __dir
-    local __input
 
+    source ${HOME}/.ael/lib/bash/ael
+    import applications
+    import messages
+    
     if [ "$#" -eq 0 ]; then
-        printf '%s\n' "${__red}[!]${__reset} Usage: delete <dir1> [dir2] [dir3] ..."
+        message error "Usage: delete <dir1> [dir2] [dir3] ..."
         return 1
     fi
 
-    for __dir in "${@}"; do
-        if [ -d "${__dir}" ]; then
-            printf '%s\n' "${__blue}[-]${__reset} Processing deletion: ${__dir} ..."
+    local dir
+    for dir in "${@}"; do
+        if [ -d "${dir}" ]; then
+            message step "Processing deletion: ${dir} ..."
 
             # --- Confirmation request.
             # ... Will exit in non-interactive context.
             if [[ ! -t 0 ]]; then
-                printf '%s\n' "${__red}[!]${__reset} No interactive terminal available for confirmation prompt." >&2
+                message error "No interactive terminal available for confirmation prompt." >&2
                 return 1
             fi
             
-            local __input
-            printf "${__blue}[?]${__reset} Are you sure you want to delete this directory? [y/N] "
-            read -r __input
+            local input
+            message step "Are you sure you want to delete this directory? [y/N] "
+            read -r input
             
-            if [[ "${__input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                command rm --recursive --force "${__dir}" 
-                printf '%s\n' "${__blue}[-]${__reset} Deleted: '${__dir}'."
+            if [[ "${input}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+                command rm --recursive --force "${dir}" 
+                message step "Deleted: '${dir}'."
             else
-                printf '%s\n' "${__red}[!]${__reset} Skipping: '${__dir}'."
+                message error "Skipping: '${dir}'."
             fi
         else
-            printf '%s\n' "${__red}[!]${__reset} '${__dir}' is not a directory or does not exist!"
+            message error "'${dir}' is not a directory or does not exist!"
         fi
     done
 }

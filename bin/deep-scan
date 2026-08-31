@@ -1,28 +1,21 @@
 #!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/deep-scan]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2026-04-03 23:33:30 UTC
-# updated       : 2026-04-15 17:36:56 UTC
-# description   : Scans IP with rustscan and nmap.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/deep-scan]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-04-03 23:33:30 UTC
+# Updated     : 2026-08-31 12:39:09 UTC
+# Description : Scans IP with rustscan and nmap.
+# -----------------------------------------------------------------------------
 
 deep-scan() {
 
-    local __blue=$'\033[34m'
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
+    source ~/.ael/lib/bash/ael
+    import applications
+    import messages
 
-    trap 'unset -f check_applications usage; trap - RETURN' RETURN
-
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-                return 1
-            fi
-        done
-    }
     check_applications rustscan sudo nmap || return 1
 
     usage() {
@@ -45,49 +38,53 @@ Examples:
 EOF
     }
 
-    # --- setting IP value.
-    local __ip
-    __ip="${1:-127.0.0.1}"
-    [[ "$__ip" == "localhost" ]] && __ip="127.0.0.1"
+    # Setting IP value.
+    local ip
+    ip="${1:-127.0.0.1}"
+    [[ "$ip" == "localhost" ]] && ip="127.0.0.1"
 
-    # --- show help and ignore other arguments.
-    local __i
-    for __i in "${@}"; do
-        if [[ "${__i}" == "-h" || "${__i}" == "--help" ]]; then
+    # Show help and ignore other arguments.
+    local i
+    for i in "${@}"; do
+        if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then
             usage
             return 1
         fi
     done
 
-    # --- too many arguments.
+    # Too many arguments.
     if [[ $# -gt 1 ]]; then
-        printf '%s\n' "${__red}[!]${__reset} Too many arguments."
+        message error "Too many arguments."
         usage
         return 1
     fi
 
-    # --- rustscan.
-    printf '%s\n' "${__blue}[*]${__reset} Running Rustscan to find open ports."
+    # --- rustscan ------------------------------------------------------------
 
-    local __ports=$(rustscan -a "$__ip" --ulimit 5000 --batch-size 2000 --greppable | grep -oP '\[\K[0-9,]+(?=\])')
+    message banner "deep-scan - Scans IP with rustscan and nmap."
 
-    # --- nmap.
-    if [[ -n "${__ports}" ]]; then
-        printf '%s\n' "${__blue}[*]${__reset} Found ${__ports}."
-        printf '%s\n' "${__blue}[*]${__reset} Running Nmap."
+    message step "Running Rustscan to find open ports."
 
-        # --- check grc availability.
-        local __nmap
+    local ports=$(rustscan -a "$ip" --ulimit 5000 --batch-size 2000 --greppable | grep -oP '\[\K[0-9,]+(?=\])')
+
+    # --- nmap ----------------------------------------------------------------
+
+    if [[ -n "${ports}" ]]; then
+        message step "Found ${ports}."
+        message step "Running Nmap."
+
+        # Check grc availability.
+        local run_nmap
         if command -v grc >/dev/null 2>&1; then
-            __nmap=(grc nmap)
+            run_nmap=(grc nmap)
         else
-            __nmap=(nmap)
+            run_nmap=(nmap)
         fi 
 
-        sudo "${__nmap[@]}" -sV -O -sC --traceroute "${__ip}" -p "${__ports}"
+        sudo "${run_nmap[@]}" -sV -O -sC --traceroute "${ip}" -p "${ports}"
         return 0
     else
-        printf '%s\n' "${__red}[!]${__reset} Found nothing."
+        message error "Found nothing."
         return 1
     fi
 }

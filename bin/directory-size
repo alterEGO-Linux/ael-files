@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/directory-size]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-01 20:01:01 UTC
-# updated       : 2026-04-06 16:03:29 UTC
-# description   : Check size of biggest directories.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/directory-size]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-01 20:01:01 UTC
+# Updated     : 2026-08-31 16:00:34 UTC
+# Description : Check size of biggest directories.
+# -----------------------------------------------------------------------------
 
 directory-size() {
 
-    local __blue=$'\033[34m'
-    local __reset=$'\033[0m'
+    source ${HOME}/.ael/lib/bash/ael
+    import messages
 
-    printf '%s\n' "${__blue}[+]${__reset} Size of current directory, followed by biggest child directories:"
+    message banner "[+] directory-size"
+    message step "Size of current directory, followed by biggest child directories:"
 
     command du --bytes --human-readable --max-depth 1 2> /dev/null \
     | command sort --reverse --human-numeric-sort \
