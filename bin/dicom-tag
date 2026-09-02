@@ -1,23 +1,18 @@
-#!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/dicom-tag]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2021-07-14 09:38:38 UTC
-# updated       : 2026-04-09 12:13:39 UTC
-# description   : Search DICOM tags.
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/dicom-tag]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2021-07-14 09:38:38 UTC
+# Updated     : 2026-09-01 20:38:23 UTC
+# Description : Search DICOM tags.
+# -----------------------------------------------------------------------------
 
-__red=$'\033[31m'
-__reset=$'\033[0m'
+source ${HOME}/.ael/lib/bash/ael
+import applications
 
-check_applications() {
-  local __app
-  for __app in "${@}"; do
-      if ! command -v $__app >/dev/null 2>&1; then
-            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-            return 1
-        fi
-    done
-}
 check_applications fzf sort || exit 1
 
 declare -A __tags=(
@@ -3167,7 +3162,7 @@ declare -A __tags=(
     ["FFFE,E000"]="StartOfItem"
     ["FFFE,E00D"]="EndOfItems"
     ["FFFE,E0DD"]="EndOfSequence"
-    )
+)
 
 for __tag in "${!__tags[@]}"; do
     printf "%b" "($__tag)\t${__tags[$__tag]}\n"

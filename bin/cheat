@@ -1,28 +1,26 @@
-#!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/ael/bin/cheat]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-01 19:57:57 UTC
-# updated       : 2026-04-17 12:39:00 UTC
-# description   : Query https://cheat.sh.
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/cheat]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-01 19:57:57 UTC
+# Updated     : 2026-09-02 21:04:05 UTC
+# Description : Query https://cheat.sh.
+# -----------------------------------------------------------------------------
 
 cheat() {
 
-    # --| ref. <https://github.com/chubin/cheat.sh>
+    source ${HOME}/.ael/lib/bash/ael
+    import applications
+
+    # --- ref. <https://github.com/chubin/cheat.sh>
 
     local __cheat
 
-    trap 'unset -f check_applications fuzzyfinder; trap - RETURN' RETURN
+    trap 'unset -f fuzzyfinder; trap - RETURN' RETURN
 
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-              printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-              return 1
-          fi
-      done
-    }
     check_applications cat curl fzf less || return 1
 
     fuzzyfinder() {

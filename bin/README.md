@@ -13,6 +13,21 @@ Description : /bin README.md
 
 # /bin/
 
+### arch-pkg
+
+Provides convenient command-line helpers for managing Arch Linux package state with `paru`.
+
+```bash
+arch-pkg required-by <package>
+arch-pkg mark-as-explicit <package>
+arch-pkg list-explicit
+arch-pkg list-orphans
+```
+
+Can inspect package dependencies, mark packages as explicitly installed, and list explicit or orphaned packages.
+
+**Requirements:** Python, `click`, and `paru`.
+
 ### busy
 
 A small terminal novelty that makes the screen look impressively busy.
@@ -24,6 +39,18 @@ busy
 ```
 
 Uses the AEL Bash library to verify the required commands (`bash`, `cat`, `grep`, and `hexdump`) before running.
+
+### cheat
+
+Provides an interactive terminal interface to [cheat.sh](https://cheat.sh) using `fzf`.
+
+```bash
+cheat
+```
+
+Browse and search available cheat sheets with a live preview, then open the selected reference in `less`. The preview automatically adapts to the terminal size.
+
+**Requirements:** `curl`, `fzf`, `less`, `cat`, and the AEL Bash library.
 
 ### deep-nmap
 
@@ -62,6 +89,18 @@ delete cache tmp backup
 
 Directories that do not exist are skipped with an error message. The command refuses to proceed when no interactive terminal is available, preventing accidental unattended deletion.
 
+### dicom-tag
+
+Provides an interactive DICOM tag reference using `fzf`.
+
+```bash
+dicom-tag
+```
+
+Searches a built-in database of DICOM tags by tag number or attribute name, making it easy to quickly look up identifiers such as `PatientID`, `StudyInstanceUID`, or `Modality`.
+
+**Requirements:** `fzf`, `sort`, and the AEL Bash library.
+
 ### directory-size
 
 Displays the size of the current directory and its largest immediate child directories.
@@ -93,6 +132,18 @@ Because `elevate` relies on Bash command history, the script must be **sourced**
 
 **Requirements:** `bash`, `sudo`, and the AEL Bash library.
 
+### emojis
+
+Provides an interactive emoji picker for the terminal using `fzf`.
+
+```bash
+emojis
+```
+
+Searches a built-in emoji database containing Unicode codes and descriptions. The selected emoji is automatically copied to the clipboard using `wl-copy` under Wayland or `xclip` under X11.
+
+**Requirements:** `fzf`, `wl-copy` (Wayland) or `xclip` (X11), and the AEL Bash library.
+
 ### pacman-reset
 
 Re-initializes the Arch Linux Pacman environment by rebuilding its synchronization data, refreshing the mirror list, and updating the Arch Linux keyring.
@@ -119,6 +170,48 @@ ports
 Uses `netstat` with elevated privileges to show addresses, ports, connection states, PIDs, and process names. If `grc` is available, the output is automatically colorized.
 
 **Requirements:** `netstat`, `sudo`, and the AEL Bash library.
+
+### processes
+
+Displays a detailed list of all currently running processes.
+
+```bash
+processes
+```
+
+Shows process ownership, CPU and memory usage, state, start time, and command information using `ps aux`. If `grc` is available, the output is automatically colorized.
+
+**Requirements:** `ps` and the AEL Bash library.
+
+### py-cleaner
+
+Cleans Python-generated cache files from the current directory and its subdirectories.
+
+```bash
+py-cleaner
+```
+
+Recursively removes `__pycache__` directories and compiled `.pyc` and `.pyo` files, providing a quick way to clean a Python project tree.
+
+**Requirements:** `find` and the AEL Bash library.
+
+### shell-info
+
+Inspects the current Bash environment and displays detailed information about aliases, functions, variables, builtins, and shell keywords.
+
+```bash
+shell-info tmuxplus
+shell-info --fzf
+shell-info --sourced
+shell-info --sourced-tree
+```
+
+When available, `shell-info` identifies where aliases, functions, and variables were defined. It can also interactively browse the shell environment with `fzf`, list files loaded during shell startup, or display them as a dependency tree.
+
+The script must be **sourced** to inspect the current shell environment correctly.
+
+**Requirements:** `bash`, `fzf`, `awk`, `grep`, `sed`, `tac`, and the AEL Bash library.
+
 
 ### show-utc
 

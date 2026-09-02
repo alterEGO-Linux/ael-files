@@ -1,35 +1,29 @@
-#!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/py-cleaner]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-02 00:59:00 UTC
-# updated       : 2026-04-07 12:23:14 UTC
-# description   : Clean python current directory.
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/py-cleaner]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-02 00:59:00 UTC
+# Updated     : 2026-09-02 12:27:25 UTC
+# Description : Clean python current directory.
+# -----------------------------------------------------------------------------
 
 py-cleaner () {
 
+    source ${HOME}/.ael/lib/bash/ael
+    import applications messages
+
     # --- ref. <https://stackoverflow.com/a/41386937/10500496>
  
-    local __blue=$'\033[34m'
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-
-    trap 'unset -f check_applications; trap - RETURN' RETURN
-    
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-                return 1
-            fi
-        done
-    }
     check_applications find || return 1
 
-    printf '%s\n' "${__blue}[*]${__reset} py-cleaner - Cleaning python current directory."
+    message banner "py-cleaner - Cleaning python current directory."
 
     command find . \( -type f -name '*.py[co]' -o -type d -name __pycache__ \) -delete
+
+    message success "Current directory cleaned."
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

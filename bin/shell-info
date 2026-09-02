@@ -1,23 +1,28 @@
-#!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/shellutils/shell-info]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-02 01:18:13 UTC
-# updated       : 2026-01-31 22:04:05 UTC
-# description   : Show shell info.
+#! /usr/bin/env bash
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/shell-info]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-02 01:18:13 UTC
+# Updated     : 2026-09-01 14:09:02 UTC
+# Description : Show shell info.
+# -----------------------------------------------------------------------------
 
 shell-info() {
 
-    local __args_input=("${@}")
-    local __name
-    local __type
-    local __source
-    local __blue=$'\033[34m'
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
+    source ${HOME}/.ael/lib/bash/ael
+    import applications messages
+
+    local _ARGS_INPUT=("${@}")
+    local _DISPLAY_NAME
+    local _DISPLAY_TYPE
+    local _SOURCE
+    local _BLUE=$'\033[34m'
+    local _RESET=$'\033[0m'
 
     trap '
-        #[[ -n ${__dumpfile-} ]] && rm -f -- "$__dumpfile"
         unset -f determine_type \
                   display_alias \
                   display_builtin \
@@ -29,178 +34,169 @@ shell-info() {
                   show_all \
                   usage; trap - RETURN' RETURN
 
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-                return 1
-            fi
-        done
-    }
     check_applications bash tac grep sed cat awk || return 1
 
-    # --- setting up temporary file.
-    local __tempdir
+    # --- Setting up temporary file.
+    local _TEMPDIR
     if [[ -d /tmp && -w /tmp && -x /tmp ]]; then
-        __tempdir=/tmp
+        _TEMPDIR=/tmp
     else
-        __tempdir="$HOME/tmp"
-        mkdir -p -- "$__tempdir" || return 1
+        _TEMPDIR="$HOME/tmp"
+        mkdir -p -- "$_TEMPDIR" || return 1
     fi
 
-    local __dumpfile="${__tempdir}/sourced_by_shell"
+    local _DUMPFILE="${_TEMPDIR}/sourced_by_shell"
 
-    # --- generating sourced files file.    
-    # ... PS4 must be exported at the shell initialization.
-    # ... it is in .ael/.aelcore if you are using alterEGO system.
-    # ... otherwise, add the following in .bashrc or .profile:
-    # ... PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
-    # ... export PS4
+    # --- [sourced files]
+    # --- PS4 must be exported at the shell initialization.
+    # --- it is in .ael/.aelcore if you are using alterEGO system.
+    # --- otherwise, add the following in .bashrc or .profile:
+    # --- PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
+    # --- export PS4
     BASH_XTRACEFD=7 \
-    /bin/bash -lx 7> ${__dumpfile} -c 'exit' >/dev/null 2>&1
+    /bin/bash -lx 7> ${_DUMPFILE} -c 'exit' >/dev/null 2>&1
 
     determine_type() {
-        local _name
-        local _type
-        for _name in "${__args_input[@]}"; do
-            if _type=$(type -t -- "${_name}"); then
-                case "${_type}" in
+        local _NAME
+        local _TYPE
+        for _NAME in "${_ARGS_INPUT[@]}"; do
+            if _TYPE=$(type -t -- "${_NAME}"); then
+                case "${_TYPE}" in
                     alias )
-                        __name="${_name}"
-                        __type="${_type}"
+                        _DISPLAY_NAME="${_NAME}"
+                        _DISPLAY_TYPE="${_TYPE}"
                         display_alias
                         ;;
                     builtin )
-                        __name="${_name}"
-                        __type="${_type}"
+                        _DISPLAY_NAME="${_NAME}"
+                        _DISPLAY_TYPE="${_TYPE}"
                         display_builtin
                         ;;
                     function ) 
-                        __name="${_name}"
-                        __type="${_type}"
+                        _DISPLAY_NAME="${_NAME}"
+                        _DISPLAY_TYPE="${_TYPE}"
                         display_function
                         ;;
                     keyword )
-                        __name="${_name}"
-                        __type="${_type}"
+                        _DISPLAY_NAME="${_NAME}"
+                        _DISPLAY_TYPE="${_TYPE}"
                         display_keyword
                         ;;
-                    *) printf '%s\n' "${__red}[!]${__reset} Nothing found for ${_name}" ;;
+                    *) message error "Nothing found for ${_NAME}" ;;
                 esac
             else
-                # --- verify if a variable.
-                if [[ -v ${_name} ]]; then
-                    __name="${_name}"
-                    __type="variable"
+                # | Verify if a variable.
+                if [[ -v ${_NAME} ]]; then
+                    _DISPLAY_NAME="${_NAME}"
+                    _DISPLAY_TYPE="variable"
                     display_variable
                 else
-                    printf '%s\n' "${__red}[!]${__reset} Nothing found for ${_name}"
+                    message error "Nothing found for ${_NAME}"
                 fi
             fi
         done
     }
 
-    # --- [ alias ]
+    # --- ALIAS ---------------------------------------------------------------
     display_alias() {
         
-        local __from_dumpfile="$(tac ${__dumpfile} | grep -m1 -E "alias .${__name}")"
+        local _FROM_DUMPFILE="$(tac ${_DUMPFILE} | grep -m1 -E "alias .${_DISPLAY_NAME}")"
 
-        if [[ $__from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*alias[[:space:]]+(.+)$ ]]; then
-            __source="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
+        if [[ $_FROM_DUMPFILE =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*alias[[:space:]]+(.+)$ ]]; then
+            _SOURCE="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
         fi
 
         cat <<EOF
 ===============================================================================
-${__blue}[+]${__reset} shell-info - ${__name}
+${_BLUE}[+]${_RESET} shell-info - ${_DISPLAY_NAME}
 ===============================================================================
 
-NAME   : ${__name}
-TYPE   : ${__type}
-SOURCE : ${__source}
+NAME   : ${_DISPLAY_NAME}
+TYPE   : ${_DISPLAY_TYPE}
+SOURCE : ${_SOURCE}
 
-$(alias -- ${__name} 2>/dev/null)
-===============================================================================
+$(alias -- ${_DISPLAY_NAME} 2>/dev/null)
+-------------------------------------------------------------------------------
 EOF
     }
 
-    # --- [ builtin ]
+    # --- BUILTIN -------------------------------------------------------------
     display_builtin() {
         
         cat <<EOF
 ===============================================================================
-${__blue}[+]${__reset} shell-info - ${__name}
+${_BLUE}[+]${_RESET} shell-info - ${_DISPLAY_NAME}
 ===============================================================================
 
-NAME   : ${__name}
-TYPE   : ${__type}
+NAME   : ${_DISPLAY_NAME}
+TYPE   : ${_DISPLAY_TYPE}
 
-$(help -d ${__name})
-===============================================================================
+$(help -d ${_DISPLAY_NAME})
+-------------------------------------------------------------------------------
 EOF
     }
 
-    # --- [ function ]
+    # --- FUNCTION ------------------------------------------------------------
     display_function() {
 
-        __source=$(shopt -s extdebug; \
-                 declare -F ${__name} \
+        _SOURCE=$(shopt -s extdebug; \
+                 declare -F ${_DISPLAY_NAME} \
                  | sed -E 's/^([^ ]+) ([0-9]+) (.*)$/found in \3 at line \2./'; \
                  shopt -u extdebug)
 
         cat <<EOF
 ===============================================================================
-${__blue}[+]${__reset} shell-info - ${__name}
+${_BLUE}[+]${_RESET} shell-info - ${_DISPLAY_NAME}
 ===============================================================================
 
-NAME   : ${__name}
-TYPE   : ${__type}
-SOURCE : ${__source}
+NAME   : ${_DISPLAY_NAME}
+TYPE   : ${_DISPLAY_TYPE}
+SOURCE : ${_SOURCE}
 
-$(declare -f ${__name})
-===============================================================================
+$(declare -f ${_DISPLAY_NAME})
+-------------------------------------------------------------------------------
 EOF
     }
 
-    # --- [ keyword ]
+    # --- KEYWORD -------------------------------------------------------------
     display_keyword() {
         cat <<EOF
 ===============================================================================
-${__blue}[+]${__reset} shell-info - ${__name}
+${_BLUE}[+]${_RESET} shell-info - ${_DISPLAY_NAME}
 ===============================================================================
 
-NAME   : ${__name}
-TYPE   : ${__type}
+NAME   : ${_DISPLAY_NAME}
+TYPE   : ${_DISPLAY_TYPE}
 
-$(help -d ${__name})
-===============================================================================
+$(help -d ${_DISPLAY_NAME})
+-------------------------------------------------------------------------------
 EOF
     }
 
-    # --- [ variable ]
+    # --- VARIABLE ------------------------------------------------------------
     display_variable() {
         
-        local __from_dumpfile="$(tac ${__dumpfile} | grep -m1 -E ":\s${__name}=")"
+        local _FROM_DUMPFILE="$(tac ${_DUMPFILE} | grep -m1 -E ":\s${_DISPLAY_NAME}=")"
 
-        if [[ $__from_dumpfile =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*${__name}(.+)$ ]]; then
-            __source="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
+        if [[ $_FROM_DUMPFILE =~ ^[+[:space:]]*([^:]+):([0-9]+):[[:space:]]*${_DISPLAY_NAME}(.+)$ ]]; then
+            _SOURCE="found in ${BASH_REMATCH[1]} at line ${BASH_REMATCH[2]}."
         fi
 
         cat <<EOF
 ===============================================================================
-${__blue}[+]${__reset} shell-info - ${__name}
+${_BLUE}[+]${_RESET} shell-info - ${_DISPLAY_NAME}
 ===============================================================================
 
-NAME   : ${__name}
-TYPE   : ${__type}
-SOURCE : ${__source}
+NAME   : ${_DISPLAY_NAME}
+TYPE   : ${_DISPLAY_TYPE}
+SOURCE : ${_SOURCE}
 
-${__name}="$(printf '%s\n' "${!__name}")"
-===============================================================================
+${_DISPLAY_NAME}="$(printf '%s\n' "${!_DISPLAY_NAME}")"
+-------------------------------------------------------------------------------
 EOF
     }
 
-    # --- [ fzf ]
+    # --- FZF -----------------------------------------------------------------
     show_all() {
 
         # --- building arrays.
@@ -217,67 +213,67 @@ EOF
         mapfile -t A_KEYWORD< <(compgen -k)
         mapfile -t A_VARS   < <(compgen -v)
 
-        local _tagged=()
+        local _TAGGED=()
         local x
 
         # --- [ alias ]
         for x in "${A_ALIASES[@]}"; do
-            _tagged+=("( alias ) ${x}")
+            _TAGGED+=("( alias ) ${x}")
         done
         # --- [ builtin ]
         for x in "${A_BUILTIN[@]}"; do
-            _tagged+=("( builtin ) ${x}")
+            _TAGGED+=("( builtin ) ${x}")
         done
         # --- [ functions ]
         for x in "${A_FUNCS[@]}"; do
-            _tagged+=("( function ) ${x}")
+            _TAGGED+=("( function ) ${x}")
         done
         # --- [ keyword ]
         for x in "${A_KEYWORD[@]}"; do
-            _tagged+=("( keyword ) ${x}")
+            _TAGGED+=("( keyword ) ${x}")
         done
         # --- [ variable ]
         for x in "${A_VARS[@]}"; do
-            _tagged+=("( variable ) ${x}")
+            _TAGGED+=("( variable ) ${x}")
         done
 
-        local _selection
+        local _SELECTION
         if [[ -n ${__SOURCED_AEL_FZF} ]]; then
-            _selection="$(printf '%s\n' "${_tagged[@]}" | ael-fzf)"
+            _SELECTION="$(printf '%s\n' "${_TAGGED[@]}" | ael-fzf)"
         else
-            _selection="$(printf '%s\n' "${_tagged[@]}" | fzf)"
+            _SELECTION="$(printf '%s\n' "${_TAGGED[@]}" | fzf)"
         fi
-        [[ -z "${_selection}" ]] && return 1
+        [[ -z "${_SELECTION}" ]] && return 1
 
-        local _name
-        local _type
-        _type="${_selection%% \)*}"; _type="${_type#\( }"
-        _name="${_selection#* \) }"
+        local _NAME
+        local _TYPE
+        _TYPE="${_SELECTION%% \)*}"; _TYPE="${_TYPE#\( }"
+        _NAME="${_SELECTION#* \) }"
 
-        case "${_type}" in
+        case "${_TYPE}" in
             alias)
-                __name="${_name}"
-                __type="${_type}"
+                _DISPLAY_NAME="${_NAME}"
+                _DISPLAY_TYPE="${_TYPE}"
                 display_alias
                 ;;
             builtin)
-                __name="${_name}"
-                __type="${_type}"
+                _DISPLAY_NAME="${_NAME}"
+                _DISPLAY_TYPE="${_TYPE}"
                 display_builtin
                 ;;
             function) 
-                __name="${_name}"
-                __type="${_type}"
+                _DISPLAY_NAME="${_NAME}"
+                _DISPLAY_TYPE="${_TYPE}"
                 display_function
                 ;;
             keyword)
-                __name="${_name}"
-                __type="${_type}"
+                _DISPLAY_NAME="${_NAME}"
+                _DISPLAY_TYPE="${_TYPE}"
                 display_keyword
                 ;;
             variable)
-                __name="${_name}"
-                __type="${_type}"
+                _DISPLAY_NAME="${_NAME}"
+                _DISPLAY_TYPE="${_TYPE}"
                 display_variable
                 ;;
         esac
@@ -285,7 +281,7 @@ EOF
 
     # --- [ sourced ]
     show_sourced() {
-        sed -nE 's/^[+[:space:]]*[^:]+:[0-9]+:[[:space:]]+(source|\.)[[:space:]]+(.+)$/\2/p' -- "$__dumpfile"
+        sed -nE 's/^[+[:space:]]*[^:]+:[0-9]+:[[:space:]]+(source|\.)[[:space:]]+(.+)$/\2/p' -- "$_DUMPFILE"
     }
 
     # --- [ sourced tree ]
@@ -343,10 +339,10 @@ EOF
                 prevd = d
               }
             }
-          ' "$__dumpfile"
+          ' "$_DUMPFILE"
     }
 
-    # --- [ help ]
+    # --- HELP ----------------------------------------------------------------
     usage() {
         cat <<EOF
 ===============================================================================
@@ -380,33 +376,33 @@ For builtin and keyword, a short description will be diplayed.
 
 Example:
   shell-info tmuxplus
-===============================================================================
+-------------------------------------------------------------------------------
 EOF
     }
 
-    # ---------- [ argument parser ]
+    # --- ARGUMENT PARSER -----------------------------------------------------
 
     # --- no arguments.
-    if [[ $# == 0 ]]; then __args_input=("--fzf"); fi
+    if [[ $# == 0 ]]; then _ARGS_INPUT=("--fzf"); fi
 
     local i
     # --- show help and ignore other arguments.
-    for i in "${__args_input[@]}"; do
+    for i in "${_ARGS_INPUT[@]}"; do
         if [[ "${i}" == "-h" || "${i}" == "--help" ]]; then usage; return 0; fi
     done
 
     # --- execute --fzf and ignore other arguments. 
-    for i in "${__args_input[@]}"; do
+    for i in "${_ARGS_INPUT[@]}"; do
         if [[ "${i}" == "--fzf" ]]; then show_all; return 0; fi
     done
 
     # --- execute --sourced and ignore other arguments. 
-    for i in "${__args_input[@]}"; do
+    for i in "${_ARGS_INPUT[@]}"; do
         if [[ "${i}" == "--sourced" ]]; then show_sourced; return 0; fi
     done
 
     # --- execute --sourced-tree and ignore other arguments. 
-    for i in "${__args_input[@]}"; do
+    for i in "${_ARGS_INPUT[@]}"; do
         if [[ "${i}" == "--sourced-tree" ]]; then show_sourced_tree; return 0; fi
     done
 

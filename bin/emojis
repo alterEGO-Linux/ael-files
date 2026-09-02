@@ -1,24 +1,22 @@
 #! /usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/emojis]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2022-06-02 08:56:47 UTC
-# updated       : 2026-04-09 20:07:03 UTC
-# description   : Search emojis.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/emojis]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2022-06-02 08:56:47 UTC
+# Updated     : 2026-09-02 12:21:48 UTC
+# Description : Search emojis.
+# -----------------------------------------------------------------------------
+
+source ${HOME}/.ael/lib/bash/ael
+import applications
 
 __blue=$'\033[34m'
 __red=$'\033[31m'
 __reset=$'\033[0m'
 
-check_applications() {
-  local __app
-  for __app in "${@}"; do
-      if ! command -v $__app >/dev/null 2>&1; then
-            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-            return 1
-        fi
-    done
-}
 check_applications fzf || exit 0
 
 declare -A __emojis=(

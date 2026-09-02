@@ -1,28 +1,23 @@
 #!/usr/bin/env bash
-# ------------------------------------------------------------------------ INFO
-# [/.ael/bin/processes]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2023-08-02 00:51:54 UTC
-# updated       : 2026-04-08 16:05:50 UTC
-# description   : Show processes.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/processes]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-08-02 00:51:54 UTC
+# Updated     : 2026-09-01 20:12:59 UTC
+# Description : Show processes.
+# -----------------------------------------------------------------------------
 
 processes() {
 
-    local __red=$'\033[31m'
-    local __reset=$'\033[0m'
-    
-    trap 'unset -f check_applications; trap - RETURN' RETURN
-    
-    check_applications() {
-      local __app
-      for __app in "${@}"; do
-          if ! command -v $__app >/dev/null 2>&1; then
-                printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-                return 1
-            fi
-        done
-    }
+    source ${HOME}/.ael/lib/bash/ael
+    import applications messages
+
     check_applications ps || return 1
+
+    message banner "processes - Show processes"
 
     if [[ $(command -v grc) ]]; then
         command grc ps aux

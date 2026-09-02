@@ -1,20 +1,22 @@
 #!/usr/bin/env python
-# [+] -------------------------------------------------------------------| INFO
-# [/ael/bin/arch-pkg]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2026-05-06 20:06:51 UTC
-# updated       : 2026-05-06 20:06:51 UTC
-# description   : Arch Linux packages functions.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/arch-pkg]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-05-06 20:06:51 UTC
+# Updated     : 2026-09-02 20:43:06 UTC
+# Description : Arch Linux package utils.
+# -----------------------------------------------------------------------------
 
 import subprocess
 import sys
 import click
 
-
 CONTEXT_SETTINGS = {
     "help_option_names": ["-h", "--help"],
 }
-
 
 def run_cmd(cmd: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
@@ -24,14 +26,12 @@ def run_cmd(cmd: list[str]) -> subprocess.CompletedProcess[str]:
         stderr=subprocess.PIPE,
     )
 
-
 @click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option("0.1.0")
 def cli():
     """
-    Arch package helper.
+    Arch Linux package helper.
     """
-
 
 @cli.command("required-by")
 @click.argument("packages", nargs=-1, required=True)

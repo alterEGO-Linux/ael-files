@@ -1,11 +1,15 @@
-# [+] -------------------------------------------------------------------| INFO
-# [/.ael/.aelcore]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2021-03-19 09:37:19 UTC
-# updated       : 2026-04-22 14:51:50 UTC
-# description   : AlterEGO Linux core shell configuration.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/.aelcore]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2021-03-19 09:37:19 UTC
+# Updated     : 2026-09-01 11:05:14 UTC
+# Description : AlterEGO Linux core shell configuration.
+# -----------------------------------------------------------------------------
 
-# --| required for shell-info function (.ael/shellutils/shell-info)
+# | Required by shell-info function (.ael/bin/shell-info)
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
@@ -269,10 +273,13 @@ reload() {
     fi
 }
 
-# [+] ----------------------------------------------------------------| elevate
+# =============================================================================
+# FUNCTIONS
+# =============================================================================
 
-# --| Repeats last command with sudo, if forgotten.
-load-source "${AEL_BIN}/elevate"
+# [+] elelvate
+# ... Repeats last command with sudo, if forgotten.
+if [[ -f "${AEL_BIN}/elevate" ]]; then source "${AEL_BIN}/elevate"; fi
 
 # [+] -------------------------------------------------------------------| goto
 
