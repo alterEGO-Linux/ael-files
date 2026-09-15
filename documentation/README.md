@@ -11,5 +11,5 @@ INFO
 -------------------------------------------------------------------------------
 -->
 
-* Colors: colors.md
-* AEL//bar: config/quickshell/ael-bar/ael-bar.md
+* Colors: <colors.md>
+* AEL//bar: <config/quickshell/ael-bar/ael-bar.md>
