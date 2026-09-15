@@ -28,18 +28,6 @@ Can inspect package dependencies, mark packages as explicitly installed, and lis
 
 **Requirements:** Python, `click`, and `paru`.
 
-### busy
-
-A small terminal novelty that makes the screen look impressively busy.
-
-It continuously reads random data, displays it as a hexadecimal dump, and highlights occurrences of `ca fe` until stopped with `Ctrl+C`.
-
-```bash
-busy
-```
-
-Uses the AEL Bash library to verify the required commands (`bash`, `cat`, `grep`, and `hexdump`) before running.
-
 ### cheat
 
 Provides an interactive terminal interface to [cheat.sh](https://cheat.sh) using `fzf`.
@@ -52,18 +40,6 @@ Browse and search available cheat sheets with a live preview, then open the sele
 
 **Requirements:** `curl`, `fzf`, `less`, `cat`, and the AEL Bash library.
 
-### deep-nmap
-
-Runs a comprehensive Nmap scan against a target using service detection, OS detection, default NSE scripts, and traceroute.
-
-```bash
-deep-nmap 192.168.1.1
-deep-nmap scanme.nmap.org --Pn
-```
-
-Additional Nmap options can be supplied directly. If `grc` is available, the scan output is automatically colorized.
-
-**Requirements:** `nmap`, `sudo`, and the AEL Bash library.
 
 ### deep-scan
 
