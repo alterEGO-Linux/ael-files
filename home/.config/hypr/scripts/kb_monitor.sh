@@ -22,7 +22,8 @@ while true; do
         LAST_LAYOUT="$CURRENT_LAYOUT"
 
         # Send notification
-        dunstify -r 9999 "Keyboard Layout" "Current: $CURRENT_LAYOUT"
+        #dunstify -r 9999 "Keyboard Layout" "Current: $CURRENT_LAYOUT"
+        ael-notify notify "Keyboard Layout" "Current: $CURRENT_LAYOUT"
     fi
 
     sleep 0.5

@@ -5,7 +5,7 @@
 -- 
 -- Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
 -- Created     : 2026-05-13 07:45:12 UTC
--- Updated     : 2026-08-28 18:35:52 UTC
+-- Updated     : 2026-09-11 19:19:32 UTC
 -- Description : Hyprland Lua configuration.
 -- ----------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("XCURSOR_SIZE", "24")
 
 -- ----------------------------------------------------------------------------
--- [+] AUTOLAUNCH
+-- AUTO LAUNCH
 -- ----------------------------------------------------------------------------
 
 hl.on("hyprland.start", function()
@@ -46,24 +46,19 @@ hl.on("hyprland.start", function()
     -- ref: https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 
+-- [notification] -------------------------------------------------------------
+
+hl.exec_cmd("quickshell -c ael-notifications")
+
     -- {kb_monitor}
     -- Monitor keyboard layout.
     hl.exec_cmd("~/.config/hypr/scripts/kb_monitor.sh")
 
-    --| bluetooth
-    -- hl.exec_cmd("blueman-applet")
-
-    --| network manager
-    -- hl.exec_cmd("nm-applet")
-
-    --| waybar
-    -- hl.exec_cmd("waybar")
-
     -- {waypaper}
     hl.exec_cmd("waypaper --restore")
 
-    -- {ael-bar}
-    hl.exec_cmd("quickshell -c ael-bar")
+-- [ael-bar] ------------------------------------------------------------------
+hl.exec_cmd("quickshell -c ael-bar")
 
 end)
 
@@ -183,7 +178,7 @@ hl.device({
 })
 
 -- ----------------------------------------------------------------------------
--- [+] KEYBINDING
+-- KEYBINDING
 -- ----------------------------------------------------------------------------
 
 local mainMod = "SUPER"
@@ -193,11 +188,14 @@ local function dispatch(command)
     return hl.dsp.exec_cmd("hyprctl dispatch " .. command)
 end
 
--- [*] Reload Hyprland configuration
-hl.bind(
-    mainMod .. " + CTRL + R",
-    hl.dsp.exec_cmd("hyprctl reload")
-)
+-- [Hyprland] -----------------------------------------------------------------
+hl.bind(mainMod .. " + CTRL + R", hl.dsp.exec_cmd("hyprctl reload"))
+
+-- [AEL//MediaDownloader] -----------------------------------------------------
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd('~/.config/quickshell/ael-bar/scripts/ael-media-download download --mode video --quality best'))
+
+-- [AEL/Fuzz applications] ----------------------------------------------------
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd('ael-fuzz --frontend quickshell --applications --show-icon'))
 
 -- [+] APPLICATION CAROUSEL
 
@@ -270,7 +268,6 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(FILE_MANAGER))
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("grimblast copy area"))
 
 -- [+] terminal
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(TERMINAL))
 
 -- [+] volume
 -- Launch pavucontrol

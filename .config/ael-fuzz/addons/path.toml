@@ -1,0 +1,7 @@
+kind = "input"
+name = "path"
+command = ["file-path.py"]
+format = "jsonl"
+
+# Used when --output is omitted.
+default_output = "mime"

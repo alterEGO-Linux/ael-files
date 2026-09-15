@@ -1,0 +1,4 @@
+kind = "output"
+name = "mime"
+command = ["mime.sh"]
+payload = "path"

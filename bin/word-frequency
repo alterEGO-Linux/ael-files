@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-# ------------------------------------------------------------------------ INFO
-# [/ael/bin/word-frequency]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2026-04-18 15:59:44 UTC
-# updated       : 2026-04-18 15:59:44 UTC
-# description   : Count frequency of words.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/bin/word-frequency]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-04-18 15:59:44 UTC
+# Updated     : 2026-09-03 12:30:12 UTC
+# Description : Count frequency of words.
+# -----------------------------------------------------------------------------
 
 import sys
 import argparse
@@ -13,95 +17,253 @@ import re
 from collections import Counter
 
 STOPWORDS = {
-    "the", "a", "an", "and", "or", "but", "if", "to", "of", "in", "on",
-    "for", "with", "as", "by", "at", "from", "that", "this", "it",
-    "is", "was", "are", "were", "be", "been", "being",
-    "he", "she", "they", "them", "his", "her", "their",
-    "you", "your", "we", "our", "i", "me", "my",
-    "do", "does", "did", "so", "not"
+    # -------------------------------------------------------------------------
+    # Articles / determiners
+    # -------------------------------------------------------------------------
+    "a",
+    "all",
+    "an",
+    "another",
+    "any",
+    "both",
+    "each",
+    "either",
+    "enough",
+    "every",
+    "few",
+    "many",
+    "most",
+    "neither",
+    "no",
+    "one",
+    "other",
+    "our",
+    "several",
+    "some",
+    "such",
+    "the",
+    "their",
+    "these",
+    "this",
+    "those",
+    "your",
+
+    # -------------------------------------------------------------------------
+    # Pronouns
+    # -------------------------------------------------------------------------
+    "he",
+    "her",
+    "hers",
+    "herself",
+    "him",
+    "himself",
+    "his",
+    "i",
+    "it",
+    "its",
+    "itself",
+    "me",
+    "mine",
+    "my",
+    "myself",
+    "ours",
+    "ourselves",
+    "she",
+    "theirs",
+    "them",
+    "themselves",
+    "they",
+    "thou",
+    "us",
+    "we",
+    "ye",
+    "you",
+    "yours",
+    "yourself",
+    "yourselves",
+
+    # -------------------------------------------------------------------------
+    # Demonstratives / relatives / interrogatives
+    # -------------------------------------------------------------------------
+    "how",
+    "what",
+    "whatever",
+    "when",
+    "whenever",
+    "where",
+    "wherever",
+    "whether",
+    "which",
+    "who",
+    "whom",
+    "whose",
+
+    # -------------------------------------------------------------------------
+    # Auxiliary / modal verbs
+    # -------------------------------------------------------------------------
+    "am",
+    "are",
+    "be",
+    "been",
+    "being",
+    "can",
+    "cannot",
+    "could",
+    "did",
+    "do",
+    "does",
+    "had",
+    "has",
+    "have",
+    "is",
+    "may",
+    "might",
+    "must",
+    "shall",
+    "should",
+    "was",
+    "were",
+    "will",
+    "would",
+
+    # -------------------------------------------------------------------------
+    # Contraction fragments
+    # -------------------------------------------------------------------------
+    "ain",
+    "aren",
+    "couldn",
+    "didn",
+    "doesn",
+    "don",
+    "hadn",
+    "hasn",
+    "haven",
+    "isn",
+    "ll",
+    "m",
+    "re",
+    "s",
+    "shan",
+    "shouldn",
+    "t",
+    "ve",
+    "wasn",
+    "weren",
+    "won",
+    "wouldn",
+
+    # -------------------------------------------------------------------------
+    # Prepositions
+    # -------------------------------------------------------------------------
+    "about",
+    "above",
+    "after",
+    "against",
+    "along",
+    "among",
+    "around",
+    "as",
+    "at",
+    "before",
+    "below",
+    "beneath",
+    "beside",
+    "between",
+    "beyond",
+    "by",
+    "down",
+    "during",
+    "except",
+    "for",
+    "from",
+    "in",
+    "inside",
+    "into",
+    "near",
+    "of",
+    "off",
+    "on",
+    "out",
+    "outside",
+    "over",
+    "through",
+    "to",
+    "toward",
+    "towards",
+    "under",
+    "until",
+    "up",
+    "upon",
+    "with",
+    "within",
+    "without",
+
+    # -------------------------------------------------------------------------
+    # Conjunctions
+    # -------------------------------------------------------------------------
+    "and",
+    "because",
+    "but",
+    "however",
+    "if",
+    "nor",
+    "or",
+    "since",
+    "so",
+    "than",
+    "then",
+    "though",
+    "while",
+    "yet",
+
+    # -------------------------------------------------------------------------
+    # Adverbs / qualifiers
+    # -------------------------------------------------------------------------
+    "again",
+    "almost",
+    "already",
+    "also",
+    "always",
+    "even",
+    "ever",
+    "here",
+    "just",
+    "least",
+    "less",
+    "more",
+    "much",
+    "never",
+    "now",
+    "once",
+    "only",
+    "perhaps",
+    "rather",
+    "really",
+    "sometimes",
+    "soon",
+    "still",
+    "there",
+    "therefore",
+    "together",
+    "too",
+    "very",
+    "well",
+
+    # -------------------------------------------------------------------------
+    # Miscellaneous
+    # -------------------------------------------------------------------------
+    "_",
+    "else",
+    "far",
+    "great",
+    "last",
+    "like",
+    "made",
+    "own",
+    "same",
+    "three",
+    "two",
 }
-
-def show_documentation() -> None:
-    """Display detailed documentation and exit."""
-
-    documentation = """
-
-This documentation may not be up-to-date.
-
-To view the full documentation:
-
-- on github: <https://github.com/alterEGO-Linux/ael-files/blob/main/data/documentation/word-frequency.md>
-- on a alterEGO Linux system (/home/<user>/.ael/data/documentation/word-frequency.md)
-
-# word-frequency documentation
-
-word-frequency is a simple and multi purpose utility, written in Python, to count the frequency of words in a text.
-
-## Options
-
-[**-i, --input INPUT**]
-
-Input file (if not provided, reads from stdin).
-
-Analysing Moby Dick from stdin.
-
-```shell
-$ curl https://www.gutenberg.org/cache/epub/2701/pg2701.txt | word-frequency | head
-  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
-                                 Dload  Upload  Total   Spent   Left   Speed
-100  1.21M 100  1.21M   0      0  1.45M      0                              0
-the     14715
-of      6746
-and     6515
-a       4799
-to      4709
-in      4241
-that    3081
-it      2535
-his     2530
-i       2120
-```
-
-As a provided files.
-
-```shell
-$ word-frequency --input moby-dick.txt | head
-the     14715
-of      6746
-and     6515
-a       4799
-to      4709
-in      4241
-that    3081
-it      2535
-his     2530
-i       2120
-```
-
-[**--case-sensitive**]
-
-Make word counting case-sensitive. The count will preserve the case sensitivity.
-
-[**--sort {freq,alpha}**]
-
-Sort output by frequency or alphabetically. Default is frequency.
-
-[**--significant**]
-
-Filter out common English stopwords. 
-
-[**--stopwords STOPWORDS**]
-
-Path to stopwords file (can be used multiple times). Use custom stopwords files, one word per line.
-
-[**--nocount**]
-
-Just gives the words, no count. Great to create a custom stopwords file.
-"""
-
-    print(documentation)
-    sys.exit(0)
-
 
 def read_input(file_path: str | None) -> str:
     """Read text to analyze."""
@@ -111,14 +273,13 @@ def read_input(file_path: str | None) -> str:
     else:
         return sys.stdin.read()
 
-
 def extract_words(text: str, case_sensitive: bool = False) -> list[str]:
     """Returns a list of words."""
 
     if not case_sensitive:
         text = text.lower()
 
-    # Extract words (letters + numbers, tweak if needed)
+    # --- Extract words (letters + numbers, tweak if needed)
     return re.findall(r"\b\w+\b", text)
 
 
@@ -137,14 +298,14 @@ def load_stopwords_file(path: str) -> set[str]:
 
 def build_stopwords(paths: list[str] | None) -> set[str]:
     "Returns a set of stopwords."
-    # --| If user provided custom files → use ONLY those.
+    # --- If user provided custom files → use ONLY those.
     if paths:
         combined = set()
         for p in paths:
             combined |= load_stopwords_file(p)
         return combined
 
-    # --| Otherwise fallback to built-ins.
+    # --- Otherwise fallback to built-ins.
     return set(STOPWORDS)
 
 
@@ -200,44 +361,32 @@ def main():
         help="Just gives the words, no count.",
     )
 
-    parser.add_argument(
-        "--documentation",
-        action="store_true",
-        help="Show detailed documentation and exit."
-    )
-
     args = parser.parse_args()
 
-    if args.documentation:
-        show_documentation()
+    text = read_input(args.input)
+    words = extract_words(text, args.case_sensitive)
 
+    if args.significant:
+        stopwords = build_stopwords(args.stopwords)
+        words = filter_stopwords(words, stopwords)
+
+    freq = compute_frequencies(words)
+
+    if args.sort == "alpha":
+        items = sorted(freq.items())
     else:
+        items = sorted(freq.items(), key=lambda x: (-x[1], x[0]))
 
-        text = read_input(args.input)
-        words = extract_words(text, args.case_sensitive)
-
-        if args.significant:
-            stopwords = build_stopwords(args.stopwords)
-            words = filter_stopwords(words, stopwords)
-
-        freq = compute_frequencies(words)
-
-        if args.sort == "alpha":
-            items = sorted(freq.items())
-        else:
-            items = sorted(freq.items(), key=lambda x: (-x[1], x[0]))
-
-        try:
-            for word, count in items:
-                if args.nocount:
-                    print(word)
-                else:
-                    print(f"{word}\t{count}")
-        except BrokenPipeError:
-            return 0
-
+    try:
+        for word, count in items:
+            if args.nocount:
+                print(word)
+            else:
+                print(f"{word}\t{count}")
+    except BrokenPipeError:
         return 0
 
+    return 0
 
 if __name__ == "__main__":
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)

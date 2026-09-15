@@ -1,0 +1,194 @@
+#!/usr/bin/env bash
+set -u
+
+runtime_dir="${XDG_RUNTIME_DIR:-/tmp}/ael-media-downloader"
+state_file="$runtime_dir/state.json"
+pid_file="$runtime_dir/pid"
+download_dir="${AEL_MEDIA_DOWNLOAD_DIR:-$HOME/Videos/AEL-Downloads}"
+notification_id="ael-media-download"
+confirmation_id="ael-media-confirm"
+self="$(readlink -f "$0")"
+mkdir -p "$runtime_dir" "$download_dir"
+
+write_state() {
+    jq -cn --arg state "$1" --argjson progress "$2" --arg title "$3" --arg message "$4" \
+        '{state:$state,progress:$progress,title:$title,message:$message}' > "$state_file.tmp"
+    mv "$state_file.tmp" "$state_file"
+}
+
+notify_error() {
+    write_state error 0 "" "$1"
+    command -v ael-notify >/dev/null && ael-notify send \
+        --id "$notification_id" --app "AEL//MediaDownloader" \
+        --title "Download failed" --body "$1" \
+        --urgency critical --timeout 0 >/dev/null
+}
+
+focused_browser_url() {
+    command -v hyprctl >/dev/null && command -v wtype >/dev/null \
+        && command -v wl-paste >/dev/null || return 1
+
+    local class url old_clipboard
+    class="$(hyprctl activewindow -j 2>/dev/null | jq -r '.class // ""')"
+    [[ "$class" =~ [Ff]irefox|[Cc]hrom(e|ium)?|[Bb]rave|[Vv]ivaldi|[Ee]dge ]] || return 1
+
+    old_clipboard="$(wl-paste --no-newline 2>/dev/null || true)"
+    wtype -M ctrl -k l -m ctrl
+    sleep 0.15
+    wtype -M ctrl -k c -m ctrl
+    sleep 0.20
+    url="$(wl-paste --no-newline 2>/dev/null || true)"
+    wtype -k Escape
+
+    if command -v wl-copy >/dev/null && [[ -n "$old_clipboard" ]]; then
+        printf '%s' "$old_clipboard" | wl-copy
+    fi
+
+    [[ "$url" =~ ^https?:// ]] || return 1
+    printf '%s\n' "$url"
+}
+
+clipboard_url() {
+    command -v wl-paste >/dev/null || return 1
+    local url
+    url="$(wl-paste --no-newline 2>/dev/null || true)"
+    [[ "$url" =~ ^https?:// ]] || return 1
+    printf '%s\n' "$url"
+}
+
+request_download() {
+    local mode="video" quality="best"
+    while (($#)); do
+        case "$1" in
+            --mode) mode="$2"; shift 2 ;;
+            --quality) quality="$2"; shift 2 ;;
+            *) shift ;;
+        esac
+    done
+
+    command -v jq >/dev/null || { write_state error 0 "" "jq is not installed"; return 1; }
+    command -v yt-dlp >/dev/null || { notify_error "yt-dlp is not installed"; return 1; }
+    command -v ael-notify >/dev/null || {
+        write_state error 0 "" "ael-notify is not installed"
+        return 1
+    }
+
+    write_state inspecting 0 "" "Reading the focused browser tab"
+
+    local url title accept_argv reject_argv
+    url="$(focused_browser_url || clipboard_url)" || {
+        notify_error "Focus a browser tab or copy a media URL first"
+        return 1
+    }
+    title="$(yt-dlp --no-warnings --print '%(title)s' --skip-download "$url" 2>/dev/null | head -n1)"
+    [[ -n "$title" ]] || title="Unknown media"
+
+    accept_argv="$(jq -cn --arg self "$self" --arg url "$url" \
+        --arg mode "$mode" --arg quality "$quality" \
+        '["bash",$self,"start","--url",$url,"--mode",$mode,"--quality",$quality]')"
+
+    reject_argv="$(jq -cn --arg self "$self" \
+        '["bash",$self,"reject"]')"
+
+    write_state awaiting_confirmation 0 "$title" "Waiting for confirmation"
+    ael-notify confirm \
+        --id "$confirmation_id" --app "AEL//MediaDownloader" \
+        --title "Would you like to download this media?" \
+        --body "$title
+$url" \
+        --accept-label "Download" --reject-label "Cancel" \
+        --accept "$accept_argv" --reject "$reject_argv" >/dev/null
+}
+
+run_download() {
+    local url="" mode="video" quality="best"
+    while (($#)); do
+        case "$1" in
+            --url) url="$2"; shift 2 ;;
+            --mode) mode="$2"; shift 2 ;;
+            --quality) quality="$2"; shift 2 ;;
+            *) shift ;;
+        esac
+    done
+    [[ "$url" =~ ^https?:// ]] || { notify_error "Invalid media URL"; return 1; }
+
+    local title progress result last_progress=-1
+    local -a format
+    title="$(yt-dlp --no-warnings --print '%(title)s' --skip-download "$url" 2>/dev/null | head -n1)"
+    [[ -n "$title" ]] || title="Media download"
+    printf '%s\n' "$$" > "$pid_file"
+    trap 'rm -f "$pid_file"' EXIT
+
+    write_state downloading 0 "$title" "Starting download"
+    ael-notify progress --id "$notification_id" --app "AEL//MediaDownloader" \
+        --title "Downloading" --body "$title" --value 0 >/dev/null
+
+    if [[ "$mode" == audio ]]; then
+        format=(--extract-audio --audio-format mp3 --audio-quality 0)
+    elif [[ "$quality" == best ]]; then
+        format=(-f 'bv*+ba/b')
+    else
+        format=(-f "bv*[height<=${quality}]+ba/b[height<=${quality}]")
+    fi
+
+    set +e
+
+    yt-dlp --newline --progress-template 'download:%(progress._percent_str)s' -o "$download_dir/%(title)s [%(id)s].%(ext)s" "${format[@]}" "$url" 2>&1 |
+    while IFS= read -r line; do
+        if [[ "$line" =~ download:[[:space:]]*([0-9]+)(\.[0-9]+)?% ]]; then
+            progress="${BASH_REMATCH[1]}"
+
+            if ((progress != last_progress)); then
+                last_progress="$progress"
+
+                write_state downloading "$progress" "$title" "$line"
+
+                ael-notify progress \
+                    --id "$notification_id" \
+                    --app "AEL//MediaDownloader" \
+                    --title "Downloading" \
+                    --body "$title" \
+                    --value "$progress" >/dev/null
+            fi
+        fi
+    done
+
+    result="${PIPESTATUS[0]}"
+    set -e
+
+    if ((result == 0)); then
+        write_state complete 100 "$title" "Saved to $download_dir"
+        ael-notify send --id "$notification_id" --app "AEL//MediaDownloader" \
+            --title "Download complete" \
+            --body "$title
+Saved to $download_dir" >/dev/null
+    else
+        notify_error "Download failed: $title"
+        return "$result"
+    fi
+}
+
+case "${1:-status}" in
+    request|download)
+        shift
+        if [[ -f "$pid_file" ]] && kill -0 "$(<"$pid_file")" 2>/dev/null; then exit 0; fi
+        request_download "$@"
+        ;;
+    start) shift; run_download "$@" ;;
+    reject) write_state idle 0 "" "Download cancelled" ;;
+    cancel)
+        if [[ -f "$pid_file" ]]; then
+            kill "$(<"$pid_file")" 2>/dev/null || true
+            rm -f "$pid_file"
+        fi
+        ael-notify close "$notification_id" >/dev/null 2>&1 || true
+        write_state idle 0 "" "Download cancelled"
+        ;;
+    status)
+        if [[ ! -s "$state_file" ]] || ! jq -e . "$state_file" >/dev/null 2>&1; then
+            write_state idle 0 "" "Ready"
+        fi
+        cat "$state_file"
+        ;;
+    *) printf 'Usage: %s {request|start|reject|cancel|status}\n' "$0" >&2; exit 2 ;;
+esac

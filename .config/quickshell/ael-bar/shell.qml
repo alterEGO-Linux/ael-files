@@ -34,9 +34,9 @@ ShellRoot {
 
             Rectangle {
                 anchors.fill: parent
-                color: "#ff262626"
-                border.color: "#404040"
-                border.width: 1
+                color: Appearance.backgroundColor
+                border.color: Appearance.borderColor
+                border.width: 0
 
                 WindowsMenu {
                     barWindow: bar
@@ -68,6 +68,11 @@ ShellRoot {
 
                     // [*] Packages
                     Packages {
+                        barWindow: bar
+                    }
+
+                    // --- [AEL//MediaDownloader] -----------------------------
+                    MediaDownloader {
                         barWindow: bar
                     }
 

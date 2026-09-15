@@ -13,3 +13,7 @@ Workspaces 1.0 Workspaces.qml
 PiPButton 1.0 PiPButton.qml
 ScreenshotButton 1.0 ScreenshotButton.qml
 ScreenshotPreview 1.0 ScreenshotPreview.qml
+
+# --- [AEL//MediaDownloader] --------------------------------------------------
+singleton MediaDownloadService 1.0 MediaDownloadService.qml
+MediaDownloader 1.0 MediaDownloader.qml
