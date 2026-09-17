@@ -5,7 +5,7 @@
 -- 
 -- Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
 -- Created     : 2026-05-13 07:45:12 UTC
--- Updated     : 2026-09-11 19:19:32 UTC
+-- Updated     : 2026-09-16 18:03:07 UTC
 -- Description : Hyprland Lua configuration.
 -- ----------------------------------------------------------------------------
 
@@ -196,6 +196,9 @@ hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd('~/.config/quickshell/ael-bar
 
 -- [AEL/Fuzz applications] ----------------------------------------------------
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd('ael-fuzz --frontend quickshell --applications --show-icon'))
+
+-- (TERMINAL) -----------------------------------------------------------------
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(TERMINAL))
 
 -- [+] APPLICATION CAROUSEL
 

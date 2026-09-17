@@ -13,20 +13,6 @@ Description : /bin README.md
 
 # /bin/
 
-### arch-pkg
-
-Provides convenient command-line helpers for managing Arch Linux package state with `paru`.
-
-```bash
-arch-pkg required-by <package>
-arch-pkg mark-as-explicit <package>
-arch-pkg list-explicit
-arch-pkg list-orphans
-```
-
-Can inspect package dependencies, mark packages as explicitly installed, and list explicit or orphaned packages.
-
-**Requirements:** Python, `click`, and `paru`.
 
 ### cheat
 
@@ -41,29 +27,7 @@ Browse and search available cheat sheets with a live preview, then open the sele
 **Requirements:** `curl`, `fzf`, `less`, `cat`, and the AEL Bash library.
 
 
-### deep-scan
 
-Performs a fast port discovery with RustScan followed by a detailed Nmap scan of the discovered ports.
-
-```bash
-deep-scan 192.168.1.1
-deep-scan localhost
-```
-
-Nmap performs service and OS detection, runs its default scripts, and includes a traceroute. If `grc` is available, the Nmap output is automatically colorized.
-
-**Requirements:** `rustscan`, `nmap`, `sudo`, and the AEL Bash library.
-
-### delete
-
-Safely deletes one or more directories with an interactive confirmation before each deletion.
-
-```bash
-delete old-directory
-delete cache tmp backup
-```
-
-Directories that do not exist are skipped with an error message. The command refuses to proceed when no interactive terminal is available, preventing accidental unattended deletion.
 
 ### dicom-tag
 
@@ -87,26 +51,6 @@ directory-size
 
 Results are sorted from largest to smallest and shown in human-readable units, making it easy to quickly identify directories consuming the most disk space.
 
-### elevate
-
-Repeats the previous shell command with elevated privileges using `sudo`.
-
-```bash
-pacman -Syu
-# error: you cannot perform this operation unless you are root.
-
-elevate
-```
-
-An optional interactive mode asks for confirmation before executing the command:
-
-```bash
-elevate --interactive
-```
-
-Because `elevate` relies on Bash command history, the script must be **sourced** rather than executed directly.
-
-**Requirements:** `bash`, `sudo`, and the AEL Bash library.
 
 ### emojis
 
@@ -120,21 +64,6 @@ Searches a built-in emoji database containing Unicode codes and descriptions. Th
 
 **Requirements:** `fzf`, `wl-copy` (Wayland) or `xclip` (X11), and the AEL Bash library.
 
-### pacman-reset
-
-Re-initializes the Arch Linux Pacman environment by rebuilding its synchronization data, refreshing the mirror list, and updating the Arch Linux keyring.
-
-The script:
-
-* Removes Pacman's local sync database.
-* Uses `reflector` to generate a fresh Canadian HTTPS mirror list from recently synchronized mirrors, sorted by download rate.
-* Forces a Pacman database refresh.
-* Updates the `archlinux-keyring` package.
-
-Useful for troubleshooting Pacman synchronization, outdated mirrors, or package-signing/keyring issues.
-
-**Requirements:** `pacman`, `reflector`, `sudo`, `sed`, and the AlterEGO Linux Bash library (`~/.ael/lib/bash/ael`).
-
 ### ports
 
 Displays all listening and active TCP/UDP ports, including the processes associated with them.
@@ -146,18 +75,6 @@ ports
 Uses `netstat` with elevated privileges to show addresses, ports, connection states, PIDs, and process names. If `grc` is available, the output is automatically colorized.
 
 **Requirements:** `netstat`, `sudo`, and the AEL Bash library.
-
-### processes
-
-Displays a detailed list of all currently running processes.
-
-```bash
-processes
-```
-
-Shows process ownership, CPU and memory usage, state, start time, and command information using `ps aux`. If `grc` is available, the output is automatically colorized.
-
-**Requirements:** `ps` and the AEL Bash library.
 
 ### py-cleaner
 
@@ -217,54 +134,4 @@ Useful on restricted corporate, VPN, or public networks where direct WHOIS queri
 
 **Requirements:** `curl`, `jq`, `sed`, and the AEL Bash library.
 
-### word-frequency
-
-Counts word occurrences from a file or standard input and displays them by frequency or alphabetically.
-
-Supports case-sensitive counting, common stopword filtering, custom stopword files, alphabetical sorting, and output without occurrence counts.
-
-Use `--significant` to remove common English words and highlight the most meaningful vocabulary in a text.
-
-#### Installation
-
-Requires Python 3.
-
-Make the script executable:
-
-```bash
-chmod +x word-frequency
-```
-
-Then place it somewhere in your `PATH`, for example:
-
-```bash
-sudo install -m 755 word-frequency /usr/local/bin/word-frequency
-```
-
-#### Usage
-
-Read text from a file:
-
-```bash
-word-frequency -i document.txt
-```
-
-Read text from standard input:
-
-```bash
-cat document.txt | word-frequency
-curl https://www.gutenberg.org/cache/epub/1342/pg1342.txt | word-frequency --significant | head -n 50
-```
-
-Show only significant words by filtering common English stopwords:
-
-```bash
-word-frequency -i document.txt --significant
-```
-
-For all available options:
-
-```bash
-word-frequency --help
-```
 

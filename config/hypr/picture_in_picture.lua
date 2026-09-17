@@ -5,7 +5,7 @@
 -- 
 -- Author      : Pascal Malouin (https://github.com/fantomH)
 -- Created     : 2026-08-28 18:00:45 UTC
--- Updated     : 2026-08-28 18:00:45 UTC
+-- Updated     : 2026-09-16 20:22:06 UTC
 -- Description : description
 -- +--------------------------------------------------------------------------+
 
@@ -24,8 +24,8 @@ local function add_pip_rule(name, match)
         pin = true,
         size = { 576, 324 },
         move = {
-            "monitor_w-window_w-20",
-            "monitor_h-window_h-60"
+            "monitor_w-576-20",
+            "monitor_h-324-60"
         },
 
         no_initial_focus = true,
@@ -48,5 +48,11 @@ add_pip_rule("ael-pip-firefox", {
 -- Chromium's native Wayland PiP surface currently reports an empty class.
 add_pip_rule("ael-pip-chromium", {
     initial_title = "^Picture in picture$"
+})
+
+-- Zen Browser
+add_pip_rule("ael-pip-zen", {
+    class = "^zen$",
+    initial_title = "^Picture-in-Picture$"
 })
 

@@ -5,7 +5,7 @@
 # 
 # Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
 # Created     : 2021-03-19 09:37:19 UTC
-# Updated     : 2026-09-01 11:05:14 UTC
+# Updated     : 2026-09-17 10:54:48 UTC
 # Description : AlterEGO Linux core shell configuration.
 # -----------------------------------------------------------------------------
 
@@ -13,12 +13,13 @@
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# [+] --------------------------------------------------------------------| ael
+# --- (AEL) -------------------------------------------------------------------
+
+export AEL_HOME="${HOME}/.ael"
 
 export AEL=1
 export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
 export AEL_FILES="${HOME}/.local/share/ael-files"
-export AEL_HOME="${HOME}/.ael"
 export AEL_BIN="${AEL_HOME}/bin"
 export AEL_BUILD="${AEL_HOME}/build"
 export AEL_DATA="${AEL_HOME}/data"
@@ -277,9 +278,12 @@ reload() {
 # FUNCTIONS
 # =============================================================================
 
-# [+] elelvate
-# ... Repeats last command with sudo, if forgotten.
-if [[ -f "${AEL_BIN}/elevate" ]]; then source "${AEL_BIN}/elevate"; fi
+# --- (elevate) ---------------------------------------------------------------
+# --- Repeats last command with sudo, if forgotten.
+#
+if [[ -f "${AEL_BIN}/elevate" ]]; then
+    source "${AEL_BIN}/elevate"
+fi
 
 # [+] -------------------------------------------------------------------| goto
 
