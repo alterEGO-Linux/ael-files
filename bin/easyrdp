@@ -1,39 +1,64 @@
-#!/usr/bin/env bash
-# [+] -------------------------------------------------------------------| INFO
-# [/ael/bin/easyrdp]
-# author        : Pascal Malouin (https://github.com/alterEGO-Linux)
-# created       : 2026-04-23 20:59:15 UTC
-# updated       : 2026-04-23 20:59:15 UTC
-# description   : Simple RDP wrapper.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/ael-bin/easyrdp]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2026-04-23 20:59:15 UTC
+# Updated     : 2026-09-24 11:29:00 UTC
+# Description : Simple RDP wrapper.
+# -----------------------------------------------------------------------------
 
 set -euo pipefail
+
+# ===[ VARIABLES ]=============================================================
+
+if [[ "${AEL}" == 0 ]]; then
+    __PRIVATE="${HOME}/.config/easyrdp"
+else
+    __PRIVATE="${AEL_PRIVATE}/config/easyrdp"
+fi
 
 __red=$'\033[31m'
 __reset=$'\033[0m'
 
 check_applications() {
-  local __app
-  for __app in "${@}"; do
-      if ! command -v $__app >/dev/null 2>&1; then
-          printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
-          return 1
-      fi
-  done
+    local __app
+
+    for __app in "$@"; do
+        if ! command -v "${__app}" >/dev/null 2>&1; then
+            printf '%s\n' "${__red}[!]${__reset} ${__app} is not installed."
+            return 1
+        fi
+    done
 }
+
 check_applications xfreerdp3 || exit 1
 
-# [+] ------------------------------------------------------------------| usage
+
+# ===[ HELP ]==================================================================
 
 usage() {
-  cat <<EOF
-================================================================================
+    cat <<EOF
+===============================================================================
 [+] easyrdp - Simple RDP wrapper
-================================================================================
+===============================================================================
+
 Usage:
-  easyrdp [-h|--help] CONIG_FILE
+  easyrdp
+  easyrdp -c CONFIG_FILE
+  easyrdp --config CONFIG_FILE
+  easyrdp -h|--help
 
 Options:
-  -h, --help    Show this help and exit.
+  -c, --config FILE
+      Use the specified configuration file.
+
+      If no configuration file is specified, AEL//Fuzz is used to
+      select one interactively.
+
+  -h, --help
+      Show this help and exit.
 
 CONFIG_FILE example:
 
@@ -49,56 +74,102 @@ gateway_password='gateway_password'
 
 clipboard="yes"
 sound="yes"
-usb="auto"
+usb="no"
 fullscreen="yes"
 ---
 
 The gateway information is only needed if a gateway is used.
 
-================================================================================
+-------------------------------------------------------------------------------
 EOF
 }
 
-# [+] ----------------------------------------------------------------| options
 
-# --| No args.
-[[ $# -eq 0 ]] && { usage; exit 0; }
+# [+] -----------------------------------------------------------| config search
 
-for arg in "$@"; do
-    case "${arg}" in
+_search_config() {
+    check_applications ael-fuzz || exit 1
+
+    CONFIG_FILE="$(
+        find "${__PRIVATE}/" -maxdepth 1 -type f |
+            ael-fuzz --frontend quickshell
+    )"
+
+    # AEL//Fuzz cancelled or returned nothing.
+    [[ -n "${CONFIG_FILE}" ]] || exit 0
+}
+
+
+# ===[ OPTIONS ]===============================================================
+
+CONFIG_FILE=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
         -h|--help)
             usage
             exit 0
             ;;
+
+        -c|--config)
+            if [[ -z "${2:-}" ]]; then
+                printf '%s\n' \
+                    "${__red}[!]${__reset} easyrdp - $1 requires a config file."
+                exit 1
+            fi
+
+            CONFIG_FILE="$2"
+            shift 2
+            ;;
+
         *)
-           CONFIG_FILE="${1}"
+            printf '%s\n' \
+                "${__red}[!]${__reset} easyrdp - Unknown argument: $1"
+            printf '\n'
+            usage
+            exit 1
+            ;;
     esac
 done
 
-# [+] ----------------------------------------------------------| configuration
 
-# --| Defaults
-: "${clipboard:=yes}"
-: "${sound:=yes}"
-: "${usb:=}"
-: "${fullscreen:=no}"
+# ===[ CONFIGURATION ]=========================================================
 
-if [[ -f "${CONFIG_FILE}" ]]; then
-    . "${CONFIG_FILE}"
-else
-    printf '%s\n' "${__red}[!]${__reset} easyrdp - Cannot find the config file provided."
-    printf '%s\n' ''
-    usage
+# No configuration specified on command line:
+# select one interactively.
+if [[ -z "${CONFIG_FILE}" ]]; then
+    _search_config
+fi
+
+# Make sure the selected/provided configuration exists.
+if [[ ! -f "${CONFIG_FILE}" ]]; then
+    printf '%s\n' \
+        "${__red}[!]${__reset} easyrdp - Cannot find config file: ${CONFIG_FILE}"
     exit 1
 fi
 
-# --| Required values
+# ---( default option values )-------------------------------------------------
+
+clipboard="yes"
+sound="yes"
+usb="no"
+fullscreen="no"
+reconnect=20
+
+# ---( load configuration )----------------------------------------------------
+
+. "${CONFIG_FILE}"
+
+# ---( required values )-------------------------------------------------------
+
 : "${user:?missing user in config}"
 : "${domain:?missing domain in config}"
 : "${server:?missing server in config}"
 : "${password:?missing password in config}"
 
-# [+] --------------------------------------------------------| command builder
+
+# ===[ COMMAND BUILDER ]=======================================================
+
 cmd=(
     xfreerdp3
     "/u:${user}"
@@ -111,12 +182,18 @@ if [[ -n "${gateway_server:-}" ]]; then
     : "${gateway_user:?missing gateway_user in config}"
     : "${gateway_password:?missing gateway_password in config}"
 
-    cmd+=("/gateway:g:${gateway_server},u:${gateway_user},p:${gateway_password}")
+    cmd+=(
+        "/gateway:g:${gateway_server},u:${gateway_user},p:${gateway_password}"
+    )
 fi
 
 [[ "${clipboard}" == "yes" ]] && cmd+=("/clipboard")
 [[ "${sound}" == "yes" ]] && cmd+=("/sound")
-[[ -n "${usb}" ]] && cmd+=("/usb:${usb}")
+[[ "${usb}" == "yes" ]] && cmd+=("/usb:auto")
 [[ "${fullscreen}" == "yes" ]] && cmd+=("/f")
+[[ -n "${reconnect}" ]] && cmd+=(
+    "+auto-reconnect"
+    "/auto-reconnect-max-retries:${reconnect}"
+)
 
 exec "${cmd[@]}"

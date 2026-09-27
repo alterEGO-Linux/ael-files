@@ -5,7 +5,7 @@
 -- 
 -- Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
 -- Created     : 2026-05-13 07:45:12 UTC
--- Updated     : 2026-09-16 18:03:07 UTC
+-- Updated     : 2026-09-22 20:08:43 UTC
 -- Description : Hyprland Lua configuration.
 -- ----------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ require("picture_in_picture")
 
 local TERMINAL = "alacritty"
 local FILE_MANAGER = "pcmanfm-qt"
-local WEB_BROWSER = "firefox"
+local WEB_BROWSER = "zen-browser"
 
 -- [+] ------------------------------------------------------------| monitor(s)
 
@@ -33,6 +33,8 @@ hl.monitor({
 
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("XCURSOR_SIZE", "24")
+hl.env("TERM", "alacritty")
+hl.env("TERMINAL", "alacritty")
 
 -- ----------------------------------------------------------------------------
 -- AUTO LAUNCH

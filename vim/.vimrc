@@ -567,7 +567,7 @@ nnoremap <leader>er :Ranger<CR>
   nnoremap <silent> <C-f> :BLines<CR>
 
   " --- ael files.
-  nnoremap <leader>ael :call fzf#run(fzf#wrap({'source': 'rg --files --hidden --glob "!.git" ~/.local/share/ael-files/'}))<CR>
+  nnoremap <leader>ael :call fzf#run(fzf#wrap({'source': 'rg --files --hidden --glob "!.git" ~/.local/share/ael-files/ ~/main/ael-barcode/ ~/main/ael-documentation/'}))<CR>
 
   " --- fzf spellcheck selector
   " ... select Spellcheck suggestion.
@@ -711,3 +711,5 @@ nnoremap <leader>er :Ranger<CR>
 
   " :-( shell )
   " hi shDerefVar         term=NONE      cterm=BOLD      ctermfg=cyan   ctermbg=NONE " :Shell variables (default in vim81/syntax/sh.vim)
+  "
+let g:ael_fuzz_home_command = 'rg --files --hidden ~/.vim' 
