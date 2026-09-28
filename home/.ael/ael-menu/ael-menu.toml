@@ -516,8 +516,8 @@ is_floating      = true
 [app.vbox]
 name             = "vbox"
 run              = "launch_tui"
-cmd              = "bash ~/.ael/bin/virtual-boxes.sh"
-which            = ["bash", "virtual-boxes.sh"]
+cmd              = "virtual-boxes"
+which            = ["virtual-boxes"]
 session          = "VBOX"
 description      = "Select a virtual machine."
 desktop          = ["HYPRLAND"]

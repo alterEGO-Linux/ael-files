@@ -5,39 +5,45 @@
 # 
 # Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
 # Created     : 2021-03-19 09:37:19 UTC
-# Updated     : 2026-09-19 12:54:32 UTC
+# Updated     : 2026-09-28 19:29:00 UTC
 # Description : AlterEGO Linux core shell configuration.
+#
+# ---( IMPORTANT )-------------------------------------------------------------
+# This file should not be modified.
+# Any modification may break AlterEGO ecosystem.
+# This file will automatically be overwritten by AEL updates.
 # -----------------------------------------------------------------------------
 
-# | Required by shell-info function (.ael/bin/shell-info)
+# ---( SHELL-INFO )------------------------------------------------------------
+# This env configuration is needed by `shell-info` at the top of `.aelcore`.
+# -----------------------------------------------------------------------------
 PS4='+ ${BASH_SOURCE[0]}:${LINENO}: '
 export PS4
 
-# --- (ENVIRONMENT) -----------------------------------------------------------
+# ---( ENVIRONMENT )-----------------------------------------------------------
 
 export LIBVA_DRIVER_NAME=i965
 
-# --- (AEL) -------------------------------------------------------------------
+# ---( AEL )-------------------------------------------------------------------
 
 export AEL=1
 export AEL_HOME="${HOME}/.ael"
+export AEL_BIN="${HOME}/.local/bin"
 export AEL_PRIVATE="${AEL_HOME}/private"
-export AEL_BASHLIB="${AEL_HOME}/lib/bash/ael"
+export AEL_BASHLIB="${HOME}/.local/share/ael/ael-bashlib"
+export AEL_DATA="${HOME}/.local/share/ael/data"
+export AEL_BUILD="${AEL_HOME}/.build"
 
 export AEL_FILES_REPOSITORY="https://github.com/alterEGO-Linux/ael-files"
 export AEL_FILES="${HOME}/.local/share/ael-files"
-export AEL_BIN="${AEL_HOME}/bin"
-export AEL_BUILD="${AEL_HOME}/build"
-export AEL_DATA="${AEL_HOME}/data"
 export AEL_SHELLUTILS="${AEL_HOME}/shellutils"
-export AEL_CUSTOM="${AEL_HOME}/custom"
 export AEL_DEBUG_LEVEL=2
 
-# [+] -----------------------------------------------------------| default apps
+# ---( DEFAULT APPS )----------------------------------------------------------
 
-export BROWSER=firefox
+export BROWSER="zen-browser"
 export TERMINAL="alacritty"
-export VISUAL=vim
+export VISUAL="vim"
 export EDITOR=${VISUAL}
 export MANPAGER='bat -l man -p'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow '
@@ -280,17 +286,13 @@ reload() {
     fi
 }
 
-# =============================================================================
-# FUNCTIONS
-# =============================================================================
-
-# --- (elevate) ---------------------------------------------------------------
+# --- (elevate) --------------------------------------------------------------|
 
 if [[ -f "${AEL_BIN}/elevate" ]]; then
     source "${AEL_BIN}/elevate"
 fi
 
-# --- (shell-info) ---------------------------------------------------------------
+# --- (shell-info) -----------------------------------------------------------|
 
 if [[ -f "${AEL_BIN}/shell-info" ]]; then
     source "${AEL_BIN}/shell-info"
@@ -299,7 +301,7 @@ fi
 # [+] -------------------------------------------------------------------| goto
 
 # --|  Simple directory bookmarks system.
-load-source "${AEL_BIN}/goto"
+source "${HOME}/.ael/bin/goto"
 
 # [+] -------------------------------------------------------------| reset-time
 
@@ -333,4 +335,4 @@ reset-time() {
 # [+] --------------------------------------------------------------| snake-env
 
 # --| Manage python -m venv.
-load-source "${AEL_BIN}/snake-env"
+source "${HOME}/.ael/bin/snake-env"
