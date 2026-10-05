@@ -159,7 +159,7 @@ else
     fi
 fi
 
-# [+] ----------------------------------------------------------------| aliases
+# ---( aliases )--------------------------------------------------------------|
 
 alias grep="grep --color=auto"
 alias ll='ls --all --human-readable -l --color=auto'
@@ -169,8 +169,8 @@ alias lt='ls --format=long --sort=time --all --human-readable'
 # --| Makes tmux understand the environment is important.
 alias tmux="env TERM=screen-256color tmux -u"
 
-# --| .ael/custom/aliases -> Custom aliases file.
-load-source "${AEL_CUSTOM}/aliases"
+# --- ( private aliases )
+load-source "${AEL_PRIVATE}/aliases"
 
 # [+] -------------------------------------------------------------------| PATH
 
