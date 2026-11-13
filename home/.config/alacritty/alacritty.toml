@@ -1,9 +1,13 @@
-# :----------------------------------------------------------------------- INFO
-# :[~/.config/alacritty/alacritty.toml]
-# :author        : alterEGO Linux
-# :created       : 2023-12-29 17:02:13 UTC
-# :updated       : 2025-02-07 14:21:28 UTC
-# :description   : Configuration for Alacritty.
+# =============================================================================
+# INFO
+# =============================================================================
+# [/.config/alacritty/alacritty.toml]
+# 
+# Author      : Pascal Malouin (https://github.com/alterEGO-Linux)
+# Created     : 2023-12-29 17:02:13 UTC
+# Updated     : 2026-10-15 14:28:23 UTC
+# Description : Alacritty configuration.
+# -----------------------------------------------------------------------------
 
 [general]
 live_config_reload = true
@@ -16,4 +20,8 @@ opacity = 1.00
 size   = 11.0
 normal = { family = "Source Code Pro", style = "Medium" }
 bold   = { family = "Source Code Pro", style = "Bold" }
-italic = { family = "Monospace", style = "Italic"}
+italic = { style = "Italic"}
+
+[cursor]
+style = { shape = "Beam", blinking = "Off" }
+
