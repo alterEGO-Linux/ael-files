@@ -599,7 +599,7 @@ nnoremap <leader>er :Ranger<CR>
 
   nnoremap <leader>z :call FzfSpelling()<CR>
 
-  " ---------- [ plugins - markdown-preview ]
+  " |-( plugins - markdown-preview )
   nnoremap <silent> <leader>vm <Plug>MarkdownPreview
   nnoremap <silent> <leader>sm <Plug>StopMarkdownPreview
 
